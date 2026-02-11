@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace _Project.Scripts.Core.Player
 {
-    public class MovementController : MonoBehaviour<IPlayerReader, KinematicCharacterMotor>, ICharacterController
+    public class MovementController : MonoBehaviour<INESActionReader, KinematicCharacterMotor, Camera>, ICharacterController
     {
         [SerializeField] private float walkSpeed = 5f;
         [SerializeField] private float sprintSpeed = 10f;
@@ -15,7 +15,7 @@ namespace _Project.Scripts.Core.Player
         [SerializeField] private float jumpHeight = 5f;
         [SerializeField] private float gravity = 20f;
         
-        private IPlayerReader _inputReader;
+        private INESActionReader _inputReader;
         private KinematicCharacterMotor _motor;
         private Transform _cameraTransform;
         
@@ -25,10 +25,11 @@ namespace _Project.Scripts.Core.Player
         private Vector3 _lastLookDirection;
         private bool _jumpRequested;
         
-        protected override void Init(IPlayerReader argument, KinematicCharacterMotor motor)
+        protected override void Init(INESActionReader argument, KinematicCharacterMotor motor, Camera camera)
         {
             _inputReader = argument;
             _motor = motor;
+            _cameraTransform = camera.transform;
         }
 
         //Potentially change to use DI
@@ -36,7 +37,6 @@ namespace _Project.Scripts.Core.Player
         {
             _motor = GetComponent<KinematicCharacterMotor>();
             _motor.CharacterController = this;
-            _cameraTransform = Camera.main!.transform;
         }
 
         private void Start()
@@ -47,16 +47,12 @@ namespace _Project.Scripts.Core.Player
 
         private void OnEnable()
         {
-            _inputReader.OnMoveEvent += HandleMove;
-            _inputReader.OnSprintEvent += HandleSprint;
-            _inputReader.OnJumpEvent += HandleJump;
+            _inputReader.OnDPadInput += HandleMove;
         }
 
         private void OnDisable()
         {
-            _inputReader.OnMoveEvent -= HandleMove;
-            _inputReader.OnSprintEvent -= HandleSprint;
-            _inputReader.OnJumpEvent -= HandleJump;
+            _inputReader.OnDPadInput -= HandleMove;
         }
 
         private void HandleMove(Vector2 movementInput)
