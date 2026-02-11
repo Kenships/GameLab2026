@@ -7,9 +7,9 @@ public class GridSystem : MonoBehaviour, IGridService
     [SerializeField] private Grid grid;
     [SerializeField] private GameObject gridIndicator;
     [SerializeField] private float gridIndicatorYCoordinate = 0.05f;
-    public Vector3 GetGridWorldPosition(Vector3 pos)
+    public Vector3 GetGridWorldPosition(Vector3 worldPos)
     {
-        Vector3Int gridPosition = grid.WorldToCell(pos);
+        Vector3Int gridPosition = grid.WorldToCell(worldPos);
         Vector3 gridPositionWorld = grid.CellToWorld(gridPosition);
         return new Vector3(gridPositionWorld.x, gridIndicatorYCoordinate, gridPositionWorld.z);
     }
@@ -17,9 +17,9 @@ public class GridSystem : MonoBehaviour, IGridService
     {
         return gridIndicator;
     }
-    public GameObject GetObjectOnGrid(Vector3 pos)
+    public GameObject GetObjectOnGrid(Vector3 worldPos)
     {
-        Collider[] colliders = Physics.OverlapSphere(GetGridWorldPosition(pos), grid.cellSize.x/2);
+        Collider[] colliders = Physics.OverlapSphere(GetGridWorldPosition(worldPos), grid.cellSize.x/2);
 
         if (colliders.Length > 0)
         {
@@ -27,17 +27,17 @@ public class GridSystem : MonoBehaviour, IGridService
         }
         return null;
     }
-    public void InstantiatePrefabOnGrid(GameObject prefab, Vector3 pos)
+    public void InstantiatePrefabOnGrid(GameObject prefab, Vector3 worldPos)
     {
         if (prefab == null)
         {
             Debug.Log("InstantiatePrefabOnGrid: prefab can't be null");
             return;
         }
-        Instantiate(prefab, GetGridWorldPosition(pos), Quaternion.identity);
+        Instantiate(prefab, GetGridWorldPosition(worldPos), Quaternion.identity);
     }
-    public void DestroyObjectOnGrid(Vector3 pos)
+    public void DestroyObjectOnGrid(Vector3 worldPos)
     {
-        Destroy(GetObjectOnGrid(pos));
+        Destroy(GetObjectOnGrid(worldPos));
     }
 }
