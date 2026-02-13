@@ -24,6 +24,9 @@ namespace _Project.Scripts.Multiplayer
             actions.asset.devices = playerInput.devices;
             actions.Enable();
 
+            playerInput.actions = actions.asset;
+
+
             playerInput.GetOrAddComponent<NESActionReader>().Init(actions);
 
             foreach (Transform spawnPoint in spawnPoints)
