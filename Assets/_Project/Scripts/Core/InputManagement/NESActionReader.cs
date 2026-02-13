@@ -1,5 +1,6 @@
 ﻿using System;
 using _Project.Scripts.Core.InputManagement.Interfaces;
+using Sisus.Init;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
@@ -25,20 +26,16 @@ namespace _Project.Scripts.Core.InputManagement
         private InputAction _dpad;
         private InputAction _interact;
         private InputAction _altInteract;
-
-        private void Awake()
+        
+        public void Init(NESActions actions)
         {
-            if (!_playerInput)
-                _playerInput = GetComponent<PlayerInput>();
-            _actions = new NESActions();
-
-            _playerInput.actions = _actions.asset;
-
-            _actions.Enable();
+            _actions = actions;
         }
-
+        
+        
         private void Start()
         {
+            
             _actions.Player.Move.performed += MoveOnPerformed;
             _actions.Player.Move.canceled += MoveOnCanceled;
             
@@ -102,5 +99,7 @@ namespace _Project.Scripts.Core.InputManagement
         {
             OnDPadInput?.Invoke(ctx.ReadValue<Vector2>());
         }
+
+        
     }
 }
