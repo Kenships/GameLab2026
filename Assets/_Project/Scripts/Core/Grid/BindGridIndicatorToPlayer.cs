@@ -1,21 +1,24 @@
-using UnityEngine;
 using Sisus.Init;
+using UnityEngine;
 
-public class BindGridIndicatorToPlayer : MonoBehaviour<IGridService>
+namespace _Project.Scripts.Core.Grid
 {
-    [SerializeField] private Transform frontOfPlayer;
-    private IGridService gridSystem;
-    private GameObject gridIndicator;
-    protected override void Init(IGridService argument)
+    public class BindGridIndicatorToPlayer : MonoBehaviour<IGridService>
     {
-        gridSystem = argument;
-    }
-    private void Start()
-    {
-        gridIndicator = gridSystem.GetGridIndicator();
-    }
-    private void Update()
-    {
-        gridIndicator.transform.position = gridSystem.GetGridWorldPosition(frontOfPlayer.position);
+        [SerializeField] private Transform frontOfPlayer;
+        private IGridService _gridSystem;
+        private GameObject _gridIndicator;
+        protected override void Init(IGridService gridService)
+        {
+            _gridSystem = gridService;
+        }
+        private void Start()
+        {
+            _gridIndicator = _gridSystem.GetGridIndicator();
+        }
+        private void Update()
+        {
+            _gridIndicator.transform.position = _gridSystem.GetGridWorldPosition(frontOfPlayer.position);
+        }
     }
 }   

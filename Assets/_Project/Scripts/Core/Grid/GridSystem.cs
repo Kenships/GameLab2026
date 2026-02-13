@@ -4,10 +4,20 @@ using Sisus.Init;
 [Service(typeof(IGridService), FindFromScene = true)]
 public class GridSystem : MonoBehaviour, IGridService
 {
+    [SerializeField] private bool showGridIndicator = true;
+    
     [SerializeField] private Grid grid;
     [SerializeField] private GameObject gridIndicator;
     [SerializeField] private float gridPositionYCoordinate = 0.05f;
     [SerializeField] private LayerMask detectionLayerMask;
+
+    private void OnValidate()
+    {
+        #if UNITY_EDITOR
+        gridIndicator?.SetActive(showGridIndicator);
+        #endif
+    }
+    
     public Vector3 GetGridWorldPosition(Vector3 worldPos)
     {
         Vector3Int gridPosition = grid.WorldToCell(worldPos);
