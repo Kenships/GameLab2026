@@ -212,6 +212,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GridSystem
   grid: {fileID: 954558688364720504}
   gridIndicator: {fileID: 50605254141382615}
+  gridPositionYCoordinate: 0.05
+  detectionLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!1 &8893606389409814058
 GameObject:
   m_ObjectHideFlags: 0

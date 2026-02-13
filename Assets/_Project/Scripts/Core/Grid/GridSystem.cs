@@ -6,12 +6,13 @@ public class GridSystem : MonoBehaviour, IGridService
 {
     [SerializeField] private Grid grid;
     [SerializeField] private GameObject gridIndicator;
-    [SerializeField] private float gridIndicatorYCoordinate = 0.05f;
+    [SerializeField] private float gridPositionYCoordinate = 0.05f;
+    [SerializeField] private LayerMask detectionLayerMask;
     public Vector3 GetGridWorldPosition(Vector3 worldPos)
     {
         Vector3Int gridPosition = grid.WorldToCell(worldPos);
         Vector3 gridPositionWorld = grid.CellToWorld(gridPosition);
-        return new Vector3(gridPositionWorld.x, gridIndicatorYCoordinate, gridPositionWorld.z);
+        return new Vector3(gridPositionWorld.x, gridPositionYCoordinate, gridPositionWorld.z);
     }
     public GameObject GetGridIndicator()
     {
@@ -19,7 +20,7 @@ public class GridSystem : MonoBehaviour, IGridService
     }
     public GameObject GetObjectOnGrid(Vector3 worldPos)
     {
-        Collider[] colliders = Physics.OverlapSphere(GetGridWorldPosition(worldPos), grid.cellSize.x/2);
+        Collider[] colliders = Physics.OverlapSphere(GetGridWorldPosition(worldPos), grid.cellSize.x/2, detectionLayerMask);
 
         if (colliders.Length > 0)
         {
@@ -27,17 +28,29 @@ public class GridSystem : MonoBehaviour, IGridService
         }
         return null;
     }
-    public void InstantiatePrefabOnGrid(GameObject prefab, Vector3 worldPos)
+    // Can only instantiate on empty grid
+    public bool InstantiatePrefabOnGrid(GameObject prefab, Vector3 worldPos)
     {
         if (prefab == null)
         {
             Debug.Log("InstantiatePrefabOnGrid: prefab can't be null");
-            return;
+            return false;
         }
-        Instantiate(prefab, GetGridWorldPosition(worldPos), Quaternion.identity);
+        if (GetObjectOnGrid(worldPos) == null)
+        {
+            Instantiate(prefab, GetGridWorldPosition(worldPos), Quaternion.identity);
+            return true;
+        }
+        return false;
     }
-    public void DestroyObjectOnGrid(Vector3 worldPos)
+    public bool DestroyObjectOnGrid(Vector3 worldPos)
     {
-        Destroy(GetObjectOnGrid(worldPos));
+        GameObject obj = GetObjectOnGrid(worldPos);
+        if (obj != null)
+        {
+            Destroy(obj);
+            return true;
+        }
+        return false;
     }
 }
