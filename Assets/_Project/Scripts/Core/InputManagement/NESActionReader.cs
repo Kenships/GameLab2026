@@ -13,9 +13,11 @@ namespace _Project.Scripts.Core.InputManagement
     public class NESActionReader : MonoBehaviour, INESActionReader
     {
         public event UnityAction<Vector2> OnDPadInput;
+        public event UnityAction OnTapInteract;
         public event UnityAction OnHoldInteract;
         public event UnityAction OnReleaseInteract;
         public event UnityAction OnDoubleTapInteract;
+        public event UnityAction OnTapAltInteract;
         public event UnityAction OnHoldAltInteract;
         public event UnityAction OnReleaseAltInteract;
         public event UnityAction OnDoubleTapAltInteract;
@@ -57,14 +59,16 @@ namespace _Project.Scripts.Core.InputManagement
 
         private void AltInteractOnPerformed(InputAction.CallbackContext ctx)
         {
-            if (ctx.interaction is HoldInteraction)
+            if (ctx.interaction is TapInteraction)
             {
-                Debug.Log("Holding alt interaction");
+                OnTapAltInteract?.Invoke();
+            }
+            else if (ctx.interaction is HoldInteraction)
+            {
                 OnHoldAltInteract?.Invoke();
             }
             else if (ctx.interaction is MultiTapInteraction)
             {
-                Debug.Log("Multi-taping alt interaction");
                 OnDoubleTapAltInteract?.Invoke();
             }
         }
@@ -73,20 +77,26 @@ namespace _Project.Scripts.Core.InputManagement
         {
             if (ctx.interaction is HoldInteraction)
             {
-                Debug.Log("interaction Canceled");
                 OnReleaseInteract?.Invoke();
             }
         }
 
         private void InteractOnPerformed(InputAction.CallbackContext ctx)
         {
-            if (ctx.interaction is HoldInteraction)
+            if (ctx.interaction is TapInteraction)
+            {
+                Debug.Log("Interact On Tap");
+                OnTapInteract?.Invoke();
+            }
+            else if (ctx.interaction is HoldInteraction)
             {
                 Debug.Log("Holding interaction");
+                OnHoldInteract?.Invoke();
             }
             else if (ctx.interaction is MultiTapInteraction)
             {
                 Debug.Log("Multi-taping interaction");
+                OnDoubleTapInteract?.Invoke();
             }
         }
 
