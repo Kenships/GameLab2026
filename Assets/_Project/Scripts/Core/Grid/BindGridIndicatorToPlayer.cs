@@ -11,6 +11,7 @@ namespace _Project.Scripts.Core.Grid
         protected override void Init(IGridService gridService)
         {
             _gridSystem = gridService;
+            gridIndicator.transform.SetParent(null);
         }
         
         private void Update()
