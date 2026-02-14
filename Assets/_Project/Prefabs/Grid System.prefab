@@ -103,7 +103,7 @@ Transform:
   m_GameObject: {fileID: 3731594441767701446}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.5, y: 0, z: 0.5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -210,12 +210,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd70fbb23a4c8ad4b994d970894e2512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GridSystem
+  showGridIndicator: 1
   grid: {fileID: 954558688364720504}
   gridIndicator: {fileID: 50605254141382615}
   gridPositionYCoordinate: 0.05
-  detectionLayerMask:
-    serializedVersion: 2
-    m_Bits: 1
 --- !u!1 &8893606389409814058
 GameObject:
   m_ObjectHideFlags: 0
