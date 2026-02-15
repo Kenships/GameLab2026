@@ -1,3 +1,4 @@
+using _Project.Scripts.Core.Grid;
 using _Project.Scripts.Core.InputManagement.Interfaces;
 using Sisus.Init;
 using UnityEngine;
@@ -7,15 +8,14 @@ namespace _Project.Scripts.Core.Player
     public class InteractionsWithObject : MonoBehaviour<INESActionReader,IGridService>
     {
         [SerializeField] private bool allowDiagonal = false;
-        [SerializeField, Range(1, 2)] private int playerID = 1;
         [SerializeField] private Transform frontOfPlayer;
-        private GameObject currentHoldingObject;
+        private GameObject _currentHoldingObject;
         private INESActionReader _inputReader;
-        private IGridService gridService;
-        protected override void Init(INESActionReader firstArgument, IGridService secondArgument)
+        private IGridService _gridService;
+        protected override void Init(INESActionReader NESActionReader, IGridService gridService)
         {
-            _inputReader = firstArgument;
-            gridService = secondArgument;
+            _inputReader = NESActionReader;
+            _gridService = gridService;
         }
         private void OnEnable()
         {
@@ -34,41 +34,41 @@ namespace _Project.Scripts.Core.Player
         private void PickUpOrPutDown()
         {
             // Pick Up
-            if (currentHoldingObject == null)
+            if (_currentHoldingObject == null)
             {
-                GameObject obj = gridService.GetObjectOnGridIndicator(playerID);
+                GameObject obj = _gridService.GetObjectOnGrid(frontOfPlayer.position);
                 if (obj != null)
                 {
                     obj.layer = LayerMask.NameToLayer("Ignore Raycast");
                     obj.transform.position = frontOfPlayer.position;
                     obj.transform.SetParent(frontOfPlayer);
                     obj.GetComponent<Collider>().enabled = false;
-                    currentHoldingObject = obj;
+                    _currentHoldingObject = obj;
                 }
             }
             // Put Down
             else
             {
-                currentHoldingObject.transform.SetParent(null);
-                currentHoldingObject.layer = LayerMask.NameToLayer("Object On Grid");
-                currentHoldingObject.transform.position = gridService.GetGridIndicatorWorldPosition(playerID);
+                _currentHoldingObject.transform.SetParent(null);
+                _currentHoldingObject.layer = LayerMask.NameToLayer("Object On Grid");
+                _currentHoldingObject.transform.position = _gridService.GetGridWorldPosition(frontOfPlayer.position);
                 if (!allowDiagonal)
                 {
-                    Vector3 currentRotation = currentHoldingObject.transform.eulerAngles;
-                    currentHoldingObject.transform.rotation = Quaternion.Euler(
+                    Vector3 currentRotation = _currentHoldingObject.transform.eulerAngles;
+                    _currentHoldingObject.transform.rotation = Quaternion.Euler(
                         currentRotation.x,
                         AdjustIfDiagonal(currentRotation.y),
                         currentRotation.z
                     );
                 }
-                currentHoldingObject.GetComponent<Collider>().enabled = true;
-                currentHoldingObject = null;
+                _currentHoldingObject.GetComponent<Collider>().enabled = true;
+                _currentHoldingObject = null;
             }
         }
         // Hold A
         private void FastFowrad()
         {
-            GameObject objOnGrid = gridService.GetObjectOnGridIndicator(playerID);
+            GameObject objOnGrid = _gridService.GetObjectOnGrid(frontOfPlayer.position);
             if(objOnGrid != null)
             {
                 ITimeControllable timeControllable = objOnGrid.GetComponent<ITimeControllable>();
@@ -81,7 +81,7 @@ namespace _Project.Scripts.Core.Player
         // Hold B
         private void Rewind()
         {
-            GameObject objOnGrid = gridService.GetObjectOnGridIndicator(playerID);
+            GameObject objOnGrid = _gridService.GetObjectOnGrid(frontOfPlayer.position);
             if (objOnGrid != null)
             {
                 ITimeControllable timeControllable = objOnGrid.GetComponent<ITimeControllable>();

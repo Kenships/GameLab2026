@@ -650,8 +650,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fefc6e708e103f5448d0b17cc549bd8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BindGridIndicatorToPlayer
-  playerID: 1
   frontOfPlayer: {fileID: 1312377963}
+  gridIndicator: {fileID: 6045049459235773472}
 --- !u!114 &1289998696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -665,7 +665,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.Player.InteractionsWithObject
   allowDiagonal: 0
-  playerID: 1
   frontOfPlayer: {fileID: 1312377963}
 --- !u!1 &1312377962
 GameObject:
@@ -990,7 +989,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 53.094, y: 0, z: 0}
---- !u!1001 &2410372308685829472
+--- !u!1 &6045049459235773472 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8257077979063150912, guid: 7cb916d24c7d3d041b0ca4de05dbda22, type: 3}
+  m_PrefabInstance: {fileID: 7387114228544302442}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7387114228544302442
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -1055,5 +1059,5 @@ SceneRoots:
   - {fileID: 1826954336}
   - {fileID: 1289998694}
   - {fileID: 321871995}
-  - {fileID: 2410372308685829472}
+  - {fileID: 7387114228544302442}
   - {fileID: 1255351886}
