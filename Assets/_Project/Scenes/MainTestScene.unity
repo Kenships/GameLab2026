@@ -650,6 +650,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fefc6e708e103f5448d0b17cc549bd8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BindGridIndicatorToPlayer
+  playerID: 1
   frontOfPlayer: {fileID: 1312377963}
 --- !u!114 &1289998696
 MonoBehaviour:
@@ -663,6 +664,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 578dc20b332588544b188804e23e67de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.Player.InteractionsWithObject
+  allowDiagonal: 0
+  playerID: 1
   frontOfPlayer: {fileID: 1312377963}
 --- !u!1 &1312377962
 GameObject:
@@ -987,7 +990,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 53.094, y: 0, z: 0}
---- !u!1001 &3162228473232842502
+--- !u!1001 &2410372308685829472
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -995,14 +998,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 210024260498456759, guid: 7cb916d24c7d3d041b0ca4de05dbda22, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 210024260498456759, guid: 7cb916d24c7d3d041b0ca4de05dbda22, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1544048903959123955, guid: 7cb916d24c7d3d041b0ca4de05dbda22, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1060,5 +1055,5 @@ SceneRoots:
   - {fileID: 1826954336}
   - {fileID: 1289998694}
   - {fileID: 321871995}
-  - {fileID: 3162228473232842502}
+  - {fileID: 2410372308685829472}
   - {fileID: 1255351886}

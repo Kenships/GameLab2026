@@ -7,13 +7,14 @@ public class GridSystem : MonoBehaviour, IGridService
     [SerializeField] private bool showGridIndicator = true;
     
     [SerializeField] private Grid grid;
-    [SerializeField] private GameObject gridIndicator;
+    [SerializeField] private GameObject gridIndicator1, gridIndicator2;
     [SerializeField] private float gridPositionYCoordinate = 0.05f;
 
     private void OnValidate()
     {
         #if UNITY_EDITOR
-        gridIndicator?.SetActive(showGridIndicator);
+        gridIndicator1?.SetActive(showGridIndicator);
+        gridIndicator2?.SetActive(showGridIndicator);
         #endif
     }
     
@@ -60,17 +61,55 @@ public class GridSystem : MonoBehaviour, IGridService
         }
         return false;
     }
-    public GameObject GetGridIndicator()
+    // playerID is either 1 or 2
+    public GameObject GetGridIndicator(int playerID)
     {
-        return gridIndicator;
+        if (playerID == 1)
+        {
+            return gridIndicator1;
+        }
+        else if (playerID == 2)
+        {
+            return gridIndicator2;
+        }
+        else
+        {
+            Debug.Log("GetGridIndicator: invalid playerID");
+            return null;
+        }
     }
-    public Vector3 GetGridIndicatorWorldPosition()
+    // playerID is either 1 or 2
+    public Vector3 GetGridIndicatorWorldPosition(int playerID)
     {
-        return GetGridWorldPosition(gridIndicator.transform.position);
+        if(playerID == 1)
+        {
+            return GetGridWorldPosition(gridIndicator1.transform.position);
+        }
+        else if (playerID == 2)
+        {
+            return GetGridWorldPosition(gridIndicator2.transform.position);
+        }
+        else
+        {
+            Debug.Log("GetGridIndicatorWorldPosition: invalid playerID");
+            return Vector3.zero;
+        }
     }
-    // Only object in the layer called ¡°Object On Grid¡± can be detected
-    public GameObject GetObjectOnGridIndicator()
+    // Only object in the layer called ¡°Object On Grid¡± can be detected; playerID is either 1 or 2
+    public GameObject GetObjectOnGridIndicator(int playerID)
     {
-        return GetObjectOnGrid(gridIndicator.transform.position);
+        if (playerID == 1)
+        {
+            return GetObjectOnGrid(gridIndicator1.transform.position);
+        }
+        else if (playerID == 2)
+        {
+            return GetObjectOnGrid(gridIndicator2.transform.position);
+        }
+        else
+        {
+            Debug.Log("GetObjectOnGridIndicator: invalid playerID");
+            return null;
+        }
     }
 }

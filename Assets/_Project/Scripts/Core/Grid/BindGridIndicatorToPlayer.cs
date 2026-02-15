@@ -5,6 +5,7 @@ namespace _Project.Scripts.Core.Grid
 {
     public class BindGridIndicatorToPlayer : MonoBehaviour<IGridService>
     {
+        [SerializeField, Range(1, 2)] private int playerID = 1;
         [SerializeField] private Transform frontOfPlayer;
         private IGridService _gridSystem;
         private GameObject _gridIndicator;
@@ -14,7 +15,7 @@ namespace _Project.Scripts.Core.Grid
         }
         private void Start()
         {
-            _gridIndicator = _gridSystem.GetGridIndicator();
+            _gridIndicator = _gridSystem.GetGridIndicator(playerID);
         }
         private void Update()
         {
