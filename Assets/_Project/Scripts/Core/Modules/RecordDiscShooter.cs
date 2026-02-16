@@ -6,7 +6,8 @@ public class RecordDiscShooter : MonoBehaviour
     [SerializeField] private GameObject recordDiscPrefab;
     [SerializeField] private Transform spawnPoint;
 
-    [Header("Shooting Settings")]
+    [Header("Shooting Settings")] [SerializeField]
+    private float rotateSpeed = 200f; //homing turning sharpness
     [SerializeField] private float shootSpeed = 10f;
     [SerializeField] private float timeBetweenShots = 1f; // in seconds ofc
     [SerializeField] [Range(0f, 1f)] private float bulletWobble = 0f; // 0 is no wobble wobble
@@ -67,8 +68,7 @@ public class RecordDiscShooter : MonoBehaviour
         );
 
         RecordDiscBullet bullet = disc.AddComponent<RecordDiscBullet>();
-        bullet.Initialize(currentTarget, shootSpeed, maxTargets);
-        bullet.SetWobble(bulletWobble);
+        bullet.Initialize(currentTarget, shootSpeed, maxTargets, rotateSpeed, bulletWobble);
     }
 
     private void OnDrawGizmosSelected()

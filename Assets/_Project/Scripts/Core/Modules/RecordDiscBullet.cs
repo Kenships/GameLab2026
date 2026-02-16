@@ -14,12 +14,14 @@ public class RecordDiscBullet : MonoBehaviour
     private float hitTimer;
     private Rigidbody rb;
 
-    public void Initialize(Transform target, float speed, int maxTargets)
+    public void Initialize(Transform target, float speed, int maxTargets, float rotateSpeed, float wobbleAmount)
     {
+        this.rotateSpeed = rotateSpeed;
         this.target = target;
         this.speed = speed;
         this.maxTargets = maxTargets;
         this.hitCount = 0;
+        this.wobbleAmount = wobbleAmount;
 
         rb = GetComponent<Rigidbody>();
         if (rb != null)
