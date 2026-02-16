@@ -6,13 +6,13 @@ public class RecordDiscShooter : MonoBehaviour
     [SerializeField] private GameObject recordDiscPrefab;
     [SerializeField] private Transform spawnPoint;
 
-    [Header("Shooting Settings")] [SerializeField]
-    private float rotateSpeed = 200f; //homing turning sharpness
-    [SerializeField] private float shootSpeed = 10f;
-    [SerializeField] private float timeBetweenShots = 1f; // in seconds ofc
-    [SerializeField] [Range(0f, 1f)] private float bulletWobble = 0f; // 0 is no wobble wobble
-    [SerializeField] private int maxTargets = 3; //max hits on enemy before bullet dying
-    [SerializeField] private float detectionRange = 15f;
+    [Header("Shooting Settings")]
+    [SerializeField] private float rotateSpeed = 200f; // homing rotation sharpness (higher the sharper)
+    [SerializeField] private float shootSpeed = 10f; // speed of bullet
+    [SerializeField] private float timeBetweenShots = 1f; //yk
+    [SerializeField] [Range(0f, 1f)] private float bulletWobble = 0f; // o = bullet shoots straght (like frisbee) | 1= bullet wobbles (me throwing a frisbee)
+    [SerializeField] private int maxTargets = 3; // max number of hits until bullet is destroyed
+    [SerializeField] private float detectionRange = 15f; // range around shooter that detects enemies
     [SerializeField] private LayerMask enemyLayer;
 
     private float shootTimer;
@@ -67,13 +67,8 @@ public class RecordDiscShooter : MonoBehaviour
             rotationToEnemy
         );
 
-        RecordDiscBullet bullet = disc.AddComponent<RecordDiscBullet>();
-        bullet.Initialize(currentTarget, shootSpeed, maxTargets, rotateSpeed, bulletWobble);
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, detectionRange);
+        RecordDiscBullet bullet = disc.GetComponent<RecordDiscBullet>();
+        bullet.Initialize(currentTarget, shootSpeed, maxTargets, rotateSpeed, bulletWobble, enemyLayer);
     }
 }
+    
