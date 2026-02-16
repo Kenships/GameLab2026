@@ -1,26 +1,28 @@
-using System;
 using UnityEngine;
 
 public class RecordDiscShooter : MonoBehaviour
 {
-  
+    [Header("References")]
     [SerializeField] private GameObject recordDiscPrefab;
     [SerializeField] private Transform spawnPoint;
 
-    
-    [SerializeField] private Vector3 shootDirection = Vector3.forward;
+    [Header("Shooting Settings")]
     [SerializeField] private float shootSpeed = 10f;
-    [SerializeField] private float timeBetweenShots = 1f;
-    
-    
-    // [SerializeField] private float bulletScale = 1f;
-    [SerializeField] private float bulletLifetime = 5f;
+    [SerializeField] private float timeBetweenShots = 1f; // in seconds ofc
+    [SerializeField] [Range(0f, 1f)] private float bulletWobble = 0f; // 0 is no wobble wobble
+    [SerializeField] private int maxTargets = 3; //max hits on enemy before bullet dying
+    [SerializeField] private float detectionRange = 15f;
+    [SerializeField] private LayerMask enemyLayer;
 
     private float shootTimer;
-  
-    
+    private Transform currentTarget;
+
     private void Update()
     {
+        FindClosestEnemy();
+
+        if (currentTarget == null) return;
+
         shootTimer -= Time.deltaTime;
 
         if (shootTimer <= 0f)
@@ -30,32 +32,48 @@ public class RecordDiscShooter : MonoBehaviour
         }
     }
 
+    private void FindClosestEnemy()
+    {
+        Collider[] enemiesInRange = Physics.OverlapSphere(transform.position, detectionRange, enemyLayer);
+
+        float closestDistance = Mathf.Infinity;
+        Transform closestEnemy = null;
+
+        foreach (Collider enemy in enemiesInRange)
+        {
+            float distance = Vector3.Distance(transform.position, enemy.transform.position);
+
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                closestEnemy = enemy.transform;
+            }
+        }
+
+        currentTarget = closestEnemy;
+    }
+
     private void Shoot()
     {
+        if (currentTarget == null) return;
+
+        Vector3 directionToEnemy = (currentTarget.position - spawnPoint.position).normalized;
+        Quaternion rotationToEnemy = Quaternion.LookRotation(directionToEnemy);
+
         GameObject disc = Instantiate(
             recordDiscPrefab,
             spawnPoint.position,
-            spawnPoint.rotation
+            rotationToEnemy
         );
-        
-      
-        //disc.transform.localScale = Vector3.one * bulletScale;
-        
-        Rigidbody rb = disc.GetComponent<Rigidbody>();
-        if (rb == null)
-        {
-            rb = disc.AddComponent<Rigidbody>();
-        }
 
-        rb.useGravity = false;
+        RecordDiscBullet bullet = disc.AddComponent<RecordDiscBullet>();
+        bullet.Initialize(currentTarget, shootSpeed, maxTargets);
+        bullet.SetWobble(bulletWobble);
+    }
 
-        // Normalize the direction so speed is consistent regardless of direction vector magnitude
-        Vector3 direction = shootDirection.normalized;
-
-        // Apply velocity
-        rb.linearVelocity = direction * shootSpeed;
-
-        // Destroy the bullet after its lifetime expires so we don't flood the scene
-        Destroy(disc, bulletLifetime);
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, detectionRange);
     }
 }
