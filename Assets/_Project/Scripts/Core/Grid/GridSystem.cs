@@ -4,33 +4,19 @@ using Sisus.Init;
 [Service(typeof(IGridService), FindFromScene = true)]
 public class GridSystem : MonoBehaviour, IGridService
 {
-    [SerializeField] private bool showGridIndicator = true;
-    
     [SerializeField] private Grid grid;
-    [SerializeField] private GameObject gridIndicator;
     [SerializeField] private float gridPositionYCoordinate = 0.05f;
-    [SerializeField] private LayerMask detectionLayerMask;
-
-    private void OnValidate()
-    {
-        #if UNITY_EDITOR
-        gridIndicator?.SetActive(showGridIndicator);
-        #endif
-    }
     
     public Vector3 GetGridWorldPosition(Vector3 worldPos)
     {
         Vector3Int gridPosition = grid.WorldToCell(worldPos);
-        Vector3 gridPositionWorld = grid.CellToWorld(gridPosition);
+        Vector3 gridPositionWorld = grid.GetCellCenterWorld(gridPosition);
         return new Vector3(gridPositionWorld.x, gridPositionYCoordinate, gridPositionWorld.z);
     }
-    public GameObject GetGridIndicator()
-    {
-        return gridIndicator;
-    }
+    // Only object in the layer called ¡°Object On Grid¡± can be detected
     public GameObject GetObjectOnGrid(Vector3 worldPos)
     {
-        Collider[] colliders = Physics.OverlapSphere(GetGridWorldPosition(worldPos), grid.cellSize.x/2, detectionLayerMask);
+        Collider[] colliders = Physics.OverlapSphere(GetGridWorldPosition(worldPos), grid.cellSize.x/2, LayerMask.GetMask("Object On Grid"));
 
         if (colliders.Length > 0)
         {
@@ -48,7 +34,8 @@ public class GridSystem : MonoBehaviour, IGridService
         }
         if (GetObjectOnGrid(worldPos) == null)
         {
-            Instantiate(prefab, GetGridWorldPosition(worldPos), Quaternion.identity);
+            GameObject obj = Instantiate(prefab, GetGridWorldPosition(worldPos), Quaternion.identity);
+            obj.layer = LayerMask.NameToLayer("Object On Grid");
             return true;
         }
         return false;

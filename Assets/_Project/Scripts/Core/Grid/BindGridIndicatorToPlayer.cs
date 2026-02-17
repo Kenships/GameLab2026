@@ -6,19 +6,19 @@ namespace _Project.Scripts.Core.Grid
     public class BindGridIndicatorToPlayer : MonoBehaviour<IGridService>
     {
         [SerializeField] private Transform frontOfPlayer;
+        [SerializeField] private GameObject gridIndicator;
         private IGridService _gridSystem;
-        private GameObject _gridIndicator;
         protected override void Init(IGridService gridService)
         {
             _gridSystem = gridService;
         }
-        private void Start()
-        {
-            _gridIndicator = _gridSystem.GetGridIndicator();
-        }
         private void Update()
         {
-            _gridIndicator.transform.position = _gridSystem.GetGridWorldPosition(frontOfPlayer.position);
+            gridIndicator.transform.position = _gridSystem.GetGridWorldPosition(frontOfPlayer.position);
+        }
+        public GameObject GetGridIndicator()
+        {
+            return gridIndicator;
         }
     }
 }   
