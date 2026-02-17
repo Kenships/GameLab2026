@@ -20,6 +20,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Project/Scenes/Menus/GamePause.unity
     guid: 94a610923e6709c4f92bcf444e2d92e0
+  - enabled: 1
+    path: Assets/_Project/Scenes/Menus/MenuSelector.unity
+    guid: e3c0ac4fd89e2b449886a2eb0fca7a52
+  - enabled: 1
+    path: Assets/_Project/Scenes/MultiplayerTest.unity
+    guid: 5361768fb94d1db4aa97c1da23f4f219
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 900411dff19d8484796a5ca6b80dfb08, type: 3}
   m_UseUCBPForAssetBundles: 0
