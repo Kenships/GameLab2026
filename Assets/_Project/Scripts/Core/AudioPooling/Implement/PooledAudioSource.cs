@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 using _Project.Scripts.Core.AudioPooling.Interface;
-using _Project.Scripts.Util.GameObject.Extension;
+using _Project.Scripts.Util.ExtensionMethods;
 using PrimeTween;
 using Sisus.Init;
 using UnityEngine;

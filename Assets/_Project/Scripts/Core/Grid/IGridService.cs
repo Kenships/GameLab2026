@@ -1,11 +1,12 @@
 using UnityEngine;
 
-public interface IGridService
+namespace _Project.Scripts.Core.Grid
 {
-    public Vector3 GetGridWorldPosition(Vector3 worldPos);
-    // Only object in the layer called ¡°Object On Grid¡± can be detected
-    public GameObject GetObjectOnGrid(Vector3 worldPos);
-    // Can only instantiate on empty grid
-    public bool InstantiatePrefabOnGrid(GameObject prefab, Vector3 worldPos);
-    public bool DestroyObjectOnGrid(Vector3 worldPos);
+    public interface IGridService
+    {
+        public Vector3 GetGridWorldPosition(Vector3 worldPos);
+        public GameObject[] GetObjectsInRadius(Vector3 worldPos);
+        public void PlaceObjectOnGrid(GameObject obj, Vector3 worldPos);
+        public bool InstantiatePrefabOnGrid(GameObject prefab, Vector3 worldPos);
+    }
 }

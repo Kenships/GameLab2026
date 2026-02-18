@@ -8,7 +8,6 @@ namespace _Project.Scripts.Core.Player
 {
     public class InteractionsWithObject : MonoBehaviour<INESActionReader,IGridService>
     {
-        [SerializeField] private bool allowDiagonal = false;
         [SerializeField] private Transform frontOfPlayer;
         private GameObject _currentHoldingObject;
         private INESActionReader _inputReader;
@@ -41,6 +40,8 @@ namespace _Project.Scripts.Core.Player
             {
                 timeControllable.CancelFastForward();
             }
+            
+            _currentlyTimeControlledObjects.Clear();
         }
         
         
@@ -50,6 +51,8 @@ namespace _Project.Scripts.Core.Player
             {
                 timeControllable.CancelRewind();
             }
+            _currentlyTimeControlledObjects.Clear();
+            
         }
 
         
@@ -67,37 +70,54 @@ namespace _Project.Scripts.Core.Player
             // Pick Up
             if (!_currentHoldingObject)
             {
-                GameObject obj = _gridService.GetObjectOnGrid(frontOfPlayer.position);
+                GameObject[] objects = _gridService.GetObjectsInRadius(frontOfPlayer.position);
                 // Maybe do some logic to check if the object can be picked up IHoldable interface
-                if (obj)
-                {
-                    obj.layer = LayerMask.NameToLayer("Ignore Raycast");
-                    obj.transform.position = frontOfPlayer.position;
-                    obj.transform.SetParent(frontOfPlayer);
-                    obj.GetComponent<Collider>().enabled = false;
-                    _currentHoldingObject = obj;
-                }
+                
+                var obj = ChooseItemToPickUp(objects);
+                
+                obj.layer = LayerMask.NameToLayer("Ignore Raycast");
+                obj.transform.position = frontOfPlayer.position;
+                obj.transform.SetParent(frontOfPlayer);
+                obj.GetComponent<Collider>().enabled = false;
+                
+                _currentHoldingObject = obj;
             }
             // Put Down
             else
             {
                 _currentHoldingObject.transform.SetParent(null);
                 _currentHoldingObject.layer = LayerMask.NameToLayer("Object On Grid");
-                _currentHoldingObject.transform.position = _gridService.GetGridWorldPosition(frontOfPlayer.position);
-                if (!allowDiagonal)
-                {
-                    Vector3 currentRotation = _currentHoldingObject.transform.eulerAngles;
-                    _currentHoldingObject.transform.rotation = Quaternion.Euler(
-                        currentRotation.x,
-                        AdjustIfDiagonal(currentRotation.y),
-                        currentRotation.z
-                    );
-                }
+                
+                _gridService.PlaceObjectOnGrid(_currentHoldingObject, frontOfPlayer.position);
+                
                 _currentHoldingObject.GetComponent<Collider>().enabled = true;
                 _currentHoldingObject = null;
             }
         }
-        
+
+        private GameObject ChooseItemToPickUp(GameObject[] objects)
+        {
+            // Current strategy is to find the object in the direction the player is facing
+            
+            Vector3 myPosition = transform.position;
+            Vector3 myDirection = transform.forward;
+            
+            float bestDotProduct = Vector3.Dot((objects[0].transform.position - myPosition).normalized, myDirection);
+            int bestIndex = 0;
+
+            for (int i = 0; i < objects.Length; i++)
+            {
+                float dot = Vector3.Dot((objects[i].transform.position - myPosition).normalized, myDirection);
+
+                if (dot > bestDotProduct)
+                {
+                    bestIndex = i;
+                }
+            }
+            
+            return objects[bestIndex];
+        }
+
         // Hold A
         private void FastForward()
         {
@@ -108,12 +128,17 @@ namespace _Project.Scripts.Core.Player
             }
             
             
-            GameObject objOnGrid = _gridService.GetObjectOnGrid(frontOfPlayer.position);
-            if(objOnGrid && objOnGrid.TryGetComponent(out ITimeControllable timeControllable))
+            GameObject[] objectsOnGrid = _gridService.GetObjectsInRadius(frontOfPlayer.position);
+
+            foreach (var objOnGrid in objectsOnGrid)
             {
-                timeControllable.FastForward();
-                _currentlyTimeControlledObjects.Add(timeControllable);
+                if(objOnGrid && objOnGrid.TryGetComponent(out ITimeControllable timeControllable))
+                {
+                    timeControllable.FastForward();
+                    _currentlyTimeControlledObjects.Add(timeControllable);
+                }
             }
+            
         }
 
         // Hold B
@@ -125,11 +150,15 @@ namespace _Project.Scripts.Core.Player
                 return;
             }
             
-            GameObject objOnGrid = _gridService.GetObjectOnGrid(frontOfPlayer.position);
-            if (objOnGrid && objOnGrid.TryGetComponent(out ITimeControllable timeControllable))
+            GameObject[] objectsOnGrid = _gridService.GetObjectsInRadius(frontOfPlayer.position);
+
+            foreach (var objOnGrid in objectsOnGrid)
             {
-                timeControllable.Rewind();
-                _currentlyTimeControlledObjects.Add(timeControllable);
+                if (objOnGrid && objOnGrid.TryGetComponent(out ITimeControllable timeControllable))
+                {
+                    timeControllable.Rewind();
+                    _currentlyTimeControlledObjects.Add(timeControllable);
+                }
             }
         }
         
