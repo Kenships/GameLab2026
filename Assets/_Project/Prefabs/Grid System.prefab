@@ -92,6 +92,12 @@ MonoBehaviour:
   grid: {fileID: 954558688364720504}
   gridPositionYCoordinate: 0.05
   colliderBufferSize: 10
+  turnOnGizmos: 1
+  gridSize: 10
+  rotationOffset: {x: 90, y: 0, z: 0}
+  positionOffset: {x: 0, y: 0.05, z: 0}
+  renderSize: {x: 1, y: 1, z: 1}
+  renderMesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &8893606389409814058
 GameObject:
   m_ObjectHideFlags: 0

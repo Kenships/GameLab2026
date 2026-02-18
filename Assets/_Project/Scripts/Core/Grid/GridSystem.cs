@@ -1,5 +1,5 @@
-using System;
 using _Project.Scripts.Core.Grid;
+using _Project.Scripts.Util.CustomAttributes;
 using UnityEngine;
 using Sisus.Init;
 
@@ -92,14 +92,26 @@ public class GridSystem : MonoBehaviour, IGridService
         return angle;
     }
 
+    [Header("Grid Debug")]
+    [SerializeField] private bool turnOnGizmos;
+
+    [SerializeField, ShowIf(nameof(turnOnGizmos))] private int gridSize = 10;
+    [SerializeField, ShowIf(nameof(turnOnGizmos))] private Vector3 rotationOffset;
+    [SerializeField, ShowIf(nameof(turnOnGizmos))] private Vector3 positionOffset;
+    [SerializeField, ShowIf(nameof(turnOnGizmos))] private Vector3 renderSize;
+    [SerializeField, ShowIf(nameof(turnOnGizmos))] private Mesh renderMesh;
+
     private void OnDrawGizmos()
     {
-        for (int row = -10; row < 10; row++)
+        if (!turnOnGizmos)
+            return;
+        for (int row = -gridSize; row < gridSize; row++)
         {
-            for (int col = -10 + row % 2; col < 10; col += 2)
+            for (int col = -gridSize + row % 2; col < gridSize; col += 2)
             {
+                Vector3 gridPos = GetGridWorldPosition(new Vector3(row, 0, col) + positionOffset + transform.position);
                 Gizmos.color = Color.aquamarine;
-                Gizmos.DrawWireCube(GetGridWorldPosition(new Vector3(col, 0, row)), Vector3.one);
+                Gizmos.DrawMesh(renderMesh, gridPos, Quaternion.Euler(rotationOffset), renderSize);
             }
         }
     }
