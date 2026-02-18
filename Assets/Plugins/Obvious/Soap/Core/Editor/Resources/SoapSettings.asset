@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Obvious.Soap.Editor::Obvious.Soap.Editor.SoapSettings
   VariableDisplayMode: 0
   NamingOnCreationMode: 0
-  CreatePathMode: 0
+  CreatePathMode: 1
   RaiseEventsInEditor: 0
   Tags:
   - None

@@ -1,23 +1,27 @@
 using System.Collections.Generic;
 using _Project.Scripts.Core.Grid;
 using _Project.Scripts.Core.InputManagement.Interfaces;
+using _Project.Scripts.GridObjects.Interface;
+using _Project.Scripts.Interaction.Interface;
 using Sisus.Init;
 using UnityEngine;
+using ILogger = _Project.Scripts.Util.Logger.Interface.ILogger;
 
 namespace _Project.Scripts.Core.Player
 {
-    public class InteractionsWithObject : MonoBehaviour<INESActionReader,IGridService>
+    public class InteractionsWithObject : MonoBehaviour<INESActionReader,IGridService, ILogger>
     {
         [SerializeField] private Transform frontOfPlayer;
-        private GameObject _currentHoldingObject;
+        private GameObject _currentIHoldingObject;
         private INESActionReader _inputReader;
         private IGridService _gridService;
+        private ILogger _logger;
         
         private readonly List<ITimeControllable> _currentlyTimeControlledObjects = new ();
         
-        protected override void Init(INESActionReader NESActionReader, IGridService gridService)
+        protected override void Init(INESActionReader nesActionReader, IGridService gridService, ILogger logger)
         {
-            _inputReader = NESActionReader;
+            _inputReader = nesActionReader;
             _gridService = gridService;
         }
         
@@ -68,34 +72,38 @@ namespace _Project.Scripts.Core.Player
         private void PickUpOrPutDown()
         {
             // Pick Up
-            if (!_currentHoldingObject)
+            if (!_currentIHoldingObject)
             {
                 GameObject[] objects = _gridService.GetObjectsInRadius(frontOfPlayer.position);
-                // Maybe do some logic to check if the object can be picked up IHoldable interface
+                if(objects == null || objects.Length == 0) return;
                 
-                var obj = ChooseItemToPickUp(objects);
                 
-                obj.layer = LayerMask.NameToLayer("Ignore Raycast");
-                obj.transform.position = frontOfPlayer.position;
-                obj.transform.SetParent(frontOfPlayer);
-                obj.GetComponent<Collider>().enabled = false;
+                var obj = GetItemInMyDirection(objects);
+
+                if (!obj.TryGetComponent(out IHoldable holdable)) return;
                 
-                _currentHoldingObject = obj;
+                holdable.PickUp();
+                holdable.Anchor(frontOfPlayer);
+                
+                _currentIHoldingObject = obj;
             }
             // Put Down
             else
             {
-                _currentHoldingObject.transform.SetParent(null);
-                _currentHoldingObject.layer = LayerMask.NameToLayer("Object On Grid");
+                if (!_currentIHoldingObject.TryGetComponent(out IHoldable holdable))
+                {
+                    _logger.LogError($"Current Item Held: {_currentIHoldingObject.name} has no IHoldable");
+                }
+                _gridService.PlaceObjectOnGrid(_currentIHoldingObject, frontOfPlayer.position);
+                holdable.Drop();
                 
-                _gridService.PlaceObjectOnGrid(_currentHoldingObject, frontOfPlayer.position);
                 
-                _currentHoldingObject.GetComponent<Collider>().enabled = true;
-                _currentHoldingObject = null;
+                _gridService.PlaceObjectOnGrid(_currentIHoldingObject, frontOfPlayer.position);
+                _currentIHoldingObject = null;
             }
         }
 
-        private GameObject ChooseItemToPickUp(GameObject[] objects)
+        private GameObject GetItemInMyDirection(GameObject[] objects)
         {
             // Current strategy is to find the object in the direction the player is facing
             
@@ -134,6 +142,11 @@ namespace _Project.Scripts.Core.Player
             {
                 if(objOnGrid && objOnGrid.TryGetComponent(out ITimeControllable timeControllable))
                 {
+                    if (timeControllable.IsWinding)
+                    {
+                        return;
+                    }
+                    
                     timeControllable.FastForward();
                     _currentlyTimeControlledObjects.Add(timeControllable);
                 }
@@ -156,6 +169,11 @@ namespace _Project.Scripts.Core.Player
             {
                 if (objOnGrid && objOnGrid.TryGetComponent(out ITimeControllable timeControllable))
                 {
+                    if (timeControllable.IsWinding)
+                    {
+                        return;
+                    }
+                    
                     timeControllable.Rewind();
                     _currentlyTimeControlledObjects.Add(timeControllable);
                 }
@@ -164,28 +182,7 @@ namespace _Project.Scripts.Core.Player
         
         private bool CanInteract()
         {
-            return !_currentHoldingObject;
-        }
-        
-        private float AdjustIfDiagonal(float angle)
-        {
-            float tolerance = 1f;
-
-            angle = (angle % 360f + 360f) % 360f;
-
-            // Check if within tolerance of axes (0��, 90��, 180��, 270��, 360��)
-            float axisRemainder = angle % 90f;
-            bool isNearAxis = Mathf.Min(axisRemainder, 90f - axisRemainder) <= tolerance;
-
-            // If not near an axis, rotate counter-clockwise to next axis
-            if (!isNearAxis)
-            {
-                // Calculate next axis (counter-clockwise direction)
-                float nextAxis = Mathf.Ceil(angle / 90f) * 90f;
-                return nextAxis >= 360f ? 0f : nextAxis;
-            }
-
-            return angle;
+            return !_currentIHoldingObject;
         }
     }
 }
