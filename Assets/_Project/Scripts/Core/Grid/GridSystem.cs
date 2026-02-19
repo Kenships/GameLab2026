@@ -9,13 +9,13 @@ public class GridSystem : MonoBehaviour, IGridService
     [SerializeField] private bool allowDiagonal = false;
     [SerializeField] private Grid grid;
     [SerializeField] private float gridPositionYCoordinate = 0.05f;
-    [SerializeField] private int colliderBufferSize = 10;
 
-    private Collider[] _buffer;
+    [SerializeField] private LayerMask objectOnGridLayer;
+    public static LayerMask ObjectOnGridLayer { get; private set; }
 
     private void Awake()
     {
-        _buffer = new Collider[colliderBufferSize];
+        ObjectOnGridLayer = objectOnGridLayer;
     }
 
     public Vector3 GetGridWorldPosition(Vector3 worldPos)
@@ -24,17 +24,33 @@ public class GridSystem : MonoBehaviour, IGridService
         Vector3 gridPositionWorld = grid.GetCellCenterWorld(gridPosition);
         return new Vector3(gridPositionWorld.x, gridPositionYCoordinate, gridPositionWorld.z);
     }
-    // Only object in the layer called ��Object On Grid�� can be detected
-    public GameObject[] GetObjectsInRadius(Vector3 worldPos)
+    // Only object in the layer called "Object On Grid" can be detected
+    public GameObject GetObjectOnGrid(Vector3 worldPos)
     {
-        var size = Physics.OverlapSphereNonAlloc(GetGridWorldPosition(worldPos), grid.cellSize.x/2, _buffer, LayerMask.GetMask("Object On Grid"));
-        GameObject[] objects = new GameObject[size];
-        
-        for (int i = 0; i < size; i++)
+        Vector3 gridPos = GetGridWorldPosition(worldPos);
+        Collider[] colliders = Physics.OverlapSphere(gridPos, grid.cellSize.x/4, objectOnGridLayer);
+
+        if(colliders.Length <= 0)
         {
-            objects[i] = _buffer[i].gameObject;
+            return null;
         }
-        return objects;
+        else if(colliders.Length == 1)
+        {
+            return colliders[0].gameObject;
+        }
+        else // Get the closest one in case there are more than one collider
+        {
+            Collider result = colliders[0];
+            foreach (Collider collider in colliders)
+            {
+                if (Vector3.Distance(collider.transform.position, gridPos)
+                    < Vector3.Distance(result.transform.position, gridPos))
+                {
+                    result = collider;
+                }
+            }
+            return result.gameObject;
+        }
     }
 
     public void PlaceObjectOnGrid(GameObject obj, Vector3 worldPos)
@@ -61,10 +77,10 @@ public class GridSystem : MonoBehaviour, IGridService
             return false;
         }
 
-        if (GetObjectsInRadius(worldPos) == null)
+        if (GetObjectOnGrid(worldPos) == null)
         {
             GameObject obj = Instantiate(prefab, GetGridWorldPosition(worldPos), Quaternion.identity);
-            obj.layer = LayerMask.NameToLayer("Object On Grid");
+            obj.layer = GridSystem.ObjectOnGridLayer.ToLayerIndex();
             return true;
         }
 

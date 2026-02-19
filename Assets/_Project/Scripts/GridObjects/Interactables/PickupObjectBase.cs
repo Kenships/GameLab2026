@@ -1,5 +1,6 @@
 using _Project.Scripts.Interaction.Interface;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 [RequireComponent(typeof(Collider))]
 public abstract class PickupObjectBase : MonoBehaviour, IHoldable
@@ -25,7 +26,7 @@ public abstract class PickupObjectBase : MonoBehaviour, IHoldable
     {
         _colliderCache ??= GetComponent<Collider>();
         _colliderCache.enabled = true;
-        gameObject.layer = LayerMask.NameToLayer("Object On Grid");
+        gameObject.layer = GridSystem.ObjectOnGridLayer.ToLayerIndex();
         transform.SetParent(null);
     }
 }
