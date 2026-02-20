@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 861622789, guid: 1f5d187aab583664abdb6171ece21c7d, type: 3}
+  m_Script: {fileID: 861622789, guid: be89e33ec2831f543be4b59cbb5de22d, type: 3}
   m_Name: UltimatePreview - Settings
   m_EditorClassIdentifier: 
-  "\u2002\u202A": 1
+  "\u2002\u202C": 1
   ultimateAnimationPreviewSettings:
     isEnable: 1
     disablePlayModeColorTint: 1
@@ -97,6 +97,7 @@ MonoBehaviour:
     isVFXPreviewEnable: 1
     isShowCanvas: 0
     IsUiAlwaysFacingCamera: 1
+    autoPlayParticleEffects: 1
     IsSpriteAlwaysFacingCamera: 1
     hideParticlePlaybackSlider: 0
     mouseButtonForPanning: 2
