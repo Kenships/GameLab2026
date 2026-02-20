@@ -2,84 +2,84 @@ using UnityEngine;
 
 public class RecordDiscBullet : MonoBehaviour
 {
-    private float rotateSpeed = 200f; //takes from disc shooter
-    private float wobbleAmount = 0f; //takes from disc shooter 
+    private float _rotateSpeed = 200f; //takes from disc shooter
+    private float _wobbleAmount = 0f; //takes from disc shooter 
     [SerializeField] private float hitCooldown = 0.2f; //cooldown before it starts detecting another trigger on hit
     [SerializeField] private float enemySearchRadius = 30f; //the radius that it searches the next closest enemy if theres none it will go back to previous enemy
     [SerializeField] private float bulletLifetime = 3.5f; // max seconds until bullet is destroyed regardless of how many targets it hit
-    private Transform target;
-    private Transform lastKnownTarget;
-    private float speed;
-    private int maxTargets;
-    private int hitCount;
-    private float hitTimer;
-    private Rigidbody rb;
-    private LayerMask enemyLayer;
+    private Transform _target;
+    private Transform _lastKnownTarget;
+    private float _speed;
+    private int _maxTargets;
+    private int _hitCount;
+    private float _hitTimer;
+    private Rigidbody _rb;
+    private LayerMask _enemyLayer;
 
     public void Initialize(Transform target, float speed, int maxTargets, float rotateSpeed, float wobbleAmount, LayerMask enemyLayer)
     {
-        this.rotateSpeed = rotateSpeed;
-        this.target = target;
-        this.lastKnownTarget = target;
-        this.speed = speed;
-        this.maxTargets = maxTargets;
-        this.hitCount = 0;
-        this.wobbleAmount = wobbleAmount;
-        this.enemyLayer = enemyLayer;
+        _rotateSpeed = rotateSpeed;
+        _target = target;
+        _lastKnownTarget = target;
+        _speed = speed;
+        _maxTargets = maxTargets;
+        _hitCount = 0;
+        _wobbleAmount = wobbleAmount;
+        _enemyLayer = enemyLayer;
         Destroy(gameObject, bulletLifetime); 
 
-        rb = GetComponent<Rigidbody>();
-        if (rb != null)
+        _rb = GetComponent<Rigidbody>();
+        if (_rb)
         {
             if (wobbleAmount <= 0f)
             {
-                rb.freezeRotation = true;
+                _rb.freezeRotation = true;
             }
             else
             {
-                rb.angularDamping = Mathf.Lerp(100f, 0f, wobbleAmount);
+                _rb.angularDamping = Mathf.Lerp(100f, 0f, wobbleAmount);
             }
 
-            rb.useGravity = false;
-            rb.isKinematic = true;
+            _rb.useGravity = false;
+            _rb.isKinematic = true;
         }
     }
 
     public void SetWobble(float amount)
     {
-        wobbleAmount = amount;
+        _wobbleAmount = amount;
 
-        if (rb != null)
+        if (_rb)
         {
-            if (wobbleAmount <= 0f)
+            if (_wobbleAmount <= 0f)
             {
-                rb.freezeRotation = true;
+                _rb.freezeRotation = true;
             }
             else
             {
-                rb.freezeRotation = false;
-                rb.angularDamping = Mathf.Lerp(100f, 0f, wobbleAmount);
+                _rb.freezeRotation = false;
+                _rb.angularDamping = Mathf.Lerp(100f, 0f, _wobbleAmount);
             }
         }
     }
 
     private void Update()
     {
-        hitTimer -= Time.deltaTime;
+        _hitTimer -= Time.deltaTime;
         
         FindClosestEnemy();
-        Transform homingTarget = target;
+        Transform homingTarget = _target;
 
         // If no enemies, home back to latest target
-        if (homingTarget == null)
+        if (!homingTarget)
         {
-            homingTarget = lastKnownTarget;
+            homingTarget = _lastKnownTarget;
         }
 
         // if the OG is dead too then just go straight
-        if (homingTarget == null)
+        if (!homingTarget)
         {
-            transform.Translate(Vector3.forward * speed * Time.deltaTime);
+            transform.Translate(Vector3.forward * (_speed * Time.deltaTime));
             return;
         }
 
@@ -89,15 +89,15 @@ public class RecordDiscBullet : MonoBehaviour
         transform.rotation = Quaternion.RotateTowards(
             transform.rotation,
             targetRotation,
-            rotateSpeed * Time.deltaTime
+            _rotateSpeed * Time.deltaTime
         );
 
-        transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        transform.Translate(Vector3.forward * (_speed * Time.deltaTime));
     }
 
     private void FindClosestEnemy()
     {
-        Collider[] enemiesInRange = Physics.OverlapSphere(transform.position, enemySearchRadius, enemyLayer);
+        Collider[] enemiesInRange = Physics.OverlapSphere(transform.position, enemySearchRadius, _enemyLayer);
 
         float closestDistance = Mathf.Infinity;
         Transform closestEnemy = null;
@@ -113,27 +113,27 @@ public class RecordDiscBullet : MonoBehaviour
             }
         }
 
-        if (closestEnemy != null)
+        if (closestEnemy)
         {
-            target = closestEnemy;
-            lastKnownTarget = closestEnemy;
+            _target = closestEnemy;
+            _lastKnownTarget = closestEnemy;
         }
         else
         {
-            target = null;
+            _target = null;
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (hitTimer > 0f) return;
+        if (_hitTimer > 0f) return;
 
-        if (((1 << other.gameObject.layer) & enemyLayer) != 0)
+        if (((1 << other.gameObject.layer) & _enemyLayer) != 0)
         {
-            hitCount++;
-            hitTimer = hitCooldown;
+            _hitCount++;
+            _hitTimer = hitCooldown;
 
-            if (hitCount >= maxTargets)
+            if (_hitCount >= _maxTargets)
             {
                 Destroy(gameObject);
             }

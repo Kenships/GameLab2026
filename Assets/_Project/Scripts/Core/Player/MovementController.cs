@@ -25,17 +25,11 @@ namespace _Project.Scripts.Core.Player
         private Vector3 _lastLookDirection;
         private bool _jumpRequested;
         
-        protected override void Init(INESActionReader argument, KinematicCharacterMotor motor, Camera camera)
+        protected override void Init(INESActionReader argument, KinematicCharacterMotor motor, Camera mainCamera)
         {
             _inputReader = argument;
+            _cameraTransform = mainCamera.transform;
             _motor = motor;
-            _cameraTransform = camera.transform;
-        }
-
-        //Potentially change to use DI
-        protected override void OnAwake()
-        {
-            _motor = GetComponent<KinematicCharacterMotor>();
             _motor.CharacterController = this;
         }
 

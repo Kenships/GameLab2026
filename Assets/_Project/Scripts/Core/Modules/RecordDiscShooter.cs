@@ -1,74 +1,73 @@
+using _Project.Scripts.GridObjects.Interactables;
 using UnityEngine;
 
-public class RecordDiscShooter : MonoBehaviour
+namespace _Project.Scripts.Core.Modules
 {
-    [Header("References")]
-    [SerializeField] private GameObject recordDiscPrefab;
-    [SerializeField] private Transform spawnPoint;
-
-    [Header("Shooting Settings")]
-    [SerializeField] private float rotateSpeed = 200f; // homing rotation sharpness (higher the sharper)
-    [SerializeField] private float shootSpeed = 10f; // speed of bullet
-    [SerializeField] private float timeBetweenShots = 1f; //yk
-    [SerializeField] [Range(0f, 1f)] private float bulletWobble = 0f; // o = bullet shoots straght (like frisbee) | 1= bullet wobbles (me throwing a frisbee)
-    [SerializeField] private int maxTargets = 3; // max number of hits until bullet is destroyed
-    [SerializeField] private float detectionRange = 15f; // range around shooter that detects enemies
-    [SerializeField] private LayerMask enemyLayer;
-
-    private float shootTimer;
-    private Transform currentTarget;
-
-    private void Update()
+    public class RecordDiscShooter : PickupObjectBase
     {
-        FindClosestEnemy();
+        [Header("References")]
+        [SerializeField] RecordDiscBullet recordDiscPrefab;
+        [SerializeField] private Transform spawnPoint;
 
-        if (currentTarget == null) return;
+        [Header("Shooting Settings")]
+        [SerializeField] private float rotateSpeed = 200f; // homing rotation sharpness (higher the sharper)
+        [SerializeField] private float shootSpeed = 10f; // speed of bullet
+        [SerializeField] private float timeBetweenShots = 1f; //yk
+        [SerializeField] [Range(0f, 1f)] private float bulletWobble = 0f; // o = bullet shoots straght (like frisbee) | 1= bullet wobbles (me throwing a frisbee)
+        [SerializeField] private int maxTargets = 3; // max number of hits until bullet is destroyed
+        [SerializeField] private float detectionRange = 15f; // range around shooter that detects enemies
+        [SerializeField] private LayerMask enemyLayer;
 
-        shootTimer -= Time.deltaTime;
+        private float _shootTimer;
+        private Transform _currentTarget;
 
-        if (shootTimer <= 0f)
+        private void Update()
         {
-            Shoot();
-            shootTimer = timeBetweenShots;
-        }
-    }
+            FindClosestEnemy();
 
-    private void FindClosestEnemy()
-    {
-        Collider[] enemiesInRange = Physics.OverlapSphere(transform.position, detectionRange, enemyLayer);
+            if (!_currentTarget) return;
 
-        float closestDistance = Mathf.Infinity;
-        Transform closestEnemy = null;
+            _shootTimer -= Time.deltaTime;
 
-        foreach (Collider enemy in enemiesInRange)
-        {
-            float distance = Vector3.Distance(transform.position, enemy.transform.position);
-
-            if (distance < closestDistance)
+            if (_shootTimer <= 0f)
             {
-                closestDistance = distance;
-                closestEnemy = enemy.transform;
+                Shoot();
+                _shootTimer = timeBetweenShots;
             }
         }
 
-        currentTarget = closestEnemy;
-    }
+        private void FindClosestEnemy()
+        {
+            Collider[] enemiesInRange = Physics.OverlapSphere(transform.position, detectionRange, enemyLayer);
 
-    private void Shoot()
-    {
-        if (currentTarget == null) return;
+            float closestDistance = Mathf.Infinity;
+            Transform closestEnemy = null;
 
-        Vector3 directionToEnemy = (currentTarget.position - spawnPoint.position).normalized;
-        Quaternion rotationToEnemy = Quaternion.LookRotation(directionToEnemy);
+            foreach (Collider enemy in enemiesInRange)
+            {
+                float distance = Vector3.Distance(transform.position, enemy.transform.position);
 
-        GameObject disc = Instantiate(
-            recordDiscPrefab,
-            spawnPoint.position,
-            rotationToEnemy
-        );
+                if (distance < closestDistance)
+                {
+                    closestDistance = distance;
+                    closestEnemy = enemy.transform;
+                }
+            }
 
-        RecordDiscBullet bullet = disc.GetComponent<RecordDiscBullet>();
-        bullet.Initialize(currentTarget, shootSpeed, maxTargets, rotateSpeed, bulletWobble, enemyLayer);
+            _currentTarget = closestEnemy;
+        }
+
+        private void Shoot()
+        {
+            if (!_currentTarget) return;
+
+            Vector3 directionToEnemy = (_currentTarget.position - spawnPoint.position).normalized;
+            Quaternion rotationToEnemy = Quaternion.LookRotation(directionToEnemy);
+        
+
+            RecordDiscBullet bullet = Instantiate(recordDiscPrefab, spawnPoint.position, rotationToEnemy);
+            bullet.Initialize(_currentTarget, shootSpeed, maxTargets, rotateSpeed, bulletWobble, enemyLayer);
+        }
     }
 }
     
