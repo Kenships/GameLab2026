@@ -35,9 +35,9 @@ namespace _Project.Scripts.Core.Player
             _inputReader.OnHoldAltInteract += Rewind;
             _inputReader.OnReleaseAltInteract += CancelRewind;
         }
-        
+
         //Maybe merge the Cancel interactions into one
-        
+
         private void CancelFastForward()
         {
             foreach (var timeControllable in _currentlyTimeControlledObjects)
@@ -74,12 +74,8 @@ namespace _Project.Scripts.Core.Player
             // Pick Up
             if (!_currentIHoldingObject)
             {
-                GameObject[] objects = _gridService.GetObjectsInRadius(frontOfPlayer.position);
-                if(objects == null || objects.Length == 0) return;
-                
-                
-                var obj = GetItemInMyDirection(objects);
-
+                GameObject obj = _gridService.GetObjectOnGrid(frontOfPlayer.position);
+                if(obj == null) return;
                 if (!obj.TryGetComponent(out IHoldable holdable)) return;
                 
                 holdable.PickUp();
@@ -103,29 +99,6 @@ namespace _Project.Scripts.Core.Player
             }
         }
 
-        private GameObject GetItemInMyDirection(GameObject[] objects)
-        {
-            // Current strategy is to find the object in the direction the player is facing
-            
-            Vector3 myPosition = transform.position;
-            Vector3 myDirection = transform.forward;
-            
-            float bestDotProduct = Vector3.Dot((objects[0].transform.position - myPosition).normalized, myDirection);
-            int bestIndex = 0;
-
-            for (int i = 0; i < objects.Length; i++)
-            {
-                float dot = Vector3.Dot((objects[i].transform.position - myPosition).normalized, myDirection);
-
-                if (dot > bestDotProduct)
-                {
-                    bestIndex = i;
-                }
-            }
-            
-            return objects[bestIndex];
-        }
-
         // Hold A
         private void FastForward()
         {
@@ -135,23 +108,18 @@ namespace _Project.Scripts.Core.Player
                 return;
             }
             
-            
-            GameObject[] objectsOnGrid = _gridService.GetObjectsInRadius(frontOfPlayer.position);
+            GameObject objOnGrid = _gridService.GetObjectOnGrid(frontOfPlayer.position);
 
-            foreach (var objOnGrid in objectsOnGrid)
+            if (objOnGrid && objOnGrid.TryGetComponent(out ITimeControllable timeControllable))
             {
-                if(objOnGrid && objOnGrid.TryGetComponent(out ITimeControllable timeControllable))
+                if (timeControllable.IsWinding)
                 {
-                    if (timeControllable.IsWinding)
-                    {
-                        return;
-                    }
-                    
-                    timeControllable.FastForward();
-                    _currentlyTimeControlledObjects.Add(timeControllable);
+                    return;
                 }
+
+                timeControllable.FastForward();
+                _currentlyTimeControlledObjects.Add(timeControllable);
             }
-            
         }
 
         // Hold B
@@ -163,20 +131,17 @@ namespace _Project.Scripts.Core.Player
                 return;
             }
             
-            GameObject[] objectsOnGrid = _gridService.GetObjectsInRadius(frontOfPlayer.position);
+            GameObject objOnGrid = _gridService.GetObjectOnGrid(frontOfPlayer.position);
 
-            foreach (var objOnGrid in objectsOnGrid)
+            if (objOnGrid && objOnGrid.TryGetComponent(out ITimeControllable timeControllable))
             {
-                if (objOnGrid && objOnGrid.TryGetComponent(out ITimeControllable timeControllable))
+                if (timeControllable.IsWinding)
                 {
-                    if (timeControllable.IsWinding)
-                    {
-                        return;
-                    }
-                    
-                    timeControllable.Rewind();
-                    _currentlyTimeControlledObjects.Add(timeControllable);
+                    return;
                 }
+
+                timeControllable.Rewind();
+                _currentlyTimeControlledObjects.Add(timeControllable);
             }
         }
         
