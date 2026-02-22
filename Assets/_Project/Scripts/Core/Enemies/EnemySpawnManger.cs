@@ -10,7 +10,12 @@ public class EnemySpawner : MonoBehaviour
     [Header("Spawn Settings")]
     [SerializeField] private float spawnDelayMin = 1f;
     [SerializeField] private float spawnDelayMax = 3f; //spawwns are random from these two values
+
+    [Header("Enemy Settings")]
     [SerializeField] private float enemyMoveSpeed = 5f;
+    [SerializeField] private int enemyHealth = 100;
+    [SerializeField] private int enemyDamage = 10;
+    [SerializeField] private float enemyAttackCooldown = 1f;
 
     private float spawnTimer;
 
@@ -42,7 +47,10 @@ public class EnemySpawner : MonoBehaviour
         );
         
         EnemyMovement movement = enemy.AddComponent<EnemyMovement>();
-        movement.Initialize(vhsLocation, enemyMoveSpeed);
+        movement.Initialize(vhsLocation, enemyMoveSpeed, enemyAttackCooldown, enemyDamage);
+
+        Health health = enemy.AddComponent<Health>();
+        health.Initialize(enemyHealth);
     }
 
     private void SetRandomSpawnTimer()

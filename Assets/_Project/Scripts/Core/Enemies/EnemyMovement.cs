@@ -4,31 +4,61 @@ public class EnemyMovement : MonoBehaviour
 {
     private Transform target; //takes from EnemySpawnManager
     private float moveSpeed; //takes from  EnemySpawnManager
+    private float attackCooldown; //takes from EnemySpawnManager
+    private int attackDamage; //takes from  EnemySpawnManager
 
-    public void Initialize(Transform target, float moveSpeed)
+    private bool atVHS = false; //true if arrived at VHS
+
+    private float damageTimer;
+
+    public void Initialize(Transform target, float moveSpeed, float attackCooldown, int attackDamage)
     {
+        atVHS = false;
         this.target = target;
         this.moveSpeed = moveSpeed;
+        this.attackCooldown = attackCooldown;
+        this.attackDamage = attackDamage;
+
     }
 
     private void Update()
     {
         if (target == null) return;
 
-        // Move towards the VHS location
         Vector3 direction = (target.position - transform.position).normalized;
-        transform.position += direction * moveSpeed * Time.deltaTime;
-
         // Face the target
         Quaternion targetRotation = Quaternion.LookRotation(direction);
         transform.rotation = targetRotation;
 
-        // Optional: destroy enemy when it reaches the VHS location
         float distance = Vector3.Distance(transform.position, target.position);
         if (distance < 0.5f)
         {
-            // TODO: what happens when you hit the vhs idk
-            Destroy(gameObject);
+            atVHS = true;
+        }
+
+        if (atVHS == false)
+        {
+                // Move towards the VHS location
+                transform.position += direction * moveSpeed * Time.deltaTime;
+        }
+
+        if (atVHS)
+        {
+            damageTimer -= Time.deltaTime;
+
+            if (damageTimer <= 0f)
+            {
+                DamageVHS(attackDamage);
+                damageTimer = attackCooldown;
+            }
+        }
+    }
+
+    private void DamageVHS(int Damage)
+    {
+        if (target.GetComponent<IDamageable>() != null)
+        {
+            target.GetComponent<IDamageable>().EffectHealth(-1 * Damage);
         }
     }
 }
