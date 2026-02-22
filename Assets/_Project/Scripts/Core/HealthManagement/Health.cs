@@ -1,35 +1,42 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace _Project.Scripts.Core.HealthManagement
 {
-    public class Health : MonoBehaviour, IDamageable
+    public class Health : MonoBehaviour
     {
-        [SerializeField] protected int currentHealth;
-        protected int _maxHealth;
+        public UnityAction<float> OnHealthChanged;
+        public UnityAction OnDeath;
+        
+        [field: SerializeField] public float CurrentHealth { get; private set; }
+        public float MaxHealth => _maxHealth;
+        
+        private float _maxHealth;
     
 
-        public void Initialize(int health)
+        public void Initialize(float maxHealth)
         {
-            _maxHealth = health;
-            currentHealth = _maxHealth;
+            _maxHealth = maxHealth;
+            CurrentHealth = _maxHealth;
         }
 
-        public virtual void Kill()
+        public void AddToHealth(float change)
         {
-            Destroy(gameObject);
-        }
+            float healthDelta = Mathf.Min(change, _maxHealth - CurrentHealth);
+            
+            CurrentHealth += healthDelta;
+            
+            OnHealthChanged?.Invoke(healthDelta);
 
-        public virtual void Damage(int damage)
-        {
-            currentHealth = currentHealth + damage;
-
-            if (currentHealth > _maxHealth)
-            {
-                currentHealth = _maxHealth;
-            } else if (currentHealth < 0)
+            if (CurrentHealth <= 0)
             {
                 Kill();
             }
+        }
+
+        private void Kill()
+        {
+            OnDeath?.Invoke();
         }
     }
 }

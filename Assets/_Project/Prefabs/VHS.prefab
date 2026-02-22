@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3445892735238101008}
   - component: {fileID: 8042108466487816983}
+  - component: {fileID: 5535855756826938147}
   m_Layer: 3
-  m_Name: Slider
+  m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -89,6 +90,18 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5535855756826938147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1364464938961092887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2ecb585bfea4d9094a70b4f8323e71f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.HealthManagement.HealthBar
 --- !u!1 &2712273310392812414
 GameObject:
   m_ObjectHideFlags: 0
@@ -135,9 +148,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7715253540533279948}
   - component: {fileID: 2366788554856475630}
-  - component: {fileID: 7311090016370342972}
   m_Layer: 0
-  m_Name: VHS_wHealth
+  m_Name: VHS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -172,21 +184,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ede6ff738f9642545af8030ddb0bba11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VHSManager
-  VhsMaxHealth: 250
---- !u!114 &7311090016370342972
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2853457693616237105}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cc84245a0c5c7b41b5e4bf5d5d5875f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::VHSHealth
-  currentHealth: 0
-  hpBar: {fileID: 8042108466487816983}
+  healthBar: {fileID: 5535855756826938147}
+  vhsMaxHealth: 100
 --- !u!1 &3128919546977635685
 GameObject:
   m_ObjectHideFlags: 0

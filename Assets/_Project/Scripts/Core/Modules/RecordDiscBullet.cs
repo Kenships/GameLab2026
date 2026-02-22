@@ -129,21 +129,24 @@ public class RecordDiscBullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        
         if (_hitTimer > 0f) return;
 
-        if (((1 << other.gameObject.layer) & _enemyLayer) != 0)
+        if ((_enemyLayer.value & (1 << other.gameObject.layer)) == 0)
         {
-            if (other.TryGetComponent(out IDamageable damageable))
+            return;
+        }
+
+        if (other.TryGetComponent(out IDamageable damageable))
+        {
+            damageable.Damage(bulletDamage);
+
+            _hitCount++;
+            _hitTimer = hitCooldown;
+
+            if (_hitCount >= _maxTargets)
             {
-                damageable.Damage(bulletDamage);
-
-                _hitCount++;
-                _hitTimer = hitCooldown;
-
-                if (_hitCount >= _maxTargets)
-                {
-                    Destroy(gameObject);
-                }
+                Destroy(gameObject);
             }
         }
     }
