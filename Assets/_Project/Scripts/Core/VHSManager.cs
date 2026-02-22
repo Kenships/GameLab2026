@@ -1,15 +1,15 @@
+using _Project.Scripts.Core.HealthManagement;
 using UnityEngine;
 
 public class VHSManager : MonoBehaviour
 {
-    private IDamageable healthScript;
-    public int VhsMaxHealth;
+    [SerializeField] private int vhsMaxHealth;
 
 
     void Start()
     {
-        healthScript = GetComponent<IDamageable>();
-        healthScript.Initialize(VhsMaxHealth);
+        var healthScript = GetComponent<Health>();
+        healthScript.Initialize(vhsMaxHealth);
     }
 
 }

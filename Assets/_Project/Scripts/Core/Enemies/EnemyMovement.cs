@@ -1,3 +1,4 @@
+using _Project.Scripts.Core.HealthManagement;
 using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
@@ -58,7 +59,7 @@ public class EnemyMovement : MonoBehaviour
     {
         if (target.GetComponent<IDamageable>() != null)
         {
-            target.GetComponent<IDamageable>().EffectHealth(-1 * Damage);
+            target.GetComponent<IDamageable>().Damage(-1 * Damage);
         }
     }
 }

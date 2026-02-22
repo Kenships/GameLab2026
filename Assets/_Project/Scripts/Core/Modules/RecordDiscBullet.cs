@@ -1,3 +1,4 @@
+using _Project.Scripts.Core.HealthManagement;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -132,15 +133,17 @@ public class RecordDiscBullet : MonoBehaviour
 
         if (((1 << other.gameObject.layer) & _enemyLayer) != 0)
         {
-            IDamageable health = other.GetComponentInParent<IDamageable>();
-            health.EffectHealth(bulletDamage);
-
-            _hitCount++;
-            _hitTimer = hitCooldown;
-
-            if (_hitCount >= _maxTargets)
+            if (other.TryGetComponent(out IDamageable damageable))
             {
-                Destroy(gameObject);
+                damageable.Damage(bulletDamage);
+
+                _hitCount++;
+                _hitTimer = hitCooldown;
+
+                if (_hitCount >= _maxTargets)
+                {
+                    Destroy(gameObject);
+                }
             }
         }
     }
