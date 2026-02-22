@@ -1,3 +1,5 @@
+using _Project.Scripts.Core.HealthManagement;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class RecordDiscBullet : MonoBehaviour
@@ -7,6 +9,7 @@ public class RecordDiscBullet : MonoBehaviour
     [SerializeField] private float hitCooldown = 0.2f; //cooldown before it starts detecting another trigger on hit
     [SerializeField] private float enemySearchRadius = 30f; //the radius that it searches the next closest enemy if theres none it will go back to previous enemy
     [SerializeField] private float bulletLifetime = 3.5f; // max seconds until bullet is destroyed regardless of how many targets it hit
+    [SerializeField] private int bulletDamage = -35;
     private Transform _target;
     private Transform _lastKnownTarget;
     private float _speed;
@@ -126,10 +129,18 @@ public class RecordDiscBullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        
         if (_hitTimer > 0f) return;
 
-        if (((1 << other.gameObject.layer) & _enemyLayer) != 0)
+        if ((_enemyLayer.value & (1 << other.gameObject.layer)) == 0)
         {
+            return;
+        }
+
+        if (other.TryGetComponent(out IDamageable damageable))
+        {
+            damageable.Damage(bulletDamage);
+
             _hitCount++;
             _hitTimer = hitCooldown;
 

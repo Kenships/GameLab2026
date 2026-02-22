@@ -1,77 +1,92 @@
+using _Project.Scripts.Core.HealthManagement;
+using _Project.Scripts.Util.ExtensionMethods;
 using UnityEngine;
 
-public class EnemySpawner : MonoBehaviour
+namespace _Project.Scripts.Core.Enemies
 {
-    [Header("References")]
-    [SerializeField] private GameObject enemyPrefab;
-    [SerializeField] private Transform[] spawnPositions;
-    [SerializeField] private Transform vhsLocation; //enemies move toward this
-
-    [Header("Spawn Settings")]
-    [SerializeField] private float spawnDelayMin = 1f;
-    [SerializeField] private float spawnDelayMax = 3f; //spawwns are random from these two values
-    [SerializeField] private float enemyMoveSpeed = 5f;
-
-    private float spawnTimer;
-
-    private void Start()
+    public class EnemySpawner : MonoBehaviour
     {
-        SetRandomSpawnTimer();
-    }
+        [Header("References")]
+        [SerializeField] private GameObject enemyPrefab;
+        [SerializeField] private Transform[] spawnPositions;
+        [SerializeField] private Transform vhsLocation; //enemies move toward this
 
-    private void Update()
-    {
-        spawnTimer -= Time.deltaTime;
+        [Header("Spawn Settings")]
+        [SerializeField] private float spawnDelayMin = 1f;
+        [SerializeField] private float spawnDelayMax = 3f; //spawns are random from these two values
 
-        if (spawnTimer <= 0f)
+        [Header("Enemy Settings")]
+        [SerializeField] private float enemyMoveSpeed = 5f;
+        [SerializeField] private int enemyHealth = 100;
+        [SerializeField] private int enemyDamage = 10;
+        [SerializeField] private float enemyAttackCooldown = 1f;
+
+        private float _spawnTimer;
+
+        private void Start()
         {
-            SpawnEnemy();
             SetRandomSpawnTimer();
         }
-    }
 
-    private void SpawnEnemy()
-    {
-        int randomIndex = Random.Range(0, spawnPositions.Length);
-        Transform spawnPoint = spawnPositions[randomIndex];
-        
-        GameObject enemy = Instantiate(
-            enemyPrefab,
-            spawnPoint.position,
-            spawnPoint.rotation
-        );
-        
-        EnemyMovement movement = enemy.AddComponent<EnemyMovement>();
-        movement.Initialize(vhsLocation, enemyMoveSpeed);
-    }
-
-    private void SetRandomSpawnTimer()
-    {
-        spawnTimer = Random.Range(spawnDelayMin, spawnDelayMax);
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        if (spawnPositions != null)
+        private void Update()
         {
-            Gizmos.color = Color.green;
-            foreach (Transform spawnPoint in spawnPositions)
+            _spawnTimer -= Time.deltaTime;
+
+            if (_spawnTimer <= 0f)
             {
-                if (spawnPoint != null)
-                {
-                    Gizmos.DrawWireSphere(spawnPoint.position, 0.5f);
-                }
+                SpawnEnemy();
+                SetRandomSpawnTimer();
             }
         }
-        
-        if (vhsLocation != null && spawnPositions != null)
+
+        private void SpawnEnemy()
         {
-            Gizmos.color = Color.yellow;
-            foreach (Transform spawnPoint in spawnPositions)
+            int randomIndex = Random.Range(0, spawnPositions.Length);
+            Transform spawnPoint = spawnPositions[randomIndex];
+        
+            GameObject enemy = Instantiate(
+                enemyPrefab,
+                spawnPoint.position,
+                spawnPoint.rotation
+            );
+            
+            Health health = enemy.GetOrAdd<Health>();
+            health.Initialize(enemyHealth);
+        
+            BasicEnemy movement = enemy.GetOrAdd<BasicEnemy>();
+            movement.Initialize(vhsLocation, health, enemyMoveSpeed, enemyAttackCooldown, enemyDamage);
+
+            
+        }
+
+        private void SetRandomSpawnTimer()
+        {
+            _spawnTimer = Random.Range(spawnDelayMin, spawnDelayMax);
+        }
+
+        private void OnDrawGizmosSelected()
+        {
+            if (spawnPositions != null)
             {
-                if (spawnPoint != null)
+                Gizmos.color = Color.green;
+                foreach (Transform spawnPoint in spawnPositions)
                 {
-                    Gizmos.DrawLine(spawnPoint.position, vhsLocation.position);
+                    if (spawnPoint != null)
+                    {
+                        Gizmos.DrawWireSphere(spawnPoint.position, 0.5f);
+                    }
+                }
+            }
+        
+            if (vhsLocation != null && spawnPositions != null)
+            {
+                Gizmos.color = Color.yellow;
+                foreach (Transform spawnPoint in spawnPositions)
+                {
+                    if (spawnPoint != null)
+                    {
+                        Gizmos.DrawLine(spawnPoint.position, vhsLocation.position);
+                    }
                 }
             }
         }
