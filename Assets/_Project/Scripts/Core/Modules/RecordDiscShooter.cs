@@ -1,4 +1,3 @@
-using _Project.Scripts.GridObjects.Interactables;
 using UnityEngine;
 
 namespace _Project.Scripts.Core.Modules
@@ -67,6 +66,21 @@ namespace _Project.Scripts.Core.Modules
 
             RecordDiscBullet bullet = Instantiate(recordDiscPrefab, spawnPoint.position, rotationToEnemy);
             bullet.Initialize(_currentTarget, shootSpeed, maxTargets, rotateSpeed, bulletWobble, enemyLayer);
+        }
+        protected override void ActByState()
+        {
+            switch (state)
+            {
+                case State.Load:
+                    // normal shootingSpeed
+                    break;
+                case State.Attack:
+                    // shootingSpeed*1.5
+                    break;
+                case State.Used:
+                    // shootingSpeed*0.25
+                    break;
+            }
         }
     }
 }

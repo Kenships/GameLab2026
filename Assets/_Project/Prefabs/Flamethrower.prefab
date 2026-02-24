@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3218469116069645455}
   - component: {fileID: 4066248694589305072}
   - component: {fileID: 3446503667940069458}
-  - component: {fileID: 1530343670848392850}
   m_Layer: 3
   m_Name: Cylinder (1)
   m_TagString: Untagged
@@ -91,29 +90,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &1530343670848392850
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 561846160122065850}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &2458656150517354803
 GameObject:
   m_ObjectHideFlags: 0
@@ -184,6 +160,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f81e77b53cc81af43b6840e539ee2404, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Flamethrower
+  state: 0
+  attackStateDuration: 10
   pickupOffset: {x: 0, y: 0, z: 0}
   particle: {fileID: 1125370654235928759}
   emissionRateToAngleRatio: 16
@@ -223,7 +201,6 @@ GameObject:
   - component: {fileID: 5343911706845989236}
   - component: {fileID: 1359290581101277928}
   - component: {fileID: 7503048499068340802}
-  - component: {fileID: 2055062765461289464}
   m_Layer: 3
   m_Name: Cylinder
   m_TagString: Untagged
@@ -303,29 +280,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &2055062765461289464
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2759644144342349529}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &5303730521359049814
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,7 +291,6 @@ GameObject:
   - component: {fileID: 5578285690342592214}
   - component: {fileID: 6346557397375970643}
   - component: {fileID: 5523033851591016506}
-  - component: {fileID: 5971592376967980765}
   m_Layer: 3
   m_Name: Body
   m_TagString: Untagged
@@ -419,27 +372,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &5971592376967980765
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5303730521359049814}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7597898080590598640
 GameObject:
   m_ObjectHideFlags: 0
