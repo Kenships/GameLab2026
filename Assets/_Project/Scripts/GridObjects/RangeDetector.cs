@@ -38,6 +38,8 @@ public class RangeDetector : MonoBehaviour
         // Quickly filtered the potential objects
         Collider[] colliders = Physics.OverlapSphere(start.position, maxRange, targetLayer);
 
+        if (colliders.Length <= 0) return result;
+
         foreach (Collider col in colliders)
         {
             // Filtered objects that are actually in the specified shape
