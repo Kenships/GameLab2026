@@ -10,14 +10,13 @@ public abstract class Module : MonoBehaviour
         Used
     }
     public State state = State.Load;
-    [SerializeField] protected float attackStateDuration = 10f;
     public void FastForward()
     {
+        Debug.Log("FastForwad");
         switch (state)
         {
             case State.Load:
                 state = State.Attack;
-                StartCoroutine(AttackStateCoroutine());
                 break;
             case State.Attack:
                 state = State.Used;
@@ -28,14 +27,9 @@ public abstract class Module : MonoBehaviour
         }
         ActByState();
     }
-    protected IEnumerator AttackStateCoroutine()
-    {
-        yield return new WaitForSeconds(attackStateDuration);
-        state = State.Used;
-        ActByState();
-    }
     public void Rewind()
     {
+        Debug.Log("Rewind");
         switch (state)
         {
             case State.Load:
@@ -50,5 +44,22 @@ public abstract class Module : MonoBehaviour
         }
         ActByState();
     }
-    protected abstract void ActByState();
+    public void ActByState()
+    {
+        switch (state)
+        {
+            case State.Load:
+                LoadState();
+                break;
+            case State.Attack:
+                AttackState();
+                break;
+            case State.Used:
+                UsedState();
+                break;
+        }
+    }
+    protected abstract void LoadState();
+    protected abstract void AttackState();
+    protected abstract void UsedState();
 }

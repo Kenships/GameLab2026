@@ -60,6 +60,8 @@ public class RangeDetector : MonoBehaviour
         return result;
     }
 
+
+
     private Transform GetStartingTransform()
     {
         return startingTransform != null ? startingTransform : transform;

@@ -161,14 +161,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Flamethrower
   state: 0
-  attackStateDuration: 10
   pickupOffset: {x: 0, y: 0, z: 0}
   particle: {fileID: 1125370654235928759}
   emissionRateToAngleRatio: 16
   angleMultiplier: 0.6
-  radiusMultiplier: 2.75
+  radiusMultiplier: 3
+  emissionRateToAngleRatio_fast: 32
+  radiusMultiplier_fast: 3.75
   damage: 20
-  timesOfDamagePerSec: 4
+  dps_normal: 4
+  dps_fast: 8
+  radius_fast: 10
+  attackStateDuration: 10
 --- !u!65 &3727378408416341186
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5175,7 +5179,7 @@ ParticleSystemRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_MaskInteraction: 0
   m_RenderMode: 0
   m_MeshDistribution: 0

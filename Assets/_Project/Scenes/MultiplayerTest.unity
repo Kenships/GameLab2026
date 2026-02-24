@@ -498,6 +498,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6849032946996135789, guid: 6ce11590cd9482048add3b33b8fba3b4, type: 3}
+      propertyPath: shootSpeed_fast
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 7020352353024084139, guid: 6ce11590cd9482048add3b33b8fba3b4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3
@@ -541,6 +545,10 @@ PrefabInstance:
     - target: {fileID: 8143855464876323403, guid: 6ce11590cd9482048add3b33b8fba3b4, type: 3}
       propertyPath: m_Name
       value: RecordShooter
+      objectReference: {fileID: 0}
+    - target: {fileID: 8143855464876323403, guid: 6ce11590cd9482048add3b33b8fba3b4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -615,13 +623,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1826954334}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.33887672, y: 0.6197357, z: -0.33765453, w: 0.6221572}
-  m_LocalPosition: {x: -8.941681, y: 12.569298, z: -0.15522768}
+  m_LocalRotation: {x: 0.39128852, y: 0.58829474, z: -0.3898619, w: 0.5906017}
+  m_LocalPosition: {x: -6.36, y: 14.02, z: -0.05}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 53.094, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 67.058, y: 89.764, z: -0.018}
 --- !u!1001 &1851094212
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -633,6 +641,14 @@ PrefabInstance:
     - target: {fileID: 2458656150517354803, guid: c7a1a6d130aea9947b7dda75f06722ef, type: 3}
       propertyPath: m_Name
       value: Flamethrower
+      objectReference: {fileID: 0}
+    - target: {fileID: 2458656150517354803, guid: c7a1a6d130aea9947b7dda75f06722ef, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483405240878108714, guid: c7a1a6d130aea9947b7dda75f06722ef, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7057473248556846981, guid: c7a1a6d130aea9947b7dda75f06722ef, type: 3}
       propertyPath: m_LocalPosition.x
@@ -673,6 +689,18 @@ PrefabInstance:
     - target: {fileID: 7057473248556846981, guid: c7a1a6d130aea9947b7dda75f06722ef, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7900933947820870150, guid: c7a1a6d130aea9947b7dda75f06722ef, type: 3}
+      propertyPath: radius_fast
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7900933947820870150, guid: c7a1a6d130aea9947b7dda75f06722ef, type: 3}
+      propertyPath: radiusMultiplier
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7900933947820870150, guid: c7a1a6d130aea9947b7dda75f06722ef, type: 3}
+      propertyPath: radiusMultiplier_fast
+      value: 3.75
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

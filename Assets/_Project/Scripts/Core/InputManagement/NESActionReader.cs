@@ -52,7 +52,7 @@ namespace _Project.Scripts.Core.InputManagement
         {
             if (ctx.interaction is HoldInteraction)
             {
-                Debug.Log("AltInteract Canceled");
+                //Debug.Log("AltInteract Canceled");
                 OnReleaseAltInteract?.Invoke();
             }
         }
@@ -85,17 +85,17 @@ namespace _Project.Scripts.Core.InputManagement
         {
             if (ctx.interaction is TapInteraction)
             {
-                Debug.Log("Interact On Tap");
+                //Debug.Log("Interact On Tap");
                 OnTapInteract?.Invoke();
             }
             else if (ctx.interaction is HoldInteraction)
             {
-                Debug.Log("Holding interaction");
+                //Debug.Log("Holding interaction");
                 OnHoldInteract?.Invoke();
             }
             else if (ctx.interaction is MultiTapInteraction)
             {
-                Debug.Log("Multi-taping interaction");
+                //Debug.Log("Multi-taping interaction");
                 OnDoubleTapInteract?.Invoke();
             }
         }
