@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace _Project.Scripts.Core.Player
 {
-    public class MovementController : MonoBehaviour<INESActionReader, KinematicCharacterMotor, Camera>, ICharacterController
+    public class PlayerMovementController : MonoBehaviour<INESActionReader, KinematicCharacterMotor, Camera>, ICharacterController
     {
         [SerializeField] private float walkSpeed = 5f;
         [SerializeField] private float sprintSpeed = 10f;
@@ -24,6 +24,8 @@ namespace _Project.Scripts.Core.Player
         private float _currentMovementSpeed;
         private Vector3 _lastLookDirection;
         private bool _jumpRequested;
+
+        private bool _disableMovement;
         
         protected override void Init(INESActionReader argument, KinematicCharacterMotor motor, Camera mainCamera)
         {
@@ -37,6 +39,16 @@ namespace _Project.Scripts.Core.Player
         {
             _currentMovementSpeed = walkSpeed;
             _lastLookDirection = Vector3.forward;
+        }
+
+        public void DisableMovement()
+        {
+            _disableMovement = true;
+        }
+
+        public void EnableMovement()
+        {
+            _disableMovement = false;
         }
 
         private void OnEnable()
@@ -96,12 +108,23 @@ namespace _Project.Scripts.Core.Player
 
         public void UpdateRotation(ref Quaternion currentRotation, float deltaTime)
         {
+            if (_disableMovement)
+            {
+                return;
+            }
+            
             Quaternion targetRotation = Quaternion.LookRotation(_lastLookDirection);
             currentRotation = Quaternion.Slerp(currentRotation, targetRotation, rotationSpeed * deltaTime);
         }
 
         public void UpdateVelocity(ref Vector3 currentVelocity, float deltaTime)
         {
+            if (_disableMovement)
+            {
+                currentVelocity = Vector3.zero;
+                return;
+            }
+            
             if (_jumpRequested && _motor.GroundingStatus.IsStableOnGround)
             {
                 currentVelocity.y = Mathf.Sqrt(2 * jumpHeight * gravity);

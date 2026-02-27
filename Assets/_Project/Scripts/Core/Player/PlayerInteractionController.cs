@@ -11,7 +11,7 @@ using ILogger = _Project.Scripts.Util.Logger.Interface.ILogger;
 namespace _Project.Scripts.Core.Player
 {
     [RequireComponent(typeof(RangeDetector))]
-    public class InteractionsWithObject : MonoBehaviour<INESActionReader,IGridService, ILogger>
+    public class PlayerInteractionController : MonoBehaviour<INESActionReader,IGridService, ILogger>
     {
         [SerializeField] private Transform frontOfPlayer;
         private RangeDetector _rangeDetector;
@@ -21,7 +21,7 @@ namespace _Project.Scripts.Core.Player
         private IGridService _gridService;
         private ILogger _logger;
 
-        private bool _isTimeControlling;
+        public bool IsTimeControlling {get; private set;}
         
         protected override void Init(INESActionReader nesActionReader, IGridService gridService, ILogger logger)
         {
@@ -92,7 +92,7 @@ namespace _Project.Scripts.Core.Player
                 return;
             }
 
-            _isTimeControlling = true;
+            IsTimeControlling = true;
             _rangeDetector.GetObjectTypeInRangeNoAlloc(_controllables);
 
             foreach (ITimeControllable controllable in _controllables)
@@ -109,7 +109,7 @@ namespace _Project.Scripts.Core.Player
             }
             _controllables.Clear();
             
-            _isTimeControlling = false;
+            IsTimeControlling = false;
         }
 
         // Hold B
@@ -121,7 +121,7 @@ namespace _Project.Scripts.Core.Player
                 return;
             }
 
-            _isTimeControlling = true;
+            IsTimeControlling = true;
             _rangeDetector.GetObjectTypeInRangeNoAlloc(_controllables);
 
             foreach (ITimeControllable controllable in _controllables)
@@ -139,12 +139,12 @@ namespace _Project.Scripts.Core.Player
 
             _controllables.Clear();
             
-            _isTimeControlling = false;
+            IsTimeControlling = false;
         }
         
         private bool CanInteract()
         {
-            return !_currentIHoldingObject && !_isTimeControlling;
+            return !_currentIHoldingObject && !IsTimeControlling;
         }
     }
 }

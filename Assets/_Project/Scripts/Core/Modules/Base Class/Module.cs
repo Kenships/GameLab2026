@@ -41,7 +41,6 @@ namespace _Project.Scripts.Core.Modules.Base_Class
 
         protected virtual void FixedUpdate()
         {
-            Debug.Log(state);
             ActByState();
         }
         
