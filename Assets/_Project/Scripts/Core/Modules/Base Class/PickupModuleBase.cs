@@ -2,7 +2,7 @@ using _Project.Scripts.Core.Modules.Base_Class;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
-public abstract class PickupObjectBase : Module, IHoldable
+public abstract class PickupModuleBase : Module, IHoldable
 {
     [Header("Pickup Settings")]
     [SerializeField] protected Vector3 pickupOffset;
