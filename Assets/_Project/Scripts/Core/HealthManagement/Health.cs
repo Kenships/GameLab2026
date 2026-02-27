@@ -7,6 +7,7 @@ namespace _Project.Scripts.Core.HealthManagement
     {
         public UnityAction<float> OnHealthChanged;
         public UnityAction OnDeath;
+        public UnityAction OnFullHp;
         
         [field: SerializeField] public float CurrentHealth { get; private set; }
         public float MaxHealth => _maxHealth;
@@ -30,13 +31,13 @@ namespace _Project.Scripts.Core.HealthManagement
 
             if (CurrentHealth <= 0)
             {
-                Kill();
+                OnDeath?.Invoke();
             }
-        }
 
-        private void Kill()
-        {
-            OnDeath?.Invoke();
+            if (CurrentHealth >= MaxHealth)
+            {
+                OnFullHp?.Invoke();
+            }
         }
     }
 }
