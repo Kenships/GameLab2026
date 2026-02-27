@@ -95,10 +95,36 @@ namespace _Project.Scripts.Core.Modules
             currentShootSpeed = shootSpeed_slow;
             attackCoroutine = null;
         }
+
+        protected override void OnStateChanged(ModuleState newState)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override void Rewind()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override void CancelRewind()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override void CancelFastForward()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override void FastForward()
+        {
+            throw new System.NotImplementedException();
+        }
+
         private IEnumerator AttackStateCoroutine()
         {
             yield return new WaitForSeconds(attackStateDuration);
-            state = State.Used;
+            state = ModuleState.Used;
             ActByState();
         }
     }

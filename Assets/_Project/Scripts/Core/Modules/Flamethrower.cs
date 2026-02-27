@@ -1,5 +1,4 @@
 using _Project.Scripts.Core.HealthManagement;
-using System.Collections;
 using System.Collections.Generic;
 using _Project.Scripts.Util.Timer.Timers;
 using UnityEngine;
@@ -30,7 +29,6 @@ public class Flamethrower : PickupObjectBase
     private float _normalRadius;
     private RangeDetector _rangeDetector; // rangeType is sector
     private List<Transform> _enemies;
-    private Coroutine _attackCoroutine;
     private bool _isDamagingEnemies;
     private CountdownTimer _attackCooldownTimer;
 
@@ -77,7 +75,8 @@ public class Flamethrower : PickupObjectBase
 
         main.startSpeed = distance / currentLifetime;
     }
-    private void FixedUpdate()
+
+    private void PerformAttack()
     {
         if (_currentDamage == 0 || _attackCooldownTimer.IsRunning)
         {
@@ -97,35 +96,65 @@ public class Flamethrower : PickupObjectBase
             _attackCooldownTimer.Reset(1f/_currentDps);
         }
     }
-    
+
+    #region State Methods
     protected override void LoadState()
     {
-        if (_attackCoroutine != null) StopCoroutine(_attackCoroutine);
-        UpdateParticleAngle(_rangeDetector.angle * angleMultiplier, emissionRateToAngleRatio);
-        _rangeDetector.radius = _normalRadius;
-        UpdateDistance(_rangeDetector.radius * radiusMultiplier);
-        particle.Play();
-        _currentDamage = damage;
-        _currentDps = dps_normal;
+        PerformAttack();
     }
     protected override void AttackState()
     {
-        _currentDps = dps_fast;
-        UpdateParticleAngle(_rangeDetector.angle * angleMultiplier, emissionRateToAngleRatio_fast);
-        _rangeDetector.radius = radius_fast;
-        UpdateDistance(_rangeDetector.radius * radiusMultiplier_fast);
-        _attackCoroutine = StartCoroutine(AttackStateCoroutine());
+        PerformAttack();
     }
     protected override void UsedState()
     {
-        particle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
-        _currentDamage = 0;
-        _attackCoroutine = null;
+        
     }
-    private IEnumerator AttackStateCoroutine()
+    
+    protected override void OnStateChanged(ModuleState newState)
     {
-        yield return new WaitForSeconds(attackStateDuration);
-        state = State.Used;
-        ActByState();
+        switch (newState)
+        {
+            case ModuleState.Load :
+                UpdateParticleAngle(_rangeDetector.angle * angleMultiplier, emissionRateToAngleRatio);
+                _rangeDetector.radius = _normalRadius;
+                UpdateDistance(_rangeDetector.radius * radiusMultiplier);
+                particle.Play();
+                _currentDamage = damage;
+                _currentDps = dps_normal;
+                break;
+            case ModuleState.Attack :
+                _currentDps = dps_fast;
+                UpdateParticleAngle(_rangeDetector.angle * angleMultiplier, emissionRateToAngleRatio_fast);
+                _rangeDetector.radius = radius_fast;
+                UpdateDistance(_rangeDetector.radius * radiusMultiplier_fast);
+                break;
+            case ModuleState.Used :
+                particle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+                _currentDamage = 0;
+                break;
+        }
     }
+
+    public override void Rewind()
+    {
+        
+    }
+
+    public override void CancelRewind()
+    {
+        
+    }
+
+    public override void CancelFastForward()
+    {
+        
+    }
+
+    public override void FastForward()
+    {
+        
+    }
+
+    #endregion
 }
