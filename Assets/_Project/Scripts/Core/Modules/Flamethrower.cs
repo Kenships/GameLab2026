@@ -1,3 +1,4 @@
+using System;
 using _Project.Scripts.Core.HealthManagement;
 using System.Collections.Generic;
 using _Project.Scripts.Util.ExtensionMethods;
@@ -45,10 +46,14 @@ public class Flamethrower : PickupObjectBase
 
     private bool _isRewinding;
 
-    private void Start()
+    private void Awake()
     {
         _health = gameObject.GetOrAdd<Health>();
         _health.Initialize(maxHealth);
+    }
+
+    private void Start()
+    {
         _health.OnDeath += OnDeath;
         _health.OnFullHp += OnFullHp;
         
