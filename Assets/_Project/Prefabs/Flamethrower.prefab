@@ -102,6 +102,7 @@ GameObject:
   - component: {fileID: 6769951668664025768}
   - component: {fileID: 7900933947820870150}
   - component: {fileID: 3727378408416341186}
+  - component: {fileID: 7912016786521706983}
   m_Layer: 3
   m_Name: Flamethrower
   m_TagString: Untagged
@@ -148,6 +149,7 @@ MonoBehaviour:
     m_Bits: 64
   startingTransform: {fileID: 7057473248556846981}
   ignoreYAxis: 1
+  colliderBufferSize: 10
 --- !u!114 &7900933947820870150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,7 +174,11 @@ MonoBehaviour:
   dps_normal: 4
   dps_fast: 8
   radius_fast: 10
-  attackStateDuration: 10
+  maxHealth: 100
+  defaultRecoverySpeed: 10
+  rewindRecoveryMultiplier: 4
+  defaultDecaySpeed: 5
+  attackStateDecayMultiplier: 4
 --- !u!65 &3727378408416341186
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -194,6 +200,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &7912016786521706983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2458656150517354803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 023b85b921ddb3a4494f81debd41c69f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.HealthManagement.Health
+  <CurrentHealth>k__BackingField: 0
 --- !u!1 &2759644144342349529
 GameObject:
   m_ObjectHideFlags: 0

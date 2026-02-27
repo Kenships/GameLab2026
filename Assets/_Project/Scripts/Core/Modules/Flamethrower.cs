@@ -1,5 +1,6 @@
 using _Project.Scripts.Core.HealthManagement;
 using System.Collections.Generic;
+using _Project.Scripts.Util.ExtensionMethods;
 using _Project.Scripts.Util.Timer.Timers;
 using UnityEngine;
 
@@ -22,7 +23,15 @@ public class Flamethrower : PickupObjectBase
     [SerializeField] private float dps_normal = 4f;
     [SerializeField] private float dps_fast = 8f;
     [SerializeField] private float radius_fast = 10;
-    [SerializeField] protected float attackStateDuration = 15f;
+
+    [Header("Time Settings")]
+    
+    [SerializeField] private float maxHealth = 100f;
+    [SerializeField] private float defaultRecoverySpeed = 10f;
+    [SerializeField] private float rewindRecoveryMultiplier = 4f;
+    [SerializeField] private float defaultDecaySpeed = 5f;
+    [SerializeField] private float attackStateDecayMultiplier = 4f;
+    
 
     private float _currentDamage;
     private float _currentDps;
@@ -31,9 +40,18 @@ public class Flamethrower : PickupObjectBase
     private List<Transform> _enemies;
     private bool _isDamagingEnemies;
     private CountdownTimer _attackCooldownTimer;
+    
+    private Health _health;
+
+    private bool _isRewinding;
 
     private void Start()
     {
+        _health = gameObject.GetOrAdd<Health>();
+        _health.Initialize(maxHealth);
+        _health.OnDeath += OnDeath;
+        _health.OnFullHp += OnFullHp;
+        
         _currentDamage = damage;
         _currentDps = dps_normal;
         _attackCooldownTimer = new CountdownTimer(1f/_currentDps);
@@ -56,6 +74,8 @@ public class Flamethrower : PickupObjectBase
 
         UpdateParticleAngle(_rangeDetector.angle * angleMultiplier, emissionRateToAngleRatio);
         UpdateDistance(_rangeDetector.radius * radiusMultiplier);
+
+        state = ModuleState.Load;
     }
 
     private void UpdateParticleAngle(float angle, float emissionRateToAngleRatio)
@@ -97,18 +117,46 @@ public class Flamethrower : PickupObjectBase
         }
     }
 
+    private void OnDeath()
+    {
+        state = ModuleState.Used;
+    }
+
+    private void OnFullHp()
+    {
+        state = ModuleState.Load;
+    }
+
     #region State Methods
     protected override void LoadState()
     {
         PerformAttack();
+
+        if (_isRewinding)
+        {
+            _health.AddToHealth(defaultRecoverySpeed * rewindRecoveryMultiplier * Time.deltaTime);
+        }
+        else
+        {
+            _health.AddToHealth(- defaultDecaySpeed * Time.deltaTime);
+        }
+        
     }
     protected override void AttackState()
     {
         PerformAttack();
+        _health.AddToHealth(-defaultDecaySpeed * attackStateDecayMultiplier * Time.deltaTime);
     }
     protected override void UsedState()
     {
-        
+        if (_isRewinding)
+        {
+            _health.AddToHealth(defaultRecoverySpeed * rewindRecoveryMultiplier * Time.deltaTime);
+        }
+        else
+        {
+            _health.AddToHealth(defaultRecoverySpeed * Time.deltaTime);
+        }
     }
     
     protected override void OnStateChanged(ModuleState newState)
@@ -136,25 +184,39 @@ public class Flamethrower : PickupObjectBase
         }
     }
 
+    #endregion
+
     public override void Rewind()
     {
-        
+        transform.localScale = 1.05f * Vector3.one;
+        _isRewinding = !_isRewinding && state != ModuleState.Attack;
     }
 
     public override void CancelRewind()
     {
+        transform.localScale = Vector3.one;
+        _isRewinding = false;
+    }
+    
+    public override void FastForward()
+    {
+        if (_isRewinding || state == ModuleState.Used)
+            return;
         
+        transform.localScale = 1.05f * Vector3.one;
+        
+        state = ModuleState.Attack;
     }
 
     public override void CancelFastForward()
     {
+        if (state == ModuleState.Used)
+            return;
         
+        transform.localScale = Vector3.one;
+        
+        state = ModuleState.Load;
     }
 
-    public override void FastForward()
-    {
-        
-    }
-
-    #endregion
+    
 }
