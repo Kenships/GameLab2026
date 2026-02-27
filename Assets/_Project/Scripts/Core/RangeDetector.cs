@@ -34,40 +34,60 @@ public class RangeDetector : MonoBehaviour
     [SerializeField] private int colliderBufferSize = 10;
     
     private Collider[] _colliderBuffer;
+    private List<Transform> _transformBuffer = new();
 
     private void Awake()
     {
         _colliderBuffer = new Collider[colliderBufferSize];
     }
 
-    public List<Transform> GetTransformsInRange()
+    public List<T> GetObjectTypeInRangeNoAlloc<T>(List<T> objectList)
     {
-        List<Transform> result = new List<Transform>();
+        _transformBuffer.Clear();
         Transform start = GetStartingTransform();
         float maxRange = GetMaxRange();
         // Quickly filtered the potential objects
-        Physics.OverlapSphereNonAlloc(start.position, maxRange, _colliderBuffer, targetLayer);
+        int count = Physics.OverlapSphereNonAlloc(start.position, maxRange, _colliderBuffer, targetLayer);
 
-        if (!_colliderBuffer[0]) return result;
+        if (!_colliderBuffer[0]) return new List<T>();
 
-        foreach (Collider col in _colliderBuffer)
+        for (int i = 0; i < count; i++)
         {
             // Filtered objects that are actually in the specified shape
-            if (col && IsInRange(col.transform, start))
+            if (_colliderBuffer[i] && IsInRange(_colliderBuffer[i].transform, start))
             {
-                result.Add(col.transform);
+                _transformBuffer.Add(_colliderBuffer[i].transform);
             }
         }
 
         // Sort by distance (closest first)
-        result.Sort((a, b) =>
+        _transformBuffer.Sort((a, b) =>
         {
             float distA = GetDistance(start.position, a.position);
             float distB = GetDistance(start.position, b.position);
             return distA.CompareTo(distB);
         });
+        
+        List<T> result = new List<T>();
+        foreach (Transform obj in _transformBuffer)
+        {
+            if (obj.TryGetComponent(out T objOfType))
+            {
+                result.Add(objOfType);
+            }
+        }
 
         return result;
+    }
+
+    public List<T> GetObjectTypeInRange<T>()
+    {
+        return GetObjectTypeInRangeNoAlloc(new List<T>());
+    }
+
+    public List<Transform> GetTransformsInRange()
+    {
+        return GetObjectTypeInRange<Transform>();
     }
 
     private Transform GetStartingTransform()
