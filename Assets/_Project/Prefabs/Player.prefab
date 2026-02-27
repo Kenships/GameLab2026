@@ -19,6 +19,9 @@ GameObject:
   - component: {fileID: 7581550536801404567}
   - component: {fileID: 1092331311028177960}
   - component: {fileID: 3932089845136875241}
+  - component: {fileID: 999782877938175278}
+  - component: {fileID: 7711087676220215527}
+  - component: {fileID: 9016292657395720019}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -255,6 +258,53 @@ MonoBehaviour:
   startingTransform: {fileID: 0}
   ignoreYAxis: 1
   colliderBufferSize: 10
+--- !u!114 &999782877938175278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2255177123138739269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd02978af6e74d00b512c13091db1143, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.Player.PlayerController
+--- !u!114 &7711087676220215527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2255177123138739269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a0a779e9bbcba646a5e1b890dbb3f5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: InitArgs::Sisus.Init.Internal.ServiceTag
+  service: {fileID: 8489067560023983633}
+  toClients: 0
+  definingType:
+    scriptAssetGuid: ae26d19642db5124a9d271340ff73b5c
+    TypeNameAndAssembly: _Project.Scripts.Core.Player.PlayerMovementController, Assembly-CSharp
+--- !u!114 &9016292657395720019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2255177123138739269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a0a779e9bbcba646a5e1b890dbb3f5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: InitArgs::Sisus.Init.Internal.ServiceTag
+  service: {fileID: 1092331311028177960}
+  toClients: 0
+  definingType:
+    scriptAssetGuid: 578dc20b332588544b188804e23e67de
+    TypeNameAndAssembly: _Project.Scripts.Core.Player.PlayerInteractionController,
+      Assembly-CSharp
 --- !u!1 &4161295036663682808
 GameObject:
   m_ObjectHideFlags: 0
