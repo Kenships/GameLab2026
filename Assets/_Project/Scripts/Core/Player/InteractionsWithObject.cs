@@ -93,7 +93,7 @@ namespace _Project.Scripts.Core.Player
             }
 
             _isTimeControlling = true;
-            _controllables = _rangeDetector.GetObjectTypeInRangeNoAlloc(_controllables);
+            _rangeDetector.GetObjectTypeInRangeNoAlloc(_controllables);
 
             foreach (ITimeControllable controllable in _controllables)
             {
@@ -122,7 +122,7 @@ namespace _Project.Scripts.Core.Player
             }
 
             _isTimeControlling = true;
-            _controllables = _rangeDetector.GetObjectTypeInRangeNoAlloc(_controllables);
+            _rangeDetector.GetObjectTypeInRangeNoAlloc(_controllables);
 
             foreach (ITimeControllable controllable in _controllables)
             {
