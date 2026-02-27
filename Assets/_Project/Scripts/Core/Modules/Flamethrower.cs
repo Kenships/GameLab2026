@@ -1,6 +1,7 @@
 using _Project.Scripts.Core.HealthManagement;
 using System.Collections;
 using System.Collections.Generic;
+using _Project.Scripts.Util.Timer.Timers;
 using UnityEngine;
 
 public class Flamethrower : PickupObjectBase
@@ -24,29 +25,30 @@ public class Flamethrower : PickupObjectBase
     [SerializeField] private float radius_fast = 10;
     [SerializeField] protected float attackStateDuration = 15f;
 
-    private float currentDamage;
-    private float currentDps;
-    private float radius_normal;
-    private RangeDetector rangeDetector; // rangeType is sector
-    private List<Transform> enemies;
-    private Coroutine attackCoroutine;
-    private bool isDamagingEnemies = false;
+    private float _currentDamage;
+    private float _currentDps;
+    private float _normalRadius;
+    private RangeDetector _rangeDetector; // rangeType is sector
+    private List<Transform> _enemies;
+    private Coroutine _attackCoroutine;
+    private bool _isDamagingEnemies;
+    private CountdownTimer _attackCooldownTimer;
 
     private void Start()
     {
-        currentDamage = damage;
-        currentDps = dps_normal;
-        var main = particle.main;
-        enemies = new List<Transform>();
+        _currentDamage = damage;
+        _currentDps = dps_normal;
+        _attackCooldownTimer = new CountdownTimer(1f/_currentDps);
+        _enemies = new List<Transform>();
 
-        rangeDetector = GetComponent<RangeDetector>();
-        if (!rangeDetector)
+        _rangeDetector = GetComponent<RangeDetector>();
+        if (!_rangeDetector)
         {
             Debug.Log("missing rangeDetector");
             return;
         }
 
-        radius_normal = rangeDetector.radius;
+        _normalRadius = _rangeDetector.radius;
 
         if (!particle)
         {
@@ -54,8 +56,8 @@ public class Flamethrower : PickupObjectBase
             return;
         }
 
-        UpdateParticleAngle(rangeDetector.angle * angleMultiplier, emissionRateToAngleRatio);
-        UpdateDistance(rangeDetector.radius * radiusMultiplier);
+        UpdateParticleAngle(_rangeDetector.angle * angleMultiplier, emissionRateToAngleRatio);
+        UpdateDistance(_rangeDetector.radius * radiusMultiplier);
     }
 
     private void UpdateParticleAngle(float angle, float emissionRateToAngleRatio)
@@ -75,61 +77,50 @@ public class Flamethrower : PickupObjectBase
 
         main.startSpeed = distance / currentLifetime;
     }
-    private void Update()
+    private void FixedUpdate()
     {
-        if (!isDamagingEnemies && currentDamage != 0)
+        if (_currentDamage == 0 || _attackCooldownTimer.IsRunning)
         {
-            enemies = rangeDetector.GetTransformsInRange();
-            if (enemies.Count > 0)
-            {
-                isDamagingEnemies = true;
-                StartCoroutine(DamageEnemiesCycle());
-            }
+            return;
+        }
+        _enemies = _rangeDetector.GetTransformsInRange();
+
+        if (_enemies.Count <= 0)
+        {
+            return;
+        }
+
+        foreach(Transform t in _enemies)
+        {
+            //potentially cache IDamageables for better performance
+            t.GetComponent<IDamageable>().Damage(_currentDamage);
+            _attackCooldownTimer.Reset(1f/_currentDps);
         }
     }
-    private IEnumerator DamageEnemiesCycle()
-    {
-        while (true)
-        {
-            enemies = rangeDetector.GetTransformsInRange();
-
-            if (enemies.Count <= 0 || currentDamage == 0)
-            {
-                isDamagingEnemies = false;
-                yield break;
-            }
-
-            foreach(Transform t in enemies)
-            {
-                t.GetComponent<IDamageable>().Damage(currentDamage);
-            }
-
-            yield return new WaitForSeconds(1f / currentDps);
-        }
-    }
+    
     protected override void LoadState()
     {
-        if (attackCoroutine != null) StopCoroutine(attackCoroutine);
-        UpdateParticleAngle(rangeDetector.angle * angleMultiplier, emissionRateToAngleRatio);
-        rangeDetector.radius = radius_normal;
-        UpdateDistance(rangeDetector.radius * radiusMultiplier);
+        if (_attackCoroutine != null) StopCoroutine(_attackCoroutine);
+        UpdateParticleAngle(_rangeDetector.angle * angleMultiplier, emissionRateToAngleRatio);
+        _rangeDetector.radius = _normalRadius;
+        UpdateDistance(_rangeDetector.radius * radiusMultiplier);
         particle.Play();
-        currentDamage = damage;
-        currentDps = dps_normal;
+        _currentDamage = damage;
+        _currentDps = dps_normal;
     }
     protected override void AttackState()
     {
-        currentDps = dps_fast;
-        UpdateParticleAngle(rangeDetector.angle * angleMultiplier, emissionRateToAngleRatio_fast);
-        rangeDetector.radius = radius_fast;
-        UpdateDistance(rangeDetector.radius * radiusMultiplier_fast);
-        attackCoroutine = StartCoroutine(AttackStateCoroutine());
+        _currentDps = dps_fast;
+        UpdateParticleAngle(_rangeDetector.angle * angleMultiplier, emissionRateToAngleRatio_fast);
+        _rangeDetector.radius = radius_fast;
+        UpdateDistance(_rangeDetector.radius * radiusMultiplier_fast);
+        _attackCoroutine = StartCoroutine(AttackStateCoroutine());
     }
     protected override void UsedState()
     {
         particle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
-        currentDamage = 0;
-        attackCoroutine = null;
+        _currentDamage = 0;
+        _attackCoroutine = null;
     }
     private IEnumerator AttackStateCoroutine()
     {
