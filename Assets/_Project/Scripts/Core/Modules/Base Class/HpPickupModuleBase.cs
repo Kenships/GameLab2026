@@ -8,11 +8,11 @@ namespace _Project.Scripts.Core.Modules.Base_Class
     {
         [Header("Time Settings")]
     
-        [SerializeField] private float maxHealth = 100f;
-        [SerializeField] private float defaultRecoverySpeed = 10f;
-        [SerializeField] private float rewindRecoveryMultiplier = 4f;
-        [SerializeField] private float defaultDecaySpeed = 5f;
-        [SerializeField] private float attackStateDecayMultiplier = 4f;
+        [SerializeField] protected float maxHealth = 100f;
+        [SerializeField] protected float defaultRecoverySpeed = 10f;
+        [SerializeField] protected float rewindRecoveryMultiplier = 4f;
+        [SerializeField] protected float defaultDecaySpeed = 5f;
+        [SerializeField] protected float attackStateDecayMultiplier = 4f;
         
         private Health _health;
         protected bool _isRewinding;
