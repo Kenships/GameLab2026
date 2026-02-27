@@ -41,7 +41,7 @@ public class RangeDetector : MonoBehaviour
         _colliderBuffer = new Collider[colliderBufferSize];
     }
 
-    public List<T> GetObjectTypeInRangeNoAlloc<T>(List<T> objectList)
+    public void GetObjectTypeInRangeNoAlloc<T>(List<T> objectList)
     {
         _transformBuffer.Clear();
         Transform start = GetStartingTransform();
@@ -49,7 +49,7 @@ public class RangeDetector : MonoBehaviour
         // Quickly filtered the potential objects
         int count = Physics.OverlapSphereNonAlloc(start.position, maxRange, _colliderBuffer, targetLayer);
 
-        if (!_colliderBuffer[0]) return new List<T>();
+        if (!_colliderBuffer[0]) return;
 
         for (int i = 0; i < count; i++)
         {
@@ -68,21 +68,20 @@ public class RangeDetector : MonoBehaviour
             return distA.CompareTo(distB);
         });
         
-        List<T> result = new List<T>();
         foreach (Transform obj in _transformBuffer)
         {
             if (obj.TryGetComponent(out T objOfType))
             {
-                result.Add(objOfType);
+                objectList.Add(objOfType);
             }
         }
-
-        return result;
     }
 
     public List<T> GetObjectTypeInRange<T>()
     {
-        return GetObjectTypeInRangeNoAlloc(new List<T>());
+        List<T> result = new List<T>();
+        GetObjectTypeInRangeNoAlloc(result);
+        return result;
     }
 
     public List<Transform> GetTransformsInRange()
