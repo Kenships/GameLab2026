@@ -1,65 +1,57 @@
-using System.Collections;
+using _Project.Scripts.Core.Modules.Interface;
 using UnityEngine;
 
-public abstract class Module : MonoBehaviour
+namespace _Project.Scripts.Core.Modules.Base_Class
 {
-    public enum State
+    public abstract class Module : MonoBehaviour, ITimeControllable
     {
-        Load,
-        Attack,
-        Used
-    }
-    public State state = State.Load;
-    public void FastForward()
-    {
-        Debug.Log("FastForwad");
-        switch (state)
+        public enum ModuleState
         {
-            case State.Load:
-                state = State.Attack;
-                break;
-            case State.Attack:
-                state = State.Used;
-                break;
-            case State.Used:
-                // nothing happens
-                break;
+            None,
+            Load,
+            Attack,
+            Used
         }
-        ActByState();
-    }
-    public void Rewind()
-    {
-        Debug.Log("Rewind");
-        switch (state)
+        
+        private ModuleState _previousState = ModuleState.None;
+        public ModuleState state = ModuleState.Load;
+        
+
+        protected void ActByState()
         {
-            case State.Load:
-                // nothing happens
-                break;
-            case State.Attack:
-                state = State.Load;
-                break;
-            case State.Used:
-                state = State.Load;
-                break;
+            if (_previousState != state)
+            {
+                _previousState = state;
+                OnStateChanged(state);
+            }
+            
+            switch (state)
+            {
+                case ModuleState.Load:
+                    LoadState();
+                    break;
+                case ModuleState.Attack:
+                    AttackState();
+                    break;
+                case ModuleState.Used:
+                    UsedState();
+                    break;
+            }
         }
-        ActByState();
-    }
-    public void ActByState()
-    {
-        switch (state)
+
+        protected virtual void FixedUpdate()
         {
-            case State.Load:
-                LoadState();
-                break;
-            case State.Attack:
-                AttackState();
-                break;
-            case State.Used:
-                UsedState();
-                break;
+            Debug.Log(state);
+            ActByState();
         }
+        
+        protected abstract void LoadState();
+        protected abstract void AttackState();
+        protected abstract void UsedState();
+        protected abstract void OnStateChanged(ModuleState newState);
+        public abstract void Rewind();
+        public abstract void FastForward();
+        public abstract void CancelRewind();
+        public abstract void CancelFastForward();
     }
-    protected abstract void LoadState();
-    protected abstract void AttackState();
-    protected abstract void UsedState();
 }

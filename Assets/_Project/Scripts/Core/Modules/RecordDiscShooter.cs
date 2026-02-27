@@ -1,9 +1,11 @@
-using System.Collections;
+using System.Collections.Generic;
+using _Project.Scripts.Core.Modules.Base_Class;
 using UnityEngine;
 
 namespace _Project.Scripts.Core.Modules
 {
-    public class RecordDiscShooter : PickupObjectBase
+    [RequireComponent(typeof(RangeDetector))]
+    public class RecordDiscShooter : HpPickupModuleBase
     {
         [Header("References")]
         [SerializeField] RecordDiscBullet recordDiscPrefab;
@@ -11,30 +13,41 @@ namespace _Project.Scripts.Core.Modules
 
         [Header("Shooting Settings")]
         [SerializeField] private float rotateSpeed = 200f; // homing rotation sharpness (higher the sharper)
-        [SerializeField] private float shootSpeed = 10f;
-        [SerializeField] private float shootSpeed_fast = 15f;
-        [SerializeField] private float shootSpeed_slow = 2.5f;
+        [SerializeField] private float defaultBulletSpeed = 10f;
+        [SerializeField] private float fastBulletSpeed = 15f;
+        [SerializeField] private float slowBulletSpeed = 2.5f;
         [SerializeField] private float timeBetweenShots = 1f; //yk
         [SerializeField] [Range(0f, 1f)] private float bulletWobble = 0f; // o = bullet shoots straght (like frisbee) | 1= bullet wobbles (me throwing a frisbee)
         [SerializeField] private int maxTargets = 3; // max number of hits until bullet is destroyed
         [SerializeField] private float detectionRange = 15f; // range around shooter that detects enemies
         [SerializeField] private LayerMask enemyLayer;
-        [SerializeField] protected float attackStateDuration = 15f;
 
         private float _shootTimer;
         private Transform _currentTarget;
-        private float currentShootSpeed;
-        private Coroutine attackCoroutine;
+        private float _currentBulletSpeed;
+        private RangeDetector _rangeDetector;
+        
+        private List<Transform> _enemies;
 
-        private void Start()
+        private void Awake()
         {
-            currentShootSpeed = shootSpeed;
+            _enemies = new List<Transform>();
+            _rangeDetector = GetComponent<RangeDetector>();
+            _rangeDetector.radius = detectionRange;
+            _currentBulletSpeed = defaultBulletSpeed;
         }
-        private void Update()
-        {
-            FindClosestEnemy();
 
-            if (!_currentTarget) return;
+        private void PerformAttack()
+        {
+            _enemies.Clear();
+            _rangeDetector.GetObjectTypeInRangeNoAlloc(_enemies);
+            
+            Debug.Log(_enemies.Count);
+
+            if (_enemies.Count == 0 || !_enemies[0])
+                return;
+            
+            _currentTarget = _enemies[0];
 
             _shootTimer -= Time.deltaTime;
 
@@ -43,27 +56,6 @@ namespace _Project.Scripts.Core.Modules
                 Shoot();
                 _shootTimer = timeBetweenShots;
             }
-        }
-
-        private void FindClosestEnemy()
-        {
-            Collider[] enemiesInRange = Physics.OverlapSphere(transform.position, detectionRange, enemyLayer);
-
-            float closestDistance = Mathf.Infinity;
-            Transform closestEnemy = null;
-
-            foreach (Collider enemy in enemiesInRange)
-            {
-                float distance = Vector3.Distance(transform.position, enemy.transform.position);
-
-                if (distance < closestDistance)
-                {
-                    closestDistance = distance;
-                    closestEnemy = enemy.transform;
-                }
-            }
-
-            _currentTarget = closestEnemy;
         }
 
         private void Shoot()
@@ -75,31 +67,41 @@ namespace _Project.Scripts.Core.Modules
         
 
             RecordDiscBullet bullet = Instantiate(recordDiscPrefab, spawnPoint.position, rotationToEnemy);
-            bullet.Initialize(_currentTarget, currentShootSpeed, maxTargets, rotateSpeed, bulletWobble, enemyLayer);
+            bullet.Initialize(_currentTarget, _currentBulletSpeed, maxTargets, rotateSpeed, bulletWobble, enemyLayer);
         }
 
         protected override void LoadState()
         {
-            if (attackCoroutine != null) StopCoroutine(attackCoroutine);
-            currentShootSpeed = shootSpeed;
+            PerformAttack();
+            base.LoadState();
         }
 
         protected override void AttackState()
         {
-            currentShootSpeed = shootSpeed_fast;
-            attackCoroutine = StartCoroutine(AttackStateCoroutine());
+            PerformAttack();
+            base.AttackState();
         }
 
         protected override void UsedState()
         {
-            currentShootSpeed = shootSpeed_slow;
-            attackCoroutine = null;
+            PerformAttack();
+            base.UsedState();
         }
-        private IEnumerator AttackStateCoroutine()
+
+        protected override void OnStateChanged(ModuleState newState)
         {
-            yield return new WaitForSeconds(attackStateDuration);
-            state = State.Used;
-            ActByState();
+            switch (newState)
+            {
+                case ModuleState.Load:
+                    _currentBulletSpeed = defaultBulletSpeed;
+                    break;
+                case ModuleState.Attack:
+                    _currentBulletSpeed = fastBulletSpeed;
+                    break;
+                case ModuleState.Used:
+                    _currentBulletSpeed = slowBulletSpeed;
+                    break;
+            }
         }
     }
 }
