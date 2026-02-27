@@ -46,8 +46,10 @@ namespace _Project.Scripts.Core.Player
             _inputReader.OnDoubleTapAltInteract -= PickUpOrPutDown;
             
             _inputReader.OnHoldInteract -= FastForward;
+            _inputReader.OnReleaseInteract -= CancelFastForward;
             
             _inputReader.OnHoldAltInteract -= Rewind;
+            _inputReader.OnReleaseAltInteract -= CancelRewind;
         }
         
         // Double tap A
