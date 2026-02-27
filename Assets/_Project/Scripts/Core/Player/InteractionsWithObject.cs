@@ -3,21 +3,28 @@ using _Project.Scripts.Core.InputManagement.Interfaces;
 using Sisus.Init;
 using UnityEngine;
 using ILogger = _Project.Scripts.Util.Logger.Interface.ILogger;
+using _Project.Scripts.Core.AudioPooling;
+using AudioType = _Project.Scripts.Core.AudioPooling.Interface.AudioType;
 
 namespace _Project.Scripts.Core.Player
 {
-    public class InteractionsWithObject : MonoBehaviour<INESActionReader,IGridService, ILogger>
+    public class InteractionsWithObject : MonoBehaviour<INESActionReader,IGridService, ILogger, AudioPooler>
     {
         [SerializeField] private Transform frontOfPlayer;
         private GameObject _currentIHoldingObject;
         private INESActionReader _inputReader;
         private IGridService _gridService;
         private ILogger _logger;
-        
-        protected override void Init(INESActionReader nesActionReader, IGridService gridService, ILogger logger)
+        private AudioPooler _audioPooler;
+
+        [Header("Audio")]
+        [SerializeField] private AudioClip pickUp, place, fastForward, rewind;
+
+        protected override void Init(INESActionReader nesActionReader, IGridService gridService, ILogger logger, AudioPooler audioPooler)
         {
             _inputReader = nesActionReader;
             _gridService = gridService;
+            _audioPooler = audioPooler;
         }
         
         private void OnEnable()
@@ -50,6 +57,8 @@ namespace _Project.Scripts.Core.Player
                 
                 holdable.PickUp();
                 holdable.Anchor(frontOfPlayer);
+
+                _audioPooler.New2DAudio(pickUp).OnChannel(AudioType.Sfx).Play();
                 
                 _currentIHoldingObject = obj;
             }
@@ -62,8 +71,9 @@ namespace _Project.Scripts.Core.Player
                 }
                 _gridService.PlaceObjectOnGrid(_currentIHoldingObject, frontOfPlayer.position);
                 holdable.Drop();
-                
-                
+
+                _audioPooler.New2DAudio(place).OnChannel(AudioType.Sfx).Play();
+
                 _gridService.PlaceObjectOnGrid(_currentIHoldingObject, frontOfPlayer.position);
                 _currentIHoldingObject = null;
             }
@@ -82,6 +92,7 @@ namespace _Project.Scripts.Core.Player
 
             if (objOnGrid && objOnGrid.TryGetComponent(out Module module))
             {
+                _audioPooler.New2DAudio(fastForward).OnChannel(AudioType.Sfx).Play();
                 module.FastForward();
             }
         }
@@ -99,6 +110,7 @@ namespace _Project.Scripts.Core.Player
 
             if (objOnGrid && objOnGrid.TryGetComponent(out Module module))
             {
+                _audioPooler.New2DAudio(rewind).OnChannel(AudioType.Sfx).Play();
                 module.Rewind();
             }
         }

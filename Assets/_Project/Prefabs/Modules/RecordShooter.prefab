@@ -79,11 +79,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e66bdfa4bd24ba741a6b1d37dd0f9669, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RecordDiscShooter
+  state: 0
   pickupOffset: {x: 0, y: 0, z: 0}
   recordDiscPrefab: {fileID: -8867070136259511986, guid: 53df02381234ecc479fb275396043080, type: 3}
   spawnPoint: {fileID: 5731111388738531017}
   rotateSpeed: 200
   shootSpeed: 10
+  shootSpeed_fast: 20
+  shootSpeed_slow: 2.5
   timeBetweenShots: 1
   bulletWobble: 0.36
   maxTargets: 3
@@ -91,6 +94,8 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64
+  attackStateDuration: 15
+  shootingSound: {fileID: 8300000, guid: d02537bbcf35a3a4a9c150c204b8484c, type: 3}
 --- !u!136 &5248281451148013754
 CapsuleCollider:
   m_ObjectHideFlags: 0

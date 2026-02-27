@@ -231,6 +231,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.Player.InteractionsWithObject
   frontOfPlayer: {fileID: 4219791085985022558}
+  pickUp: {fileID: 8300000, guid: 3358a6c59438a56489f4fa6a4b6de184, type: 3}
+  place: {fileID: 8300000, guid: e2ec000ad77f76147b95348342d55a9f, type: 3}
+  fastForward: {fileID: 8300000, guid: 64f2619f3af216d4e99dc78e97b03130, type: 3}
+  rewind: {fileID: 8300000, guid: d00d377d24214124d994f80923186f4f, type: 3}
 --- !u!1 &4161295036663682808
 GameObject:
   m_ObjectHideFlags: 0

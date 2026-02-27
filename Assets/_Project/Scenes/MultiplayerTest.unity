@@ -499,6 +499,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 6849032946996135789, guid: 6ce11590cd9482048add3b33b8fba3b4, type: 3}
+      propertyPath: shootingSound
+      value: 
+      objectReference: {fileID: 8300000, guid: d02537bbcf35a3a4a9c150c204b8484c, type: 3}
+    - target: {fileID: 6849032946996135789, guid: 6ce11590cd9482048add3b33b8fba3b4, type: 3}
       propertyPath: shootSpeed_fast
       value: 20
       objectReference: {fileID: 0}
@@ -545,10 +549,6 @@ PrefabInstance:
     - target: {fileID: 8143855464876323403, guid: 6ce11590cd9482048add3b33b8fba3b4, type: 3}
       propertyPath: m_Name
       value: RecordShooter
-      objectReference: {fileID: 0}
-    - target: {fileID: 8143855464876323403, guid: 6ce11590cd9482048add3b33b8fba3b4, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

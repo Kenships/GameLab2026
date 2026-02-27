@@ -1,7 +1,11 @@
+using _Project.Scripts.Core.AudioPooling;
+using _Project.Scripts.Core.Grid;
+using _Project.Scripts.Core.InputManagement.Interfaces;
+using Sisus.Init;
 using System.Collections;
 using UnityEngine;
 
-public abstract class Module : MonoBehaviour
+public abstract class Module : MonoBehaviour<AudioPooler>
 {
     public enum State
     {
@@ -10,6 +14,12 @@ public abstract class Module : MonoBehaviour
         Used
     }
     public State state = State.Load;
+    protected AudioPooler _audioPooler;
+    protected override void Init(AudioPooler audioPooler)
+    {
+        _audioPooler = audioPooler;
+    }
+
     public void FastForward()
     {
         Debug.Log("FastForwad");

@@ -1,5 +1,7 @@
+using _Project.Scripts.Core.AudioPooling;
 using System.Collections;
 using UnityEngine;
+using AudioType = _Project.Scripts.Core.AudioPooling.Interface.AudioType;
 
 namespace _Project.Scripts.Core.Modules
 {
@@ -21,14 +23,19 @@ namespace _Project.Scripts.Core.Modules
         [SerializeField] private LayerMask enemyLayer;
         [SerializeField] protected float attackStateDuration = 15f;
 
+        [Header("Audio")]
+        [SerializeField] private AudioClip shootingSound;
+
         private float _shootTimer;
         private Transform _currentTarget;
         private float currentShootSpeed;
+        private float currentTimeBetweenShots;
         private Coroutine attackCoroutine;
 
         private void Start()
         {
             currentShootSpeed = shootSpeed;
+            currentTimeBetweenShots = timeBetweenShots;
         }
         private void Update()
         {
@@ -41,7 +48,8 @@ namespace _Project.Scripts.Core.Modules
             if (_shootTimer <= 0f)
             {
                 Shoot();
-                _shootTimer = timeBetweenShots;
+                _shootTimer = currentTimeBetweenShots;
+                Debug.Log(currentTimeBetweenShots);
             }
         }
 
@@ -72,7 +80,8 @@ namespace _Project.Scripts.Core.Modules
 
             Vector3 directionToEnemy = (_currentTarget.position - spawnPoint.position).normalized;
             Quaternion rotationToEnemy = Quaternion.LookRotation(directionToEnemy);
-        
+
+            _audioPooler.New2DAudio(shootingSound).OnChannel(AudioType.Sfx).Play();
 
             RecordDiscBullet bullet = Instantiate(recordDiscPrefab, spawnPoint.position, rotationToEnemy);
             bullet.Initialize(_currentTarget, currentShootSpeed, maxTargets, rotateSpeed, bulletWobble, enemyLayer);
@@ -82,17 +91,20 @@ namespace _Project.Scripts.Core.Modules
         {
             if (attackCoroutine != null) StopCoroutine(attackCoroutine);
             currentShootSpeed = shootSpeed;
+            currentTimeBetweenShots = timeBetweenShots;
         }
 
         protected override void AttackState()
         {
             currentShootSpeed = shootSpeed_fast;
+            currentTimeBetweenShots = timeBetweenShots / (shootSpeed_fast / shootSpeed);
             attackCoroutine = StartCoroutine(AttackStateCoroutine());
         }
 
         protected override void UsedState()
         {
             currentShootSpeed = shootSpeed_slow;
+            currentTimeBetweenShots = timeBetweenShots / (shootSpeed_slow / shootSpeed);
             attackCoroutine = null;
         }
         private IEnumerator AttackStateCoroutine()
