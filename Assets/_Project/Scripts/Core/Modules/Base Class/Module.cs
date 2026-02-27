@@ -1,65 +1,42 @@
-using System.Collections;
+using System;
+using _Project.Scripts.Core.HealthManagement;
 using UnityEngine;
 
-public abstract class Module : MonoBehaviour
+namespace _Project.Scripts.Core.Modules.Base_Class
 {
-    public enum State
+    public abstract class Module : MonoBehaviour
     {
-        Load,
-        Attack,
-        Used
-    }
-    public State state = State.Load;
-    public void FastForward()
-    {
-        Debug.Log("FastForwad");
-        switch (state)
+        public enum State
         {
-            case State.Load:
-                state = State.Attack;
-                break;
-            case State.Attack:
-                state = State.Used;
-                break;
-            case State.Used:
-                // nothing happens
-                break;
+            Load,
+            Attack,
+            Used
         }
-        ActByState();
-    }
-    public void Rewind()
-    {
-        Debug.Log("Rewind");
-        switch (state)
+        public State state = State.Load;
+
+        protected void ActByState()
         {
-            case State.Load:
-                // nothing happens
-                break;
-            case State.Attack:
-                state = State.Load;
-                break;
-            case State.Used:
-                state = State.Load;
-                break;
+            switch (state)
+            {
+                case State.Load:
+                    LoadState();
+                    break;
+                case State.Attack:
+                    AttackState();
+                    break;
+                case State.Used:
+                    UsedState();
+                    break;
+            }
         }
-        ActByState();
-    }
-    public void ActByState()
-    {
-        switch (state)
+
+        protected virtual void Update()
         {
-            case State.Load:
-                LoadState();
-                break;
-            case State.Attack:
-                AttackState();
-                break;
-            case State.Used:
-                UsedState();
-                break;
+            ActByState();
         }
+
+        protected abstract void LoadState();
+        protected abstract void AttackState();
+        protected abstract void UsedState();
     }
-    protected abstract void LoadState();
-    protected abstract void AttackState();
-    protected abstract void UsedState();
 }

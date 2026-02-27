@@ -1,3 +1,4 @@
+using _Project.Scripts.Core.Modules.Base_Class;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
