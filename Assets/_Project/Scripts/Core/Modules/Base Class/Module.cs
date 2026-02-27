@@ -22,7 +22,7 @@ namespace _Project.Scripts.Core.Modules.Base_Class
             if (_previousState != state)
             {
                 _previousState = state;
-                OnStateChanged(_previousState);
+                OnStateChanged(state);
             }
             
             switch (state)
@@ -41,6 +41,7 @@ namespace _Project.Scripts.Core.Modules.Base_Class
 
         protected virtual void FixedUpdate()
         {
+            Debug.Log(state);
             ActByState();
         }
         
