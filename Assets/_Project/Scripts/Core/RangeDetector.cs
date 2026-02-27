@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -30,18 +31,29 @@ public class RangeDetector : MonoBehaviour
 
     [Header("Other")]
     public bool ignoreYAxis = true; // Default true: only XZ plane is considered (ignores height difference)
+    [SerializeField] private int colliderBufferSize = 10;
+    
+    private Collider[] _colliderBuffer;
+
+    private void Awake()
+    {
+        _colliderBuffer = new Collider[colliderBufferSize];
+    }
+
     public List<Transform> GetTransformsInRange()
     {
         List<Transform> result = new List<Transform>();
         Transform start = GetStartingTransform();
         float maxRange = GetMaxRange();
         // Quickly filtered the potential objects
-        Collider[] colliders = Physics.OverlapSphere(start.position, maxRange, targetLayer);
+        Physics.OverlapSphereNonAlloc(start.position, maxRange, _colliderBuffer, targetLayer);
 
-        foreach (Collider col in colliders)
+        if (!_colliderBuffer[0]) return result;
+
+        foreach (Collider col in _colliderBuffer)
         {
             // Filtered objects that are actually in the specified shape
-            if (IsInRange(col.transform, start))
+            if (col && IsInRange(col.transform, start))
             {
                 result.Add(col.transform);
             }
@@ -60,21 +72,19 @@ public class RangeDetector : MonoBehaviour
 
     private Transform GetStartingTransform()
     {
-        return startingTransform != null ? startingTransform : transform;
+        return startingTransform ? startingTransform : transform;
     }
 
     private float GetDistance(Vector3 from, Vector3 to)
     {
         if (ignoreYAxis)
         {
-            Vector3 fromXZ = new Vector3(from.x, 0, from.z);
-            Vector3 toXZ = new Vector3(to.x, 0, to.z);
+            Vector3 fromXZ = Vector3.ProjectOnPlane(from, Vector3.up);
+            Vector3 toXZ = Vector3.ProjectOnPlane(to, Vector3.up);
             return Vector3.Distance(fromXZ, toXZ);
         }
-        else
-        {
-            return Vector3.Distance(from, to);
-        }
+
+        return Vector3.Distance(from, to);
     }
 
     private bool IsInRange(Transform target, Transform start)
@@ -85,12 +95,9 @@ public class RangeDetector : MonoBehaviour
         switch (rangeType)
         {
             case RangeType.Circle:
-                return GetDistance(startPos, targetPos) <= radius;
+                return true;
 
             case RangeType.Sector:
-                float dist = GetDistance(startPos, targetPos);
-                if (dist > radius) return false;
-
                 Vector3 toTarget = targetPos - startPos;
                 Vector3 forward = start.forward;
 
@@ -110,7 +117,6 @@ public class RangeDetector : MonoBehaviour
                 float halfWidth = width * 0.5f;
                 return targetLocalPos.z >= 0 && targetLocalPos.z <= length &&
                        targetLocalPos.x >= -halfWidth && targetLocalPos.x <= halfWidth;
-
             default:
                 return false;
         }

@@ -1,8 +1,5 @@
-using System.Collections.Generic;
 using _Project.Scripts.Core.Grid;
 using _Project.Scripts.Core.InputManagement.Interfaces;
-using _Project.Scripts.GridObjects.Interface;
-using _Project.Scripts.Interaction.Interface;
 using Sisus.Init;
 using UnityEngine;
 using ILogger = _Project.Scripts.Util.Logger.Interface.ILogger;
@@ -17,8 +14,6 @@ namespace _Project.Scripts.Core.Player
         private IGridService _gridService;
         private ILogger _logger;
         
-        private readonly List<ITimeControllable> _currentlyTimeControlledObjects = new ();
-        
         protected override void Init(INESActionReader nesActionReader, IGridService gridService, ILogger logger)
         {
             _inputReader = nesActionReader;
@@ -30,46 +25,17 @@ namespace _Project.Scripts.Core.Player
             _inputReader.OnDoubleTapAltInteract += PickUpOrPutDown;
             
             _inputReader.OnHoldInteract += FastForward;
-            _inputReader.OnReleaseInteract += CancelFastForward;
             
             _inputReader.OnHoldAltInteract += Rewind;
-            _inputReader.OnReleaseAltInteract += CancelRewind;
         }
-
-        //Maybe merge the Cancel interactions into one
-
-        private void CancelFastForward()
-        {
-            foreach (var timeControllable in _currentlyTimeControlledObjects)
-            {
-                timeControllable.CancelFastForward();
-            }
-            
-            _currentlyTimeControlledObjects.Clear();
-        }
-        
-        
-        private void CancelRewind()
-        {
-            foreach (var timeControllable in _currentlyTimeControlledObjects)
-            {
-                timeControllable.CancelRewind();
-            }
-            _currentlyTimeControlledObjects.Clear();
-            
-        }
-
-        
 
         private void OnDisable()
         {
             _inputReader.OnDoubleTapAltInteract -= PickUpOrPutDown;
             
             _inputReader.OnHoldInteract -= FastForward;
-            _inputReader.OnReleaseInteract -= CancelFastForward;
             
             _inputReader.OnHoldAltInteract -= Rewind;
-            _inputReader.OnReleaseAltInteract -= CancelRewind;
         }
         
         // Double tap A
@@ -114,15 +80,9 @@ namespace _Project.Scripts.Core.Player
             
             GameObject objOnGrid = _gridService.GetObjectOnGrid(frontOfPlayer.position);
 
-            if (objOnGrid && objOnGrid.TryGetComponent(out ITimeControllable timeControllable))
+            if (objOnGrid && objOnGrid.TryGetComponent(out Module module))
             {
-                if (timeControllable.IsWinding)
-                {
-                    return;
-                }
-
-                timeControllable.FastForward();
-                _currentlyTimeControlledObjects.Add(timeControllable);
+                module.FastForward();
             }
         }
 
@@ -137,15 +97,9 @@ namespace _Project.Scripts.Core.Player
             
             GameObject objOnGrid = _gridService.GetObjectOnGrid(frontOfPlayer.position);
 
-            if (objOnGrid && objOnGrid.TryGetComponent(out ITimeControllable timeControllable))
+            if (objOnGrid && objOnGrid.TryGetComponent(out Module module))
             {
-                if (timeControllable.IsWinding)
-                {
-                    return;
-                }
-
-                timeControllable.Rewind();
-                _currentlyTimeControlledObjects.Add(timeControllable);
+                module.Rewind();
             }
         }
         

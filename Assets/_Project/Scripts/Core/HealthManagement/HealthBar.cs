@@ -44,7 +44,7 @@ namespace _Project.Scripts.Core.HealthManagement
         private void UpdateHealthBar(float healthDelta)
         {
             // Temp logic
-            Debug.Log(healthDelta);
+            // Debug.Log(healthDelta);
             
             _slider.value = health.CurrentHealth / health.MaxHealth;
         }
