@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 namespace _Project.Scripts.Core.InputManagement.Interfaces
 {
@@ -14,5 +15,7 @@ namespace _Project.Scripts.Core.InputManagement.Interfaces
         event UnityAction OnHoldAltInteract;
         event UnityAction OnReleaseAltInteract;
         event UnityAction OnDoubleTapAltInteract;
+
+        public bool TryGetGamePad(out Gamepad gamePad);
     }
 }

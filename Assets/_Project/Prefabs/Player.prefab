@@ -234,6 +234,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 578dc20b332588544b188804e23e67de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.Player.InteractionsWithObject
+  lowFrequencyHapticIntensity: 0.5
+  highFrequencyHapticIntensity: 1
+  hapticsDuration: 0.1
   frontOfPlayer: {fileID: 4219791085985022558}
 --- !u!114 &3932089845136875241
 MonoBehaviour:

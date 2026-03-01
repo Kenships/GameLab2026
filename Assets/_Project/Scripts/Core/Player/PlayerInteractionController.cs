@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using _Project.Scripts.Core.AudioPooling;
 using _Project.Scripts.Core.Grid;
@@ -5,6 +6,7 @@ using _Project.Scripts.Core.InputManagement.Interfaces;
 using _Project.Scripts.Core.Modules.Interface;
 using Sisus.Init;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using ILogger = _Project.Scripts.Util.Logger.Interface.ILogger;
 
 namespace _Project.Scripts.Core.Player
@@ -12,6 +14,12 @@ namespace _Project.Scripts.Core.Player
     [RequireComponent(typeof(RangeDetector))]
     public class PlayerInteractionController : MonoBehaviour<INESActionReader,IGridService, ILogger, AudioPooler>
     {
+        [Header("Haptics Settings")]
+        [SerializeField] private float lowFrequencyHapticIntensity = 0.6f;
+        [SerializeField] private float highFrequencyHapticIntensity = .2f;
+        [SerializeField] private float hapticsDuration = 0.12f;
+        
+        
         [SerializeField] private Transform frontOfPlayer;
         private RangeDetector _rangeDetector;
         private List<ITimeControllable> _controllables = new();
@@ -20,6 +28,7 @@ namespace _Project.Scripts.Core.Player
         private IGridService _gridService;
         private ILogger _logger;
         private AudioPooler _audioPooler;
+        private Gamepad _gamePad;
 
         public bool IsTimeControlling {get; private set;}
         
@@ -44,6 +53,9 @@ namespace _Project.Scripts.Core.Player
             
             _inputReader.OnHoldAltInteract += Rewind;
             _inputReader.OnReleaseAltInteract += CancelRewind;
+            
+            _rangeDetector.OnObjectEnter += SelectVisual;
+            _rangeDetector.OnObjectExit += DeselectVisual;
         }
 
         private void OnDisable()
@@ -57,12 +69,14 @@ namespace _Project.Scripts.Core.Player
             
             _inputReader.OnHoldAltInteract -= Rewind;
             _inputReader.OnReleaseAltInteract -= CancelRewind;
+            
+            _rangeDetector.OnObjectEnter -= SelectVisual;
+            _rangeDetector.OnObjectExit -= DeselectVisual;
         }
 
         private void Start()
         {
-            _rangeDetector.OnObjectEnter += SelectVisual;
-            _rangeDetector.OnObjectExit += DeselectVisual;
+            _gamePad = _inputReader.TryGetGamePad(out Gamepad gp) ? gp : null;
         }
 
         private void RotateClockWise()
@@ -89,6 +103,8 @@ namespace _Project.Scripts.Core.Player
                 
                 holdable.PickUp();
                 holdable.Anchor(frontOfPlayer);
+                
+                StartCoroutine(PlayHaptics());
 
                 _currentIHoldingObject = obj;
             }
@@ -101,6 +117,8 @@ namespace _Project.Scripts.Core.Player
                 }
                 _gridService.PlaceObjectOnGrid(_currentIHoldingObject, frontOfPlayer.position);
                 holdable.Drop();
+                
+                StartCoroutine(PlayHaptics());
 
                 _gridService.PlaceObjectOnGrid(_currentIHoldingObject, frontOfPlayer.position);
                 _currentIHoldingObject = null;
@@ -168,6 +186,8 @@ namespace _Project.Scripts.Core.Player
 
         private void SelectVisual(Collider obj)
         {
+            if(!obj) return;
+            
             if (!obj.TryGetComponent(out IVisualSelectable visualSelectable)) return;
             
             visualSelectable.ShowVisual(PlayerID);
@@ -175,8 +195,25 @@ namespace _Project.Scripts.Core.Player
         
         private void DeselectVisual(Collider obj)
         {
+            if(!obj) return;
+            
             if (!obj.TryGetComponent(out IVisualSelectable visualSelectable)) return;
             visualSelectable.HideVisual(PlayerID);
+        }
+
+        private IEnumerator PlayHaptics()
+        {
+            _gamePad.SetMotorSpeeds(lowFrequencyHapticIntensity, highFrequencyHapticIntensity);
+
+            float timer = hapticsDuration;
+
+            while (timer >= 0)
+            {
+                timer -= Time.deltaTime;
+                yield return null;
+            }
+            
+            _gamePad.SetMotorSpeeds(0, 0);
         }
     }
 }
