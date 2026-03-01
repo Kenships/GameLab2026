@@ -24,12 +24,6 @@ namespace _Project.Scripts.Core.Player
         private ILogger _logger;
         private AudioPooler _audioPooler;
 
-        [Header("Audio")]
-        [SerializeField] private AudioClip pickUpSound;
-        [SerializeField] private float pickUpSoundVolume = 0.25f;
-        [SerializeField] private AudioClip putDownSound;
-        [SerializeField] private float putDownSoundVolume = 1.5f;
-
         public bool IsTimeControlling {get; private set;}
         
         protected override void Init(INESActionReader nesActionReader, IGridService gridService, ILogger logger, AudioPooler audioPooler)
@@ -75,8 +69,6 @@ namespace _Project.Scripts.Core.Player
                 holdable.PickUp();
                 holdable.Anchor(frontOfPlayer);
 
-                _audioPooler.New2DAudio(pickUpSound).OnChannel(AudioType.Sfx).SetVolume(pickUpSoundVolume).Play();
-
                 _currentIHoldingObject = obj;
             }
             // Put Down
@@ -88,8 +80,6 @@ namespace _Project.Scripts.Core.Player
                 }
                 _gridService.PlaceObjectOnGrid(_currentIHoldingObject, frontOfPlayer.position);
                 holdable.Drop();
-
-                _audioPooler.New2DAudio(putDownSound).OnChannel(AudioType.Sfx).SetVolume(putDownSoundVolume).Play();
 
                 _gridService.PlaceObjectOnGrid(_currentIHoldingObject, frontOfPlayer.position);
                 _currentIHoldingObject = null;
