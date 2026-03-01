@@ -26,22 +26,26 @@ namespace _Project.Scripts.Core.Modules
         [SerializeField] private float normalDps = 4f;
         [SerializeField] private float fastDps = 8f;
         [SerializeField] private float fastRadius = 10;
+        
+        [Header("Player Selection Visuals")]
+        [SerializeField] private GameObject player1Visual;
+        [SerializeField] private GameObject player2Visual;
     
 
         private float _currentDamage;
         private float _currentDps;
         private float _normalRadius;
         private RangeDetector _rangeDetector; // rangeType is sector
-        private List<Transform> _enemies;
+        private List<IDamageable> _enemies;
         private bool _isDamagingEnemies;
         private CountdownTimer _attackCooldownTimer;
 
-        private void Awake()
+        private void Start()
         {
             _currentDamage = damage;
             _currentDps = normalDps;
             _attackCooldownTimer = new CountdownTimer(1f/_currentDps);
-            _enemies = new List<Transform>();
+            _enemies = new List<IDamageable>();
 
             _rangeDetector = GetComponent<RangeDetector>();
             if (!_rangeDetector)
@@ -56,10 +60,7 @@ namespace _Project.Scripts.Core.Modules
             {
                 Debug.Log("missing particle");
             }
-        }
 
-        private void Start()
-        {
             UpdateParticleAngle(_rangeDetector.angle * angleMultiplier, emissionRateToAngleRatio);
             UpdateDistance(_rangeDetector.radius * radiusMultiplier);
             state = ModuleState.Load;
@@ -89,18 +90,55 @@ namespace _Project.Scripts.Core.Modules
             {
                 return;
             }
-            _enemies = _rangeDetector.GetTransformsInRange();
+            _rangeDetector.GetObjectTypeInRangeNoAlloc(_enemies);
 
             if (_enemies.Count <= 0)
             {
                 return;
             }
 
-            foreach(Transform t in _enemies)
+            foreach(IDamageable enemy in _enemies)
             {
                 //potentially cache IDamageables for better performance
-                t.GetComponent<IDamageable>().Damage(_currentDamage);
-                _attackCooldownTimer.Reset(1f/_currentDps);
+                enemy?.Damage(_currentDamage);
+            }
+            
+            _attackCooldownTimer.Reset(1f/_currentDps);
+        }
+        
+        public override void ShowVisual(int playerIndex)
+        {
+            if (!player1Visual || !player2Visual)
+            {
+                Debug.LogWarning("Player Selection Visuals not set");
+                return;
+            }
+            
+            if (playerIndex == 1)
+            {
+                player1Visual.SetActive(true);
+            }
+            else
+            {
+                player2Visual.SetActive(true);
+            }
+        }
+
+        public override void HideVisual(int playerIndex)
+        {
+            if (!player1Visual || !player2Visual)
+            {
+                Debug.LogWarning("Player Selection Visuals not set");
+                return;
+            }
+            
+            if (playerIndex == 1)
+            {
+                player1Visual.SetActive(false);
+            }
+            else
+            {
+                player2Visual.SetActive(false);
             }
         }
 

@@ -21,13 +21,9 @@ namespace _Project.Scripts.Core.InputManagement
         public event UnityAction OnHoldAltInteract;
         public event UnityAction OnReleaseAltInteract;
         public event UnityAction OnDoubleTapAltInteract;
-
-        private PlayerInput _playerInput;
+        
+        
         private NESActions _actions;
-
-        private InputAction _dpad;
-        private InputAction _interact;
-        private InputAction _altInteract;
         
         public void Init(NESActions actions)
         {
@@ -46,6 +42,22 @@ namespace _Project.Scripts.Core.InputManagement
             
             _actions.Player.AltInteract.performed += AltInteractOnPerformed;
             _actions.Player.AltInteract.canceled += AltInteractOnCanceled;
+        }
+        
+        public bool TryGetGamePad(out Gamepad gamePad)
+        {
+            gamePad = null;
+
+            if (_actions.devices == null)
+            {
+                return false;
+            }
+            
+            foreach (InputDevice device in _actions.devices)
+                if (device is Gamepad gp)
+                    gamePad = gp;
+
+            return gamePad != null;
         }
 
         private void AltInteractOnCanceled(InputAction.CallbackContext ctx)
@@ -85,17 +97,14 @@ namespace _Project.Scripts.Core.InputManagement
         {
             if (ctx.interaction is TapInteraction)
             {
-                //Debug.Log("Interact On Tap");
                 OnTapInteract?.Invoke();
             }
             else if (ctx.interaction is HoldInteraction)
             {
-                //Debug.Log("Holding interaction");
                 OnHoldInteract?.Invoke();
             }
             else if (ctx.interaction is MultiTapInteraction)
             {
-                //Debug.Log("Multi-taping interaction");
                 OnDoubleTapInteract?.Invoke();
             }
         }

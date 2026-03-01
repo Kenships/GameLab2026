@@ -1,19 +1,29 @@
+using _Project.Scripts.Core.AudioPooling.Interface;
 using _Project.Scripts.Core.HealthManagement;
 using _Project.Scripts.Util.ExtensionMethods;
 using UnityEngine;
+using AudioType = _Project.Scripts.Core.AudioPooling.Interface.AudioType;
 
 namespace _Project.Scripts.Core.Modules.Base_Class
 {
     public abstract class HpPickupModuleBase : PickupModuleBase
     {
         [Header("Time Settings")]
-    
         [SerializeField] protected float maxHealth = 100f;
         [SerializeField] protected float defaultRecoverySpeed = 10f;
         [SerializeField] protected float rewindRecoveryMultiplier = 4f;
         [SerializeField] protected float defaultDecaySpeed = 5f;
         [SerializeField] protected float attackStateDecayMultiplier = 4f;
-        
+
+        [Header("Audio")]
+        [SerializeField] private AudioClip fastForwardSound;
+        [SerializeField] private float fastForwardSoundVolume = 1f;
+        [SerializeField] private AudioClip rewindSound;
+        [SerializeField] private float rewindSoundVolume = 1f;
+
+        private IAudioPlayer currentFastForwardSound;
+        private IAudioPlayer currentRewindSound;
+
         private Health _health;
         protected bool _isRewinding;
         
@@ -39,6 +49,9 @@ namespace _Project.Scripts.Core.Modules.Base_Class
         {
             transform.localScale = 1.05f * Vector3.one;
             _isRewinding = state != ModuleState.Attack;
+
+            currentRewindSound = _audioPooler.New2DAudio(rewindSound).OnChannel(AudioType.Sfx)
+                .SetVolume(rewindSoundVolume).LoopAudio().Play();
         }
         
         protected override void LoadState()
@@ -69,12 +82,21 @@ namespace _Project.Scripts.Core.Modules.Base_Class
             {
                 _health.AddToHealth(defaultRecoverySpeed * Time.deltaTime);
             }
+
+            if (currentFastForwardSound != null)
+            {
+                currentFastForwardSound.Stop();
+                currentFastForwardSound = null;
+            }
         }
 
         public override void CancelRewind()
         {
             transform.localScale = Vector3.one;
             _isRewinding = false;
+
+            currentRewindSound?.Stop();
+            currentRewindSound = null;
         }
     
         public override void FastForward()
@@ -85,6 +107,9 @@ namespace _Project.Scripts.Core.Modules.Base_Class
             transform.localScale = 1.05f * Vector3.one;
         
             state = ModuleState.Attack;
+
+            currentFastForwardSound = _audioPooler.New2DAudio(fastForwardSound).OnChannel(AudioType.Sfx)
+                .SetVolume(fastForwardSoundVolume).LoopAudio().Play();
         }
 
         public override void CancelFastForward()
@@ -95,6 +120,9 @@ namespace _Project.Scripts.Core.Modules.Base_Class
             transform.localScale = Vector3.one;
         
             state = ModuleState.Load;
+
+            currentFastForwardSound?.Stop();
+            currentFastForwardSound = null;
         }
     }
 }

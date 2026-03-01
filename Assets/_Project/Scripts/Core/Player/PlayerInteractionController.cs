@@ -1,7 +1,8 @@
+using System.Collections;
 using System.Collections.Generic;
+using _Project.Scripts.Core.AudioPooling;
 using _Project.Scripts.Core.Grid;
 using _Project.Scripts.Core.InputManagement.Interfaces;
-using _Project.Scripts.Core.Modules.Base_Class;
 using _Project.Scripts.Core.Modules.Interface;
 using Sisus.Init;
 using UnityEngine;
@@ -11,8 +12,14 @@ using ILogger = _Project.Scripts.Util.Logger.Interface.ILogger;
 namespace _Project.Scripts.Core.Player
 {
     [RequireComponent(typeof(RangeDetector))]
-    public class PlayerInteractionController : MonoBehaviour<INESActionReader,IGridService, ILogger>
+    public class PlayerInteractionController : MonoBehaviour<INESActionReader,IGridService, ILogger, AudioPooler>
     {
+        [Header("Haptics Settings")]
+        [SerializeField] private float lowFrequencyHapticIntensity = 0.6f;
+        [SerializeField] private float highFrequencyHapticIntensity = .2f;
+        [SerializeField] private float hapticsDuration = 0.12f;
+        
+        
         [SerializeField] private Transform frontOfPlayer;
         private RangeDetector _rangeDetector;
         private List<ITimeControllable> _controllables = new();
@@ -20,38 +27,70 @@ namespace _Project.Scripts.Core.Player
         private INESActionReader _inputReader;
         private IGridService _gridService;
         private ILogger _logger;
+        private AudioPooler _audioPooler;
+        private Gamepad _gamePad;
 
         public bool IsTimeControlling {get; private set;}
         
-        protected override void Init(INESActionReader nesActionReader, IGridService gridService, ILogger logger)
+        public int PlayerID { get; set; }
+        
+        protected override void Init(INESActionReader nesActionReader, IGridService gridService, ILogger logger, AudioPooler audioPooler)
         {
             _inputReader = nesActionReader;
             _gridService = gridService;
             _rangeDetector = GetComponent<RangeDetector>();
+            _audioPooler = audioPooler;
         }
         
         private void OnEnable()
         {
-            _inputReader.OnDoubleTapAltInteract += PickUpOrPutDown;
+            _inputReader.OnDoubleTapInteract += PickUpOrPutDown;
             
             _inputReader.OnHoldInteract += FastForward;
             _inputReader.OnReleaseInteract += CancelFastForward;
             
+            _inputReader.OnDoubleTapAltInteract += RotateClockWise;
+            
             _inputReader.OnHoldAltInteract += Rewind;
             _inputReader.OnReleaseAltInteract += CancelRewind;
+            
+            _rangeDetector.OnObjectEnter += SelectVisual;
+            _rangeDetector.OnObjectExit += DeselectVisual;
         }
 
         private void OnDisable()
         {
-            _inputReader.OnDoubleTapAltInteract -= PickUpOrPutDown;
+            _inputReader.OnDoubleTapInteract -= PickUpOrPutDown;
             
             _inputReader.OnHoldInteract -= FastForward;
             _inputReader.OnReleaseInteract -= CancelFastForward;
             
+            _inputReader.OnDoubleTapAltInteract -= RotateClockWise;
+            
             _inputReader.OnHoldAltInteract -= Rewind;
             _inputReader.OnReleaseAltInteract -= CancelRewind;
+            
+            _rangeDetector.OnObjectEnter -= SelectVisual;
+            _rangeDetector.OnObjectExit -= DeselectVisual;
         }
-        
+
+        private void Start()
+        {
+            _gamePad = _inputReader.TryGetGamePad(out Gamepad gp) ? gp : null;
+        }
+
+        private void RotateClockWise()
+        {
+            if(!_currentIHoldingObject) return;
+            
+            _currentIHoldingObject.transform.Rotate(Vector3.up, 90);
+        }
+
+        private void FixedUpdate()
+        {
+            _rangeDetector.GetObjectTypeInRangeNoAlloc(_controllables);
+        }
+
         // Double tap A
         private void PickUpOrPutDown()
         {
@@ -65,6 +104,8 @@ namespace _Project.Scripts.Core.Player
                 holdable.PickUp();
                 holdable.Anchor(frontOfPlayer);
                 
+                StartCoroutine(PlayHaptics());
+
                 _currentIHoldingObject = obj;
             }
             // Put Down
@@ -77,7 +118,8 @@ namespace _Project.Scripts.Core.Player
                 _gridService.PlaceObjectOnGrid(_currentIHoldingObject, frontOfPlayer.position);
                 holdable.Drop();
                 
-                
+                StartCoroutine(PlayHaptics());
+
                 _gridService.PlaceObjectOnGrid(_currentIHoldingObject, frontOfPlayer.position);
                 _currentIHoldingObject = null;
             }
@@ -93,7 +135,6 @@ namespace _Project.Scripts.Core.Player
             }
 
             IsTimeControlling = true;
-            _rangeDetector.GetObjectTypeInRangeNoAlloc(_controllables);
 
             foreach (ITimeControllable controllable in _controllables)
             {
@@ -107,7 +148,6 @@ namespace _Project.Scripts.Core.Player
             {
                 controllable?.CancelFastForward();
             }
-            _controllables.Clear();
             
             IsTimeControlling = false;
         }
@@ -122,7 +162,6 @@ namespace _Project.Scripts.Core.Player
             }
 
             IsTimeControlling = true;
-            _rangeDetector.GetObjectTypeInRangeNoAlloc(_controllables);
 
             foreach (ITimeControllable controllable in _controllables)
             {
@@ -136,8 +175,6 @@ namespace _Project.Scripts.Core.Player
             {
                 controllable?.CancelRewind();
             }
-
-            _controllables.Clear();
             
             IsTimeControlling = false;
         }
@@ -145,6 +182,38 @@ namespace _Project.Scripts.Core.Player
         private bool CanInteract()
         {
             return !_currentIHoldingObject && !IsTimeControlling;
+        }
+
+        private void SelectVisual(Collider obj)
+        {
+            if(!obj) return;
+            
+            if (!obj.TryGetComponent(out IVisualSelectable visualSelectable)) return;
+            
+            visualSelectable.ShowVisual(PlayerID);
+        }
+        
+        private void DeselectVisual(Collider obj)
+        {
+            if(!obj) return;
+            
+            if (!obj.TryGetComponent(out IVisualSelectable visualSelectable)) return;
+            visualSelectable.HideVisual(PlayerID);
+        }
+
+        private IEnumerator PlayHaptics()
+        {
+            _gamePad.SetMotorSpeeds(lowFrequencyHapticIntensity, highFrequencyHapticIntensity);
+
+            float timer = hapticsDuration;
+
+            while (timer >= 0)
+            {
+                timer -= Time.deltaTime;
+                yield return null;
+            }
+            
+            _gamePad.SetMotorSpeeds(0, 0);
         }
     }
 }
