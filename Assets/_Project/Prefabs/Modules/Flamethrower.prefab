@@ -315,21 +315,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Flamethrower
   state: 0
   pickupOffset: {x: 0, y: 0, z: 0}
-  particle: {fileID: 1125370654235928759}
-  emissionRateToAngleRatio: 16
-  angleMultiplier: 0.6
-  radiusMultiplier: 3
-  emissionRateToAngleRatio_fast: 32
-  radiusMultiplier_fast: 3.75
-  damage: 20
-  dps_normal: 4
-  dps_fast: 8
-  radius_fast: 10
+  pickUpSound: {fileID: 8300000, guid: 602022546f4e4474a8d87cf01f887e79, type: 3}
+  pickUpSoundVolume: 0.25
+  putDownSound: {fileID: 8300000, guid: d9d620a96f57c824695138d11a50362f, type: 3}
+  putDownSoundVolume: 1.5
   maxHealth: 100
   defaultRecoverySpeed: 10
   rewindRecoveryMultiplier: 4
   defaultDecaySpeed: 5
   attackStateDecayMultiplier: 4
+  fastForwardSound: {fileID: 8300000, guid: c25a378f906f03f45a34bc3f3b926bb2, type: 3}
+  fastForwardSoundVolume: 1
+  rewindSound: {fileID: 8300000, guid: 904184cbab2ef6d4eb570d029d20a47c, type: 3}
+  rewindSoundVolume: 1
+  particle: {fileID: 1125370654235928759}
+  emissionRateToAngleRatio: 16
+  angleMultiplier: 0.6
+  radiusMultiplier: 3
+  fastEmissionRateToAngleRatio: 32
+  fastRadiusMultiplier: 3.75
+  damage: 20
+  normalDps: 4
+  fastDps: 8
+  fastRadius: 10
 --- !u!65 &3727378408416341186
 BoxCollider:
   m_ObjectHideFlags: 0
