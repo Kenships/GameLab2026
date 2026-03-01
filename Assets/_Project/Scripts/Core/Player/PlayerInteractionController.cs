@@ -5,10 +5,7 @@ using _Project.Scripts.Core.InputManagement.Interfaces;
 using _Project.Scripts.Core.Modules.Interface;
 using Sisus.Init;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using ILogger = _Project.Scripts.Util.Logger.Interface.ILogger;
-using AudioType = _Project.Scripts.Core.AudioPooling.Interface.AudioType;
-using _Project.Scripts.Core.AudioPooling.Interface;
 
 namespace _Project.Scripts.Core.Player
 {
@@ -25,6 +22,8 @@ namespace _Project.Scripts.Core.Player
         private AudioPooler _audioPooler;
 
         public bool IsTimeControlling {get; private set;}
+        
+        public int PlayerID { get; set; }
         
         protected override void Init(INESActionReader nesActionReader, IGridService gridService, ILogger logger, AudioPooler audioPooler)
         {
@@ -60,13 +59,24 @@ namespace _Project.Scripts.Core.Player
             _inputReader.OnReleaseAltInteract -= CancelRewind;
         }
 
+        private void Start()
+        {
+            _rangeDetector.OnObjectEnter += SelectVisual;
+            _rangeDetector.OnObjectExit += DeselectVisual;
+        }
+
         private void RotateClockWise()
         {
             if(!_currentIHoldingObject) return;
             
             _currentIHoldingObject.transform.Rotate(Vector3.up, 90);
         }
-        
+
+        private void FixedUpdate()
+        {
+            _rangeDetector.GetObjectTypeInRangeNoAlloc(_controllables);
+        }
+
         // Double tap A
         private void PickUpOrPutDown()
         {
@@ -107,7 +117,6 @@ namespace _Project.Scripts.Core.Player
             }
 
             IsTimeControlling = true;
-            _rangeDetector.GetObjectTypeInRangeNoAlloc(_controllables);
 
             foreach (ITimeControllable controllable in _controllables)
             {
@@ -121,7 +130,6 @@ namespace _Project.Scripts.Core.Player
             {
                 controllable?.CancelFastForward();
             }
-            _controllables.Clear();
             
             IsTimeControlling = false;
         }
@@ -136,7 +144,6 @@ namespace _Project.Scripts.Core.Player
             }
 
             IsTimeControlling = true;
-            _rangeDetector.GetObjectTypeInRangeNoAlloc(_controllables);
 
             foreach (ITimeControllable controllable in _controllables)
             {
@@ -150,8 +157,6 @@ namespace _Project.Scripts.Core.Player
             {
                 controllable?.CancelRewind();
             }
-
-            _controllables.Clear();
             
             IsTimeControlling = false;
         }
@@ -159,6 +164,19 @@ namespace _Project.Scripts.Core.Player
         private bool CanInteract()
         {
             return !_currentIHoldingObject && !IsTimeControlling;
+        }
+
+        private void SelectVisual(Collider obj)
+        {
+            if (!obj.TryGetComponent(out IVisualSelectable visualSelectable)) return;
+            
+            visualSelectable.ShowVisual(PlayerID);
+        }
+        
+        private void DeselectVisual(Collider obj)
+        {
+            if (!obj.TryGetComponent(out IVisualSelectable visualSelectable)) return;
+            visualSelectable.HideVisual(PlayerID);
         }
     }
 }
