@@ -32,7 +32,7 @@ namespace _Project.Scripts.Core.Modules
         private float _currentDps;
         private float _normalRadius;
         private RangeDetector _rangeDetector; // rangeType is sector
-        private List<Transform> _enemies;
+        private List<IDamageable> _enemies;
         private bool _isDamagingEnemies;
         private CountdownTimer _attackCooldownTimer;
 
@@ -41,7 +41,7 @@ namespace _Project.Scripts.Core.Modules
             _currentDamage = damage;
             _currentDps = normalDps;
             _attackCooldownTimer = new CountdownTimer(1f/_currentDps);
-            _enemies = new List<Transform>();
+            _enemies = new List<IDamageable>();
 
             _rangeDetector = GetComponent<RangeDetector>();
             if (!_rangeDetector)
@@ -86,19 +86,20 @@ namespace _Project.Scripts.Core.Modules
             {
                 return;
             }
-            _enemies = _rangeDetector.GetTransformsInRange();
+            _rangeDetector.GetObjectTypeInRangeNoAlloc(_enemies);
 
             if (_enemies.Count <= 0)
             {
                 return;
             }
 
-            foreach(Transform t in _enemies)
+            foreach(IDamageable enemy in _enemies)
             {
                 //potentially cache IDamageables for better performance
-                t.GetComponent<IDamageable>().Damage(_currentDamage);
-                _attackCooldownTimer.Reset(1f/_currentDps);
+                enemy?.Damage(_currentDamage);
             }
+            
+            _attackCooldownTimer.Reset(1f/_currentDps);
         }
 
         #region State Methods

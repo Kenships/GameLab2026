@@ -1,5 +1,11 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using _Project.Scripts.Util.CustomAttributes;
+using _Project.Scripts.Util.ExtensionMethods;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace _Project.Scripts.Core
 {
@@ -12,30 +18,39 @@ namespace _Project.Scripts.Core
             Rectangle
         }
 
-        [Header("Range Type")]
-        public RangeType rangeType = RangeType.Circle;
+        public event UnityAction<Collider> OnObjectEnter;
+        public event UnityAction<Collider> OnObjectExit;
 
-        [Header("Circle/Sector")]
+        [Header("Range Type")] public RangeType rangeType = RangeType.Circle;
+
+        private bool IsCircle => rangeType is RangeType.Circle or RangeType.Sector;
+        private bool IsSector => rangeType == RangeType.Sector;
+        private bool IsRectangle => rangeType == RangeType.Rectangle;
+
+        [Header("Circle/Sector"), ShowIf(nameof(IsCircle))]
         public float radius = 5f;
-        [Range(0, 360)]
+
+        [Range(0, 360), ShowIf(nameof(IsSector))]
         public float angle = 60f;
 
-        [Header("Rectangle")]
+        [Header("Rectangle"), ShowIf(nameof(IsRectangle))]
         public float width = 5f;
+
         public float length = 10f;
 
-        [Header("Target Filter")]
-        public LayerMask targetLayer;
+        [Header("Target Filter")] public LayerMask[] targetLayers;
 
-        [Header("Start Point")]
-        public Transform startingTransform; // If not assigned, this.transform will be used
+        [Header("Start Point")] public Transform startingTransform; // If not assigned, this.transform will be used
 
         [Header("Other")]
         public bool ignoreYAxis = true; // Default true: only XZ plane is considered (ignores height difference)
+
         [SerializeField] private int colliderBufferSize = 10;
-    
+
+        private Collider _myCollider;
         private Collider[] _colliderBuffer;
-        private List<Transform> _transformBuffer = new();
+        private HashSet<Collider> _currentlyInRange = new();
+        private HashSet<Collider> _previouslyInRange = new();
 
         private void Awake()
         {
@@ -44,38 +59,58 @@ namespace _Project.Scripts.Core
 
         public void GetObjectTypeInRangeNoAlloc<T>(List<T> objectList)
         {
-            _transformBuffer.Clear();
+            // Initialize Current and Previous in range sets
+            _previouslyInRange.Clear();
+            foreach (Collider obj in _currentlyInRange)
+            {
+                _previouslyInRange.Add(obj);
+            }
+            _currentlyInRange.Clear();
+
+            // Initialize Detection Perams
             Transform start = GetStartingTransform();
             float maxRange = GetMaxRange();
-            // Quickly filtered the potential objects
-            int count = Physics.OverlapSphereNonAlloc(start.position, maxRange, _colliderBuffer, targetLayer);
 
-            if (!_colliderBuffer[0]) return;
+            int count = Physics.OverlapSphereNonAlloc(start.position, maxRange, _colliderBuffer);
 
             for (int i = 0; i < count; i++)
             {
-                // Filtered objects that are actually in the specified shape
-                if (_colliderBuffer[i] && IsInRange(_colliderBuffer[i].transform, start))
+                if (!_colliderBuffer[i].IsOnLayer(targetLayers) || !IsInRange(_colliderBuffer[i].transform, start)) continue;
+                
+                if (!_previouslyInRange.Contains(_colliderBuffer[i]))
                 {
-                    _transformBuffer.Add(_colliderBuffer[i].transform);
+                   OnObjectEnter?.Invoke(_colliderBuffer[i]);
                 }
+                
+                _currentlyInRange.Add(_colliderBuffer[i]);
             }
 
-            // Sort by distance (closest first)
-            _transformBuffer.Sort((a, b) =>
-                                  {
-                                      float distA = GetDistance(start.position, a.position);
-                                      float distB = GetDistance(start.position, b.position);
-                                      return distA.CompareTo(distB);
-                                  });
-        
-            foreach (Transform obj in _transformBuffer)
+            foreach (Collider obj in _previouslyInRange)
+            {
+                if (!_currentlyInRange.Contains(obj))
+                {
+                   OnObjectExit?.Invoke(obj);
+                }
+            }
+            
+            objectList.Clear();
+
+            foreach (Collider obj in _currentlyInRange)
             {
                 if (obj.TryGetComponent(out T objOfType))
                 {
                     objectList.Add(objOfType);
                 }
             }
+        }
+
+        public T GetClosestObjectOfType<T>()
+        {
+            List<Transform> transforms = GetTransformsInRange();
+            return transforms.Count == 0
+                ? default
+                : transforms.OrderBy(t => GetDistance(GetStartingTransform().position, t.position)).First()
+                    .GetComponent<T>();
         }
 
         public List<T> GetObjectTypeInRange<T>()
@@ -132,7 +167,8 @@ namespace _Project.Scripts.Core
 
                 case RangeType.Rectangle:
                     Vector3 targetLocalPos = start.InverseTransformPoint(targetPos);
-                    if (ignoreYAxis) targetLocalPos.y = 0;
+                    if (ignoreYAxis)
+                        targetLocalPos.y = 0;
 
                     float halfWidth = width * 0.5f;
                     return targetLocalPos.z >= 0 && targetLocalPos.z <= length &&
@@ -156,6 +192,8 @@ namespace _Project.Scripts.Core
                     return 0;
             }
         }
+
+        #region Gizmos Visualization
 
         // ---------- Gizmos Visualization ----------
         private void OnDrawGizmosSelected()
@@ -218,13 +256,13 @@ namespace _Project.Scripts.Core
         private void DrawRectangleGizmo(Vector3 startPos, Quaternion rotation, float w, float l)
         {
             float halfW = w * 0.5f;
-            Vector3[] localCorners = new Vector3[4]
-                                     {
-                                         new Vector3(-halfW, 0, 0),
-                                         new Vector3( halfW, 0, 0),
-                                         new Vector3( halfW, 0, l),
-                                         new Vector3(-halfW, 0, l)
-                                     };
+            Vector3[] localCorners =
+            {
+                new(-halfW, 0, 0),
+                new(halfW, 0, 0),
+                new(halfW, 0, l),
+                new(-halfW, 0, l)
+            };
 
             Vector3[] worldCorners = new Vector3[4];
             for (int i = 0; i < 4; i++)
@@ -237,5 +275,7 @@ namespace _Project.Scripts.Core
                 Gizmos.DrawLine(worldCorners[i], worldCorners[(i + 1) % 4]);
             }
         }
+
+        #endregion
     }
 }
