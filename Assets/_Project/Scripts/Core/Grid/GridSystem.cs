@@ -80,7 +80,7 @@ public class GridSystem : MonoBehaviour, IGridService
         if (GetObjectOnGrid(worldPos) == null)
         {
             GameObject obj = Instantiate(prefab, GetGridWorldPosition(worldPos), Quaternion.identity);
-            obj.layer = GridSystem.ObjectOnGridLayer.ToLayerIndex();
+            obj.layer = ObjectOnGridLayer.ToLayerIndex();
             return true;
         }
 

@@ -36,12 +36,9 @@ namespace _Project.Scripts.Core.Modules
         private float _currentBulletSpeed;
         private RangeDetector _rangeDetector;
         private float _currentTimeBetweenShots;
-        
-        private List<Transform> _enemies;
 
         private void Start()
         {
-            _enemies = new List<Transform>();
             _rangeDetector = GetComponent<RangeDetector>();
             _rangeDetector.radius = detectionRange;
             _currentBulletSpeed = defaultBulletSpeed;
@@ -50,13 +47,10 @@ namespace _Project.Scripts.Core.Modules
 
         private void PerformAttack()
         {
-            _enemies.Clear();
-            _rangeDetector.GetObjectTypeInRangeNoAlloc(_enemies);
-
-            if (_enemies.Count == 0 || !_enemies[0])
-                return;
+            _currentTarget = _rangeDetector.GetClosestObjectOfType<Transform>();
             
-            _currentTarget = _enemies[0];
+            if (_currentTarget == null)
+                return;
 
             _shootTimer -= Time.deltaTime;
 
