@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 27e25e3bc7ba5f640aea250f9a3842bd
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 324812
+  packageName: Depth Based Pixelator - Pixelize Your 3D Scenes
+  packageVersion: 1.2.2
+  assetPath: Assets/Depth-Based Pixelator/Demo/Prefabs/WoodBoat.prefab
+  uploadId: 835090

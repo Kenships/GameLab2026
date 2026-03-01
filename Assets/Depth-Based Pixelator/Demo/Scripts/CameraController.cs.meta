@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: de6bb3f7d7c0a2044846e29819e68d83
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 324812
+  packageName: Depth Based Pixelator - Pixelize Your 3D Scenes
+  packageVersion: 1.2.2
+  assetPath: Assets/Depth-Based Pixelator/Demo/Scripts/CameraController.cs
+  uploadId: 835090

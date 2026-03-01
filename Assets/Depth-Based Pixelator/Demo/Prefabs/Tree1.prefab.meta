@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 5983c8a04c0e73047a6c860b9cd9aaad
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 324812
+  packageName: Depth Based Pixelator - Pixelize Your 3D Scenes
+  packageVersion: 1.2.2
+  assetPath: Assets/Depth-Based Pixelator/Demo/Prefabs/Tree1.prefab
+  uploadId: 835090

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 47ded181e73460047bae5118c0254d3e
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 324812
+  packageName: Depth Based Pixelator - Pixelize Your 3D Scenes
+  packageVersion: 1.2.2
+  assetPath: Assets/Depth-Based Pixelator/Demo/Prefabs/MushroomLarge.prefab
+  uploadId: 835090

@@ -1266,7 +1266,7 @@ PrefabInstance:
       objectReference: {fileID: 586856802}
     - target: {fileID: 2174084060119942501, guid: 8e3813081faf3454b853a71726124349, type: 3}
       propertyPath: spawnPositions.Array.size
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2174084060119942501, guid: 8e3813081faf3454b853a71726124349, type: 3}
       propertyPath: 'spawnPositions.Array.data[0]'
@@ -1275,7 +1275,7 @@ PrefabInstance:
     - target: {fileID: 2174084060119942501, guid: 8e3813081faf3454b853a71726124349, type: 3}
       propertyPath: 'spawnPositions.Array.data[1]'
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 851351561}
     - target: {fileID: 2174084060119942501, guid: 8e3813081faf3454b853a71726124349, type: 3}
       propertyPath: 'spawnPositions.Array.data[2]'
       value: 
@@ -1778,7 +1778,7 @@ MonoBehaviour:
     LookAtTarget: {fileID: 0}
     CustomLookAtTarget: 0
   Lens:
-    FieldOfView: 75
+    FieldOfView: 60.2
     OrthographicSize: 14
     NearClipPlane: 0.1
     FarClipPlane: 5000

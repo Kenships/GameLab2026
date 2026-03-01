@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 8205d36f5448674429e263cd4800fd0a
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 324812
+  packageName: Depth Based Pixelator - Pixelize Your 3D Scenes
+  packageVersion: 1.2.2
+  assetPath: Assets/Depth-Based Pixelator/Demo/Prefabs/Water.prefab
+  uploadId: 835090

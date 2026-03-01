@@ -17,7 +17,6 @@ namespace _Project.Scripts.Core.Player
         
         private INESActionReader _inputReader;
         private KinematicCharacterMotor _motor;
-        private Transform _cameraTransform;
         
         private Vector2 _rawMoveInput;
         private Vector3 _moveInputVector;
@@ -30,7 +29,6 @@ namespace _Project.Scripts.Core.Player
         protected override void Init(INESActionReader argument, KinematicCharacterMotor motor, Camera mainCamera)
         {
             _inputReader = argument;
-            _cameraTransform = mainCamera.transform;
             _motor = motor;
             _motor.CharacterController = this;
         }
@@ -67,15 +65,8 @@ namespace _Project.Scripts.Core.Player
         }
         private void UpdateMoveVector()
         {
-            Vector3 cameraForward = _cameraTransform.forward;
-            Vector3 cameraRight = _cameraTransform.right;
-            cameraForward.y = 0;
-            cameraRight.y = 0;
-            cameraForward.Normalize();
-            cameraRight.Normalize();
-
             // character direction is relative to the camera
-            _moveInputVector = (cameraForward * _rawMoveInput.y + cameraRight * _rawMoveInput.x).normalized;
+            _moveInputVector = new Vector3(_rawMoveInput.x, 0, _rawMoveInput.y);
 
             if (_moveInputVector.sqrMagnitude > 0.01f)
             {

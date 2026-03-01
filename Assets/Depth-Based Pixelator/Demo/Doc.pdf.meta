@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 235ca90de52d7ca458967a374c2c3aab
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 324812
+  packageName: Depth Based Pixelator - Pixelize Your 3D Scenes
+  packageVersion: 1.2.2
+  assetPath: Assets/Depth-Based Pixelator/Demo/Doc.pdf
+  uploadId: 835090

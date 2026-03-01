@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 3f999b6beafe9d249bf9c3a91ff26ff6
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 324812
+  packageName: Depth Based Pixelator - Pixelize Your 3D Scenes
+  packageVersion: 1.2.2
+  assetPath: Assets/Depth-Based Pixelator/Demo/Prefabs/Rock6.prefab
+  uploadId: 835090

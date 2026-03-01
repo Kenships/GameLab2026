@@ -234,7 +234,7 @@ public partial class @NESActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""e30d6a89-f6ed-4a61-8f58-7e21e811f5f1"",
-                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
