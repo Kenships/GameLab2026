@@ -447,6 +447,7 @@ GameObject:
   - component: {fileID: 6849032946996135789}
   - component: {fileID: 5248281451148013754}
   - component: {fileID: 6220022207668456444}
+  - component: {fileID: 7568861021529150541}
   m_Layer: 3
   m_Name: RecordShooter
   m_TagString: Untagged
@@ -492,6 +493,8 @@ MonoBehaviour:
   rewindRecoveryMultiplier: 4
   defaultDecaySpeed: 5
   attackStateDecayMultiplier: 4
+  fastForwardSound: {fileID: 8300000, guid: c25a378f906f03f45a34bc3f3b926bb2, type: 3}
+  rewindSound: {fileID: 8300000, guid: 904184cbab2ef6d4eb570d029d20a47c, type: 3}
   recordDiscPrefab: {fileID: -8867070136259511986, guid: 53df02381234ecc479fb275396043080, type: 3}
   spawnPoint: {fileID: 5731111388738531017}
   rotateSpeed: 200
@@ -505,6 +508,7 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64
+  shootSound: {fileID: 8300000, guid: aec8762279de72749b7fba096dfefbc8, type: 3}
 --- !u!136 &5248281451148013754
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -551,6 +555,19 @@ MonoBehaviour:
   startingTransform: {fileID: 0}
   ignoreYAxis: 1
   colliderBufferSize: 10
+--- !u!114 &7568861021529150541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8143855464876323403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 023b85b921ddb3a4494f81debd41c69f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.HealthManagement.Health
+  <CurrentHealth>k__BackingField: 0
 --- !u!1 &9164036072082321762
 GameObject:
   m_ObjectHideFlags: 0

@@ -235,6 +235,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.Player.InteractionsWithObject
   frontOfPlayer: {fileID: 4219791085985022558}
+  pickUpSound: {fileID: 8300000, guid: 602022546f4e4474a8d87cf01f887e79, type: 3}
+  putDownSound: {fileID: 8300000, guid: d9d620a96f57c824695138d11a50362f, type: 3}
 --- !u!114 &3932089845136875241
 MonoBehaviour:
   m_ObjectHideFlags: 0

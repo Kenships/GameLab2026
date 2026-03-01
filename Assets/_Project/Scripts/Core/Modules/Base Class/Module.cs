@@ -1,9 +1,11 @@
+using _Project.Scripts.Core.AudioPooling;
 using _Project.Scripts.Core.Modules.Interface;
+using Sisus.Init;
 using UnityEngine;
 
 namespace _Project.Scripts.Core.Modules.Base_Class
 {
-    public abstract class Module : MonoBehaviour, ITimeControllable
+    public abstract class Module : MonoBehaviour<AudioPooler>, ITimeControllable
     {
         public enum ModuleState
         {
@@ -15,7 +17,12 @@ namespace _Project.Scripts.Core.Modules.Base_Class
         
         private ModuleState _previousState = ModuleState.None;
         public ModuleState state = ModuleState.Load;
-        
+        protected AudioPooler _audioPooler;
+
+        protected override void Init(AudioPooler audioPooler)
+        {
+            _audioPooler = audioPooler;
+        }
 
         protected void ActByState()
         {

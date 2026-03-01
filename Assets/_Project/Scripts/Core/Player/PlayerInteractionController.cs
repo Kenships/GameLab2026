@@ -1,17 +1,19 @@
 using System.Collections.Generic;
+using _Project.Scripts.Core.AudioPooling;
 using _Project.Scripts.Core.Grid;
 using _Project.Scripts.Core.InputManagement.Interfaces;
-using _Project.Scripts.Core.Modules.Base_Class;
 using _Project.Scripts.Core.Modules.Interface;
 using Sisus.Init;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using ILogger = _Project.Scripts.Util.Logger.Interface.ILogger;
+using AudioType = _Project.Scripts.Core.AudioPooling.Interface.AudioType;
+using _Project.Scripts.Core.AudioPooling.Interface;
 
 namespace _Project.Scripts.Core.Player
 {
     [RequireComponent(typeof(RangeDetector))]
-    public class PlayerInteractionController : MonoBehaviour<INESActionReader,IGridService, ILogger>
+    public class PlayerInteractionController : MonoBehaviour<INESActionReader,IGridService, ILogger, AudioPooler>
     {
         [SerializeField] private Transform frontOfPlayer;
         private RangeDetector _rangeDetector;
@@ -20,14 +22,22 @@ namespace _Project.Scripts.Core.Player
         private INESActionReader _inputReader;
         private IGridService _gridService;
         private ILogger _logger;
+        private AudioPooler _audioPooler;
+
+        [Header("Audio")]
+        [SerializeField] private AudioClip pickUpSound;
+        [SerializeField] private float pickUpSoundVolume = 0.25f;
+        [SerializeField] private AudioClip putDownSound;
+        [SerializeField] private float putDownSoundVolume = 1.5f;
 
         public bool IsTimeControlling {get; private set;}
         
-        protected override void Init(INESActionReader nesActionReader, IGridService gridService, ILogger logger)
+        protected override void Init(INESActionReader nesActionReader, IGridService gridService, ILogger logger, AudioPooler audioPooler)
         {
             _inputReader = nesActionReader;
             _gridService = gridService;
             _rangeDetector = GetComponent<RangeDetector>();
+            _audioPooler = audioPooler;
         }
         
         private void OnEnable()
@@ -64,7 +74,9 @@ namespace _Project.Scripts.Core.Player
                 
                 holdable.PickUp();
                 holdable.Anchor(frontOfPlayer);
-                
+
+                _audioPooler.New2DAudio(pickUpSound).OnChannel(AudioType.Sfx).SetVolume(pickUpSoundVolume).Play();
+
                 _currentIHoldingObject = obj;
             }
             // Put Down
@@ -76,8 +88,9 @@ namespace _Project.Scripts.Core.Player
                 }
                 _gridService.PlaceObjectOnGrid(_currentIHoldingObject, frontOfPlayer.position);
                 holdable.Drop();
-                
-                
+
+                _audioPooler.New2DAudio(putDownSound).OnChannel(AudioType.Sfx).SetVolume(putDownSoundVolume).Play();
+
                 _gridService.PlaceObjectOnGrid(_currentIHoldingObject, frontOfPlayer.position);
                 _currentIHoldingObject = null;
             }

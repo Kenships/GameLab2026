@@ -36,7 +36,7 @@ namespace _Project.Scripts.Core.Modules
         private bool _isDamagingEnemies;
         private CountdownTimer _attackCooldownTimer;
 
-        private void Awake()
+        private void Start()
         {
             _currentDamage = damage;
             _currentDps = normalDps;
@@ -56,10 +56,7 @@ namespace _Project.Scripts.Core.Modules
             {
                 Debug.Log("missing particle");
             }
-        }
 
-        private void Start()
-        {
             UpdateParticleAngle(_rangeDetector.angle * angleMultiplier, emissionRateToAngleRatio);
             UpdateDistance(_rangeDetector.radius * radiusMultiplier);
             state = ModuleState.Load;
