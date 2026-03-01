@@ -26,17 +26,16 @@ namespace _Project.Scripts.Core
         private bool IsCircle => rangeType is RangeType.Circle or RangeType.Sector;
         private bool IsSector => rangeType == RangeType.Sector;
         private bool IsRectangle => rangeType == RangeType.Rectangle;
+        
+        [ShowIf(nameof(IsCircle))] public float radius = 5f;
 
-        [Header("Circle/Sector"), ShowIf(nameof(IsCircle))]
-        public float radius = 5f;
-
-        [Range(0, 360), ShowIf(nameof(IsSector))]
+        
+        [ShowIf(nameof(IsSector))] 
+        [Range(0, 360)]
         public float angle = 60f;
-
-        [Header("Rectangle"), ShowIf(nameof(IsRectangle))]
-        public float width = 5f;
-
-        public float length = 10f;
+        
+        [ShowIf(nameof(IsRectangle))]public float width = 5f;
+        [ShowIf(nameof(IsRectangle))] public float length = 10f;
 
         [Header("Target Filter")] public LayerMask[] targetLayers;
 
