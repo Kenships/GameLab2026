@@ -252,11 +252,7 @@ MonoBehaviour:
   angle: 60
   width: 5
   length: 10
-  targetLayer:
-  - serializedVersion: 2
-    m_Bits: 0
-  - serializedVersion: 2
-    m_Bits: 0
+  targetLayers: []
   startingTransform: {fileID: 0}
   ignoreYAxis: 1
   colliderBufferSize: 10

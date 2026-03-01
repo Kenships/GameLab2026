@@ -95,7 +95,7 @@ namespace _Project.Scripts.Core.Modules.Base_Class
             transform.localScale = Vector3.one;
             _isRewinding = false;
 
-            currentRewindSound.Stop();
+            currentRewindSound?.Stop();
             currentRewindSound = null;
         }
     
@@ -121,7 +121,7 @@ namespace _Project.Scripts.Core.Modules.Base_Class
         
             state = ModuleState.Load;
 
-            currentFastForwardSound.Stop();
+            currentFastForwardSound?.Stop();
             currentFastForwardSound = null;
         }
     }

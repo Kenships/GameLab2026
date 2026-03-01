@@ -26,6 +26,10 @@ namespace _Project.Scripts.Core.Modules
         [Header("Audio")]
         [SerializeField] private AudioClip shootSound;
         [SerializeField] private float shootSoundVolume = 0.1f;
+        
+        [Header("Player Selection Visuals")]
+        [SerializeField] private GameObject player1Visual;
+        [SerializeField] private GameObject player2Visual;
 
         private float _shootTimer;
         private Transform _currentTarget;
@@ -110,6 +114,42 @@ namespace _Project.Scripts.Core.Modules
                     _currentBulletSpeed = slowBulletSpeed;
                     _currentTimeBetweenShots = timeBetweenShots / (slowBulletSpeed / defaultBulletSpeed);
                     break;
+            }
+        }
+        
+        public override void ShowVisual(int playerIndex)
+        {
+            if (!player1Visual || !player2Visual)
+            {
+                Debug.LogWarning("Player Selection Visuals not set");
+                return;
+            }
+            
+            if (playerIndex == 1)
+            {
+                player1Visual.SetActive(true);
+            }
+            else
+            {
+                player2Visual.SetActive(true);
+            }
+        }
+
+        public override void HideVisual(int playerIndex)
+        {
+            if (!player1Visual || !player2Visual)
+            {
+                Debug.LogWarning("Player Selection Visuals not set");
+                return;
+            }
+            
+            if (playerIndex == 1)
+            {
+                player1Visual.SetActive(false);
+            }
+            else
+            {
+                player2Visual.SetActive(false);
             }
         }
     }

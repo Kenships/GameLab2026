@@ -26,6 +26,10 @@ namespace _Project.Scripts.Core.Modules
         [SerializeField] private float normalDps = 4f;
         [SerializeField] private float fastDps = 8f;
         [SerializeField] private float fastRadius = 10;
+        
+        [Header("Player Selection Visuals")]
+        [SerializeField] private GameObject player1Visual;
+        [SerializeField] private GameObject player2Visual;
     
 
         private float _currentDamage;
@@ -100,6 +104,42 @@ namespace _Project.Scripts.Core.Modules
             }
             
             _attackCooldownTimer.Reset(1f/_currentDps);
+        }
+        
+        public override void ShowVisual(int playerIndex)
+        {
+            if (!player1Visual || !player2Visual)
+            {
+                Debug.LogWarning("Player Selection Visuals not set");
+                return;
+            }
+            
+            if (playerIndex == 1)
+            {
+                player1Visual.SetActive(true);
+            }
+            else
+            {
+                player2Visual.SetActive(true);
+            }
+        }
+
+        public override void HideVisual(int playerIndex)
+        {
+            if (!player1Visual || !player2Visual)
+            {
+                Debug.LogWarning("Player Selection Visuals not set");
+                return;
+            }
+            
+            if (playerIndex == 1)
+            {
+                player1Visual.SetActive(false);
+            }
+            else
+            {
+                player2Visual.SetActive(false);
+            }
         }
 
         #region State Methods
