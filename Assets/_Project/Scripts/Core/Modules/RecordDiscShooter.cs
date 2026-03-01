@@ -27,6 +27,9 @@ namespace _Project.Scripts.Core.Modules
         [SerializeField] private AudioClip shootSound;
         [SerializeField] private float shootSoundVolume = 0.1f;
 
+        [Header("Turret Mode")]
+        [SerializeField] private bool isNormalTurret = false;
+
         private float _shootTimer;
         private Transform _currentTarget;
         private float _currentBulletSpeed;
@@ -73,7 +76,7 @@ namespace _Project.Scripts.Core.Modules
             _audioPooler.New2DAudio(shootSound).OnChannel(AudioType.Sfx).SetVolume(shootSoundVolume).Play();
 
             RecordDiscBullet bullet = Instantiate(recordDiscPrefab, spawnPoint.position, rotationToEnemy);
-            bullet.Initialize(_currentTarget, _currentBulletSpeed, maxTargets, rotateSpeed, bulletWobble, enemyLayer);
+            bullet.Initialize(_currentTarget, _currentBulletSpeed, maxTargets, rotateSpeed, bulletWobble, enemyLayer, isNormalTurret);
         }
 
         protected override void LoadState()

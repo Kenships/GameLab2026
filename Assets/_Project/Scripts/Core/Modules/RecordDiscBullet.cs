@@ -18,8 +18,9 @@ public class RecordDiscBullet : MonoBehaviour
     private float _hitTimer;
     private Rigidbody _rb;
     private LayerMask _enemyLayer;
+    private bool _isNormalTurret;
 
-    public void Initialize(Transform target, float speed, int maxTargets, float rotateSpeed, float wobbleAmount, LayerMask enemyLayer)
+    public void Initialize(Transform target, float speed, int maxTargets, float rotateSpeed, float wobbleAmount, LayerMask enemyLayer, bool isNormal)
     {
         _rotateSpeed = rotateSpeed;
         _target = target;
@@ -29,12 +30,13 @@ public class RecordDiscBullet : MonoBehaviour
         _hitCount = 0;
         _wobbleAmount = wobbleAmount;
         _enemyLayer = enemyLayer;
-        Destroy(gameObject, bulletLifetime); 
+        Destroy(gameObject, bulletLifetime);
+        _isNormalTurret = isNormal;
 
         _rb = GetComponent<Rigidbody>();
         if (_rb)
         {
-            if (wobbleAmount <= 0f)
+            if (_wobbleAmount <= 0f || _isNormalTurret)
             {
                 _rb.freezeRotation = true;
             }
@@ -69,7 +71,13 @@ public class RecordDiscBullet : MonoBehaviour
     private void Update()
     {
         _hitTimer -= Time.deltaTime;
-        
+
+        if (_isNormalTurret)
+        {
+            transform.Translate(Vector3.forward * (_speed * Time.deltaTime));
+            return;
+        }
+
         FindClosestEnemy();
         Transform homingTarget = _target;
 
@@ -144,7 +152,7 @@ public class RecordDiscBullet : MonoBehaviour
             _hitCount++;
             _hitTimer = hitCooldown;
 
-            if (_hitCount >= _maxTargets)
+            if (_isNormalTurret || _hitCount >= _maxTargets)
             {
                 Destroy(gameObject);
             }
