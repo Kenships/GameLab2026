@@ -1,3 +1,4 @@
+using System;
 using _Project.Scripts.Core.HealthManagement;
 using UnityEngine;
 
@@ -25,6 +26,11 @@ namespace _Project.Scripts.Core.Enemies
             _attackDamage = attackDamage;
             
             _health.OnDeath += OnDeath;
+        }
+
+        private void OnDestroy()
+        {
+            _health.OnDeath -= OnDeath;
         }
 
         private void Update()

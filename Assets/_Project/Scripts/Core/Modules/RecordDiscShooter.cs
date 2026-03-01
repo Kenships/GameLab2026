@@ -26,6 +26,10 @@ namespace _Project.Scripts.Core.Modules
         [Header("Audio")]
         [SerializeField] private AudioClip shootSound;
         [SerializeField] private float shootSoundVolume = 0.1f;
+        
+        [Header("Player Selection Visuals")]
+        [SerializeField] private GameObject player1Visual;
+        [SerializeField] private GameObject player2Visual;
 
         [Header("Turret Mode")]
         [SerializeField] private bool isNormalTurret = false;
@@ -35,12 +39,9 @@ namespace _Project.Scripts.Core.Modules
         private float _currentBulletSpeed;
         private RangeDetector _rangeDetector;
         private float _currentTimeBetweenShots;
-        
-        private List<Transform> _enemies;
 
         private void Start()
         {
-            _enemies = new List<Transform>();
             _rangeDetector = GetComponent<RangeDetector>();
             _rangeDetector.radius = detectionRange;
             _currentBulletSpeed = defaultBulletSpeed;
@@ -49,13 +50,10 @@ namespace _Project.Scripts.Core.Modules
 
         private void PerformAttack()
         {
-            _enemies.Clear();
-            _rangeDetector.GetObjectTypeInRangeNoAlloc(_enemies);
-
-            if (_enemies.Count == 0 || !_enemies[0])
-                return;
+            _currentTarget = _rangeDetector.GetClosestObjectOfType<Transform>();
             
-            _currentTarget = _enemies[0];
+            if (_currentTarget == null)
+                return;
 
             _shootTimer -= Time.deltaTime;
 
@@ -113,6 +111,42 @@ namespace _Project.Scripts.Core.Modules
                     _currentBulletSpeed = slowBulletSpeed;
                     _currentTimeBetweenShots = timeBetweenShots / (slowBulletSpeed / defaultBulletSpeed);
                     break;
+            }
+        }
+        
+        public override void ShowVisual(int playerIndex)
+        {
+            if (!player1Visual || !player2Visual)
+            {
+                Debug.LogWarning("Player Selection Visuals not set");
+                return;
+            }
+            
+            if (playerIndex == 1)
+            {
+                player1Visual.SetActive(true);
+            }
+            else
+            {
+                player2Visual.SetActive(true);
+            }
+        }
+
+        public override void HideVisual(int playerIndex)
+        {
+            if (!player1Visual || !player2Visual)
+            {
+                Debug.LogWarning("Player Selection Visuals not set");
+                return;
+            }
+            
+            if (playerIndex == 1)
+            {
+                player1Visual.SetActive(false);
+            }
+            else
+            {
+                player2Visual.SetActive(false);
             }
         }
     }
