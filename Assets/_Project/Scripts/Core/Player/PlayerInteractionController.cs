@@ -36,10 +36,12 @@ namespace _Project.Scripts.Core.Player
         
         private void OnEnable()
         {
-            _inputReader.OnDoubleTapAltInteract += PickUpOrPutDown;
+            _inputReader.OnDoubleTapInteract += PickUpOrPutDown;
             
             _inputReader.OnHoldInteract += FastForward;
             _inputReader.OnReleaseInteract += CancelFastForward;
+            
+            _inputReader.OnDoubleTapAltInteract += RotateClockWise;
             
             _inputReader.OnHoldAltInteract += Rewind;
             _inputReader.OnReleaseAltInteract += CancelRewind;
@@ -47,13 +49,22 @@ namespace _Project.Scripts.Core.Player
 
         private void OnDisable()
         {
-            _inputReader.OnDoubleTapAltInteract -= PickUpOrPutDown;
+            _inputReader.OnDoubleTapInteract -= PickUpOrPutDown;
             
             _inputReader.OnHoldInteract -= FastForward;
             _inputReader.OnReleaseInteract -= CancelFastForward;
             
+            _inputReader.OnDoubleTapAltInteract -= RotateClockWise;
+            
             _inputReader.OnHoldAltInteract -= Rewind;
             _inputReader.OnReleaseAltInteract -= CancelRewind;
+        }
+
+        private void RotateClockWise()
+        {
+            if(!_currentIHoldingObject) return;
+            
+            _currentIHoldingObject.transform.Rotate(Vector3.up, 90);
         }
         
         // Double tap A
