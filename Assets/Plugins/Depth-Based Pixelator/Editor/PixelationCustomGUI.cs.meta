@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: f2d4d87bb36e77b4e8e6bb7c7c2d7898
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 324812
+  packageName: Depth Based Pixelator - Pixelize Your 3D Scenes
+  packageVersion: 1.2.2
+  assetPath: Assets/Depth-Based Pixelator/Editor/PixelationCustomGUI.cs
+  uploadId: 835090
