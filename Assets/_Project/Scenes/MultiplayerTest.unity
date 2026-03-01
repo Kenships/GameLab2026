@@ -889,33 +889,29 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5385133784651527072, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
-      propertyPath: isNormalTurret
-      value: 1
+    - target: {fileID: 3185104379949483346, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.01
       objectReference: {fileID: 0}
-    - target: {fileID: 5385133784651527072, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
-      propertyPath: fastBulletSpeed
-      value: 80
+    - target: {fileID: 3185104379949483346, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.02
       objectReference: {fileID: 0}
-    - target: {fileID: 5385133784651527072, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
-      propertyPath: recordDiscPrefab
-      value: 
-      objectReference: {fileID: 7281761947621026003, guid: 3e25eb2750c86fb48a485999b88fc083, type: 3}
-    - target: {fileID: 5385133784651527072, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
-      propertyPath: defaultBulletSpeed
-      value: 40
+    - target: {fileID: 4466496474892881219, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6068358473074101300, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
-      propertyPath: width
-      value: 2
+    - target: {fileID: 5575679973610440716, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6068358473074101300, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
-      propertyPath: length
-      value: 12.5
+    - target: {fileID: 7177761061964245884, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 6068358473074101300, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
-      propertyPath: rangeType
-      value: 2
+    - target: {fileID: 7177761061964245884, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.04
       objectReference: {fileID: 0}
     - target: {fileID: 9061403673497064804, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
       propertyPath: m_LocalPosition.x
