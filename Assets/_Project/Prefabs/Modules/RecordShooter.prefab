@@ -767,6 +767,7 @@ Transform:
   - {fileID: 5731111388738531017}
   - {fileID: 6280967007260164177}
   - {fileID: 2825279952883947531}
+  - {fileID: 8357339517839459993}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6849032946996135789
@@ -809,10 +810,13 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64
-  shootSound: {fileID: 8300000, guid: aec8762279de72749b7fba096dfefbc8, type: 3}
+  shootSound: {fileID: 0}
   shootSoundVolume: 0.1
   player1Visual: {fileID: 790316906995648998}
   player2Visual: {fileID: 6505483928442727171}
+  isNormalTurret: 0
+  head: {fileID: 0}
+  headRotateSpeed: 10
 --- !u!136 &5248281451148013754
 CapsuleCollider:
   m_ObjectHideFlags: 0

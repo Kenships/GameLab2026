@@ -31,8 +31,10 @@ namespace _Project.Scripts.Core.Modules
         [SerializeField] private GameObject player1Visual;
         [SerializeField] private GameObject player2Visual;
 
-        [Header("Turret Mode")]
+        [Header("Normal Turret")]
         [SerializeField] private bool isNormalTurret = false;
+        [SerializeField] private GameObject head;
+        [SerializeField] private float headRotateSpeed = 10f;
 
         private float _shootTimer;
         private Transform _currentTarget;
@@ -51,7 +53,12 @@ namespace _Project.Scripts.Core.Modules
         private void PerformAttack()
         {
             _currentTarget = _rangeDetector.GetClosestObjectOfType<Transform>();
-            
+
+            if (isNormalTurret && _currentTarget != null)
+            {
+                RotateHeadTowardsTarget();
+            }
+
             if (_currentTarget == null)
                 return;
 
@@ -62,6 +69,18 @@ namespace _Project.Scripts.Core.Modules
                 Shoot();
                 _shootTimer = _currentTimeBetweenShots;
             }
+        }
+
+        private void RotateHeadTowardsTarget()
+        {
+            if (head == null || _currentTarget == null) return;
+
+            Vector3 direction = (_currentTarget.position - head.transform.position).normalized;
+            direction.y = 0;
+            if (direction == Vector3.zero) return; 
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+
+            head.transform.rotation = Quaternion.Slerp(head.transform.rotation,targetRotation,Time.deltaTime * headRotateSpeed);
         }
 
         private void Shoot()
