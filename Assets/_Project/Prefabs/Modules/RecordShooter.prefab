@@ -810,7 +810,7 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64
-  shootSound: {fileID: 8300000, guid: aec8762279de72749b7fba096dfefbc8, type: 3}
+  shootSound: {fileID: 0}
   shootSoundVolume: 0.1
   player1Visual: {fileID: 790316906995648998}
   player2Visual: {fileID: 6505483928442727171}
