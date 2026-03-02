@@ -301,7 +301,9 @@ MonoBehaviour:
   setActive: 0
   activeSceneIndex:
     buildIndex: 0
-  scenesToLoad: []
+  scenesToLoad:
+  - buildIndex: 5
+  - buildIndex: 1
   unloadDisabled: 0
   scenesToUnload: []
   withOverlay: 0

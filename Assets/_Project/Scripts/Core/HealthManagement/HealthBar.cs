@@ -50,24 +50,24 @@ namespace _Project.Scripts.Core.HealthManagement
             // Temp logic
             // Debug.Log(healthDelta);
 
-            if (healthDelta > 0)
-            {
-                Tween.UISizeDelta(
-                    target: _rectTransform,
-                    endValue: _initialSizeDelta * 2f,
-                    duration: 0.3f,
-                    ease: Ease.InOutExpo
-                );
-            }
-            else
-            {
-                Tween.UISizeDelta(
-                    target: _rectTransform,
-                    endValue: _initialSizeDelta,
-                    duration: 0.15f,
-                    ease: Ease.InOutExpo
-                );
-            }
+            // if (healthDelta > 0)
+            // {
+            //     Tween.UISizeDelta(
+            //         target: _rectTransform,
+            //         endValue: _initialSizeDelta * 2f,
+            //         duration: 0.3f,
+            //         ease: Ease.InOutExpo
+            //     );
+            // }
+            // else
+            // {
+            //     Tween.UISizeDelta(
+            //         target: _rectTransform,
+            //         endValue: _initialSizeDelta,
+            //         duration: 0.15f,
+            //         ease: Ease.InOutExpo
+            //     );
+            // }
 
             if (health.MaxHealth == 0)
             {
