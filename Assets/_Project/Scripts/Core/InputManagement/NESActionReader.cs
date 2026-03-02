@@ -1,5 +1,6 @@
 ﻿using _Project.Scripts.Core.InputManagement.Interfaces;
 using _Project.Scripts.Core.Player;
+using _Project.Scripts.Multiplayer;
 using Sisus.Init;
 using UnityEngine;
 using UnityEngine.Events;
@@ -9,7 +10,7 @@ using UnityEngine.InputSystem.Interactions;
 namespace _Project.Scripts.Core.InputManagement
 {
     [RequireComponent(typeof(PlayerData))]
-    public class NESActionReader : MonoBehaviour<NESActions>, INESActionReader
+    public class NESActionReader : MonoBehaviour<IDevicePairingService>, INESActionReader
     {
         public event UnityAction<Vector2> OnDPadInput;
         public event UnityAction OnTapInteract;
@@ -24,9 +25,14 @@ namespace _Project.Scripts.Core.InputManagement
         
         private NESActions _actions;
         
-        protected override void Init(NESActions actions)
+        protected override void Init(IDevicePairingService devicePairingService)
         {
-            _actions = actions;
+            if (!devicePairingService.TryGetFor(this, out NESActions action))
+            {
+                Debug.LogError($"Input Actions Not Found for Player{gameObject.name}, ID: {gameObject.GetComponent<PlayerData>().ID}");
+                return;
+            }
+            _actions = action;
         }
         
         

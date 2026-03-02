@@ -66,8 +66,8 @@ namespace _Project.Scripts.Multiplayer
             _player1Actions ??= new NESActions();
             _player2Actions ??= new NESActions();
             
-            _player1.AssociateActionsWithUser(_player1Actions);
-            _player2.AssociateActionsWithUser(_player2Actions);
+            _player1.AssociateActionsWithUser(_player1Actions.asset);
+            _player2.AssociateActionsWithUser(_player2Actions.asset);
 
             if (allowKeyboard)
             {

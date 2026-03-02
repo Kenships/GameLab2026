@@ -78,11 +78,7 @@ namespace _Project.Scripts.Core.Player
             _rangeDetector.OnObjectEnter -= SelectVisual;
             _rangeDetector.OnObjectExit -= DeselectVisual;
         }
-
-        private void Start()
-        {
-            _gamePad = _inputReader.TryGetGamePad(out Gamepad gp) ? gp : null;
-        }
+        
 
         private void RotateClockWise()
         {
