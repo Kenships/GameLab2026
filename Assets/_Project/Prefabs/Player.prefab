@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 999782877938175278}
   - component: {fileID: 7711087676220215527}
   - component: {fileID: 9016292657395720019}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -238,6 +238,7 @@ MonoBehaviour:
   highFrequencyHapticIntensity: 1
   hapticsDuration: 0.1
   frontOfPlayer: {fileID: 4219791085985022558}
+  rebakeNavMesh: {fileID: 11400000, guid: 51a90ca12e5c7ae47bd6db17f79a2ec6, type: 2}
 --- !u!114 &3932089845136875241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -317,7 +318,7 @@ GameObject:
   - component: {fileID: 47735858392458750}
   - component: {fileID: 7269086655642024254}
   - component: {fileID: 237198575979667291}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlayerVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -406,7 +407,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4219791085985022558}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FrontOfPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -439,7 +440,7 @@ GameObject:
   - component: {fileID: 4978570377732644280}
   - component: {fileID: 4699920613056252908}
   - component: {fileID: 816011704033568285}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Grid Indicator Renderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -527,7 +528,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2787336733738469276}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Grid Indicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -561,7 +562,7 @@ GameObject:
   - component: {fileID: 9053368049105066862}
   - component: {fileID: 8305505726527159465}
   - component: {fileID: 8130151173889536053}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}

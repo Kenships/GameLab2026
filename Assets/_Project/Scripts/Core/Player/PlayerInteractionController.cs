@@ -4,6 +4,7 @@ using _Project.Scripts.Core.AudioPooling;
 using _Project.Scripts.Core.Grid;
 using _Project.Scripts.Core.InputManagement.Interfaces;
 using _Project.Scripts.Core.Modules.Interface;
+using Obvious.Soap;
 using Sisus.Init;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -19,8 +20,12 @@ namespace _Project.Scripts.Core.Player
         [SerializeField] private float highFrequencyHapticIntensity = .2f;
         [SerializeField] private float hapticsDuration = 0.12f;
         
-        
+        [Header("References")]
         [SerializeField] private Transform frontOfPlayer;
+
+        [Header("EventObjects")]
+        [SerializeField] private ScriptableEventNoParam rebakeNavMesh;
+        
         private RangeDetector _rangeDetector;
         private List<ITimeControllable> _controllables = new();
         private GameObject _currentIHoldingObject;
@@ -123,6 +128,8 @@ namespace _Project.Scripts.Core.Player
                 _gridService.PlaceObjectOnGrid(_currentIHoldingObject, frontOfPlayer.position);
                 _currentIHoldingObject = null;
             }
+
+            rebakeNavMesh.Raise();
         }
 
         // Hold A
