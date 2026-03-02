@@ -1,6 +1,7 @@
 using System;
 using _Project.Scripts.Core.HealthManagement;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace _Project.Scripts.Core.Enemies
 {
@@ -8,22 +9,25 @@ namespace _Project.Scripts.Core.Enemies
     {
         private Transform _target; //takes from EnemySpawnManager
         private Health _health;
-        private float _moveSpeed; //takes from  EnemySpawnManager
         private float _attackCooldown; //takes from EnemySpawnManager
         private int _attackDamage; //takes from  EnemySpawnManager
 
         private bool _atVhs; //true if arrived at VHS
 
         private float _damageTimer;
+        
+        private NavMeshAgent _navMeshAgent;
 
         public void Initialize(Transform target, Health health, float moveSpeed, float attackCooldown, int attackDamage)
         {
             _atVhs = false;
             _target = target;
             _health = health;
-            _moveSpeed = moveSpeed;
             _attackCooldown = attackCooldown;
             _attackDamage = attackDamage;
+            
+            _navMeshAgent = GetComponent<NavMeshAgent>();
+            _navMeshAgent.speed = moveSpeed;
             
             _health.OnDeath += OnDeath;
         }
@@ -36,27 +40,22 @@ namespace _Project.Scripts.Core.Enemies
         private void Update()
         {
             if (!_target) return;
-
-            Vector3 direction = (_target.position - transform.position).normalized;
-            // Face the target
-            Quaternion targetRotation = Quaternion.LookRotation(direction);
-            transform.rotation = targetRotation;
-
+            
+            
+            
             float distance = Vector3.Distance(transform.position, _target.position);
-            if (distance < 0.5f)
-            {
-                _atVhs = true;
-            }
 
             _damageTimer -= Time.deltaTime;
             
-            if (!_atVhs)
+            if (distance > 2f)
             {
                 // Move towards the VHS location
-                transform.position += direction * (_moveSpeed * Time.deltaTime);
+                _navMeshAgent.SetDestination(_target.position);
             }
             else
             {
+                
+                Debug.Log("Arrived at VHS");
                 if (_damageTimer <= 0f)
                 {
                     DamageVhs(_attackDamage);
