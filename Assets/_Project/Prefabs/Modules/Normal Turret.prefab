@@ -156,7 +156,9 @@ MonoBehaviour:
   angle: 60
   width: 2
   length: 12.5
-  targetLayers: []
+  targetLayers:
+  - serializedVersion: 2
+    m_Bits: 64
   startingTransform: {fileID: 0}
   ignoreYAxis: 1
   colliderBufferSize: 10
@@ -581,7 +583,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7177761061964245884
 Transform:
   m_ObjectHideFlags: 0
@@ -854,7 +856,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3185104379949483346
 Transform:
   m_ObjectHideFlags: 0

@@ -881,6 +881,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Normal Turret
       objectReference: {fileID: 0}
+    - target: {fileID: 598670341615757482, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1944322892197276426, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -904,6 +908,14 @@ PrefabInstance:
     - target: {fileID: 5575679973610440716, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6068358473074101300, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
+      propertyPath: targetLayers.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6068358473074101300, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
+      propertyPath: targetLayers.Array.data[0].m_Bits
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 7177761061964245884, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
       propertyPath: m_LocalPosition.x
@@ -968,7 +980,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 308138090421468306, guid: 7cb916d24c7d3d041b0ca4de05dbda22, type: 3}
       propertyPath: turnOnGizmos
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 308138090421468306, guid: 7cb916d24c7d3d041b0ca4de05dbda22, type: 3}
       propertyPath: objectOnGridLayer.m_Bits
