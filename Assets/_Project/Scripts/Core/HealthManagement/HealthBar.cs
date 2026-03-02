@@ -13,24 +13,19 @@ namespace _Project.Scripts.Core.HealthManagement
         
         public void Initialize(Health initHealth)
         {
-            health = initHealth;
-        }
-
-        private void Awake()
-        {
-            _slider = GetComponent<Slider>();
+            //health = initHealth;
         }
 
         private void Start()
         {
+            _slider = GetComponent<Slider>();
             FindHealthComponent();
-            if (!health)
-            {
-                Debug.LogError("Health is null");
-                return;
-            }
+            // if (!health)
+            // {
+            //     Debug.LogError("Health is null");
+            //     return;
+            // }
             health.OnHealthChanged += UpdateHealthBar;
-            _slider.value = health.CurrentHealth / health.MaxHealth;
         }
 
         private void FindHealthComponent()
@@ -45,7 +40,12 @@ namespace _Project.Scripts.Core.HealthManagement
         {
             // Temp logic
             // Debug.Log(healthDelta);
-            
+
+
+            if (health.MaxHealth == 0)
+            {
+                return;
+            }
             _slider.value = health.CurrentHealth / health.MaxHealth;
         }
     }

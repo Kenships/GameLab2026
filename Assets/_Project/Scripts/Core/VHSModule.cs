@@ -1,0 +1,101 @@
+using _Project.Scripts.Core.HealthManagement;
+using _Project.Scripts.Core.Modules.Base_Class;
+using _Project.Scripts.Util.ExtensionMethods;
+using UnityEngine;
+
+namespace _Project.Scripts.Core
+{
+    public class VHSModule : Module, IDamageable
+    {
+        [Header("References")]
+        [SerializeField] private GameObject player1Visual;
+        [SerializeField] private GameObject player2Visual;
+    
+        [Header("VHS Settings")]
+        [SerializeField] private float vhsMaxHealth = 300f;
+        [SerializeField] private float defaultRewindSpeed = 1f;
+        [SerializeField] private float fastForwardMultiplier = 1.2f;
+
+        private Health _myHealth;
+        private bool _isFastForwarding;
+        
+        protected override void OnAwake()
+        {
+            _myHealth = gameObject.GetOrAdd<Health>();
+            _myHealth.Initialize(vhsMaxHealth, 0);
+        }
+
+        public void Damage(float damage)
+        {
+            _myHealth.AddToHealth(-damage);
+        }
+
+        protected override void LoadState()
+        {
+            float delta = _isFastForwarding ? defaultRewindSpeed * fastForwardMultiplier : defaultRewindSpeed;
+            
+            _myHealth.AddToHealth(delta * Time.deltaTime);
+        }
+
+        protected override void AttackState()
+        {
+            // NOP
+        }
+
+        protected override void UsedState()
+        {
+            // NOP
+        }
+
+        protected override void OnStateChanged(ModuleState newState)
+        {
+            // NOP
+        }
+
+        public override void Rewind()
+        {
+            // NOP
+        }
+
+        public override void CancelRewind()
+        {
+            // NOP
+        }
+        
+        public override void FastForward()
+        {
+            _isFastForwarding = true;
+        }
+
+        public override void CancelFastForward()
+        {   
+            _isFastForwarding = false;
+        }
+
+        public override void ShowVisual(int playerIndex)
+        {
+            if (playerIndex == 1)
+            {
+                player1Visual.SetActive(true);
+            }
+            else
+            {
+                player2Visual.SetActive(true);
+            }
+        }
+
+        public override void HideVisual(int playerIndex)
+        {
+            if (playerIndex == 1)
+            {
+                player1Visual.SetActive(false);
+            }
+            else
+            {
+                player2Visual.SetActive(false);
+            }
+        }
+
+        
+    }
+}

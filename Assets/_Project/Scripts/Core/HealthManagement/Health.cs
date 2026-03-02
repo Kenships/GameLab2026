@@ -15,10 +15,10 @@ namespace _Project.Scripts.Core.HealthManagement
         private float _maxHealth;
     
 
-        public void Initialize(float maxHealth)
+        public void Initialize(float maxHealth, float initialHealth = -1f)
         {
             _maxHealth = maxHealth;
-            CurrentHealth = _maxHealth;
+            CurrentHealth = initialHealth >= 0 ? initialHealth : _maxHealth;
         }
 
         public void AddToHealth(float change)
@@ -32,6 +32,7 @@ namespace _Project.Scripts.Core.HealthManagement
             if (CurrentHealth <= 0)
             {
                 OnDeath?.Invoke();
+                CurrentHealth = 0;
             }
 
             if (CurrentHealth >= MaxHealth)
