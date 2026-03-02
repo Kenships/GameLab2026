@@ -881,10 +881,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Normal Turret
       objectReference: {fileID: 0}
-    - target: {fileID: 598670341615757482, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1944322892197276426, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -892,14 +888,6 @@ PrefabInstance:
     - target: {fileID: 1944322892197276426, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3185104379949483346, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 3185104379949483346, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 4466496474892881219, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
       propertyPath: m_IsActive
@@ -916,14 +904,6 @@ PrefabInstance:
     - target: {fileID: 6068358473074101300, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
       propertyPath: targetLayers.Array.data[0].m_Bits
       value: 64
-      objectReference: {fileID: 0}
-    - target: {fileID: 7177761061964245884, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7177761061964245884, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.04
       objectReference: {fileID: 0}
     - target: {fileID: 9061403673497064804, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
       propertyPath: m_LocalPosition.x
