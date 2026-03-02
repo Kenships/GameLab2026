@@ -102,8 +102,6 @@ namespace _Project.Scripts.Core.Modules.Base_Class
             if (_isRewinding || state == ModuleState.Used)
                 return;
         
-            transform.localScale = 1.05f * Vector3.one;
-        
             state = ModuleState.Attack;
 
             currentFastForwardSound = _audioPooler.New2DAudio(fastForwardSound).OnChannel(AudioType.Sfx)
@@ -114,8 +112,6 @@ namespace _Project.Scripts.Core.Modules.Base_Class
         {
             if (state == ModuleState.Used)
                 return;
-        
-            transform.localScale = Vector3.one;
         
             state = ModuleState.Load;
 
