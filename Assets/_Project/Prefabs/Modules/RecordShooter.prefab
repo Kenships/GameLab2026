@@ -317,7 +317,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 64, y: 20}
+  m_SizeDelta: {x: 100, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2423430937439152068
 MonoBehaviour:
@@ -815,8 +815,6 @@ MonoBehaviour:
   player1Visual: {fileID: 790316906995648998}
   player2Visual: {fileID: 6505483928442727171}
   isNormalTurret: 0
-  head: {fileID: 0}
-  headRotateSpeed: 10
 --- !u!136 &5248281451148013754
 CapsuleCollider:
   m_ObjectHideFlags: 0

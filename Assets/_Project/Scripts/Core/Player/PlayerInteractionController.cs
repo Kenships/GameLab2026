@@ -123,16 +123,19 @@ namespace _Project.Scripts.Core.Player
             // Put Down
             else
             {
+                GameObject obj = _gridService.GetObjectOnGrid(frontOfPlayer.position);
+                if (obj) return;
+                
                 if (!_currentIHoldingObject.TryGetComponent(out IHoldable holdable))
                 {
                     _logger.LogError($"Current Item Held: {_currentIHoldingObject.name} has no IHoldable");
                 }
+                
                 _gridService.PlaceObjectOnGrid(_currentIHoldingObject, frontOfPlayer.position);
                 holdable.Drop();
                 
                 StartCoroutine(PlayHaptics());
-
-                _gridService.PlaceObjectOnGrid(_currentIHoldingObject, frontOfPlayer.position);
+                
                 _currentIHoldingObject = null;
             }
 
