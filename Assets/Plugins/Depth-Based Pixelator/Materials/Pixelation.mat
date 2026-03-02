@@ -42,7 +42,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _Depth_Based: 1
-    - _Depth_Level_Count: 7
+    - _Depth_Level_Count: 4
     - _Downscale_Factor: 8
     - _Max_Threshold: 0
     - _Min_Threshold: 0

@@ -86,7 +86,14 @@ namespace _Project.Scripts.Core.Player
 
         private void RotateClockWise()
         {
-            if(!_currentIHoldingObject) return;
+            if (!_currentIHoldingObject)
+            {
+                GameObject obj = _gridService.GetObjectOnGrid(frontOfPlayer.position);
+                if(!obj) return;
+                
+                obj.transform.Rotate(Vector3.up, 90);
+                return;
+            }
             
             _currentIHoldingObject.transform.Rotate(Vector3.up, 90);
         }

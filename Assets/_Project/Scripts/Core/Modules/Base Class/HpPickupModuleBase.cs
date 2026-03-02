@@ -23,9 +23,9 @@ namespace _Project.Scripts.Core.Modules.Base_Class
 
         private IAudioPlayer currentFastForwardSound;
         private IAudioPlayer currentRewindSound;
-
-        private Health _health;
         protected bool _isRewinding;
+        private Health _health;
+        
         
         private void OnEnable()
         {
@@ -47,7 +47,6 @@ namespace _Project.Scripts.Core.Modules.Base_Class
         
         public override void Rewind()
         {
-            transform.localScale = 1.05f * Vector3.one;
             _isRewinding = state != ModuleState.Attack;
 
             currentRewindSound = _audioPooler.New2DAudio(rewindSound).OnChannel(AudioType.Sfx)
@@ -92,7 +91,6 @@ namespace _Project.Scripts.Core.Modules.Base_Class
 
         public override void CancelRewind()
         {
-            transform.localScale = Vector3.one;
             _isRewinding = false;
 
             currentRewindSound?.Stop();
