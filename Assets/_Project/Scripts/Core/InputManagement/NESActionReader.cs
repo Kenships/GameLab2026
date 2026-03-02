@@ -1,7 +1,6 @@
-﻿using System;
-using _Project.Scripts.Core.InputManagement.Interfaces;
+﻿using _Project.Scripts.Core.InputManagement.Interfaces;
+using _Project.Scripts.Core.Player;
 using Sisus.Init;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -9,8 +8,8 @@ using UnityEngine.InputSystem.Interactions;
 
 namespace _Project.Scripts.Core.InputManagement
 {
-    [RequireComponent(typeof(PlayerInput))]
-    public class NESActionReader : MonoBehaviour, INESActionReader
+    [RequireComponent(typeof(PlayerData))]
+    public class NESActionReader : MonoBehaviour<NESActions>, INESActionReader
     {
         public event UnityAction<Vector2> OnDPadInput;
         public event UnityAction OnTapInteract;
@@ -25,7 +24,7 @@ namespace _Project.Scripts.Core.InputManagement
         
         private NESActions _actions;
         
-        public void Init(NESActions actions)
+        protected override void Init(NESActions actions)
         {
             _actions = actions;
         }
