@@ -1,6 +1,7 @@
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public static class AdditiveSceneOpen
 {
@@ -16,7 +17,8 @@ public static class AdditiveSceneOpen
 
         if (AssetDatabase.GetMainAssetTypeAtPath(path) == typeof(SceneAsset))
         {
-            EditorSceneManager.OpenScene(path, OpenSceneMode.Additive);
+            Scene scene = EditorSceneManager.OpenScene(path, OpenSceneMode.Additive);
+            SceneManager.SetActiveScene(scene);
             return true; // cancel default Single open
         }
 
