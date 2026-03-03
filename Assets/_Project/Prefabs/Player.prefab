@@ -22,7 +22,8 @@ GameObject:
   - component: {fileID: 7711087676220215527}
   - component: {fileID: 9016292657395720019}
   - component: {fileID: 555848061926852425}
-  m_Layer: 8
+  - component: {fileID: 2375320320070356907}
+  m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -292,6 +293,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.Player.PlayerData
   playerID: 0
+--- !u!114 &2375320320070356907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2255177123138739269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ebccdee2e2f476189c203e61085ac91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.Player.PlayerModule
+  canPickUpPlayer: 1
+  fastForwardSpeedMultiplier: 1.5
+  rewindSpeedMultiplier: 0.5
 --- !u!1 &4161295036663682808
 GameObject:
   m_ObjectHideFlags: 0
@@ -303,7 +319,7 @@ GameObject:
   - component: {fileID: 47735858392458750}
   - component: {fileID: 7269086655642024254}
   - component: {fileID: 237198575979667291}
-  m_Layer: 8
+  m_Layer: 3
   m_Name: PlayerVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -392,7 +408,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4219791085985022558}
-  m_Layer: 8
+  m_Layer: 3
   m_Name: FrontOfPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -425,7 +441,7 @@ GameObject:
   - component: {fileID: 4978570377732644280}
   - component: {fileID: 4699920613056252908}
   - component: {fileID: 816011704033568285}
-  m_Layer: 8
+  m_Layer: 3
   m_Name: Grid Indicator Renderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -513,7 +529,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2787336733738469276}
-  m_Layer: 8
+  m_Layer: 3
   m_Name: Grid Indicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -547,7 +563,7 @@ GameObject:
   - component: {fileID: 9053368049105066862}
   - component: {fileID: 8305505726527159465}
   - component: {fileID: 8130151173889536053}
-  m_Layer: 8
+  m_Layer: 3
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
