@@ -1,4 +1,5 @@
-﻿using _Project.Scripts.Core.InputManagement.Interfaces;
+﻿using System;
+using _Project.Scripts.Core.InputManagement.Interfaces;
 using _Project.Scripts.Core.Player;
 using _Project.Scripts.Multiplayer;
 using Sisus.Init;
@@ -38,7 +39,7 @@ namespace _Project.Scripts.Core.InputManagement
         
         private void Start()
         {
-            
+            _actions.Enable();
             _actions.Player.Move.performed += MoveOnPerformed;
             _actions.Player.Move.canceled += MoveOnCanceled;
             
@@ -48,7 +49,21 @@ namespace _Project.Scripts.Core.InputManagement
             _actions.Player.AltInteract.performed += AltInteractOnPerformed;
             _actions.Player.AltInteract.canceled += AltInteractOnCanceled;
         }
-        
+
+        private void OnDisable()
+        {
+            if (_actions == null) return;
+            
+            _actions.Player.Move.performed -= MoveOnPerformed;
+            _actions.Player.Move.canceled -= MoveOnCanceled;
+            
+            _actions.Player.Interact.performed -= InteractOnPerformed;
+            _actions.Player.Interact.canceled -= InteractOnCanceled;
+            
+            _actions.Player.AltInteract.performed -= AltInteractOnPerformed;
+            _actions.Player.AltInteract.canceled -= AltInteractOnCanceled;
+        }
+
         public bool TryGetGamePad(out Gamepad gamePad)
         {
             gamePad = null;

@@ -56,6 +56,7 @@ namespace _Project.Scripts.Core.Player
 
         private void OnDisable()
         {
+            if (_inputReader == null) return;
             _inputReader.OnDPadInput -= HandleMove;
         }
 

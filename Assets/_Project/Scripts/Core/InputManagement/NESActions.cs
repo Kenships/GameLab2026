@@ -237,7 +237,7 @@ public partial class @NESActions: IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";Gamepad"",
                     ""action"": ""AltInteract"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -267,10 +267,10 @@ public partial class @NESActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""f55f48d1-84ad-41d9-96ac-c7b818f6d3aa"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";Gamepad"",
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false

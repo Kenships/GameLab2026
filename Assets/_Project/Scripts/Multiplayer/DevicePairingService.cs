@@ -151,11 +151,6 @@ namespace _Project.Scripts.Multiplayer
                     Pair(_player2, ref _player2Device, device);
                     OnPlayer2Paired?.Invoke();
                 }
-                else if (_player1Device == null)
-                {
-                    Pair(_player1, ref _player1Device, device);
-                    OnPlayer1Paired?.Invoke();
-                }
             }
             else
             {

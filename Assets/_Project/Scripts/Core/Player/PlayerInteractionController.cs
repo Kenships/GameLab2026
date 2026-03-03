@@ -65,6 +65,8 @@ namespace _Project.Scripts.Core.Player
 
         private void OnDisable()
         {
+            if (_inputReader == null) return;
+            
             _inputReader.OnDoubleTapInteract -= PickUpOrPutDown;
             
             _inputReader.OnHoldInteract -= FastForward;
@@ -216,6 +218,9 @@ namespace _Project.Scripts.Core.Player
 
         private IEnumerator PlayHaptics()
         {
+            if (!_inputReader.TryGetGamePad(out _gamePad))
+                yield break;
+            
             _gamePad.SetMotorSpeeds(lowFrequencyHapticIntensity, highFrequencyHapticIntensity);
 
             float timer = hapticsDuration;
