@@ -245,11 +245,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RangeDetector
   rangeType: 0
   radius: 6
-  angle: 60
+  angle: 35
   width: 2
   length: 12.5
   targetLayers:
-  - serializedVersion: 2
+    serializedVersion: 2
     m_Bits: 64
   startingTransform: {fileID: 0}
   ignoreYAxis: 1

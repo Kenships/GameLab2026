@@ -388,7 +388,7 @@ MonoBehaviour:
   width: 5
   length: 10
   targetLayers:
-  - serializedVersion: 2
+    serializedVersion: 2
     m_Bits: 64
   startingTransform: {fileID: 7057473248556846981}
   ignoreYAxis: 1

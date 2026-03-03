@@ -1,7 +1,9 @@
 using _Project.Scripts.Core.HealthManagement;
 using _Project.Scripts.Core.Modules.Base_Class;
+using _Project.Scripts.Core.SceneLoading;
 using _Project.Scripts.Util.ExtensionMethods;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace _Project.Scripts.Core
 {
@@ -23,6 +25,9 @@ namespace _Project.Scripts.Core
         {
             _myHealth = gameObject.GetOrAdd<Health>();
             _myHealth.Initialize(vhsMaxHealth, 0);
+            
+            // TODO: Temporary please fix
+            _myHealth.OnFullHp += () => GetComponent<SceneLoader>().LoadScene();
         }
 
         public void Damage(float damage)

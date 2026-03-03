@@ -815,6 +815,8 @@ MonoBehaviour:
   player1Visual: {fileID: 790316906995648998}
   player2Visual: {fileID: 6505483928442727171}
   isNormalTurret: 0
+  head: {fileID: 0}
+  headRotateSpeed: 10
 --- !u!136 &5248281451148013754
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -856,7 +858,7 @@ MonoBehaviour:
   width: 5
   length: 10
   targetLayers:
-  - serializedVersion: 2
+    serializedVersion: 2
     m_Bits: 64
   startingTransform: {fileID: 0}
   ignoreYAxis: 1

@@ -27,8 +27,8 @@ namespace _Project.Scripts.Core.Modules.Base_Class
         public void PickUp()
         {
             _colliderCache ??= GetComponent<Collider>();
-            _colliderCache.enabled = false;
-            gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
+            _colliderCache.isTrigger = true;
+            gameObject.layer = LayerMask.NameToLayer("HeldObject");
             
             _audioPooler.New2DAudio(pickUpSound).OnChannel(AudioType.Sfx).SetVolume(pickUpSoundVolume).Play();
 
@@ -38,7 +38,7 @@ namespace _Project.Scripts.Core.Modules.Base_Class
         public void Drop()
         {
             _colliderCache ??= GetComponent<Collider>();
-            _colliderCache.enabled = true;
+            _colliderCache.isTrigger = false;
             gameObject.layer = GridSystem.ObjectOnGridLayer.ToLayerIndex();
             transform.SetParent(null);
             

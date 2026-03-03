@@ -61,6 +61,8 @@ namespace _Project.Scripts.Core.Player
             
             _rangeDetector.OnObjectEnter += SelectVisual;
             _rangeDetector.OnObjectExit += DeselectVisual;
+            _rangeDetector.OnObjectExit += CancelFastForward;
+            _rangeDetector.OnObjectExit += CancelRewind;
         }
 
         private void OnDisable()
@@ -79,6 +81,8 @@ namespace _Project.Scripts.Core.Player
             
             _rangeDetector.OnObjectEnter -= SelectVisual;
             _rangeDetector.OnObjectExit -= DeselectVisual;
+            _rangeDetector.OnObjectExit -= CancelFastForward;
+            _rangeDetector.OnObjectExit -= CancelRewind;
         }
         
 
@@ -157,6 +161,11 @@ namespace _Project.Scripts.Core.Player
             }
         }
 
+        private void CancelFastForward(Collider obj)
+        {
+            CancelFastForward();
+        }
+
         private void CancelFastForward()
         {
             foreach (ITimeControllable controllable in _controllables)
@@ -182,6 +191,11 @@ namespace _Project.Scripts.Core.Player
             {
                 controllable?.Rewind();
             }
+        }
+        
+        private void CancelRewind(Collider obj)
+        {
+            CancelRewind();
         }
 
         private void CancelRewind()

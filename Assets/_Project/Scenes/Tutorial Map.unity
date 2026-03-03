@@ -2115,11 +2115,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Hold Y to Fast Forward.
+  m_text: 'Hold A to Fast Forward.
 
     Hold B to Rewind.
 
-    Double Tap Y to Pick
+    Double Tap A to Pick
     Up.
 
     Double Tap B to Rotate.
@@ -2584,6 +2584,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.HealthManagement.Health
   <CurrentHealth>k__BackingField: 0
+--- !u!114 &1435652766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1435652763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87a94ed4d94741cf9171f9df3c6c3360, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.SceneLoading.SceneLoader
+  loadOnAwake: 0
+  setActive: 0
+  activeSceneIndex:
+    buildIndex: 0
+  scenesToLoad:
+  - buildIndex: 8
+  unloadDisabled: 0
+  scenesToUnload:
+  - buildIndex: 6
+  withOverlay: 1
+  sceneGroup: 1
+  actionMap: 3
 --- !u!1 &1462217691
 GameObject:
   m_ObjectHideFlags: 0
@@ -2804,11 +2828,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Hold Y to Fast Forward.
+  m_text: 'Hold A to Fast Forward.
 
     Hold B to Rewind.
 
-    Double Tap Y to Pick
+    Double Tap A to Pick
     Up.
 
     Double Tap B to Rotate.
@@ -3674,6 +3698,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2853457693616237105, guid: 43682b4e551780c42b8badfbfd8ea66b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1435652765}
+    - targetCorrespondingSourceObject: {fileID: 2853457693616237105, guid: 43682b4e551780c42b8badfbfd8ea66b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1435652766}
   m_SourcePrefab: {fileID: 100100000, guid: 43682b4e551780c42b8badfbfd8ea66b, type: 3}
 --- !u!1 &2004073175
 GameObject:

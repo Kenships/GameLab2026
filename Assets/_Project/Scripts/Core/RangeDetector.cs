@@ -37,7 +37,7 @@ namespace _Project.Scripts.Core
         [ShowIf(nameof(IsRectangle))]public float width = 5f;
         [ShowIf(nameof(IsRectangle))] public float length = 10f;
 
-        [Header("Target Filter")] public LayerMask[] targetLayers;
+        [Header("Target Filter")] public LayerMask targetLayers;
 
         [Header("Start Point")] public Transform startingTransform; // If not assigned, this.transform will be used
 
