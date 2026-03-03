@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Pixelation
+  m_Shader: {fileID: -6465566751694194690, guid: ab1eb521f751ff64ab49ab26d8384735, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords:
+  - _ID_L3
+  - _PIXELATION_MODE_B
+  - _PIXELATION_MODE_C
+  - _PIXELATION_MODE_DEPTH_BASED
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _Depth_Based: 1
+    - _Depth_Level_Count: 4
+    - _Downscale_Factor: 8
+    - _Max_Threshold: 0
+    - _Min_Threshold: 0
+    - _Resolution: 0
+    - _Resolution_1: 60
+    - _Resolution_10: 50
+    - _Resolution_2: 80
+    - _Resolution_3: 100
+    - _Resolution_4: 120
+    - _Resolution_5: 160
+    - _Resolution_6: 200
+    - _Resolution_7: 240
+    - _Resolution_8: 1200
+    - _Resolution_9: 50
+    - _Resolution_Multiplier: 3
+    - _Shifted_Min_Threshold: 0
+    - _Show_Depth: 0
+    - _Threshold_1: 2
+    - _Threshold_2: 8
+    - _Threshold_3: 15
+    - _Threshold_4: 25
+    - _Threshold_5: 45
+    - _Threshold_6: 80
+    - _Threshold_7: 1250
+    - _Threshold_8: 1120
+    - _Threshold_9: 1250
+    - _Uniform_Resolution: 40
+    m_Colors: []
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1

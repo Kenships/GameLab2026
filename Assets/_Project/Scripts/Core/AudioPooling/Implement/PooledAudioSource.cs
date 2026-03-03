@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 using _Project.Scripts.Core.AudioPooling.Interface;
-using _Project.Scripts.Util.GameObject.Extension;
+using _Project.Scripts.Util.ExtensionMethods;
 using PrimeTween;
 using Sisus.Init;
 using UnityEngine;
@@ -42,6 +42,7 @@ namespace _Project.Scripts.Core.AudioPooling.Implement
             _audioSource.outputAudioMixerGroup = audioConfig.AudioMixerGroup;
             Priority = audioConfig.Priority;
             transform.position = audioConfig.Position;
+            _audioSource.volume = audioConfig.Volume;
             _audioSource.pitch = audioConfig.Pitch;
             _audioSource.spatialBlend = audioConfig.SpatialBlend;
             _audioSource.loop = audioConfig.Loop;
