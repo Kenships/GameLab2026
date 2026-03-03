@@ -1,5 +1,6 @@
 using _Project.Scripts.Core.HealthManagement;
 using _Project.Scripts.Core.Modules.Base_Class;
+using _Project.Scripts.Core.Player;
 using _Project.Scripts.Core.SceneLoading;
 using _Project.Scripts.Util.ExtensionMethods;
 using UnityEngine;
@@ -77,9 +78,9 @@ namespace _Project.Scripts.Core
             _isFastForwarding = false;
         }
 
-        public override void ShowVisual(int playerIndex)
+        public override void ShowVisual(PlayerData.PlayerID playerIndex)
         {
-            if (playerIndex == 1)
+            if (playerIndex == PlayerData.PlayerID.Player1)
             {
                 player1Visual.SetActive(true);
             }
@@ -89,9 +90,9 @@ namespace _Project.Scripts.Core
             }
         }
 
-        public override void HideVisual(int playerIndex)
+        public override void HideVisual(PlayerData.PlayerID playerIndex)
         {
-            if (playerIndex == 1)
+            if (playerIndex == PlayerData.PlayerID.Player1)
             {
                 player1Visual.SetActive(false);
             }

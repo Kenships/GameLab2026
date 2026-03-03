@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using _Project.Scripts.Core.HealthManagement;
 using _Project.Scripts.Core.Modules.Base_Class;
+using _Project.Scripts.Core.Player;
 using _Project.Scripts.Util.Timer.Timers;
 using UnityEngine;
 
@@ -106,7 +107,7 @@ namespace _Project.Scripts.Core.Modules
             _attackCooldownTimer.Reset(1f/_currentDps);
         }
         
-        public override void ShowVisual(int playerIndex)
+        public override void ShowVisual(PlayerData.PlayerID playerID)
         {
             if (!player1Visual || !player2Visual)
             {
@@ -114,7 +115,7 @@ namespace _Project.Scripts.Core.Modules
                 return;
             }
             
-            if (playerIndex == 1)
+            if (playerID == PlayerData.PlayerID.Player1)
             {
                 player1Visual.SetActive(true);
             }
@@ -124,7 +125,7 @@ namespace _Project.Scripts.Core.Modules
             }
         }
 
-        public override void HideVisual(int playerIndex)
+        public override void HideVisual(PlayerData.PlayerID playerID)
         {
             if (!player1Visual || !player2Visual)
             {
@@ -132,7 +133,7 @@ namespace _Project.Scripts.Core.Modules
                 return;
             }
             
-            if (playerIndex == 1)
+            if (playerID == PlayerData.PlayerID.Player1)
             {
                 player1Visual.SetActive(false);
             }

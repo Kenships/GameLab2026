@@ -1,5 +1,6 @@
 using _Project.Scripts.Core.AudioPooling;
 using _Project.Scripts.Core.Modules.Interface;
+using _Project.Scripts.Core.Player;
 using Sisus.Init;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -60,7 +61,7 @@ namespace _Project.Scripts.Core.Modules.Base_Class
         public abstract void FastForward();
         public abstract void CancelRewind();
         public abstract void CancelFastForward();
-        public abstract void ShowVisual(int playerIndex);
-        public abstract void HideVisual(int playerIndex);
+        public abstract void ShowVisual(PlayerData.PlayerID playerID);
+        public abstract void HideVisual(PlayerData.PlayerID playerID);
     }
 }
