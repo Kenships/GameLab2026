@@ -1,11 +1,15 @@
-using _Project.Scripts.Core.HealthManagement;
-using Unity.VisualScripting;
+using _Project.Scripts.Core.AudioPooling;
+using _Project.Scripts.Core.Enemies;
+using _Project.Scripts.Effects.Inflictors;
+using Sisus.Init;
 using UnityEngine;
+using AudioType = _Project.Scripts.Core.AudioPooling.Interface.AudioType;
 
-public class RecordDiscBullet : MonoBehaviour
+public class RecordDiscBullet : MonoBehaviour<AudioPooler>
 {
     private float _rotateSpeed = 200f; //takes from disc shooter
     private float _wobbleAmount = 0f; //takes from disc shooter 
+    [SerializeField] private EnemyEffectInflictor inflictor;
     [SerializeField] private float hitCooldown = 0.2f; //cooldown before it starts detecting another trigger on hit
     [SerializeField] private float enemySearchRadius = 30f; //the radius that it searches the next closest enemy if theres none it will go back to previous enemy
     [SerializeField] private float bulletLifetime = 3.5f; // max seconds until bullet is destroyed regardless of how many targets it hit
@@ -19,6 +23,13 @@ public class RecordDiscBullet : MonoBehaviour
     private Rigidbody _rb;
     private LayerMask _enemyLayer;
     private bool _isNormalTurret;
+    
+    private AudioPooler _audioPooler;
+    
+    protected override void Init(AudioPooler audioPooler)
+    {
+        _audioPooler = audioPooler;
+    }
 
     public void Initialize(Transform target, float speed, int maxTargets, float rotateSpeed, float wobbleAmount, LayerMask enemyLayer, bool isNormal)
     {
@@ -145,9 +156,9 @@ public class RecordDiscBullet : MonoBehaviour
             return;
         }
 
-        if (other.TryGetComponent(out IDamageable damageable))
+        if (other.TryGetComponent(out EnemyBase enemy))
         {
-            damageable.Damage(bulletDamage);
+            Inflict(enemy);
 
             _hitCount++;
             _hitTimer = hitCooldown;
@@ -158,4 +169,36 @@ public class RecordDiscBullet : MonoBehaviour
             }
         }
     }
+    
+    private void Inflict(EnemyBase enemy)
+    {
+        if (inflictor == null)
+        {
+            Debug.LogWarning("Inflector is null");
+            return;
+        }
+        
+        inflictor.Inflict(enemy);
+        
+        if (inflictor.CastVFX)
+        {
+            Instantiate(inflictor.CastVFX, transform.position, Quaternion.identity);
+        }
+        
+        if (inflictor.AudioClip)
+        {
+            _audioPooler
+                .New3DAudio(inflictor.AudioClip)
+                .OnChannel(AudioType.Sfx)
+                .AtPosition(transform.position)
+                .Play();
+        }
+        
+        if (inflictor.LingeringVFX)
+        {
+            Instantiate(inflictor.LingeringVFX, transform.position, Quaternion.identity);
+        }
+    }
+
+    
 }

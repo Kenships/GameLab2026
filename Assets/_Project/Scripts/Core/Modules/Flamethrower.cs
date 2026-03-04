@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using _Project.Scripts.Core.HealthManagement;
 using _Project.Scripts.Core.Modules.Base_Class;
 using _Project.Scripts.Core.Player;
+using _Project.Scripts.Effects.Interface;
 using _Project.Scripts.Util.Timer.Timers;
 using UnityEngine;
 
