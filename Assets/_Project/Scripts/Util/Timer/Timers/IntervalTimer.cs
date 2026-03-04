@@ -6,7 +6,9 @@ namespace _Project.Scripts.Util.Timer.Timers
     [Serializable]
     public class IntervalTimer : Timer
     {
-        private readonly float _interval;
+        private readonly float _negativeEpsilon = -0.005f;
+        
+        private float _interval;
         private float _nextInterval;
         
         public Action OnInterval = delegate { };
@@ -14,7 +16,8 @@ namespace _Project.Scripts.Util.Timer.Timers
         public IntervalTimer(float totalTime, float intervalSeconds) : base(totalTime)
         {
             _interval = intervalSeconds;
-            _nextInterval = totalTime - _interval;
+            
+            _nextInterval = (int) (totalTime/intervalSeconds) * intervalSeconds;
         }
 
         public override void Tick()
@@ -24,7 +27,7 @@ namespace _Project.Scripts.Util.Timer.Timers
                 CurrentTime -= Time.deltaTime;
             }
 
-            while (CurrentTime <= _nextInterval && _nextInterval >= 0)
+            while (CurrentTime <= _nextInterval && _nextInterval >= _negativeEpsilon)
             {
                 OnInterval?.Invoke();
                 _nextInterval -= _interval;
@@ -39,5 +42,6 @@ namespace _Project.Scripts.Util.Timer.Timers
 
         public override bool IsFinished => CurrentTime <= 0;
         public override float Progress => CurrentTime/_initialTime;
+        public float TimeUntilNextInerval => CurrentTime - _nextInterval;
     }
 }
