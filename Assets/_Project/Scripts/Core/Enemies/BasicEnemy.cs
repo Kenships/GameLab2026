@@ -43,7 +43,6 @@ namespace _Project.Scripts.Core.Enemies
             _navMeshAgent.isStopped = false;
             _navMeshAgent.speed = _moveSpeed * SpeedMultiplier;
             
-            Debug.Log($"BasicEnemy Act {_target?.name}");
             if (!_target) return;
             
             float distance = Vector3.Distance(transform.position, _target.position);
@@ -57,8 +56,6 @@ namespace _Project.Scripts.Core.Enemies
             }
             else
             {
-                
-                Debug.Log("Arrived at VHS");
                 if (_damageTimer <= 0f)
                 {
                     DamageVhs(_attackDamage);
