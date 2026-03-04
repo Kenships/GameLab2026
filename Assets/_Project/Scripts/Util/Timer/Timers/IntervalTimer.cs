@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace _Project.Scripts.Util.Timer.Timers
 {
+    [Serializable]
     public class IntervalTimer : Timer
     {
         private readonly float _interval;
