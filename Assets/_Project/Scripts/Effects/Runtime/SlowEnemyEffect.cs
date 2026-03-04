@@ -13,7 +13,7 @@ namespace _Project.Scripts.Effects.Runtime
         
         public UnityAction<IEffect<EnemyBase>> OnComplete { get; set; }
         
-        private CountdownTimer _timer;
+        [SerializeField] private CountdownTimer _timer;
         private EnemyBase _target;
         
         public void Apply(EnemyBase target)

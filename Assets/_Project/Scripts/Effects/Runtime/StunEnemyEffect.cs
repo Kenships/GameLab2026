@@ -1,6 +1,7 @@
 using _Project.Scripts.Core.Enemies;
 using _Project.Scripts.Effects.Interface;
 using _Project.Scripts.Util.Timer.Timers;
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace _Project.Scripts.Effects.Runtime
@@ -11,7 +12,7 @@ namespace _Project.Scripts.Effects.Runtime
         
         public UnityAction<IEffect<EnemyBase>> OnComplete { get; set; }
         
-        private CountdownTimer _timer;
+        [SerializeField] private CountdownTimer _timer;
         private EnemyBase _target;
 
         public void Apply(EnemyBase target)

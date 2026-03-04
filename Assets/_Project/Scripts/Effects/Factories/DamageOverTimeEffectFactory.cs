@@ -9,6 +9,7 @@ namespace _Project.Scripts.Effects.Factories
     [Serializable]
     public class DamageOverTimeEffectFactory : IEffectFactory<IDamageable>
     {
+        [SerializeField] private DamageOverTimeEffect.DamageOverTimeType damageOverTimeType;
         [SerializeField] private float duration;
         [SerializeField] private float tickInterval;
         [SerializeField] private float damagePerTick;
@@ -18,6 +19,7 @@ namespace _Project.Scripts.Effects.Factories
         {
             return new DamageOverTimeEffect
                    {
+                       Type = damageOverTimeType,
                        Duration = duration,
                        TickInterval = tickInterval,
                        DamagePerTick = damagePerTick
