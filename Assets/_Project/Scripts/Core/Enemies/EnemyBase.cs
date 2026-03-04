@@ -4,18 +4,24 @@ using _Project.Scripts.Core.AudioPooling;
 using _Project.Scripts.Core.HealthManagement;
 using _Project.Scripts.Effects;
 using _Project.Scripts.Effects.Interface;
+using _Project.Scripts.Effects.Runtime;
+using _Project.Scripts.Util.CustomAttributes;
 using _Project.Scripts.Util.ExtensionMethods;
 using Sisus.Init;
+using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace _Project.Scripts.Core.Enemies
 {
     public abstract class EnemyBase : MonoBehaviour<AudioPooler>, IDamageable
     {
-        public bool Stunned { get; set; } = false;
-        public float SpeedMultiplier { get; set; } = 1f;
+        [Header("Enemy Debug Values")]
+        [field: SerializeField, ReadOnly] public bool Stunned { get; set; } = false;
+        [field: SerializeField, ReadOnly] public float SpeedMultiplier { get; set; } = 1f;
+        [SerializeReference, SubclassSelector] protected List<IEffect<IDamageable>> damageEffects = new();
+        [SerializeReference, SubclassSelector] protected List<IEffect<EnemyBase>> enemyEffects = new();
         
-        protected readonly List<IEffect<IDamageable>> _damageEffects = new();
-        protected readonly List<IEffect<EnemyBase>> _enemyEffects = new();
+        
         protected AudioPooler _audioPooler;
         protected Health _health;
         
@@ -33,27 +39,66 @@ namespace _Project.Scripts.Core.Enemies
 
         public virtual void ApplyEffect(IEffect<IDamageable> effect)
         {
-            effect.OnComplete += RemoveEffect;
-            _damageEffects.Add(effect);
-            effect.Apply(this);
+            if (effect is DamageOverTimeEffect dotEffect)
+            {
+                AddDotEffect(dotEffect);
+            }
+            else
+            {
+                effect.OnComplete += RemoveEffect;
+                damageEffects.Add(effect);
+                effect.Apply(this);
+            }
         }
+        
+        protected virtual void AddDotEffect(DamageOverTimeEffect newDotEffect)
+        {
+            // Allows only one dot of the same type to be active at a time
+            // Replaces old effect with a new effect if it exists
+
+            foreach (var dot in damageEffects)
+            {
+                if (dot is DamageOverTimeEffect dotEffect && dotEffect.Type == newDotEffect.Type)
+                {
+                    // Returns whether the new effect replaced the old effect
+                    if (!DamageOverTimeEffect.ReplaceAndCancelWithBest(dotEffect, newDotEffect, out var bestEffect))
+                    {
+                        Debug.Log("Don't Replace");
+                        return;
+                    }
+                    
+                    Debug.Log("Replace");
+                    
+                    bestEffect.OnComplete += RemoveEffect;
+                    damageEffects.Add(bestEffect);
+                    bestEffect.Apply(this);
+                    // We can return early as there will only be one DOT per type
+                    return;
+                }
+            }
+            
+            newDotEffect.OnComplete += RemoveEffect;
+            damageEffects.Add(newDotEffect);
+            newDotEffect.Apply(this);
+        }
+        
         public virtual void RemoveEffect(IEffect<IDamageable> effect)
         {
             effect.OnComplete -= RemoveEffect;
-            _damageEffects.Remove(effect);
+            damageEffects.Remove(effect);
         }
 
         public virtual void ApplyEffect(IEffect<EnemyBase> effect)
         {
             effect.OnComplete += RemoveEffect;
-            _enemyEffects.Add(effect);
+            enemyEffects.Add(effect);
             effect.Apply(this);
         }
         
         public virtual void RemoveEffect(IEffect<EnemyBase> effect)
         {
             effect.OnComplete -= RemoveEffect;
-            _enemyEffects.Remove(effect);
+            enemyEffects.Remove(effect);
         }
 
         protected virtual void OnDeath()
@@ -72,12 +117,12 @@ namespace _Project.Scripts.Core.Enemies
 
         protected void ClearEffects()
         {
-            foreach (var effect in _damageEffects)
+            foreach (var effect in damageEffects)
             {
                 effect.OnComplete -= RemoveEffect;
                 effect.Cancel();
             }
-            foreach (var effect in _enemyEffects)
+            foreach (var effect in enemyEffects)
             {
                 effect.OnComplete -= RemoveEffect;
                 effect.Cancel();
