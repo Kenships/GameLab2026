@@ -35,7 +35,10 @@ namespace _Project.Scripts.Effects.Runtime
         
         private void CleanUp()
         {
-            _target.Stunned = false;
+            if (_target)
+            {
+                _target.Stunned = false;
+            }
             _timer = null;
             _target = null;
             OnComplete?.Invoke(this);

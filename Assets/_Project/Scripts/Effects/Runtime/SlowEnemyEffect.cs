@@ -38,7 +38,10 @@ namespace _Project.Scripts.Effects.Runtime
 
         private void CleanUp()
         {
-            _target.SpeedMultiplier /= SlowFactor;
+            if (_target)
+            {
+                _target.SpeedMultiplier /= SlowFactor;
+            }
             _target = null;
             _timer = null;
             OnComplete?.Invoke(this);
