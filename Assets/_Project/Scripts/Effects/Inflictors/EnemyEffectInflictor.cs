@@ -27,5 +27,13 @@ namespace _Project.Scripts.Effects.Inflictors
                 enemy.ApplyEffect(effectFactory.CreateEffect());
             }
         }
+
+        public void Inflict(IDamageable damageable)
+        {
+            foreach (var damageEffectFactory in damageEffectFactories)
+            {
+                damageable.ApplyEffect(damageEffectFactory.CreateEffect());
+            }
+        }
     }
 }
