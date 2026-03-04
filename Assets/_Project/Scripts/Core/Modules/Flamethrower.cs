@@ -1,8 +1,11 @@
 using System;
 using System.Collections.Generic;
+using _Project.Scripts.Core.Enemies;
 using _Project.Scripts.Core.HealthManagement;
 using _Project.Scripts.Core.Modules.Base_Class;
 using _Project.Scripts.Core.Player;
+using _Project.Scripts.Effects.Inflictors;
+using _Project.Scripts.Effects.Interface;
 using _Project.Scripts.Util.Timer.Timers;
 using UnityEngine;
 
@@ -23,7 +26,7 @@ namespace _Project.Scripts.Core.Modules
         [SerializeField] private float fastRadiusMultiplier = 3.75f;
 
         [Header("Flamethrower Settings")]
-        [SerializeField] private float damage = 10f;
+        [SerializeField] private EnemyEffectInflictor inflictor;
         [SerializeField] private float normalDps = 4f;
         [SerializeField] private float fastDps = 8f;
         [SerializeField] private float fastRadius = 10;
@@ -31,21 +34,22 @@ namespace _Project.Scripts.Core.Modules
         [Header("Player Selection Visuals")]
         [SerializeField] private GameObject player1Visual;
         [SerializeField] private GameObject player2Visual;
+        
 
 
         private float _currentDamage;
         private float _currentDps;
         private float _normalRadius;
         private RangeDetector _rangeDetector; // rangeType is sector
-        private List<IDamageable> _enemies;
+        private List<IDamageable> _damageables;
+        private bool _isDamagingEnemies;
         private CountdownTimer _attackCooldownTimer;
 
         private void Start()
         {
-            _currentDamage = damage;
             _currentDps = normalDps;
-            _attackCooldownTimer = new CountdownTimer(1f / _currentDps);
-            _enemies = new List<IDamageable>();
+            _attackCooldownTimer = new CountdownTimer(1f/_currentDps);
+            _damageables = new List<IDamageable>();
 
             _rangeDetector = GetComponent<RangeDetector>();
             if (!_rangeDetector)
@@ -86,21 +90,20 @@ namespace _Project.Scripts.Core.Modules
 
         private void PerformAttack()
         {
-            if (_currentDamage == 0 || _attackCooldownTimer.IsRunning)
+            if (_attackCooldownTimer.IsRunning)
             {
                 return;
             }
-            _rangeDetector.GetObjectTypeInRangeNoAlloc(_enemies);
+            _rangeDetector.GetObjectTypeInRangeNoAlloc(_damageables);
 
-            if (_enemies.Count <= 0)
+            if (_damageables.Count <= 0)
             {
                 return;
             }
 
-            foreach (IDamageable enemy in _enemies)
+            foreach(IDamageable enemy in _damageables)
             {
-                //potentially cache IDamageables for better performance
-                enemy?.Damage(_currentDamage);
+                inflictor.Inflict(enemy);
             }
 
             _attackCooldownTimer.Reset(1f / _currentDps);
@@ -163,7 +166,6 @@ namespace _Project.Scripts.Core.Modules
                     _rangeDetector.radius = _normalRadius;
                     UpdateDistance(_rangeDetector.radius * radiusMultiplier);
                     particle.Play();
-                    _currentDamage = damage;
                     _currentDps = normalDps;
                     break;
                 case ModuleState.Attack:
@@ -174,7 +176,6 @@ namespace _Project.Scripts.Core.Modules
                     break;
                 case ModuleState.Used:
                     particle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
-                    _currentDamage = 0;
                     break;
             }
         }

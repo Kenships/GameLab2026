@@ -1,9 +1,11 @@
+using System;
 using UnityEngine;
 
 namespace _Project.Scripts.Util.Timer.Timers {
     /// <summary>
     /// Timer that counts down from a specific value to zero.
     /// </summary>
+    [Serializable]
     public class CountdownTimer : Timer {
         public CountdownTimer(float value) : base(value) { }
 

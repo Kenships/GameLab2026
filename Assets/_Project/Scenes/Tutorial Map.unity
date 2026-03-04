@@ -2876,9 +2876,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 586856802}
     - target: {fileID: 2174084060119942501, guid: 8e3813081faf3454b853a71726124349, type: 3}
+      propertyPath: 'managedReferences[-2]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2174084060119942501, guid: 8e3813081faf3454b853a71726124349, type: 3}
+      propertyPath: enemyFactories.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2174084060119942501, guid: 8e3813081faf3454b853a71726124349, type: 3}
       propertyPath: spawnPositions.Array.size
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2174084060119942501, guid: 8e3813081faf3454b853a71726124349, type: 3}
+      propertyPath: 'enemyFactories.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: a16df98d83c53fc43909f5e15b3d561a, type: 2}
     - target: {fileID: 2174084060119942501, guid: 8e3813081faf3454b853a71726124349, type: 3}
       propertyPath: 'spawnPositions.Array.data[0]'
       value: 

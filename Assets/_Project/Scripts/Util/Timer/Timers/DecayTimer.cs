@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace _Project.Scripts.Util.Timer.Timers
@@ -5,6 +6,7 @@ namespace _Project.Scripts.Util.Timer.Timers
     /// <summary>
     /// Timer that counts Up to a specific value but decays when turned off
     /// </summary>
+    [Serializable]
     public class DecayTimer : Timer
     {
         private const float DefaultDecayRate = 0.5f;
