@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using _Project.Scripts.Core.AudioPooling;
 using _Project.Scripts.Core.HealthManagement;
@@ -17,15 +18,18 @@ namespace _Project.Scripts.Core.Enemies
         protected readonly List<IEffect<EnemyBase>> _enemyEffects = new();
         protected AudioPooler _audioPooler;
         protected Health _health;
-
+        
         protected override void Init(AudioPooler playerReader)
         {
             _audioPooler = playerReader;
-            _health = gameObject.GetOrAdd<Health>();
+            _health ??= gameObject.GetOrAdd<Health>();
             _health.OnDeath += OnDeath;
         }
-        
-        public abstract void Damage(float damage);
+
+        public virtual void Damage(float damage)
+        {
+            _health.AddToHealth(-damage);
+        }
 
         public virtual void ApplyEffect(IEffect<IDamageable> effect)
         {
@@ -52,6 +56,29 @@ namespace _Project.Scripts.Core.Enemies
             _enemyEffects.Remove(effect);
         }
 
-        protected abstract void OnDeath();
+        protected virtual void OnDeath()
+        {
+            ClearEffects();
+            Destroy(gameObject);
+        }
+
+        protected void OnDestroy()
+        {
+            _health.OnDeath -= OnDeath;
+        }
+
+        protected void ClearEffects()
+        {
+            foreach (var effect in _damageEffects)
+            {
+                effect.OnComplete -= RemoveEffect;
+                effect.Cancel();
+            }
+            foreach (var effect in _enemyEffects)
+            {
+                effect.OnComplete -= RemoveEffect;
+                effect.Cancel();
+            }
+        }
     }
 }

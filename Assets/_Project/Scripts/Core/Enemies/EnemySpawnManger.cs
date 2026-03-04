@@ -1,5 +1,4 @@
-using _Project.Scripts.Core.HealthManagement;
-using _Project.Scripts.Util.ExtensionMethods;
+using _Project.Scripts.Core.Enemies.Factories;
 using UnityEngine;
 
 namespace _Project.Scripts.Core.Enemies
@@ -7,7 +6,7 @@ namespace _Project.Scripts.Core.Enemies
     public class EnemySpawner : MonoBehaviour
     {
         [Header("References")]
-        [SerializeField] private GameObject enemyPrefab;
+        [SerializeField] private EnemyFactoryBase[] enemyFactories;
         [SerializeField] private Transform[] spawnPositions;
         [SerializeField] private Transform vhsLocation; //enemies move toward this
 
@@ -43,20 +42,11 @@ namespace _Project.Scripts.Core.Enemies
         {
             int randomIndex = Random.Range(0, spawnPositions.Length);
             Transform spawnPoint = spawnPositions[randomIndex];
-        
-            GameObject enemy = Instantiate(
-                enemyPrefab,
-                spawnPoint.position,
-                spawnPoint.rotation
-            );
             
-            Health health = enemy.GetOrAdd<Health>();
-            health.Initialize(enemyHealth);
-        
-            BasicEnemy movement = enemy.GetOrAdd<BasicEnemy>();
-            movement.Initialize(vhsLocation, health, enemyMoveSpeed, enemyAttackCooldown, enemyDamage);
-
+            int randEnemyIndex = Random.Range(0, enemyFactories.Length);
             
+            EnemyBase enemy = enemyFactories[randEnemyIndex].CreateEnemy();
+            enemy.transform.position = spawnPoint.position;
         }
 
         private void SetRandomSpawnTimer()
