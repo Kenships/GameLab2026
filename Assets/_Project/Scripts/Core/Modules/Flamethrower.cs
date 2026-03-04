@@ -30,11 +30,12 @@ namespace _Project.Scripts.Core.Modules
         [SerializeField] private float normalDps = 4f;
         [SerializeField] private float fastDps = 8f;
         [SerializeField] private float fastRadius = 10;
-        
+
         [Header("Player Selection Visuals")]
         [SerializeField] private GameObject player1Visual;
         [SerializeField] private GameObject player2Visual;
         
+
 
         private float _currentDamage;
         private float _currentDps;
@@ -104,10 +105,10 @@ namespace _Project.Scripts.Core.Modules
             {
                 inflictor.Inflict(enemy);
             }
-            
-            _attackCooldownTimer.Reset(1f/_currentDps);
+
+            _attackCooldownTimer.Reset(1f / _currentDps);
         }
-        
+
         public override void ShowVisual(PlayerData.PlayerID playerID)
         {
             if (!player1Visual || !player2Visual)
@@ -115,7 +116,7 @@ namespace _Project.Scripts.Core.Modules
                 Debug.LogWarning("Player Selection Visuals not set");
                 return;
             }
-            
+
             if (playerID == PlayerData.PlayerID.Player1)
             {
                 player1Visual.SetActive(true);
@@ -133,7 +134,7 @@ namespace _Project.Scripts.Core.Modules
                 Debug.LogWarning("Player Selection Visuals not set");
                 return;
             }
-            
+
             if (playerID == PlayerData.PlayerID.Player1)
             {
                 player1Visual.SetActive(false);
@@ -155,25 +156,25 @@ namespace _Project.Scripts.Core.Modules
             PerformAttack();
             base.AttackState();
         }
-    
+
         protected override void OnStateChanged(ModuleState newState)
         {
             switch (newState)
             {
-                case ModuleState.Load :
+                case ModuleState.Load:
                     UpdateParticleAngle(_rangeDetector.angle * angleMultiplier, emissionRateToAngleRatio);
                     _rangeDetector.radius = _normalRadius;
                     UpdateDistance(_rangeDetector.radius * radiusMultiplier);
                     particle.Play();
                     _currentDps = normalDps;
                     break;
-                case ModuleState.Attack :
+                case ModuleState.Attack:
                     _currentDps = fastDps;
                     UpdateParticleAngle(_rangeDetector.angle * angleMultiplier, fastEmissionRateToAngleRatio);
                     _rangeDetector.radius = fastRadius;
                     UpdateDistance(_rangeDetector.radius * fastRadiusMultiplier);
                     break;
-                case ModuleState.Used :
+                case ModuleState.Used:
                     particle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
                     break;
             }
