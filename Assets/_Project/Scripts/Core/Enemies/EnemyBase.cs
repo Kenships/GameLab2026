@@ -45,41 +45,8 @@ namespace _Project.Scripts.Core.Enemies
             }
             else
             {
-                effect.OnComplete += RemoveEffect;
-                damageEffects.Add(effect);
-                effect.Apply(this);
+                AddToEffects(effect);
             }
-        }
-        
-        protected virtual void AddDotEffect(DamageOverTimeEffect newDotEffect)
-        {
-            // Allows only one dot of the same type to be active at a time
-            // Replaces old effect with a new effect if it exists
-
-            foreach (var dot in damageEffects)
-            {
-                if (dot is DamageOverTimeEffect dotEffect && dotEffect.Type == newDotEffect.Type)
-                {
-                    // Returns whether the new effect replaced the old effect
-                    if (!DamageOverTimeEffect.ReplaceAndCancelWithBest(dotEffect, newDotEffect, out var bestEffect))
-                    {
-                        Debug.Log("Don't Replace");
-                        return;
-                    }
-                    
-                    Debug.Log("Replace");
-                    
-                    bestEffect.OnComplete += RemoveEffect;
-                    damageEffects.Add(bestEffect);
-                    bestEffect.Apply(this);
-                    // We can return early as there will only be one DOT per type
-                    return;
-                }
-            }
-            
-            newDotEffect.OnComplete += RemoveEffect;
-            damageEffects.Add(newDotEffect);
-            newDotEffect.Apply(this);
         }
         
         public virtual void RemoveEffect(IEffect<IDamageable> effect)
@@ -90,11 +57,16 @@ namespace _Project.Scripts.Core.Enemies
 
         public virtual void ApplyEffect(IEffect<EnemyBase> effect)
         {
-            effect.OnComplete += RemoveEffect;
-            enemyEffects.Add(effect);
-            effect.Apply(this);
+            if (effect is SlowEnemyEffect slowEffect)
+            {
+                AddSlowEffect(slowEffect);
+            }
+            else
+            {
+                AddToEffects(effect);
+            }
         }
-        
+
         public virtual void RemoveEffect(IEffect<EnemyBase> effect)
         {
             effect.OnComplete -= RemoveEffect;
@@ -128,5 +100,65 @@ namespace _Project.Scripts.Core.Enemies
                 effect.Cancel();
             }
         }
+        
+        #region Utility
+
+        private void AddToEffects(IEffect<IDamageable> effect)
+        {
+            effect.OnComplete += RemoveEffect;
+            damageEffects.Add(effect);
+            effect.Apply(this);
+        }
+        
+        private void AddToEffects(IEffect<EnemyBase> effect){
+            effect.OnComplete += RemoveEffect;
+            enemyEffects.Add(effect);
+            effect.Apply(this);
+        }
+        
+        protected virtual void AddDotEffect(DamageOverTimeEffect newDotEffect)
+        {
+            // Allows only one dot of the same type to be active at a time
+            // Replaces old effect with a new effect if it exists
+
+            foreach (var effect in damageEffects)
+            {
+                if (effect is DamageOverTimeEffect dotEffect && dotEffect.Type == newDotEffect.Type)
+                {
+                    // Returns whether the new effect replaced the old effect
+                    if (!DamageOverTimeEffect.ReplaceAndCancelWithBest(dotEffect, newDotEffect, out var bestEffect))
+                    {
+                        return;
+                    }
+                    AddToEffects(bestEffect);
+                    // We can return early as there will only be one DOT per type
+                    return;
+                }
+            }
+            
+            AddToEffects(newDotEffect);
+        }
+        
+        private void AddSlowEffect(SlowEnemyEffect newSlowEffect)
+        {
+            foreach (var effect in enemyEffects)
+            {
+                if (effect is SlowEnemyEffect slowEffect && slowEffect.Type == newSlowEffect.Type)
+                {
+                    if (newSlowEffect.SlowPotential <= slowEffect.SlowPotential)
+                    {
+                        return;
+                    }
+                    
+                    slowEffect.Cancel();
+                    AddToEffects(newSlowEffect);
+                    return;
+                }
+            }
+            
+            AddToEffects(newSlowEffect);
+        }
+        
+        #endregion
     }
 }

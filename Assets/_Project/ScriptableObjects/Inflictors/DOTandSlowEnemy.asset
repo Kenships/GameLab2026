@@ -26,8 +26,9 @@ MonoBehaviour:
     - rid: 6145034235542503606
       type: {class: SlowEnemyEffectFactory, ns: _Project.Scripts.Effects.Factories, asm: Assembly-CSharp}
       data:
+        slowType: 0
         duration: 3
-        slowFactor: 0.8
+        slowPercentageFactor: 20
     - rid: 6145034235542503607
       type: {class: DamageEffectFactory, ns: _Project.Scripts.Effects.Factories, asm: Assembly-CSharp}
       data:
@@ -35,6 +36,7 @@ MonoBehaviour:
     - rid: 6145034235542503608
       type: {class: DamageOverTimeEffectFactory, ns: _Project.Scripts.Effects.Factories, asm: Assembly-CSharp}
       data:
+        damageOverTimeType: 0
         duration: 3
         tickInterval: 1
         damagePerTick: 10
