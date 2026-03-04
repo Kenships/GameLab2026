@@ -18,7 +18,7 @@ namespace _Project.Scripts.Effects.Runtime
         public void Apply(IDamageable target)
         {
             _target = target;
-            _timer = new IntervalTimer(TickInterval, Duration);
+            _timer = new IntervalTimer(Duration, TickInterval);
             _timer.OnInterval = OnInterval;
             _timer.OnTimerEnd = OnStop;
             _timer.Start();

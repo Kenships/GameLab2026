@@ -58,12 +58,15 @@ namespace _Project.Scripts.Core.Enemies
 
         protected virtual void OnDeath()
         {
-            ClearEffects();
-            Destroy(gameObject);
+            if (gameObject != null)
+            {
+                Destroy(gameObject);
+            }
         }
 
         protected void OnDestroy()
         {
+            ClearEffects();
             _health.OnDeath -= OnDeath;
         }
 
