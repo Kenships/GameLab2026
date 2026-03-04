@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3044727400441664815}
   - component: {fileID: 852193604899646370}
   - component: {fileID: -8867070136259511986}
+  - component: {fileID: 8825712044740088941}
   m_Layer: 7
   m_Name: RecordDiscBullet
   m_TagString: Untagged
@@ -139,7 +140,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -156,6 +157,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RecordDiscBullet
   hitCooldown: 0.2
-  enemySearchRadius: 30
+  enemySearchRadius: 10
   bulletLifetime: 3.5
   bulletDamage: 35
+  targetUpdateInterval: 0.2
+--- !u!195 &8825712044740088941
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8575660353434112914}
+  m_Enabled: 1
+  m_AgentTypeID: -1372625422
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 0
+  m_AutoBraking: 0
+  m_AutoRepath: 1
+  m_Height: 2.0000002
+  m_BaseOffset: 1.0000001
+  m_WalkableMask: 1
+  m_ObstacleAvoidanceType: 4
