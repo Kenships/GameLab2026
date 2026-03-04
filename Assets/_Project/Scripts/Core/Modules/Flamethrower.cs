@@ -27,25 +27,24 @@ namespace _Project.Scripts.Core.Modules
         [SerializeField] private float normalDps = 4f;
         [SerializeField] private float fastDps = 8f;
         [SerializeField] private float fastRadius = 10;
-        
+
         [Header("Player Selection Visuals")]
         [SerializeField] private GameObject player1Visual;
         [SerializeField] private GameObject player2Visual;
-    
+
 
         private float _currentDamage;
         private float _currentDps;
         private float _normalRadius;
         private RangeDetector _rangeDetector; // rangeType is sector
         private List<IDamageable> _enemies;
-        private bool _isDamagingEnemies;
         private CountdownTimer _attackCooldownTimer;
 
         private void Start()
         {
             _currentDamage = damage;
             _currentDps = normalDps;
-            _attackCooldownTimer = new CountdownTimer(1f/_currentDps);
+            _attackCooldownTimer = new CountdownTimer(1f / _currentDps);
             _enemies = new List<IDamageable>();
 
             _rangeDetector = GetComponent<RangeDetector>();
@@ -98,15 +97,15 @@ namespace _Project.Scripts.Core.Modules
                 return;
             }
 
-            foreach(IDamageable enemy in _enemies)
+            foreach (IDamageable enemy in _enemies)
             {
                 //potentially cache IDamageables for better performance
                 enemy?.Damage(_currentDamage);
             }
-            
-            _attackCooldownTimer.Reset(1f/_currentDps);
+
+            _attackCooldownTimer.Reset(1f / _currentDps);
         }
-        
+
         public override void ShowVisual(PlayerData.PlayerID playerID)
         {
             if (!player1Visual || !player2Visual)
@@ -114,7 +113,7 @@ namespace _Project.Scripts.Core.Modules
                 Debug.LogWarning("Player Selection Visuals not set");
                 return;
             }
-            
+
             if (playerID == PlayerData.PlayerID.Player1)
             {
                 player1Visual.SetActive(true);
@@ -132,7 +131,7 @@ namespace _Project.Scripts.Core.Modules
                 Debug.LogWarning("Player Selection Visuals not set");
                 return;
             }
-            
+
             if (playerID == PlayerData.PlayerID.Player1)
             {
                 player1Visual.SetActive(false);
@@ -154,12 +153,12 @@ namespace _Project.Scripts.Core.Modules
             PerformAttack();
             base.AttackState();
         }
-    
+
         protected override void OnStateChanged(ModuleState newState)
         {
             switch (newState)
             {
-                case ModuleState.Load :
+                case ModuleState.Load:
                     UpdateParticleAngle(_rangeDetector.angle * angleMultiplier, emissionRateToAngleRatio);
                     _rangeDetector.radius = _normalRadius;
                     UpdateDistance(_rangeDetector.radius * radiusMultiplier);
@@ -167,13 +166,13 @@ namespace _Project.Scripts.Core.Modules
                     _currentDamage = damage;
                     _currentDps = normalDps;
                     break;
-                case ModuleState.Attack :
+                case ModuleState.Attack:
                     _currentDps = fastDps;
                     UpdateParticleAngle(_rangeDetector.angle * angleMultiplier, fastEmissionRateToAngleRatio);
                     _rangeDetector.radius = fastRadius;
                     UpdateDistance(_rangeDetector.radius * fastRadiusMultiplier);
                     break;
-                case ModuleState.Used :
+                case ModuleState.Used:
                     particle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
                     _currentDamage = 0;
                     break;

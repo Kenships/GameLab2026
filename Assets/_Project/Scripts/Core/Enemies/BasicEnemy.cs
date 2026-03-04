@@ -55,7 +55,7 @@ namespace _Project.Scripts.Core.Enemies
             else
             {
                 
-                Debug.Log("Arrived at VHS");
+                //Debug.Log("Arrived at VHS");
                 if (_damageTimer <= 0f)
                 {
                     DamageVhs(_attackDamage);
