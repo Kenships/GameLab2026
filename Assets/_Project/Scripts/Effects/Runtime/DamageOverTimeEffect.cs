@@ -76,8 +76,8 @@ namespace _Project.Scripts.Effects.Runtime
             }
 
             // If there is progress to the next tick with the old effect, give the new effect a headstart.
-            float minTimeUntilNextTick = Mathf.Min(oldDotEffect.TimeUntilNextTick, newDotEffect.TimeUntilNextTick);
-            newDotEffect.Duration = newDotEffect.Duration - newDotEffect.TickInterval + minTimeUntilNextTick;
+            float headStart = Mathf.Min(oldDotEffect.TimeUntilNextTick, newDotEffect.TickInterval);
+            newDotEffect.Duration = Mathf.Max(0, newDotEffect.Duration - newDotEffect.TickInterval + headStart);
 
             // Cancel the old effect
             oldDotEffect.Cancel();
