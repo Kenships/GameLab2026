@@ -31,9 +31,20 @@ namespace _Project.Scripts.Core.Modules.Base_Class
         {
             _health = gameObject.GetOrAdd<Health>();
             _health.Initialize(maxHealth);
+        }
+
+        protected virtual void Start()
+        {
             _health.OnDeath += OnDeath;
             _health.OnFullHp += OnFullHp;
         }
+        
+        protected virtual void OnDestroy()
+        {
+            _health.OnDeath -= OnDeath;
+            _health.OnFullHp -= OnFullHp;
+        }
+        
         
         private void OnDeath()
         {
