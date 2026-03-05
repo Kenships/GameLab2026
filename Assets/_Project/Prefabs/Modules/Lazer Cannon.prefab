@@ -478,8 +478,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 6, y: 0.566, z: -5}
-  m_LocalScale: {x: 0.25, y: 1, z: 0.25}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7588427625404026378}
   - {fileID: 1618131733146313365}
@@ -561,7 +561,9 @@ MonoBehaviour:
   rewindSound: {fileID: 8300000, guid: 904184cbab2ef6d4eb570d029d20a47c, type: 3}
   rewindSoundVolume: 1
   lazerBeamStartPos: {fileID: 6496225764396330049}
-  damage: 90
+  damage: 100
+  lazerBeamDuration: 2
+  dps: 10
   player1Visual: {fileID: 7622297548106014581}
   player2Visual: {fileID: 7733281396559360716}
 --- !u!114 &4207550931829158317

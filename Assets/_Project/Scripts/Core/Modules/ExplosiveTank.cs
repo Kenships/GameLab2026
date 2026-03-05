@@ -2,6 +2,8 @@ using _Project.Scripts.Core;
 using _Project.Scripts.Core.HealthManagement;
 using _Project.Scripts.Core.Modules.Base_Class;
 using _Project.Scripts.Core.Player;
+using _Project.Scripts.Util.Timer.Timers;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,6 +16,8 @@ public class ExplosiveTank : HpPickupModuleBase
 
     [Header("Explosive Tank Settings")]
     [SerializeField] private float damage = 90f;
+    [Tooltip("Does damage twice, to fit the explosion VFX")]
+    [SerializeField] private float timeGapBeforeSecondAttack = 0.75f;
 
     [Header("Player Selection Visuals")]
     [SerializeField] private GameObject player1Visual;
@@ -26,6 +30,9 @@ public class ExplosiveTank : HpPickupModuleBase
     private void Start()
     {
         _enemies = new List<IDamageable>();
+
+        var main = explosionParticle.main;
+        main.stopAction = ParticleSystemStopAction.Callback;
 
         _rangeDetector = GetComponent<RangeDetector>();
         if (!_rangeDetector)
@@ -94,11 +101,6 @@ public class ExplosiveTank : HpPickupModuleBase
     }
 
     #region State Methods
-    protected override void UsedState()
-    {
-        PerformAttack();
-        base.UsedState();
-    }
 
     protected override void OnStateChanged(ModuleState newState)
     {
@@ -111,7 +113,9 @@ public class ExplosiveTank : HpPickupModuleBase
             case ModuleState.Attack:
                 break;
             case ModuleState.Used:
+                PerformAttack();
                 explosionParticle.Play();
+                Invoke("PerformAttack", timeGapBeforeSecondAttack);
                 loadModel.SetActive(false);
                 usedModel.SetActive(true);
                 break;
