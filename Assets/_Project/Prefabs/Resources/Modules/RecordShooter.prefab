@@ -782,6 +782,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e66bdfa4bd24ba741a6b1d37dd0f9669, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RecordDiscShooter
+  description: Hurles Vinyl records that seek the enemy.
   state: 1
   pickupOffset: {x: 0, y: 0, z: 0}
   pickUpSound: {fileID: 8300000, guid: 602022546f4e4474a8d87cf01f887e79, type: 3}
@@ -854,7 +855,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RangeDetector
   rangeType: 0
   radius: 5
-  angle: 60
+  angle: 35
   width: 5
   length: 10
   targetLayers:

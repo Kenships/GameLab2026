@@ -16,6 +16,7 @@ namespace _Project.Scripts.Core.Modules.Base_Class
             Attack,
             Used
         }
+        [TextArea]public string description = "If this module is player-placeable define this";
         
         private ModuleState _previousState = ModuleState.None;
         public ModuleState state = ModuleState.Load;

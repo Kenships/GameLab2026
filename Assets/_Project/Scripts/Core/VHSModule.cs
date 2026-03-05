@@ -1,8 +1,12 @@
 using _Project.Scripts.Core.HealthManagement;
+using _Project.Scripts.Core.InputManagement.Interfaces;
 using _Project.Scripts.Core.Modules.Base_Class;
 using _Project.Scripts.Core.Player;
 using _Project.Scripts.Core.SceneLoading;
 using _Project.Scripts.Util.ExtensionMethods;
+using Sisus.Init;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -19,16 +23,60 @@ namespace _Project.Scripts.Core
         [SerializeField] private float defaultRewindSpeed = 1f;
         [SerializeField] private float fastForwardMultiplier = 1.2f;
 
+        [Header("VHS Progression")]
+        [SerializeField] private int amountofmilestones = 8;
+        [SerializeField] private Stack<float> milestones = new Stack<float>();
+
+
+
         private Health _myHealth;
         private bool _isFastForwarding;
+        private SceneLoader _sceneLoader;
+
         
+
         protected override void OnAwake()
         {
             _myHealth = gameObject.GetOrAdd<Health>();
             _myHealth.Initialize(vhsMaxHealth, 0);
-            
+
+            _sceneLoader = GetComponent<SceneLoader>();
+
+            DetermineProgressMilestones();
+
             // TODO: Temporary please fix
             _myHealth.OnFullHp += () => GetComponent<SceneLoader>().LoadScene();
+        }
+
+        private void DetermineProgressMilestones()
+        {
+            int tempamountofmilestones = amountofmilestones + 1;
+            float milestoneDiference = vhsMaxHealth / tempamountofmilestones;
+
+            // right now i starts at -1 because no reward at the end of the game (compensated by adding 1 in prev step)
+
+            for (int i = tempamountofmilestones - 1; i > 0; i--)
+            {
+                float temp = milestoneDiference * i;
+                //Debug.Log(temp + "milestone");
+                milestones.Push(temp);
+            }
+    
+        }
+
+        void Update()
+        {
+            if (milestones.Count > 0 && _myHealth.CurrentHealth >= milestones.Peek())
+            {
+                MilestoneReached();
+            }
+        }
+
+        private void MilestoneReached()
+        {
+            milestones.Pop();
+            _sceneLoader.LoadScene();
+            Time.timeScale = 0f;
         }
 
         public void Damage(float damage)
@@ -101,7 +149,6 @@ namespace _Project.Scripts.Core
                 player2Visual.SetActive(false);
             }
         }
-
         
     }
 }

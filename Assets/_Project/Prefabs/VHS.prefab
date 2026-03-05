@@ -375,6 +375,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7715253540533279948}
+  - component: {fileID: 4247614034925740851}
   - component: {fileID: 2366788554856475630}
   m_Layer: 0
   m_Name: VHS
@@ -402,6 +403,29 @@ Transform:
   - {fileID: 4805440293248921294}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4247614034925740851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2853457693616237105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87a94ed4d94741cf9171f9df3c6c3360, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.SceneLoading.SceneLoader
+  loadOnAwake: 0
+  setActive: 0
+  activeSceneIndex:
+    buildIndex: 0
+  scenesToLoad:
+  - buildIndex: 9
+  unloadDisabled: 0
+  scenesToUnload: []
+  withOverlay: 0
+  sceneGroup: 1
+  actionMap: 3
 --- !u!114 &2366788554856475630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -414,13 +438,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ede6ff738f9642545af8030ddb0bba11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VHSManager
+  description: If this module is player-placeable define this
   state: 1
-  healthBar: {fileID: 5535855756826938147}
   player1Visual: {fileID: 6847911905089575946}
   player2Visual: {fileID: 1429555698321681106}
   vhsMaxHealth: 300
   defaultRewindSpeed: 1
   fastForwardMultiplier: 1.2
+  amountofmilestones: 10
 --- !u!1 &3128919546977635685
 GameObject:
   m_ObjectHideFlags: 0
