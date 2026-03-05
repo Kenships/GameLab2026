@@ -21,9 +21,12 @@ namespace _Project.Scripts.Core.Enemies
         [SerializeReference, SubclassSelector] protected List<IEffect<IDamageable>> damageEffects = new();
         [SerializeReference, SubclassSelector] protected List<IEffect<EnemyBase>> enemyEffects = new();
         
+        public float Health => _health.CurrentHealth;
+        public float Speed => _moveSpeed * SpeedMultiplier;
         
         protected AudioPooler _audioPooler;
         protected Health _health;
+        protected float _moveSpeed;
         
         protected override void Init(AudioPooler playerReader)
         {
