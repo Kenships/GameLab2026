@@ -37,7 +37,9 @@ namespace _Project.Scripts.Core
         [ShowIf(nameof(IsRectangle))]public float width = 5f;
         [ShowIf(nameof(IsRectangle))] public float length = 10f;
 
-        [Header("Target Filter")] public LayerMask targetLayers;
+        [Header("Target Filter")] 
+        public LayerMask targetLayers;
+        public LayerMask obsticalLayers;
 
         [Header("Start Point")] public Transform startingTransform; // If not assigned, this.transform will be used
 
@@ -56,7 +58,7 @@ namespace _Project.Scripts.Core
             _colliderBuffer = new Collider[colliderBufferSize];
         }
 
-        public void GetObjectTypeInRangeNoAlloc<T>(List<T> objectList)
+        public void GetObjectTypeInRangeNoAlloc<T>(List<T> objectList, bool checkLineOfSight = true)
         {
             // Initialize Current and Previous in range sets
             _previouslyInRange.Clear();
@@ -70,11 +72,12 @@ namespace _Project.Scripts.Core
             Transform start = GetStartingTransform();
             float maxRange = GetMaxRange();
 
-            int count = Physics.OverlapSphereNonAlloc(start.position, maxRange, _colliderBuffer);
+            int count = Physics.OverlapSphereNonAlloc(start.position, maxRange, _colliderBuffer, targetLayers);
 
             for (int i = 0; i < count; i++)
             {
-                if (!_colliderBuffer[i].IsOnLayer(targetLayers) || !IsInRange(_colliderBuffer[i].transform, start)) continue;
+                if (!IsInRange(_colliderBuffer[i].transform, start) ||
+                    (checkLineOfSight && !IsLineOfSight(_colliderBuffer[i].transform, start))) continue;
                 
                 if (!_previouslyInRange.Contains(_colliderBuffer[i]))
                 {
@@ -103,13 +106,56 @@ namespace _Project.Scripts.Core
             }
         }
 
+        private bool IsLineOfSight(Transform a,
+            Transform b,
+            float eyeHeight = .5f,
+            float sideOffset = .4f)
+        {
+            Vector3 origin = a.position + Vector3.up * eyeHeight;
+            Vector3 center = b.position + Vector3.up * eyeHeight;
+
+            Vector3 right = b.right * sideOffset;
+
+            Vector3[] points =
+            {
+                center,            // center
+                center + right,    // right side
+                center - right     // left side
+            };
+
+            foreach (var p in points)
+            {
+                Vector3 dir = p - origin;
+                float dist = dir.magnitude;
+
+                if (!Physics.Raycast(origin, dir.normalized, dist, obsticalLayers, QueryTriggerInteraction.Ignore))
+                {
+                    return true; // at least one ray reached target
+                }
+            }
+
+            return false;
+        }
+
         public T GetClosestObjectOfType<T>()
         {
             List<Transform> transforms = GetTransformsInRange();
-            return transforms.Count == 0
-                ? default
-                : transforms.OrderBy(t => GetDistance(GetStartingTransform().position, t.position)).First()
-                    .GetComponent<T>();
+            Transform closest = null;
+            float best = float.MaxValue;
+
+            var startPos = GetStartingTransform().position;
+
+            foreach (var t in transforms)
+            {
+                float d = GetDistance(startPos, t.position);
+                if (d < best)
+                {
+                    best = d;
+                    closest = t;
+                }
+            }
+
+            return closest ? closest.GetComponent<T>() : default;
         }
 
         public List<T> GetObjectTypeInRange<T>()

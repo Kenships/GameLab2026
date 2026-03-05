@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using _Project.Scripts.Core.Modules.Base_Class;
 using _Project.Scripts.Core.Player;
@@ -45,7 +46,7 @@ namespace _Project.Scripts.Core.Modules
 
         private void Start()
         {
-            _rangeDetector = GetComponent<RangeDetector>();
+            _rangeDetector ??= GetComponent<RangeDetector>();
             _rangeDetector.radius = detectionRange;
             _currentBulletSpeed = defaultBulletSpeed;
             _currentTimeBetweenShots = timeBetweenShots;
@@ -168,6 +169,14 @@ namespace _Project.Scripts.Core.Modules
             {
                 player2Visual.SetActive(false);
             }
+        }
+
+        private void OnValidate()
+        {
+            #if UNITY_EDITOR
+            _rangeDetector ??= GetComponent<RangeDetector>();
+            _rangeDetector.radius = detectionRange; 
+            #endif
         }
     }
 }

@@ -1,6 +1,7 @@
 using _Project.Scripts.Core.AudioPooling;
 using _Project.Scripts.Core.Enemies;
 using _Project.Scripts.Effects.Inflictors;
+using _Project.Scripts.Util.ExtensionMethods;
 using Sisus.Init;
 using UnityEngine;
 using AudioType = _Project.Scripts.Core.AudioPooling.Interface.AudioType;
@@ -151,7 +152,7 @@ public class RecordDiscBullet : MonoBehaviour<AudioPooler>
         
         if (_hitTimer > 0f) return;
 
-        if ((_enemyLayer.value & (1 << other.gameObject.layer)) == 0)
+        if (!other.IsOnLayer(_enemyLayer))
         {
             return;
         }
