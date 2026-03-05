@@ -1,4 +1,3 @@
-using _Project.Scripts.Core.Modules.Base_Class;
 using _Project.Scripts.Core.Modules.Interface;
 using Sisus.Init;
 using UnityEngine;
@@ -8,7 +7,6 @@ namespace _Project.Scripts.Core.Player
     public class PlayerModule : MonoBehaviour<PlayerMovementController>, ITimeControllable
     {
         // potentially migrate to global settings?
-        [SerializeField] private bool canPickUpPlayer = true;
         [SerializeField] private float fastForwardSpeedMultiplier = 1.5f;
         [SerializeField] private float rewindSpeedMultiplier = 0.5f;
         
