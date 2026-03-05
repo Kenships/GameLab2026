@@ -82,7 +82,7 @@ namespace _Project.Scripts.Core
             // NOP
         }
 
-        protected override void OnStateChanged(ModuleState newState)
+        protected override void OnStateChanged(ModuleState prevState)
         {
             // NOP
         }

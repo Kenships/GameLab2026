@@ -100,9 +100,9 @@ public class ExplosiveTank : HpPickupModuleBase
         base.UsedState();
     }
 
-    protected override void OnStateChanged(ModuleState newState)
+    protected override void OnStateChanged(ModuleState prevState)
     {
-        switch (newState)
+        switch (prevState)
         {
             case ModuleState.Load:
                 usedModel.SetActive(false);

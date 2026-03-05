@@ -157,9 +157,9 @@ namespace _Project.Scripts.Core.Modules
             base.AttackState();
         }
 
-        protected override void OnStateChanged(ModuleState newState)
+        protected override void OnStateChanged(ModuleState prevState)
         {
-            switch (newState)
+            switch (prevState)
             {
                 case ModuleState.Load:
                     UpdateParticleAngle(_rangeDetector.angle * angleMultiplier, emissionRateToAngleRatio);
