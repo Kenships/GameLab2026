@@ -25,7 +25,9 @@ namespace _Project.Scripts.Core.Player
         private bool _jumpRequested;
 
         private bool _disableMovement;
-        
+
+        public float SpeedMultiplier { get; set; } = 1f;
+
         protected override void Init(INESActionReader argument, KinematicCharacterMotor motor, Camera mainCamera)
         {
             _inputReader = argument;
@@ -133,13 +135,13 @@ namespace _Project.Scripts.Core.Player
                 currentVelocity.y = 0;
             }
 
-            Vector3 horizontalTarget = _moveInputVector * _currentMovementSpeed;
+            Vector3 horizontalTarget = _moveInputVector * (_currentMovementSpeed * SpeedMultiplier);
             currentVelocity.x = Mathf.Lerp(currentVelocity.x, horizontalTarget.x, planarAcceleration * deltaTime);
             currentVelocity.z = Mathf.Lerp(currentVelocity.z, horizontalTarget.z, verticalAcceleration * deltaTime);
         }
 
         public void AfterCharacterUpdate(float deltaTime) { }
-        public bool IsColliderValidForCollisions(Collider coll) { return true; }
+        public bool IsColliderValidForCollisions(Collider coll) { return !_disableMovement; }
         public void OnDiscreteCollisionDetected(Collider hitCollider) { }
         public void OnGroundHit(Collider hitCollider, Vector3 hitNormal, Vector3 hitPoint, ref HitStabilityReport hitStabilityReport) { }
         public void OnMovementHit(Collider hitCollider, Vector3 hitNormal, Vector3 hitPoint, ref HitStabilityReport hitStabilityReport) { }

@@ -37,7 +37,7 @@ namespace _Project.Scripts.Core.Player
 
         public bool IsTimeControlling {get; private set;}
         
-        public int PlayerID { get; set; }
+        public PlayerData.PlayerID PlayerID { get; set; }
         
         protected override void Init(INESActionReader nesActionReader, IGridService gridService, ILogger logger, AudioPooler audioPooler)
         {
@@ -45,6 +45,8 @@ namespace _Project.Scripts.Core.Player
             _gridService = gridService;
             _rangeDetector = GetComponent<RangeDetector>();
             _audioPooler = audioPooler;
+            PlayerID = GetComponent<PlayerData>().ID;
+            
         }
         
         private void OnEnable()
