@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace _Project.Scripts.Targeting
+namespace _Project.Scripts.Targeting.Interface
 {
     public interface ITargetingStrategy<T>
     {

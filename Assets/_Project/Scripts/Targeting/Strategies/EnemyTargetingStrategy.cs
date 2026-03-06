@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
 using _Project.Scripts.Core.Enemies;
+using _Project.Scripts.Targeting.Interface;
 using UnityEngine;
 
-namespace _Project.Scripts.Targeting
+namespace _Project.Scripts.Targeting.Strategies
 {
     [Serializable]
     public class EnemyTargetingStrategy : ITargetingStrategy<EnemyBase>
