@@ -1,15 +1,12 @@
-using System;
 using System.Collections.Generic;
 using _Project.Scripts.Core.AudioPooling;
 using _Project.Scripts.Core.HealthManagement;
-using _Project.Scripts.Effects;
 using _Project.Scripts.Effects.Interface;
 using _Project.Scripts.Effects.Runtime;
 using _Project.Scripts.Util.CustomAttributes;
 using _Project.Scripts.Util.ExtensionMethods;
 using Sisus.Init;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace _Project.Scripts.Core.Enemies
 {
@@ -21,9 +18,12 @@ namespace _Project.Scripts.Core.Enemies
         [SerializeReference, SubclassSelector] protected List<IEffect<IDamageable>> damageEffects = new();
         [SerializeReference, SubclassSelector] protected List<IEffect<EnemyBase>> enemyEffects = new();
         
+        public float Health => _health.CurrentHealth;
+        public float Speed => _moveSpeed * SpeedMultiplier;
         
         protected AudioPooler _audioPooler;
         protected Health _health;
+        protected float _moveSpeed;
         
         protected override void Init(AudioPooler playerReader)
         {

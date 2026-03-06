@@ -5,13 +5,17 @@ using _Project.Scripts.Core.Player;
 using _Project.Scripts.Core.SceneLoading;
 using _Project.Scripts.Effects;
 using _Project.Scripts.Effects.Interface;
+using _Project.Scripts.Targeting;
 using _Project.Scripts.Util.ExtensionMethods;
 using UnityEngine;
 
 namespace _Project.Scripts.Core
 {
+    
     public class VHSModule : Module, IDamageable
     {
+        public static Transform Location;
+        
         [Header("References")]
         [SerializeField] private GameObject player1Visual;
         [SerializeField] private GameObject player2Visual;
@@ -78,7 +82,7 @@ namespace _Project.Scripts.Core
             // NOP
         }
 
-        protected override void OnStateChanged(ModuleState newState)
+        protected override void OnStateChanged(ModuleState prevState)
         {
             // NOP
         }

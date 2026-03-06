@@ -23,8 +23,9 @@ public class ExplosiveTank : HpPickupModuleBase
     private RangeDetector _rangeDetector; // rangeType is circle
     private List<IDamageable> _enemies;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         _enemies = new List<IDamageable>();
 
         _rangeDetector = GetComponent<RangeDetector>();
@@ -100,9 +101,9 @@ public class ExplosiveTank : HpPickupModuleBase
         base.UsedState();
     }
 
-    protected override void OnStateChanged(ModuleState newState)
+    protected override void OnStateChanged(ModuleState prevState)
     {
-        switch (newState)
+        switch (prevState)
         {
             case ModuleState.Load:
                 usedModel.SetActive(false);

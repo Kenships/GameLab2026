@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Reflection;
 using UnityEditor;
 using UnityEngine;
@@ -13,7 +14,6 @@ namespace _Project.Scripts.Util.CustomAttributes.Editor
             if (!ShouldShow(property))
                 return;
 
-            // If field has [Range], draw slider manually (because Unity won't stack drawers)
             var range = fieldInfo.GetCustomAttribute<RangeAttribute>(true);
             if (range != null)
             {
@@ -21,7 +21,6 @@ namespace _Project.Scripts.Util.CustomAttributes.Editor
                 return;
             }
 
-            // Default draw (will include other non-drawer attributes like Header/Tooltip)
             EditorGUI.PropertyField(position, property, label, true);
         }
 
@@ -29,9 +28,9 @@ namespace _Project.Scripts.Util.CustomAttributes.Editor
         {
             return ShouldShow(property)
                 ? EditorGUI.GetPropertyHeight(property, label, true)
-                : 0;
+                : 0f;
         }
-        
+
         private void DrawRange(Rect position, SerializedProperty property, GUIContent label, RangeAttribute range)
         {
             if (property.propertyType == SerializedPropertyType.Float)
@@ -44,65 +43,96 @@ namespace _Project.Scripts.Util.CustomAttributes.Editor
             }
             else
             {
-                // Range on unsupported type – fallback
                 EditorGUI.PropertyField(position, property, label, true);
             }
         }
 
-        bool ShouldShow(SerializedProperty property)
+        private bool ShouldShow(SerializedProperty property)
         {
             var cond = (ShowIfAttribute)attribute;
 
-            // 1) Fast path: serialized bool field
-            var boolProp = property.serializedObject.FindProperty(cond.BoolFieldName);
+            // Fast path: try relative lookup first, then absolute lookup.
+            var boolProp = FindRelativeProperty(property, cond.BoolFieldName) 
+                           ?? property.serializedObject.FindProperty(cond.BoolFieldName);
+
             if (boolProp != null && boolProp.propertyType == SerializedPropertyType.Boolean)
                 return cond.Invert ? !boolProp.boolValue : boolProp.boolValue;
 
-            // 2) Reflection fallback: field OR property OR method on the owning object
+            // Reflection fallback on the actual owner object.
             object owner = GetOwnerObject(property);
             if (owner != null && TryGetBoolMember(owner, cond.BoolFieldName, out bool result))
                 return cond.Invert ? !result : result;
 
-            Debug.LogWarning($"ShowIf: Could not find bool member '{cond.BoolFieldName}' (field/property/method).");
+            Debug.LogWarning(
+                $"ShowIf: Could not find bool member '{cond.BoolFieldName}' on '{owner?.GetType().FullName ?? "null"}'.");
             return true; // fail open
         }
 
-        static bool TryGetBoolMember(object obj, string name, out bool value)
+        private static SerializedProperty FindRelativeProperty(SerializedProperty property, string memberName)
         {
-            const BindingFlags flags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
+            if (property == null || string.IsNullOrEmpty(memberName))
+                return null;
 
-            var t = obj.GetType();
+            string path = property.propertyPath;
+            int lastDot = path.LastIndexOf('.');
+            if (lastDot < 0)
+                return null;
 
-            // field
-            var f = t.GetField(name, flags);
-            if (f != null && f.FieldType == typeof(bool))
-            {
-                value = (bool)f.GetValue(obj);
-                return true;
-            }
+            string parentPath = path.Substring(0, lastDot);
+            return property.serializedObject.FindProperty($"{parentPath}.{memberName}");
+        }
 
-            // property
-            var p = t.GetProperty(name, flags);
-            if (p != null && p.PropertyType == typeof(bool) && p.GetIndexParameters().Length == 0)
-            {
-                value = (bool)p.GetValue(obj);
-                return true;
-            }
-
-            // method bool Name()
-            var m = t.GetMethod(name, flags, null, Type.EmptyTypes, null);
-            if (m != null && m.ReturnType == typeof(bool))
-            {
-                value = (bool)m.Invoke(obj, null);
-                return true;
-            }
-
+        private static bool TryGetBoolMember(object obj, string name, out bool value)
+        {
             value = default;
+
+            if (obj == null || string.IsNullOrEmpty(name))
+                return false;
+
+            Type type = obj.GetType();
+
+            while (type != null)
+            {
+                const BindingFlags flags =
+                    BindingFlags.Instance |
+                    BindingFlags.Public |
+                    BindingFlags.NonPublic |
+                    BindingFlags.DeclaredOnly;
+
+                // field
+                FieldInfo f = type.GetField(name, flags);
+                if (f != null && f.FieldType == typeof(bool))
+                {
+                    value = (bool)f.GetValue(obj);
+                    return true;
+                }
+
+                // property
+                PropertyInfo p = type.GetProperty(name, flags);
+                if (p != null &&
+                    p.PropertyType == typeof(bool) &&
+                    p.GetIndexParameters().Length == 0)
+                {
+                    value = (bool)p.GetValue(obj);
+                    return true;
+                }
+
+                // method bool Name()
+                MethodInfo m = type.GetMethod(name, flags, null, Type.EmptyTypes, null);
+                if (m != null && m.ReturnType == typeof(bool))
+                {
+                    value = (bool)m.Invoke(obj, null);
+                    return true;
+                }
+
+                type = type.BaseType;
+            }
+
             return false;
         }
 
-// Resolves the object instance that *owns* the drawn property (handles nested objects + arrays)
-        static object GetOwnerObject(SerializedProperty property)
+        // Resolves the object instance that owns the drawn property (handles nested objects + arrays + base members)
+        private static object GetOwnerObject(SerializedProperty property)
         {
             object obj = property.serializedObject.targetObject;
             if (obj == null)
@@ -111,6 +141,7 @@ namespace _Project.Scripts.Util.CustomAttributes.Editor
             string path = property.propertyPath.Replace(".Array.data[", "[");
             string[] elements = path.Split('.');
 
+            // Walk to parent of the final member being drawn
             for (int i = 0; i < elements.Length - 1; i++)
             {
                 obj = GetValue(obj, elements[i]);
@@ -121,30 +152,67 @@ namespace _Project.Scripts.Util.CustomAttributes.Editor
             return obj;
         }
 
-        static object GetValue(object obj, string element)
+        private static object GetValue(object obj, string element)
         {
-            const BindingFlags flags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
+            if (obj == null || string.IsNullOrEmpty(element))
+                return null;
 
-            int bracket = element.IndexOf('[');
-            if (bracket >= 0)
+            int bracketIndex = element.IndexOf('[');
+            if (bracketIndex >= 0)
             {
-                string fieldName = element.Substring(0, bracket);
-                int index = int.Parse(element.Substring(bracket + 1, element.Length - bracket - 2));
+                string memberName = element.Substring(0, bracketIndex);
+                int index = int.Parse(element.Substring(bracketIndex + 1, element.Length - bracketIndex - 2));
 
-                var field = obj.GetType().GetField(fieldName, flags);
-                if (field == null)
-                    return null;
-
-                if (field.GetValue(obj) is System.Collections.IList list && index >= 0 && index < list.Count)
-                    return list[index];
+                object collection = GetMemberValue(obj, memberName);
+                if (collection is IList list)
+                {
+                    if (index >= 0 && index < list.Count)
+                        return list[index];
+                }
+                else if (collection is IEnumerable enumerable)
+                {
+                    int i = 0;
+                    foreach (object item in enumerable)
+                    {
+                        if (i == index)
+                            return item;
+                        i++;
+                    }
+                }
 
                 return null;
             }
-            else
+
+            return GetMemberValue(obj, element);
+        }
+
+        private static object GetMemberValue(object obj, string memberName)
+        {
+            if (obj == null || string.IsNullOrEmpty(memberName))
+                return null;
+
+            Type type = obj.GetType();
+
+            while (type != null)
             {
-                var field = obj.GetType().GetField(element, flags);
-                return field?.GetValue(obj);
+                const BindingFlags flags =
+                    BindingFlags.Instance |
+                    BindingFlags.Public |
+                    BindingFlags.NonPublic |
+                    BindingFlags.DeclaredOnly;
+
+                FieldInfo field = type.GetField(memberName, flags);
+                if (field != null)
+                    return field.GetValue(obj);
+
+                PropertyInfo prop = type.GetProperty(memberName, flags);
+                if (prop != null && prop.GetIndexParameters().Length == 0)
+                    return prop.GetValue(obj);
+
+                type = type.BaseType;
             }
+
+            return null;
         }
     }
 }

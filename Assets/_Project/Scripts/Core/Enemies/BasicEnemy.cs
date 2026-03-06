@@ -10,7 +10,6 @@ namespace _Project.Scripts.Core.Enemies
         private static Transform _cachedVhsTransform;
         
         private Transform _target;
-        private float _moveSpeed;
         private float _attackCooldown; 
         private float _attackDamage; 
         private float _damageTimer;

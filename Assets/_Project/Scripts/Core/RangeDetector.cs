@@ -1,9 +1,6 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
+using _Project.Scripts.Targeting;
 using _Project.Scripts.Util.CustomAttributes;
-using _Project.Scripts.Util.ExtensionMethods;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -46,7 +43,7 @@ namespace _Project.Scripts.Core
         [Header("Other")]
         public bool ignoreYAxis = true; // Default true: only XZ plane is considered (ignores height difference)
 
-        [SerializeField] private int colliderBufferSize = 10;
+        [SerializeField] private int colliderBufferSize = 100;
 
         private Collider _myCollider;
         private Collider[] _colliderBuffer;
