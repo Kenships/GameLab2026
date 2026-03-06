@@ -1,51 +1,52 @@
-using System;
 using _Project.Scripts.Core.HealthManagement;
+using _Project.Scripts.Util.ExtensionMethods;
 using UnityEngine;
 using UnityEngine.AI;
 
 namespace _Project.Scripts.Core.Enemies
 {
-    public class BasicEnemy : MonoBehaviour, IDamageable
+    public class BasicEnemy : EnemyBase
     {
-        private Transform _target; //takes from EnemySpawnManager
-        private Health _health;
-        private float _attackCooldown; //takes from EnemySpawnManager
-        private int _attackDamage; //takes from  EnemySpawnManager
-
-        private bool _atVhs; //true if arrived at VHS
-
-        private float _damageTimer;
+        private static Transform _cachedVhsTransform;
         
+        private Transform _target;
+        private float _attackCooldown; 
+        private float _attackDamage; 
+        private float _damageTimer;
         private NavMeshAgent _navMeshAgent;
 
-        public void Initialize(Transform target, Health health, float moveSpeed, float attackCooldown, int attackDamage)
+        public void Initialize(float maxHealth, float moveSpeed, float attackCooldown, float attackDamage)
         {
-            _atVhs = false;
-            _target = target;
-            _health = health;
+            _cachedVhsTransform ??= FindFirstObjectByType<VHSModule>().transform;
+            _target = _cachedVhsTransform;
+            
+            _health ??= gameObject.GetOrAdd<Health>();
+            _health.Initialize(maxHealth);
+            
             _attackCooldown = attackCooldown;
             _attackDamage = attackDamage;
             
             _navMeshAgent = GetComponent<NavMeshAgent>();
-            _navMeshAgent.speed = moveSpeed;
+            _moveSpeed = moveSpeed;
             
             _health.OnDeath += OnDeath;
         }
 
-        private void OnDestroy()
+        private void FixedUpdate()
         {
-            _health.OnDeath -= OnDeath;
-        }
-
-        private void Update()
-        {
+            if (Stunned){
+                _navMeshAgent.isStopped = true;
+                return;
+            }
+            
+            _navMeshAgent.isStopped = false;
+            _navMeshAgent.speed = _moveSpeed * SpeedMultiplier;
+            
             if (!_target) return;
-            
-            
             
             float distance = Vector3.Distance(transform.position, _target.position);
 
-            _damageTimer -= Time.deltaTime;
+            _damageTimer -= Time.deltaTime * SpeedMultiplier;
             
             if (distance > 2f)
             {
@@ -54,8 +55,6 @@ namespace _Project.Scripts.Core.Enemies
             }
             else
             {
-                
-                Debug.Log("Arrived at VHS");
                 if (_damageTimer <= 0f)
                 {
                     DamageVhs(_attackDamage);
@@ -64,22 +63,12 @@ namespace _Project.Scripts.Core.Enemies
             }
         }
 
-        private void DamageVhs(int damage)
+        private void DamageVhs(float damage)
         {
             if (_target.TryGetComponent(out IDamageable damageable))
             {
                 damageable.Damage(damage);
             }
-        }
-
-        public void Damage(float damage)
-        {
-            _health.AddToHealth(-damage);
-        }
-        
-        private void OnDeath()
-        {
-            Destroy(gameObject);
         }
     }
 }

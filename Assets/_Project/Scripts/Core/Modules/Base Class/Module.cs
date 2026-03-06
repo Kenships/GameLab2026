@@ -1,5 +1,6 @@
 using _Project.Scripts.Core.AudioPooling;
 using _Project.Scripts.Core.Modules.Interface;
+using _Project.Scripts.Core.Player;
 using Sisus.Init;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -29,8 +30,8 @@ namespace _Project.Scripts.Core.Modules.Base_Class
         {
             if (_previousState != state)
             {
+                OnStateChanged(_previousState);
                 _previousState = state;
-                OnStateChanged(state);
             }
             
             switch (state)
@@ -55,12 +56,12 @@ namespace _Project.Scripts.Core.Modules.Base_Class
         protected abstract void LoadState();
         protected abstract void AttackState();
         protected abstract void UsedState();
-        protected abstract void OnStateChanged(ModuleState newState);
+        protected abstract void OnStateChanged(ModuleState prevState);
         public abstract void Rewind();
         public abstract void FastForward();
         public abstract void CancelRewind();
         public abstract void CancelFastForward();
-        public abstract void ShowVisual(int playerIndex);
-        public abstract void HideVisual(int playerIndex);
+        public abstract void ShowVisual(PlayerData.PlayerID playerID);
+        public abstract void HideVisual(PlayerData.PlayerID playerID);
     }
 }
