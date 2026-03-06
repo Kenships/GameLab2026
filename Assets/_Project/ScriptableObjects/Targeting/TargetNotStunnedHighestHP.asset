@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1eb56ce774184cf59723dd7d34acc585, type: 3}
+  m_Name: TargetNotStunnedHighestHP
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Targeting.Strategies.EnemyTargetingStrategy
+  fallbackStrategy: {fileID: 11400000, guid: e79a6ed2001bc524fab0d8f9f7facc09, type: 2}
+  filters:
+  - rid: 6145034277758697655
+  - rid: 6145034277758697654
+  references:
+    version: 2
+    RefIds:
+    - rid: 6145034277758697654
+      type: {class: FilterEnemiesByHp, ns: _Project.Scripts.Targeting.Filters, asm: Assembly-CSharp}
+      data:
+        mode: 0
+        amount: 1
+        value: 0
+    - rid: 6145034277758697655
+      type: {class: FilterStunnedEnemies, ns: _Project.Scripts.Targeting.Filters, asm: Assembly-CSharp}
+      data:
+        invert: 1
