@@ -1975,41 +1975,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1738633723}
   m_CullTransparentMesh: 1
---- !u!1 &1835333216
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1835333217}
-  m_Layer: 5
-  m_Name: ModuleSpawnpoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1835333217
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1835333216}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 4.44}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1915361339
 GameObject:
   m_ObjectHideFlags: 0
@@ -2105,11 +2070,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81fd8d5e14eecac4e973adc9ccc834a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ModuleSelection
-  textmodule1: {fileID: 397525099}
-  textmodule2: {fileID: 909060875}
-  textmodule3: {fileID: 1428936226}
-  SpawnPositionTarget: {fileID: 1835333217}
-  modules: []
+  textmodules:
+  - {fileID: 397525099}
+  - {fileID: 909060875}
+  - {fileID: 1428936226}
+  spawnModuleEvent: {fileID: 11400000, guid: ea59c12e137cbf940b576ce2cfee1c24, type: 2}
+  modules:
+  - {fileID: 7900933947820870150, guid: c7a1a6d130aea9947b7dda75f06722ef, type: 3}
+  - {fileID: 5385133784651527072, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
+  - {fileID: 6849032946996135789, guid: 6ce11590cd9482048add3b33b8fba3b4, type: 3}
+  selectedScale: {x: 0.4, y: 1, z: 1.1}
+  unselectedScale: {x: 0.3, y: 0.9, z: 1}
 --- !u!114 &1915361344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2312,5 +2283,4 @@ CanvasRenderer:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1835333217}
   - {fileID: 1144151031}

@@ -1,28 +1,24 @@
-using _Project.Scripts.Core.ApplicationQuit;
 using UnityEngine;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using _Project.Scripts.Core.Modules.Base_Class;
 using _Project.Scripts.Core.SceneLoading;
 using _Project.Scripts.Core.InputManagement.Interfaces;
+using Obvious.Soap;
 using Sisus.Init;
-using _Project.Scripts.Core.InputManagement;
-using _Project.Scripts.Core.Player;
-using _Project.Scripts.Multiplayer;
 
 public class ModuleSelection : MonoBehaviour<INESActionReader>
 {
-
-    [SerializeField] private ModuleSectionUIComponent textmodule1;
-    [SerializeField] private ModuleSectionUIComponent textmodule2;
-    [SerializeField] private ModuleSectionUIComponent textmodule3;
-
-    [SerializeField] private Transform SpawnPositionTarget;
-
+    [Header("References")]
+    [SerializeField] private ModuleSectionUIComponent[] textmodules;
+    
+    [SerializeField] private ScriptableEventGameObject spawnModuleEvent;
+    [SerializeField] private List<Module> modules;
+    
+    [Header("UI Settings")]
+    [SerializeField] private Vector3 selectedScale = new(0.4f, 1f, 1.1f);
+    [SerializeField] private Vector3 unselectedScale = new(0.3f, 0.9f, 1f);
+    
     private INESActionReader _nesActionReader;
-
-    public List<Module> modules = new List<Module>();
-
     private SceneUnloader _sceneUnloader;
 
     protected override void Init(INESActionReader actionReader)
@@ -30,19 +26,17 @@ public class ModuleSelection : MonoBehaviour<INESActionReader>
         _nesActionReader = actionReader;
     }
 
-    private int selectedModulenumb = 2;
+    //Zero Indexed
+    private int _selectedModulenumber = 1;
 
-
-    void Start()
+    private void Start()
     {
         _sceneUnloader = GetComponent<SceneUnloader>();
+        
+        //TODO migrate to loading modules manually
+        //Module[] modulesArray = Resources.LoadAll<Module>("Modules");
 
-        Module[] modulesArray = Resources.LoadAll<Module>("modules");
-
-        foreach(Module module in modulesArray)
-        {
-            modules.Add(module);
-        }
+        //modules.AddRange(modulesArray);
 
         SetModuleSelections();
         SelectingModule();
@@ -51,24 +45,29 @@ public class ModuleSelection : MonoBehaviour<INESActionReader>
         _nesActionReader.OnTapInteract += AquireModule;
     }
 
-    private void HandlePad(Vector2 Direction)
+    private void HandlePad(Vector2 direction)
     {
-        HandleselectedModulenumb((int)Direction.x);
+        HandleselectedModulenumb((int)direction.x);
         SelectingModule();
     }
 
-    private void HandleselectedModulenumb(int mod)
+    private void HandleselectedModulenumb(int delta)
     {
-        int temp = selectedModulenumb;
-        temp += mod;
-        if (temp < 1) temp = 3;
-        else if (temp > 3) temp = 1;
-        selectedModulenumb = temp;
+        Debug.Log($"Delta: {modules.Count}");
+        
+        _selectedModulenumber = (_selectedModulenumber + delta) % textmodules.Length;
+
+        if (_selectedModulenumber < 0)
+        {
+            _selectedModulenumber += textmodules.Length;
+        }
     }
 
 
     private Module ReturnRandandRemove()
     {
+        if (modules.Count == 0) return null;
+        
         int rand = Random.Range(0, modules.Count);
         Module toReturn = modules[rand];
         modules.Remove(modules[rand]);
@@ -78,80 +77,44 @@ public class ModuleSelection : MonoBehaviour<INESActionReader>
 
     private void SetModuleSelections()
     {
-        SetModuleUI(textmodule1);
-        SetModuleUI(textmodule2);
-        SetModuleUI(textmodule3);
+        foreach (ModuleSectionUIComponent moduleUI in textmodules)
+        {
+            SetModuleUI(moduleUI);
+        }
     }
 
-    private void SetModuleUI(ModuleSectionUIComponent ModuleUI)
+    private void SetModuleUI(ModuleSectionUIComponent moduleUI)
     {
-        Module SelectedModule = ReturnRandandRemove();
-        ModuleUI.selectedModule = SelectedModule;
-        ModuleUI.name.text = SelectedModule.name;
-        ModuleUI.description.text = SelectedModule.description;
+        Module selectedModule = ReturnRandandRemove();
+        moduleUI.selectedModule = selectedModule;
+        moduleUI.name.text = selectedModule.name;
+        moduleUI.description.text = selectedModule.description;
     }
 
     
     private void SelectingModule()
     {
-        if (textmodule1.selectionnumber == selectedModulenumb)
+        for (int i = 0; i < textmodules.Length; i++)
         {
-            textmodule1.transform.localScale = new Vector3(0.4f, 1f, 1.1f);
-            textmodule1.Button.SetActive(true);
-            textmodule1.transform.SetAsLastSibling();
-        }
-        else
-        {
-            textmodule1.transform.localScale = new Vector3(0.3f, 0.9f, 1f);
-            textmodule1.Button.SetActive(false);
-        }
-
-        if (textmodule2.selectionnumber == selectedModulenumb)
-        {
-            textmodule2.transform.localScale = new Vector3(0.4f, 1f, 1.1f);
-            textmodule2.Button.SetActive(true);
-            textmodule2.transform.SetAsLastSibling();
-        }
-        else
-        {
-            textmodule2.transform.localScale = new Vector3(0.3f, 0.9f, 1f);
-            textmodule2.Button.SetActive(false);
-        }
-
-        if (textmodule3.selectionnumber == selectedModulenumb)
-        {
-            textmodule3.transform.localScale = new Vector3(0.4f, 1f, 1.1f);
-            textmodule3.Button.SetActive(true);
-            textmodule3.transform.SetAsLastSibling();
-        }
-        else
-        {
-            textmodule3.transform.localScale = new Vector3(0.3f, 0.9f, 1f);
-            textmodule3.Button.SetActive(false);
+            if (i == _selectedModulenumber)
+            {
+                textmodules[i].transform.localScale = selectedScale;
+                textmodules[i].Button.SetActive(true);
+                textmodules[i].transform.SetAsLastSibling();
+            }
+            else
+            {
+                textmodules[i].transform.localScale = unselectedScale;
+                textmodules[i].Button.SetActive(false);
+            }
         }
     }
 
     private void AquireModule()
     {
-        Module temp;
-        switch (selectedModulenumb)
-        {
-            case 1:
-                temp = textmodule1.selectedModule;
-                break;
-            case 2:
-                temp = textmodule2.selectedModule;
-                break;
-            case 3:
-                temp = textmodule3.selectedModule;
-                break;
-            default:
-                temp = textmodule2.selectedModule;
-            break;
+        Module selectedModule = textmodules[_selectedModulenumber].selectedModule;
 
-        }
-
-        Instantiate(temp, SpawnPositionTarget.position, Quaternion.identity);
+        spawnModuleEvent.Raise(selectedModule.gameObject);
         Time.timeScale = 1f;
         _sceneUnloader.UnloadScene();
     }
