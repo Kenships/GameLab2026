@@ -305,7 +305,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ebccdee2e2f476189c203e61085ac91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.Player.PlayerModule
-  canPickUpPlayer: 1
   fastForwardSpeedMultiplier: 1.5
   rewindSpeedMultiplier: 0.5
 --- !u!1 &4161295036663682808
