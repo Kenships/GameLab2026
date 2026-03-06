@@ -7,7 +7,7 @@ using UnityEngine;
 namespace _Project.Scripts.Targeting.Filters
 {
     [Serializable]
-    public struct FilterStunned : ITargetingFilter<EnemyBase>
+    public class FilterStunnedEnemies : ITargetingFilter<EnemyBase>
     {
         [SerializeField] private bool invert;
         

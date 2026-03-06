@@ -7,54 +7,55 @@ using UnityEngine;
 
 namespace _Project.Scripts.Targeting.Filters
 {
-    [Serializable]
-    public struct FilterByHp : ITargetingFilter<EnemyBase>
+    public abstract class FilterByExtrema<T> : ITargetingFilter<T>
     {
-        public enum FilterMode
+        protected enum FilterMode
         {
             Highest,
             Lowest,
             Above,
             Below
         }
-        [SerializeField] private FilterMode mode;
+        
+        [SerializeField] protected FilterMode mode;
         
         private bool IsHighestOrLowest => mode is FilterMode.Highest or FilterMode.Lowest;
         private bool IsAboveOrBelow => mode is FilterMode.Above or FilterMode.Below;
         
-        [SerializeField, ShowIf(nameof(IsHighestOrLowest))] private int amount;
-        [SerializeField, ShowIf(nameof(IsAboveOrBelow))] private float value;
+        [SerializeField, ShowIf(nameof(IsHighestOrLowest))] protected int amount;
+        [SerializeField, ShowIf(nameof(IsAboveOrBelow))] protected float value;
         
-        public List<EnemyBase> Filter(List<EnemyBase> targets)
+        public List<T> Filter(List<T> targets)
         {
             switch (mode)
             {
                 case FilterMode.Highest:
-                    bool GreaterThan(EnemyBase a, EnemyBase b) => a.Health > b.Health;
                     return FilterExtrema(targets, GreaterThan);
                 case FilterMode.Lowest:
-                    bool LessThan(EnemyBase a, EnemyBase b) => a.Health < b.Health;
                     return FilterExtrema(targets, LessThan);
                 case FilterMode.Above:
-                    bool GreaterThanThreshold(EnemyBase a, float threshold) => a.Health > threshold;
                     return FilterThreshold(targets, GreaterThanThreshold);
                 case FilterMode.Below:
-                    bool LessThanThreshold(EnemyBase a, float threshold) => a.Health < threshold;
                     return FilterThreshold(targets, LessThanThreshold);
             }
             
-            return new List<EnemyBase>();
+            return new List<T>();
         }
-
-        public List<EnemyBase> FilterExtrema(List<EnemyBase> targets, Func<EnemyBase, EnemyBase, bool> compare)
+        
+        protected abstract bool GreaterThan(T a, T b);
+        protected abstract bool LessThan(T a, T b);
+        protected abstract bool GreaterThanThreshold(T a, float threshold);
+        protected abstract bool LessThanThreshold(T a, float threshold);
+        
+        public List<T> FilterExtrema(List<T> targets, Func<T, T, bool> compare)
         {
             return SortingUtil.GetFirstN(amount, targets, compare);
         }
 
-        public List<EnemyBase> FilterThreshold(List<EnemyBase> targets, Func<EnemyBase, float, bool> compare) 
+        public List<T> FilterThreshold(List<T> targets, Func<T, float, bool> compare) 
         {
-            List<EnemyBase> filtered = new List<EnemyBase>();
-            foreach (EnemyBase target in targets)
+            List<T> filtered = new List<T>();
+            foreach (T target in targets)
             {
                 if (compare(target, value))
                 {

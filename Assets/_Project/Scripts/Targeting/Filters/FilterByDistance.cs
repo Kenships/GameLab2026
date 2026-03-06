@@ -9,7 +9,7 @@ using UnityEngine;
 namespace _Project.Scripts.Targeting.Filters
 {
     [Serializable]
-    public struct FilterByDistance : ITargetingFilter<EnemyBase>
+    public class FilterByDistance<T> : ITargetingFilter<T> where T : EnemyBase
     {
         public enum DistanceOrigin
         {
@@ -30,7 +30,7 @@ namespace _Project.Scripts.Targeting.Filters
         [SerializeField] private DistanceType findThe;
         [SerializeField] private int amount;
         
-        public List<EnemyBase> Filter(List<EnemyBase> targets)
+        public List<T> Filter(List<T> targets)
         {
             Transform origin = VHSModule.Location;
             switch (distanceOrigin)
@@ -44,10 +44,10 @@ namespace _Project.Scripts.Targeting.Filters
                     break;
             }
             
-            bool LessThan(EnemyBase a, EnemyBase b) => GetDistance(origin, a.transform) < GetDistance(origin, b.transform);
-            bool GreaterThan(EnemyBase a, EnemyBase b) => GetDistance(origin, a.transform) > GetDistance(origin, b.transform);
+            bool LessThan(T a, T b) => GetDistance(origin, a.transform) < GetDistance(origin, b.transform);
+            bool GreaterThan(T a, T b) => GetDistance(origin, a.transform) > GetDistance(origin, b.transform);
 
-            Func<EnemyBase, EnemyBase, bool> compare = findThe == DistanceType.Closest ? LessThan : GreaterThan;
+            Func<T, T, bool> compare = findThe == DistanceType.Closest ? LessThan : GreaterThan;
             
             return SortingUtil.GetFirstN(amount, targets, compare);
         }
