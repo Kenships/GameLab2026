@@ -4,6 +4,8 @@ using _Project.Scripts.Core.Enemies;
 using _Project.Scripts.Core.Modules.Base_Class;
 using _Project.Scripts.Core.Player;
 using _Project.Scripts.Targeting;
+using _Project.Scripts.Targeting.Interface;
+using _Project.Scripts.Targeting.Strategies;
 using UnityEngine;
 using AudioType = _Project.Scripts.Core.AudioPooling.Interface.AudioType;
 
@@ -17,7 +19,7 @@ namespace _Project.Scripts.Core.Modules
         [SerializeField] private Transform spawnPoint;
 
         [Header("Shooting Settings")]
-        [SerializeReference, SubclassSelector] private ITargetingStrategy<EnemyBase> targetingStrategy;
+        [SerializeField] private EnemyTargetingStrategy targetingStrategy;
         [SerializeField] private float rotateSpeed = 200f; // homing rotation sharpness (higher the sharper)
         [SerializeField] private float defaultBulletSpeed = 10f;
         [SerializeField] private float fastBulletSpeed = 15f;

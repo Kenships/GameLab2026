@@ -1,15 +1,12 @@
-using System;
 using System.Collections.Generic;
 using _Project.Scripts.Core.AudioPooling;
 using _Project.Scripts.Core.HealthManagement;
-using _Project.Scripts.Effects;
 using _Project.Scripts.Effects.Interface;
 using _Project.Scripts.Effects.Runtime;
 using _Project.Scripts.Util.CustomAttributes;
 using _Project.Scripts.Util.ExtensionMethods;
 using Sisus.Init;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace _Project.Scripts.Core.Enemies
 {

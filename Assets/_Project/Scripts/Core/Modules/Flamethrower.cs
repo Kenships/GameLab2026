@@ -1,11 +1,11 @@
-using System;
 using System.Collections.Generic;
 using _Project.Scripts.Core.Enemies;
 using _Project.Scripts.Core.HealthManagement;
 using _Project.Scripts.Core.Modules.Base_Class;
 using _Project.Scripts.Core.Player;
 using _Project.Scripts.Effects.Inflictors;
-using _Project.Scripts.Effects.Interface;
+using _Project.Scripts.Targeting.Interface;
+using _Project.Scripts.Targeting.Strategies;
 using _Project.Scripts.Util.Timer.Timers;
 using UnityEngine;
 
@@ -27,6 +27,8 @@ namespace _Project.Scripts.Core.Modules
 
         [Header("Flamethrower Settings")]
         [SerializeField] private EnemyEffectInflictor inflictor;
+
+        [SerializeField] private EnemyTargetingStrategy targetingStrategy;
         [SerializeField] private float normalDps = 4f;
         [SerializeField] private float fastDps = 8f;
         [SerializeField] private float fastRadius = 10;
@@ -41,15 +43,16 @@ namespace _Project.Scripts.Core.Modules
         private float _currentDps;
         private float _normalRadius;
         private RangeDetector _rangeDetector; // rangeType is sector
-        private List<IDamageable> _damageables;
+        private List<EnemyBase> _enemies;
         private bool _isDamagingEnemies;
         private CountdownTimer _attackCooldownTimer;
 
-        private void Start()
+        protected override void Start()
         {
+            base.Start();
             _currentDps = normalDps;
             _attackCooldownTimer = new CountdownTimer(1f/_currentDps);
-            _damageables = new List<IDamageable>();
+            _enemies = new List<EnemyBase>();
 
             _rangeDetector = GetComponent<RangeDetector>();
             if (!_rangeDetector)
@@ -94,14 +97,14 @@ namespace _Project.Scripts.Core.Modules
             {
                 return;
             }
-            _rangeDetector.GetObjectTypeInRangeNoAlloc(_damageables);
+            _rangeDetector.GetObjectTypeInRangeNoAlloc(_enemies);
 
-            if (_damageables.Count <= 0)
+            if (_enemies.Count <= 0)
             {
                 return;
             }
 
-            foreach(IDamageable enemy in _damageables)
+            foreach(IDamageable enemy in _enemies)
             {
                 inflictor.Inflict(enemy);
             }

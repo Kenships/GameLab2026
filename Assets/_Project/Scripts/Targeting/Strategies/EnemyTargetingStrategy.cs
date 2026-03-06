@@ -6,11 +6,10 @@ using UnityEngine;
 
 namespace _Project.Scripts.Targeting.Strategies
 {
-    [Serializable]
-    public class EnemyTargetingStrategy : ITargetingStrategy<EnemyBase>
+    [CreateAssetMenu(menuName = "Targeting/Enemy Targeting Strategy")]
+    public class EnemyTargetingStrategy : ScriptableObject, ITargetingStrategy<EnemyBase>
     {
-        
-        [SerializeReference, SubclassSelector] private EnemyTargetingStrategy fallbackStrategy;
+        [SerializeField] private EnemyTargetingStrategy fallbackStrategy;
         [SerializeReference, SubclassSelector] private ITargetingFilter<EnemyBase>[] filters;
         
         public List<EnemyBase> Evaluate(List<EnemyBase> targets)
