@@ -1515,6 +1515,8 @@ GameObject:
   - component: {fileID: 1502380308}
   - component: {fileID: 1502380309}
   - component: {fileID: 1502380310}
+  - component: {fileID: 1502380311}
+  - component: {fileID: 1502380312}
   m_Layer: 3
   m_Name: Car
   m_TagString: Untagged
@@ -1536,6 +1538,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 97665892}
+  - {fileID: 1783220878}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1502380308
@@ -1554,11 +1557,12 @@ MonoBehaviour:
   fastForwardSpeed: 15
   rewindSpeed: 10
   rewindDistanceLimit: 5
-  rewindDamage: 10
-  fastFowardDamage: 10
+  rewindDamage: 30
+  fastFowardDamage: 75
   _enemyLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
+  _rangeDetector: {fileID: 1502380312}
 --- !u!65 &1502380309
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1578,7 +1582,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4.1, y: 2, z: 1.1}
+  m_Size: {x: 4, y: 3, z: 1.1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!208 &1502380310
 NavMeshObstacle:
@@ -1590,12 +1594,65 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 1.9, y: 1, z: 0.45}
+  m_Extents: {x: 1.9, y: 1, z: 0.5}
   m_MoveThreshold: 0.1
   m_Carve: 0
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
+--- !u!54 &1502380311
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1502380306}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 64
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &1502380312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1502380306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02a5aeb5e24a32d4dad56281e1a6a240, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.RangeDetector
+  rangeType: 2
+  radius: 5
+  angle: 60
+  width: 5.2
+  length: 2
+  targetLayers:
+    serializedVersion: 2
+    m_Bits: 64
+  obsticalLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  startingTransform: {fileID: 1783220878}
+  ignoreYAxis: 1
+  colliderBufferSize: 100
 --- !u!1001 &1579077690
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2133,6 +2190,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1767446828}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1783220877
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1783220878}
+  m_Layer: 3
+  m_Name: rangeCenter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1783220878
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1783220877}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.52}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1502380307}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1790678925
 GameObject:
   m_ObjectHideFlags: 0
