@@ -1,19 +1,25 @@
+using System.Collections.Generic;
 using _Project.Scripts.Core.HealthManagement;
 using _Project.Scripts.Core.InputManagement.Interfaces;
 using _Project.Scripts.Core.Modules.Base_Class;
 using _Project.Scripts.Core.Player;
 using _Project.Scripts.Core.SceneLoading;
+using _Project.Scripts.Effects;
+using _Project.Scripts.Effects.Interface;
+using _Project.Scripts.Targeting;
 using _Project.Scripts.Util.ExtensionMethods;
 using Sisus.Init;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace _Project.Scripts.Core
 {
+    
     public class VHSModule : Module, IDamageable
     {
+        public static Transform Location;
+        
         [Header("References")]
         [SerializeField] private GameObject player1Visual;
         [SerializeField] private GameObject player2Visual;
@@ -23,12 +29,7 @@ namespace _Project.Scripts.Core
         [SerializeField] private float defaultRewindSpeed = 1f;
         [SerializeField] private float fastForwardMultiplier = 1.2f;
 
-        [Header("VHS Progression")]
-        [SerializeField] private int amountofmilestones = 8;
-        [SerializeField] private Stack<float> milestones = new Stack<float>();
-
-
-
+        private List<IEffect<IDamageable>> _damageEffects = new();
         private Health _myHealth;
         private bool _isFastForwarding;
         private SceneLoader _sceneLoader;
@@ -48,40 +49,36 @@ namespace _Project.Scripts.Core
             _myHealth.OnFullHp += () => GetComponent<SceneLoader>().LoadScene();
         }
 
-        private void DetermineProgressMilestones()
+        private void OnDestroy()
         {
-            int tempamountofmilestones = amountofmilestones + 1;
-            float milestoneDiference = vhsMaxHealth / tempamountofmilestones;
-
-            // right now i starts at -1 because no reward at the end of the game (compensated by adding 1 in prev step)
-
-            for (int i = tempamountofmilestones - 1; i > 0; i--)
+            foreach (var effect in _damageEffects)
             {
-                float temp = milestoneDiference * i;
-                //Debug.Log(temp + "milestone");
-                milestones.Push(temp);
-            }
-    
-        }
-
-        void Update()
-        {
-            if (milestones.Count > 0 && _myHealth.CurrentHealth >= milestones.Peek())
-            {
-                MilestoneReached();
+                effect.OnComplete -= RemoveEffect;
+                effect.Cancel();
             }
         }
 
         private void MilestoneReached()
         {
-            milestones.Pop();
             _sceneLoader.LoadScene();
             Time.timeScale = 0f;
         }
-
         public void Damage(float damage)
         {
             _myHealth.AddToHealth(-damage);
+        }
+
+        public void ApplyEffect(IEffect<IDamageable> effect)
+        {
+            effect.OnComplete += RemoveEffect;
+            _damageEffects.Add(effect);
+            effect.Apply(this);
+        }
+
+        public void RemoveEffect(IEffect<IDamageable> effect)
+        {
+            effect.OnComplete -= RemoveEffect;
+            _damageEffects.Remove(effect);
         }
 
         protected override void LoadState()
@@ -101,7 +98,7 @@ namespace _Project.Scripts.Core
             // NOP
         }
 
-        protected override void OnStateChanged(ModuleState newState)
+        protected override void OnStateChanged(ModuleState prevState)
         {
             // NOP
         }
@@ -149,6 +146,7 @@ namespace _Project.Scripts.Core
                 player2Visual.SetActive(false);
             }
         }
+
         
     }
 }

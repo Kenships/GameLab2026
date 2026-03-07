@@ -427,7 +427,8 @@ MonoBehaviour:
   radiusMultiplier: 3
   fastEmissionRateToAngleRatio: 32
   fastRadiusMultiplier: 3.75
-  damage: 20
+  inflictor: {fileID: 11400000, guid: 1beddb10aca912a45ab8d86bf4d3d62b, type: 2}
+  targetingStrategy: {fileID: 11400000, guid: 30cff42d57768944da2ff9ac746b6472, type: 2}
   normalDps: 4
   fastDps: 8
   fastRadius: 10

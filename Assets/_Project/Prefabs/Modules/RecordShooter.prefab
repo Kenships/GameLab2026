@@ -800,6 +800,7 @@ MonoBehaviour:
   rewindSoundVolume: 1
   recordDiscPrefab: {fileID: -8867070136259511986, guid: 53df02381234ecc479fb275396043080, type: 3}
   spawnPoint: {fileID: 5731111388738531017}
+  targetingStrategy: {fileID: 11400000, guid: e79a6ed2001bc524fab0d8f9f7facc09, type: 2}
   rotateSpeed: 200
   defaultBulletSpeed: 10
   fastBulletSpeed: 15
