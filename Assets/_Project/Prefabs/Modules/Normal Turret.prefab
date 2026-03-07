@@ -173,6 +173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e66bdfa4bd24ba741a6b1d37dd0f9669, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RecordDiscShooter
+  description: A run of the mill turret sentry, from a run of the mill action flick.
   state: 1
   pickupOffset: {x: 0, y: 0, z: 0}
   pickUpSound: {fileID: 8300000, guid: 602022546f4e4474a8d87cf01f887e79, type: 3}
@@ -190,6 +191,7 @@ MonoBehaviour:
   rewindSoundVolume: 1
   recordDiscPrefab: {fileID: 7281761947621026003, guid: 3e25eb2750c86fb48a485999b88fc083, type: 3}
   spawnPoint: {fileID: 2871457970950629241}
+  targetingStrategy: {fileID: 11400000, guid: 5bad6131ea5be3a48901443eac05fed7, type: 2}
   rotateSpeed: 200
   defaultBulletSpeed: 40
   fastBulletSpeed: 80
@@ -245,11 +247,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RangeDetector
   rangeType: 0
   radius: 6
-  angle: 60
+  angle: 35
   width: 2
   length: 12.5
   targetLayers:
-  - serializedVersion: 2
+    serializedVersion: 2
     m_Bits: 64
   startingTransform: {fileID: 0}
   ignoreYAxis: 1

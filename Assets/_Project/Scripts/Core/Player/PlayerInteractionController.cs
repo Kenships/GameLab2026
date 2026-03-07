@@ -37,7 +37,7 @@ namespace _Project.Scripts.Core.Player
 
         public bool IsTimeControlling {get; private set;}
         
-        public int PlayerID { get; set; }
+        public PlayerData.PlayerID PlayerID { get; set; }
         
         protected override void Init(INESActionReader nesActionReader, IGridService gridService, ILogger logger, AudioPooler audioPooler)
         {
@@ -45,6 +45,8 @@ namespace _Project.Scripts.Core.Player
             _gridService = gridService;
             _rangeDetector = GetComponent<RangeDetector>();
             _audioPooler = audioPooler;
+            PlayerID = GetComponent<PlayerData>().ID;
+            
         }
         
         private void OnEnable()
@@ -61,10 +63,14 @@ namespace _Project.Scripts.Core.Player
             
             _rangeDetector.OnObjectEnter += SelectVisual;
             _rangeDetector.OnObjectExit += DeselectVisual;
+            _rangeDetector.OnObjectExit += CancelFastForward;
+            _rangeDetector.OnObjectExit += CancelRewind;
         }
 
         private void OnDisable()
         {
+            if (_inputReader == null) return;
+            
             _inputReader.OnDoubleTapInteract -= PickUpOrPutDown;
             
             _inputReader.OnHoldInteract -= FastForward;
@@ -77,12 +83,10 @@ namespace _Project.Scripts.Core.Player
             
             _rangeDetector.OnObjectEnter -= SelectVisual;
             _rangeDetector.OnObjectExit -= DeselectVisual;
+            _rangeDetector.OnObjectExit -= CancelFastForward;
+            _rangeDetector.OnObjectExit -= CancelRewind;
         }
-
-        private void Start()
-        {
-            _gamePad = _inputReader.TryGetGamePad(out Gamepad gp) ? gp : null;
-        }
+        
 
         private void RotateClockWise()
         {
@@ -159,6 +163,11 @@ namespace _Project.Scripts.Core.Player
             }
         }
 
+        private void CancelFastForward(Collider obj)
+        {
+            CancelFastForward();
+        }
+
         private void CancelFastForward()
         {
             foreach (ITimeControllable controllable in _controllables)
@@ -184,6 +193,11 @@ namespace _Project.Scripts.Core.Player
             {
                 controllable?.Rewind();
             }
+        }
+        
+        private void CancelRewind(Collider obj)
+        {
+            CancelRewind();
         }
 
         private void CancelRewind()
@@ -220,6 +234,9 @@ namespace _Project.Scripts.Core.Player
 
         private IEnumerator PlayHaptics()
         {
+            if (!_inputReader.TryGetGamePad(out _gamePad))
+                yield break;
+            
             _gamePad.SetMotorSpeeds(lowFrequencyHapticIntensity, highFrequencyHapticIntensity);
 
             float timer = hapticsDuration;

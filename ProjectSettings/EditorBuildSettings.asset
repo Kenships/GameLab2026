@@ -23,6 +23,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Project/Scenes/Menus/MenuSelector.unity
     guid: e3c0ac4fd89e2b449886a2eb0fca7a52
+  - enabled: 1
+    path: Assets/_Project/Scenes/Tutorial Map.unity
+    guid: 07e817acd50fa1442856837a5e50bea1
+  - enabled: 1
+    path: Assets/_Project/Scenes/DevicePairingScene.unity
+    guid: d9c40231f011fc0409854df196317f16
+  - enabled: 1
+    path: Assets/_Project/Scenes/Menus/VictoryScene.unity
+    guid: 749c7983aa4ad904cb6b6924626dcd1c
+  - enabled: 1
+    path: Assets/_Project/Scenes/Menus/ModuleSelect.unity
+    guid: 3d1b10d94920ea54280cd3807bc2bd8b
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 900411dff19d8484796a5ca6b80dfb08, type: 3}
   m_UseUCBPForAssetBundles: 0

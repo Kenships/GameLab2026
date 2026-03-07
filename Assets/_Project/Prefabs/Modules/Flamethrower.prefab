@@ -388,7 +388,7 @@ MonoBehaviour:
   width: 5
   length: 10
   targetLayers:
-  - serializedVersion: 2
+    serializedVersion: 2
     m_Bits: 64
   startingTransform: {fileID: 7057473248556846981}
   ignoreYAxis: 1
@@ -405,6 +405,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f81e77b53cc81af43b6840e539ee2404, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Flamethrower
+  description: Throws flames at the cost of half your fps (fire emoji)X3
   state: 0
   pickupOffset: {x: 0, y: 0, z: 0}
   pickUpSound: {fileID: 8300000, guid: 602022546f4e4474a8d87cf01f887e79, type: 3}
@@ -426,7 +427,8 @@ MonoBehaviour:
   radiusMultiplier: 3
   fastEmissionRateToAngleRatio: 32
   fastRadiusMultiplier: 3.75
-  damage: 20
+  inflictor: {fileID: 11400000, guid: 1beddb10aca912a45ab8d86bf4d3d62b, type: 2}
+  targetingStrategy: {fileID: 11400000, guid: 30cff42d57768944da2ff9ac746b6472, type: 2}
   normalDps: 4
   fastDps: 8
   fastRadius: 10

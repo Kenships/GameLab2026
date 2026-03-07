@@ -1,7 +1,8 @@
 ﻿using System;
 using _Project.Scripts.Core.InputManagement.Interfaces;
+using _Project.Scripts.Core.Player;
+using _Project.Scripts.Multiplayer;
 using Sisus.Init;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -9,8 +10,8 @@ using UnityEngine.InputSystem.Interactions;
 
 namespace _Project.Scripts.Core.InputManagement
 {
-    [RequireComponent(typeof(PlayerInput))]
-    public class NESActionReader : MonoBehaviour, INESActionReader
+    [RequireComponent(typeof(PlayerData))]
+    public class NESActionReader : MonoBehaviour<IDevicePairingService>, INESActionReader
     {
         public event UnityAction<Vector2> OnDPadInput;
         public event UnityAction OnTapInteract;
@@ -25,15 +26,20 @@ namespace _Project.Scripts.Core.InputManagement
         
         private NESActions _actions;
         
-        public void Init(NESActions actions)
+        protected override void Init(IDevicePairingService devicePairingService)
         {
-            _actions = actions;
+            if (!devicePairingService.TryGetFor(this, out NESActions action))
+            {
+                Debug.LogError($"Input Actions Not Found for Player{gameObject.name}, ID: {gameObject.GetComponent<PlayerData>().ID}");
+                return;
+            }
+            _actions = action;
         }
         
         
         private void Start()
         {
-            
+            _actions.Enable();
             _actions.Player.Move.performed += MoveOnPerformed;
             _actions.Player.Move.canceled += MoveOnCanceled;
             
@@ -43,7 +49,21 @@ namespace _Project.Scripts.Core.InputManagement
             _actions.Player.AltInteract.performed += AltInteractOnPerformed;
             _actions.Player.AltInteract.canceled += AltInteractOnCanceled;
         }
-        
+
+        private void OnDisable()
+        {
+            if (_actions == null) return;
+            
+            _actions.Player.Move.performed -= MoveOnPerformed;
+            _actions.Player.Move.canceled -= MoveOnCanceled;
+            
+            _actions.Player.Interact.performed -= InteractOnPerformed;
+            _actions.Player.Interact.canceled -= InteractOnCanceled;
+            
+            _actions.Player.AltInteract.performed -= AltInteractOnPerformed;
+            _actions.Player.AltInteract.canceled -= AltInteractOnCanceled;
+        }
+
         public bool TryGetGamePad(out Gamepad gamePad)
         {
             gamePad = null;
@@ -71,11 +91,13 @@ namespace _Project.Scripts.Core.InputManagement
 
         private void AltInteractOnPerformed(InputAction.CallbackContext ctx)
         {
-            if (ctx.interaction is TapInteraction)
+            if (ctx.started)
             {
                 OnTapAltInteract?.Invoke();
             }
-            else if (ctx.interaction is HoldInteraction)
+            
+            
+            if (ctx.interaction is HoldInteraction)
             {
                 OnHoldAltInteract?.Invoke();
             }

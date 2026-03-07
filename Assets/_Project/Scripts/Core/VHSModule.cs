@@ -1,12 +1,20 @@
+using System;
+using System.Collections.Generic;
 using _Project.Scripts.Core.HealthManagement;
 using _Project.Scripts.Core.Modules.Base_Class;
+using _Project.Scripts.Core.Player;
+using _Project.Scripts.Core.SceneLoading;
+using _Project.Scripts.Effects.Interface;
 using _Project.Scripts.Util.ExtensionMethods;
 using UnityEngine;
 
 namespace _Project.Scripts.Core
 {
+    
     public class VHSModule : Module, IDamageable
     {
+        public static Transform Location;
+        
         [Header("References")]
         [SerializeField] private GameObject player1Visual;
         [SerializeField] private GameObject player2Visual;
@@ -15,19 +23,70 @@ namespace _Project.Scripts.Core
         [SerializeField] private float vhsMaxHealth = 300f;
         [SerializeField] private float defaultRewindSpeed = 1f;
         [SerializeField] private float fastForwardMultiplier = 1.2f;
+        [Tooltip("Please keep the array in sorted ascending order")]
+        [SerializeField] private float[] mileStones;
+        
+        private HashSet<int> _reachedMilestones = new();
 
+        private List<IEffect<IDamageable>> _damageEffects = new();
         private Health _myHealth;
         private bool _isFastForwarding;
+        private SceneLoader _sceneLoader;
+
         
+
         protected override void OnAwake()
         {
-            _myHealth = gameObject.GetOrAdd<Health>();
-            _myHealth.Initialize(vhsMaxHealth, 0);
+            Location = transform;
+            _myHealth = gameObject.GetComponent<Health>();
+            _myHealth.Initialize(vhsMaxHealth, mileStones, 0);
+            _sceneLoader = GetComponent<SceneLoader>();
+            
+            // TODO: Temporary please fix
+            //_myHealth.OnFullHp += () => GetComponent<SceneLoader>().LoadScene();
         }
 
+        private void Start()
+        {
+            _myHealth.OnStageChanged += MilestoneReached;
+        }
+
+        private void OnDestroy()
+        {
+            _myHealth.OnStageChanged -= MilestoneReached;
+            foreach (var effect in _damageEffects)
+            {
+                effect.OnComplete -= RemoveEffect;
+                effect.Cancel();
+            }
+        }
+
+        private void MilestoneReached(int stage)
+        {
+            if (!_reachedMilestones.Add(stage))
+            {
+                return;
+            }
+
+            _sceneLoader.LoadScene();
+            Time.timeScale = 0f;
+        }
         public void Damage(float damage)
         {
             _myHealth.AddToHealth(-damage);
+        }
+
+        public void ApplyEffect(IEffect<IDamageable> effect)
+        {
+            effect.OnComplete += RemoveEffect;
+            _damageEffects.Add(effect);
+            effect.Apply(this);
+        }
+
+        public void RemoveEffect(IEffect<IDamageable> effect)
+        {
+            effect.OnComplete -= RemoveEffect;
+            _damageEffects.Remove(effect);
         }
 
         protected override void LoadState()
@@ -47,7 +106,7 @@ namespace _Project.Scripts.Core
             // NOP
         }
 
-        protected override void OnStateChanged(ModuleState newState)
+        protected override void OnStateChanged(ModuleState prevState)
         {
             // NOP
         }
@@ -72,9 +131,9 @@ namespace _Project.Scripts.Core
             _isFastForwarding = false;
         }
 
-        public override void ShowVisual(int playerIndex)
+        public override void ShowVisual(PlayerData.PlayerID playerIndex)
         {
-            if (playerIndex == 1)
+            if (playerIndex == PlayerData.PlayerID.Player1)
             {
                 player1Visual.SetActive(true);
             }
@@ -84,9 +143,9 @@ namespace _Project.Scripts.Core
             }
         }
 
-        public override void HideVisual(int playerIndex)
+        public override void HideVisual(PlayerData.PlayerID playerIndex)
         {
-            if (playerIndex == 1)
+            if (playerIndex == PlayerData.PlayerID.Player1)
             {
                 player1Visual.SetActive(false);
             }
@@ -96,6 +155,14 @@ namespace _Project.Scripts.Core
             }
         }
 
-        
+        private void OnValidate()
+        {
+            #if UNITY_EDITOR
+            
+            _myHealth ??= gameObject.GetOrAdd<Health>();
+            _myHealth.Initialize(vhsMaxHealth, mileStones, 0);
+            
+            #endif
+        }
     }
 }

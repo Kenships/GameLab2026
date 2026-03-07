@@ -1,5 +1,11 @@
+using System;
 using System.Collections.Generic;
+using _Project.Scripts.Core.Enemies;
 using _Project.Scripts.Core.Modules.Base_Class;
+using _Project.Scripts.Core.Player;
+using _Project.Scripts.Targeting;
+using _Project.Scripts.Targeting.Interface;
+using _Project.Scripts.Targeting.Strategies;
 using UnityEngine;
 using AudioType = _Project.Scripts.Core.AudioPooling.Interface.AudioType;
 
@@ -13,6 +19,7 @@ namespace _Project.Scripts.Core.Modules
         [SerializeField] private Transform spawnPoint;
 
         [Header("Shooting Settings")]
+        [SerializeField] private EnemyTargetingStrategy targetingStrategy;
         [SerializeField] private float rotateSpeed = 200f; // homing rotation sharpness (higher the sharper)
         [SerializeField] private float defaultBulletSpeed = 10f;
         [SerializeField] private float fastBulletSpeed = 15f;
@@ -37,29 +44,48 @@ namespace _Project.Scripts.Core.Modules
         [SerializeField] private float headRotateSpeed = 10f;
 
         private float _shootTimer;
-        private Transform _currentTarget;
+        private EnemyBase _currentTarget;
         private float _currentBulletSpeed;
         private RangeDetector _rangeDetector;
         private float _currentTimeBetweenShots;
 
-        private void Start()
+        private readonly List<EnemyBase> _enemies = new();
+
+        protected override void Start()
         {
-            _rangeDetector = GetComponent<RangeDetector>();
+            base.Start();
+            _rangeDetector ??= GetComponent<RangeDetector>();
             _rangeDetector.radius = detectionRange;
             _currentBulletSpeed = defaultBulletSpeed;
             _currentTimeBetweenShots = timeBetweenShots;
+            
+            _rangeDetector.OnObjectEnter += ReevaluateTarget;
+            _rangeDetector.OnObjectExit += ReevaluateTarget;
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            _rangeDetector.OnObjectEnter -= ReevaluateTarget;
+            _rangeDetector.OnObjectExit -= ReevaluateTarget;
+        }
+
+        private void ReevaluateTarget(Collider enemy)
+        {
+            List<EnemyBase> targets = targetingStrategy.Evaluate(_enemies);
+            _currentTarget = targets.Count > 0 ? targets[0] : null;
         }
 
         private void PerformAttack()
         {
-            _currentTarget = _rangeDetector.GetClosestObjectOfType<Transform>();
+            _rangeDetector.GetObjectTypeInRangeNoAlloc(_enemies);
 
-            if (isNormalTurret && _currentTarget != null)
+            if (isNormalTurret && _currentTarget)
             {
                 RotateHeadTowardsTarget();
             }
 
-            if (_currentTarget == null)
+            if (!_currentTarget)
                 return;
 
             _shootTimer -= Time.deltaTime;
@@ -75,7 +101,7 @@ namespace _Project.Scripts.Core.Modules
         {
             if (head == null || _currentTarget == null) return;
 
-            Vector3 direction = (_currentTarget.position - head.transform.position).normalized;
+            Vector3 direction = (_currentTarget.transform.position - head.transform.position).normalized;
             direction.y = 0;
             if (direction == Vector3.zero) return; 
             Quaternion targetRotation = Quaternion.LookRotation(direction);
@@ -87,13 +113,13 @@ namespace _Project.Scripts.Core.Modules
         {
             if (!_currentTarget) return;
 
-            Vector3 directionToEnemy = (_currentTarget.position - spawnPoint.position).normalized;
+            Vector3 directionToEnemy = (_currentTarget.transform.position - spawnPoint.position).normalized;
             Quaternion rotationToEnemy = Quaternion.LookRotation(directionToEnemy);
 
             _audioPooler.New2DAudio(shootSound).OnChannel(AudioType.Sfx).SetVolume(shootSoundVolume).Play();
 
             RecordDiscBullet bullet = Instantiate(recordDiscPrefab, spawnPoint.position, rotationToEnemy);
-            bullet.Initialize(_currentTarget, _currentBulletSpeed, maxTargets, rotateSpeed, bulletWobble, enemyLayer, isNormalTurret);
+            bullet.Initialize(_currentTarget.transform, _currentBulletSpeed, maxTargets, rotateSpeed, bulletWobble, enemyLayer, isNormalTurret);
         }
 
         protected override void LoadState()
@@ -114,9 +140,9 @@ namespace _Project.Scripts.Core.Modules
             base.UsedState();
         }
 
-        protected override void OnStateChanged(ModuleState newState)
+        protected override void OnStateChanged(ModuleState prevState)
         {
-            switch (newState)
+            switch (prevState)
             {
                 case ModuleState.Load:
                     _currentBulletSpeed = defaultBulletSpeed;
@@ -133,7 +159,7 @@ namespace _Project.Scripts.Core.Modules
             }
         }
         
-        public override void ShowVisual(int playerIndex)
+        public override void ShowVisual(PlayerData.PlayerID playerID)
         {
             if (!player1Visual || !player2Visual)
             {
@@ -141,7 +167,7 @@ namespace _Project.Scripts.Core.Modules
                 return;
             }
             
-            if (playerIndex == 1)
+            if (playerID == PlayerData.PlayerID.Player1)
             {
                 player1Visual.SetActive(true);
             }
@@ -151,7 +177,7 @@ namespace _Project.Scripts.Core.Modules
             }
         }
 
-        public override void HideVisual(int playerIndex)
+        public override void HideVisual(PlayerData.PlayerID playerID)
         {
             if (!player1Visual || !player2Visual)
             {
@@ -159,7 +185,7 @@ namespace _Project.Scripts.Core.Modules
                 return;
             }
             
-            if (playerIndex == 1)
+            if (playerID == PlayerData.PlayerID.Player1)
             {
                 player1Visual.SetActive(false);
             }
@@ -167,6 +193,14 @@ namespace _Project.Scripts.Core.Modules
             {
                 player2Visual.SetActive(false);
             }
+        }
+
+        private void OnValidate()
+        {
+            #if UNITY_EDITOR
+            _rangeDetector ??= GetComponent<RangeDetector>();
+            _rangeDetector.radius = detectionRange; 
+            #endif
         }
     }
 }

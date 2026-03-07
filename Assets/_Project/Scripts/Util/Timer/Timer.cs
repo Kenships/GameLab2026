@@ -1,10 +1,13 @@
 using System;
+using _Project.Scripts.Util.CustomAttributes;
+using UnityEngine;
 
 namespace _Project.Scripts.Util.Timer {
+    [Serializable]
     public abstract class Timer : IDisposable {
-        public float CurrentTime { get; protected set; }
-        public bool IsRunning { get; private set; }
-        public bool IsPaused { get; private set; }
+        [field: SerializeField, ReadOnly] public float CurrentTime { get; protected set; }
+        [field: SerializeField, ReadOnly] public bool IsRunning { get; private set; }
+        [field: SerializeField, ReadOnly] public bool IsPaused { get; private set; }
 
         protected float _initialTime;
         

@@ -39,12 +39,21 @@ public class UISelectVisual : MonoBehaviour
             _cachedRectTransform = selected.GetComponent<RectTransform>();
             _currentGameObject = selected;
         }
-        float rectSize = _cachedRectTransform.sizeDelta.x;
+        float rectSize = _cachedRectTransform.rect.width;
         
-        Vector3 leftPosition = _cachedRectTransform.position - new Vector3(rectSize/2f + offset, 0, 0);
-        Vector3 rightPosition = _cachedRectTransform.position + new Vector3(rectSize/2f + offset, 0, 0);
+        RectTransform parent = (RectTransform)leftVisual.transform.parent;
+
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            parent,
+            RectTransformUtility.WorldToScreenPoint(null, _cachedRectTransform.position),
+            null,
+            out Vector2 selectedPosInParent);
+
         
-        leftVisual.transform.position = leftPosition;
-        rightVisual.transform.position = rightPosition;
+        Vector3 leftPosition = selectedPosInParent + new Vector2(-(rectSize * .5f + offset), 0);
+        Vector3 rightPosition = selectedPosInParent + new Vector2(rectSize * .5f + offset, 0);
+        
+        _leftVisualRect.anchoredPosition = leftPosition;
+        _rightVisualRect.anchoredPosition = rightPosition;
     }
 }

@@ -782,6 +782,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e66bdfa4bd24ba741a6b1d37dd0f9669, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RecordDiscShooter
+  description: Hurles Vinyl records that seek the enemy.
   state: 1
   pickupOffset: {x: 0, y: 0, z: 0}
   pickUpSound: {fileID: 8300000, guid: 602022546f4e4474a8d87cf01f887e79, type: 3}
@@ -799,6 +800,7 @@ MonoBehaviour:
   rewindSoundVolume: 1
   recordDiscPrefab: {fileID: -8867070136259511986, guid: 53df02381234ecc479fb275396043080, type: 3}
   spawnPoint: {fileID: 5731111388738531017}
+  targetingStrategy: {fileID: 11400000, guid: e79a6ed2001bc524fab0d8f9f7facc09, type: 2}
   rotateSpeed: 200
   defaultBulletSpeed: 10
   fastBulletSpeed: 15
@@ -815,6 +817,8 @@ MonoBehaviour:
   player1Visual: {fileID: 790316906995648998}
   player2Visual: {fileID: 6505483928442727171}
   isNormalTurret: 0
+  head: {fileID: 0}
+  headRotateSpeed: 10
 --- !u!136 &5248281451148013754
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -852,11 +856,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RangeDetector
   rangeType: 0
   radius: 5
-  angle: 60
+  angle: 35
   width: 5
   length: 10
   targetLayers:
-  - serializedVersion: 2
+    serializedVersion: 2
     m_Bits: 64
   startingTransform: {fileID: 0}
   ignoreYAxis: 1
