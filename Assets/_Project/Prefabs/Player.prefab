@@ -230,6 +230,9 @@ MonoBehaviour:
   targetLayers:
     serializedVersion: 2
     m_Bits: 520
+  obsticalLayers:
+    serializedVersion: 2
+    m_Bits: 0
   startingTransform: {fileID: 0}
   ignoreYAxis: 1
   colliderBufferSize: 10
