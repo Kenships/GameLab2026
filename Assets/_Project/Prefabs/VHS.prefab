@@ -103,6 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.HealthManagement.HealthBar
   health: {fileID: 0}
+  stageDeviderBars: []
 --- !u!1 &1429555698321681106
 GameObject:
   m_ObjectHideFlags: 0
@@ -377,6 +378,7 @@ GameObject:
   - component: {fileID: 7715253540533279948}
   - component: {fileID: 4247614034925740851}
   - component: {fileID: 2366788554856475630}
+  - component: {fileID: 3247101322211001578}
   m_Layer: 0
   m_Name: VHS
   m_TagString: Untagged
@@ -445,7 +447,22 @@ MonoBehaviour:
   vhsMaxHealth: 300
   defaultRewindSpeed: 1
   fastForwardMultiplier: 1.2
-  amountofmilestones: 10
+  mileStones: []
+--- !u!114 &3247101322211001578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2853457693616237105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 023b85b921ddb3a4494f81debd41c69f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.HealthManagement.Health
+  <CurrentHealth>k__BackingField: 0
+  <MaxHealth>k__BackingField: 300
+  _healthStages: []
 --- !u!1 &3128919546977635685
 GameObject:
   m_ObjectHideFlags: 0

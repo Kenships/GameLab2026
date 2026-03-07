@@ -812,6 +812,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.HealthManagement.Health
   <CurrentHealth>k__BackingField: 0
+  <MaxHealth>k__BackingField: 0
+  _healthStages: []
 --- !u!4 &209087048 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7020352353024084139, guid: 6ce11590cd9482048add3b33b8fba3b4, type: 3}
@@ -5338,48 +5340,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1428152982}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1435652763 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2853457693616237105, guid: 43682b4e551780c42b8badfbfd8ea66b, type: 3}
-  m_PrefabInstance: {fileID: 2003110549}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1435652765
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1435652763}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 023b85b921ddb3a4494f81debd41c69f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.HealthManagement.Health
-  <CurrentHealth>k__BackingField: 0
---- !u!114 &1435652766
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1435652763}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87a94ed4d94741cf9171f9df3c6c3360, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.SceneLoading.SceneLoader
-  loadOnAwake: 0
-  setActive: 0
-  activeSceneIndex:
-    buildIndex: 0
-  scenesToLoad:
-  - buildIndex: 8
-  unloadDisabled: 0
-  scenesToUnload:
-  - buildIndex: 6
-  withOverlay: 1
-  sceneGroup: 1
-  actionMap: 3
 --- !u!1 &1462217691
 GameObject:
   m_ObjectHideFlags: 0
@@ -7300,18 +7260,66 @@ PrefabInstance:
       propertyPath: defaultRewindSpeed
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 2366788554856475630, guid: 43682b4e551780c42b8badfbfd8ea66b, type: 3}
+      propertyPath: mileStones.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2366788554856475630, guid: 43682b4e551780c42b8badfbfd8ea66b, type: 3}
+      propertyPath: 'mileStones.Array.data[0]'
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2366788554856475630, guid: 43682b4e551780c42b8badfbfd8ea66b, type: 3}
+      propertyPath: 'mileStones.Array.data[1]'
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 2366788554856475630, guid: 43682b4e551780c42b8badfbfd8ea66b, type: 3}
+      propertyPath: 'mileStones.Array.data[2]'
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 2366788554856475630, guid: 43682b4e551780c42b8badfbfd8ea66b, type: 3}
+      propertyPath: 'mileStones.Array.data[3]'
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 2366788554856475630, guid: 43682b4e551780c42b8badfbfd8ea66b, type: 3}
+      propertyPath: 'mileStones.Array.data[4]'
+      value: 900
+      objectReference: {fileID: 0}
     - target: {fileID: 2853457693616237105, guid: 43682b4e551780c42b8badfbfd8ea66b, type: 3}
       propertyPath: m_Name
       value: VHS
+      objectReference: {fileID: 0}
+    - target: {fileID: 3247101322211001578, guid: 43682b4e551780c42b8badfbfd8ea66b, type: 3}
+      propertyPath: _healthStages.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3247101322211001578, guid: 43682b4e551780c42b8badfbfd8ea66b, type: 3}
+      propertyPath: <MaxHealth>k__BackingField
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3247101322211001578, guid: 43682b4e551780c42b8badfbfd8ea66b, type: 3}
+      propertyPath: '_healthStages.Array.data[0]'
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3247101322211001578, guid: 43682b4e551780c42b8badfbfd8ea66b, type: 3}
+      propertyPath: '_healthStages.Array.data[1]'
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 3247101322211001578, guid: 43682b4e551780c42b8badfbfd8ea66b, type: 3}
+      propertyPath: '_healthStages.Array.data[2]'
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 3247101322211001578, guid: 43682b4e551780c42b8badfbfd8ea66b, type: 3}
+      propertyPath: '_healthStages.Array.data[3]'
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 3247101322211001578, guid: 43682b4e551780c42b8badfbfd8ea66b, type: 3}
+      propertyPath: '_healthStages.Array.data[4]'
+      value: 900
       objectReference: {fileID: 0}
     - target: {fileID: 3445892735238101008, guid: 43682b4e551780c42b8badfbfd8ea66b, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 348
       objectReference: {fileID: 0}
-    - target: {fileID: 5535855756826938147, guid: 43682b4e551780c42b8badfbfd8ea66b, type: 3}
-      propertyPath: health
-      value: 
-      objectReference: {fileID: 1435652765}
     - target: {fileID: 7366666502966915816, guid: 43682b4e551780c42b8badfbfd8ea66b, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 385.12512
@@ -7387,13 +7395,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2853457693616237105, guid: 43682b4e551780c42b8badfbfd8ea66b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1435652765}
-    - targetCorrespondingSourceObject: {fileID: 2853457693616237105, guid: 43682b4e551780c42b8badfbfd8ea66b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1435652766}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43682b4e551780c42b8badfbfd8ea66b, type: 3}
 --- !u!1 &2004073175
 GameObject:
@@ -7992,6 +7994,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671120433}
     m_Modifications:
+    - target: {fileID: 2479980021003533771, guid: c5862296d27d8e94190863963df3638b, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2479980021003533771, guid: c5862296d27d8e94190863963df3638b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2835732269424538148, guid: c5862296d27d8e94190863963df3638b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.82
