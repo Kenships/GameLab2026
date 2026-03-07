@@ -1,6 +1,6 @@
 using System;
-using _Project.Scripts.Util.ExtensionMethods;
-using PrimeTween;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,29 +12,22 @@ namespace _Project.Scripts.Core.HealthManagement
         [SerializeField] private Health health;
         private Slider _slider;
         private RectTransform _rectTransform;
-        private CanvasGroup _canvasGroup;
-
-        private Vector2 _initialSizeDelta;
-        public void Initialize(Health initHealth)
-        {
-            //health = initHealth;
-        }
+        [SerializeField] private List<RectTransform> stageDeviderBars;
 
         private void Start()
         {
             _slider = GetComponent<Slider>();
             _rectTransform = GetComponent<RectTransform>();
-            _canvasGroup = gameObject.GetOrAdd<CanvasGroup>();
-            
-            _initialSizeDelta = _rectTransform.sizeDelta;
             
             FindHealthComponent();
-            // if (!health)
-            // {
-            //     Debug.LogError("Health is null");
-            //     return;
-            // }
+            if (!health)
+            {
+                Debug.LogError("Health is null");
+                return;
+            }
             health.OnHealthChanged += UpdateHealthBar;
+            
+            RebuildDeviderBars();
         }
 
         private void FindHealthComponent()
@@ -44,36 +37,75 @@ namespace _Project.Scripts.Core.HealthManagement
             health ??= GetComponentInChildren<Health>();
         }
 
+        private void Update()
+        {
+            if (stageDeviderBars.Count == 0)
+            {
+                return;
+            }
+            
+            // Assume that healthstages does not change on runtime
+            int healthIndex = health.GetStageIndexFromHealth(health.CurrentHealth);
+            
+            for (int i = 0; i < healthIndex; i++)
+            {
+                stageDeviderBars[i].gameObject.SetActive(false);
+            }
+        }
+
         // Health delta can be used to show animation or visual effects
         private void UpdateHealthBar(float healthDelta)
         {
-            // Temp logic
-            // Debug.Log(healthDelta);
-
-            // if (healthDelta > 0)
-            // {
-            //     Tween.UISizeDelta(
-            //         target: _rectTransform,
-            //         endValue: _initialSizeDelta * 2f,
-            //         duration: 0.3f,
-            //         ease: Ease.InOutExpo
-            //     );
-            // }
-            // else
-            // {
-            //     Tween.UISizeDelta(
-            //         target: _rectTransform,
-            //         endValue: _initialSizeDelta,
-            //         duration: 0.15f,
-            //         ease: Ease.InOutExpo
-            //     );
-            // }
-
             if (health.MaxHealth == 0)
             {
                 return;
             }
             _slider.value = health.CurrentHealth / health.MaxHealth;
+        }
+
+        [ContextMenu("Rebuild Devider Bars")]
+        private void RebuildDeviderBars()
+        {
+            foreach (var stageDeviderBar in stageDeviderBars)
+            {
+                if (!stageDeviderBar){ continue;}
+                
+                DestroyImmediate(stageDeviderBar.gameObject);
+            }
+            stageDeviderBars.Clear();
+            
+            FindHealthComponent();
+            _rectTransform = GetComponent<RectTransform>();
+            
+            if (!health || health.HealthStages == null)
+            {
+                return;
+            }
+            
+            foreach (float healthStage in health.HealthStages)
+            {
+                if (healthStage <= 0)
+                {
+                    continue;
+                }
+                if (healthStage > health.MaxHealth)
+                {
+                    continue;
+                }
+                
+                var stageDeviderBar = new GameObject("StageDeviderBar").AddComponent<RectTransform>();
+                stageDeviderBar.AddComponent<Image>();
+                stageDeviderBar.sizeDelta = new Vector2(_rectTransform.rect.width / 100f, _rectTransform.rect.height);
+                stageDeviderBar.SetParent(transform);
+                stageDeviderBar.pivot = new Vector2(0, 0.5f);
+                stageDeviderBar.anchoredPosition = new Vector2(healthStage / health.MaxHealth * _rectTransform.rect.width - _rectTransform.rect.width / 2f, 0);
+                
+                var visual = stageDeviderBar.GetComponent<Image>();
+                visual.color = Color.black;
+                visual.raycastTarget = false;
+                
+                stageDeviderBars.Add(stageDeviderBar);
+            }
         }
     }
 }
