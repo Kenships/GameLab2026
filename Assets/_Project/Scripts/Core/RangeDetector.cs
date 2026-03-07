@@ -86,7 +86,7 @@ namespace _Project.Scripts.Core
 
             foreach (Collider obj in _previouslyInRange)
             {
-                if (!_currentlyInRange.Contains(obj))
+                if (!_currentlyInRange.Contains(obj) && obj != null)
                 {
                    OnObjectExit?.Invoke(obj);
                 }
