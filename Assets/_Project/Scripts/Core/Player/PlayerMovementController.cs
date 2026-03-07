@@ -7,6 +7,10 @@ namespace _Project.Scripts.Core.Player
 {
     public class PlayerMovementController : MonoBehaviour<INESActionReader, KinematicCharacterMotor, Camera>, ICharacterController
     {
+        [Header("References")]
+        [SerializeField] private Animator _animator;
+        
+        [Header("Movement Settings")]
         [SerializeField] private float walkSpeed = 5f;
         [SerializeField] private float sprintSpeed = 10f;
         [SerializeField] private float planarAcceleration = 10f;
@@ -137,7 +141,10 @@ namespace _Project.Scripts.Core.Player
             currentVelocity.z = Mathf.Lerp(currentVelocity.z, horizontalTarget.z, verticalAcceleration * deltaTime);
         }
 
-        public void AfterCharacterUpdate(float deltaTime) { }
+        public void AfterCharacterUpdate(float deltaTime)
+        {
+            _animator.SetBool("IsMoving", _motor.Velocity.magnitude > 0.01f);
+        }
         public bool IsColliderValidForCollisions(Collider coll) { return true; }
         public void OnDiscreteCollisionDetected(Collider hitCollider) { }
         public void OnGroundHit(Collider hitCollider, Vector3 hitNormal, Vector3 hitPoint, ref HitStabilityReport hitStabilityReport) { }
