@@ -25,6 +25,8 @@ namespace _Project.Scripts.Core
         [SerializeField] private float fastForwardMultiplier = 1.2f;
         [Tooltip("Please keep the array in sorted ascending order")]
         [SerializeField] private float[] mileStones;
+        
+        private HashSet<int> _reachedMilestones = new();
 
         private List<IEffect<IDamageable>> _damageEffects = new();
         private Health _myHealth;
@@ -35,16 +37,23 @@ namespace _Project.Scripts.Core
 
         protected override void OnAwake()
         {
-            _myHealth = gameObject.GetOrAdd<Health>();
-            _myHealth.Initialize(vhsMaxHealth, 0);
+            Location = transform;
+            _myHealth = gameObject.GetComponent<Health>();
+            _myHealth.Initialize(vhsMaxHealth, mileStones, 0);
             _sceneLoader = GetComponent<SceneLoader>();
             
             // TODO: Temporary please fix
             //_myHealth.OnFullHp += () => GetComponent<SceneLoader>().LoadScene();
         }
 
+        private void Start()
+        {
+            _myHealth.OnStageChanged += MilestoneReached;
+        }
+
         private void OnDestroy()
         {
+            _myHealth.OnStageChanged -= MilestoneReached;
             foreach (var effect in _damageEffects)
             {
                 effect.OnComplete -= RemoveEffect;
@@ -52,8 +61,13 @@ namespace _Project.Scripts.Core
             }
         }
 
-        private void MilestoneReached()
+        private void MilestoneReached(int stage)
         {
+            if (!_reachedMilestones.Add(stage))
+            {
+                return;
+            }
+
             _sceneLoader.LoadScene();
             Time.timeScale = 0f;
         }

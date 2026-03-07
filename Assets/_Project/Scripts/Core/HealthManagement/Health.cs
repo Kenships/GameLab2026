@@ -13,7 +13,7 @@ namespace _Project.Scripts.Core.HealthManagement
         [field: SerializeField] public float CurrentHealth { get; private set; }
         [field: SerializeField] public float MaxHealth { get; set; }
         
-        private float[] _healthStages;
+        [SerializeField] float[] _healthStages;
         
         public float[] HealthStages => _healthStages;
 
@@ -53,20 +53,20 @@ namespace _Project.Scripts.Core.HealthManagement
 
         private void UpdateStage(float healthDelta)
         {
-            if (HealthStages is not { Length: > 0 })
+            if (HealthStages == null || _healthStages.Length == 0)
             {
                 return;
             }
 
             int currentStage = GetStageIndexFromHealth(CurrentHealth);
             int stage = GetStageIndexFromHealth(CurrentHealth + healthDelta);
-
+            
             if (stage == currentStage)
             {
                 return;
             }
 
-            if (stage > currentStage)
+            if (currentStage > stage)
             {
                 (currentStage, stage) = (stage, currentStage);
             }
@@ -74,6 +74,7 @@ namespace _Project.Scripts.Core.HealthManagement
             //Invokes all state changes from current stage to the new stage
             for (int i = currentStage + 1; i <= stage; i++)
             {
+                Debug.Log($"Stage changed to {i}");
                 OnStageChanged?.Invoke(i);
             }
         }
