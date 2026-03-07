@@ -10,16 +10,12 @@ namespace _Project.Scripts.Core.HealthManagement
         public UnityAction OnDeath;
         public UnityAction OnFullHp;
 
-        [field: SerializeField]
-        public float CurrentHealth { get; private set; }
-        [field: SerializeField]
-        public float MaxHealth { get; set; }
-
-        [Tooltip("Please keep the array in sorted ascending order")]
-        [SerializeField] 
-        private float[] healthStages;
+        [field: SerializeField] public float CurrentHealth { get; private set; }
+        [field: SerializeField] public float MaxHealth { get; set; }
         
-        public float[] HealthStages => healthStages;
+        private float[] _healthStages;
+        
+        public float[] HealthStages => _healthStages;
 
         public void Initialize(float maxHealth, float initialHealth = -1f)
         {
@@ -29,7 +25,7 @@ namespace _Project.Scripts.Core.HealthManagement
 
         public void Initialize(float maxHealth, float[] healthStages, float initialHealth = -1f)
         {
-            this.healthStages = healthStages;
+            this._healthStages = healthStages;
             Initialize(maxHealth, initialHealth);
         }
 

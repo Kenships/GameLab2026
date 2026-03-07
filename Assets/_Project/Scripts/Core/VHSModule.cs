@@ -1,16 +1,11 @@
+using System;
 using System.Collections.Generic;
 using _Project.Scripts.Core.HealthManagement;
-using _Project.Scripts.Core.InputManagement.Interfaces;
 using _Project.Scripts.Core.Modules.Base_Class;
 using _Project.Scripts.Core.Player;
 using _Project.Scripts.Core.SceneLoading;
-using _Project.Scripts.Effects;
 using _Project.Scripts.Effects.Interface;
-using _Project.Scripts.Targeting;
 using _Project.Scripts.Util.ExtensionMethods;
-using Sisus.Init;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace _Project.Scripts.Core
@@ -28,6 +23,8 @@ namespace _Project.Scripts.Core
         [SerializeField] private float vhsMaxHealth = 300f;
         [SerializeField] private float defaultRewindSpeed = 1f;
         [SerializeField] private float fastForwardMultiplier = 1.2f;
+        [Tooltip("Please keep the array in sorted ascending order")]
+        [SerializeField] private float[] mileStones;
 
         private List<IEffect<IDamageable>> _damageEffects = new();
         private Health _myHealth;
@@ -40,13 +37,10 @@ namespace _Project.Scripts.Core
         {
             _myHealth = gameObject.GetOrAdd<Health>();
             _myHealth.Initialize(vhsMaxHealth, 0);
-
             _sceneLoader = GetComponent<SceneLoader>();
-
-            DetermineProgressMilestones();
-
+            
             // TODO: Temporary please fix
-            _myHealth.OnFullHp += () => GetComponent<SceneLoader>().LoadScene();
+            //_myHealth.OnFullHp += () => GetComponent<SceneLoader>().LoadScene();
         }
 
         private void OnDestroy()
@@ -147,6 +141,14 @@ namespace _Project.Scripts.Core
             }
         }
 
-        
+        private void OnValidate()
+        {
+            #if UNITY_EDITOR
+            
+            _myHealth ??= gameObject.GetOrAdd<Health>();
+            _myHealth.Initialize(vhsMaxHealth, mileStones, 0);
+            
+            #endif
+        }
     }
 }
