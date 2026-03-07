@@ -142,11 +142,13 @@ namespace _Project.Scripts.Core.Player
             Vector3 horizontalTarget = _moveInputVector * (_currentMovementSpeed * SpeedMultiplier);
             currentVelocity.x = Mathf.Lerp(currentVelocity.x, horizontalTarget.x, planarAcceleration * deltaTime);
             currentVelocity.z = Mathf.Lerp(currentVelocity.z, horizontalTarget.z, verticalAcceleration * deltaTime);
+            
+            _animator.SetBool("IsMoving", currentVelocity.sqrMagnitude > 0.01f);
         }
 
         public void AfterCharacterUpdate(float deltaTime)
         {
-            _animator.SetBool("IsMoving", _motor.Velocity.magnitude > 0.01f);
+            
         }
         public bool IsColliderValidForCollisions(Collider coll) { return !_disableMovement; }
         public void OnDiscreteCollisionDetected(Collider hitCollider) { }
