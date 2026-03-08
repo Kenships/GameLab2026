@@ -4,7 +4,6 @@ using _Project.Scripts.Core.Modules.Base_Class;
 using _Project.Scripts.Core.Player;
 using _Project.Scripts.Util.Timer.Timers;
 using PrimeTween;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -29,7 +28,7 @@ public class LazerCannon : HpPickupModuleBase
     private CountdownTimer _attackCooldownTimer;
     private CountdownTimer _beamDurationTimer;
 
-    private void Start()
+    protected override void Start()
     {
         _enemies = new List<IDamageable>();
         lazerBeam = lazerBeamStartPos.transform.GetChild(0);
@@ -44,6 +43,8 @@ public class LazerCannon : HpPickupModuleBase
         }
 
         state = ModuleState.Load;
+        
+        base.Start();
     }
 
     private void PlayLazerBeamAnim()
@@ -120,9 +121,9 @@ public class LazerCannon : HpPickupModuleBase
         base.UsedState();
     }
 
-    protected override void OnStateChanged(ModuleState newState)
+    protected override void OnStateChanged(ModuleState prevState)
     {
-        switch (newState)
+        switch (state)
         {
             case ModuleState.Load:
                 break;
