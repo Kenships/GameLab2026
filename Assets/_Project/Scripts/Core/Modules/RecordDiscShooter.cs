@@ -42,6 +42,7 @@ namespace _Project.Scripts.Core.Modules
         [SerializeField] private bool isNormalTurret = false;
         [SerializeField] private GameObject head;
         [SerializeField] private float headRotateSpeed = 10f;
+        [SerializeField] private Animation normalTurretAnimator;
 
         private float _shootTimer;
         private EnemyBase _currentTarget;
@@ -117,6 +118,11 @@ namespace _Project.Scripts.Core.Modules
             Quaternion rotationToEnemy = Quaternion.LookRotation(directionToEnemy);
 
             _audioPooler.New2DAudio(shootSound).OnChannel(AudioType.Sfx).SetVolume(shootSoundVolume).Play();
+
+            if (isNormalTurret)
+            {
+                normalTurretAnimator.Play();
+            }
 
             RecordDiscBullet bullet = Instantiate(recordDiscPrefab, spawnPoint.position, rotationToEnemy);
             bullet.Initialize(_currentTarget.transform, _currentBulletSpeed, maxTargets, rotateSpeed, bulletWobble, enemyLayer, isNormalTurret);
