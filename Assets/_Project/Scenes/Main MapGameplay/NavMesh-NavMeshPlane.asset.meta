@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/_Project/Scenes/MazeMap/NavMesh-Plane 1.asset.meta
+guid: 3195b112803eda94798093e1f361880b
+========
+guid: ab649fc3a5acfe64faef57a20851c64a
+>>>>>>>> develop:Assets/_Project/Scenes/Main MapGameplay/NavMesh-NavMeshPlane.asset.meta
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 23800000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

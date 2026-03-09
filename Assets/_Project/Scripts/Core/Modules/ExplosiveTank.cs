@@ -2,8 +2,6 @@ using _Project.Scripts.Core;
 using _Project.Scripts.Core.HealthManagement;
 using _Project.Scripts.Core.Modules.Base_Class;
 using _Project.Scripts.Core.Player;
-using _Project.Scripts.Util.Timer.Timers;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -105,7 +103,7 @@ public class ExplosiveTank : HpPickupModuleBase
 
     protected override void OnStateChanged(ModuleState prevState)
     {
-        switch (prevState)
+        switch (state)
         {
             case ModuleState.Load:
                 usedModel.SetActive(false);
@@ -116,7 +114,7 @@ public class ExplosiveTank : HpPickupModuleBase
             case ModuleState.Used:
                 PerformAttack();
                 explosionParticle.Play();
-                Invoke("PerformAttack", timeGapBeforeSecondAttack);
+                Invoke(nameof(PerformAttack), timeGapBeforeSecondAttack);
                 loadModel.SetActive(false);
                 usedModel.SetActive(true);
                 break;

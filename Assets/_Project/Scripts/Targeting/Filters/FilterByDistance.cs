@@ -9,7 +9,7 @@ using UnityEngine;
 namespace _Project.Scripts.Targeting.Filters
 {
     [Serializable]
-    public class FilterByDistance<T> : ITargetingFilter<T> where T : EnemyBase
+    public class FilterByDistance<T> : ITargetingFilter<T> where T : MonoBehaviour
     {
         public enum DistanceOrigin
         {
@@ -44,8 +44,8 @@ namespace _Project.Scripts.Targeting.Filters
                     break;
             }
             
-            bool LessThan(T a, T b) => GetDistance(origin, a.transform) < GetDistance(origin, b.transform);
-            bool GreaterThan(T a, T b) => GetDistance(origin, a.transform) > GetDistance(origin, b.transform);
+            bool LessThan(T a, T b) => a && b && GetDistance(origin, a.transform) < GetDistance(origin, b.transform);
+            bool GreaterThan(T a, T b) => a && b && GetDistance(origin, a.transform) > GetDistance(origin, b.transform);
 
             Func<T, T, bool> compare = findThe == DistanceType.Closest ? LessThan : GreaterThan;
             

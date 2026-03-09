@@ -91,11 +91,13 @@ namespace _Project.Scripts.Core.InputManagement
 
         private void AltInteractOnPerformed(InputAction.CallbackContext ctx)
         {
-            if (ctx.interaction is TapInteraction)
+            if (ctx.started)
             {
                 OnTapAltInteract?.Invoke();
             }
-            else if (ctx.interaction is HoldInteraction)
+            
+            
+            if (ctx.interaction is HoldInteraction)
             {
                 OnHoldAltInteract?.Invoke();
             }

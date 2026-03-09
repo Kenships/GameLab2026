@@ -75,8 +75,8 @@ namespace _Project.Scripts.Core
             {
                 if (!IsInRange(_colliderBuffer[i].transform, start) ||
                     (checkLineOfSight && !IsLineOfSight(_colliderBuffer[i].transform, start))) continue;
-                
-                if (!_previouslyInRange.Contains(_colliderBuffer[i]))
+
+                if (!_previouslyInRange.Contains(_colliderBuffer[i]) && _colliderBuffer[i] != null)
                 {
                    OnObjectEnter?.Invoke(_colliderBuffer[i]);
                 }
@@ -86,7 +86,7 @@ namespace _Project.Scripts.Core
 
             foreach (Collider obj in _previouslyInRange)
             {
-                if (!_currentlyInRange.Contains(obj))
+                if (!_currentlyInRange.Contains(obj) && obj != null)
                 {
                    OnObjectExit?.Invoke(obj);
                 }
