@@ -17,6 +17,7 @@ namespace _Project.Scripts.Core.Modules
         [Header("References")]
         [SerializeField] RecordDiscBullet recordDiscPrefab;
         [SerializeField] private Transform spawnPoint;
+        [SerializeField] private GameObject discShooterBody;
 
         [Header("Shooting Settings")]
         [SerializeField] private EnemyTargetingStrategy targetingStrategy;
@@ -81,13 +82,9 @@ namespace _Project.Scripts.Core.Modules
         {
             _rangeDetector.GetObjectTypeInRangeNoAlloc(_enemies);
 
-            if (isNormalTurret && _currentTarget)
-            {
-                RotateHeadTowardsTarget();
-            }
+            if (!_currentTarget) return;
 
-            if (!_currentTarget)
-                return;
+            RotateHeadTowardsTarget();
 
             _shootTimer -= Time.deltaTime;
 
@@ -100,14 +97,26 @@ namespace _Project.Scripts.Core.Modules
 
         private void RotateHeadTowardsTarget()
         {
-            if (head == null || _currentTarget == null) return;
+            if (isNormalTurret)
+            {
+                if (head == null) return;
 
-            Vector3 direction = (_currentTarget.transform.position - head.transform.position).normalized;
-            direction.y = 0;
-            if (direction == Vector3.zero) return; 
-            Quaternion targetRotation = Quaternion.LookRotation(direction);
+                Vector3 direction = (_currentTarget.transform.position - head.transform.position).normalized;
+                direction.y = 0;
+                if (direction == Vector3.zero) return;
+                Quaternion targetRotation = Quaternion.LookRotation(direction);
 
-            head.transform.rotation = Quaternion.Slerp(head.transform.rotation,targetRotation,Time.deltaTime * headRotateSpeed);
+                head.transform.rotation = Quaternion.Slerp(head.transform.rotation, targetRotation, Time.deltaTime * headRotateSpeed);
+            }
+            else
+            {
+                Vector3 direction = (_currentTarget.transform.position - discShooterBody.transform.position).normalized;
+                direction.y = 0;
+                if (direction == Vector3.zero) return;
+                Quaternion targetRotation = Quaternion.LookRotation(direction);
+
+                discShooterBody.transform.rotation = Quaternion.Slerp(discShooterBody.transform.rotation, targetRotation, Time.deltaTime * headRotateSpeed);
+            }
         }
 
         private void Shoot()
