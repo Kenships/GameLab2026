@@ -119,7 +119,7 @@ Transform:
   m_GameObject: {fileID: 397986941627389146}
   serializedVersion: 2
   m_LocalRotation: {x: -0.00000025288108, y: 0.7071068, z: -0.7071068, w: -0.00000025288108}
-  m_LocalPosition: {x: 0.21, y: -0.88, z: -0.091}
+  m_LocalPosition: {x: -0.22599983, y: -0.053, z: 0.056000113}
   m_LocalScale: {x: 1.2379596, y: 1.8875697, z: 1.2379596}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -210,8 +210,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 852625158621297334}
   m_LocalRotation: {x: -0, y: 0.7071066, z: -0, w: -0.70710707}
-  m_LocalPosition: {x: 0, y: 0, z: -0.129}
-  m_LocalScale: {x: 0.025, y: 0.024999999, z: 0.025}
+  m_LocalPosition: {x: 0, y: 0, z: 0.018000126}
+  m_LocalScale: {x: 0.025000004, y: 0.024999999, z: 0.025000004}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2894032875110817027}
@@ -219,7 +219,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.24, y: 0.72}
+  m_AnchoredPosition: {x: -0.19600105, y: 1.5100001}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &539389253365988024
@@ -321,8 +321,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 989790646491703259}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.43599987, y: 0.79, z: 0.14700007}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -433,6 +433,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.HealthManagement.HealthBar
   health: {fileID: 7942689369854379854}
+  stageDeviderBars: []
 --- !u!1 &2716011920222132181
 GameObject:
   m_ObjectHideFlags: 0
@@ -663,8 +664,8 @@ Transform:
   m_GameObject: {fileID: 5808360080399794294}
   serializedVersion: 2
   m_LocalRotation: {x: -0.00000025288108, y: 0.7071068, z: -0.7071068, w: -0.00000025288108}
-  m_LocalPosition: {x: 0.30004, y: -0.89126, z: -0.09100008}
-  m_LocalScale: {x: 1.3505012, y: 2.0591667, z: 1.3505012}
+  m_LocalPosition: {x: -0.13595963, y: -0.064260036, z: 0.055999994}
+  m_LocalScale: {x: 1.3505014, y: 2.0591667, z: 1.350501}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2835732269424538148}
@@ -828,7 +829,7 @@ Transform:
   m_GameObject: {fileID: 8700749748880867010}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.32, y: -0.11700004, z: -0.13}
+  m_LocalPosition: {x: -0.116000175, y: 0.673, z: 0.01700008}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5723,8 +5724,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9116378940607441439}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.653, y: 0.897, z: -3.482}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -8.364, y: 0.107, z: -1.567}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5754,8 +5755,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.311754, y: 1.2643217, z: 2.004008}
-  m_Center: {x: 0.49326646, y: -0.13216102, z: -0.11182916}
+  m_Size: {x: 1.2718792, y: 1.1813577, z: 2.004008}
+  m_Center: {x: 0.043961525, y: 0.5981007, z: -0.11182916}
 --- !u!114 &1054053615546018703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5768,6 +5769,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18bb08fe32e055f4dabb7b90398c5924, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ExplosiveTank
+  description: If this module is player-placeable define this
   state: 1
   pickupOffset: {x: 0, y: 0, z: 0}
   pickUpSound: {fileID: 8300000, guid: 602022546f4e4474a8d87cf01f887e79, type: 3}
@@ -5810,6 +5812,9 @@ MonoBehaviour:
   targetLayers:
     serializedVersion: 2
     m_Bits: 64
+  obsticalLayers:
+    serializedVersion: 2
+    m_Bits: 0
   startingTransform: {fileID: 0}
   ignoreYAxis: 1
   colliderBufferSize: 10
@@ -5826,3 +5831,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.HealthManagement.Health
   <CurrentHealth>k__BackingField: 0
+  <MaxHealth>k__BackingField: 0
+  _healthStages: []
