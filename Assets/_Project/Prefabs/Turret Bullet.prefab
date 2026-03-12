@@ -157,4 +157,4 @@ MonoBehaviour:
   hitCooldown: 0.2
   enemySearchRadius: 30
   bulletLifetime: 3.5
-  bulletDamage: 35
+  bulletDamage: 9

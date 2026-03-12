@@ -1,0 +1,163 @@
+using System.Collections;
+using _Project.Scripts.Core.Enemies.Factories;
+using UnityEngine;
+using UnityEngine.AI;
+
+namespace _Project.Scripts.Core.Enemies
+{
+    public class EnemyWaveSpawner : MonoBehaviour
+    {
+        [System.Serializable]
+        public class EnemySpawnEntry
+        {
+            public EnemyFactoryBase enemyFactory;
+            public int count = 1;
+        }
+
+        [System.Serializable]
+        public class PortalWaveSpawn
+        {
+            public Transform spawnPosition;
+            public EnemySpawnEntry[] enemies;
+        }
+
+        [System.Serializable]
+        public class Wave
+        {
+            public string waveName = "Wave";
+
+            [Header("Portal-based spawns for this wave")]
+            public PortalWaveSpawn[] portalSpawns;
+
+            [Header("Spawn timing")]
+            public float spawnDelayMin = 0.3f;
+            public float spawnDelayMax = 2f;
+
+            [Header("Break after this wave")]
+            public float restAfterWave = 5f;
+        }
+
+        [Header("References")]
+        [SerializeField] private Transform vhsLocation;
+
+        [Header("Wave Settings")]
+        [SerializeField] private Wave[] waves;
+
+        private void Start()
+        {
+            StartCoroutine(SpawnWaves());
+        }
+
+        private IEnumerator SpawnWaves()
+        {
+            if (waves == null || waves.Length == 0)
+            {
+                Debug.LogWarning("No waves assigned in EnemySpawner.");
+                yield break;
+            }
+
+            for (int waveIndex = 0; waveIndex < waves.Length; waveIndex++)
+            {
+                Wave currentWave = waves[waveIndex];
+
+                if (currentWave.portalSpawns == null || currentWave.portalSpawns.Length == 0)
+                {
+                    Debug.LogWarning($"Wave {waveIndex + 1} has no portal spawns.");
+                    continue;
+                }
+
+                Debug.Log($"Starting {currentWave.waveName}");
+
+                for (int p = 0; p < currentWave.portalSpawns.Length; p++)
+                {
+                    PortalWaveSpawn portalSpawn = currentWave.portalSpawns[p];
+
+                    if (portalSpawn.spawnPosition == null)
+                    {
+                        Debug.LogWarning($"Wave {waveIndex + 1} has a null spawn position.");
+                        continue;
+                    }
+
+                    if (portalSpawn.enemies == null || portalSpawn.enemies.Length == 0)
+                    {
+                        Debug.LogWarning($"Wave {waveIndex + 1} portal spawn has no enemies.");
+                        continue;
+                    }
+
+                    for (int e = 0; e < portalSpawn.enemies.Length; e++)
+                    {
+                        EnemySpawnEntry entry = portalSpawn.enemies[e];
+
+                        if (entry.enemyFactory == null)
+                        {
+                            Debug.LogWarning($"Wave {waveIndex + 1} has a null enemy factory.");
+                            continue;
+                        }
+
+                        for (int i = 0; i < entry.count; i++)
+                        {
+                            SpawnEnemy(entry.enemyFactory, portalSpawn.spawnPosition);
+
+                            float delay = Random.Range(currentWave.spawnDelayMin, currentWave.spawnDelayMax);
+                            yield return new WaitForSeconds(delay);
+                        }
+                    }
+                }
+
+                Debug.Log($"Finished {currentWave.waveName}");
+
+                if (waveIndex < waves.Length - 1)
+                {
+                    yield return new WaitForSeconds(currentWave.restAfterWave);
+                }
+            }
+
+            Debug.Log("All waves finished.");
+        }
+
+        private void SpawnEnemy(EnemyFactoryBase factory, Transform spawnPoint)
+        {
+            if (factory == null || spawnPoint == null)
+            {
+                Debug.LogWarning("Factory or spawn point is null.");
+                return;
+            }
+
+            EnemyBase enemy = factory.CreateEnemy();
+
+            if (enemy.TryGetComponent<NavMeshAgent>(out var agent))
+            {
+                agent.Warp(spawnPoint.position);
+            }
+            else
+            {
+                enemy.transform.position = spawnPoint.position;
+            }
+        }
+
+        private void OnDrawGizmosSelected()
+        {
+            if (waves == null) return;
+
+            for (int i = 0; i < waves.Length; i++)
+            {
+                Wave wave = waves[i];
+                if (wave == null || wave.portalSpawns == null) continue;
+
+                foreach (PortalWaveSpawn portalSpawn in wave.portalSpawns)
+                {
+                    if (portalSpawn == null || portalSpawn.spawnPosition == null) continue;
+
+                    Gizmos.color = Color.green;
+                    Gizmos.DrawWireSphere(portalSpawn.spawnPosition.position, 0.5f);
+
+                    if (vhsLocation != null)
+                    {
+                        Gizmos.color = Color.yellow;
+                        Gizmos.DrawLine(portalSpawn.spawnPosition.position, vhsLocation.position);
+                    }
+                }
+            }
+        }
+    }
+}

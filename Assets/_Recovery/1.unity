@@ -2422,7 +2422,7 @@ GameObject:
   - component: {fileID: 851351564}
   - component: {fileID: 851351563}
   m_Layer: 0
-  m_Name: Portal UL
+  m_Name: Portal 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4137,7 +4137,7 @@ GameObject:
   - component: {fileID: 1370677808}
   - component: {fileID: 1370677807}
   m_Layer: 0
-  m_Name: Portal DR
+  m_Name: Portal 5 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5149,7 +5149,7 @@ GameObject:
   - component: {fileID: 1601954572}
   - component: {fileID: 1601954571}
   m_Layer: 0
-  m_Name: Portal UR
+  m_Name: Portal 5 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5239,7 +5239,7 @@ GameObject:
   - component: {fileID: 1635483279}
   - component: {fileID: 1635483278}
   m_Layer: 0
-  m_Name: Portal DL
+  m_Name: Portal 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5254,7 +5254,7 @@ Transform:
   m_GameObject: {fileID: 1635483275}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10.51, y: 0, z: -3.44}
+  m_LocalPosition: {x: -9.5, y: -0, z: -3.44}
   m_LocalScale: {x: 1, y: 2.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5961,9 +5961,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
+  - {fileID: 1635483276}
   - {fileID: 851351561}
   - {fileID: 1601954570}
-  - {fileID: 1635483276}
   - {fileID: 1370677806}
   m_Father: {fileID: 1228476168}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7607,14 +7607,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7900933947820870150, guid: c7a1a6d130aea9947b7dda75f06722ef, type: 3}
-      propertyPath: fastDps
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 7900933947820870150, guid: c7a1a6d130aea9947b7dda75f06722ef, type: 3}
-      propertyPath: normalDps
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 8506509516338067992, guid: c7a1a6d130aea9947b7dda75f06722ef, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.02
@@ -7719,180 +7711,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa662d444d05fa947acaeafec71f5fb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.Enemies.EnemyWaveSpawner
-  vhsLocation: {fileID: 586856802}
+  vhsLocation: {fileID: 0}
   waves:
   - waveName: Wave 1
     portalSpawns:
     - spawnPosition: {fileID: 851351561}
       enemies:
-      - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
-        count: 10
+      - enemyFactory: {fileID: 11400000, guid: a16df98d83c53fc43909f5e15b3d561a, type: 2}
+        count: 20
     - spawnPosition: {fileID: 0}
       enemies: []
     spawnDelayMin: 2
     spawnDelayMax: 2
+    restAfterWave: 5
+  - waveName: 
+    portalSpawns: []
+    spawnDelayMin: 0
+    spawnDelayMax: 0
     restAfterWave: 0
-  - waveName: Wave 2
-    portalSpawns:
-    - spawnPosition: {fileID: 851351561}
-      enemies:
-      - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
-        count: 10
-    spawnDelayMin: 2
-    spawnDelayMax: 2
-    restAfterWave: 5
-  - waveName: 'Wave 3 '
-    portalSpawns:
-    - spawnPosition: {fileID: 851351561}
-      enemies:
-      - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
-        count: 12
-    - spawnPosition: {fileID: 1601954570}
-      enemies:
-      - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
-        count: 12
-    spawnDelayMin: 2
-    spawnDelayMax: 2
+  - waveName: 
+    portalSpawns: []
+    spawnDelayMin: 0
+    spawnDelayMax: 0
     restAfterWave: 0
-  - waveName: Wave 4
-    portalSpawns:
-    - spawnPosition: {fileID: 851351561}
-      enemies:
-      - enemyFactory: {fileID: 11400000, guid: 258fa7e63b36d83489366a022ab7b760, type: 2}
-        count: 15
-    - spawnPosition: {fileID: 1601954570}
-      enemies:
-      - enemyFactory: {fileID: 11400000, guid: 258fa7e63b36d83489366a022ab7b760, type: 2}
-        count: 15
-    spawnDelayMin: 2
-    spawnDelayMax: 2
-    restAfterWave: 5
-  - waveName: Wave 5
-    portalSpawns:
-    - spawnPosition: {fileID: 851351561}
-      enemies:
-      - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
-        count: 10
-      - enemyFactory: {fileID: 11400000, guid: 258fa7e63b36d83489366a022ab7b760, type: 2}
-        count: 10
-    - spawnPosition: {fileID: 1601954570}
-      enemies:
-      - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
-        count: 10
-      - enemyFactory: {fileID: 11400000, guid: 258fa7e63b36d83489366a022ab7b760, type: 2}
-        count: 10
-    spawnDelayMin: 2
-    spawnDelayMax: 3
-    restAfterWave: 3
-  - waveName: Wave 6
-    portalSpawns:
-    - spawnPosition: {fileID: 851351561}
-      enemies:
-      - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
-        count: 10
-    - spawnPosition: {fileID: 1601954570}
-      enemies:
-      - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
-        count: 10
-    - spawnPosition: {fileID: 1635483276}
-      enemies:
-      - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
-        count: 10
-    - spawnPosition: {fileID: 1370677806}
-      enemies:
-      - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
-        count: 10
-    spawnDelayMin: 3
-    spawnDelayMax: 3
-    restAfterWave: 5
-  - waveName: Wave 7
-    portalSpawns:
-    - spawnPosition: {fileID: 851351561}
-      enemies:
-      - enemyFactory: {fileID: 11400000, guid: 258fa7e63b36d83489366a022ab7b760, type: 2}
-        count: 15
-    - spawnPosition: {fileID: 1601954570}
-      enemies:
-      - enemyFactory: {fileID: 11400000, guid: 258fa7e63b36d83489366a022ab7b760, type: 2}
-        count: 15
-    - spawnPosition: {fileID: 1635483276}
-      enemies:
-      - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
-        count: 12
-    - spawnPosition: {fileID: 1370677806}
-      enemies:
-      - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
-        count: 12
-    spawnDelayMin: 2
-    spawnDelayMax: 2
-    restAfterWave: 5
-  - waveName: Wave 8
-    portalSpawns:
-    - spawnPosition: {fileID: 851351561}
-      enemies:
-      - enemyFactory: {fileID: 11400000, guid: 9dc28355a1ce5d24b8f718d64244c43a, type: 2}
-        count: 4
-    - spawnPosition: {fileID: 1601954570}
-      enemies:
-      - enemyFactory: {fileID: 11400000, guid: 9dc28355a1ce5d24b8f718d64244c43a, type: 2}
-        count: 4
-    - spawnPosition: {fileID: 1635483276}
-      enemies:
-      - enemyFactory: {fileID: 11400000, guid: 9dc28355a1ce5d24b8f718d64244c43a, type: 2}
-        count: 6
-    - spawnPosition: {fileID: 1370677806}
-      enemies:
-      - enemyFactory: {fileID: 11400000, guid: 9dc28355a1ce5d24b8f718d64244c43a, type: 2}
-        count: 6
-    spawnDelayMin: 2
-    spawnDelayMax: 2
-    restAfterWave: 5
-  - waveName: Wave 9
-    portalSpawns:
-    - spawnPosition: {fileID: 851351561}
-      enemies:
-      - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
-        count: 5
-      - enemyFactory: {fileID: 11400000, guid: 258fa7e63b36d83489366a022ab7b760, type: 2}
-        count: 7
-    - spawnPosition: {fileID: 1601954570}
-      enemies:
-      - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
-        count: 5
-      - enemyFactory: {fileID: 11400000, guid: 258fa7e63b36d83489366a022ab7b760, type: 2}
-        count: 7
-    - spawnPosition: {fileID: 1635483276}
-      enemies:
-      - enemyFactory: {fileID: 11400000, guid: 9dc28355a1ce5d24b8f718d64244c43a, type: 2}
-        count: 6
-    - spawnPosition: {fileID: 1370677806}
-      enemies:
-      - enemyFactory: {fileID: 11400000, guid: 9dc28355a1ce5d24b8f718d64244c43a, type: 2}
-        count: 6
-    spawnDelayMin: 2
-    spawnDelayMax: 2
-    restAfterWave: 5
-  - waveName: Final Wave
-    portalSpawns:
-    - spawnPosition: {fileID: 851351561}
-      enemies:
-      - enemyFactory: {fileID: 11400000, guid: 258fa7e63b36d83489366a022ab7b760, type: 2}
-        count: 7
-    - spawnPosition: {fileID: 1601954570}
-      enemies:
-      - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
-        count: 5
-    - spawnPosition: {fileID: 1635483276}
-      enemies:
-      - enemyFactory: {fileID: 11400000, guid: a16df98d83c53fc43909f5e15b3d561a, type: 2}
-        count: 1
-    - spawnPosition: {fileID: 1370677806}
-      enemies:
-      - enemyFactory: {fileID: 11400000, guid: 9dc28355a1ce5d24b8f718d64244c43a, type: 2}
-        count: 6
-    spawnDelayMin: 2
-    spawnDelayMax: 2
-    restAfterWave: 5
+  - waveName: 
+    portalSpawns: []
+    spawnDelayMin: 0
+    spawnDelayMax: 0
+    restAfterWave: 0
+  - waveName: 
+    portalSpawns: []
+    spawnDelayMin: 0
+    spawnDelayMax: 0
+    restAfterWave: 0
 --- !u!4 &6120869572321497387
 Transform:
   m_ObjectHideFlags: 0
@@ -8025,10 +7876,6 @@ PrefabInstance:
     - target: {fileID: 4466496474892881219, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
       propertyPath: m_IsActive
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5385133784651527072, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
-      propertyPath: detectionRange
-      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5575679973610440716, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
       propertyPath: m_IsActive

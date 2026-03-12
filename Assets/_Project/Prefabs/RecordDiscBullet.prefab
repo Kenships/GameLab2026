@@ -101,7 +101,7 @@ MonoBehaviour:
   hitCooldown: 0.2
   enemySearchRadius: 30
   bulletLifetime: 3.5
-  bulletDamage: 35
+  bulletDamage: 12
 --- !u!1001 &5026279065615804937
 PrefabInstance:
   m_ObjectHideFlags: 0

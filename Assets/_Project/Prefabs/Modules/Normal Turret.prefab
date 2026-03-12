@@ -101,6 +101,7 @@ MonoBehaviour:
   rewindSoundVolume: 1
   recordDiscPrefab: {fileID: 7281761947621026003, guid: 3e25eb2750c86fb48a485999b88fc083, type: 3}
   spawnPoint: {fileID: 8249512393310653435}
+  discShooterBody: {fileID: 0}
   targetingStrategy: {fileID: 11400000, guid: 5bad6131ea5be3a48901443eac05fed7, type: 2}
   rotateSpeed: 200
   defaultBulletSpeed: 40
@@ -109,7 +110,7 @@ MonoBehaviour:
   timeBetweenShots: 1
   bulletWobble: 0.36
   maxTargets: 3
-  detectionRange: 15
+  detectionRange: 5
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -134,7 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RangeDetector
   rangeType: 0
-  radius: 15
+  radius: 5
   angle: 35
   width: 2
   length: 12.5

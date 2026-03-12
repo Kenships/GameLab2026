@@ -727,7 +727,7 @@ MonoBehaviour:
   timeBetweenShots: 1
   bulletWobble: 0.36
   maxTargets: 3
-  detectionRange: 15
+  detectionRange: 4
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -775,7 +775,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RangeDetector
   rangeType: 0
-  radius: 15
+  radius: 4
   angle: 35
   width: 5
   length: 10
