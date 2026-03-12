@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 865fe4f3c5784e7da1de26a545b8435f, type: 3}
-  m_Name: BasicEnemyFactory
+  m_Name: BasicEnemyFactory 1
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.Enemies.Factories.BasicEnemyFactory
-  enemyPrefab: {fileID: 4309639714235830279, guid: 7246992d7ca8e424ab3fc59e8d7d9a03, type: 3}
-  maxHealth: 50
-  moveSpeed: 1
-  timeBetweenAttacks: 1
-  attackDamage: 2
+  enemyPrefab: {fileID: 0}
+  maxHealth: 0
+  moveSpeed: 0
+  timeBetweenAttacks: 0
+  attackDamage: 0
