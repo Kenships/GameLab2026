@@ -306,7 +306,7 @@ MonoBehaviour:
     m_Bits: 0
   startingTransform: {fileID: 7057473248556846981}
   ignoreYAxis: 1
-  colliderBufferSize: 10
+  colliderBufferSize: 50
 --- !u!114 &7900933947820870150
 MonoBehaviour:
   m_ObjectHideFlags: 0
