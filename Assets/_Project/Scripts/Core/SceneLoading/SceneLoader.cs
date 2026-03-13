@@ -6,12 +6,15 @@ using _Project.Scripts.Util.CustomAttributes;
 using _Project.Scripts.Util.Scene;
 using Sisus.Init;
 using UnityEngine;
+using UnityEngine.Events;
 using ILogger = _Project.Scripts.Util.Logger.Interface.ILogger;
 
 namespace _Project.Scripts.Core.SceneLoading
 {
     public class SceneLoader : MonoBehaviour<ISceneBuilder,IInputActionSetter, ILogger>
     {
+        public UnityEvent OnBeforeSceneLoad;
+        
         [SerializeField] private bool loadOnAwake;
         [SerializeField] private bool setActive;
         [SerializeField, ShowIf(nameof(setActive))] private SceneReference activeSceneIndex;
@@ -43,6 +46,7 @@ namespace _Project.Scripts.Core.SceneLoading
 
         public void LoadScene()
         {
+            OnBeforeSceneLoad?.Invoke();
             SceneController.SceneLoadingStrategy loadingStrategy =
                 _sceneController
                     .NewStrategy()

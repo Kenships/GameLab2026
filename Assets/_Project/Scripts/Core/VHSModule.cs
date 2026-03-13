@@ -7,6 +7,7 @@ using _Project.Scripts.Core.SceneLoading;
 using _Project.Scripts.Effects.Interface;
 using _Project.Scripts.Util.ExtensionMethods;
 using UnityEngine;
+using Obvious.Soap;
 
 namespace _Project.Scripts.Core
 {
@@ -18,6 +19,7 @@ namespace _Project.Scripts.Core
         [Header("References")]
         [SerializeField] private GameObject player1Visual;
         [SerializeField] private GameObject player2Visual;
+        [SerializeField] private ScriptableEventNoParam vhsFullHPEvent;
     
         [Header("VHS Settings")]
         [SerializeField] private float vhsMaxHealth = 300f;
@@ -41,9 +43,8 @@ namespace _Project.Scripts.Core
             _myHealth = gameObject.GetComponent<Health>();
             _myHealth.Initialize(vhsMaxHealth, mileStones, 0);
             _sceneLoader = GetComponent<SceneLoader>();
-            
-            // TODO: Temporary please fix
-            //_myHealth.OnFullHp += () => GetComponent<SceneLoader>().LoadScene();
+
+            _myHealth.OnFullHp += HandleVHSFullHp;
         }
 
         private void Start()
@@ -59,10 +60,17 @@ namespace _Project.Scripts.Core
                 effect.OnComplete -= RemoveEffect;
                 effect.Cancel();
             }
+            _myHealth.OnFullHp -= HandleVHSFullHp;
+        }
+
+        private void HandleVHSFullHp()
+        {
+            vhsFullHPEvent.Raise();
         }
 
         private void MilestoneReached(int stage)
         {
+            Debug.Log("Milestone reached");
             if (!_reachedMilestones.Add(stage))
             {
                 return;

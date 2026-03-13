@@ -3,7 +3,6 @@ using _Project.Scripts.Core.Modules.Interface;
 using _Project.Scripts.Core.Player;
 using Sisus.Init;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace _Project.Scripts.Core.Modules.Base_Class
 {
@@ -17,10 +16,18 @@ namespace _Project.Scripts.Core.Modules.Base_Class
             Used
         }
         [TextArea]public string description = "If this module is player-placeable define this";
+
+        public bool EnableModule { get; set; } = true;
         
         private ModuleState _previousState = ModuleState.None;
         public ModuleState state = ModuleState.Load;
         protected AudioPooler _audioPooler;
+        
+        [Header("Audio")]
+        [SerializeField] protected AudioClip fastForwardSound;
+        [SerializeField] protected float fastForwardSoundVolume = 1f;
+        [SerializeField] protected AudioClip rewindSound;
+        [SerializeField] protected float rewindSoundVolume = 1f;
 
         protected override void Init(AudioPooler audioPooler)
         {
@@ -51,7 +58,8 @@ namespace _Project.Scripts.Core.Modules.Base_Class
 
         protected virtual void FixedUpdate()
         {
-            ActByState();
+            if (EnableModule)
+                ActByState();
         }
         
         protected abstract void LoadState();

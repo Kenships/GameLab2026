@@ -61,18 +61,16 @@ namespace _Project.Scripts.Core.Modules
             _currentBulletSpeed = defaultBulletSpeed;
             _currentTimeBetweenShots = timeBetweenShots;
             
-            _rangeDetector.OnObjectEnter += ReevaluateTarget;
-            _rangeDetector.OnObjectExit += ReevaluateTarget;
+
         }
 
         protected override void OnDestroy()
         {
             base.OnDestroy();
-            _rangeDetector.OnObjectEnter -= ReevaluateTarget;
-            _rangeDetector.OnObjectExit -= ReevaluateTarget;
+
         }
 
-        private void ReevaluateTarget(Collider enemy)
+        private void ReevaluateTarget()
         {
             List<EnemyBase> targets = targetingStrategy.Evaluate(_enemies);
             _currentTarget = targets.Count > 0 ? targets[0] : null;
@@ -81,6 +79,7 @@ namespace _Project.Scripts.Core.Modules
         private void PerformAttack()
         {
             _rangeDetector.GetObjectTypeInRangeNoAlloc(_enemies);
+            ReevaluateTarget();
 
             if (!_currentTarget) return;
 
@@ -157,7 +156,7 @@ namespace _Project.Scripts.Core.Modules
 
         protected override void OnStateChanged(ModuleState prevState)
         {
-            switch (prevState)
+            switch (state)
             {
                 case ModuleState.Load:
                     _currentBulletSpeed = defaultBulletSpeed;

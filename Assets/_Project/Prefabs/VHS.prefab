@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3160907338520606073}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SpawnLocation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24,8 +24,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1071367669423206397}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1196.8341, y: 1374.9736, z: 1.06}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2, y: 0, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -67,7 +67,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 429.3}
+  m_AnchoredPosition: {x: 0, y: 459}
   m_SizeDelta: {x: 400, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8042108466487816983
@@ -89,7 +89,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -117,7 +117,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.726
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -259,7 +259,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 466.42502}
+  m_AnchoredPosition: {x: 0, y: 496.12512}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1448202486061382768
@@ -411,7 +411,9 @@ GameObject:
   - component: {fileID: 2366788554856475630}
   - component: {fileID: 3247101322211001578}
   - component: {fileID: 7207537582970083182}
-  m_Layer: 0
+  - component: {fileID: 5478617140694700166}
+  - component: {fileID: 6128029063243944698}
+  m_Layer: 3
   m_Name: VHS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -475,12 +477,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::VHSManager
   description: If this module is player-placeable define this
   state: 1
+  fastForwardSound: {fileID: 0}
+  fastForwardSoundVolume: 1
+  rewindSound: {fileID: 0}
+  rewindSoundVolume: 1
   player1Visual: {fileID: 6847911905089575946}
   player2Visual: {fileID: 1429555698321681106}
-  vhsMaxHealth: 300
-  defaultRewindSpeed: 1
-  fastForwardMultiplier: 1.2
-  mileStones: []
+  vhsMaxHealth: 1000
+  defaultRewindSpeed: 0.5
+  fastForwardMultiplier: 1.5
+  mileStones:
+  - 100
+  - 200
+  - 300
+  - 400
+  - 500
+  - 600
+  - 700
+  - 800
+  - 900
 --- !u!114 &3247101322211001578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -494,8 +509,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.HealthManagement.Health
   <CurrentHealth>k__BackingField: 0
-  <MaxHealth>k__BackingField: 300
-  _healthStages: []
+  <MaxHealth>k__BackingField: 1000
+  _healthStages:
+  - 100
+  - 200
+  - 300
+  - 400
+  - 500
+  - 600
+  - 700
+  - 800
+  - 900
 --- !u!114 &7207537582970083182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -510,6 +534,48 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.Modules.ModuleSpawner
   spawnEvent: {fileID: 11400000, guid: ea59c12e137cbf940b576ce2cfee1c24, type: 2}
   spawnLocation: {fileID: 3160907338520606073}
+--- !u!65 &5478617140694700166
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2853457693616237105}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!65 &6128029063243944698
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2853457693616237105}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &3128919546977635685
 GameObject:
   m_ObjectHideFlags: 0
@@ -774,8 +840,7 @@ GameObject:
   - component: {fileID: 948218463165786990}
   - component: {fileID: 7135254852758795662}
   - component: {fileID: 5191744170503321700}
-  - component: {fileID: 2947437237573634970}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -791,7 +856,7 @@ Transform:
   m_GameObject: {fileID: 3943453954090158616}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0.03}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -854,27 +919,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2947437237573634970
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3943453954090158616}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6847911905089575946
 GameObject:
   m_ObjectHideFlags: 0

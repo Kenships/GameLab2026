@@ -1,121 +1,167 @@
-using UnityEngine;
 using System.Collections.Generic;
-using _Project.Scripts.Core.Modules.Base_Class;
-using _Project.Scripts.Core.SceneLoading;
 using _Project.Scripts.Core.InputManagement.Interfaces;
+using _Project.Scripts.Core.Modules.Base_Class;
+using _Project.Scripts.Core.Player;
+using _Project.Scripts.Core.SceneLoading;
 using Obvious.Soap;
-using Sisus.Init;
+using UnityEngine;
 
-public class ModuleSelection : MonoBehaviour<INESActionReader>
+namespace _Project.Scripts.UI
 {
-    [Header("References")]
-    [SerializeField] private ModuleSectionUIComponent[] textmodules;
-    
-    [SerializeField] private ScriptableEventGameObject spawnModuleEvent;
-    [SerializeField] private List<Module> modules;
-    
-    [Header("UI Settings")]
-    [SerializeField] private Vector3 selectedScale = new(0.4f, 1f, 1.1f);
-    [SerializeField] private Vector3 unselectedScale = new(0.3f, 0.9f, 1f);
-    
-    private INESActionReader _nesActionReader;
-    private SceneUnloader _sceneUnloader;
-
-    protected override void Init(INESActionReader actionReader)
+    public class ModuleSelection : MonoBehaviour
     {
-        _nesActionReader = actionReader;
-    }
-
-    //Zero Indexed
-    private int _selectedModulenumber = 1;
-
-    private void Start()
-    {
-        _sceneUnloader = GetComponent<SceneUnloader>();
+        [Header("References")]
+        [SerializeField] private ModuleSectionUIComponent[] textmodules;
+        [SerializeField] private ModuleSelectPlayer[] players;
+        [SerializeField] private ScriptableEventGameObject spawnModuleEvent;
+        [SerializeField] private List<Module> modules;
         
-        //TODO migrate to loading modules manually
-        //Module[] modulesArray = Resources.LoadAll<Module>("Modules");
+        private SceneUnloader _sceneUnloader;
 
-        //modules.AddRange(modulesArray);
+        //Zero Indexed
+        private int _p1SelectedModuleNumber, _p2SelectedModuleNumber;
+        private bool _p1Confirm, _p2Confirm;
 
-        SetModuleSelections();
-        SelectingModule();
-
-        _nesActionReader.OnDPadInput += HandlePad;
-        _nesActionReader.OnTapInteract += AquireModule;
-    }
-
-    private void HandlePad(Vector2 direction)
-    {
-        HandleselectedModulenumb((int)direction.x);
-        SelectingModule();
-    }
-
-    private void HandleselectedModulenumb(int delta)
-    {
-        Debug.Log($"Delta: {modules.Count}");
+        private void Start()
+        {
+            _sceneUnloader = GetComponent<SceneUnloader>();
         
-        _selectedModulenumber = (_selectedModulenumber + delta) % textmodules.Length;
+            //TODO migrate to loading modules manually
+            //Module[] modulesArray = Resources.LoadAll<Module>("Modules");
 
-        if (_selectedModulenumber < 0)
-        {
-            _selectedModulenumber += textmodules.Length;
-        }
-    }
+            //modules.AddRange(modulesArray);
 
+            SetModuleSelections();
+            
+            SelectingModule(PlayerData.PlayerID.Player1, _p1SelectedModuleNumber);
+            SelectingModule(PlayerData.PlayerID.Player2, _p2SelectedModuleNumber);
 
-    private Module ReturnRandandRemove()
-    {
-        if (modules.Count == 0) return null;
-        
-        int rand = Random.Range(0, modules.Count);
-        Module toReturn = modules[rand];
-        modules.Remove(modules[rand]);
-
-        return toReturn;
-    }
-
-    private void SetModuleSelections()
-    {
-        foreach (ModuleSectionUIComponent moduleUI in textmodules)
-        {
-            SetModuleUI(moduleUI);
-        }
-    }
-
-    private void SetModuleUI(ModuleSectionUIComponent moduleUI)
-    {
-        Module selectedModule = ReturnRandandRemove();
-        moduleUI.selectedModule = selectedModule;
-        moduleUI.name.text = selectedModule.name;
-        moduleUI.description.text = selectedModule.description;
-    }
-
-    
-    private void SelectingModule()
-    {
-        for (int i = 0; i < textmodules.Length; i++)
-        {
-            if (i == _selectedModulenumber)
+            foreach (var player in players)
             {
-                textmodules[i].transform.localScale = selectedScale;
-                textmodules[i].Button.SetActive(true);
-                textmodules[i].transform.SetAsLastSibling();
-            }
-            else
-            {
-                textmodules[i].transform.localScale = unselectedScale;
-                textmodules[i].Button.SetActive(false);
+                player.OnMove += PlayerOnMove;
+                player.OnConfirm += PlayerOnConfirm;
             }
         }
-    }
 
-    private void AquireModule()
-    {
-        Module selectedModule = textmodules[_selectedModulenumber].selectedModule;
+        private void PlayerOnConfirm(PlayerData.PlayerID id)
+        {
+            switch (id)
+            {
+                case PlayerData.PlayerID.Player1:
+                    ConfirmSelection(id, _p1SelectedModuleNumber);
+                    break;
+                case PlayerData.PlayerID.Player2:
+                    ConfirmSelection(id, _p2SelectedModuleNumber);
+                    break;
+            }
+        }
 
-        spawnModuleEvent.Raise(selectedModule.gameObject);
-        Time.timeScale = 1f;
-        _sceneUnloader.UnloadScene();
+        private void PlayerOnMove((PlayerData.PlayerID ID, int dir) arg)
+        {
+            switch (arg.ID)
+            {
+                case PlayerData.PlayerID.Player1:
+                    SelectingModule(arg.ID, _p1SelectedModuleNumber);
+                    HandleSelectedModuleNumber(ref _p1SelectedModuleNumber, arg.dir);
+                    break;
+                case PlayerData.PlayerID.Player2:
+                    SelectingModule(arg.ID, _p2SelectedModuleNumber);
+                    HandleSelectedModuleNumber(ref _p2SelectedModuleNumber, arg.dir);
+                    break;
+                default: break;
+            }
+        }
+
+        private void HandleSelectedModuleNumber(ref int selectedModuleNumber, int delta)
+        {
+            Debug.Log($"Delta: {modules.Count}");
+        
+            selectedModuleNumber = (selectedModuleNumber + delta) % textmodules.Length;
+
+            if (selectedModuleNumber < 0)
+            {
+                selectedModuleNumber += textmodules.Length;
+            }
+        }
+
+
+        private Module ReturnRandAndRemove()
+        {
+            if (modules.Count == 0) return null;
+        
+            int rand = Random.Range(0, modules.Count);
+            Module toReturn = modules[rand];
+            modules.Remove(modules[rand]);
+
+            return toReturn;
+        }
+
+        private void SetModuleSelections()
+        {
+            foreach (ModuleSectionUIComponent moduleUI in textmodules)
+            {
+                SetModuleUI(moduleUI);
+            }
+        }
+
+        private void SetModuleUI(ModuleSectionUIComponent moduleUI)
+        {
+            Module selectedModule = ReturnRandAndRemove();
+            moduleUI.Initialize(selectedModule);
+        }
+
+    
+        private void SelectingModule(PlayerData.PlayerID id, int selectedModuleNumber)
+        {
+            switch (id)
+            {
+                case PlayerData.PlayerID.Player1:
+                    _p1Confirm = false;
+                    break;
+                case PlayerData.PlayerID.Player2:
+                    _p2Confirm = false;
+                    break;
+            }
+
+            for (int i = 0; i < textmodules.Length; i++)
+            {
+                if (i == selectedModuleNumber)
+                {
+                    textmodules[i].Select(id);
+                }
+                else
+                {
+                    textmodules[i].Unselect(id);
+                }
+            }
+        }
+
+        private void ConfirmSelection(PlayerData.PlayerID playerID, int selectedModuleNumber)
+        {
+            switch (playerID)
+            {
+                case PlayerData.PlayerID.Player1:
+                    textmodules[selectedModuleNumber].Confirm(playerID);
+                    _p1Confirm = true;
+                    break;
+                case PlayerData.PlayerID.Player2:
+                    textmodules[selectedModuleNumber].Confirm(playerID);
+                    _p2Confirm = true;
+                    break;
+            }
+
+            if (_p1Confirm && _p2Confirm && _p1SelectedModuleNumber == _p2SelectedModuleNumber)
+            {
+                AcquireModule();
+            }
+        }
+
+        private void AcquireModule()
+        {
+            Module selectedModule = textmodules[_p1SelectedModuleNumber].GetSelectedModule();
+            spawnModuleEvent.Raise(selectedModule.gameObject);
+            Time.timeScale = 1f;
+            _sceneUnloader.UnloadScene();
+        }
     }
 }

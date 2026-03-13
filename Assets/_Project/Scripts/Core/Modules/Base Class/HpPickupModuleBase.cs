@@ -15,16 +15,10 @@ namespace _Project.Scripts.Core.Modules.Base_Class
         [SerializeField] protected float defaultDecaySpeed = 5f;
         [SerializeField] protected float attackStateDecayMultiplier = 4f;
 
-        [Header("Audio")]
-        [SerializeField] private AudioClip fastForwardSound;
-        [SerializeField] private float fastForwardSoundVolume = 1f;
-        [SerializeField] private AudioClip rewindSound;
-        [SerializeField] private float rewindSoundVolume = 1f;
-
         private IAudioPlayer currentFastForwardSound;
         private IAudioPlayer currentRewindSound;
         protected bool _isRewinding;
-        private Health _health;
+        protected Health _health;
         
         
         private void OnEnable()
