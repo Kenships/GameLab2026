@@ -1012,7 +1012,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: ec8dcac0d31330f44ae5d1eee747ee8d, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: a7f47da288c133443ba0dca163497793, type: 2}
   m_BuildHeightMesh: 0
 --- !u!114 &160262965
 MonoBehaviour:
@@ -1301,6 +1301,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 192856657586737878, guid: 6ce11590cd9482048add3b33b8fba3b4, type: 3}
+      propertyPath: gridIndicator1
+      value: 
+      objectReference: {fileID: 1419881423}
+    - target: {fileID: 192856657586737878, guid: 6ce11590cd9482048add3b33b8fba3b4, type: 3}
+      propertyPath: gridIndicator2
+      value: 
+      objectReference: {fileID: 1291547752}
     - target: {fileID: 7020352353024084139, guid: 6ce11590cd9482048add3b33b8fba3b4, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.5
@@ -2677,11 +2685,11 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 586856802}
-  - {fileID: 1811955943687959337}
   - {fileID: 2106107423}
-  - {fileID: 1138423950469953166}
   - {fileID: 717588365}
   - {fileID: 291953340}
+  - {fileID: 1904505119281976655}
+  - {fileID: 1431885849200590344}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &671266701
@@ -2966,7 +2974,7 @@ PrefabInstance:
     - target: {fileID: 3485305950716128262, guid: c5862296d27d8e94190863963df3638b, type: 3}
       propertyPath: gridIndicator2
       value: 
-      objectReference: {fileID: 308032812}
+      objectReference: {fileID: 1291547752}
     - target: {fileID: 7231041556937088445, guid: c5862296d27d8e94190863963df3638b, type: 3}
       propertyPath: m_Size.z
       value: 1.5
@@ -5066,6 +5074,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1246129178}
   m_CullTransparentMesh: 1
+--- !u!4 &1291547752 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4234892213018093291, guid: 182a216b55b5c854cb04ac43f2ab745c, type: 3}
+  m_PrefabInstance: {fileID: 1966038800}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1299626934
 GameObject:
   m_ObjectHideFlags: 0
@@ -8045,6 +8058,10 @@ PrefabInstance:
       value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 308138090421468306, guid: 7cb916d24c7d3d041b0ca4de05dbda22, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 308138090421468306, guid: 7cb916d24c7d3d041b0ca4de05dbda22, type: 3}
       propertyPath: turnOnGizmos
       value: 0
       objectReference: {fileID: 0}
@@ -8567,7 +8584,7 @@ PrefabInstance:
     - target: {fileID: 3485305950716128262, guid: c5862296d27d8e94190863963df3638b, type: 3}
       propertyPath: gridIndicator2
       value: 
-      objectReference: {fileID: 308032812}
+      objectReference: {fileID: 1291547752}
     - target: {fileID: 9116378940607441439, guid: c5862296d27d8e94190863963df3638b, type: 3}
       propertyPath: m_Name
       value: Explosive Tank
@@ -8995,6 +9012,14 @@ PrefabInstance:
       propertyPath: radius
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 7093766861074832507, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
+      propertyPath: gridIndicator1
+      value: 
+      objectReference: {fileID: 1419881423}
+    - target: {fileID: 7093766861074832507, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
+      propertyPath: gridIndicator2
+      value: 
+      objectReference: {fileID: 1291547752}
     - target: {fileID: 9061403673497064804, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.5
