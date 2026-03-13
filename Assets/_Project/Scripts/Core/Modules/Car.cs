@@ -1,139 +1,133 @@
+using System.Collections.Generic;
+using _Project.Scripts.Core.Enemies;
 using _Project.Scripts.Core.Modules.Base_Class;
 using _Project.Scripts.Core.Player;
-using System.Collections;
-using System.Collections.Generic;
-using _Project.Scripts.Core;
-using _Project.Scripts.Core.HealthManagement;
+using _Project.Scripts.Effects.Inflictors;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-public class Car : Module
+namespace _Project.Scripts.Core.Modules
 {
-    [SerializeField] private Transform destination;
-    [SerializeField] private float fastForwardSpeed = 15f;
-    [SerializeField] private float rewindSpeed = 10f;
-    [SerializeField] private float rewindDamage = 10f;
-    [SerializeField] private float fastForwardDamage = 20f;
-    [SerializeField] private RangeDetector backDetector;
-    [SerializeField] private RangeDetector frontDetector;
+    public class Car : Module
+    {
+        [SerializeField] private EnemyEffectInflictor inflictor;
+        [SerializeField] private Transform destination;
+        [SerializeField] private float fastForwardSpeed = 15f;
+        [SerializeField] private float rewindSpeed = 10f;
+        [SerializeField] private float rewindDamage = 10f;
+        [SerializeField] private float fastForwardDamage = 20f;
+        [SerializeField] private RangeDetector backDetector;
+        [SerializeField] private RangeDetector frontDetector;
     
     
-    private Vector3 _originalPosition;
-    private bool _fastForwarding = false;
-    private bool _rewinding = false;
-    private List<IDamageable> _enemies;
-    private float _damage;
+        private Vector3 _originalPosition;
+        private Vector3 _endPosition;
+        private bool _fastForwarding = false;
+        private bool _rewinding = false;
+        private List<EnemyBase> _enemies;
+        private float _damage;
     
-    void Start()
-    {
-        _enemies = new List<IDamageable>();
-        _originalPosition = transform.position;
-        destination.transform.position = new Vector3(0, 0, destination.transform.position.z);
-        backDetector.OnObjectEnter += OnEnter;
-        frontDetector.OnObjectEnter += OnEnter;
-    }
-
-    protected override void LoadState()
-    {
-        
-    }
-
-    protected override void AttackState()
-    {
-        if (_fastForwarding)
+        void Start()
         {
-            transform.position = Vector3.MoveTowards(
-                transform.position,
-                destination.transform.position,
-                rewindSpeed * Time.deltaTime
-            );
+            _enemies = new List<EnemyBase>();
+            _originalPosition = transform.position;
+            _endPosition = destination.position;
+            backDetector.OnObjectEnter += OnEnter;
+            frontDetector.OnObjectEnter += OnEnter;
         }
 
-        if (_rewinding)
+        protected override void LoadState()
         {
-            transform.position = Vector3.MoveTowards(
-                transform.position,
-                _originalPosition,
-                fastForwardSpeed * Time.deltaTime
-            );
+        
         }
+
+        protected override void AttackState()
+        {
+            if (_fastForwarding)
+            {
+                transform.position = Vector3.MoveTowards(
+                    transform.position,
+                    _endPosition,
+                    rewindSpeed * Time.deltaTime
+                );
+                frontDetector.GetObjectTypeInRangeNoAlloc(_enemies);
+            }
+
+            if (_rewinding)
+            {
+                transform.position = Vector3.MoveTowards(
+                    transform.position,
+                    _originalPosition,
+                    fastForwardSpeed * Time.deltaTime
+                );
+                backDetector.GetObjectTypeInRangeNoAlloc(_enemies);
+            }
         
-    }
+        }
 
-    protected override void UsedState()
-    {
+        protected override void UsedState()
+        {
 
-    }
+        }
 
-    protected override void OnStateChanged(ModuleState newState)
-    {
+        protected override void OnStateChanged(ModuleState newState)
+        {
+            if (state == ModuleState.Attack)
+            {
+                frontDetector.ResetRangeDetection();
+                backDetector.ResetRangeDetection();
+            }
+        }
 
-    }
+        public override void FastForward()
+        {
+            if (_rewinding)
+            {
+                return;
+            }
 
-    public override void FastForward()
-    {
-        // if (_fastForwardCoroutine != null)
-        // {
-        //     StopCoroutine(_fastForwardCoroutine);
-        // }
-        //
-        // _fastForwarding = true;
-        // state = ModuleState.Attack;
-        // _fastForwardCoroutine = StartCoroutine(FastForwardCoroutine());
+            _fastForwarding = true;
+            state = ModuleState.Attack;
+        }
+
+        public override void CancelFastForward()
+        {
+            _fastForwarding = false;
+            state = ModuleState.Load;
+            _damage = 0;
+        }
+
+        public override void Rewind()
+        {
+            if (_fastForwarding)
+            {
+                return;
+            }
         
-        
-    }
+            _rewinding = true;
+            state = ModuleState.Attack;
+        }
 
-    public override void CancelFastForward()
-    {
-        _fastForwarding = false;
-        state = ModuleState.None;
-        _damage = 0;
-    }
-
-    public override void Rewind()
-    {
-        // if (_rewindCoroutine != null)
-        // {
-        //     StopCoroutine(_rewindCoroutine);
-        // }
-        //
-        // _rewinding = true;
-        // state = ModuleState.Attack;
-        // _rewindCoroutine = StartCoroutine(RewindCoroutine());
-        //
-
-        state = ModuleState.Attack;
-        _rewinding = true;
-    }
-
-    public override void CancelRewind()
-    {
-        state = ModuleState.Attack;
-        _rewinding = false;
-    }
+        public override void CancelRewind()
+        {
+            state = ModuleState.Load;
+            _rewinding = false;
+        }
     
     
-    public override void ShowVisual(PlayerData.PlayerID playerID)
-    {
+        public override void ShowVisual(PlayerData.PlayerID playerID)
+        {
         
-    }
+        }
 
-    public override void HideVisual(PlayerData.PlayerID playerID)
-    {
+        public override void HideVisual(PlayerData.PlayerID playerID)
+        {
       
-    }
-
-    private void OnEnter(Collider col)
-    {
-        if (_enemies.Count <= 0)
-        {
-            return;
         }
 
-        foreach(IDamageable enemy in _enemies)
+        private void OnEnter(Collider col)
         {
-            enemy.Damage(50);
+            Debug.Log(col.name);
+            inflictor.Inflict(col.GetComponent<EnemyBase>());
         }
     }
 }
