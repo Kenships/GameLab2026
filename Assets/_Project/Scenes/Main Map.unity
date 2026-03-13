@@ -8683,19 +8683,17 @@ MonoBehaviour:
       enemies:
       - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
         count: 10
-    - spawnPosition: {fileID: 0}
-      enemies: []
-    spawnDelayMin: 2
-    spawnDelayMax: 2
-    restAfterWave: 0
+    spawnDelayMin: 1
+    spawnDelayMax: 1
+    restAfterWave: 5
   - waveName: Wave 2
     portalSpawns:
     - spawnPosition: {fileID: 1601954570}
       enemies:
       - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
         count: 10
-    spawnDelayMin: 2
-    spawnDelayMax: 2
+    spawnDelayMin: 1
+    spawnDelayMax: 1
     restAfterWave: 5
   - waveName: 'Wave 3 '
     portalSpawns:
@@ -8704,6 +8702,14 @@ MonoBehaviour:
       - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
         count: 12
     - spawnPosition: {fileID: 1601954570}
+      enemies:
+      - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
+        count: 12
+    - spawnPosition: {fileID: 1635483276}
+      enemies:
+      - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
+        count: 12
+    - spawnPosition: {fileID: 1370677806}
       enemies:
       - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
         count: 12
@@ -8717,6 +8723,14 @@ MonoBehaviour:
       - enemyFactory: {fileID: 11400000, guid: 258fa7e63b36d83489366a022ab7b760, type: 2}
         count: 15
     - spawnPosition: {fileID: 1601954570}
+      enemies:
+      - enemyFactory: {fileID: 11400000, guid: 258fa7e63b36d83489366a022ab7b760, type: 2}
+        count: 15
+    - spawnPosition: {fileID: 1635483276}
+      enemies:
+      - enemyFactory: {fileID: 11400000, guid: 258fa7e63b36d83489366a022ab7b760, type: 2}
+        count: 15
+    - spawnPosition: {fileID: 1370677806}
       enemies:
       - enemyFactory: {fileID: 11400000, guid: 258fa7e63b36d83489366a022ab7b760, type: 2}
         count: 15
@@ -8738,7 +8752,7 @@ MonoBehaviour:
       - enemyFactory: {fileID: 11400000, guid: 258fa7e63b36d83489366a022ab7b760, type: 2}
         count: 10
     spawnDelayMin: 2
-    spawnDelayMax: 3
+    spawnDelayMax: 2
     restAfterWave: 3
   - waveName: Wave 6
     portalSpawns:
@@ -8758,8 +8772,8 @@ MonoBehaviour:
       enemies:
       - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
         count: 10
-    spawnDelayMin: 3
-    spawnDelayMax: 3
+    spawnDelayMin: 2
+    spawnDelayMax: 2
     restAfterWave: 5
   - waveName: Wave 7
     portalSpawns:
@@ -8787,19 +8801,19 @@ MonoBehaviour:
     - spawnPosition: {fileID: 851351561}
       enemies:
       - enemyFactory: {fileID: 11400000, guid: 9dc28355a1ce5d24b8f718d64244c43a, type: 2}
-        count: 4
+        count: 10
     - spawnPosition: {fileID: 1601954570}
       enemies:
       - enemyFactory: {fileID: 11400000, guid: 9dc28355a1ce5d24b8f718d64244c43a, type: 2}
-        count: 4
+        count: 10
     - spawnPosition: {fileID: 1635483276}
       enemies:
       - enemyFactory: {fileID: 11400000, guid: 9dc28355a1ce5d24b8f718d64244c43a, type: 2}
-        count: 6
+        count: 12
     - spawnPosition: {fileID: 1370677806}
       enemies:
       - enemyFactory: {fileID: 11400000, guid: 9dc28355a1ce5d24b8f718d64244c43a, type: 2}
-        count: 6
+        count: 12
     spawnDelayMin: 2
     spawnDelayMax: 2
     restAfterWave: 5

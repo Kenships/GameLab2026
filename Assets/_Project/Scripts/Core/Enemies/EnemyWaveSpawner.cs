@@ -73,6 +73,8 @@ namespace _Project.Scripts.Core.Enemies
 
                 Debug.Log($"Starting {currentWave.waveName}");
 
+                int activePortalRoutines = 0;
+
                 for (int p = 0; p < currentWave.portalSpawns.Length; p++)
                 {
                     PortalWaveSpawn portalSpawn = currentWave.portalSpawns[p];
@@ -89,25 +91,11 @@ namespace _Project.Scripts.Core.Enemies
                         continue;
                     }
 
-                    for (int e = 0; e < portalSpawn.enemies.Length; e++)
-                    {
-                        EnemySpawnEntry entry = portalSpawn.enemies[e];
-
-                        if (entry.enemyFactory == null)
-                        {
-                            Debug.LogWarning($"Wave {waveIndex + 1} has a null enemy factory.");
-                            continue;
-                        }
-
-                        for (int i = 0; i < entry.count; i++)
-                        {
-                            SpawnEnemy(entry.enemyFactory, portalSpawn.spawnPosition);
-
-                            float delay = Random.Range(currentWave.spawnDelayMin, currentWave.spawnDelayMax);
-                            yield return new WaitForSeconds(delay);
-                        }
-                    }
+                    activePortalRoutines++;
+                    StartCoroutine(SpawnPortalRoutine(currentWave, portalSpawn, () => activePortalRoutines--));
                 }
+
+                yield return new WaitUntil(() => activePortalRoutines <= 0);
 
                 Debug.Log($"Finished {currentWave.waveName}");
 
@@ -120,6 +108,29 @@ namespace _Project.Scripts.Core.Enemies
             Debug.Log("All waves finished.");
         }
 
+        private IEnumerator SpawnPortalRoutine(Wave wave, PortalWaveSpawn portalSpawn, System.Action onComplete)
+        {
+            for (int e = 0; e < portalSpawn.enemies.Length; e++)
+            {
+                EnemySpawnEntry entry = portalSpawn.enemies[e];
+
+                if (entry.enemyFactory == null)
+                {
+                    Debug.LogWarning($"Wave '{wave.waveName}' has a null enemy factory.");
+                    continue;
+                }
+
+                for (int i = 0; i < entry.count; i++)
+                {
+                    SpawnEnemy(entry.enemyFactory, portalSpawn.spawnPosition);
+
+                    float delay = Random.Range(wave.spawnDelayMin, wave.spawnDelayMax);
+                    yield return new WaitForSeconds(delay);
+                }
+            }
+
+            onComplete?.Invoke();
+        }
         private void SpawnEnemy(EnemyFactoryBase factory, Transform spawnPoint)
         {
             if (factory == null || spawnPoint == null)
