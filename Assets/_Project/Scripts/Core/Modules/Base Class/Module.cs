@@ -21,6 +21,12 @@ namespace _Project.Scripts.Core.Modules.Base_Class
         private ModuleState _previousState = ModuleState.None;
         public ModuleState state = ModuleState.Load;
         protected AudioPooler _audioPooler;
+        
+        [Header("Audio")]
+        [SerializeField] protected AudioClip fastForwardSound;
+        [SerializeField] protected float fastForwardSoundVolume = 1f;
+        [SerializeField] protected AudioClip rewindSound;
+        [SerializeField] protected float rewindSoundVolume = 1f;
 
         protected override void Init(AudioPooler audioPooler)
         {

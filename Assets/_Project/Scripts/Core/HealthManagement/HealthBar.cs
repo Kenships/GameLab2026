@@ -27,6 +27,8 @@ namespace _Project.Scripts.Core.HealthManagement
             }
             health.OnHealthChanged += UpdateHealthBar;
             
+            _slider.value = health.CurrentHealth / health.MaxHealth;
+            
             RebuildDeviderBars();
         }
 

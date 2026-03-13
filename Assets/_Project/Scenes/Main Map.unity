@@ -2643,6 +2643,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671120433}
     m_Modifications:
+    - target: {fileID: 1054053615546018703, guid: c5862296d27d8e94190863963df3638b, type: 3}
+      propertyPath: recoverySpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1054053615546018703, guid: c5862296d27d8e94190863963df3638b, type: 3}
+      propertyPath: defaultRecoverySpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1054053615546018703, guid: c5862296d27d8e94190863963df3638b, type: 3}
+      propertyPath: rewindRecoveryMultiplier
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2479980021003533771, guid: c5862296d27d8e94190863963df3638b, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -3091,6 +3103,7 @@ GameObject:
   - component: {fileID: 851351561}
   - component: {fileID: 851351564}
   - component: {fileID: 851351563}
+  - component: {fileID: 851351565}
   m_Layer: 0
   m_Name: Portal UL
   m_TagString: Untagged
@@ -3170,6 +3183,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 851351560}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &851351565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 851351560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3d446206e304ef38c4cc8c408d201e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.Enemies.EnemyPortal
+  waveData: {fileID: 11400000, guid: 70472f02f5cc06345845b0a8e5cba28f, type: 2}
 --- !u!1 &869208295
 GameObject:
   m_ObjectHideFlags: 0
@@ -4759,6 +4785,7 @@ GameObject:
   - component: {fileID: 1370677806}
   - component: {fileID: 1370677808}
   - component: {fileID: 1370677807}
+  - component: {fileID: 1370677809}
   m_Layer: 0
   m_Name: Portal DR
   m_TagString: Untagged
@@ -4838,6 +4865,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1370677805}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1370677809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1370677805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3d446206e304ef38c4cc8c408d201e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.Enemies.EnemyPortal
+  waveData: {fileID: 11400000, guid: 70472f02f5cc06345845b0a8e5cba28f, type: 2}
 --- !u!1 &1390858023
 GameObject:
   m_ObjectHideFlags: 0
@@ -5770,6 +5810,7 @@ GameObject:
   - component: {fileID: 1601954570}
   - component: {fileID: 1601954572}
   - component: {fileID: 1601954571}
+  - component: {fileID: 1601954573}
   m_Layer: 0
   m_Name: Portal UR
   m_TagString: Untagged
@@ -5849,6 +5890,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1601954569}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1601954573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1601954569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3d446206e304ef38c4cc8c408d201e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.Enemies.EnemyPortal
+  waveData: {fileID: 11400000, guid: 70472f02f5cc06345845b0a8e5cba28f, type: 2}
 --- !u!1 &1635483275
 GameObject:
   m_ObjectHideFlags: 0
@@ -5860,6 +5914,7 @@ GameObject:
   - component: {fileID: 1635483276}
   - component: {fileID: 1635483279}
   - component: {fileID: 1635483278}
+  - component: {fileID: 1635483280}
   m_Layer: 0
   m_Name: Portal DL
   m_TagString: Untagged
@@ -5939,6 +5994,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1635483275}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1635483280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1635483275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3d446206e304ef38c4cc8c408d201e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.Enemies.EnemyPortal
+  waveData: {fileID: 11400000, guid: 70472f02f5cc06345845b0a8e5cba28f, type: 2}
 --- !u!1 &1643215717
 GameObject:
   m_ObjectHideFlags: 0
@@ -7970,6 +8038,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671120433}
     m_Modifications:
+    - target: {fileID: 1054053615546018703, guid: c5862296d27d8e94190863963df3638b, type: 3}
+      propertyPath: recoverySpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1054053615546018703, guid: c5862296d27d8e94190863963df3638b, type: 3}
+      propertyPath: defaultRecoverySpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1054053615546018703, guid: c5862296d27d8e94190863963df3638b, type: 3}
+      propertyPath: rewindRecoveryMultiplier
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2479980021003533771, guid: c5862296d27d8e94190863963df3638b, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

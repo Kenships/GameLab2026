@@ -157,7 +157,7 @@ namespace _Project.Scripts.Core.Modules
 
         protected override void OnStateChanged(ModuleState prevState)
         {
-            switch (prevState)
+            switch (state)
             {
                 case ModuleState.Load:
                     _currentBulletSpeed = defaultBulletSpeed;
