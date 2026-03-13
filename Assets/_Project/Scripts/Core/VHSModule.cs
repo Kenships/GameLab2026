@@ -18,6 +18,7 @@ namespace _Project.Scripts.Core
         [Header("References")]
         [SerializeField] private GameObject player1Visual;
         [SerializeField] private GameObject player2Visual;
+        //[SerializeField] private ScriptableEventnoParam gameEndEvenet;
     
         [Header("VHS Settings")]
         [SerializeField] private float vhsMaxHealth = 300f;

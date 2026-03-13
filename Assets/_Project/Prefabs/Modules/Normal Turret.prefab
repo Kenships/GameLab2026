@@ -147,7 +147,7 @@ MonoBehaviour:
     m_Bits: 0
   startingTransform: {fileID: 0}
   ignoreYAxis: 1
-  colliderBufferSize: 10
+  colliderBufferSize: 50
 --- !u!114 &5423279797190891097
 MonoBehaviour:
   m_ObjectHideFlags: 0

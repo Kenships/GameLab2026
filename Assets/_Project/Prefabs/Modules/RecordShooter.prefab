@@ -702,6 +702,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RecordDiscShooter
   description: Hurles Vinyl records that seek the enemy.
   state: 1
+  fastForwardSound: {fileID: 8300000, guid: c25a378f906f03f45a34bc3f3b926bb2, type: 3}
+  fastForwardSoundVolume: 1
+  rewindSound: {fileID: 8300000, guid: 904184cbab2ef6d4eb570d029d20a47c, type: 3}
+  rewindSoundVolume: 1
   pickupOffset: {x: 0, y: 0, z: 0}
   pickUpSound: {fileID: 8300000, guid: 602022546f4e4474a8d87cf01f887e79, type: 3}
   pickUpSoundVolume: 0.25
@@ -712,10 +716,6 @@ MonoBehaviour:
   rewindRecoveryMultiplier: 4
   defaultDecaySpeed: 5
   attackStateDecayMultiplier: 4
-  fastForwardSound: {fileID: 8300000, guid: c25a378f906f03f45a34bc3f3b926bb2, type: 3}
-  fastForwardSoundVolume: 1
-  rewindSound: {fileID: 8300000, guid: 904184cbab2ef6d4eb570d029d20a47c, type: 3}
-  rewindSoundVolume: 1
   recordDiscPrefab: {fileID: -8867070136259511986, guid: 53df02381234ecc479fb275396043080, type: 3}
   spawnPoint: {fileID: 5731111388738531017}
   discShooterBody: {fileID: 2487774717153965910}
@@ -787,7 +787,7 @@ MonoBehaviour:
     m_Bits: 0
   startingTransform: {fileID: 0}
   ignoreYAxis: 1
-  colliderBufferSize: 10
+  colliderBufferSize: 50
 --- !u!114 &7568861021529150541
 MonoBehaviour:
   m_ObjectHideFlags: 0
