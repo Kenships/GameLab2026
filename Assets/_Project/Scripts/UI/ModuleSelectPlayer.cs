@@ -1,3 +1,4 @@
+using System;
 using _Project.Scripts.Core.InputManagement.Interfaces;
 using _Project.Scripts.Core.Player;
 using _Project.Scripts.Core.SceneLoading;
@@ -32,6 +33,12 @@ namespace _Project.Scripts.UI
             
             _actionReader.OnDPadUIInput += HandlePad;
             _actionReader.OnTapUIInteract += Select;
+        }
+
+        private void OnDestroy()
+        {
+            _actionReader.OnDPadUIInput -= HandlePad;
+            _actionReader.OnTapUIInteract -= Select;
         }
 
         private void Select()
