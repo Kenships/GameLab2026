@@ -22,7 +22,7 @@ namespace _Project.Scripts.Core.Player
         
         [Header("References")]
         [SerializeField] private Transform frontOfPlayer;
-
+        [SerializeField] private WindVFXController windVFXController;
         [Header("EventObjects")]
         [SerializeField] private ScriptableEventNoParam rebakeNavMesh;
         
@@ -37,7 +37,7 @@ namespace _Project.Scripts.Core.Player
 
         public bool IsTimeControlling {get; private set;}
         
-        public int PlayerID { get; set; }
+        public PlayerData.PlayerID PlayerID { get; set; }
         
         protected override void Init(INESActionReader nesActionReader, IGridService gridService, ILogger logger, AudioPooler audioPooler)
         {
@@ -45,6 +45,8 @@ namespace _Project.Scripts.Core.Player
             _gridService = gridService;
             _rangeDetector = GetComponent<RangeDetector>();
             _audioPooler = audioPooler;
+            PlayerID = GetComponent<PlayerData>().ID;
+            
         }
         
         private void OnEnable()
@@ -152,9 +154,9 @@ namespace _Project.Scripts.Core.Player
             {
                 return;
             }
-
+            
             IsTimeControlling = true;
-
+            windVFXController.Show(WindVFXController.AbilityMode.FastForward);
             foreach (ITimeControllable controllable in _controllables)
             {
                 controllable?.FastForward();
@@ -163,6 +165,7 @@ namespace _Project.Scripts.Core.Player
 
         private void CancelFastForward(Collider obj)
         {
+            
             CancelFastForward();
         }
 
@@ -172,7 +175,8 @@ namespace _Project.Scripts.Core.Player
             {
                 controllable?.CancelFastForward();
             }
-            
+
+            windVFXController.Hide();
             IsTimeControlling = false;
         }
 
@@ -186,6 +190,8 @@ namespace _Project.Scripts.Core.Player
             }
 
             IsTimeControlling = true;
+            windVFXController.Show(WindVFXController.AbilityMode.Rewind);
+            
 
             foreach (ITimeControllable controllable in _controllables)
             {
@@ -204,7 +210,8 @@ namespace _Project.Scripts.Core.Player
             {
                 controllable?.CancelRewind();
             }
-            
+
+            windVFXController.Hide();
             IsTimeControlling = false;
         }
         

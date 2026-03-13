@@ -24,7 +24,6 @@ namespace _Project.Scripts.Multiplayer
             {
                 if (playerData.ID == PlayerData.PlayerID.Player1)
                 {
-                    Debug.Log("Player 1 Actions Given");
                     _player1Actions ??= new NESActions();
                     value = _player1Actions;
                     return true;
@@ -32,7 +31,6 @@ namespace _Project.Scripts.Multiplayer
                 
                 if (playerData.ID == PlayerData.PlayerID.Player2)
                 {
-                    Debug.Log("Player 2 Actions Given");
                     _player2Actions ??= new NESActions();
                     value = _player2Actions;
                     return true;
@@ -82,18 +80,9 @@ namespace _Project.Scripts.Multiplayer
                 }
             }
 
-            if (Gamepad.all.Count >= 2)
-            {
-                Debug.Log("Gamepads Found");
-            }
-            
-            Debug.Log($"Gamepads Found: {Gamepad.all.Count}");
-
             foreach (Gamepad device in Gamepad.all)
             {
                 if (!device.enabled) continue;
-                
-                Debug.Log($"Gamepad Found: id: {device.deviceId} hash: {device.GetHashCode()} layout: {device.layout}");
                 
                 TryAssign(device);
             }
@@ -112,7 +101,6 @@ namespace _Project.Scripts.Multiplayer
 
         private void InputSystemOnDeviceChange(InputDevice device, InputDeviceChange change)
         {
-            Debug.Log($"[DeviceChange] {change} | {device.displayName} | layout={device.layout} | id={device.deviceId}");
             if (device is not Gamepad gamepad) return;
 
             if (change == InputDeviceChange.Added || 
@@ -177,8 +165,6 @@ namespace _Project.Scripts.Multiplayer
             user.UnpairDevices();
             
             InputUser.PerformPairingWithDevice(device, user);
-            
-            Debug.Log($"[Pairing] {device.displayName} | layout={device.layout} | id={device.deviceId} with {user.id}");
             
             slotPad = device;
         }

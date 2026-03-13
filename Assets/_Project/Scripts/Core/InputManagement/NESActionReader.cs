@@ -11,8 +11,11 @@ using UnityEngine.InputSystem.Interactions;
 namespace _Project.Scripts.Core.InputManagement
 {
     [RequireComponent(typeof(PlayerData))]
-    public class NESActionReader : MonoBehaviour<IDevicePairingService>, INESActionReader
+    public class NESActionReader : MonoBehaviour<IDevicePairingService>, INESActionReader, INESUIReader
     {
+        public event UnityAction<Vector2> OnDPadUIInput;
+        public event UnityAction OnTapUIInteract;
+        
         public event UnityAction<Vector2> OnDPadInput;
         public event UnityAction OnTapInteract;
         public event UnityAction OnHoldInteract;
@@ -48,6 +51,19 @@ namespace _Project.Scripts.Core.InputManagement
             
             _actions.Player.AltInteract.performed += AltInteractOnPerformed;
             _actions.Player.AltInteract.canceled += AltInteractOnCanceled;
+            
+            _actions.UI.Navigate.performed += NavigateOnPerformed;
+            _actions.UI.Submit.performed += SubmitOnPerformed;
+        }
+
+        private void SubmitOnPerformed(InputAction.CallbackContext ctx)
+        {
+            OnTapUIInteract?.Invoke();
+        }
+
+        private void NavigateOnPerformed(InputAction.CallbackContext ctx)
+        {
+            OnDPadUIInput?.Invoke(ctx.ReadValue<Vector2>());
         }
 
         private void OnDisable()
@@ -91,11 +107,13 @@ namespace _Project.Scripts.Core.InputManagement
 
         private void AltInteractOnPerformed(InputAction.CallbackContext ctx)
         {
-            if (ctx.interaction is TapInteraction)
+            if (ctx.started)
             {
                 OnTapAltInteract?.Invoke();
             }
-            else if (ctx.interaction is HoldInteraction)
+            
+            
+            if (ctx.interaction is HoldInteraction)
             {
                 OnHoldAltInteract?.Invoke();
             }

@@ -1,9 +1,12 @@
+using System;
 using UnityEngine;
 
 namespace _Project.Scripts.Util.Timer.Timers {
     /// <summary>
     /// Timer that counts up from zero to infinity.  Great for measuring durations.
     /// </summary>
+    
+    [Serializable]
     public class StopwatchTimer : Timer {
         public StopwatchTimer() : base(0) { }
 

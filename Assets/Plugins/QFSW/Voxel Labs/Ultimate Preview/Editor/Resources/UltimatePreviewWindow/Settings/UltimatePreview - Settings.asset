@@ -65,7 +65,7 @@ MonoBehaviour:
       showPlayNextAnimBtn: 1
       showPlayPrevAnimBtn: 1
   ultimateGameobjectPreviewSettings:
-    isEnable: 1
+    isEnable: 0
     disablePlayModeColorTint: 1
     isLightsEnable: 1
     ambientColor: {r: 0.5882353, g: 0.5882353, b: 0.5882353, a: 1}
@@ -75,7 +75,7 @@ MonoBehaviour:
       cameraFieldOfView: 30
       clearFlags: 2
       skyboxMaterial: {fileID: 0}
-      backgroundColor: {r: 0.827451, g: 0.99607843, b: 1, a: 1}
+      backgroundColor: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 1}
     additionalLights:
     - enabled: 1
       intensity: 0.5

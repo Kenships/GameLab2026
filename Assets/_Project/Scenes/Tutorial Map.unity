@@ -598,6 +598,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.HealthManagement.Health
   <CurrentHealth>k__BackingField: 0
+  <MaxHealth>k__BackingField: 0
+  _healthStages: []
 --- !u!4 &209087048 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7020352353024084139, guid: 6ce11590cd9482048add3b33b8fba3b4, type: 3}
@@ -1155,63 +1157,6 @@ Transform:
   - {fileID: 1060517770}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &681586245
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1514619457}
-    m_Modifications:
-    - target: {fileID: 604870516335673577, guid: 2cbb4a6ca1affc54aa339fd779abeb45, type: 3}
-      propertyPath: m_Name
-      value: PlayerInputManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 2220770661870069849, guid: 2cbb4a6ca1affc54aa339fd779abeb45, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -1200.3817
-      objectReference: {fileID: 0}
-    - target: {fileID: 2220770661870069849, guid: 2cbb4a6ca1affc54aa339fd779abeb45, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1229.9374
-      objectReference: {fileID: 0}
-    - target: {fileID: 2220770661870069849, guid: 2cbb4a6ca1affc54aa339fd779abeb45, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2220770661870069849, guid: 2cbb4a6ca1affc54aa339fd779abeb45, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2220770661870069849, guid: 2cbb4a6ca1affc54aa339fd779abeb45, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2220770661870069849, guid: 2cbb4a6ca1affc54aa339fd779abeb45, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2220770661870069849, guid: 2cbb4a6ca1affc54aa339fd779abeb45, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2220770661870069849, guid: 2cbb4a6ca1affc54aa339fd779abeb45, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2220770661870069849, guid: 2cbb4a6ca1affc54aa339fd779abeb45, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2220770661870069849, guid: 2cbb4a6ca1affc54aa339fd779abeb45, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 2cbb4a6ca1affc54aa339fd779abeb45, type: 3}
 --- !u!1 &762050050
 GameObject:
   m_ObjectHideFlags: 0
@@ -2584,6 +2529,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.HealthManagement.Health
   <CurrentHealth>k__BackingField: 0
+  <MaxHealth>k__BackingField: 0
+  _healthStages: []
 --- !u!114 &1435652766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2768,7 +2715,6 @@ Transform:
   m_Children:
   - {fileID: 2064076952}
   - {fileID: 1987912693}
-  - {fileID: 1628721895}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1515016888
@@ -2934,9 +2880,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 586856802}
     - target: {fileID: 2174084060119942501, guid: 8e3813081faf3454b853a71726124349, type: 3}
+      propertyPath: 'managedReferences[-2]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2174084060119942501, guid: 8e3813081faf3454b853a71726124349, type: 3}
+      propertyPath: enemyFactories.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2174084060119942501, guid: 8e3813081faf3454b853a71726124349, type: 3}
       propertyPath: spawnPositions.Array.size
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2174084060119942501, guid: 8e3813081faf3454b853a71726124349, type: 3}
+      propertyPath: 'enemyFactories.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: a16df98d83c53fc43909f5e15b3d561a, type: 2}
     - target: {fileID: 2174084060119942501, guid: 8e3813081faf3454b853a71726124349, type: 3}
       propertyPath: 'spawnPositions.Array.data[0]'
       value: 
@@ -2998,11 +2956,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e3813081faf3454b853a71726124349, type: 3}
---- !u!4 &1628721895 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2220770661870069849, guid: 2cbb4a6ca1affc54aa339fd779abeb45, type: 3}
-  m_PrefabInstance: {fileID: 681586245}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1635483275
 GameObject:
   m_ObjectHideFlags: 0
@@ -3869,6 +3822,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.HealthManagement.Health
   <CurrentHealth>k__BackingField: 0
+  <MaxHealth>k__BackingField: 0
+  _healthStages: []
 --- !u!1001 &2027520531
 PrefabInstance:
   m_ObjectHideFlags: 0

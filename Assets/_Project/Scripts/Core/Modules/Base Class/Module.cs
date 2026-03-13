@@ -1,8 +1,8 @@
 using _Project.Scripts.Core.AudioPooling;
 using _Project.Scripts.Core.Modules.Interface;
+using _Project.Scripts.Core.Player;
 using Sisus.Init;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace _Project.Scripts.Core.Modules.Base_Class
 {
@@ -15,10 +15,19 @@ namespace _Project.Scripts.Core.Modules.Base_Class
             Attack,
             Used
         }
+        [TextArea]public string description = "If this module is player-placeable define this";
+
+        public bool EnableModule { get; set; } = true;
         
         private ModuleState _previousState = ModuleState.None;
         public ModuleState state = ModuleState.Load;
         protected AudioPooler _audioPooler;
+        
+        [Header("Audio")]
+        [SerializeField] protected AudioClip fastForwardSound;
+        [SerializeField] protected float fastForwardSoundVolume = 1f;
+        [SerializeField] protected AudioClip rewindSound;
+        [SerializeField] protected float rewindSoundVolume = 1f;
 
         protected override void Init(AudioPooler audioPooler)
         {
@@ -29,8 +38,8 @@ namespace _Project.Scripts.Core.Modules.Base_Class
         {
             if (_previousState != state)
             {
+                OnStateChanged(_previousState);
                 _previousState = state;
-                OnStateChanged(state);
             }
             
             switch (state)
@@ -49,18 +58,19 @@ namespace _Project.Scripts.Core.Modules.Base_Class
 
         protected virtual void FixedUpdate()
         {
-            ActByState();
+            if (EnableModule)
+                ActByState();
         }
         
         protected abstract void LoadState();
         protected abstract void AttackState();
         protected abstract void UsedState();
-        protected abstract void OnStateChanged(ModuleState newState);
+        protected abstract void OnStateChanged(ModuleState prevState);
         public abstract void Rewind();
         public abstract void FastForward();
         public abstract void CancelRewind();
         public abstract void CancelFastForward();
-        public abstract void ShowVisual(int playerIndex);
-        public abstract void HideVisual(int playerIndex);
+        public abstract void ShowVisual(PlayerData.PlayerID playerID);
+        public abstract void HideVisual(PlayerData.PlayerID playerID);
     }
 }
