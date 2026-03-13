@@ -14,10 +14,15 @@ namespace _Project.Scripts.Core.Modules
             spawnEvent.OnRaised += SpawnEventOnRaised;
         }
 
+        private void OnDestroy()
+        {
+            spawnEvent.OnRaised -= SpawnEventOnRaised;
+        }
+
         private void SpawnEventOnRaised(GameObject obj)
         {
             GameObject module = Instantiate(obj);
-            module.transform.position = spawnLocation.position;
+            module.transform.position = spawnLocation ? spawnLocation.position : transform.position;
         }
     }
 }

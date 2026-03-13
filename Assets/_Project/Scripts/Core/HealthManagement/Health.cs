@@ -54,7 +54,7 @@ namespace _Project.Scripts.Core.HealthManagement
 
         private void UpdateStage(float healthDelta)
         {
-            if (HealthStages == null || _healthStages.Length == 0)
+            if (HealthStages == null || HealthStages.Length == 0)
             {
                 return;
             }
@@ -90,7 +90,7 @@ namespace _Project.Scripts.Core.HealthManagement
                 }
             }
 
-            return HealthStages.Length - 1;
+            return HealthStages.Length;
         }
     }
 }
