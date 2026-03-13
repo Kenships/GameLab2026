@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 656095f05ce414a4f8ee36f520efe49c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RecordDiscBullet
-  inflictor: {fileID: 11400000, guid: 3ed568ac16a699a46949dd8c7d6e3b42, type: 2}
+  inflictor: {fileID: 11400000, guid: 4cd2fe8f570f7a84db5186142b4b8546, type: 2}
   hitCooldown: 0.2
   enemySearchRadius: 30
   bulletLifetime: 3.5

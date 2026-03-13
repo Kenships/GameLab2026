@@ -8626,7 +8626,7 @@ MonoBehaviour:
     restAfterWave: 0
   - waveName: Wave 2
     portalSpawns:
-    - spawnPosition: {fileID: 851351561}
+    - spawnPosition: {fileID: 1601954570}
       enemies:
       - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
         count: 10

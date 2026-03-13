@@ -12,7 +12,7 @@ namespace _Project.Scripts.Effects.Runtime
 
         public void Apply(IDamageable target)
         {
-            target.Damage(10);
+            target.Damage(Damage);
             OnComplete?.Invoke(this);
         }
 

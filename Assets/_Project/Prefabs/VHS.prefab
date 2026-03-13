@@ -477,10 +477,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::VHSManager
   description: If this module is player-placeable define this
   state: 1
+  fastForwardSound: {fileID: 0}
+  fastForwardSoundVolume: 1
+  rewindSound: {fileID: 0}
+  rewindSoundVolume: 1
   player1Visual: {fileID: 6847911905089575946}
   player2Visual: {fileID: 1429555698321681106}
   vhsMaxHealth: 1000
-  defaultRewindSpeed: 2
+  defaultRewindSpeed: 0.5
   fastForwardMultiplier: 1.5
   mileStones:
   - 100

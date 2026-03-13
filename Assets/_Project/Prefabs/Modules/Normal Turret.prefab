@@ -85,6 +85,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RecordDiscShooter
   description: A run of the mill turret sentry, from a run of the mill action flick.
   state: 1
+  fastForwardSound: {fileID: 8300000, guid: c25a378f906f03f45a34bc3f3b926bb2, type: 3}
+  fastForwardSoundVolume: 1
+  rewindSound: {fileID: 8300000, guid: 904184cbab2ef6d4eb570d029d20a47c, type: 3}
+  rewindSoundVolume: 1
   pickupOffset: {x: 0, y: 0, z: 0}
   pickUpSound: {fileID: 8300000, guid: 602022546f4e4474a8d87cf01f887e79, type: 3}
   pickUpSoundVolume: 0.25
@@ -95,22 +99,18 @@ MonoBehaviour:
   rewindRecoveryMultiplier: 4
   defaultDecaySpeed: 5
   attackStateDecayMultiplier: 4
-  fastForwardSound: {fileID: 8300000, guid: c25a378f906f03f45a34bc3f3b926bb2, type: 3}
-  fastForwardSoundVolume: 1
-  rewindSound: {fileID: 8300000, guid: 904184cbab2ef6d4eb570d029d20a47c, type: 3}
-  rewindSoundVolume: 1
   recordDiscPrefab: {fileID: 7281761947621026003, guid: 3e25eb2750c86fb48a485999b88fc083, type: 3}
   spawnPoint: {fileID: 8249512393310653435}
   discShooterBody: {fileID: 0}
-  targetingStrategy: {fileID: 11400000, guid: 5bad6131ea5be3a48901443eac05fed7, type: 2}
+  targetingStrategy: {fileID: 11400000, guid: e79a6ed2001bc524fab0d8f9f7facc09, type: 2}
   rotateSpeed: 200
   defaultBulletSpeed: 40
   fastBulletSpeed: 80
   slowBulletSpeed: 10
-  timeBetweenShots: 1
+  timeBetweenShots: 0.5
   bulletWobble: 0.36
   maxTargets: 3
-  detectionRange: 5
+  detectionRange: 7
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RangeDetector
   rangeType: 0
-  radius: 5
+  radius: 7
   angle: 35
   width: 2
   length: 12.5
