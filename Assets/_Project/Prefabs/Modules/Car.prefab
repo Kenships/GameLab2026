@@ -1,5 +1,94 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &754825601426152957
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7546627462099989602}
+  m_Layer: 0
+  m_Name: Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7546627462099989602
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 754825601426152957}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 6.000001, y: 0, z: -0.00000047683716}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9131822780287219449}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1211403721857370205
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6673354686891522904}
+  - component: {fileID: 4584474057879492836}
+  m_Layer: 0
+  m_Name: FrontDetector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6673354686891522904
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1211403721857370205}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2457948907829195959}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &4584474057879492836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1211403721857370205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02a5aeb5e24a32d4dad56281e1a6a240, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.RangeDetector
+  rangeType: 1
+  radius: 3
+  angle: 60
+  width: 5
+  length: 10
+  targetLayers:
+    serializedVersion: 2
+    m_Bits: 64
+  obsticalLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  startingTransform: {fileID: 0}
+  ignoreYAxis: 1
+  colliderBufferSize: 100
 --- !u!1 &2482554274284804518
 GameObject:
   m_ObjectHideFlags: 0
@@ -371,6 +460,8 @@ Transform:
   - {fileID: 1497890780945600327}
   - {fileID: 4880121809062358362}
   - {fileID: 7515700744716299255}
+  - {fileID: 6673354686891522904}
+  - {fileID: 3553287218679090736}
   m_Father: {fileID: 9131822780287219449}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6294190084763660914
@@ -498,7 +589,6 @@ GameObject:
   - component: {fileID: 7421023598384547516}
   - component: {fileID: 2815457285788318349}
   - component: {fileID: 532425564882558220}
-  - component: {fileID: 5445740453022897467}
   m_Layer: 3
   m_Name: Car
   m_TagString: Untagged
@@ -521,6 +611,7 @@ Transform:
   m_Children:
   - {fileID: 2457948907829195959}
   - {fileID: 3399791563135608431}
+  - {fileID: 7546627462099989602}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!114 &1723036856371498414
@@ -535,16 +626,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c830ee69b6f3ea44a0bf9e181ac20ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Car
+  description: If this module is player-placeable define this
   state: 3
+  fastForwardSound: {fileID: 8300000, guid: c25a378f906f03f45a34bc3f3b926bb2, type: 3}
+  fastForwardSoundVolume: 1
+  rewindSound: {fileID: 8300000, guid: 904184cbab2ef6d4eb570d029d20a47c, type: 3}
+  rewindSoundVolume: 1
+  inflictor: {fileID: 11400000, guid: 234dbd469dbc83549b71e700b71929cc, type: 2}
+  destination: {fileID: 7546627462099989602}
   fastForwardSpeed: 15
   rewindSpeed: 10
-  rewindDistanceLimit: 5
   rewindDamage: 30
-  fastFowardDamage: 75
-  _enemyLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  _rangeDetector: {fileID: 5445740453022897467}
+  fastForwardDamage: 20
+  backDetector: {fileID: 5190643010683172076}
+  frontDetector: {fileID: 4584474057879492836}
 --- !u!65 &7421023598384547516
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -609,30 +704,62 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &5445740453022897467
+--- !u!1 &7466488088715695884
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3553287218679090736}
+  - component: {fileID: 5190643010683172076}
+  m_Layer: 0
+  m_Name: BackDetector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3553287218679090736
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7466488088715695884}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2457948907829195959}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!114 &5190643010683172076
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6713747546187726529}
+  m_GameObject: {fileID: 7466488088715695884}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 02a5aeb5e24a32d4dad56281e1a6a240, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.RangeDetector
-  rangeType: 2
-  radius: 5
+  rangeType: 1
+  radius: 3
   angle: 60
-  width: 6
-  length: 2
+  width: 5
+  length: 10
   targetLayers:
     serializedVersion: 2
     m_Bits: 64
   obsticalLayers:
     serializedVersion: 2
     m_Bits: 0
-  startingTransform: {fileID: 3399791563135608431}
+  startingTransform: {fileID: 0}
   ignoreYAxis: 1
   colliderBufferSize: 100
 --- !u!1 &7892460946229280252
