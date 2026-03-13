@@ -104,14 +104,12 @@ namespace _Project.Scripts.Core
         }
 
         private bool IsLineOfSight(Transform a,
-            Transform b,
-            float eyeHeight = .5f,
-            float sideOffset = .4f)
+            Transform b)
         {
-            Vector3 origin = a.position + Vector3.up * eyeHeight;
-            Vector3 center = b.position + Vector3.up * eyeHeight;
+            Vector3 origin = a.position;
+            Vector3 center = b.position;
 
-            Vector3 right = b.right * sideOffset;
+            Vector3 right = b.right;
 
             Vector3[] points =
             {
@@ -319,5 +317,11 @@ namespace _Project.Scripts.Core
         }
 
         #endregion
+
+        public void ResetRangeDetection()
+        {
+            _previouslyInRange.Clear();
+            _currentlyInRange.Clear();
+        }
     }
 }

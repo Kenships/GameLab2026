@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3044727400441664815}
   - component: {fileID: 852193604899646370}
   - component: {fileID: -8867070136259511986}
+  - component: {fileID: 8825712044740088941}
   m_Layer: 7
   m_Name: RecordDiscBullet
   m_TagString: Untagged
@@ -81,7 +82,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -99,7 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RecordDiscBullet
   inflictor: {fileID: 11400000, guid: 9abf9e512cf7f5b41a969d4516609f22, type: 2}
   hitCooldown: 0.2
-  enemySearchRadius: 30
+  enemySearchRadius: 10
   bulletLifetime: 3.5
   bulletDamage: 12
 --- !u!1001 &5026279065615804937
