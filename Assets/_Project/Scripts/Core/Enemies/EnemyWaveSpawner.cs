@@ -1,5 +1,7 @@
 using System.Collections;
 using _Project.Scripts.Core.Enemies.Factories;
+using _Project.Scripts.Enemies;
+using Obvious.Soap;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -39,6 +41,7 @@ namespace _Project.Scripts.Core.Enemies
 
         [Header("References")]
         [SerializeField] private Transform vhsLocation;
+        [SerializeField] private ScriptableEventWaveData waveStartEvent;
 
         [Header("Wave Settings")]
         [SerializeField] private Wave[] waves;
@@ -65,6 +68,8 @@ namespace _Project.Scripts.Core.Enemies
                     Debug.LogWarning($"Wave {waveIndex + 1} has no portal spawns.");
                     continue;
                 }
+                
+                waveStartEvent?.Raise(currentWave);
 
                 Debug.Log($"Starting {currentWave.waveName}");
 
