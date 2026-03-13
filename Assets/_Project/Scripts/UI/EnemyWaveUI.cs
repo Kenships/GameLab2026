@@ -20,10 +20,10 @@ namespace _Project.Scripts.UI
 
         private void Start()
         {
-            waveData.OnRaised += WaveDataOnOnRaised;
+            waveData.OnRaised += WaveDataOnRaised;
         }
 
-        private void WaveDataOnOnRaised(EnemyWaveSpawner.Wave wave)
+        private void WaveDataOnRaised(EnemyWaveSpawner.Wave wave)
         {
             _text.text = wave.waveName;
         }
