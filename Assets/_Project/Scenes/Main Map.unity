@@ -2500,7 +2500,6 @@ Transform:
   - {fileID: 1257631044}
   - {fileID: 1138423950469953166}
   - {fileID: 717588365}
-  - {fileID: 1447418359605127861}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &671266701
@@ -7119,6 +7118,10 @@ PrefabInstance:
       propertyPath: playerID
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8859575181546914020, guid: 182a216b55b5c854cb04ac43f2ab745c, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: d183449fb970e6b4885a54fe80ee519d, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7885,11 +7888,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2835732269424538148, guid: c5862296d27d8e94190863963df3638b, type: 3}
   m_PrefabInstance: {fileID: 4410328233264703339}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1447418359605127861 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 66664118387038740, guid: df1d64a51f558bd4dbe258997583f9ac, type: 3}
-  m_PrefabInstance: {fileID: 7147329232812292967}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1811955943687959337 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9061403673497064804, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
@@ -8064,27 +8062,6 @@ MonoBehaviour:
   vhsLocation: {fileID: 586856802}
   waveStartEvent: {fileID: 11400000, guid: 70472f02f5cc06345845b0a8e5cba28f, type: 2}
   waves:
-  - waveName: Wave 6
-    portalSpawns:
-    - spawnPosition: {fileID: 1635483276}
-      enemies:
-      - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
-        count: 10
-    - spawnPosition: {fileID: 851351561}
-      enemies:
-      - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
-        count: 10
-    - spawnPosition: {fileID: 1601954570}
-      enemies:
-      - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
-        count: 10
-    - spawnPosition: {fileID: 1370677806}
-      enemies:
-      - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
-        count: 10
-    spawnDelayMin: 3
-    spawnDelayMax: 3
-    restAfterWave: 5
   - waveName: Wave 1
     portalSpawns:
     - spawnPosition: {fileID: 851351561}
@@ -8148,6 +8125,27 @@ MonoBehaviour:
     spawnDelayMin: 2
     spawnDelayMax: 3
     restAfterWave: 3
+  - waveName: Wave 6
+    portalSpawns:
+    - spawnPosition: {fileID: 851351561}
+      enemies:
+      - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
+        count: 10
+    - spawnPosition: {fileID: 1601954570}
+      enemies:
+      - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
+        count: 10
+    - spawnPosition: {fileID: 1635483276}
+      enemies:
+      - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
+        count: 10
+    - spawnPosition: {fileID: 1370677806}
+      enemies:
+      - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
+        count: 10
+    spawnDelayMin: 3
+    spawnDelayMax: 3
+    restAfterWave: 5
   - waveName: Wave 7
     portalSpawns:
     - spawnPosition: {fileID: 851351561}
@@ -8236,79 +8234,6 @@ MonoBehaviour:
     spawnDelayMin: 2
     spawnDelayMax: 2
     restAfterWave: 5
---- !u!1001 &7147329232812292967
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 671120433}
-    m_Modifications:
-    - target: {fileID: 66664118387038740, guid: df1d64a51f558bd4dbe258997583f9ac, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 5.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 66664118387038740, guid: df1d64a51f558bd4dbe258997583f9ac, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 66664118387038740, guid: df1d64a51f558bd4dbe258997583f9ac, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -5.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 66664118387038740, guid: df1d64a51f558bd4dbe258997583f9ac, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 66664118387038740, guid: df1d64a51f558bd4dbe258997583f9ac, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 66664118387038740, guid: df1d64a51f558bd4dbe258997583f9ac, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 66664118387038740, guid: df1d64a51f558bd4dbe258997583f9ac, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 66664118387038740, guid: df1d64a51f558bd4dbe258997583f9ac, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 66664118387038740, guid: df1d64a51f558bd4dbe258997583f9ac, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 66664118387038740, guid: df1d64a51f558bd4dbe258997583f9ac, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 519566611001613763, guid: df1d64a51f558bd4dbe258997583f9ac, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 519566611001613763, guid: df1d64a51f558bd4dbe258997583f9ac, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1316761848199325709, guid: df1d64a51f558bd4dbe258997583f9ac, type: 3}
-      propertyPath: m_Name
-      value: Lazer Cannon
-      objectReference: {fileID: 0}
-    - target: {fileID: 8082804733261057866, guid: df1d64a51f558bd4dbe258997583f9ac, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8082804733261057866, guid: df1d64a51f558bd4dbe258997583f9ac, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: df1d64a51f558bd4dbe258997583f9ac, type: 3}
 --- !u!1001 &7935208636508547948
 PrefabInstance:
   m_ObjectHideFlags: 0
