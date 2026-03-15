@@ -206,7 +206,10 @@ namespace _Project.Scripts.Core
                     return angleBetween <= angle * 0.5f;
 
                 case RangeType.Rectangle:
-                    Vector3 targetLocalPos = start.InverseTransformPoint(targetPos);
+                    // Fixed lazer cannon's bug (caused by scale)
+                    Matrix4x4 m = Matrix4x4.TRS(start.position, start.rotation, Vector3.one);
+                    Vector3 targetLocalPos = m.inverse.MultiplyPoint3x4(targetPos);
+
                     if (ignoreYAxis)
                         targetLocalPos.y = 0;
 
