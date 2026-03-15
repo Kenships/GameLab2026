@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using UnityEngine;
 using AudioType = _Project.Scripts.Core.AudioPooling.Interface.AudioType;
 
@@ -8,7 +9,8 @@ namespace _Project.Scripts.Core.Modules.Base_Class
     {
         [Header("Pickup Settings")]
         [SerializeField] protected Vector3 pickupOffset;
-        
+        [SerializeField] protected Vector3 pickupRotationOffset;
+
         [Header("Pickup Audio")]
         [SerializeField] protected AudioClip pickUpSound;
         [SerializeField] protected float pickUpSoundVolume = 0.25f;
@@ -22,6 +24,7 @@ namespace _Project.Scripts.Core.Modules.Base_Class
         {
             transform.SetParent(anchorTransform);
             transform.localPosition = pickupOffset;
+            transform.localRotation = Quaternion.Euler(pickupRotationOffset);
         }
 
         public void PickUp()
