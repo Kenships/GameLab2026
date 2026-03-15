@@ -93,7 +93,7 @@ namespace _Project.Scripts.Core.Player
             if (!_currentIHoldingObject)
             {
                 GameObject obj = _gridService.GetObjectOnGrid(frontOfPlayer.position);
-                if(!obj) return;
+                if(!obj || obj.tag.Equals("NonRotatable")) return;
                 
                 obj.transform.Rotate(Vector3.up, 90);
                 return;
