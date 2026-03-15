@@ -6971,6 +6971,83 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.0000002, y: 1, z: 1.0000002}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1001 &1762840819
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 66664118387038740, guid: df1d64a51f558bd4dbe258997583f9ac, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.5391047
+      objectReference: {fileID: 0}
+    - target: {fileID: 66664118387038740, guid: df1d64a51f558bd4dbe258997583f9ac, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.0007067762
+      objectReference: {fileID: 0}
+    - target: {fileID: 66664118387038740, guid: df1d64a51f558bd4dbe258997583f9ac, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.4883027
+      objectReference: {fileID: 0}
+    - target: {fileID: 66664118387038740, guid: df1d64a51f558bd4dbe258997583f9ac, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 66664118387038740, guid: df1d64a51f558bd4dbe258997583f9ac, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 66664118387038740, guid: df1d64a51f558bd4dbe258997583f9ac, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 66664118387038740, guid: df1d64a51f558bd4dbe258997583f9ac, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 66664118387038740, guid: df1d64a51f558bd4dbe258997583f9ac, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 66664118387038740, guid: df1d64a51f558bd4dbe258997583f9ac, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 66664118387038740, guid: df1d64a51f558bd4dbe258997583f9ac, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1316761848199325709, guid: df1d64a51f558bd4dbe258997583f9ac, type: 3}
+      propertyPath: m_Name
+      value: Lazer Cannon
+      objectReference: {fileID: 0}
+    - target: {fileID: 8082804733261057866, guid: df1d64a51f558bd4dbe258997583f9ac, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8082804733261057866, guid: df1d64a51f558bd4dbe258997583f9ac, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8234637340587549677, guid: df1d64a51f558bd4dbe258997583f9ac, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8234637340587549677, guid: df1d64a51f558bd4dbe258997583f9ac, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8571375815854924452, guid: df1d64a51f558bd4dbe258997583f9ac, type: 3}
+      propertyPath: hideDelay
+      value: 0.5
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: df1d64a51f558bd4dbe258997583f9ac, type: 3}
 --- !u!1 &1790678925
 GameObject:
   m_ObjectHideFlags: 0
@@ -7656,6 +7733,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: d183449fb970e6b4885a54fe80ee519d, type: 2}
+    - target: {fileID: 9180961584110244387, guid: 182a216b55b5c854cb04ac43f2ab745c, type: 3}
+      propertyPath: m_Name
+      value: Grid Indicator 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7761,6 +7842,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671120433}
     m_Modifications:
+    - target: {fileID: 2366788554856475630, guid: 43682b4e551780c42b8badfbfd8ea66b, type: 3}
+      propertyPath: description
+      value: VHS
+      objectReference: {fileID: 0}
     - target: {fileID: 2366788554856475630, guid: 43682b4e551780c42b8badfbfd8ea66b, type: 3}
       propertyPath: vhsFullHPEvent
       value: 
@@ -8742,6 +8827,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9180961584110244387, guid: 182a216b55b5c854cb04ac43f2ab745c, type: 3}
+      propertyPath: m_Name
+      value: Grid Indicator 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9080,3 +9169,4 @@ SceneRoots:
   - {fileID: 1514619457}
   - {fileID: 319838571}
   - {fileID: 1993418239}
+  - {fileID: 1762840819}
