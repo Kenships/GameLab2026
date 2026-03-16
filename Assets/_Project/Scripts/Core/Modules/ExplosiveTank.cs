@@ -3,12 +3,13 @@ using _Project.Scripts.Core.AudioPooling.Interface;
 using _Project.Scripts.Core.HealthManagement;
 using _Project.Scripts.Core.Modules.Base_Class;
 using _Project.Scripts.Core.Player;
+using _Project.Scripts.Effects.Interface;
 using UnityEngine;
 using AudioType = _Project.Scripts.Core.AudioPooling.Interface.AudioType;
 
 namespace _Project.Scripts.Core.Modules
 {
-    public class ExplosiveTank : Module
+    public class ExplosiveTank : Module, IDamageable
     {
         [Header("References")]
         [SerializeField] private ParticleSystem explosionParticle;
@@ -206,5 +207,20 @@ namespace _Project.Scripts.Core.Modules
         }
 
         #endregion
+
+        public void Damage(float damage)
+        {
+            _health.AddToHealth(-damage);
+        }
+
+        public void ApplyEffect(IEffect<IDamageable> effect)
+        {
+            
+        }
+
+        public void RemoveEffect(IEffect<IDamageable> effect)
+        {
+            
+        }
     }
 }

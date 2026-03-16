@@ -4,6 +4,7 @@ using _Project.Scripts.Core.HealthManagement;
 using _Project.Scripts.Core.Modules.Base_Class;
 using _Project.Scripts.Core.Player;
 using _Project.Scripts.Effects.Inflictors;
+using _Project.Scripts.Effects.Interface;
 using _Project.Scripts.Targeting.Interface;
 using _Project.Scripts.Targeting.Strategies;
 using _Project.Scripts.Util.Timer.Timers;
@@ -11,7 +12,7 @@ using UnityEngine;
 
 namespace _Project.Scripts.Core.Modules
 {
-    public class Flamethrower : HpPickupModuleBase
+    public class Flamethrower : HpPickupModuleBase, IDamageable
     {
         [Header("Particle Settings")]
         [SerializeField] private ParticleSystem particle;
@@ -46,6 +47,7 @@ namespace _Project.Scripts.Core.Modules
         private List<EnemyBase> _enemies;
         private bool _isDamagingEnemies;
         private CountdownTimer _attackCooldownTimer;
+        private Health _myHealth;
 
         protected override void Start()
         {
@@ -53,6 +55,7 @@ namespace _Project.Scripts.Core.Modules
             _currentDps = normalDps;
             _attackCooldownTimer = new CountdownTimer(1f/_currentDps);
             _enemies = new List<EnemyBase>();
+            _myHealth = gameObject.GetComponent<Health>();
 
             _rangeDetector = GetComponent<RangeDetector>();
             if (!_rangeDetector)
@@ -182,7 +185,21 @@ namespace _Project.Scripts.Core.Modules
                     break;
             }
         }
-
         #endregion
+
+        public void Damage(float damage)
+        {
+            _myHealth.AddToHealth(-damage);
+        }
+
+        public void ApplyEffect(IEffect<IDamageable> effect)
+        {
+            
+        }
+
+        public void RemoveEffect(IEffect<IDamageable> effect)
+        {
+            
+        }
     }
 }
