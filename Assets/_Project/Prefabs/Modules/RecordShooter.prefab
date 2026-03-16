@@ -700,8 +700,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.RangeVisualizer
   detector: {fileID: 6220022207668456444}
-  gridIndicator1: {fileID: 0}
-  gridIndicator2: {fileID: 0}
   fillColor: {r: 0.2, g: 1, b: 0.6, a: 0.2}
   borderColor: {r: 0.4, g: 1, b: 0.8, a: 0.9}
   borderWidth: 0.2
@@ -1443,7 +1441,6 @@ GameObject:
   - component: {fileID: 5248281451148013754}
   - component: {fileID: 6220022207668456444}
   - component: {fileID: 7568861021529150541}
-  - component: {fileID: 2982707194182516533}
   m_Layer: 3
   m_Name: RecordShooter
   m_TagString: Untagged
@@ -1459,7 +1456,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8143855464876323403}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.518423, y: -0.0000009083087, z: -1.897563}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1573,21 +1570,6 @@ MonoBehaviour:
   ignoreYAxis: 1
   colliderBufferSize: 50
 --- !u!114 &7568861021529150541
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8143855464876323403}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 023b85b921ddb3a4494f81debd41c69f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.HealthManagement.Health
-  <CurrentHealth>k__BackingField: 0
-  <MaxHealth>k__BackingField: 0
-  _healthStages: []
---- !u!114 &2982707194182516533
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

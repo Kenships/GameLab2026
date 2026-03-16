@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
 using _Project.Scripts.Core.Enemies;
+using _Project.Scripts.Core.HealthManagement;
 using _Project.Scripts.Core.Modules.Base_Class;
 using _Project.Scripts.Core.Player;
+using _Project.Scripts.Effects.Interface;
 using _Project.Scripts.Targeting;
 using _Project.Scripts.Targeting.Interface;
 using _Project.Scripts.Targeting.Strategies;
@@ -12,7 +14,7 @@ using AudioType = _Project.Scripts.Core.AudioPooling.Interface.AudioType;
 namespace _Project.Scripts.Core.Modules
 {
     [RequireComponent(typeof(RangeDetector))]
-    public class RecordDiscShooter : HpPickupModuleBase
+    public class RecordDiscShooter : HpPickupModuleBase, IDamageable
     {
         [Header("References")]
         [SerializeField] RecordDiscBullet recordDiscPrefab;
@@ -50,6 +52,7 @@ namespace _Project.Scripts.Core.Modules
         private float _currentBulletSpeed;
         private RangeDetector _rangeDetector;
         private float _currentTimeBetweenShots;
+        private Health _myHealth;
 
         private readonly List<EnemyBase> _enemies = new();
 
@@ -60,7 +63,7 @@ namespace _Project.Scripts.Core.Modules
             _rangeDetector.radius = detectionRange;
             _currentBulletSpeed = defaultBulletSpeed;
             _currentTimeBetweenShots = timeBetweenShots;
-            
+            _myHealth = gameObject.GetComponent<Health>();
 
         }
 
@@ -215,6 +218,21 @@ namespace _Project.Scripts.Core.Modules
             _rangeDetector ??= GetComponent<RangeDetector>();
             _rangeDetector.radius = detectionRange; 
             #endif
+        }
+
+        public void Damage(float damage)
+        {
+            _myHealth.AddToHealth(-damage);
+        }
+
+        public void ApplyEffect(IEffect<IDamageable> effect)
+        {
+            
+        }
+
+        public void RemoveEffect(IEffect<IDamageable> effect)
+        {
+            
         }
     }
 }

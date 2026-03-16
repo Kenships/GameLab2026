@@ -1301,14 +1301,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 192856657586737878, guid: 6ce11590cd9482048add3b33b8fba3b4, type: 3}
-      propertyPath: gridIndicator1
-      value: 
-      objectReference: {fileID: 1419881423}
-    - target: {fileID: 192856657586737878, guid: 6ce11590cd9482048add3b33b8fba3b4, type: 3}
-      propertyPath: gridIndicator2
-      value: 
-      objectReference: {fileID: 1291547752}
     - target: {fileID: 7020352353024084139, guid: 6ce11590cd9482048add3b33b8fba3b4, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.5
