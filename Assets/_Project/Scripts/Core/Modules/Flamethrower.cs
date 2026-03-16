@@ -13,7 +13,7 @@ namespace _Project.Scripts.Core.Modules
 {
     public class Flamethrower : HpPickupModuleBase
     {
-        [Header("Particle Settings")]
+        [Header("Old Particle Settings")]
         [SerializeField] private ParticleSystem particle;
         [SerializeField] private float emissionRateToAngleRatio = 16f;
         // The relationship between rangeDetector.angle and particle angle can't be represented by a simple function, 
@@ -68,10 +68,13 @@ namespace _Project.Scripts.Core.Modules
                 Debug.Log("missing particle");
             }
 
+            /*
             UpdateParticleAngle(_rangeDetector.angle * angleMultiplier, emissionRateToAngleRatio);
             UpdateDistance(_rangeDetector.radius * radiusMultiplier);
+            */
             state = ModuleState.Load;
-        }
+        } 
+
 
         private void UpdateParticleAngle(float angle, float emissionRateToAngleRatio)
         {
@@ -165,17 +168,25 @@ namespace _Project.Scripts.Core.Modules
             switch (state)
             {
                 case ModuleState.Load:
+                    /*
                     UpdateParticleAngle(_rangeDetector.angle * angleMultiplier, emissionRateToAngleRatio);
+                    */
                     _rangeDetector.radius = _normalRadius;
+                    /*
                     UpdateDistance(_rangeDetector.radius * radiusMultiplier);
+                    */
                     particle.Play();
                     _currentDps = normalDps;
                     break;
                 case ModuleState.Attack:
                     _currentDps = fastDps;
+                    /*
                     UpdateParticleAngle(_rangeDetector.angle * angleMultiplier, fastEmissionRateToAngleRatio);
+                    */
                     _rangeDetector.radius = fastRadius;
+                    /*
                     UpdateDistance(_rangeDetector.radius * fastRadiusMultiplier);
+                    */
                     break;
                 case ModuleState.Used:
                     particle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
