@@ -378,6 +378,7 @@ MonoBehaviour:
   rewindSound: {fileID: 8300000, guid: 904184cbab2ef6d4eb570d029d20a47c, type: 3}
   rewindSoundVolume: 1
   pickupOffset: {x: 0, y: 0, z: 0}
+  pickupRotationOffset: {x: 0, y: 90, z: 0}
   pickUpSound: {fileID: 8300000, guid: 602022546f4e4474a8d87cf01f887e79, type: 3}
   pickUpSoundVolume: 0.25
   putDownSound: {fileID: 8300000, guid: d9d620a96f57c824695138d11a50362f, type: 3}
@@ -706,8 +707,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.RangeVisualizer
   detector: {fileID: 6739234255759612295}
-  gridIndicator1: {fileID: 0}
-  gridIndicator2: {fileID: 0}
   fillColor: {r: 0.2, g: 1, b: 0.6, a: 0.2}
   borderColor: {r: 0.4, g: 1, b: 0.8, a: 0.9}
   borderWidth: 0.2
