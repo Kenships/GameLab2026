@@ -74,8 +74,6 @@ namespace _Project.Scripts.UI
 
         private void HandleSelectedModuleNumber(ref int selectedModuleNumber, int delta)
         {
-            Debug.Log($"Delta: {modules.Count}");
-        
             selectedModuleNumber = (selectedModuleNumber + delta) % textmodules.Length;
 
             if (selectedModuleNumber < 0)
