@@ -13,8 +13,10 @@ namespace _Project.Scripts.Core.Modules
 {
     public class Flamethrower : HpPickupModuleBase
     {
-        [Header("Old Particle Settings")]
+        [Header("Particle Settings")]
+        
         [SerializeField] private ParticleSystem particle;
+        /*
         [SerializeField] private float emissionRateToAngleRatio = 16f;
         // The relationship between rangeDetector.angle and particle angle can't be represented by a simple function, 
         // so everytime you change rangeDetector.angle, you have to also adjust angleMultiplier to have desired particle effect
@@ -24,6 +26,13 @@ namespace _Project.Scripts.Core.Modules
         [SerializeField] private float radiusMultiplier = 3f;
         [SerializeField] private float fastEmissionRateToAngleRatio = 32f;
         [SerializeField] private float fastRadiusMultiplier = 3.75f;
+        */
+
+        [SerializeField] private ParticleSystem.MinMaxCurve newSpeed;
+        [SerializeField] private ParticleSystem.MinMaxCurve newDistance;
+
+        private ParticleSystem.MinMaxCurve normalSpeed;
+        private ParticleSystem.MinMaxCurve normalDistance;
 
         [Header("Flamethrower Settings")]
         [SerializeField] private EnemyEffectInflictor inflictor;
@@ -36,7 +45,6 @@ namespace _Project.Scripts.Core.Modules
         [Header("Player Selection Visuals")]
         [SerializeField] private GameObject player1Visual;
         [SerializeField] private GameObject player2Visual;
-        
 
 
         private float _currentDamage;
@@ -68,13 +76,27 @@ namespace _Project.Scripts.Core.Modules
                 Debug.Log("missing particle");
             }
 
+            var main = particle.main;
+
+            normalSpeed = new ParticleSystem.MinMaxCurve(main.startSpeed.constantMin, main.startSpeed.constantMax);
+
+            normalDistance = new ParticleSystem.MinMaxCurve(main.startLifetime.constantMin, main.startLifetime.constantMax);
+
             /*
             UpdateParticleAngle(_rangeDetector.angle * angleMultiplier, emissionRateToAngleRatio);
             UpdateDistance(_rangeDetector.radius * radiusMultiplier);
             */
-            state = ModuleState.Load;
-        } 
 
+            state = ModuleState.Load;
+        }
+
+        private void UpdateParticleBehaviour(ParticleSystem.MinMaxCurve S, ParticleSystem.MinMaxCurve L)
+        {
+            var main = particle.main;
+
+            main.startLifetime = L;
+            main.startSpeed = S;
+        }
 
         private void UpdateParticleAngle(float angle, float emissionRateToAngleRatio)
         {
@@ -86,6 +108,15 @@ namespace _Project.Scripts.Core.Modules
         }
 
         private void UpdateDistance(float distance)
+        {
+            var main = particle.main;
+
+            float currentLifetime = main.startLifetime.constant;
+
+            main.startSpeed = distance / currentLifetime;
+        }
+
+        private void UpdateSpeed(float distance)
         {
             var main = particle.main;
 
@@ -175,6 +206,9 @@ namespace _Project.Scripts.Core.Modules
                     /*
                     UpdateDistance(_rangeDetector.radius * radiusMultiplier);
                     */
+
+                    UpdateParticleBehaviour(normalSpeed, normalDistance);
+
                     particle.Play();
                     _currentDps = normalDps;
                     break;
@@ -183,6 +217,7 @@ namespace _Project.Scripts.Core.Modules
                     /*
                     UpdateParticleAngle(_rangeDetector.angle * angleMultiplier, fastEmissionRateToAngleRatio);
                     */
+                    UpdateParticleBehaviour(newSpeed, newDistance);
                     _rangeDetector.radius = fastRadius;
                     /*
                     UpdateDistance(_rangeDetector.radius * fastRadiusMultiplier);
