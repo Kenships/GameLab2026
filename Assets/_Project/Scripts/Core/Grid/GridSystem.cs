@@ -3,7 +3,7 @@ using _Project.Scripts.Util.CustomAttributes;
 using UnityEngine;
 using Sisus.Init;
 
-[Service(typeof(IGridService), FindFromScene = true)]
+[Service(typeof(IGridService), LoadScene = 0)]
 public class GridSystem : MonoBehaviour, IGridService
 {
     [SerializeField] private bool allowDiagonal = false;
