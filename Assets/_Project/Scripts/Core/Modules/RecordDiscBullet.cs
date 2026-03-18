@@ -8,90 +8,76 @@ using AudioType = _Project.Scripts.Core.AudioPooling.Interface.AudioType;
 
 namespace _Project.Scripts.Core.Modules
 {
+    [RequireComponent(typeof(Rigidbody))]
     public class RecordDiscBullet : MonoBehaviour<AudioPooler>
     {
-        private float _rotateSpeed = 200f; //takes from disc shooter
-        private float _wobbleAmount = 0f; //takes from disc shooter 
-        [SerializeField] private EnemyEffectInflictor inflictor;
+        [SerializeField] private float rotateSpeed = 200f;
         [SerializeField] private float hitCooldown = 0.2f; //cooldown before it starts detecting another trigger on hit
-        [SerializeField] private float enemySearchRadius = 30f; //the radius that it searches the next closest enemy if theres none it will go back to previous enemy
-        [SerializeField] private float bulletLifetime = 3.5f; // max seconds until bullet is destroyed regardless of how many targets it hit
+
+        [SerializeField] private float enemySearchRadius = 10f; 
+
+        [SerializeField, Range(0f, 1f)] private float wobbleAmount = 0.36f;
+
+        
         private LayerMask _enemyLayer;
         private Transform _target;
         private Transform _lastKnownTarget;
         private Rigidbody _rb;
-        
+
+        private EnemyEffectInflictor _inflictor;
+
         private float _speed;
         private int _maxTargets;
         private int _hitCount;
         private float _hitTimer;
-        
-        private bool _isNormalTurret;
-    
+
         private AudioPooler _audioPooler;
-    
+
         protected override void Init(AudioPooler audioPooler)
         {
             _audioPooler = audioPooler;
         }
 
-        public void Initialize(Transform target, float speed, int maxTargets, float rotateSpeed, float wobbleAmount, LayerMask enemyLayer, bool isNormal)
+        public void Initialize(Transform target, LayerMask targetLayer, EnemyEffectInflictor inflictor, float speed, float projectileLifeTime, int maxTargets)
         {
-            _rotateSpeed = rotateSpeed;
+            _inflictor = inflictor;
             _target = target;
-            _lastKnownTarget = target;
+            _lastKnownTarget = _target;
+            _enemyLayer = targetLayer;
+
             _speed = speed;
             _maxTargets = maxTargets;
             _hitCount = 0;
-            _wobbleAmount = wobbleAmount;
-            _enemyLayer = enemyLayer;
-            Destroy(gameObject, bulletLifetime);
-            _isNormalTurret = isNormal;
+
+            Destroy(gameObject, projectileLifeTime);
 
             _rb = GetComponent<Rigidbody>();
-            if (_rb)
-            {
-                if (_wobbleAmount <= 0f || _isNormalTurret)
-                {
-                    _rb.freezeRotation = true;
-                }
-                else
-                {
-                    _rb.angularDamping = Mathf.Lerp(100f, 0f, wobbleAmount);
-                }
-
-                _rb.useGravity = false;
-                _rb.isKinematic = true;
-            }
+            _rb.angularDamping = Mathf.Lerp(100f, 0f, wobbleAmount);
+            _rb.useGravity = false;
+            _rb.isKinematic = true;
         }
 
         public void SetWobble(float amount)
         {
-            _wobbleAmount = amount;
+            wobbleAmount = amount;
 
             if (_rb)
             {
-                if (_wobbleAmount <= 0f)
+                if (wobbleAmount <= 0f)
                 {
                     _rb.freezeRotation = true;
                 }
                 else
                 {
                     _rb.freezeRotation = false;
-                    _rb.angularDamping = Mathf.Lerp(100f, 0f, _wobbleAmount);
+                    _rb.angularDamping = Mathf.Lerp(100f, 0f, wobbleAmount);
                 }
             }
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             _hitTimer -= Time.deltaTime;
-
-            if (_isNormalTurret)
-            {
-                transform.Translate(Vector3.forward * (_speed * Time.deltaTime));
-                return;
-            }
 
             FindClosestEnemy();
             Transform homingTarget = _target;
@@ -115,7 +101,7 @@ namespace _Project.Scripts.Core.Modules
             transform.rotation = Quaternion.RotateTowards(
                 transform.rotation,
                 targetRotation,
-                _rotateSpeed * Time.deltaTime
+                rotateSpeed * Time.deltaTime
             );
 
             transform.Translate(Vector3.forward * (_speed * Time.deltaTime));
@@ -152,8 +138,8 @@ namespace _Project.Scripts.Core.Modules
 
         private void OnTriggerEnter(Collider other)
         {
-        
-            if (_hitTimer > 0f) return;
+            if (_hitTimer > 0f)
+                return;
 
             if (!other.IsOnLayer(_enemyLayer))
             {
@@ -167,43 +153,41 @@ namespace _Project.Scripts.Core.Modules
                 _hitCount++;
                 _hitTimer = hitCooldown;
 
-                if (_isNormalTurret || _hitCount >= _maxTargets)
+                if (_hitCount >= _maxTargets)
                 {
                     Destroy(gameObject);
                 }
             }
         }
-    
+
         private void Inflict(EnemyBase enemy)
         {
-            if (inflictor == null)
+            if (_inflictor == null)
             {
                 Debug.LogWarning("Inflector is null");
                 return;
             }
-        
-            inflictor.Inflict(enemy);
-        
-            if (inflictor.CastVFX)
+
+            _inflictor.Inflict(enemy);
+
+            if (_inflictor.CastVFX)
             {
-                Instantiate(inflictor.CastVFX, transform.position, Quaternion.identity);
+                Instantiate(_inflictor.CastVFX, transform.position, Quaternion.identity);
             }
-        
-            if (inflictor.AudioClip)
+
+            if (_inflictor.AudioClip)
             {
                 _audioPooler
-                    .New3DAudio(inflictor.AudioClip)
+                    .New3DAudio(_inflictor.AudioClip)
                     .OnChannel(AudioType.Sfx)
                     .AtPosition(transform.position)
                     .Play();
             }
-        
-            if (inflictor.LingeringVFX)
+
+            if (_inflictor.LingeringVFX)
             {
-                Instantiate(inflictor.LingeringVFX, transform.position, Quaternion.identity);
+                Instantiate(_inflictor.LingeringVFX, transform.position, Quaternion.identity);
             }
         }
-
-    
     }
 }
