@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6446087195546041049}
   - component: {fileID: 3044727400441664815}
   - component: {fileID: 852193604899646370}
+  - component: {fileID: 6381852020218974636}
   m_Layer: 7
   m_Name: RecordDiscBullet
   m_TagString: Untagged
@@ -26,8 +27,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8575660353434112914}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.1026286, y: 0.15847443, z: -0.016564233, w: 0.9818752}
-  m_LocalPosition: {x: -8.182425, y: 0.804, z: 3.308997}
+  m_LocalRotation: {x: 0.08041193, y: 0.03166255, z: -0.0025556162, w: 0.99625546}
+  m_LocalPosition: {x: -8.420696, y: 0.60300004, z: 3.1469808}
   m_LocalScale: {x: 0.48067433, y: 0.030341638, z: 0.4609422}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -84,6 +85,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &6381852020218974636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8575660353434112914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 656095f05ce414a4f8ee36f520efe49c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.Modules.RecordDiscBullet
+  rotateSpeed: 200
+  hitCooldown: 0.2
+  enemySearchRadius: 10
+  wobbleAmount: 0.36
 --- !u!1001 &5026279065615804937
 PrefabInstance:
   m_ObjectHideFlags: 0

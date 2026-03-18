@@ -52,7 +52,17 @@ namespace _Project.Scripts.Core.Modules
         private void ReevaluateTarget()
         {
             List<EnemyBase> targets = targetingStrategy.Evaluate(_enemies);
-            _currentTarget = targets.Count > 0 ? targets[0] : null;
+            
+            _currentTarget = null;
+
+            foreach (var target in targets)
+            {
+                if (target != null)
+                {
+                    _currentTarget = target;
+                    break;
+                }
+            }
         }
 
         private void PerformAttack()

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3142177103072667741}
   - component: {fileID: 2643648587791318605}
   - component: {fileID: 4297012667884275880}
+  - component: {fileID: 5047924687715135266}
   m_Layer: 7
   m_Name: Turret Bullet
   m_TagString: Untagged
@@ -140,3 +141,15 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &5047924687715135266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5629356299097722290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6fe1f2c50424956a39e428fc3e9cf2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.Modules.RegularBullet
