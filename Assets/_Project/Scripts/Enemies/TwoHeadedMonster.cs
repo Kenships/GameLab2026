@@ -91,18 +91,7 @@ public class TwoHeadedMonster : MonoBehaviour
 
         if (attackTimer <= 0f)
         {
-            bool isTargetVHS = attackTarget.GetComponent<VHSModule>() != null;
-
-            if (isTargetVHS)
-            {
-                // Keep attacking the VHS until death
-                attackTimer = attackDuration;
-                hasDealtDamage = false;
-            }
-            else
-            {
-                ExitAttackState();
-            }
+            ExitAttackState();
         }
     }
 

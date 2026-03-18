@@ -8,58 +8,49 @@ namespace _Project.Scripts.Core.Enemies
     public class BasicEnemy : EnemyBase
     {
         private static Transform _cachedVhsTransform;
-        
+
         private Transform _target;
-        private float _attackCooldown; 
-        private float _attackDamage; 
-        private float _damageTimer;
+        private float _attackDamage;
         private NavMeshAgent _navMeshAgent;
 
         public void Initialize(float maxHealth, float moveSpeed, float attackCooldown, float attackDamage)
         {
             _cachedVhsTransform ??= FindFirstObjectByType<VHSModule>().transform;
             _target = _cachedVhsTransform;
-            
+
             _health ??= gameObject.GetOrAdd<Health>();
             _health.Initialize(maxHealth);
-            
-            _attackCooldown = attackCooldown;
+
             _attackDamage = attackDamage;
-            
+
             _navMeshAgent = GetComponent<NavMeshAgent>();
             _moveSpeed = moveSpeed;
-            
+
             _health.OnDeath += OnDeath;
         }
 
         private void FixedUpdate()
         {
-            if (Stunned){
+            if (Stunned)
+            {
                 _navMeshAgent.isStopped = true;
                 return;
             }
-            
+
             _navMeshAgent.isStopped = false;
             _navMeshAgent.speed = _moveSpeed * SpeedMultiplier;
-            
+
             if (!_target) return;
-            
+
             float distance = Vector3.Distance(transform.position, _target.position);
 
-            _damageTimer -= Time.deltaTime * SpeedMultiplier;
-            
-            if (distance > 2f)
+            if (distance > 1.4f)
             {
-                // Move towards the VHS location
                 _navMeshAgent.SetDestination(_target.position);
             }
             else
             {
-                if (_damageTimer <= 0f)
-                {
-                    DamageVhs(_attackDamage);
-                    _damageTimer = _attackCooldown;
-                }
+                DamageVhs(_attackDamage);
             }
         }
 
@@ -68,6 +59,11 @@ namespace _Project.Scripts.Core.Enemies
             if (_target.TryGetComponent(out IDamageable damageable))
             {
                 damageable.Damage(damage);
+
+                // Play animation or effect here
+
+                // Enemy dies after it attacks the vhs once
+                Destroy(gameObject);
             }
         }
     }
