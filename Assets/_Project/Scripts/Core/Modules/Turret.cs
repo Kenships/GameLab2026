@@ -1,16 +1,18 @@
-using System.Collections.Generic;
 using _Project.Scripts.Core.Enemies;
+using _Project.Scripts.Core.HealthManagement;
 using _Project.Scripts.Core.Modules.Base_Class;
 using _Project.Scripts.Core.Modules.Factories;
 using _Project.Scripts.Core.Player;
+using _Project.Scripts.Effects.Interface;
 using _Project.Scripts.Targeting.Strategies;
+using System.Collections.Generic;
 using UnityEngine;
 using AudioType = _Project.Scripts.Core.AudioPooling.Interface.AudioType;
 
 namespace _Project.Scripts.Core.Modules
 {
     [RequireComponent(typeof(RangeDetector))]
-    public class Turret : HpPickupModuleBase
+    public class Turret : HpPickupModuleBase, IDamageable
     {
         [Header("References")]
         [SerializeField] private Transform spawnPoint;
@@ -38,6 +40,7 @@ namespace _Project.Scripts.Core.Modules
         private EnemyBase _currentTarget;
         private RangeDetector _rangeDetector;
         private float _shotsPerSecond;
+        private Health _myHealth;
 
         private readonly List<EnemyBase> _enemies = new();
 
@@ -47,6 +50,7 @@ namespace _Project.Scripts.Core.Modules
             _rangeDetector ??= GetComponent<RangeDetector>();
             _rangeDetector.radius = detectionRange;
             _shotsPerSecond = shotsPerSecond;
+            _myHealth = gameObject.GetComponent<Health>();
         }
 
         private void ReevaluateTarget()
@@ -190,6 +194,21 @@ namespace _Project.Scripts.Core.Modules
             _rangeDetector ??= GetComponent<RangeDetector>();
             _rangeDetector.radius = detectionRange;
 #endif
+        }
+
+        public void Damage(float damage)
+        {
+            _myHealth.AddToHealth(-damage);
+        }
+
+        public void ApplyEffect(IEffect<IDamageable> effect)
+        {
+            
+        }
+
+        public void RemoveEffect(IEffect<IDamageable> effect)
+        {
+            
         }
     }
 }

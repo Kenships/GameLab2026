@@ -2,13 +2,14 @@ using System.Collections.Generic;
 using _Project.Scripts.Core.HealthManagement;
 using _Project.Scripts.Core.Modules.Base_Class;
 using _Project.Scripts.Core.Player;
+using _Project.Scripts.Effects.Interface;
 using _Project.Scripts.Util.Timer.Timers;
 using PrimeTween;
 using UnityEngine;
 
 namespace _Project.Scripts.Core.Modules
 {
-    public class LazerCannon : HpPickupModuleBase
+    public class LazerCannon : HpPickupModuleBase, IDamageable
     {
         [Header("References")]
         [SerializeField] private Transform lazerBeamStartPos;
@@ -28,6 +29,7 @@ namespace _Project.Scripts.Core.Modules
         private List<IDamageable> _enemies;
         private CountdownTimer _attackCooldownTimer;
         private CountdownTimer _beamDurationTimer;
+        private Health _myHealth;
 
         protected override void Start()
         {
@@ -35,6 +37,7 @@ namespace _Project.Scripts.Core.Modules
             lazerBeam = lazerBeamStartPos.transform.GetChild(0);
             _attackCooldownTimer = new CountdownTimer(1f / dps);
             _beamDurationTimer = new CountdownTimer(lazerBeamDuration);
+            _myHealth = gameObject.GetComponent<Health>();
 
             _rangeDetector = GetComponent<RangeDetector>();
             if (!_rangeDetector)
@@ -138,5 +141,19 @@ namespace _Project.Scripts.Core.Modules
         }
 
         #endregion
+        public void Damage(float damage)
+        {
+            _myHealth.AddToHealth(-damage);
+        }
+
+        public void ApplyEffect(IEffect<IDamageable> effect)
+        {
+            
+        }
+
+        public void RemoveEffect(IEffect<IDamageable> effect)
+        {
+            
+        }
     }
 }
