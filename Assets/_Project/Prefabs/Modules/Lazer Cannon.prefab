@@ -712,7 +712,7 @@ MonoBehaviour:
   borderWidth: 0.2
   segments: 60
   yOffset: 0.5
-  hideDelay: 0.05
+  hideDelay: 0.5
   isVisible: 0
 --- !u!1 &2975578322263398619
 GameObject:
