@@ -62,8 +62,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 5.5, y: 0, z: 2.5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7975123500766312515}
   - {fileID: 3549484401426189583}
@@ -101,29 +101,19 @@ MonoBehaviour:
   rewindRecoveryMultiplier: 4
   defaultDecaySpeed: 5
   attackStateDecayMultiplier: 4
-  recordDiscPrefab: {fileID: 7281761947621026003, guid: 3e25eb2750c86fb48a485999b88fc083, type: 3}
   spawnPoint: {fileID: 8249512393310653435}
-  discShooterBody: {fileID: 0}
+  rotationBody: {fileID: 7508258180437511579}
+  turretAnimator: {fileID: 9065470517065034047}
   targetingStrategy: {fileID: 11400000, guid: e79a6ed2001bc524fab0d8f9f7facc09, type: 2}
-  rotateSpeed: 200
-  defaultBulletSpeed: 40
-  fastBulletSpeed: 80
-  slowBulletSpeed: 10
-  timeBetweenShots: 0.5
-  bulletWobble: 0.36
-  maxTargets: 3
-  detectionRange: 7
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 64
+  bulletFactory: {fileID: 11400000, guid: cfb4e2526dcdb6c48be48c460b8ad065, type: 2}
+  defaultTimeBetweenShots: 1
+  attackSpeedMultiplier: 1.5
+  detectionRange: 5
+  headRotationSpeed: 10
   shootSound: {fileID: 8300000, guid: aec8762279de72749b7fba096dfefbc8, type: 3}
   shootSoundVolume: 0.1
   player1Visual: {fileID: 5575679973610440716}
   player2Visual: {fileID: 4466496474892881219}
-  isNormalTurret: 1
-  head: {fileID: 7508258180437511579}
-  headRotateSpeed: 10
-  normalTurretAnimator: {fileID: 9065470517065034047}
 --- !u!114 &6068358473074101300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,7 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RangeDetector
   rangeType: 0
-  radius: 7
+  radius: 5
   angle: 35
   width: 2
   length: 12.5
@@ -1092,8 +1082,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.RangeVisualizer
   detector: {fileID: 6068358473074101300}
-  gridIndicator1: {fileID: 0}
-  gridIndicator2: {fileID: 0}
   fillColor: {r: 0.2, g: 1, b: 0.6, a: 0.2}
   borderColor: {r: 0.4, g: 1, b: 0.8, a: 0.9019608}
   borderWidth: 0.2
