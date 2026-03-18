@@ -16,4 +16,4 @@ MonoBehaviour:
   maxHealth: 500
   moveSpeed: 0.7
   timeBetweenAttacks: 1
-  attackDamage: 25
+  attackDamage: 45
