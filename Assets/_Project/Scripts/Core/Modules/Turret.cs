@@ -111,9 +111,7 @@ namespace _Project.Scripts.Core.Modules
             
             _audioPooler.New2DAudio(shootSound).OnChannel(AudioType.Sfx).SetVolume(shootSoundVolume).Play();
 
-            GameObject bullet = bulletFactory.CreateBullet(_currentTarget.transform);
-            bullet.transform.position = spawnPoint.position;
-            bullet.transform.rotation = rotationToEnemy;
+            GameObject bullet = bulletFactory.CreateBullet(_currentTarget.transform, spawnPoint.position, rotationToEnemy);
         }
 
         protected override void LoadState()

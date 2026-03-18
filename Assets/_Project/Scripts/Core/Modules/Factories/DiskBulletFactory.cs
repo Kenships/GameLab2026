@@ -10,9 +10,9 @@ namespace _Project.Scripts.Core.Modules.Factories
         // Bullet Speed: 10f
         // Pierce: 3
         
-        public override GameObject CreateBullet(Transform target)
+        public override GameObject CreateBullet(Transform target, Vector3 position, Quaternion rotation)
         {
-            GameObject bullet = Instantiate(bulletPrefab);
+            GameObject bullet = Instantiate(bulletPrefab, position, rotation);
             
             RecordDiscBullet recordDiscBullet = bullet.GetOrAdd<RecordDiscBullet>();
             recordDiscBullet.Initialize(target, targetLayer, inflictor, projectileSpeed, projectileLifetime, pierce);

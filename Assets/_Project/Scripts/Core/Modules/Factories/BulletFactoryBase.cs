@@ -12,6 +12,6 @@ namespace _Project.Scripts.Core.Modules.Factories
         [SerializeField] protected float projectileLifetime;
         [SerializeField] protected int pierce;
         
-        public abstract GameObject CreateBullet(Transform target);
+        public abstract GameObject CreateBullet(Transform target, Vector3 position, Quaternion rotation);
     }
 }
