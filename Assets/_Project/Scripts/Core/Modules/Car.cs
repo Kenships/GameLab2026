@@ -13,8 +13,6 @@ namespace _Project.Scripts.Core.Modules
         [SerializeField] private Transform destination;
         [SerializeField] private float fastForwardSpeed = 15f;
         [SerializeField] private float rewindSpeed = 10f;
-        [SerializeField] private float rewindDamage = 10f;
-        [SerializeField] private float fastForwardDamage = 20f;
         [SerializeField] private RangeDetector backDetector;
         [SerializeField] private RangeDetector frontDetector;
     
@@ -24,7 +22,6 @@ namespace _Project.Scripts.Core.Modules
         private bool _fastForwarding = false;
         private bool _rewinding = false;
         private List<EnemyBase> _enemies;
-        private float _damage;
     
         void Start()
         {
@@ -93,7 +90,6 @@ namespace _Project.Scripts.Core.Modules
         {
             _fastForwarding = false;
             state = ModuleState.Load;
-            _damage = 0;
         }
 
         public override void Rewind()

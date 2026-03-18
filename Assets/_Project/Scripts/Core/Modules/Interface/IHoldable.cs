@@ -1,8 +1,11 @@
 using UnityEngine;
 
-public interface IHoldable
+namespace _Project.Scripts.Core.Modules.Interface
 {
-    void Anchor(Transform transform);
-    void PickUp();
-    void Drop();
+    public interface IHoldable
+    {
+        void Anchor(Transform transform);
+        void PickUp();
+        void Drop();
+    }
 }
