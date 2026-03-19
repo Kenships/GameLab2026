@@ -1406,6 +1406,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6849032946996135789, guid: 6ce11590cd9482048add3b33b8fba3b4, type: 3}
+      propertyPath: detectionRange
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7020352353024084139, guid: 6ce11590cd9482048add3b33b8fba3b4, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.75
@@ -3507,6 +3511,14 @@ PrefabInstance:
       propertyPath: m_Carve
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2815457285788318349, guid: e3079e81a8212914897bea0ac3d32f43, type: 3}
+      propertyPath: m_Extents.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2815457285788318349, guid: e3079e81a8212914897bea0ac3d32f43, type: 3}
+      propertyPath: m_Extents.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6713747546187726529, guid: e3079e81a8212914897bea0ac3d32f43, type: 3}
       propertyPath: m_Name
       value: Car
@@ -3517,11 +3529,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7421023598384547516, guid: e3079e81a8212914897bea0ac3d32f43, type: 3}
       propertyPath: m_Size.z
-      value: 2
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 9131822780287219449, guid: e3079e81a8212914897bea0ac3d32f43, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.5
+      value: -1.57
       objectReference: {fileID: 0}
     - target: {fileID: 9131822780287219449, guid: e3079e81a8212914897bea0ac3d32f43, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3561,7 +3573,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5445740453022897467, guid: e3079e81a8212914897bea0ac3d32f43, type: 3}
-    m_RemovedGameObjects: []
+    - {fileID: 1782156282212236429, guid: e3079e81a8212914897bea0ac3d32f43, type: 3}
+    - {fileID: 1351861710550800635, guid: e3079e81a8212914897bea0ac3d32f43, type: 3}
+    - {fileID: 1351347473218139481, guid: e3079e81a8212914897bea0ac3d32f43, type: 3}
+    - {fileID: 7999354078472283862, guid: e3079e81a8212914897bea0ac3d32f43, type: 3}
+    - {fileID: 1302814571513247747, guid: e3079e81a8212914897bea0ac3d32f43, type: 3}
+    - {fileID: 2588633838354256844, guid: e3079e81a8212914897bea0ac3d32f43, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 8079321499858322083, guid: e3079e81a8212914897bea0ac3d32f43, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3079e81a8212914897bea0ac3d32f43, type: 3}
@@ -11899,7 +11918,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6068358473074101300, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
       propertyPath: radius
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7093766861074832507, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
       propertyPath: gridIndicator1
