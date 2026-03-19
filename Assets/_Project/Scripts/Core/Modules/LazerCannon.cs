@@ -119,10 +119,13 @@ namespace _Project.Scripts.Core.Modules
         }
 
         #region State Methods
-        protected override void UsedState()
+        protected override void LoadState()
         {
-            PerformAttack();
-            base.UsedState();
+            
+        }
+        protected override void AttackState()
+        {
+
         }
 
         protected override void OnStateChanged(ModuleState prevState)
@@ -132,10 +135,12 @@ namespace _Project.Scripts.Core.Modules
                 case ModuleState.Load:
                     break;
                 case ModuleState.Attack:
+                    _beamDurationTimer.Reset(lazerBeamDuration);
+                    PerformAttack();
+                    PlayLazerBeamAnim();
+                    _health.AddToHealth(int.MinValue);
                     break;
                 case ModuleState.Used:
-                    _beamDurationTimer.Reset(lazerBeamDuration);
-                    PlayLazerBeamAnim();
                     break;
             }
         }

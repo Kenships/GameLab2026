@@ -67,7 +67,6 @@ namespace _Project.Scripts.Core.Modules.Base_Class
             {
                 _health.AddToHealth(- defaultDecaySpeed * Time.deltaTime);
             }
-        
         }
         
         protected override void AttackState()
