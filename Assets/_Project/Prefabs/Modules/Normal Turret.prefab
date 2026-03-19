@@ -97,8 +97,7 @@ MonoBehaviour:
   putDownSound: {fileID: 8300000, guid: d9d620a96f57c824695138d11a50362f, type: 3}
   putDownSoundVolume: 1.5
   maxHealth: 100
-  defaultRecoverySpeed: 10
-  rewindRecoveryMultiplier: 4
+  defaultRecoverySpeed: 40
   defaultDecaySpeed: 5
   attackStateDecayMultiplier: 4
   spawnPoint: {fileID: 8249512393310653435}
@@ -106,7 +105,7 @@ MonoBehaviour:
   turretAnimator: {fileID: 9065470517065034047}
   targetingStrategy: {fileID: 11400000, guid: e79a6ed2001bc524fab0d8f9f7facc09, type: 2}
   bulletFactory: {fileID: 11400000, guid: cfb4e2526dcdb6c48be48c460b8ad065, type: 2}
-  defaultTimeBetweenShots: 1
+  shotsPerSecond: 1
   attackSpeedMultiplier: 1.5
   detectionRange: 5
   headRotationSpeed: 10

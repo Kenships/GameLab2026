@@ -1406,6 +1406,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6220022207668456444, guid: 6ce11590cd9482048add3b33b8fba3b4, type: 3}
+      propertyPath: radius
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 6849032946996135789, guid: 6ce11590cd9482048add3b33b8fba3b4, type: 3}
       propertyPath: detectionRange
       value: 8
@@ -3598,7 +3602,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1054053615546018703, guid: c5862296d27d8e94190863963df3638b, type: 3}
       propertyPath: defaultRecoverySpeed
-      value: 1
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1054053615546018703, guid: c5862296d27d8e94190863963df3638b, type: 3}
       propertyPath: rewindRecoveryMultiplier
@@ -11918,7 +11922,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6068358473074101300, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
       propertyPath: radius
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7093766861074832507, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
       propertyPath: gridIndicator1

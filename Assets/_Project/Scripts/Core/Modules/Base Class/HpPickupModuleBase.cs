@@ -10,8 +10,7 @@ namespace _Project.Scripts.Core.Modules.Base_Class
     {
         [Header("Time Settings")]
         [SerializeField] protected float maxHealth = 100f;
-        [SerializeField] protected float defaultRecoverySpeed = 10f;
-        [SerializeField] protected float rewindRecoveryMultiplier = 4f;
+        [SerializeField] protected float defaultRecoverySpeed = 40f;
         [SerializeField] protected float defaultDecaySpeed = 5f;
         [SerializeField] protected float attackStateDecayMultiplier = 4f;
 
@@ -62,7 +61,7 @@ namespace _Project.Scripts.Core.Modules.Base_Class
         {
             if (_isRewinding)
             {
-                _health.AddToHealth(defaultRecoverySpeed * rewindRecoveryMultiplier * Time.deltaTime);
+                _health.AddToHealth(defaultRecoverySpeed * Time.deltaTime);
             }
             else
             {
@@ -79,10 +78,6 @@ namespace _Project.Scripts.Core.Modules.Base_Class
         protected override void UsedState()
         {
             if (_isRewinding)
-            {
-                _health.AddToHealth(defaultRecoverySpeed * rewindRecoveryMultiplier * Time.deltaTime);
-            }
-            else
             {
                 _health.AddToHealth(defaultRecoverySpeed * Time.deltaTime);
             }

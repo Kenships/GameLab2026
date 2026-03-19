@@ -19,7 +19,6 @@ namespace _Project.Scripts.Core.Modules
         [Header("Time Settings")]
         [SerializeField] protected float maxHealth = 100f;
         [SerializeField] protected float defaultRecoverySpeed = 1f;
-        [SerializeField] protected float rewindRecoveryMultiplier = 10f;
 
         [Header("Explosive Tank Settings")]
         [SerializeField] private float damage = 90f;
@@ -152,9 +151,14 @@ namespace _Project.Scripts.Core.Modules
         {
             if (_isRewinding)
             {
-                _health.AddToHealth(defaultRecoverySpeed * rewindRecoveryMultiplier * Time.deltaTime);
+                _health.AddToHealth(defaultRecoverySpeed * Time.deltaTime);
             }
-            _health.AddToHealth(defaultRecoverySpeed * Time.deltaTime);
+
+            if (currentFastForwardSound != null)
+            {
+                currentFastForwardSound.Stop();
+                currentFastForwardSound = null;
+            }
         }
 
         protected override void OnStateChanged(ModuleState prevState)

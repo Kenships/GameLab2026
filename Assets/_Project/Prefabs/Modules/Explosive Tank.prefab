@@ -5891,8 +5891,7 @@ MonoBehaviour:
   loadModel: {fileID: 9274531014335054}
   usedModel: {fileID: 2716607666119954134}
   maxHealth: 100
-  defaultRecoverySpeed: 1
-  rewindRecoveryMultiplier: 10
+  defaultRecoverySpeed: 20
   damage: 100
   timeGapBeforeSecondAttack: 0.75
   player1Visual: {fileID: 397986941627389146}

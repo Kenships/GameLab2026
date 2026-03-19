@@ -384,8 +384,7 @@ MonoBehaviour:
   putDownSound: {fileID: 8300000, guid: d9d620a96f57c824695138d11a50362f, type: 3}
   putDownSoundVolume: 1.5
   maxHealth: 100
-  defaultRecoverySpeed: 10
-  rewindRecoveryMultiplier: 4
+  defaultRecoverySpeed: 40
   defaultDecaySpeed: 5
   attackStateDecayMultiplier: 4
   lazerBeamStartPos: {fileID: 6496225764396330049}
