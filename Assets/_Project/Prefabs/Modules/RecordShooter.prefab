@@ -700,8 +700,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.RangeVisualizer
   detector: {fileID: 6220022207668456444}
-  gridIndicator1: {fileID: 0}
-  gridIndicator2: {fileID: 0}
   fillColor: {r: 0.2, g: 1, b: 0.6, a: 0.2}
   borderColor: {r: 0.4, g: 1, b: 0.8, a: 0.9}
   borderWidth: 0.2
@@ -1443,7 +1441,6 @@ GameObject:
   - component: {fileID: 5248281451148013754}
   - component: {fileID: 6220022207668456444}
   - component: {fileID: 7568861021529150541}
-  - component: {fileID: 2982707194182516533}
   m_Layer: 3
   m_Name: RecordShooter
   m_TagString: Untagged
@@ -1459,10 +1456,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8143855464876323403}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.518423, y: -0.0000009083087, z: -1.897563}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8199591539320100204}
   - {fileID: 8088442313663612257}
@@ -1490,38 +1487,28 @@ MonoBehaviour:
   rewindSound: {fileID: 8300000, guid: 904184cbab2ef6d4eb570d029d20a47c, type: 3}
   rewindSoundVolume: 1
   pickupOffset: {x: 0, y: 0, z: 0}
+  pickupRotationOffset: {x: 0, y: 0, z: 0}
   pickUpSound: {fileID: 8300000, guid: 602022546f4e4474a8d87cf01f887e79, type: 3}
   pickUpSoundVolume: 0.25
   putDownSound: {fileID: 8300000, guid: d9d620a96f57c824695138d11a50362f, type: 3}
   putDownSoundVolume: 1.5
   maxHealth: 100
-  defaultRecoverySpeed: 10
-  rewindRecoveryMultiplier: 4
+  defaultRecoverySpeed: 40
   defaultDecaySpeed: 5
   attackStateDecayMultiplier: 4
-  recordDiscPrefab: {fileID: -8867070136259511986, guid: 53df02381234ecc479fb275396043080, type: 3}
   spawnPoint: {fileID: 5731111388738531017}
-  discShooterBody: {fileID: 2487774717153965910}
+  rotationBody: {fileID: 2487774717153965910}
+  turretAnimator: {fileID: 0}
   targetingStrategy: {fileID: 11400000, guid: e79a6ed2001bc524fab0d8f9f7facc09, type: 2}
-  rotateSpeed: 200
-  defaultBulletSpeed: 10
-  fastBulletSpeed: 15
-  slowBulletSpeed: 2.5
-  timeBetweenShots: 1
-  bulletWobble: 0.36
-  maxTargets: 3
+  bulletFactory: {fileID: 11400000, guid: f5cb3d7f514abb3489248fa2d883da3e, type: 2}
+  shotsPerSecond: 1
+  attackSpeedMultiplier: 1.5
   detectionRange: 4
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  shootSound: {fileID: 0}
+  headRotationSpeed: 10
+  shootSound: {fileID: 8300000, guid: aec8762279de72749b7fba096dfefbc8, type: 3}
   shootSoundVolume: 0.1
   player1Visual: {fileID: 790316906995648998}
   player2Visual: {fileID: 6505483928442727171}
-  isNormalTurret: 0
-  head: {fileID: 0}
-  headRotateSpeed: 10
-  normalTurretAnimator: {fileID: 0}
 --- !u!136 &5248281451148013754
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1572,21 +1559,6 @@ MonoBehaviour:
   ignoreYAxis: 1
   colliderBufferSize: 50
 --- !u!114 &7568861021529150541
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8143855464876323403}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 023b85b921ddb3a4494f81debd41c69f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.HealthManagement.Health
-  <CurrentHealth>k__BackingField: 0
-  <MaxHealth>k__BackingField: 0
-  _healthStages: []
---- !u!114 &2982707194182516533
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

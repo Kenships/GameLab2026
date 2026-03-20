@@ -51,12 +51,12 @@ namespace _Project.Scripts.Core.Player
         
         private void OnEnable()
         {
-            _inputReader.OnDoubleTapInteract += PickUpOrPutDown;
+            _inputReader.OnTapInteract += PickUpOrPutDown;
             
             _inputReader.OnHoldInteract += FastForward;
             _inputReader.OnReleaseInteract += CancelFastForward;
             
-            _inputReader.OnDoubleTapAltInteract += RotateClockWise;
+            _inputReader.OnTapAltInteract += RotateClockWise;
             
             _inputReader.OnHoldAltInteract += Rewind;
             _inputReader.OnReleaseAltInteract += CancelRewind;
@@ -71,12 +71,12 @@ namespace _Project.Scripts.Core.Player
         {
             if (_inputReader == null) return;
             
-            _inputReader.OnDoubleTapInteract -= PickUpOrPutDown;
+            _inputReader.OnTapInteract -= PickUpOrPutDown;
             
             _inputReader.OnHoldInteract -= FastForward;
             _inputReader.OnReleaseInteract -= CancelFastForward;
             
-            _inputReader.OnDoubleTapAltInteract -= RotateClockWise;
+            _inputReader.OnTapAltInteract -= RotateClockWise;
             
             _inputReader.OnHoldAltInteract -= Rewind;
             _inputReader.OnReleaseAltInteract -= CancelRewind;
@@ -93,7 +93,7 @@ namespace _Project.Scripts.Core.Player
             if (!_currentIHoldingObject)
             {
                 GameObject obj = _gridService.GetObjectOnGrid(frontOfPlayer.position);
-                if(!obj) return;
+                if(!obj || obj.tag.Equals("NonRotatable")) return;
                 
                 obj.transform.Rotate(Vector3.up, 90);
                 return;

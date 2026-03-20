@@ -17,14 +17,12 @@ namespace _Project.Scripts.Core.InputManagement
         public event UnityAction OnTapUIInteract;
         
         public event UnityAction<Vector2> OnDPadInput;
-        public event UnityAction OnTapInteract;
         public event UnityAction OnHoldInteract;
         public event UnityAction OnReleaseInteract;
-        public event UnityAction OnDoubleTapInteract;
-        public event UnityAction OnTapAltInteract;
+        public event UnityAction OnTapInteract;
         public event UnityAction OnHoldAltInteract;
         public event UnityAction OnReleaseAltInteract;
-        public event UnityAction OnDoubleTapAltInteract;
+        public event UnityAction OnTapAltInteract;
         
         
         private NESActions _actions;
@@ -107,19 +105,14 @@ namespace _Project.Scripts.Core.InputManagement
 
         private void AltInteractOnPerformed(InputAction.CallbackContext ctx)
         {
-            if (ctx.started)
+            if (ctx.interaction is TapInteraction)
             {
                 OnTapAltInteract?.Invoke();
             }
             
-            
-            if (ctx.interaction is HoldInteraction)
+            else if (ctx.interaction is HoldInteraction)
             {
                 OnHoldAltInteract?.Invoke();
-            }
-            else if (ctx.interaction is MultiTapInteraction)
-            {
-                OnDoubleTapAltInteract?.Invoke();
             }
         }
 
@@ -140,10 +133,6 @@ namespace _Project.Scripts.Core.InputManagement
             else if (ctx.interaction is HoldInteraction)
             {
                 OnHoldInteract?.Invoke();
-            }
-            else if (ctx.interaction is MultiTapInteraction)
-            {
-                OnDoubleTapInteract?.Invoke();
             }
         }
 

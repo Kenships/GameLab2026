@@ -4,6 +4,7 @@ using _Project.Scripts.Core.HealthManagement;
 using _Project.Scripts.Core.Modules.Base_Class;
 using _Project.Scripts.Core.Player;
 using _Project.Scripts.Effects.Inflictors;
+using _Project.Scripts.Effects.Interface;
 using _Project.Scripts.Targeting.Interface;
 using _Project.Scripts.Targeting.Strategies;
 using _Project.Scripts.Util.Timer.Timers;
@@ -11,10 +12,12 @@ using UnityEngine;
 
 namespace _Project.Scripts.Core.Modules
 {
-    public class Flamethrower : HpPickupModuleBase
+    public class Flamethrower : HpPickupModuleBase, IDamageable
     {
         [Header("Particle Settings")]
+        
         [SerializeField] private ParticleSystem particle;
+        /*
         [SerializeField] private float emissionRateToAngleRatio = 16f;
         // The relationship between rangeDetector.angle and particle angle can't be represented by a simple function, 
         // so everytime you change rangeDetector.angle, you have to also adjust angleMultiplier to have desired particle effect
@@ -24,6 +27,13 @@ namespace _Project.Scripts.Core.Modules
         [SerializeField] private float radiusMultiplier = 3f;
         [SerializeField] private float fastEmissionRateToAngleRatio = 32f;
         [SerializeField] private float fastRadiusMultiplier = 3.75f;
+        */
+
+        [SerializeField] private ParticleSystem.MinMaxCurve newSpeed;
+        [SerializeField] private ParticleSystem.MinMaxCurve newDistance;
+
+        private ParticleSystem.MinMaxCurve normalSpeed;
+        private ParticleSystem.MinMaxCurve normalDistance;
 
         [Header("Flamethrower Settings")]
         [SerializeField] private EnemyEffectInflictor inflictor;
@@ -36,7 +46,6 @@ namespace _Project.Scripts.Core.Modules
         [Header("Player Selection Visuals")]
         [SerializeField] private GameObject player1Visual;
         [SerializeField] private GameObject player2Visual;
-        
 
 
         private float _currentDamage;
@@ -46,6 +55,7 @@ namespace _Project.Scripts.Core.Modules
         private List<EnemyBase> _enemies;
         private bool _isDamagingEnemies;
         private CountdownTimer _attackCooldownTimer;
+        private Health _myHealth;
 
         protected override void Start()
         {
@@ -53,6 +63,7 @@ namespace _Project.Scripts.Core.Modules
             _currentDps = normalDps;
             _attackCooldownTimer = new CountdownTimer(1f/_currentDps);
             _enemies = new List<EnemyBase>();
+            _myHealth = gameObject.GetComponent<Health>();
 
             _rangeDetector = GetComponent<RangeDetector>();
             if (!_rangeDetector)
@@ -68,9 +79,26 @@ namespace _Project.Scripts.Core.Modules
                 Debug.Log("missing particle");
             }
 
+            var main = particle.main;
+
+            normalSpeed = new ParticleSystem.MinMaxCurve(main.startSpeed.constantMin, main.startSpeed.constantMax);
+
+            normalDistance = new ParticleSystem.MinMaxCurve(main.startLifetime.constantMin, main.startLifetime.constantMax);
+
+            /*
             UpdateParticleAngle(_rangeDetector.angle * angleMultiplier, emissionRateToAngleRatio);
             UpdateDistance(_rangeDetector.radius * radiusMultiplier);
+            */
+
             state = ModuleState.Load;
+        }
+
+        private void UpdateParticleBehaviour(ParticleSystem.MinMaxCurve S, ParticleSystem.MinMaxCurve L)
+        {
+            var main = particle.main;
+
+            main.startLifetime = L;
+            main.startSpeed = S;
         }
 
         private void UpdateParticleAngle(float angle, float emissionRateToAngleRatio)
@@ -83,6 +111,15 @@ namespace _Project.Scripts.Core.Modules
         }
 
         private void UpdateDistance(float distance)
+        {
+            var main = particle.main;
+
+            float currentLifetime = main.startLifetime.constant;
+
+            main.startSpeed = distance / currentLifetime;
+        }
+
+        private void UpdateSpeed(float distance)
         {
             var main = particle.main;
 
@@ -165,24 +202,50 @@ namespace _Project.Scripts.Core.Modules
             switch (state)
             {
                 case ModuleState.Load:
+                    /*
                     UpdateParticleAngle(_rangeDetector.angle * angleMultiplier, emissionRateToAngleRatio);
+                    */
                     _rangeDetector.radius = _normalRadius;
+                    /*
                     UpdateDistance(_rangeDetector.radius * radiusMultiplier);
+                    */
+
+                    UpdateParticleBehaviour(normalSpeed, normalDistance);
+
                     particle.Play();
                     _currentDps = normalDps;
                     break;
                 case ModuleState.Attack:
                     _currentDps = fastDps;
+                    /*
                     UpdateParticleAngle(_rangeDetector.angle * angleMultiplier, fastEmissionRateToAngleRatio);
+                    */
+                    UpdateParticleBehaviour(newSpeed, newDistance);
                     _rangeDetector.radius = fastRadius;
+                    /*
                     UpdateDistance(_rangeDetector.radius * fastRadiusMultiplier);
+                    */
                     break;
                 case ModuleState.Used:
                     particle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
                     break;
             }
         }
-
         #endregion
+
+        public void Damage(float damage)
+        {
+            _myHealth.AddToHealth(-damage);
+        }
+
+        public void ApplyEffect(IEffect<IDamageable> effect)
+        {
+            
+        }
+
+        public void RemoveEffect(IEffect<IDamageable> effect)
+        {
+            
+        }
     }
 }

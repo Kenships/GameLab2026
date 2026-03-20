@@ -3,12 +3,13 @@ using _Project.Scripts.Core.AudioPooling.Interface;
 using _Project.Scripts.Core.HealthManagement;
 using _Project.Scripts.Core.Modules.Base_Class;
 using _Project.Scripts.Core.Player;
+using _Project.Scripts.Effects.Interface;
 using UnityEngine;
 using AudioType = _Project.Scripts.Core.AudioPooling.Interface.AudioType;
 
 namespace _Project.Scripts.Core.Modules
 {
-    public class ExplosiveTank : Module
+    public class ExplosiveTank : Module, IDamageable
     {
         [Header("References")]
         [SerializeField] private ParticleSystem explosionParticle;
@@ -18,7 +19,6 @@ namespace _Project.Scripts.Core.Modules
         [Header("Time Settings")]
         [SerializeField] protected float maxHealth = 100f;
         [SerializeField] protected float defaultRecoverySpeed = 1f;
-        [SerializeField] protected float rewindRecoveryMultiplier = 10f;
 
         [Header("Explosive Tank Settings")]
         [SerializeField] private float damage = 90f;
@@ -151,9 +151,14 @@ namespace _Project.Scripts.Core.Modules
         {
             if (_isRewinding)
             {
-                _health.AddToHealth(defaultRecoverySpeed * rewindRecoveryMultiplier * Time.deltaTime);
+                _health.AddToHealth(defaultRecoverySpeed * Time.deltaTime);
             }
-            _health.AddToHealth(defaultRecoverySpeed * Time.deltaTime);
+
+            if (currentFastForwardSound != null)
+            {
+                currentFastForwardSound.Stop();
+                currentFastForwardSound = null;
+            }
         }
 
         protected override void OnStateChanged(ModuleState prevState)
@@ -206,5 +211,20 @@ namespace _Project.Scripts.Core.Modules
         }
 
         #endregion
+
+        public void Damage(float damage)
+        {
+            _health.AddToHealth(-damage);
+        }
+
+        public void ApplyEffect(IEffect<IDamageable> effect)
+        {
+            
+        }
+
+        public void RemoveEffect(IEffect<IDamageable> effect)
+        {
+            
+        }
     }
 }

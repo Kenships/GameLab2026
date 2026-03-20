@@ -300,8 +300,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.97461, y: 0.0007065373, z: -1.8753937}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7588427625404026378}
   - {fileID: 151960123343643554}
@@ -378,13 +378,13 @@ MonoBehaviour:
   rewindSound: {fileID: 8300000, guid: 904184cbab2ef6d4eb570d029d20a47c, type: 3}
   rewindSoundVolume: 1
   pickupOffset: {x: 0, y: 0, z: 0}
+  pickupRotationOffset: {x: 0, y: 90, z: 0}
   pickUpSound: {fileID: 8300000, guid: 602022546f4e4474a8d87cf01f887e79, type: 3}
   pickUpSoundVolume: 0.25
   putDownSound: {fileID: 8300000, guid: d9d620a96f57c824695138d11a50362f, type: 3}
   putDownSoundVolume: 1.5
   maxHealth: 100
-  defaultRecoverySpeed: 10
-  rewindRecoveryMultiplier: 4
+  defaultRecoverySpeed: 20
   defaultDecaySpeed: 5
   attackStateDecayMultiplier: 4
   lazerBeamStartPos: {fileID: 6496225764396330049}
@@ -706,14 +706,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.RangeVisualizer
   detector: {fileID: 6739234255759612295}
-  gridIndicator1: {fileID: 0}
-  gridIndicator2: {fileID: 0}
   fillColor: {r: 0.2, g: 1, b: 0.6, a: 0.2}
   borderColor: {r: 0.4, g: 1, b: 0.8, a: 0.9}
   borderWidth: 0.2
   segments: 60
   yOffset: 0.5
-  hideDelay: 0.05
+  hideDelay: 0.5
   isVisible: 0
 --- !u!1 &2975578322263398619
 GameObject:

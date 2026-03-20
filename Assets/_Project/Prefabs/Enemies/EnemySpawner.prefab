@@ -28,7 +28,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.06172, y: -0, z: -0.67002}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 783171269819497677}
   m_Father: {fileID: 0}
@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24303e42f0ab6364e892d83f3a195864, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
-  enemyPrefab: {fileID: 4309639714235830279, guid: 7246992d7ca8e424ab3fc59e8d7d9a03, type: 3}
+  enemyFactories: []
   spawnPositions:
   - {fileID: 4704212572328899353}
   - {fileID: 8199841624610855512}
@@ -57,6 +57,9 @@ MonoBehaviour:
   spawnDelayMin: 0.3
   spawnDelayMax: 2
   enemyMoveSpeed: 4
+  enemyHealth: 100
+  enemyDamage: 10
+  enemyAttackCooldown: 1
 --- !u!1 &3233857089885434874
 GameObject:
   m_ObjectHideFlags: 0

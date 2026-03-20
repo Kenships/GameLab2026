@@ -1,15 +1,18 @@
 using UnityEngine;
 
-public static class LayerMaskHelper
+namespace _Project.Scripts.Util
 {
-    public static int ToLayerIndex(this LayerMask layerMask)
+    public static class LayerMaskHelper
     {
-        return (int)Mathf.Log(layerMask.value, 2);
-    }
+        public static int ToLayerIndex(this LayerMask layerMask)
+        {
+            return (int)Mathf.Log(layerMask.value, 2);
+        }
 
-    public static string ToLayerName(this LayerMask layerMask)
-    {
-        int index = layerMask.ToLayerIndex();
-        return LayerMask.LayerToName(index);
+        public static string ToLayerName(this LayerMask layerMask)
+        {
+            int index = layerMask.ToLayerIndex();
+            return LayerMask.LayerToName(index);
+        }
     }
 }
