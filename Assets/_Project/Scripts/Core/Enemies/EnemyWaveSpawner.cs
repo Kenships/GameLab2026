@@ -2,13 +2,25 @@ using System.Collections;
 using _Project.Scripts.Core.Enemies.Factories;
 using _Project.Scripts.Enemies;
 using Obvious.Soap;
+using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 namespace _Project.Scripts.Core.Enemies
 {
     public class EnemyWaveSpawner : MonoBehaviour
     {
+        [System.Serializable]
+        public struct BlinkSettings
+        {
+            public int blinkCount;
+            public float fadeInDuration;
+            public float holdDuration;
+            public float fadeOutDuration;
+            public float initialDelay;
+        }
+
         [System.Serializable]
         public class EnemySpawnEntry
         {
@@ -21,6 +33,16 @@ namespace _Project.Scripts.Core.Enemies
         {
             public Transform spawnPosition;
             public EnemySpawnEntry[] enemies;
+
+            public RawImage arrowImage;
+            public BlinkSettings blinkSettings = new BlinkSettings
+            {
+                blinkCount = 3,
+                fadeInDuration = 0.2f,
+                holdDuration = 0.3f,
+                fadeOutDuration = 0.2f,
+                initialDelay = 0f
+            };
         }
 
         [System.Serializable]
@@ -68,7 +90,7 @@ namespace _Project.Scripts.Core.Enemies
                     Debug.LogWarning($"Wave {waveIndex + 1} has no portal spawns.");
                     continue;
                 }
-                
+
                 waveStartEvent?.Raise(currentWave);
 
                 Debug.Log($"Starting {currentWave.waveName}");
@@ -110,6 +132,18 @@ namespace _Project.Scripts.Core.Enemies
 
         private IEnumerator SpawnPortalRoutine(Wave wave, PortalWaveSpawn portalSpawn, System.Action onComplete)
         {
+            if (portalSpawn.arrowImage != null)
+            {
+                yield return StartCoroutine(BlinkArrowSmooth(
+                    portalSpawn.arrowImage,
+                    portalSpawn.blinkSettings.blinkCount,
+                    portalSpawn.blinkSettings.fadeInDuration,
+                    portalSpawn.blinkSettings.holdDuration,
+                    portalSpawn.blinkSettings.fadeOutDuration,
+                    portalSpawn.blinkSettings.initialDelay
+                ));
+            }
+
             for (int e = 0; e < portalSpawn.enemies.Length; e++)
             {
                 EnemySpawnEntry entry = portalSpawn.enemies[e];
@@ -149,6 +183,55 @@ namespace _Project.Scripts.Core.Enemies
             {
                 enemy.transform.position = spawnPoint.position;
             }
+        }
+
+        private IEnumerator BlinkArrowSmooth(RawImage arrow,
+                                      int blinkCount,
+                                      float fadeIn,
+                                      float hold,
+                                      float fadeOut,
+                                      float initialDelay)
+        {
+            if (arrow == null) yield break;
+
+            if (initialDelay > 0f)
+                yield return new WaitForSeconds(initialDelay);
+
+            arrow.enabled = true;
+
+            for (int i = 0; i < blinkCount; i++)
+            {
+                yield return StartCoroutine(FadeRawImage(arrow, 0f, 1f, fadeIn));
+
+                yield return new WaitForSeconds(hold);
+
+                yield return StartCoroutine(FadeRawImage(arrow, 1f, 0f, fadeOut));
+            }
+
+            SetRawImageAlpha(arrow, 0f);
+
+            arrow.enabled = false;
+        }
+
+        private IEnumerator FadeRawImage(RawImage img, float from, float to, float duration)
+        {
+            float elapsed = 0f;
+            while (elapsed < duration)
+            {
+                elapsed += Time.deltaTime;
+                float t = elapsed / duration;
+                float alpha = Mathf.Lerp(from, to, t);
+                SetRawImageAlpha(img, alpha);
+                yield return null;
+            }
+            SetRawImageAlpha(img, to);
+        }
+
+        private void SetRawImageAlpha(RawImage img, float alpha)
+        {
+            Color color = img.color;
+            color.a = alpha;
+            img.color = color;
         }
 
         private void OnDrawGizmosSelected()
