@@ -1,8 +1,6 @@
 using System.Collections;
 using _Project.Scripts.Core.Enemies.Factories;
 using _Project.Scripts.Enemies;
-using Obvious.Soap;
-using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
