@@ -42,6 +42,8 @@ namespace _Project.Scripts.Core.Modules
         private float _shotsPerSecond;
         private Health _myHealth;
 
+        private bool _canShoot = true;
+
         private readonly List<EnemyBase> _enemies = new();
 
         protected override void Start()
@@ -71,7 +73,9 @@ namespace _Project.Scripts.Core.Modules
 
         private void PerformAttack()
         {
-            _rangeDetector.GetObjectTypeInRangeNoAlloc(_enemies);
+            if (!_canShoot) return;
+
+                _rangeDetector.GetObjectTypeInRangeNoAlloc(_enemies);
             ReevaluateTarget();
 
             if (!_currentTarget)
@@ -142,12 +146,13 @@ namespace _Project.Scripts.Core.Modules
             {
                 case ModuleState.Load:
                     _shotsPerSecond = 1f / shotsPerSecond;
+                    _canShoot = true;
                     break;
                 case ModuleState.Attack:
                     _shotsPerSecond = 1f / (shotsPerSecond * attackSpeedMultiplier);
                     break;
                 case ModuleState.Used:
-                    _shotsPerSecond = attackSpeedMultiplier / shotsPerSecond;
+                    _canShoot = false;
                     break;
             }
         }

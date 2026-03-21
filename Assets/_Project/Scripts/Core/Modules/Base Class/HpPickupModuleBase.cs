@@ -46,9 +46,17 @@ namespace _Project.Scripts.Core.Modules.Base_Class
 
         private void OnFullHp()
         {
-            state = ModuleState.Load;
+
         }
-        
+
+        private void LateUpdate()
+        {
+            if(state == ModuleState.Used && _health.CurrentHealth > 0)
+            {
+                state = ModuleState.Load;
+            }
+        }
+
         public override void Rewind()
         {
             _isRewinding = state != ModuleState.Attack;
