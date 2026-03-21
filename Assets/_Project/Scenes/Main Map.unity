@@ -10391,6 +10391,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: dca06c0613049d741b7b023502d19817, type: 2}
     - target: {fileID: 2366788554856475630, guid: 43682b4e551780c42b8badfbfd8ea66b, type: 3}
+      propertyPath: fastForwardSound
+      value: 
+      objectReference: {fileID: 8300000, guid: c25a378f906f03f45a34bc3f3b926bb2, type: 3}
+    - target: {fileID: 2366788554856475630, guid: 43682b4e551780c42b8badfbfd8ea66b, type: 3}
       propertyPath: defaultRewindSpeed
       value: 2
       objectReference: {fileID: 0}

@@ -78,6 +78,7 @@ namespace _Project.Scripts.Core
 
             _sceneLoader.LoadScene();
             Time.timeScale = 0f;
+            PlayerInteractionController.isTimeFlowing = false;
         }
         public void Damage(float damage)
         {

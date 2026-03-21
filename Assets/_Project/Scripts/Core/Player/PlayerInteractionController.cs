@@ -34,6 +34,7 @@ namespace _Project.Scripts.Core.Player
         private ILogger _logger;
         private AudioPooler _audioPooler;
         private Gamepad _gamePad;
+        public static bool isTimeFlowing = true;
 
         public bool IsTimeControlling {get; private set;}
         
@@ -90,6 +91,8 @@ namespace _Project.Scripts.Core.Player
 
         private void RotateClockWise()
         {
+            if (!isTimeFlowing) return;
+
             if (!_currentIHoldingObject)
             {
                 GameObject obj = _gridService.GetObjectOnGrid(frontOfPlayer.position);
@@ -110,6 +113,8 @@ namespace _Project.Scripts.Core.Player
         // Double tap A
         private void PickUpOrPutDown()
         {
+            if (!isTimeFlowing) return;
+
             // Pick Up
             if (!_currentIHoldingObject)
             {
@@ -149,6 +154,8 @@ namespace _Project.Scripts.Core.Player
         // Hold A
         private void FastForward()
         {
+            if (!isTimeFlowing) return;
+
             //Some default logic to determine if Interact is possible right now
             if (!CanInteract())
             {
@@ -183,6 +190,8 @@ namespace _Project.Scripts.Core.Player
         // Hold B
         private void Rewind()
         {
+            if (!isTimeFlowing) return;
+
             //Some default logic to determine if Interact is possible right now
             if (!CanInteract())
             {

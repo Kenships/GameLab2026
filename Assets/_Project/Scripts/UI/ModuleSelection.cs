@@ -159,6 +159,7 @@ namespace _Project.Scripts.UI
             Module selectedModule = textmodules[_p1SelectedModuleNumber].GetSelectedModule();
             spawnModuleEvent.Raise(selectedModule.gameObject);
             Time.timeScale = 1f;
+            PlayerInteractionController.isTimeFlowing = true;
             _sceneUnloader.UnloadScene();
         }
     }
