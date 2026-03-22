@@ -233,6 +233,18 @@ namespace _Project.Scripts.Core.AudioPooling
             return audioComponent;
         }
 
-        
+        public void StopAllSFX()
+        {
+            var allActiveSources = activeSourcesByAudioType.Values
+                .SelectMany(list => list)
+                .ToList();
+
+            foreach (var source in allActiveSources)
+            {
+                source.Stop();
+                ReturnToPool(source);
+            }
+        }
+
     }
 }

@@ -1,13 +1,15 @@
-using System;
-using System.Collections.Generic;
+using _Project.Scripts.Core.AudioPooling;
+using _Project.Scripts.Core.AudioPooling.Interface;
 using _Project.Scripts.Core.HealthManagement;
 using _Project.Scripts.Core.Modules.Base_Class;
 using _Project.Scripts.Core.Player;
 using _Project.Scripts.Core.SceneLoading;
 using _Project.Scripts.Effects.Interface;
 using _Project.Scripts.Util.ExtensionMethods;
-using UnityEngine;
 using Obvious.Soap;
+using System.Collections.Generic;
+using UnityEngine;
+using AudioType = _Project.Scripts.Core.AudioPooling.Interface.AudioType;
 
 namespace _Project.Scripts.Core
 {
@@ -34,8 +36,9 @@ namespace _Project.Scripts.Core
         private Health _myHealth;
         private bool _isFastForwarding;
         private SceneLoader _sceneLoader;
+        private IAudioPlayer currentFastForwardSound;
 
-        
+
 
         protected override void OnAwake()
         {
@@ -75,6 +78,8 @@ namespace _Project.Scripts.Core
             {
                 return;
             }
+
+            _audioPooler.StopAllSFX();
 
             _sceneLoader.LoadScene();
             Time.timeScale = 0f;
@@ -133,11 +138,22 @@ namespace _Project.Scripts.Core
         public override void FastForward()
         {
             _isFastForwarding = true;
+
+            if (currentFastForwardSound != null)
+            {
+                currentFastForwardSound.Stop();
+                currentFastForwardSound = null;
+            }
+
+            currentFastForwardSound = _audioPooler.New2DAudio(fastForwardSound).OnChannel(AudioType.Sfx)
+                .SetVolume(fastForwardSoundVolume).LoopAudio().Play();
         }
 
         public override void CancelFastForward()
         {   
             _isFastForwarding = false;
+            currentFastForwardSound?.Stop();
+            currentFastForwardSound = null;
         }
 
         public override void ShowVisual(PlayerData.PlayerID playerIndex)
