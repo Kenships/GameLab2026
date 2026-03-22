@@ -39,6 +39,8 @@ namespace _Project.Scripts.Core.Modules
             _beamDurationTimer = new CountdownTimer(lazerBeamDuration);
             _myHealth = gameObject.GetComponent<Health>();
 
+            isTriggerTypeModule = true;
+
             _rangeDetector = GetComponent<RangeDetector>();
             if (!_rangeDetector)
             {
@@ -121,7 +123,7 @@ namespace _Project.Scripts.Core.Modules
         #region State Methods
         protected override void LoadState()
         {
-            
+
         }
         protected override void AttackState()
         {

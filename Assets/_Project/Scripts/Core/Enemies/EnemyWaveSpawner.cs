@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using _Project.Scripts.Core.Enemies.Factories;
 using _Project.Scripts.Enemies;
 using UnityEngine;
@@ -66,6 +67,8 @@ namespace _Project.Scripts.Core.Enemies
         [Header("Wave Settings")]
         [SerializeField] private Wave[] waves;
 
+        private List<EnemyBase> currentWaveEnemies = new List<EnemyBase>();
+
         private void Start()
         {
             StartCoroutine(SpawnWaves());
@@ -88,6 +91,9 @@ namespace _Project.Scripts.Core.Enemies
                     Debug.LogWarning($"Wave {waveIndex + 1} has no portal spawns.");
                     continue;
                 }
+
+                // Clear previous wave's enemy list
+                currentWaveEnemies.Clear();
 
                 waveStartEvent?.Raise(currentWave);
 
@@ -115,10 +121,22 @@ namespace _Project.Scripts.Core.Enemies
                     StartCoroutine(SpawnPortalRoutine(currentWave, portalSpawn, () => activePortalRoutines--));
                 }
 
+                // Wait for all portal spawn routines to finish (all enemies spawned)
                 yield return new WaitUntil(() => activePortalRoutines <= 0);
+
+                // Wait until all enemies of this wave are dead (references become null)
+                while (true)
+                {
+                    // Remove destroyed enemies (null references)
+                    currentWaveEnemies.RemoveAll(enemy => enemy == null);
+                    if (currentWaveEnemies.Count == 0)
+                        break;
+                    yield return null;
+                }
 
                 Debug.Log($"Finished {currentWave.waveName}");
 
+                // Rest period after wave (all enemies are dead)
                 if (waveIndex < waves.Length - 1)
                 {
                     yield return new WaitForSeconds(currentWave.restAfterWave);
@@ -163,12 +181,13 @@ namespace _Project.Scripts.Core.Enemies
 
             onComplete?.Invoke();
         }
-        private void SpawnEnemy(EnemyFactoryBase factory, Transform spawnPoint)
+
+        private EnemyBase SpawnEnemy(EnemyFactoryBase factory, Transform spawnPoint)
         {
             if (factory == null || spawnPoint == null)
             {
                 Debug.LogWarning("Factory or spawn point is null.");
-                return;
+                return null;
             }
 
             EnemyBase enemy = factory.CreateEnemy();
@@ -181,6 +200,13 @@ namespace _Project.Scripts.Core.Enemies
             {
                 enemy.transform.position = spawnPoint.position;
             }
+
+            if (currentWaveEnemies != null)
+            {
+                currentWaveEnemies.Add(enemy);
+            }
+
+            return enemy;
         }
 
         private IEnumerator BlinkArrowSmooth(RawImage arrow,

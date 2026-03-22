@@ -257,7 +257,7 @@ namespace _Project.Scripts.Core.Player
 
             while (timer >= 0)
             {
-                timer -= Time.deltaTime;
+                timer -= Time.unscaledDeltaTime;
                 yield return null;
             }
             
