@@ -11816,6 +11816,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5631733236211711180}
   - component: {fileID: 5631733236211711181}
+  - component: {fileID: 5631733236211711182}
   m_Layer: 0
   m_Name: EnemySpawner
   m_TagString: Untagged
@@ -12458,6 +12459,32 @@ MonoBehaviour:
     spawnDelayMin: 2
     spawnDelayMax: 2
     restAfterWave: 5
+--- !u!114 &5631733236211711182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1121714403395605673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87a94ed4d94741cf9171f9df3c6c3360, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.SceneLoading.SceneLoader
+  OnBeforeSceneLoad:
+    m_PersistentCalls:
+      m_Calls: []
+  loadOnAwake: 0
+  setActive: 0
+  activeSceneIndex:
+    buildIndex: 0
+  scenesToLoad:
+  - buildIndex: 9
+  unloadDisabled: 0
+  scenesToUnload: []
+  withOverlay: 0
+  sceneGroup: 1
+  actionMap: 3
 --- !u!1001 &8962831518382427931
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,14 +1,18 @@
+using _Project.Scripts.Core.AudioPooling;
+using _Project.Scripts.Core.Enemies.Factories;
+using _Project.Scripts.Core.Player;
+using _Project.Scripts.Core.SceneLoading;
+using _Project.Scripts.Enemies;
+using Sisus.Init;
 using System.Collections;
 using System.Collections.Generic;
-using _Project.Scripts.Core.Enemies.Factories;
-using _Project.Scripts.Enemies;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
 namespace _Project.Scripts.Core.Enemies
 {
-    public class EnemyWaveSpawner : MonoBehaviour
+    public class EnemyWaveSpawner : MonoBehaviour<AudioPooler>
     {
         [System.Serializable]
         public struct BlinkSettings
@@ -68,10 +72,18 @@ namespace _Project.Scripts.Core.Enemies
         [SerializeField] private Wave[] waves;
 
         private List<EnemyBase> currentWaveEnemies = new List<EnemyBase>();
+        private AudioPooler _audioPooler;
+        private SceneLoader _sceneLoader;
 
         private void Start()
         {
+            _sceneLoader = GetComponent<SceneLoader>();
             StartCoroutine(SpawnWaves());
+        }
+
+        protected override void Init(AudioPooler audioPooler)
+        {
+            _audioPooler = audioPooler;
         }
 
         private IEnumerator SpawnWaves()
@@ -135,6 +147,11 @@ namespace _Project.Scripts.Core.Enemies
                 }
 
                 Debug.Log($"Finished {currentWave.waveName}");
+
+                _audioPooler.StopAllSFX();
+                _sceneLoader.LoadScene();
+                Time.timeScale = 0f;
+                PlayerInteractionController.isTimeFlowing = false;
 
                 // Rest period after wave (all enemies are dead)
                 if (waveIndex < waves.Length - 1)

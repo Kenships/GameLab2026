@@ -79,11 +79,10 @@ namespace _Project.Scripts.Core
                 return;
             }
 
-            _audioPooler.StopAllSFX();
-
-            _sceneLoader.LoadScene();
-            Time.timeScale = 0f;
-            PlayerInteractionController.isTimeFlowing = false;
+            //_audioPooler.StopAllSFX();
+            //_sceneLoader.LoadScene();
+            //Time.timeScale = 0f;
+            //PlayerInteractionController.isTimeFlowing = false;
         }
         public void Damage(float damage)
         {
