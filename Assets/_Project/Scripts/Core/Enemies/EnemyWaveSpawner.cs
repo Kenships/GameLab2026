@@ -163,6 +163,11 @@ namespace _Project.Scripts.Core.Enemies
                 // Rest period after wave (all enemies are dead)
                 if (waveIndex < waves.Length - 1)
                 {
+                    if (waveUI != null)
+                    {
+                        waveUI.StartCountdown(currentWave.restAfterWave);
+                    }
+
                     yield return new WaitForSeconds(currentWave.restAfterWave);
                 }
             }

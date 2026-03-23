@@ -14,6 +14,9 @@ namespace _Project.Scripts.UI
         [SerializeField] private ScriptableEventWaveData waveData;
         [SerializeField] private TextMeshProUGUI waveTitle;
         [SerializeField] private TextMeshProUGUI waveCompletedText;
+        [SerializeField] private TextMeshProUGUI countdownText;
+
+        private Coroutine currentCountdownCoroutine;
 
         private void Start()
         {
@@ -42,6 +45,33 @@ namespace _Project.Scripts.UI
             // Wait for the entire sequence to complete
             yield return sequence.ToYieldInstruction();
             waveCompletedText.enabled = false;
+        }
+
+        public void StartCountdown(float duration)
+        {
+            if (countdownText == null) return;
+
+            if (currentCountdownCoroutine != null)
+                StopCoroutine(currentCountdownCoroutine);
+
+            currentCountdownCoroutine = StartCoroutine(CountdownRoutine(duration));
+        }
+
+        private IEnumerator CountdownRoutine(float duration)
+        {
+            countdownText.enabled = true;
+            float remaining = duration;
+
+            while (remaining > 0f)
+            {
+                int secondsToShow = Mathf.CeilToInt(remaining);
+                countdownText.text = "Incoming: " + secondsToShow.ToString();
+                yield return null;
+                remaining -= Time.deltaTime;
+            }
+
+            countdownText.enabled = false;
+            currentCountdownCoroutine = null;
         }
 
         public IEnumerator BlinkArrowSmooth(RawImage arrow, int blinkCount, float fadeIn, float hold, float fadeOut, float initialDelay)
