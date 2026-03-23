@@ -3,6 +3,7 @@ using _Project.Scripts.Core.Enemies.Factories;
 using _Project.Scripts.Core.Player;
 using _Project.Scripts.Core.SceneLoading;
 using _Project.Scripts.Enemies;
+using _Project.Scripts.UI;
 using Sisus.Init;
 using System.Collections;
 using System.Collections.Generic;
@@ -67,6 +68,7 @@ namespace _Project.Scripts.Core.Enemies
         [Header("References")]
         [SerializeField] private Transform vhsLocation;
         [SerializeField] private ScriptableEventWaveData waveStartEvent;
+        [SerializeField] private EnemyWaveUI waveUI;
 
         [Header("Wave Settings")]
         [SerializeField] private Wave[] waves;
@@ -148,6 +150,11 @@ namespace _Project.Scripts.Core.Enemies
 
                 Debug.Log($"Finished {currentWave.waveName}");
 
+                if (waveUI != null)
+                {
+                    yield return waveUI.ShowWaveCompleted();
+                }
+
                 _audioPooler.StopAllSFX();
                 _sceneLoader.LoadScene();
                 Time.timeScale = 0f;
@@ -165,9 +172,9 @@ namespace _Project.Scripts.Core.Enemies
 
         private IEnumerator SpawnPortalRoutine(Wave wave, PortalWaveSpawn portalSpawn, System.Action onComplete)
         {
-            if (portalSpawn.arrowImage != null)
+            if (portalSpawn.arrowImage != null && waveUI != null)
             {
-                yield return StartCoroutine(BlinkArrowSmooth(
+                yield return StartCoroutine(waveUI.BlinkArrowSmooth(
                     portalSpawn.arrowImage,
                     portalSpawn.blinkSettings.blinkCount,
                     portalSpawn.blinkSettings.fadeInDuration,
@@ -224,55 +231,6 @@ namespace _Project.Scripts.Core.Enemies
             }
 
             return enemy;
-        }
-
-        private IEnumerator BlinkArrowSmooth(RawImage arrow,
-                                      int blinkCount,
-                                      float fadeIn,
-                                      float hold,
-                                      float fadeOut,
-                                      float initialDelay)
-        {
-            if (arrow == null) yield break;
-
-            if (initialDelay > 0f)
-                yield return new WaitForSeconds(initialDelay);
-
-            arrow.enabled = true;
-
-            for (int i = 0; i < blinkCount; i++)
-            {
-                yield return StartCoroutine(FadeRawImage(arrow, 0f, 1f, fadeIn));
-
-                yield return new WaitForSeconds(hold);
-
-                yield return StartCoroutine(FadeRawImage(arrow, 1f, 0f, fadeOut));
-            }
-
-            SetRawImageAlpha(arrow, 0f);
-
-            arrow.enabled = false;
-        }
-
-        private IEnumerator FadeRawImage(RawImage img, float from, float to, float duration)
-        {
-            float elapsed = 0f;
-            while (elapsed < duration)
-            {
-                elapsed += Time.deltaTime;
-                float t = elapsed / duration;
-                float alpha = Mathf.Lerp(from, to, t);
-                SetRawImageAlpha(img, alpha);
-                yield return null;
-            }
-            SetRawImageAlpha(img, to);
-        }
-
-        private void SetRawImageAlpha(RawImage img, float alpha)
-        {
-            Color color = img.color;
-            color.a = alpha;
-            img.color = color;
         }
 
         private void OnDrawGizmosSelected()
