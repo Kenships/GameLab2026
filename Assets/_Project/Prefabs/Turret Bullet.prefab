@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2643648587791318605}
   - component: {fileID: 4297012667884275880}
   - component: {fileID: 5047924687715135266}
+  - component: {fileID: 5134781772020981421}
   m_Layer: 7
   m_Name: Turret Bullet
   m_TagString: Untagged
@@ -153,3 +154,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6fe1f2c50424956a39e428fc3e9cf2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.Modules.RegularBullet
+--- !u!114 &5134781772020981421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5629356299097722290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 888e959bdbbe1894d881656258762364, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BulletVFX
+  enableGlow: 1
+  enableTrail: 1
+  glowColor: {r: 1, g: 0.015686274, b: 0.12347794, a: 1}
+  glowIntensity: 1.5
+  glowRange: 1.5
+  trailStartColor: {r: 1, g: 0.10220623, b: 0.015686274, a: 1}
+  trailEndColor: {r: 0, g: 0, b: 0, a: 0}
+  trailTime: 0.15
+  trailStartWidth: 0.08
+  trailEndWidth: 0
+  trailMaterial: {fileID: 0}
+  bulletType: 0
