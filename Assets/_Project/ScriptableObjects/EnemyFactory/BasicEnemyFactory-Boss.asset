@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BasicEnemyFactory-Boss
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.Enemies.Factories.BasicEnemyFactory
   enemyPrefab: {fileID: 2439031548172436202, guid: 921fa1dc4fca89048a1831f968403390, type: 3}
-  maxHealth: 6000
+  maxHealth: 2500
   moveSpeed: 0.5
   timeBetweenAttacks: 1
   attackDamage: 700
