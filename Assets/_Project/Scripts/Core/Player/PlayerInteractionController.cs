@@ -96,13 +96,18 @@ namespace _Project.Scripts.Core.Player
             if (!_currentIHoldingObject)
             {
                 GameObject obj = _gridService.GetObjectOnGrid(frontOfPlayer.position);
-                if(!obj || obj.tag.Equals("NonRotatable")) return;
+                if (!obj.TryGetComponent(out IHoldable holdable))
+                {
+                    _logger.LogError($"Current Item: {_currentIHoldingObject.name} cannot be rotated");
+                    return;
+                }
                 
-                obj.transform.Rotate(Vector3.up, 90);
+                holdable.RotateClockWise();
                 return;
             }
-            
-            _currentIHoldingObject.transform.Rotate(Vector3.up, 90);
+
+            _currentIHoldingObject.TryGetComponent(out IHoldable currentHoldable);
+            currentHoldable.RotateClockWise();
         }
 
         private void FixedUpdate()
