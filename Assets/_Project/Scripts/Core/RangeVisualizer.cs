@@ -18,7 +18,7 @@ namespace _Project.Scripts.Core
         [SerializeField] private int segments = 60;
         [SerializeField] private float yOffset = 0.5f;
         [SerializeField] private float hideDelay = 0.05f;
-
+        
         private Transform gridIndicator1;
         private Transform gridIndicator2;
         private IGridService _gridSystem;
