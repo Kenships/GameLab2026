@@ -24,4 +24,4 @@ MonoBehaviour:
     - rid: 8907349615009857667
       type: {class: DamageEffectFactory, ns: _Project.Scripts.Effects.Factories, asm: Assembly-CSharp}
       data:
-        damage: 30
+        damage: 15

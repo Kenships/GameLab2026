@@ -5892,8 +5892,8 @@ MonoBehaviour:
   usedModel: {fileID: 2716607666119954134}
   maxHealth: 100
   defaultRecoverySpeed: 20
-  damage: 100
-  timeGapBeforeSecondAttack: 0.75
+  damage: 125
+  timeGapBeforeSecondAttack: 0.25
   player1Visual: {fileID: 397986941627389146}
   player2Visual: {fileID: 5808360080399794294}
 --- !u!114 &7686215641245428730
