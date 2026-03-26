@@ -14,6 +14,8 @@ namespace _Project.Scripts.Core.Modules
     {
         [Header("References")]
         [SerializeField] private Transform lazerBeamStartPos;
+        [SerializeField] private GameObject lazerCannonNew;
+        [SerializeField] private GameObject lazerCannonBroken;
 
         [Header("Lazer Beam Settings")]
         [SerializeField] private float damage = 90f;
@@ -59,7 +61,11 @@ namespace _Project.Scripts.Core.Modules
             Sequence.Create()
                 .Chain(Tween.Scale(lazerBeamStartPos.transform, startValue: 0f, endValue: beamScale, duration: 0.2f, ease: Ease.OutExpo))
                 .ChainDelay(lazerBeamDuration - 0.4f)
-                .Chain(Tween.Scale(lazerBeamStartPos.transform, endValue: 0f, duration: 0.2f, ease: Ease.InExpo));
+                .Chain(Tween.Scale(lazerBeamStartPos.transform, endValue: 0f, duration: 0.2f, ease: Ease.InExpo))
+                .ChainCallback(() => {
+                    lazerCannonBroken.SetActive(true);
+                    lazerCannonNew.SetActive(false);
+                });
         }
 
         private void PerformAttack()
@@ -144,6 +150,8 @@ namespace _Project.Scripts.Core.Modules
             switch (state)
             {
                 case ModuleState.Load:
+                    lazerCannonNew.SetActive(true);
+                    lazerCannonBroken.SetActive(false);
                     break;
                 case ModuleState.Attack:
                     _beamDurationTimer.Reset(lazerBeamDuration);
