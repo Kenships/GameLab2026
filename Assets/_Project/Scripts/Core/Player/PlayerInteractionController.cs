@@ -147,8 +147,6 @@ namespace _Project.Scripts.Core.Player
                 
                 _currentIHoldingObject = null;
             }
-
-            rebakeNavMesh.Raise();
         }
 
         // Hold A
