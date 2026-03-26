@@ -388,7 +388,7 @@ MonoBehaviour:
   defaultDecaySpeed: 5
   attackStateDecayMultiplier: 4
   lazerBeamStartPos: {fileID: 6496225764396330049}
-  damage: 100
+  damage: 25
   lazerBeamDuration: 2
   dps: 10
   player1Visual: {fileID: 7622297548106014581}

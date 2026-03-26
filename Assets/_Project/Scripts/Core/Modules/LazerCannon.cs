@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using _Project.Scripts.Core.HealthManagement;
 using _Project.Scripts.Core.Modules.Base_Class;
@@ -27,15 +28,14 @@ namespace _Project.Scripts.Core.Modules
         private RangeDetector _rangeDetector; // rangeType is rectangle
         private Transform lazerBeam;
         private List<IDamageable> _enemies;
-        private CountdownTimer _attackCooldownTimer;
         private CountdownTimer _beamDurationTimer;
         private Health _myHealth;
+        private Coroutine _attackRoutine;
 
         protected override void Start()
         {
             _enemies = new List<IDamageable>();
             lazerBeam = lazerBeamStartPos.transform.GetChild(0);
-            _attackCooldownTimer = new CountdownTimer(1f / dps);
             _beamDurationTimer = new CountdownTimer(lazerBeamDuration);
             _myHealth = gameObject.GetComponent<Health>();
 
@@ -49,7 +49,7 @@ namespace _Project.Scripts.Core.Modules
             }
 
             state = ModuleState.Load;
-        
+
             base.Start();
         }
 
@@ -64,7 +64,7 @@ namespace _Project.Scripts.Core.Modules
 
         private void PerformAttack()
         {
-            if (_attackCooldownTimer.IsRunning || _beamDurationTimer.IsFinished)
+            if (_beamDurationTimer.IsFinished)
             {
                 return;
             }
@@ -80,8 +80,17 @@ namespace _Project.Scripts.Core.Modules
             {
                 enemy?.Damage(damage);
             }
+        }
 
-            _attackCooldownTimer.Reset(1f / dps);
+        private IEnumerator AttackRoutine()
+        {
+            float attackInterval = 1f / dps;
+
+            while (!_beamDurationTimer.IsFinished)
+            {
+                PerformAttack();
+                yield return new WaitForSeconds(attackInterval);
+            }
         }
 
         public override void ShowVisual(PlayerData.PlayerID playerID)
@@ -138,11 +147,18 @@ namespace _Project.Scripts.Core.Modules
                     break;
                 case ModuleState.Attack:
                     _beamDurationTimer.Reset(lazerBeamDuration);
-                    PerformAttack();
+                    if (_attackRoutine != null)
+                        StopCoroutine(_attackRoutine);
+                    _attackRoutine = StartCoroutine(AttackRoutine());
                     PlayLazerBeamAnim();
                     _health.AddToHealth(int.MinValue);
                     break;
                 case ModuleState.Used:
+                    if (_attackRoutine != null)
+                    {
+                        StopCoroutine(_attackRoutine);
+                        _attackRoutine = null;
+                    }
                     break;
             }
         }
@@ -155,12 +171,18 @@ namespace _Project.Scripts.Core.Modules
 
         public void ApplyEffect(IEffect<IDamageable> effect)
         {
-            
+
         }
 
         public void RemoveEffect(IEffect<IDamageable> effect)
         {
-            
+
+        }
+
+        private void OnDisable()
+        {
+            if (_attackRoutine != null)
+                StopCoroutine(_attackRoutine);
         }
     }
 }
