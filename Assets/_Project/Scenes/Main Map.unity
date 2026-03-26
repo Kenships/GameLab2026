@@ -1480,11 +1480,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6220022207668456444, guid: 6ce11590cd9482048add3b33b8fba3b4, type: 3}
       propertyPath: radius
-      value: 8
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6849032946996135789, guid: 6ce11590cd9482048add3b33b8fba3b4, type: 3}
       propertyPath: detectionRange
-      value: 8
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7020352353024084139, guid: 6ce11590cd9482048add3b33b8fba3b4, type: 3}
       propertyPath: m_LocalScale.x
@@ -12348,13 +12348,13 @@ MonoBehaviour:
       arrowImage: {fileID: 2087950857}
       blinkSettings:
         blinkCount: 3
-        fadeInDuration: 0.2
-        holdDuration: 0.3
-        fadeOutDuration: 0.2
+        fadeInDuration: 0.4
+        holdDuration: 0.6
+        fadeOutDuration: 0.4
         initialDelay: 0
     spawnDelayMin: 1
     spawnDelayMax: 1
-    restAfterWave: 10
+    restAfterWave: 5
   - waveName: Wave 2
     portalSpawns:
     - spawnPosition: {fileID: 1601954570}
@@ -12364,19 +12364,17 @@ MonoBehaviour:
       arrowImage: {fileID: 1830534538}
       blinkSettings:
         blinkCount: 3
-        fadeInDuration: 0.2
-        holdDuration: 0.3
-        fadeOutDuration: 0.2
+        fadeInDuration: 0.4
+        holdDuration: 0.6
+        fadeOutDuration: 0.4
         initialDelay: 0
     spawnDelayMin: 1
     spawnDelayMax: 1
-    restAfterWave: 10
+    restAfterWave: 5
   - waveName: 'Wave 3 '
     portalSpawns:
     - spawnPosition: {fileID: 851351561}
-      enemies:
-      - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
-        count: 5
+      enemies: []
       arrowImage: {fileID: 2087950857}
       blinkSettings:
         blinkCount: 3
@@ -12385,9 +12383,7 @@ MonoBehaviour:
         fadeOutDuration: 0.2
         initialDelay: 0
     - spawnPosition: {fileID: 1601954570}
-      enemies:
-      - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
-        count: 5
+      enemies: []
       arrowImage: {fileID: 1830534538}
       blinkSettings:
         blinkCount: 3
@@ -12398,7 +12394,7 @@ MonoBehaviour:
     - spawnPosition: {fileID: 1635483276}
       enemies:
       - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
-        count: 5
+        count: 10
       arrowImage: {fileID: 208091433}
       blinkSettings:
         blinkCount: 3
@@ -12409,7 +12405,7 @@ MonoBehaviour:
     - spawnPosition: {fileID: 1370677806}
       enemies:
       - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
-        count: 5
+        count: 10
       arrowImage: {fileID: 1467989102}
       blinkSettings:
         blinkCount: 3
@@ -12419,12 +12415,12 @@ MonoBehaviour:
         initialDelay: 0
     spawnDelayMin: 2
     spawnDelayMax: 2
-    restAfterWave: 10
+    restAfterWave: 8
   - waveName: Wave 4
     portalSpawns:
     - spawnPosition: {fileID: 851351561}
       enemies:
-      - enemyFactory: {fileID: 11400000, guid: 258fa7e63b36d83489366a022ab7b760, type: 2}
+      - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
         count: 10
       arrowImage: {fileID: 2087950857}
       blinkSettings:
@@ -12435,7 +12431,7 @@ MonoBehaviour:
         initialDelay: 0
     - spawnPosition: {fileID: 1601954570}
       enemies:
-      - enemyFactory: {fileID: 11400000, guid: 258fa7e63b36d83489366a022ab7b760, type: 2}
+      - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
         count: 10
       arrowImage: {fileID: 1830534538}
       blinkSettings:
@@ -12446,7 +12442,7 @@ MonoBehaviour:
         initialDelay: 0
     - spawnPosition: {fileID: 1635483276}
       enemies:
-      - enemyFactory: {fileID: 11400000, guid: 258fa7e63b36d83489366a022ab7b760, type: 2}
+      - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
         count: 10
       arrowImage: {fileID: 208091433}
       blinkSettings:
@@ -12457,7 +12453,7 @@ MonoBehaviour:
         initialDelay: 0
     - spawnPosition: {fileID: 1370677806}
       enemies:
-      - enemyFactory: {fileID: 11400000, guid: 258fa7e63b36d83489366a022ab7b760, type: 2}
+      - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
         count: 10
       arrowImage: {fileID: 1467989102}
       blinkSettings:
@@ -12468,15 +12464,13 @@ MonoBehaviour:
         initialDelay: 0
     spawnDelayMin: 2
     spawnDelayMax: 2
-    restAfterWave: 5
+    restAfterWave: 10
   - waveName: Wave 5
     portalSpawns:
     - spawnPosition: {fileID: 851351561}
       enemies:
-      - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
-        count: 10
       - enemyFactory: {fileID: 11400000, guid: 258fa7e63b36d83489366a022ab7b760, type: 2}
-        count: 10
+        count: 15
       arrowImage: {fileID: 2087950857}
       blinkSettings:
         blinkCount: 3
@@ -12486,10 +12480,8 @@ MonoBehaviour:
         initialDelay: 0
     - spawnPosition: {fileID: 1601954570}
       enemies:
-      - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
-        count: 10
       - enemyFactory: {fileID: 11400000, guid: 258fa7e63b36d83489366a022ab7b760, type: 2}
-        count: 10
+        count: 15
       arrowImage: {fileID: 1830534538}
       blinkSettings:
         blinkCount: 3
@@ -12498,11 +12490,7 @@ MonoBehaviour:
         fadeOutDuration: 0.2
         initialDelay: 0
     - spawnPosition: {fileID: 1635483276}
-      enemies:
-      - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
-        count: 10
-      - enemyFactory: {fileID: 11400000, guid: 258fa7e63b36d83489366a022ab7b760, type: 2}
-        count: 10
+      enemies: []
       arrowImage: {fileID: 208091433}
       blinkSettings:
         blinkCount: 3
@@ -12511,11 +12499,7 @@ MonoBehaviour:
         fadeOutDuration: 0.2
         initialDelay: 0
     - spawnPosition: {fileID: 1370677806}
-      enemies:
-      - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
-        count: 10
-      - enemyFactory: {fileID: 11400000, guid: 258fa7e63b36d83489366a022ab7b760, type: 2}
-        count: 10
+      enemies: []
       arrowImage: {fileID: 1467989102}
       blinkSettings:
         blinkCount: 3
@@ -12530,7 +12514,7 @@ MonoBehaviour:
     portalSpawns:
     - spawnPosition: {fileID: 851351561}
       enemies:
-      - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
+      - enemyFactory: {fileID: 11400000, guid: 258fa7e63b36d83489366a022ab7b760, type: 2}
         count: 10
       arrowImage: {fileID: 2087950857}
       blinkSettings:
@@ -12541,7 +12525,7 @@ MonoBehaviour:
         initialDelay: 0
     - spawnPosition: {fileID: 1601954570}
       enemies:
-      - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
+      - enemyFactory: {fileID: 11400000, guid: 258fa7e63b36d83489366a022ab7b760, type: 2}
         count: 10
       arrowImage: {fileID: 1830534538}
       blinkSettings:
@@ -12553,7 +12537,7 @@ MonoBehaviour:
     - spawnPosition: {fileID: 1635483276}
       enemies:
       - enemyFactory: {fileID: 11400000, guid: 258fa7e63b36d83489366a022ab7b760, type: 2}
-        count: 10
+        count: 5
       arrowImage: {fileID: 208091433}
       blinkSettings:
         blinkCount: 3
@@ -12564,7 +12548,7 @@ MonoBehaviour:
     - spawnPosition: {fileID: 1370677806}
       enemies:
       - enemyFactory: {fileID: 11400000, guid: 258fa7e63b36d83489366a022ab7b760, type: 2}
-        count: 10
+        count: 5
       arrowImage: {fileID: 1467989102}
       blinkSettings:
         blinkCount: 3
@@ -12574,7 +12558,7 @@ MonoBehaviour:
         initialDelay: 0
     spawnDelayMin: 2
     spawnDelayMax: 2
-    restAfterWave: 5
+    restAfterWave: 10
   - waveName: Wave 7
     portalSpawns:
     - spawnPosition: {fileID: 851351561}
@@ -12623,13 +12607,13 @@ MonoBehaviour:
         initialDelay: 0
     spawnDelayMin: 2
     spawnDelayMax: 2
-    restAfterWave: 5
+    restAfterWave: 10
   - waveName: Wave 8
     portalSpawns:
     - spawnPosition: {fileID: 851351561}
       enemies:
       - enemyFactory: {fileID: 11400000, guid: 9dc28355a1ce5d24b8f718d64244c43a, type: 2}
-        count: 3
+        count: 0
       arrowImage: {fileID: 2087950857}
       blinkSettings:
         blinkCount: 3
@@ -12640,7 +12624,7 @@ MonoBehaviour:
     - spawnPosition: {fileID: 1601954570}
       enemies:
       - enemyFactory: {fileID: 11400000, guid: 9dc28355a1ce5d24b8f718d64244c43a, type: 2}
-        count: 3
+        count: 0
       arrowImage: {fileID: 1830534538}
       blinkSettings:
         blinkCount: 3
@@ -12681,6 +12665,8 @@ MonoBehaviour:
         count: 5
       - enemyFactory: {fileID: 11400000, guid: 258fa7e63b36d83489366a022ab7b760, type: 2}
         count: 7
+      - enemyFactory: {fileID: 11400000, guid: 9dc28355a1ce5d24b8f718d64244c43a, type: 2}
+        count: 1
       arrowImage: {fileID: 2087950857}
       blinkSettings:
         blinkCount: 3
@@ -12694,6 +12680,8 @@ MonoBehaviour:
         count: 5
       - enemyFactory: {fileID: 11400000, guid: 258fa7e63b36d83489366a022ab7b760, type: 2}
         count: 7
+      - enemyFactory: {fileID: 11400000, guid: 9dc28355a1ce5d24b8f718d64244c43a, type: 2}
+        count: 1
       arrowImage: {fileID: 1830534538}
       blinkSettings:
         blinkCount: 3
@@ -12725,13 +12713,13 @@ MonoBehaviour:
         initialDelay: 0
     spawnDelayMin: 2
     spawnDelayMax: 2
-    restAfterWave: 5
+    restAfterWave: 10
   - waveName: Final Wave
     portalSpawns:
     - spawnPosition: {fileID: 851351561}
       enemies:
-      - enemyFactory: {fileID: 11400000, guid: 258fa7e63b36d83489366a022ab7b760, type: 2}
-        count: 7
+      - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
+        count: 5
       arrowImage: {fileID: 2087950857}
       blinkSettings:
         blinkCount: 3

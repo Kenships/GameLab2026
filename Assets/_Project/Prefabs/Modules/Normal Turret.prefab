@@ -105,8 +105,8 @@ MonoBehaviour:
   turretAnimator: {fileID: 9065470517065034047}
   targetingStrategy: {fileID: 11400000, guid: e79a6ed2001bc524fab0d8f9f7facc09, type: 2}
   bulletFactory: {fileID: 11400000, guid: cfb4e2526dcdb6c48be48c460b8ad065, type: 2}
-  shotsPerSecond: 1
-  attackSpeedMultiplier: 1.5
+  shotsPerSecond: 2
+  attackSpeedMultiplier: 2
   detectionRange: 5
   headRotationSpeed: 10
   shootSound: {fileID: 8300000, guid: aec8762279de72749b7fba096dfefbc8, type: 3}
