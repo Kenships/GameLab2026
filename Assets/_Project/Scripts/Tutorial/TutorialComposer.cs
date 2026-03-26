@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using _Project.Scripts.Util.CustomAttributes;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -10,36 +12,29 @@ namespace _Project.Scripts.Tutorial
         [Serializable]
         private struct PanelEvent
         {
-            public GameObject Panel;
-            public UnityEvent OnPanel;
+            [DynamicTextArea] public string PanelText;
+            public UnityEvent<Action> OnPanel;
         }
         
         [SerializeField] private List<PanelEvent> panels;
-
+        [SerializeField] private TextMeshProUGUI panelText;
         private int _panelIndex;
-        private GameObject _currentPanel;
-
+        
         private void Start()
         {
-            _currentPanel = panels[_panelIndex].Panel;
-            _currentPanel.SetActive(true);
-            panels[_panelIndex].OnPanel?.Invoke();
-            foreach (PanelEvent panel in panels)
-            {
-                if (panel.Panel != _currentPanel)
-                {
-                    panel.Panel.SetActive(false);
-                }
-            }
+            RefreshPanel();
         }
 
         public void Next()
         {
-            _currentPanel.SetActive(false);
             _panelIndex = Mathf.Clamp(_panelIndex + 1, 0, panels.Count - 1);
-            _currentPanel = panels[_panelIndex].Panel;
-            panels[_panelIndex].OnPanel?.Invoke();
-            _currentPanel.SetActive(true);
+            RefreshPanel();
+        }
+
+        private void RefreshPanel()
+        {
+            panels[_panelIndex].OnPanel?.Invoke(Next);
+            panelText.text = panels[_panelIndex].PanelText;
         }
     }
 }

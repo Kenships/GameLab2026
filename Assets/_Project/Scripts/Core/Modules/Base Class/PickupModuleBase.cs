@@ -20,10 +20,6 @@ namespace _Project.Scripts.Core.Modules.Base_Class
         [SerializeField] protected float pickUpSoundVolume = 0.25f;
         [SerializeField] protected AudioClip putDownSound;
         [SerializeField] protected float putDownSoundVolume = 1.5f;
-        
-        public event Action OnHold;
-        public event Action OnRelease;
-        public event Action OnRotateClockWise;
 
         private Collider _colliderCache;
         protected bool _isPickedUp;
@@ -42,7 +38,6 @@ namespace _Project.Scripts.Core.Modules.Base_Class
             gameObject.layer = LayerMask.NameToLayer("HeldObject");
             
             _audioPooler.New2DAudio(pickUpSound).OnChannel(AudioType.Sfx).SetVolume(pickUpSoundVolume).Play();
-            OnHold?.Invoke();
             _isPickedUp = true;
         }
 
@@ -54,14 +49,12 @@ namespace _Project.Scripts.Core.Modules.Base_Class
             transform.SetParent(null);
             
             _audioPooler.New2DAudio(putDownSound).OnChannel(AudioType.Sfx).SetVolume(putDownSoundVolume).Play();
-            OnRelease?.Invoke();
             _isPickedUp = false;
         }
 
         public void RotateClockWise()
         {
             transform.Rotate(Vector3.up, 90f);
-            OnRotateClockWise?.Invoke();
         }
     }
 }

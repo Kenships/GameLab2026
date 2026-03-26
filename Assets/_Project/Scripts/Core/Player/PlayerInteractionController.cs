@@ -21,22 +21,22 @@ namespace _Project.Scripts.Core.Player
         [SerializeField] private float hapticsDuration = 0.12f;
         
         [Header("References")]
-        [SerializeField] private Transform frontOfPlayer;
-        [SerializeField] private WindVFXController windVFXController;
+        [SerializeField] protected Transform frontOfPlayer;
+        [SerializeField] protected WindVFXController windVFXController;
         [Header("EventObjects")]
-        [SerializeField] private ScriptableEventNoParam rebakeNavMesh;
+        [SerializeField] protected ScriptableEventNoParam rebakeNavMesh;
         
-        private RangeDetector _rangeDetector;
-        private List<ITimeControllable> _controllables = new();
-        private GameObject _currentIHoldingObject;
-        private INESActionReader _inputReader;
-        private IGridService _gridService;
-        private ILogger _logger;
-        private AudioPooler _audioPooler;
-        private Gamepad _gamePad;
+        protected RangeDetector _rangeDetector;
+        protected List<ITimeControllable> _controllables = new();
+        protected GameObject _currentIHoldingObject;
+        protected INESActionReader _inputReader;
+        protected IGridService _gridService;
+        protected ILogger _logger;
+        protected AudioPooler _audioPooler;
+        protected Gamepad _gamePad;
         public static bool isTimeFlowing = true;
 
-        public bool IsTimeControlling {get; private set;}
+        public bool IsTimeControlling {get; protected set;}
         
         public PlayerData.PlayerID PlayerID { get; set; }
         
@@ -89,7 +89,7 @@ namespace _Project.Scripts.Core.Player
         }
         
 
-        private void RotateClockWise()
+        protected virtual void RotateClockWise()
         {
             if (!isTimeFlowing) return;
 
@@ -116,7 +116,7 @@ namespace _Project.Scripts.Core.Player
         }
 
         // Double tap A
-        private void PickUpOrPutDown()
+        protected virtual void PickUpOrPutDown()
         {
             if (!isTimeFlowing) return;
 
@@ -157,7 +157,7 @@ namespace _Project.Scripts.Core.Player
         }
 
         // Hold A
-        private void FastForward()
+        protected virtual void FastForward()
         {
             if (!isTimeFlowing) return;
 
@@ -193,7 +193,7 @@ namespace _Project.Scripts.Core.Player
         }
 
         // Hold B
-        private void Rewind()
+        protected virtual void Rewind()
         {
             if (!isTimeFlowing) return;
 
@@ -229,7 +229,7 @@ namespace _Project.Scripts.Core.Player
             IsTimeControlling = false;
         }
         
-        private bool CanInteract()
+        protected bool CanInteract()
         {
             return !_currentIHoldingObject && !IsTimeControlling;
         }
@@ -251,7 +251,7 @@ namespace _Project.Scripts.Core.Player
             visualSelectable.HideVisual(PlayerID);
         }
 
-        private IEnumerator PlayHaptics()
+        protected IEnumerator PlayHaptics()
         {
             if (!_inputReader.TryGetGamePad(out _gamePad))
                 yield break;
