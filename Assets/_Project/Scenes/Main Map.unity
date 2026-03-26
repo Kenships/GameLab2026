@@ -9851,8 +9851,8 @@ MonoBehaviour:
         holdDuration: 0.6
         fadeOutDuration: 0.4
         initialDelay: 0
-    spawnDelayMin: 1
-    spawnDelayMax: 1
+    spawnDelayMin: 2
+    spawnDelayMax: 2
     restAfterWave: 5
   - waveName: Wave 2
     portalSpawns:
@@ -9867,8 +9867,8 @@ MonoBehaviour:
         holdDuration: 0.6
         fadeOutDuration: 0.4
         initialDelay: 0
-    spawnDelayMin: 1
-    spawnDelayMax: 1
+    spawnDelayMin: 2
+    spawnDelayMax: 2
     restAfterWave: 5
   - waveName: 'Wave 3 '
     portalSpawns:
