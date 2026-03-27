@@ -1753,7 +1753,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RecordDiscShooter
   description: -Low damage\n-Long range circle\nSingle target\n-Chain attack
-  moduleSprite: {fileID: 21300000, guid: 623b8d6c35aa4cc46a664619f1f36193, type: 3}
+  moduleSprite: {fileID: 21300000, guid: 41b2c6234e7c6c04a91064b97e3437e9, type: 3}
   state: 1
   fastForwardSound: {fileID: 8300000, guid: c25a378f906f03f45a34bc3f3b926bb2, type: 3}
   fastForwardSoundVolume: 1
