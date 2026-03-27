@@ -5957,7 +5957,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18bb08fe32e055f4dabb7b90398c5924, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ExplosiveTank
-  description: If this module is player-placeable define this
+  description: Can't pick up
   state: 1
   fastForwardSound: {fileID: 8300000, guid: c25a378f906f03f45a34bc3f3b926bb2, type: 3}
   fastForwardSoundVolume: 1

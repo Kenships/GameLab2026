@@ -12,7 +12,6 @@ namespace _Project.Scripts.UI
         [Header("References")]
         [SerializeField] private TextMeshProUGUI moduleName;
         [SerializeField] private TextMeshProUGUI description;
-        [SerializeField] private TextMeshProUGUI Specs;
         [SerializeField] private GameObject button;
         [SerializeField] private GameObject player1Visual;
         [SerializeField] private GameObject player2Visual;

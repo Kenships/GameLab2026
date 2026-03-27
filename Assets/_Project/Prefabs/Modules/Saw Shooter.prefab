@@ -1752,7 +1752,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e66bdfa4bd24ba741a6b1d37dd0f9669, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RecordDiscShooter
-  description: Hurles Vinyl records that seek the enemy.
+  description: -Low damage\n-Long range circle\nSingle target\n-Chain attack
   state: 1
   fastForwardSound: {fileID: 8300000, guid: c25a378f906f03f45a34bc3f3b926bb2, type: 3}
   fastForwardSoundVolume: 1
