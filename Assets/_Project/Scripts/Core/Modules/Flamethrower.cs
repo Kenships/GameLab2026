@@ -35,6 +35,10 @@ namespace _Project.Scripts.Core.Modules
         private ParticleSystem.MinMaxCurve normalSpeed;
         private ParticleSystem.MinMaxCurve normalDistance;
 
+        [Header("References")]
+        [SerializeField] private GameObject newModel;
+        [SerializeField] private GameObject brokenModel;
+
         [Header("Flamethrower Settings")]
         [SerializeField] private EnemyEffectInflictor inflictor;
 
@@ -210,6 +214,9 @@ namespace _Project.Scripts.Core.Modules
                     UpdateDistance(_rangeDetector.radius * radiusMultiplier);
                     */
 
+                    newModel.SetActive(true);
+                    brokenModel.SetActive(false);
+
                     UpdateParticleBehaviour(normalSpeed, normalDistance);
 
                     particle.Play();
@@ -227,6 +234,8 @@ namespace _Project.Scripts.Core.Modules
                     */
                     break;
                 case ModuleState.Used:
+                    brokenModel.SetActive(true);
+                    newModel.SetActive(false);
                     particle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
                     break;
             }
