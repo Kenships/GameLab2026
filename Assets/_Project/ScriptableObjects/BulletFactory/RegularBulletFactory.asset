@@ -16,7 +16,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   bulletPrefab: {fileID: 5629356299097722290, guid: 3e25eb2750c86fb48a485999b88fc083, type: 3}
-  inflictor: {fileID: 11400000, guid: 4cd2fe8f570f7a84db5186142b4b8546, type: 2}
+  inflictor: {fileID: 11400000, guid: 84210072aed44c24993dd978e1568b0d, type: 2}
   projectileSpeed: 20
   projectileLifetime: 3.5
   pierce: 1
