@@ -38,10 +38,10 @@ namespace _Project.Scripts.Tutorial
 
         private void Player2ActionsOnTapInteract()
         {
-            _player1Confirm = true;
-            player1Confirm.SetActive(true);
+            _player2Confirm = true;
+            player2Confirm.SetActive(true);
 
-            if (_player2Confirm)
+            if (_player1Confirm)
             {
                 hintText.SetActive(false);
                 player1Confirm.SetActive(false);
@@ -55,11 +55,12 @@ namespace _Project.Scripts.Tutorial
 
         private void Player1ActionsOnTapInteract()
         {
-            _player2Confirm = true;
-            player2Confirm.SetActive(true);
+            _player1Confirm = true;
+            player1Confirm.SetActive(true);
             
-            if (_player1Confirm)
+            if (_player2Confirm)
             {
+                hintText.SetActive(false);
                 player1Confirm.SetActive(false);
                 player2Confirm.SetActive(false);
                 
