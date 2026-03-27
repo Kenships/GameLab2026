@@ -18,6 +18,8 @@ namespace _Project.Scripts.Core.Modules
         [SerializeField] private Transform spawnPoint;
         [SerializeField] private GameObject rotationBody;
         [SerializeField] private Animation turretAnimator;
+        [SerializeField] private GameObject newModel;
+        [SerializeField] private GameObject brokenModel;
 
         [Header("Shooting Settings")]
         [SerializeField] private EnemyTargetingStrategy targetingStrategy;
@@ -145,6 +147,8 @@ namespace _Project.Scripts.Core.Modules
             switch (state)
             {
                 case ModuleState.Load:
+                    newModel.SetActive(true);
+                    brokenModel.SetActive(false);
                     _shotsPerSecond = 1f / shotsPerSecond;
                     _canShoot = true;
                     break;
@@ -153,6 +157,8 @@ namespace _Project.Scripts.Core.Modules
                     break;
                 case ModuleState.Used:
                     _canShoot = false;
+                    brokenModel.SetActive(true);
+                    newModel.SetActive(false);
                     break;
             }
         }
