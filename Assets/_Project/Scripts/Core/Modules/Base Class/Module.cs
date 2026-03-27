@@ -16,6 +16,7 @@ namespace _Project.Scripts.Core.Modules.Base_Class
             Used
         }
         [TextArea]public string description = "If this module is player-placeable define this";
+        public Sprite moduleSprite;
 
         public bool EnableModule { get; set; } = true;
         
