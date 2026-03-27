@@ -234,9 +234,9 @@ namespace _Project.Scripts.Core.Modules
                     */
                     break;
                 case ModuleState.Used:
+                    particle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
                     brokenModel.SetActive(true);
                     newModel.SetActive(false);
-                    particle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
                     break;
             }
         }
