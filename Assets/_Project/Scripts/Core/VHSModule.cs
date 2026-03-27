@@ -24,6 +24,7 @@ namespace _Project.Scripts.Core
         [SerializeField] private ScriptableEventNoParam vhsFullHPEvent;
     
         [Header("VHS Settings")]
+        [SerializeField] private bool enableOnAwake = true;
         [SerializeField] private float vhsMaxHealth = 300f;
         [SerializeField] private float defaultRewindSpeed = 1f;
         [SerializeField] private float fastForwardMultiplier = 1.2f;
@@ -42,11 +43,11 @@ namespace _Project.Scripts.Core
 
         protected override void OnAwake()
         {
+            EnableModule = enableOnAwake;
             Location = transform;
             _myHealth = gameObject.GetComponent<Health>();
             _myHealth.Initialize(vhsMaxHealth, mileStones, 0);
             _sceneLoader = GetComponent<SceneLoader>();
-
             _myHealth.OnFullHp += HandleVHSFullHp;
         }
 

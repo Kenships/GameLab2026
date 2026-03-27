@@ -36,6 +36,7 @@ namespace _Project.Scripts.Core
             gridIndicator2 = GameObject.Find("Grid Indicator 2").transform;
             _meshFilter = GetComponent<MeshFilter>();
             _meshRenderer = GetComponent<MeshRenderer>();
+            
             _vfxMaterial = new Material(Shader.Find("Sprites/Default"));
             _meshRenderer.material = _vfxMaterial;
             _meshRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;

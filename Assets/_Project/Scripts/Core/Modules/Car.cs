@@ -54,7 +54,7 @@ namespace _Project.Scripts.Core.Modules
 
         }
 
-        private void PeformAttack()
+        protected virtual void PerformAttack()
         {
             if (_rewinding && !_rewindTween.isAlive)
             {
@@ -104,7 +104,7 @@ namespace _Project.Scripts.Core.Modules
                 case ModuleState.Attack:
                     frontDetector.ResetRangeDetection();
                     backDetector.ResetRangeDetection();
-                    PeformAttack();
+                    PerformAttack();
                     break;
                 case ModuleState.Used:
                     break;

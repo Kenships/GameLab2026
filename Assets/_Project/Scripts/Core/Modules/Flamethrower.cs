@@ -89,12 +89,11 @@ namespace _Project.Scripts.Core.Modules
 
             normalDistance = new ParticleSystem.MinMaxCurve(main.startLifetime.constantMin, main.startLifetime.constantMax);
 
+            particle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
             /*
             UpdateParticleAngle(_rangeDetector.angle * angleMultiplier, emissionRateToAngleRatio);
             UpdateDistance(_rangeDetector.radius * radiusMultiplier);
             */
-
-            state = ModuleState.Load;
         }
 
         private void UpdateParticleBehaviour(ParticleSystem.MinMaxCurve S, ParticleSystem.MinMaxCurve L)
@@ -218,7 +217,6 @@ namespace _Project.Scripts.Core.Modules
                     brokenModel.SetActive(false);
 
                     UpdateParticleBehaviour(normalSpeed, normalDistance);
-
                     particle.Play();
                     _currentDps = normalDps;
                     break;
@@ -234,6 +232,7 @@ namespace _Project.Scripts.Core.Modules
                     */
                     break;
                 case ModuleState.Used:
+                default:
                     particle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
                     brokenModel.SetActive(true);
                     newModel.SetActive(false);

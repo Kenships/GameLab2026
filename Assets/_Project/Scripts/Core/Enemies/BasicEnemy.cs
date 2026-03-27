@@ -14,8 +14,8 @@ namespace _Project.Scripts.Core.Enemies
         private NavMeshAgent _navMeshAgent;
 
         public void Initialize(float maxHealth, float moveSpeed, float attackCooldown, float attackDamage)
-        {
-            _cachedVhsTransform ??= FindFirstObjectByType<VHSModule>().transform;
+        {          
+            _cachedVhsTransform ??= VHSModule.Location;
             _target = _cachedVhsTransform;
 
             _health ??= gameObject.GetOrAdd<Health>();

@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 865fe4f3c5784e7da1de26a545b8435f, type: 3}
+  m_Name: BasicEnemyFactory-Robocop Tutorial
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.Enemies.Factories.BasicEnemyFactory
+  enemyPrefab: {fileID: 2731246571194408785, guid: e85f38efb5407a94993c886da9fa5d64, type: 3}
+  maxHealth: 50
+  moveSpeed: 0.7
+  timeBetweenAttacks: 1
+  attackDamage: 45

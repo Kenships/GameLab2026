@@ -143,7 +143,7 @@ namespace _Project.Scripts.Core.Player
             currentVelocity.x = Mathf.Lerp(currentVelocity.x, horizontalTarget.x, planarAcceleration * deltaTime);
             currentVelocity.z = Mathf.Lerp(currentVelocity.z, horizontalTarget.z, verticalAcceleration * deltaTime);
             
-            _animator.SetBool("IsMoving", currentVelocity.sqrMagnitude > 0.01f);
+            _animator.SetFloat("Velocity", Mathf.Min(currentVelocity.magnitude, 1f));
         }
 
         public void AfterCharacterUpdate(float deltaTime)

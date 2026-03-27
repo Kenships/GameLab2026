@@ -1,3 +1,4 @@
+using System;
 using _Project.Scripts.Core.AudioPooling;
 using _Project.Scripts.Core.Enemies.Factories;
 using _Project.Scripts.Core.Player;
@@ -10,6 +11,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 namespace _Project.Scripts.Core.Enemies
 {
@@ -81,6 +83,11 @@ namespace _Project.Scripts.Core.Enemies
         {
             _sceneLoader = GetComponent<SceneLoader>();
             StartCoroutine(SpawnWaves());
+        }
+
+        private void OnDestroy()
+        {
+            StopAllCoroutines();
         }
 
         protected override void Init(AudioPooler audioPooler)

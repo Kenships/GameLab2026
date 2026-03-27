@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace _Project.Scripts.Core.Modules.Interface
@@ -7,5 +8,6 @@ namespace _Project.Scripts.Core.Modules.Interface
         void Anchor(Transform transform);
         void PickUp();
         void Drop();
+        void RotateClockWise();
     }
 }
