@@ -122,22 +122,6 @@ namespace _Project.Scripts.Core.Player
                 currentVelocity = Vector3.zero;
                 return;
             }
-            
-            if (_jumpRequested && _motor.GroundingStatus.IsStableOnGround)
-            {
-                currentVelocity.y = Mathf.Sqrt(2 * jumpHeight * gravity);
-                _jumpRequested = false;
-                _motor.ForceUnground();
-            }
-
-            if (!_motor.GroundingStatus.IsStableOnGround)
-            {
-                currentVelocity.y -= gravity * deltaTime;
-            }
-            else if (currentVelocity.y < 0)
-            {
-                currentVelocity.y = 0;
-            }
 
             Vector3 horizontalTarget = _moveInputVector * (_currentMovementSpeed * SpeedMultiplier);
             currentVelocity.x = Mathf.Lerp(currentVelocity.x, horizontalTarget.x, planarAcceleration * deltaTime);
