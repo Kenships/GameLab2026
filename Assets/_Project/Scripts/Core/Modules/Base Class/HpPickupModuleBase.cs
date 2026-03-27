@@ -21,7 +21,6 @@ namespace _Project.Scripts.Core.Modules.Base_Class
         // LazerCannon
         protected bool isTriggerTypeModule = false;
         
-        
         private void OnEnable()
         {
             _health = gameObject.GetOrAdd<Health>();

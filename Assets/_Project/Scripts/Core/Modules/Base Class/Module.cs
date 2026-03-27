@@ -18,6 +18,8 @@ namespace _Project.Scripts.Core.Modules.Base_Class
         [TextArea]public string description = "If this module is player-placeable define this";
         public Sprite moduleSprite;
 
+        [TextArea]public string description = "desciption tbd";
+
         public bool EnableModule { get; set; } = true;
         
         private ModuleState _previousState = ModuleState.None;

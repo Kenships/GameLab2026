@@ -161,8 +161,9 @@ namespace _Project.Scripts.Core.Enemies
                 {
                     yield return waveUI.ShowWaveCompleted();
                 }
-
+                
                 _audioPooler.StopAllSFX();
+                
                 _sceneLoader.LoadScene();
                 Time.timeScale = 0f;
                 PlayerInteractionController.isTimeFlowing = false;

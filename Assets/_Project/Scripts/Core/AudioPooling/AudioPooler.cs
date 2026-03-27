@@ -235,14 +235,15 @@ namespace _Project.Scripts.Core.AudioPooling
 
         public void StopAllSFX()
         {
-            var allActiveSources = activeSourcesByAudioType.Values
-                .SelectMany(list => list)
-                .ToList();
-
-            foreach (var source in allActiveSources)
+            if (activeSourcesByAudioType.TryGetValue(AudioType.Sfx, out List<PooledAudioSource> sfxList))
             {
-                source.Stop();
-                ReturnToPool(source);
+                var sourcesToStop = sfxList.ToList();
+
+                foreach (var source in sourcesToStop)
+                {
+                    source.Stop();
+                    ReturnToPool(source);
+                }
             }
         }
 

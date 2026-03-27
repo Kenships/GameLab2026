@@ -3327,6 +3327,11 @@ MonoBehaviour:
   - {fileID: 5385133784651527072, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
   - {fileID: 6849032946996135789, guid: 6ce11590cd9482048add3b33b8fba3b4, type: 3}
   - {fileID: 2468354054720676535, guid: df1d64a51f558bd4dbe258997583f9ac, type: 3}
+  musicMix: {fileID: 24100000, guid: 996cf9c245ee1b14dbea11f329a233b7, type: 2}
+  lowPassSnapShot: {fileID: -488185069734835706, guid: 996cf9c245ee1b14dbea11f329a233b7, type: 2}
+  normalSnapsShot: {fileID: 24500006, guid: 996cf9c245ee1b14dbea11f329a233b7, type: 2}
+  lowPassFreq: LowPass
+  dryWet: Wet
 --- !u!114 &1915361344
 MonoBehaviour:
   m_ObjectHideFlags: 0

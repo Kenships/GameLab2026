@@ -5,6 +5,7 @@ using _Project.Scripts.Core.Player;
 using _Project.Scripts.Core.SceneLoading;
 using Obvious.Soap;
 using UnityEngine;
+using UnityEngine.Audio;
 
 namespace _Project.Scripts.UI
 {
@@ -15,7 +16,12 @@ namespace _Project.Scripts.UI
         [SerializeField] private ModuleSelectPlayer[] players;
         [SerializeField] private ScriptableEventGameObject spawnModuleEvent;
         [SerializeField] private List<Module> modules;
-        
+        [SerializeField] private AudioMixer musicMix;
+        [SerializeField] private AudioMixerSnapshot lowPassSnapShot;
+        [SerializeField] private AudioMixerSnapshot normalSnapsShot;
+        [SerializeField] string lowPassFreq;
+        [SerializeField] string dryWet;
+
         private SceneUnloader _sceneUnloader;
 
         //Zero Indexed
@@ -25,11 +31,20 @@ namespace _Project.Scripts.UI
         private void Start()
         {
             _sceneUnloader = GetComponent<SceneUnloader>();
-        
+
             //TODO migrate to loading modules manually
             //Module[] modulesArray = Resources.LoadAll<Module>("Modules");
 
             //modules.AddRange(modulesArray);
+
+            /*
+            lowPassSnapShot.TransitionTo(1.5f);
+            */
+
+            
+            musicMix.SetFloat(lowPassFreq, 500);
+            musicMix.SetFloat(dryWet, 0);
+            
 
             SetModuleSelections();
             
@@ -158,6 +173,11 @@ namespace _Project.Scripts.UI
         {
             Module selectedModule = textmodules[_p1SelectedModuleNumber].GetSelectedModule();
             spawnModuleEvent.Raise(selectedModule.gameObject);
+            /*
+            normalSnapsShot.TransitionTo(2f);
+            */
+            musicMix.SetFloat(lowPassFreq, 22000);
+            musicMix.SetFloat(dryWet, -80);
             Time.timeScale = 1f;
             PlayerInteractionController.isTimeFlowing = true;
             _sceneUnloader.UnloadScene();
