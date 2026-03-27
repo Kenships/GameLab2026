@@ -11,7 +11,9 @@ namespace _Project.Scripts.Core.Modules.Base_Class
     [RequireComponent(typeof(Collider))]
     public abstract class PickupModuleBase : Module, IHoldable
     {
+        [SerializeField] protected bool enableOnStart;
         [Header("Pickup Settings")]
+        
         [SerializeField] protected Vector3 pickupOffset;
         [SerializeField] protected Vector3 pickupRotationOffset;
 
@@ -26,7 +28,7 @@ namespace _Project.Scripts.Core.Modules.Base_Class
 
         protected virtual void Start()
         {
-            EnableModule = false;
+            EnableModule = enableOnStart;
             state = ModuleState.Used;
         }
 

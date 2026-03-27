@@ -28,12 +28,16 @@ namespace _Project.Scripts.Tutorial
             
             player1Actions.OnTapInteract += Player1ActionsOnTapInteract;
             player2Actions.OnTapInteract += Player2ActionsOnTapInteract;
+            player1Actions.OnHoldInteract += Player1ActionsOnTapInteract;
+            player2Actions.OnHoldInteract += Player2ActionsOnTapInteract;
         }
 
         private void OnDestroy()
         {
             player1Actions.OnTapInteract -= Player1ActionsOnTapInteract;
             player2Actions.OnTapInteract -= Player2ActionsOnTapInteract;
+            player1Actions.OnHoldInteract -= Player1ActionsOnTapInteract;
+            player2Actions.OnHoldInteract -= Player2ActionsOnTapInteract;
         }
 
         private void Player2ActionsOnTapInteract()
@@ -49,6 +53,8 @@ namespace _Project.Scripts.Tutorial
                 
                 player1Actions.OnTapInteract -= Player1ActionsOnTapInteract;
                 player2Actions.OnTapInteract -= Player2ActionsOnTapInteract;
+                player1Actions.OnHoldInteract -= Player1ActionsOnTapInteract;
+                player2Actions.OnHoldInteract -= Player2ActionsOnTapInteract;
                 _callback.Invoke();
             }
         }
@@ -66,6 +72,8 @@ namespace _Project.Scripts.Tutorial
                 
                 player1Actions.OnTapInteract -= Player1ActionsOnTapInteract;
                 player2Actions.OnTapInteract -= Player2ActionsOnTapInteract;
+                player1Actions.OnHoldInteract -= Player1ActionsOnTapInteract;
+                player2Actions.OnHoldInteract -= Player2ActionsOnTapInteract;
                 _callback.Invoke();
             }
         }
