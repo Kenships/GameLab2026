@@ -73,11 +73,8 @@ namespace _Project.Scripts.Core
 
         private void MilestoneReached(int stage)
         {
-            Debug.Log("Milestone reached");
-            if (!_reachedMilestones.Add(stage))
-            {
-                return;
-            }
+            //Debug.Log("Milestone reached");
+            //if (!_reachedMilestones.Add(stage)) return;
 
             //_audioPooler.StopAllSFX();
             //_sceneLoader.LoadScene();

@@ -29,7 +29,7 @@ namespace _Project.Scripts.Core.HealthManagement
             
             _slider.value = health.CurrentHealth / health.MaxHealth;
             
-            RebuildDeviderBars();
+            //RebuildDeviderBars();
         }
 
         private void FindHealthComponent()
