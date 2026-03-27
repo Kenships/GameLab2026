@@ -28,9 +28,14 @@ namespace _Project.Scripts.Tutorial
             if (!_currentIHoldingObject)
             {
                 GameObject obj = _gridService.GetObjectOnGrid(frontOfPlayer.position);
+                if (!obj)
+                {
+                    return;
+                }
+                
                 if (!obj.TryGetComponent(out IHoldable holdable))
                 {
-                    _logger.LogError($"Current Item: {_currentIHoldingObject.name} cannot be rotated");
+                    _logger.Log($"Current Item: {obj.name} cannot be rotated");
                     return;
                 }
                 

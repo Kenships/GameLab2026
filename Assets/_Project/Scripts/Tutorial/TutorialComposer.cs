@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using _Project.Scripts.Util.CustomAttributes;
+using Obvious.Soap;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -18,6 +19,7 @@ namespace _Project.Scripts.Tutorial
         
         [SerializeField] private List<PanelEvent> panels;
         [SerializeField] private TextMeshProUGUI panelText;
+        [SerializeField] private GameObject panel;
         private int _panelIndex;
         
         private void Start()
@@ -33,6 +35,7 @@ namespace _Project.Scripts.Tutorial
 
         private void RefreshPanel()
         {
+            panel.SetActive(true);
             panels[_panelIndex].OnPanel?.Invoke(Next);
             panelText.text = panels[_panelIndex].PanelText;
         }

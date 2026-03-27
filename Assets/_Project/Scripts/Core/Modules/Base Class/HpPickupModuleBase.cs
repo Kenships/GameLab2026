@@ -25,11 +25,12 @@ namespace _Project.Scripts.Core.Modules.Base_Class
         private void OnEnable()
         {
             _health = gameObject.GetOrAdd<Health>();
-            _health.Initialize(maxHealth);
+            _health.Initialize(maxHealth, 0f);
         }
 
-        protected virtual void Start()
+        protected override void Start()
         {
+            base.Start();
             _health.OnDeath += OnDeath;
             _health.OnFullHp += OnFullHp;
         }

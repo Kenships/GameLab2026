@@ -24,6 +24,12 @@ namespace _Project.Scripts.Core.Modules.Base_Class
         private Collider _colliderCache;
         protected bool _isPickedUp;
 
+        protected virtual void Start()
+        {
+            EnableModule = false;
+            state = ModuleState.Used;
+        }
+
         public void Anchor(Transform anchorTransform)
         {
             transform.SetParent(anchorTransform);
@@ -33,6 +39,8 @@ namespace _Project.Scripts.Core.Modules.Base_Class
 
         public void PickUp()
         {
+            EnableModule = true;
+            
             _colliderCache ??= GetComponent<Collider>();
             _colliderCache.isTrigger = true;
             gameObject.layer = LayerMask.NameToLayer("HeldObject");

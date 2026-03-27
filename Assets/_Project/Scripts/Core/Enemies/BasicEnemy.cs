@@ -15,7 +15,9 @@ namespace _Project.Scripts.Core.Enemies
 
         public void Initialize(float maxHealth, float moveSpeed, float attackCooldown, float attackDamage)
         {
-            _cachedVhsTransform ??= FindFirstObjectByType<VHSModule>().transform;
+            Debug.Log("Spawned");
+            
+            _cachedVhsTransform ??= VHSModule.Location;
             _target = _cachedVhsTransform;
 
             _health ??= gameObject.GetOrAdd<Health>();

@@ -42,6 +42,7 @@ namespace _Project.Scripts.Core.Player
         
         protected override void Init(INESActionReader nesActionReader, IGridService gridService, ILogger logger, AudioPooler audioPooler)
         {
+            _logger = logger;
             _inputReader = nesActionReader;
             _gridService = gridService;
             _rangeDetector = GetComponent<RangeDetector>();

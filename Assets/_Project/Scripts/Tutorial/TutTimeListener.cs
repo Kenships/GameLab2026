@@ -4,16 +4,17 @@ using UnityEngine;
 
 namespace _Project.Scripts.Tutorial
 {
-    public class TutorialNextAfterTime : MonoBehaviour, ITutorialListener
+    public class TutTimeListener : MonoBehaviour, ITutorialListener
     {
-        [SerializeField] private float timeToNextPanel;
+        public float TimeToNextPanel { get; set; }
 
         private CountdownTimer _timer;
 
         public void Invoke(Action callback)
         {
-            _timer = new CountdownTimer(timeToNextPanel);
+            _timer = new CountdownTimer(TimeToNextPanel);
             _timer.OnTimerEnd += callback;
+            _timer.Start();
         }
     }
 }
