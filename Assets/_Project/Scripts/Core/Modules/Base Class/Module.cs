@@ -15,7 +15,8 @@ namespace _Project.Scripts.Core.Modules.Base_Class
             Attack,
             Used
         }
-        [TextArea]public string description = "If this module is player-placeable define this";
+
+        [TextArea]public string description = "desciption tbd";
 
         public bool EnableModule { get; set; } = true;
         
