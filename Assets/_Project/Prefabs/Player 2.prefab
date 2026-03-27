@@ -151,6 +151,22 @@ PrefabInstance:
       propertyPath: playerID
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8921368399928569412, guid: 182a216b55b5c854cb04ac43f2ab745c, type: 3}
+      propertyPath: ringColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8921368399928569412, guid: 182a216b55b5c854cb04ac43f2ab745c, type: 3}
+      propertyPath: ringColor.b
+      value: 0.38823533
+      objectReference: {fileID: 0}
+    - target: {fileID: 8921368399928569412, guid: 182a216b55b5c854cb04ac43f2ab745c, type: 3}
+      propertyPath: ringColor.g
+      value: 0.14117648
+      objectReference: {fileID: 0}
+    - target: {fileID: 8921368399928569412, guid: 182a216b55b5c854cb04ac43f2ab745c, type: 3}
+      propertyPath: ringColor.r
+      value: 0.9803922
+      objectReference: {fileID: 0}
     - target: {fileID: 9180961584110244387, guid: 182a216b55b5c854cb04ac43f2ab745c, type: 3}
       propertyPath: m_Name
       value: Grid Indicator 2

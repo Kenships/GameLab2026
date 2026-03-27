@@ -115,7 +115,7 @@ namespace _Project.Scripts.Core.Enemies
 
                 // Clear previous wave's enemy list
                 currentWaveEnemies.Clear();
-
+                
                 waveStartEvent?.Raise(currentWave);
 
                 Debug.Log($"Starting {currentWave.waveName}");

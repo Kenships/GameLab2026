@@ -17,6 +17,7 @@ namespace _Project.Scripts.Core.Modules.Base_Class
         private IAudioPlayer currentFastForwardSound;
         private IAudioPlayer currentRewindSound;
         protected bool _isRewinding;
+        protected bool _isFastForwarding;
         protected Health _health;
         // LazerCannon
         protected bool isTriggerTypeModule = false;
@@ -61,6 +62,11 @@ namespace _Project.Scripts.Core.Modules.Base_Class
 
         public override void Rewind()
         {
+            if (_isFastForwarding || _isRewinding)
+            {
+                return;
+            }
+            
             _isRewinding = state != ModuleState.Attack;
 
             currentRewindSound = _audioPooler.New2DAudio(rewindSound).OnChannel(AudioType.Sfx)
@@ -108,9 +114,10 @@ namespace _Project.Scripts.Core.Modules.Base_Class
     
         public override void FastForward()
         {
-            if (_isRewinding || state == ModuleState.Used)
+            if (_isRewinding || _isFastForwarding)
                 return;
-        
+
+            _isFastForwarding = true;
             state = ModuleState.Attack;
 
             currentFastForwardSound = _audioPooler.New2DAudio(fastForwardSound).OnChannel(AudioType.Sfx)
@@ -124,6 +131,7 @@ namespace _Project.Scripts.Core.Modules.Base_Class
         
             state = ModuleState.Load;
 
+            _isFastForwarding = false;
             currentFastForwardSound?.Stop();
             currentFastForwardSound = null;
         }
