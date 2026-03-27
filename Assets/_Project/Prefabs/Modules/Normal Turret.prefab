@@ -159,7 +159,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e66bdfa4bd24ba741a6b1d37dd0f9669, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RecordDiscShooter
-  description: A run of the mill turret sentry, from a run of the mill action flick.
+  description: -High damage\n-Short range circle\n-Single target
+  moduleSprite: {fileID: 21300000, guid: 623b8d6c35aa4cc46a664619f1f36193, type: 3}
   state: 1
   fastForwardSound: {fileID: 8300000, guid: c25a378f906f03f45a34bc3f3b926bb2, type: 3}
   fastForwardSoundVolume: 1

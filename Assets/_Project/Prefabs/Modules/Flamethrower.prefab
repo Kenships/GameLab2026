@@ -5990,7 +5990,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f81e77b53cc81af43b6840e539ee2404, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Flamethrower
-  description: Throws flames at the cost of half your fps (fire emoji)X3
+  description: -Low damage\n-Long range arc\n-AOE\n-Burn DOT
+  moduleSprite: {fileID: 21300000, guid: bc92618e37784f145aac4943e376ca33, type: 3}
   state: 0
   fastForwardSound: {fileID: 8300000, guid: c25a378f906f03f45a34bc3f3b926bb2, type: 3}
   fastForwardSoundVolume: 1
