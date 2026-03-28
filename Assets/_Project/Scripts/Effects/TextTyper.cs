@@ -4,7 +4,7 @@ using System.Collections;
 
 public class TextTyper : MonoBehaviour
 {
-    public TextMeshProUGUI dialogueText;
+    private TextMeshProUGUI dialogueText;
     private string fullText;
 
     public float delay = 0.03f;
