@@ -9885,7 +9885,7 @@ MonoBehaviour:
   vhsFullHPEvent: {fileID: 11400000, guid: dca06c0613049d741b7b023502d19817, type: 2}
   enableOnAwake: 1
   vhsMaxHealth: 1000
-  rewindSpeed: 3
+  rewindSpeed: 2
   mileStones:
   - 100
   - 200
