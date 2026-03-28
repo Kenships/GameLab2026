@@ -1,6 +1,7 @@
 using System;
 using _Project.Scripts.Core.Modules.Base_Class;
 using _Project.Scripts.Core.Modules.Interface;
+using _Project.Scripts.Core.Player;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -24,7 +25,7 @@ namespace _Project.Scripts.Core.Modules
             _module.EnableModule = false;
         }
 
-        public void Rewind()
+        public void Rewind(PlayerData.PlayerID playerID)
         {
             if (timeControlType == TimeControlType.FastForward)
             {
@@ -36,12 +37,12 @@ namespace _Project.Scripts.Core.Modules
             gameObject.SetActive(false);
         }
 
-        public void CancelRewind()
+        public void CancelRewind(PlayerData.PlayerID playerID)
         {
             
         }
 
-        public void FastForward()
+        public void FastForward(PlayerData.PlayerID playerID)
         {
             if (timeControlType == TimeControlType.Rewind)
             {
@@ -53,7 +54,7 @@ namespace _Project.Scripts.Core.Modules
             gameObject.SetActive(false);
         }
 
-        public void CancelFastForward()
+        public void CancelFastForward(PlayerData.PlayerID playerID)
         {
             
         }

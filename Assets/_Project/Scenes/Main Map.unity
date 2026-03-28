@@ -3407,7 +3407,7 @@ Transform:
   m_GameObject: {fileID: 1026021057}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -1.5, y: 0.48, z: -9.31}
+  m_LocalPosition: {x: -1.5000001, y: 0.48, z: -10.31}
   m_LocalScale: {x: 1, y: 1, z: 47.86726}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3432,7 +3432,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 3, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!208 &1026021060
 NavMeshObstacle:
@@ -8860,6 +8860,14 @@ PrefabInstance:
     - target: {fileID: 1674207912157368872, guid: 182a216b55b5c854cb04ac43f2ab745c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1863993824960942060, guid: 182a216b55b5c854cb04ac43f2ab745c, type: 3}
+      propertyPath: rewindSound
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1863993824960942060, guid: 182a216b55b5c854cb04ac43f2ab745c, type: 3}
+      propertyPath: fastForwardSound
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3176062913803016862, guid: 182a216b55b5c854cb04ac43f2ab745c, type: 3}
       propertyPath: m_LocalScale.x

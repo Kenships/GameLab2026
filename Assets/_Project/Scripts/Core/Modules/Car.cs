@@ -1,12 +1,10 @@
 using _Project.Scripts.Core.Enemies;
-using _Project.Scripts.Core.HealthManagement;
 using _Project.Scripts.Core.Modules.Base_Class;
 using _Project.Scripts.Core.Player;
 using _Project.Scripts.Effects.Inflictors;
 using System.Collections.Generic;
 using UnityEngine;
 using PrimeTween;
-using System.Globalization;
 
 namespace _Project.Scripts.Core.Modules
 {
@@ -24,8 +22,6 @@ namespace _Project.Scripts.Core.Modules
 
         private Vector3 _originalPosition;
         private Vector3 _endPosition;
-        private bool _fastForwarding = false;
-        private bool _rewinding = false;
         private List<EnemyBase> _enemies;
         private Tween _rewindTween;
         private Tween _fastForwardTween;
@@ -41,7 +37,7 @@ namespace _Project.Scripts.Core.Modules
 
         protected override void LoadState()
         {
-        
+            
         }
 
         protected override void AttackState()
@@ -51,12 +47,12 @@ namespace _Project.Scripts.Core.Modules
 
         protected override void UsedState()
         {
-
+            
         }
 
-        protected virtual void PerformAttack()
+        protected virtual void PerformAttack(bool fastForward)
         {
-            if (_rewinding && !_rewindTween.isAlive)
+            if (!fastForward && !_rewindTween.isAlive)
             {
                 float distance = Vector3.Distance(transform.position, _endPosition);
                 float duration = distance / rewindSpeed;
@@ -72,10 +68,10 @@ namespace _Project.Scripts.Core.Modules
                             target.newCarModel.SetActive(true);
                         }
                     })
-                    .OnComplete(this, target => target._rewinding = false);
+                    .OnComplete(() => state = ModuleState.Load);
             }
 
-            if (_fastForwarding && !_fastForwardTween.isAlive)
+            if (fastForward && !_fastForwardTween.isAlive)
             {
                 float distance = Vector3.Distance(transform.position, _originalPosition);
                 float duration = distance / fastForwardSpeed;
@@ -91,61 +87,33 @@ namespace _Project.Scripts.Core.Modules
                             target.newCarModel.SetActive(false);
                         }
                     })
-                    .OnComplete(this, target => target._fastForwarding = false);
+                    .OnComplete(() => state = ModuleState.Used);
             }
         }
 
         protected override void OnStateChanged(ModuleState newState)
         {
-            switch (state)
-            {
-                case ModuleState.Load:
-                    break;
-                case ModuleState.Attack:
-                    frontDetector.ResetRangeDetection();
-                    backDetector.ResetRangeDetection();
-                    PerformAttack();
-                    break;
-                case ModuleState.Used:
-                    break;
-            }
+            
         }
 
-        public override void FastForward()
+        public override void FastForward(PlayerData.PlayerID playerID)
         {
-            if (_rewinding)
-            {
-                return;
-            }
-
-            _fastForwarding = true;
-            state = ModuleState.Attack;
+            base.FastForward(playerID);
+            frontDetector.ResetRangeDetection();
+            backDetector.ResetRangeDetection();
+            PerformAttack(true);
+            CancelFastForward(playerID);
         }
 
-        public override void CancelFastForward()
+        public override void Rewind(PlayerData.PlayerID playerID)
         {
-            _fastForwarding = false;
-            state = ModuleState.Load;
+            base.Rewind(playerID);
+            frontDetector.ResetRangeDetection();
+            backDetector.ResetRangeDetection();
+            PerformAttack(false);
+            CancelRewind(playerID);
         }
 
-        public override void Rewind()
-        {
-            if (_fastForwarding)
-            {
-                return;
-            }
-        
-            _rewinding = true;
-            state = ModuleState.Attack;
-        }
-
-        public override void CancelRewind()
-        {
-            state = ModuleState.Load;
-            _rewinding = false;
-        }
-    
-    
         public override void ShowVisual(PlayerData.PlayerID playerID)
         {
         
@@ -158,7 +126,6 @@ namespace _Project.Scripts.Core.Modules
 
         private void OnEnter(Collider col)
         {
-            Debug.Log(col.name);
             inflictor.Inflict(col.GetComponent<EnemyBase>());
         }
     }

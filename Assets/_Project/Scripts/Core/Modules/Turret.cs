@@ -12,7 +12,7 @@ using AudioType = _Project.Scripts.Core.AudioPooling.Interface.AudioType;
 namespace _Project.Scripts.Core.Modules
 {
     [RequireComponent(typeof(RangeDetector))]
-    public class Turret : HpPickupModuleBase, IDamageable
+    public class Turret : PickupModuleBase, IDamageable
     {
         [Header("References")]
         [SerializeField] private Transform spawnPoint;
@@ -126,20 +126,26 @@ namespace _Project.Scripts.Core.Modules
 
         protected override void LoadState()
         {
+            if (_isFastForwarding)
+            {
+                state = ModuleState.Attack;
+                return;
+            }
+            
             PerformAttack();
             base.LoadState();
         }
 
         protected override void AttackState()
         {
+            if (!_isFastForwarding)
+            {
+                state = _health.CurrentHealth == 0 ? ModuleState.Used : ModuleState.Load;
+                return;
+            }
+            
             PerformAttack();
             base.AttackState();
-        }
-
-        protected override void UsedState()
-        {
-            PerformAttack();
-            base.UsedState();
         }
 
         protected override void OnStateChanged(ModuleState prevState)

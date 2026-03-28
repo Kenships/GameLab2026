@@ -14,6 +14,11 @@ namespace _Project.Scripts.Core.Enemies
             waveData.OnRaised += WaveDataOnOnRaised;
         }
 
+        private void OnDestroy()
+        {
+            waveData.OnRaised -= WaveDataOnOnRaised;
+        }
+
         private void WaveDataOnOnRaised(EnemyWaveSpawner.Wave obj)
         {
             foreach (var portalSpawn in obj.portalSpawns)

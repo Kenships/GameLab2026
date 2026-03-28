@@ -13,34 +13,46 @@ using ILogger = _Project.Scripts.Util.Logger.Interface.ILogger;
 namespace _Project.Scripts.Core.Player
 {
     [RequireComponent(typeof(RangeDetector))]
-    public class PlayerInteractionController : MonoBehaviour<INESActionReader,IGridService, ILogger, AudioPooler>
+    public class PlayerInteractionController : MonoBehaviour<INESActionReader, IGridService, ILogger, AudioPooler>
     {
+        public static bool IsTimeFlowing = true;
+        
         [Header("Haptics Settings")]
-        [SerializeField] private float lowFrequencyHapticIntensity = 0.6f;
+        [SerializeField]
+        private float lowFrequencyHapticIntensity = 0.6f;
+
         [SerializeField] private float highFrequencyHapticIntensity = .2f;
         [SerializeField] private float hapticsDuration = 0.12f;
-        
+
         [Header("References")]
-        [SerializeField] protected Transform frontOfPlayer;
+        [SerializeField]
+        protected Transform frontOfPlayer;
+
         [SerializeField] protected WindVFXController windVFXController;
+
         [Header("EventObjects")]
-        [SerializeField] protected ScriptableEventNoParam rebakeNavMesh;
-        
+        [SerializeField]
+        protected ScriptableEventNoParam rebakeNavMesh;
+
         protected RangeDetector _rangeDetector;
-        protected List<ITimeControllable> _controllables = new();
+        protected List<ITimeControllable> _inRangeTimeControllables = new();
+        protected bool _isFastForwarding;
+        protected bool _isRewinding;
+        
         protected GameObject _currentIHoldingObject;
         protected INESActionReader _inputReader;
         protected IGridService _gridService;
         protected ILogger _logger;
         protected AudioPooler _audioPooler;
         protected Gamepad _gamePad;
-        public static bool isTimeFlowing = true;
+        
 
-        public bool IsTimeControlling {get; protected set;}
-        
+        public bool IsTimeControlling => _isFastForwarding || _isRewinding;
+
         public PlayerData.PlayerID PlayerID { get; set; }
-        
-        protected override void Init(INESActionReader nesActionReader, IGridService gridService, ILogger logger, AudioPooler audioPooler)
+
+        protected override void Init(INESActionReader nesActionReader, IGridService gridService, ILogger logger,
+            AudioPooler audioPooler)
         {
             _logger = logger;
             _inputReader = nesActionReader;
@@ -48,61 +60,102 @@ namespace _Project.Scripts.Core.Player
             _rangeDetector = GetComponent<RangeDetector>();
             _audioPooler = audioPooler;
             PlayerID = GetComponent<PlayerData>().ID;
-            
         }
-        
+
         private void OnEnable()
         {
             _inputReader.OnTapInteract += PickUpOrPutDown;
-            
+
             _inputReader.OnHoldInteract += FastForward;
             _inputReader.OnReleaseInteract += CancelFastForward;
-            
+
             _inputReader.OnTapAltInteract += RotateClockWise;
-            
+
             _inputReader.OnHoldAltInteract += Rewind;
             _inputReader.OnReleaseAltInteract += CancelRewind;
-            
-            _rangeDetector.OnObjectEnter += SelectVisual;
-            _rangeDetector.OnObjectExit += DeselectVisual;
-            _rangeDetector.OnObjectExit += CancelFastForward;
-            _rangeDetector.OnObjectExit += CancelRewind;
+
+            _rangeDetector.OnObjectEnter += RangeDetectorOnObjectEnter;
+            _rangeDetector.OnObjectExit += RangeDetectorOnObjectExit;
         }
 
         private void OnDisable()
         {
-            if (_inputReader == null) return;
-            
+            if (_inputReader == null)
+                return;
+
             _inputReader.OnTapInteract -= PickUpOrPutDown;
-            
+
             _inputReader.OnHoldInteract -= FastForward;
             _inputReader.OnReleaseInteract -= CancelFastForward;
-            
+
             _inputReader.OnTapAltInteract -= RotateClockWise;
-            
+
             _inputReader.OnHoldAltInteract -= Rewind;
             _inputReader.OnReleaseAltInteract -= CancelRewind;
-            
-            _rangeDetector.OnObjectEnter -= SelectVisual;
-            _rangeDetector.OnObjectExit -= DeselectVisual;
-            _rangeDetector.OnObjectExit -= CancelFastForward;
-            _rangeDetector.OnObjectExit -= CancelRewind;
+
+            _rangeDetector.OnObjectEnter -= RangeDetectorOnObjectEnter;
+            _rangeDetector.OnObjectExit -= RangeDetectorOnObjectExit;
         }
         
+        private void RangeDetectorOnObjectEnter(Collider obj)
+        {
+            SelectVisual(obj);
+            
+            if (!obj.TryGetComponent(out ITimeControllable timeControllable))
+            {
+                return;
+            }
+
+            if (_isFastForwarding)
+            {
+                timeControllable.FastForward(PlayerID);
+            }
+
+            if (_isRewinding)
+            {
+                timeControllable.Rewind(PlayerID);
+            }
+        }
+        
+        private void RangeDetectorOnObjectExit(Collider obj)
+        {
+            DeselectVisual(obj);
+
+            if (!obj.TryGetComponent(out ITimeControllable timeControllable))
+            {
+                return;
+            }
+
+            if (_isFastForwarding)
+            {
+                timeControllable.CancelFastForward(PlayerID);
+            }
+
+            if (_isRewinding)
+            {
+                timeControllable.CancelRewind(PlayerID);
+            }
+        }
 
         protected virtual void RotateClockWise()
         {
-            if (!isTimeFlowing) return;
+            if (!IsTimeFlowing)
+                return;
 
             if (!_currentIHoldingObject)
             {
                 GameObject obj = _gridService.GetObjectOnGrid(frontOfPlayer.position);
-                if (!obj.TryGetComponent(out IHoldable holdable))
+                if (!obj)
                 {
-                    _logger.LogError($"Current Item: {_currentIHoldingObject.name} cannot be rotated");
                     return;
                 }
                 
+                if (!obj.TryGetComponent(out IHoldable holdable))
+                {
+                    _logger.Log($"Current Item: {obj.name} cannot be rotated");
+                    return;
+                }
+
                 holdable.RotateClockWise();
                 return;
             }
@@ -113,24 +166,27 @@ namespace _Project.Scripts.Core.Player
 
         private void FixedUpdate()
         {
-            _rangeDetector.GetObjectTypeInRangeNoAlloc(_controllables);
+            _rangeDetector.GetObjectTypeInRangeNoAlloc(_inRangeTimeControllables);
         }
 
         // Double tap A
         protected virtual void PickUpOrPutDown()
         {
-            if (!isTimeFlowing) return;
+            if (!IsTimeFlowing)
+                return;
 
             // Pick Up
             if (!_currentIHoldingObject)
             {
                 GameObject obj = _gridService.GetObjectOnGrid(frontOfPlayer.position);
-                if(!obj) return;
-                if (!obj.TryGetComponent(out IHoldable holdable)) return;
-                
+                if (!obj)
+                    return;
+                if (!obj.TryGetComponent(out IHoldable holdable))
+                    return;
+
                 holdable.PickUp();
                 holdable.Anchor(frontOfPlayer);
-                
+
                 StartCoroutine(PlayHaptics());
 
                 _currentIHoldingObject = obj;
@@ -139,18 +195,19 @@ namespace _Project.Scripts.Core.Player
             else
             {
                 GameObject obj = _gridService.GetObjectOnGrid(frontOfPlayer.position);
-                if (obj) return;
-                
+                if (obj)
+                    return;
+
                 if (!_currentIHoldingObject.TryGetComponent(out IHoldable holdable))
                 {
                     _logger.LogError($"Current Item Held: {_currentIHoldingObject.name} has no IHoldable");
                 }
-                
+
                 _gridService.PlaceObjectOnGrid(_currentIHoldingObject, frontOfPlayer.position);
                 holdable.Drop();
-                
+
                 StartCoroutine(PlayHaptics());
-                
+
                 _currentIHoldingObject = null;
             }
         }
@@ -158,43 +215,39 @@ namespace _Project.Scripts.Core.Player
         // Hold A
         protected virtual void FastForward()
         {
-            if (!isTimeFlowing) return;
+            if (!IsTimeFlowing)
+                return;
 
             //Some default logic to determine if Interact is possible right now
             if (!CanInteract())
             {
                 return;
             }
-            
-            IsTimeControlling = true;
-            windVFXController.Show(WindVFXController.AbilityMode.FastForward);
-            foreach (ITimeControllable controllable in _controllables)
-            {
-                controllable?.FastForward();
-            }
-        }
 
-        private void CancelFastForward(Collider obj)
-        {
-            
-            CancelFastForward();
+            _isFastForwarding = true;
+            windVFXController.Show();
+            foreach (ITimeControllable controllable in _inRangeTimeControllables)
+            {
+                controllable?.FastForward(PlayerID);
+            }
         }
 
         private void CancelFastForward()
         {
-            foreach (ITimeControllable controllable in _controllables)
+            foreach (ITimeControllable controllable in _inRangeTimeControllables)
             {
-                controllable?.CancelFastForward();
+                controllable?.CancelFastForward(PlayerID);
             }
 
             windVFXController.Hide();
-            IsTimeControlling = false;
+            _isFastForwarding = false;
         }
 
         // Hold B
         protected virtual void Rewind()
         {
-            if (!isTimeFlowing) return;
+            if (!IsTimeFlowing)
+                return;
 
             //Some default logic to determine if Interact is possible right now
             if (!CanInteract())
@@ -202,32 +255,26 @@ namespace _Project.Scripts.Core.Player
                 return;
             }
 
-            IsTimeControlling = true;
+            _isRewinding = true;
             windVFXController.Show(WindVFXController.AbilityMode.Rewind);
-            
 
-            foreach (ITimeControllable controllable in _controllables)
+            foreach (ITimeControllable controllable in _inRangeTimeControllables)
             {
-                controllable?.Rewind();
+                controllable?.Rewind(PlayerID);
             }
-        }
-        
-        private void CancelRewind(Collider obj)
-        {
-            CancelRewind();
         }
 
         private void CancelRewind()
         {
-            foreach (ITimeControllable controllable in _controllables)
+            foreach (ITimeControllable controllable in _inRangeTimeControllables)
             {
-                controllable?.CancelRewind();
+                controllable?.CancelRewind(PlayerID);
             }
 
             windVFXController.Hide();
-            IsTimeControlling = false;
+            _isRewinding = false;
         }
-        
+
         protected bool CanInteract()
         {
             return !_currentIHoldingObject && !IsTimeControlling;
@@ -235,18 +282,22 @@ namespace _Project.Scripts.Core.Player
 
         private void SelectVisual(Collider obj)
         {
-            if(!obj) return;
-            
-            if (!obj.TryGetComponent(out IVisualSelectable visualSelectable)) return;
-            
+            if (!obj)
+                return;
+
+            if (!obj.TryGetComponent(out IVisualSelectable visualSelectable))
+                return;
+
             visualSelectable.ShowVisual(PlayerID);
         }
-        
+
         private void DeselectVisual(Collider obj)
         {
-            if(!obj) return;
-            
-            if (!obj.TryGetComponent(out IVisualSelectable visualSelectable)) return;
+            if (!obj)
+                return;
+
+            if (!obj.TryGetComponent(out IVisualSelectable visualSelectable))
+                return;
             visualSelectable.HideVisual(PlayerID);
         }
 
@@ -254,7 +305,7 @@ namespace _Project.Scripts.Core.Player
         {
             if (!_inputReader.TryGetGamePad(out _gamePad))
                 yield break;
-            
+
             _gamePad.SetMotorSpeeds(lowFrequencyHapticIntensity, highFrequencyHapticIntensity);
 
             float timer = hapticsDuration;
@@ -264,7 +315,7 @@ namespace _Project.Scripts.Core.Player
                 timer -= Time.unscaledDeltaTime;
                 yield return null;
             }
-            
+
             _gamePad.SetMotorSpeeds(0, 0);
         }
     }

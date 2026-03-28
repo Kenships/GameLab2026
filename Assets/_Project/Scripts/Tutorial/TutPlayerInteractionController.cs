@@ -13,17 +13,17 @@ namespace _Project.Scripts.Tutorial
         public Action<PlayerData.PlayerID> OnPickup;
         public Action<PlayerData.PlayerID> OnDrop;
         
-        private PlayerData.PlayerID playerID;
+        private PlayerData.PlayerID _playerID;
 
         protected override void OnAwake()
         {
             base.OnAwake();
-            playerID = GetComponent<PlayerData>().ID;
+            _playerID = GetComponent<PlayerData>().ID;
         }
 
         protected override void RotateClockWise()
         {
-            if (!isTimeFlowing) return;
+            if (!IsTimeFlowing) return;
 
             if (!_currentIHoldingObject)
             {
@@ -39,19 +39,19 @@ namespace _Project.Scripts.Tutorial
                     return;
                 }
                 
-                OnRotateClockWise?.Invoke(playerID);
+                OnRotateClockWise?.Invoke(_playerID);
                 holdable.RotateClockWise();
                 return;
             }
 
-            OnRotateClockWise?.Invoke(playerID);
+            OnRotateClockWise?.Invoke(_playerID);
             _currentIHoldingObject.TryGetComponent(out IHoldable currentHoldable);
             currentHoldable.RotateClockWise();
         }
 
         protected override void PickUpOrPutDown()
         {
-            if (!isTimeFlowing) return;
+            if (!IsTimeFlowing) return;
 
             // Pick Up
             if (!_currentIHoldingObject)
@@ -60,7 +60,7 @@ namespace _Project.Scripts.Tutorial
                 if(!obj) return;
                 if (!obj.TryGetComponent(out IHoldable holdable)) return;
                 
-                OnPickup?.Invoke(playerID);
+                OnPickup?.Invoke(_playerID);
                 holdable.PickUp();
                 holdable.Anchor(frontOfPlayer);
                 
@@ -79,7 +79,7 @@ namespace _Project.Scripts.Tutorial
                     _logger.LogError($"Current Item Held: {_currentIHoldingObject.name} has no IHoldable");
                 }
                 
-                OnDrop?.Invoke(playerID);
+                OnDrop?.Invoke(_playerID);
                 _gridService.PlaceObjectOnGrid(_currentIHoldingObject, frontOfPlayer.position);
                 holdable.Drop();
                 
@@ -93,7 +93,7 @@ namespace _Project.Scripts.Tutorial
 
         protected override void FastForward()
         {
-            if (!isTimeFlowing) return;
+            if (!IsTimeFlowing) return;
 
             //Some default logic to determine if Interact is possible right now
             if (!CanInteract())
@@ -101,18 +101,18 @@ namespace _Project.Scripts.Tutorial
                 return;
             }
             
-            IsTimeControlling = true;
+            _isFastForwarding = true;
             windVFXController.Show();
-            foreach (ITimeControllable controllable in _controllables)
+            foreach (ITimeControllable controllable in _inRangeTimeControllables)
             {
-                OnFastForward?.Invoke(playerID);
-                controllable?.FastForward();
+                OnFastForward?.Invoke(_playerID);
+                controllable?.FastForward(PlayerID);
             }
         }
 
         protected override void Rewind()
         {
-            if (!isTimeFlowing) return;
+            if (!IsTimeFlowing) return;
 
             //Some default logic to determine if Interact is possible right now
             if (!CanInteract())
@@ -120,14 +120,14 @@ namespace _Project.Scripts.Tutorial
                 return;
             }
 
-            IsTimeControlling = true;
+            _isRewinding = true;
             windVFXController.Show(WindVFXController.AbilityMode.Rewind);
             
 
-            foreach (ITimeControllable controllable in _controllables)
+            foreach (ITimeControllable controllable in _inRangeTimeControllables)
             {
-                OnRewind?.Invoke(playerID);
-                controllable?.Rewind();
+                OnRewind?.Invoke(_playerID);
+                controllable?.Rewind(PlayerID);
             }
         }
     }

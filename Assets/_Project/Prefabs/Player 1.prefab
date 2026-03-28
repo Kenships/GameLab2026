@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 7142563338380413163}
   - component: {fileID: 8655040183216302967}
   - component: {fileID: 3246353424603884455}
+  - component: {fileID: 1863993824960942060}
   m_Layer: 8
   m_Name: Player 1
   m_TagString: Untagged
@@ -127,12 +128,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.Player.MovementController
   _animator: {fileID: 8859575181546914020}
   walkSpeed: 5
-  sprintSpeed: 10
   planarAcceleration: 10
   verticalAcceleration: 20
   rotationSpeed: 10
-  jumpHeight: 5
-  gravity: 20
 --- !u!114 &578729923303144984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,7 +229,7 @@ MonoBehaviour:
   length: 10
   targetLayers:
     serializedVersion: 2
-    m_Bits: 520
+    m_Bits: 776
   obsticalLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -298,6 +296,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.Player.PlayerData
   playerID: 0
+--- !u!114 &1863993824960942060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 196390166778377398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ebccdee2e2f476189c203e61085ac91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.Modules.PlayerModule
+  fastForwardSound: {fileID: 0}
+  fastForwardSoundVolume: 1
+  rewindSound: {fileID: 0}
+  rewindSoundVolume: 1
+  fastForwardSpeedMultiplier: 1.5
+  rewindSpeedMultiplier: 0.5
 --- !u!1 &604548867450542042
 GameObject:
   m_ObjectHideFlags: 0

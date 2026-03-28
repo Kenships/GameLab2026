@@ -1,5 +1,4 @@
-using _Project.Scripts.Core.AudioPooling;
-using _Project.Scripts.Core.AudioPooling.Interface;
+using System.Collections.Generic;
 using _Project.Scripts.Core.HealthManagement;
 using _Project.Scripts.Core.Modules.Base_Class;
 using _Project.Scripts.Core.Player;
@@ -7,11 +6,9 @@ using _Project.Scripts.Core.SceneLoading;
 using _Project.Scripts.Effects.Interface;
 using _Project.Scripts.Util.ExtensionMethods;
 using Obvious.Soap;
-using System.Collections.Generic;
 using UnityEngine;
-using AudioType = _Project.Scripts.Core.AudioPooling.Interface.AudioType;
 
-namespace _Project.Scripts.Core
+namespace _Project.Scripts.Core.Modules
 {
     
     public class VHSModule : Module, IDamageable
@@ -34,9 +31,7 @@ namespace _Project.Scripts.Core
 
         private List<IEffect<IDamageable>> _damageEffects = new();
         private Health _myHealth;
-        private bool _isRewinding;
         private SceneLoader _sceneLoader;
-        private IAudioPlayer currentRewindSound;
 
 
 
@@ -120,37 +115,7 @@ namespace _Project.Scripts.Core
         {
             // NOP
         }
-
-        public override void Rewind()
-        {
-            _isRewinding = true;
-
-            if (currentRewindSound != null)
-            {
-                currentRewindSound.Stop();
-                currentRewindSound = null;
-            }
-
-            currentRewindSound = _audioPooler.New2DAudio(rewindSound).OnChannel(AudioType.Sfx)
-                .SetVolume(rewindSoundVolume).LoopAudio().Play();
-        }
-
-        public override void CancelRewind()
-        {
-            _isRewinding = false;
-            currentRewindSound?.Stop();
-            currentRewindSound = null;
-        }
         
-        public override void FastForward()
-        {
-
-        }
-
-        public override void CancelFastForward()
-        {
-
-        }
 
         public override void ShowVisual(PlayerData.PlayerID playerIndex)
         {

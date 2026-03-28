@@ -5957,17 +5957,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18bb08fe32e055f4dabb7b90398c5924, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ExplosiveTank
-  description: Can't pick up
-  state: 1
   fastForwardSound: {fileID: 8300000, guid: c25a378f906f03f45a34bc3f3b926bb2, type: 3}
   fastForwardSoundVolume: 1
   rewindSound: {fileID: 8300000, guid: 904184cbab2ef6d4eb570d029d20a47c, type: 3}
   rewindSoundVolume: 1
+  description: Can't pick up
+  moduleSprite: {fileID: 0}
+  state: 1
+  maxHealth: 100
+  defaultRecoverySpeed: 20
+  defaultDecaySpeed: 0
+  attackStateDecayMultiplier: 4
   explosionParticle: {fileID: 4020149210046228358}
   loadModel: {fileID: 9274531014335054}
   usedModel: {fileID: 2716607666119954134}
-  maxHealth: 100
-  defaultRecoverySpeed: 20
   damage: 125
   timeGapBeforeSecondAttack: 0.25
   player1Visual: {fileID: 397986941627389146}

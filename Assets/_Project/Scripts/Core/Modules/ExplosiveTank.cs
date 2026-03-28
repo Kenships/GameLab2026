@@ -1,24 +1,18 @@
 using System.Collections.Generic;
-using _Project.Scripts.Core.AudioPooling.Interface;
 using _Project.Scripts.Core.HealthManagement;
 using _Project.Scripts.Core.Modules.Base_Class;
 using _Project.Scripts.Core.Player;
 using _Project.Scripts.Effects.Interface;
 using UnityEngine;
-using AudioType = _Project.Scripts.Core.AudioPooling.Interface.AudioType;
 
 namespace _Project.Scripts.Core.Modules
 {
-    public class ExplosiveTank : Module, IDamageable
+    public class ExplosiveTank : HpModuleBase, IDamageable
     {
         [Header("References")]
         [SerializeField] private ParticleSystem explosionParticle;
         [SerializeField] private GameObject loadModel;
         [SerializeField] private GameObject usedModel;
-    
-        [Header("Time Settings")]
-        [SerializeField] protected float maxHealth = 100f;
-        [SerializeField] protected float defaultRecoverySpeed = 1f;
 
         [Header("Explosive Tank Settings")]
         [SerializeField] private float damage = 90f;
@@ -28,23 +22,13 @@ namespace _Project.Scripts.Core.Modules
         [Header("Player Selection Visuals")]
         [SerializeField] private GameObject player1Visual;
         [SerializeField] private GameObject player2Visual;
-
-        private Health _health;
         private RangeDetector _rangeDetector; // rangeType is circle
         private List<IDamageable> _enemies;
-        
-        private IAudioPlayer currentFastForwardSound;
-        private IAudioPlayer currentRewindSound;
-
-        private bool _isRewinding, _isFastForwarding;
 
         protected override void OnAwake()
         {
-            _health = GetComponent<Health>();
+            base.OnAwake();
             _rangeDetector = GetComponent<RangeDetector>();
-            _health.Initialize(maxHealth, 0);
-            _health.OnDeath += OnDeath;
-            _health.OnFullHp += OnFullHP;
             _enemies = new List<IDamageable>();
             
             loadModel.SetActive(false);
@@ -53,18 +37,9 @@ namespace _Project.Scripts.Core.Modules
             state = ModuleState.Used;
         }
 
-        private void OnDeath()
+        protected override void Start()
         {
-            state = ModuleState.Used;
-        }
-
-        private void OnFullHP()
-        {
-            state = ModuleState.Load;
-        }
-
-        protected void Start()
-        {
+            base.Start();
             var main = explosionParticle.main;
             main.stopAction = ParticleSystemStopAction.Callback;
         
@@ -154,10 +129,10 @@ namespace _Project.Scripts.Core.Modules
                 _health.AddToHealth(defaultRecoverySpeed * Time.deltaTime);
             }
 
-            if (currentFastForwardSound != null)
+            if (_currentFastForwardSound != null)
             {
-                currentFastForwardSound.Stop();
-                currentFastForwardSound = null;
+                _currentFastForwardSound.Stop();
+                _currentFastForwardSound = null;
             }
         }
 
@@ -180,34 +155,6 @@ namespace _Project.Scripts.Core.Modules
                 case ModuleState.Used:
                     break;
             }
-        }
-
-        public override void Rewind()
-        {
-            _isRewinding = true;
-            currentRewindSound = _audioPooler.New2DAudio(rewindSound).OnChannel(AudioType.Sfx)
-                .SetVolume(rewindSoundVolume).LoopAudio().Play();
-        }
-
-        public override void CancelRewind()
-        {
-            _isRewinding = false;
-            currentRewindSound?.Stop();
-            currentRewindSound = null;
-        }
-
-        public override void FastForward()
-        {
-            _isFastForwarding = true;
-            currentFastForwardSound = _audioPooler.New2DAudio(fastForwardSound).OnChannel(AudioType.Sfx)
-                .SetVolume(fastForwardSoundVolume).LoopAudio().Play();
-        }
-    
-        public override void CancelFastForward()
-        {
-            _isFastForwarding = false;
-            currentFastForwardSound?.Stop();
-            currentFastForwardSound = null;
         }
 
         #endregion
