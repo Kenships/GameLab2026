@@ -45,6 +45,13 @@ namespace _Project.Scripts.Core.Modules.Base_Class
         private void OnDeath()
         {
             state = ModuleState.Used;
+
+            _isFastForwarding = false;
+            if (currentFastForwardSound != null)
+            {
+                currentFastForwardSound.Stop();
+                currentFastForwardSound = null;
+            }
         }
 
         private void OnFullHp()
@@ -107,7 +114,6 @@ namespace _Project.Scripts.Core.Modules.Base_Class
         public override void CancelRewind()
         {
             _isRewinding = false;
-
             currentRewindSound?.Stop();
             currentRewindSound = null;
         }
