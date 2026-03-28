@@ -12,12 +12,9 @@ namespace _Project.Scripts.Core.Player
         
         [Header("Movement Settings")]
         [SerializeField] private float walkSpeed = 5f;
-        [SerializeField] private float sprintSpeed = 10f;
         [SerializeField] private float planarAcceleration = 10f;
         [SerializeField] private float verticalAcceleration = 20f;
         [SerializeField] private float rotationSpeed = 10f;
-        [SerializeField] private float jumpHeight = 5f;
-        [SerializeField] private float gravity = 20f;
         
         private INESActionReader _inputReader;
         private KinematicCharacterMotor _motor;
@@ -26,7 +23,6 @@ namespace _Project.Scripts.Core.Player
         private Vector3 _moveInputVector;
         private float _currentMovementSpeed;
         private Vector3 _lastLookDirection;
-        private bool _jumpRequested;
 
         private bool _disableMovement;
 
@@ -81,23 +77,7 @@ namespace _Project.Scripts.Core.Player
                 _lastLookDirection = _moveInputVector.normalized;
             }
         }
-
-        private void HandleSprint(bool isSprinting)
-        {
-            if (isSprinting)
-            {
-                _currentMovementSpeed = sprintSpeed;
-            }
-            else
-            {
-                _currentMovementSpeed = walkSpeed;
-            }
-        }
-
-        private void HandleJump()
-        {
-            _jumpRequested = true;
-        }
+        
 
         public void BeforeCharacterUpdate(float deltaTime)
         {
@@ -134,7 +114,7 @@ namespace _Project.Scripts.Core.Player
         {
             
         }
-        public bool IsColliderValidForCollisions(Collider coll) { return !_disableMovement; }
+        public bool IsColliderValidForCollisions(Collider coll) { return true; }
         public void OnDiscreteCollisionDetected(Collider hitCollider) { }
         public void OnGroundHit(Collider hitCollider, Vector3 hitNormal, Vector3 hitPoint, ref HitStabilityReport hitStabilityReport) { }
         public void OnMovementHit(Collider hitCollider, Vector3 hitNormal, Vector3 hitPoint, ref HitStabilityReport hitStabilityReport) { }

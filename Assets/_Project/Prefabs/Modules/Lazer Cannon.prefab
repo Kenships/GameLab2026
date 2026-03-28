@@ -302,24 +302,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 498544735c3a312499ae46611a259e1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LazerCannon
-  description: -High damage\n-Long range rectangle\n-AOE\n-Each shot costs all the
-    time
-  moduleSprite: {fileID: 21300000, guid: 20964abc62f946b48893bafca2b6fc48, type: 3}
-  state: 1
   fastForwardSound: {fileID: 8300000, guid: c25a378f906f03f45a34bc3f3b926bb2, type: 3}
   fastForwardSoundVolume: 1
   rewindSound: {fileID: 8300000, guid: 904184cbab2ef6d4eb570d029d20a47c, type: 3}
   rewindSoundVolume: 1
+  description: -High damage\n-Long range rectangle\n-AOE\n-Each shot costs all the
+    time
+  moduleSprite: {fileID: 21300000, guid: 20964abc62f946b48893bafca2b6fc48, type: 3}
+  state: 1
+  maxHealth: 100
+  defaultRecoverySpeed: 20
+  defaultDecaySpeed: 0
+  attackStateDecayMultiplier: 4
+  enableOnStart: 0
   pickupOffset: {x: 0, y: 0, z: 0}
   pickupRotationOffset: {x: 0, y: 90, z: 0}
   pickUpSound: {fileID: 8300000, guid: 602022546f4e4474a8d87cf01f887e79, type: 3}
   pickUpSoundVolume: 0.25
   putDownSound: {fileID: 8300000, guid: d9d620a96f57c824695138d11a50362f, type: 3}
   putDownSoundVolume: 1.5
-  maxHealth: 100
-  defaultRecoverySpeed: 20
-  defaultDecaySpeed: 5
-  attackStateDecayMultiplier: 4
   lazerBeamStartPos: {fileID: 6496225764396330049}
   lazerCannonNew: {fileID: 6390377893726585645}
   lazerCannonBroken: {fileID: 6400599962633785127}

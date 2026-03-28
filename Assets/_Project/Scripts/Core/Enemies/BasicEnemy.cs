@@ -1,4 +1,5 @@
 using _Project.Scripts.Core.HealthManagement;
+using _Project.Scripts.Core.Modules;
 using _Project.Scripts.Util.ExtensionMethods;
 using UnityEngine;
 using UnityEngine.AI;

@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace _Project.Scripts.Core.Modules
 {
-    public class LazerCannon : HpPickupModuleBase, IDamageable
+    public class LazerCannon : PickupModuleBase, IDamageable
     {
         [Header("References")]
         [SerializeField] private Transform lazerBeamStartPos;
@@ -28,36 +28,32 @@ namespace _Project.Scripts.Core.Modules
 
 
         private RangeDetector _rangeDetector; // rangeType is rectangle
-        private Transform lazerBeam;
+        private Transform _lazerBeam;
         private List<IDamageable> _enemies;
         private CountdownTimer _beamDurationTimer;
-        private Health _myHealth;
         private Coroutine _attackRoutine;
 
         protected override void Start()
         {
             _enemies = new List<IDamageable>();
-            lazerBeam = lazerBeamStartPos.transform.GetChild(0);
             _beamDurationTimer = new CountdownTimer(lazerBeamDuration);
-            _myHealth = gameObject.GetComponent<Health>();
-
-            isTriggerTypeModule = true;
-
             _rangeDetector = GetComponent<RangeDetector>();
+            
+            
+            _lazerBeam = lazerBeamStartPos.transform.GetChild(0);
+            
             if (!_rangeDetector)
             {
                 Debug.Log("missing rangeDetector");
                 return;
             }
-
-            state = ModuleState.Load;
-
+            
             base.Start();
         }
 
         private void PlayLazerBeamAnim()
         {
-            float beamScale = _rangeDetector.length / (lazerBeam.localScale.y * 2);
+            float beamScale = _rangeDetector.length / (_lazerBeam.localScale.y * 2);
             Sequence.Create()
                 .Chain(Tween.Scale(lazerBeamStartPos.transform, startValue: 0f, endValue: beamScale, duration: 0.2f, ease: Ease.OutExpo))
                 .ChainDelay(lazerBeamDuration - 0.4f)
@@ -136,13 +132,14 @@ namespace _Project.Scripts.Core.Modules
         }
 
         #region State Methods
+
         protected override void LoadState()
         {
-
-        }
-        protected override void AttackState()
-        {
-
+            base.LoadState();
+            if (_isFastForwarding)
+            {
+                state = ModuleState.Attack;
+            }
         }
 
         protected override void OnStateChanged(ModuleState prevState)
@@ -174,7 +171,7 @@ namespace _Project.Scripts.Core.Modules
         #endregion
         public void Damage(float damage)
         {
-            _myHealth.AddToHealth(-damage);
+            _health.AddToHealth(-damage);
         }
 
         public void ApplyEffect(IEffect<IDamageable> effect)

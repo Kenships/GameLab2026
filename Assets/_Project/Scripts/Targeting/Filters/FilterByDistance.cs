@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using _Project.Scripts.Core;
 using _Project.Scripts.Core.Enemies;
+using _Project.Scripts.Core.Modules;
 using _Project.Scripts.Targeting.Interface;
 using _Project.Scripts.Util.CustomAttributes;
 using UnityEngine;

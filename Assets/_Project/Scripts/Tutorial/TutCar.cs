@@ -6,10 +6,10 @@ namespace _Project.Scripts.Tutorial
     public class TutCar : Car
     {
         public Action OnCarAttack;
-        protected override void PerformAttack()
+        protected override void PerformAttack(bool isFastForward)
         {
             OnCarAttack?.Invoke();
-            base.PerformAttack();
+            base.PerformAttack(isFastForward);
         }
     }
 }

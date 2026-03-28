@@ -1,5 +1,3 @@
-using System;
-using System.ComponentModel;
 using _Project.Scripts.Core.Grid;
 using _Project.Scripts.Core.Modules.Interface;
 using _Project.Scripts.Util;
@@ -9,7 +7,7 @@ using AudioType = _Project.Scripts.Core.AudioPooling.Interface.AudioType;
 namespace _Project.Scripts.Core.Modules.Base_Class
 {
     [RequireComponent(typeof(Collider))]
-    public abstract class PickupModuleBase : Module, IHoldable
+    public abstract class PickupModuleBase : HpModuleBase, IHoldable
     {
         [SerializeField] protected bool enableOnStart;
         [Header("Pickup Settings")]
@@ -26,8 +24,9 @@ namespace _Project.Scripts.Core.Modules.Base_Class
         private Collider _colliderCache;
         protected bool _isPickedUp;
 
-        protected virtual void Start()
+        protected override void Start()
         {
+            base.Start();
             EnableModule = enableOnStart;
             state = ModuleState.Used;
         }

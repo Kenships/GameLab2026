@@ -12,7 +12,7 @@ using UnityEngine;
 
 namespace _Project.Scripts.Core.Modules
 {
-    public class Flamethrower : HpPickupModuleBase, IDamageable
+    public class Flamethrower : PickupModuleBase, IDamageable
     {
         [Header("Particle Settings")]
         
@@ -191,11 +191,22 @@ namespace _Project.Scripts.Core.Modules
         #region State Methods
         protected override void LoadState()
         {
+            if (_isFastForwarding)
+            {
+                state = ModuleState.Attack;
+                return;
+            }
+            
             PerformAttack();
             base.LoadState();
         }
         protected override void AttackState()
         {
+            if (!_isFastForwarding)
+            {
+                state = _health.CurrentHealth == 0 ? ModuleState.Used : ModuleState.Load;
+            }
+            
             PerformAttack();
             base.AttackState();
         }
