@@ -40,6 +40,9 @@ namespace _Project.Scripts.UI
             moduleName.text = module.name;
             description.text = module.description;
             moduleImage.sprite = module.moduleSprite;
+            Color c = moduleImage.color;
+            c.a = 1;
+            moduleImage.color = c;
         }
 
         public void Confirm(PlayerData.PlayerID id)

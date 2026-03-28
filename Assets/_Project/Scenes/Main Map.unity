@@ -9549,7 +9549,7 @@ MonoBehaviour:
     - spawnPosition: {fileID: 851351561}
       enemies:
       - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
-        count: 10
+        count: 0
       arrowImage: {fileID: 2087950857}
       blinkSettings:
         blinkCount: 3
