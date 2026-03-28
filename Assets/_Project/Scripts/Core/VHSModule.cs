@@ -21,7 +21,7 @@ namespace _Project.Scripts.Core
         [Header("References")]
         [SerializeField] private GameObject player1Visual;
         [SerializeField] private GameObject player2Visual;
-        [SerializeField] private ScriptableEventNoParam vhsFullHPEvent;
+        [SerializeField] private ScriptableEventNoParam vhsDeathEvent;
     
         [Header("VHS Settings")]
         [SerializeField] private bool enableOnAwake = true;
@@ -47,7 +47,7 @@ namespace _Project.Scripts.Core
             _myHealth = gameObject.GetComponent<Health>();
             _myHealth.Initialize(vhsMaxHealth, mileStones, vhsMaxHealth);
             _sceneLoader = GetComponent<SceneLoader>();
-            //_myHealth.OnDeath += HandleVHSFullHp;
+            _myHealth.OnDeath += HandleVHSDeath;
         }
 
         private void Start()
@@ -63,12 +63,12 @@ namespace _Project.Scripts.Core
                 effect.OnComplete -= RemoveEffect;
                 effect.Cancel();
             }
-            //_myHealth.OnFullHp -= HandleVHSFullHp;
+            _myHealth.OnDeath -= HandleVHSDeath;
         }
 
-        private void HandleVHSFullHp()
+        private void HandleVHSDeath()
         {
-            vhsFullHPEvent.Raise();
+            vhsDeathEvent.Raise();
         }
 
         private void MilestoneReached(int stage)
