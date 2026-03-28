@@ -18,7 +18,7 @@ namespace _Project.Scripts.Tutorial
         }
         
         [SerializeField] private List<PanelEvent> panels;
-        [SerializeField] private TextMeshProUGUI panelText;
+        [SerializeField] private TextTyper textTyper;
         [SerializeField] private GameObject panel;
         private int _panelIndex;
         
@@ -37,7 +37,7 @@ namespace _Project.Scripts.Tutorial
         {
             panel.SetActive(true);
             panels[_panelIndex].OnPanel?.Invoke(Next);
-            panelText.text = panels[_panelIndex].PanelText;
+            textTyper.StartTyping(panels[_panelIndex].PanelText);
         }
     }
 }

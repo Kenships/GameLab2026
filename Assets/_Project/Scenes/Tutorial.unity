@@ -3831,6 +3831,7 @@ GameObject:
   - component: {fileID: 989332449}
   - component: {fileID: 989332448}
   - component: {fileID: 989332450}
+  - component: {fileID: 989332451}
   m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -3970,6 +3971,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6927d3d3f3224251b7c2ef8a3cdcdec0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Tutorial.TutorialNextAfterTime
+--- !u!114 &989332451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 989332446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d13bed6b6d2364c49a77164521b85921, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TextTyper
+  dialogueText: {fileID: 0}
+  delay: 0.03
 --- !u!1001 &995858792
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4906,7 +4921,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  panelText: {fileID: 989332448}
+  textTyper: {fileID: 989332451}
   panel: {fileID: 951293140}
 --- !u!114 &1020470268
 MonoBehaviour:
