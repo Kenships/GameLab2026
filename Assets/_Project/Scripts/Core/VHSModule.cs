@@ -26,8 +26,7 @@ namespace _Project.Scripts.Core
         [Header("VHS Settings")]
         [SerializeField] private bool enableOnAwake = true;
         [SerializeField] private float vhsMaxHealth = 300f;
-        [SerializeField] private float defaultRewindSpeed = 1f;
-        [SerializeField] private float fastForwardMultiplier = 1.2f;
+        [SerializeField] private float rewindSpeed = 1f;
         [Tooltip("Please keep the array in sorted ascending order")]
         [SerializeField] private float[] mileStones;
         
@@ -35,9 +34,9 @@ namespace _Project.Scripts.Core
 
         private List<IEffect<IDamageable>> _damageEffects = new();
         private Health _myHealth;
-        private bool _isFastForwarding;
+        private bool _isRewinding;
         private SceneLoader _sceneLoader;
-        private IAudioPlayer currentFastForwardSound;
+        private IAudioPlayer currentRewindSound;
 
 
 
@@ -46,9 +45,9 @@ namespace _Project.Scripts.Core
             EnableModule = enableOnAwake;
             Location = transform;
             _myHealth = gameObject.GetComponent<Health>();
-            _myHealth.Initialize(vhsMaxHealth, mileStones, 0);
+            _myHealth.Initialize(vhsMaxHealth, mileStones, vhsMaxHealth);
             _sceneLoader = GetComponent<SceneLoader>();
-            _myHealth.OnFullHp += HandleVHSFullHp;
+            //_myHealth.OnDeath += HandleVHSFullHp;
         }
 
         private void Start()
@@ -64,7 +63,7 @@ namespace _Project.Scripts.Core
                 effect.OnComplete -= RemoveEffect;
                 effect.Cancel();
             }
-            _myHealth.OnFullHp -= HandleVHSFullHp;
+            //_myHealth.OnFullHp -= HandleVHSFullHp;
         }
 
         private void HandleVHSFullHp()
@@ -102,8 +101,8 @@ namespace _Project.Scripts.Core
 
         protected override void LoadState()
         {
-            float delta = _isFastForwarding ? defaultRewindSpeed * fastForwardMultiplier : defaultRewindSpeed;
-            
+            float delta = _isRewinding ? rewindSpeed : 0;
+
             _myHealth.AddToHealth(delta * Time.deltaTime);
         }
 
@@ -124,33 +123,33 @@ namespace _Project.Scripts.Core
 
         public override void Rewind()
         {
-            // NOP
+            _isRewinding = true;
+
+            if (currentRewindSound != null)
+            {
+                currentRewindSound.Stop();
+                currentRewindSound = null;
+            }
+
+            currentRewindSound = _audioPooler.New2DAudio(rewindSound).OnChannel(AudioType.Sfx)
+                .SetVolume(rewindSoundVolume).LoopAudio().Play();
         }
 
         public override void CancelRewind()
         {
-            // NOP
+            _isRewinding = false;
+            currentRewindSound?.Stop();
+            currentRewindSound = null;
         }
         
         public override void FastForward()
         {
-            _isFastForwarding = true;
 
-            if (currentFastForwardSound != null)
-            {
-                currentFastForwardSound.Stop();
-                currentFastForwardSound = null;
-            }
-
-            currentFastForwardSound = _audioPooler.New2DAudio(fastForwardSound).OnChannel(AudioType.Sfx)
-                .SetVolume(fastForwardSoundVolume).LoopAudio().Play();
         }
 
         public override void CancelFastForward()
-        {   
-            _isFastForwarding = false;
-            currentFastForwardSound?.Stop();
-            currentFastForwardSound = null;
+        {
+
         }
 
         public override void ShowVisual(PlayerData.PlayerID playerIndex)
