@@ -14,29 +14,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Effects.Abilities.EnemyEffectInflictor
   enemyEffectFactories:
   - rid: 6145034235542503606
-  damageEffectFactories:
-  - rid: 6145034235542503607
-  - rid: 6145034235542503608
+  - rid: 2937424007845642499
+  - rid: 2937424007845642498
+  damageEffectFactories: []
   <LingeringVFX>k__BackingField: {fileID: 0}
   <CastVFX>k__BackingField: {fileID: 0}
   <AudioClip>k__BackingField: {fileID: 0}
   references:
     version: 2
     RefIds:
+    - rid: 2937424007845642498
+      type: {class: EnemyDamageOverTimeEffectFactory, ns: _Project.Scripts.Effects.Factories, asm: Assembly-CSharp}
+      data:
+        damageOverTimeType: 0
+        duration: 3
+        tickInterval: 1
+        damagePerTick: 10
+        vfx: {fileID: 0}
+    - rid: 2937424007845642499
+      type: {class: EnemyDamageEffectFactory, ns: _Project.Scripts.Effects.Factories, asm: Assembly-CSharp}
+      data:
+        damage: 10
     - rid: 6145034235542503606
       type: {class: SlowEnemyEffectFactory, ns: _Project.Scripts.Effects.Factories, asm: Assembly-CSharp}
       data:
         slowType: 0
         duration: 3
         slowPercentageFactor: 20
-    - rid: 6145034235542503607
-      type: {class: DamageEffectFactory, ns: _Project.Scripts.Effects.Factories, asm: Assembly-CSharp}
-      data:
-        damage: 10
-    - rid: 6145034235542503608
-      type: {class: DamageOverTimeEffectFactory, ns: _Project.Scripts.Effects.Factories, asm: Assembly-CSharp}
-      data:
-        damageOverTimeType: 0
-        duration: 3
-        tickInterval: 1
-        damagePerTick: 10

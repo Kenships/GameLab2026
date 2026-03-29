@@ -90,11 +90,6 @@ namespace _Project.Scripts.Core.Modules
                     .AtPosition(transform.position)
                     .Play();
             }
-
-            if (_inflictor.LingeringVFX)
-            {
-                Instantiate(_inflictor.LingeringVFX, transform.position, Quaternion.identity);
-            }
         }
 
         
