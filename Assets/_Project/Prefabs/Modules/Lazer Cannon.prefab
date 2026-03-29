@@ -216,7 +216,7 @@ GameObject:
   - component: {fileID: 4207550931829158317}
   m_Layer: 3
   m_Name: Lazer Cannon
-  m_TagString: Untagged
+  m_TagString: TriggerTypeModule
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

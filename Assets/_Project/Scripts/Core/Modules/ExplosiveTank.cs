@@ -148,11 +148,11 @@ namespace _Project.Scripts.Core.Modules
                     PerformAttack();
                     explosionParticle.Play();
                     Invoke(nameof(PerformAttack), timeGapBeforeSecondAttack);
-                    loadModel.SetActive(false);
-                    usedModel.SetActive(true);
                     _health.AddToHealth(int.MinValue);
                     break;
                 case ModuleState.Used:
+                    loadModel.SetActive(false);
+                    usedModel.SetActive(true);
                     break;
             }
         }

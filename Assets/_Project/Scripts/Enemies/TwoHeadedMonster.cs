@@ -86,6 +86,8 @@ public class TwoHeadedMonster : MonoBehaviour
         if (!hasDealtDamage && attackTimer <= attackDuration - attackMoment)
         {
             attackTarget.GetComponent<IDamageable>()?.Damage(attackDamage);
+            if (attackTarget.CompareTag("TriggerTypeModule"))
+                attackTarget.GetComponent<Module>().state = Module.ModuleState.Used;
             hasDealtDamage = true;
         }
 

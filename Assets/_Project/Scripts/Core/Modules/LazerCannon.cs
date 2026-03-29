@@ -59,8 +59,7 @@ namespace _Project.Scripts.Core.Modules
                 .ChainDelay(lazerBeamDuration - 0.4f)
                 .Chain(Tween.Scale(lazerBeamStartPos.transform, endValue: 0f, duration: 0.2f, ease: Ease.InExpo))
                 .ChainCallback(() => {
-                    lazerCannonBroken.SetActive(true);
-                    lazerCannonNew.SetActive(false);
+                    _health.AddToHealth(int.MinValue);
                 });
         }
 
@@ -156,9 +155,10 @@ namespace _Project.Scripts.Core.Modules
                         StopCoroutine(_attackRoutine);
                     _attackRoutine = StartCoroutine(AttackRoutine());
                     PlayLazerBeamAnim();
-                    _health.AddToHealth(int.MinValue);
                     break;
                 case ModuleState.Used:
+                    lazerCannonBroken.SetActive(true);
+                    lazerCannonNew.SetActive(false);
                     if (_attackRoutine != null)
                     {
                         StopCoroutine(_attackRoutine);
