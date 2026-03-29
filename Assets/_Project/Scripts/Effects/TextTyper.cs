@@ -32,6 +32,12 @@ public class TextTyper : MonoBehaviour
     {
         fullText = textToType;
         dialogueText.text = "";
+
+        if (!gameObject.activeInHierarchy)
+        {
+            return;
+        }
+        
         StopAllCoroutines();
         StartCoroutine(ShowTextRoutine());
     }
