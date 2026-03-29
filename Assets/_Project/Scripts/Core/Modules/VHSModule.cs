@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using _Project.Scripts.Core.HealthManagement;
 using _Project.Scripts.Core.Modules.Base_Class;
@@ -81,17 +82,29 @@ namespace _Project.Scripts.Core.Modules
             _myHealth.AddToHealth(-damage);
         }
 
-        public void ApplyEffect(IEffect<IDamageable> effect)
+        public void ApplyEffect<T>(IEffect<T> effect) where T : IDamageable
         {
-            effect.OnComplete += RemoveEffect;
-            _damageEffects.Add(effect);
-            effect.Apply(this);
+            if (effect is not IEffect<IDamageable> damageEffect)
+            {
+                return;
+            }
+            
+            damageEffect.OnComplete += RemoveEffect;
+            _damageEffects.Add(damageEffect);
+            damageEffect.Apply(this);
         }
 
-        public void RemoveEffect(IEffect<IDamageable> effect)
+        public void RemoveEffect(Guid effectID)
         {
-            effect.OnComplete -= RemoveEffect;
-            _damageEffects.Remove(effect);
+            foreach (var effect in _damageEffects)
+            {
+                if (effect.InstanceID == effectID)
+                {
+                    effect.OnComplete -= RemoveEffect;
+                    _damageEffects.Remove(effect);
+                    return;
+                }
+            }
         }
 
         protected override void LoadState()

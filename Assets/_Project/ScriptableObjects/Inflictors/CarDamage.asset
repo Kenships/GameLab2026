@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Effects.Inflictors.EnemyEffectInflictor
   enemyEffectFactories:
   - rid: 2937423688445198431
-  damageEffectFactories:
-  - rid: 2937423688445198432
+  - rid: 2937424007845642497
+  damageEffectFactories: []
   <LingeringVFX>k__BackingField: {fileID: 0}
   <CastVFX>k__BackingField: {fileID: 0}
   <AudioClip>k__BackingField: {fileID: 0}
@@ -26,7 +26,8 @@ MonoBehaviour:
       type: {class: StunEnemyEffectFactory, ns: _Project.Scripts.Effects.Factories, asm: Assembly-CSharp}
       data:
         duration: 3
-    - rid: 2937423688445198432
-      type: {class: DamageEffectFactory, ns: _Project.Scripts.Effects.Factories, asm: Assembly-CSharp}
+        vfx: {fileID: 0}
+    - rid: 2937424007845642497
+      type: {class: EnemyDamageEffectFactory, ns: _Project.Scripts.Effects.Factories, asm: Assembly-CSharp}
       data:
         damage: 250

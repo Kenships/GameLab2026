@@ -1,3 +1,4 @@
+using System;
 using _Project.Scripts.Core.HealthManagement;
 using _Project.Scripts.Effects.Interface;
 using _Project.Scripts.Util.Timer.Timers;
@@ -23,7 +24,9 @@ namespace _Project.Scripts.Effects.Runtime
         [SerializeField] private IntervalTimer _timer;
         private IDamageable _target;
 
-        public UnityAction<IEffect<IDamageable>> OnComplete { get; set; }
+        public Guid InstanceID { get; } = Guid.NewGuid();
+        public UnityAction<Guid> OnComplete { get; set; }
+        public GameObject Vfx { get; set; }
 
         public void Apply(IDamageable target)
         {
@@ -47,7 +50,7 @@ namespace _Project.Scripts.Effects.Runtime
         {
             _timer = null;
             _target = null;
-            OnComplete?.Invoke(this);
+            OnComplete?.Invoke(InstanceID);
         }
 
         public float DamagePotential => _timer != null 

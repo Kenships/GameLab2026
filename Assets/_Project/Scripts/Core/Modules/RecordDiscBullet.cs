@@ -172,7 +172,7 @@ namespace _Project.Scripts.Core.Modules
 
             if (_inflictor.CastVFX)
             {
-                Instantiate(_inflictor.CastVFX, transform.position, Quaternion.identity);
+                Instantiate(_inflictor.CastVFX, enemy.transform.position, Quaternion.identity);
             }
 
             if (_inflictor.AudioClip)
@@ -182,11 +182,6 @@ namespace _Project.Scripts.Core.Modules
                     .OnChannel(AudioType.Sfx)
                     .AtPosition(transform.position)
                     .Play();
-            }
-
-            if (_inflictor.LingeringVFX)
-            {
-                Instantiate(_inflictor.LingeringVFX, transform.position, Quaternion.identity);
             }
         }
     }

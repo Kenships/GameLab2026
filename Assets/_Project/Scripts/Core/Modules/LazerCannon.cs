@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using _Project.Scripts.Core.HealthManagement;
@@ -174,14 +175,14 @@ namespace _Project.Scripts.Core.Modules
             _health.AddToHealth(-damage);
         }
 
-        public void ApplyEffect(IEffect<IDamageable> effect)
+        public void ApplyEffect<T>(IEffect<T> effect) where T : IDamageable
         {
-
+            
         }
 
-        public void RemoveEffect(IEffect<IDamageable> effect)
+        public void RemoveEffect(Guid id)
         {
-
+            
         }
 
         private void OnDisable()

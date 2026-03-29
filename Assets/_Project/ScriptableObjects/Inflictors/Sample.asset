@@ -13,21 +13,19 @@ MonoBehaviour:
   m_Name: Sample
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Effects.Inflictors.EnemyEffectInflictor
   enemyEffectFactories:
-  - rid: -2
-  damageEffectFactories:
-  - rid: 8907349576352792578
+  - rid: 2937424007845642503
+  damageEffectFactories: []
   <LingeringVFX>k__BackingField: {fileID: 0}
   <CastVFX>k__BackingField: {fileID: 0}
   <AudioClip>k__BackingField: {fileID: 0}
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
-    - rid: 8907349576352792578
-      type: {class: DamageOverTimeEffectFactory, ns: _Project.Scripts.Effects.Factories, asm: Assembly-CSharp}
+    - rid: 2937424007845642503
+      type: {class: EnemyDamageOverTimeEffectFactory, ns: _Project.Scripts.Effects.Factories, asm: Assembly-CSharp}
       data:
         damageOverTimeType: 0
         duration: 0
         tickInterval: 0
         damagePerTick: 0
+        vfx: {fileID: 0}
