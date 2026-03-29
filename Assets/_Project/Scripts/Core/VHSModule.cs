@@ -52,6 +52,9 @@ namespace _Project.Scripts.Core
 
         private void Start()
         {
+            GameManager.Instance.score = _myHealth.CurrentHealth;
+            GameManager.Instance.RestartTimer();
+            GameManager.Instance.StartTimer();
             _myHealth.OnStageChanged += MilestoneReached;
         }
 
@@ -84,6 +87,7 @@ namespace _Project.Scripts.Core
         public void Damage(float damage)
         {
             _myHealth.AddToHealth(-damage);
+            GameManager.Instance.score = _myHealth.CurrentHealth;
         }
 
         public void ApplyEffect(IEffect<IDamageable> effect)
