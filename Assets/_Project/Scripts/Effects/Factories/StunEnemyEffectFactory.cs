@@ -10,10 +10,15 @@ namespace _Project.Scripts.Effects.Factories
     public class StunEnemyEffectFactory : IEffectFactory<EnemyBase>
     {
         [SerializeField] private float duration;
+        [SerializeField] private GameObject vfx;
         
         public IEffect<EnemyBase> CreateEffect()
         {
-            return new StunEnemyEffect { Duration = duration};
+            return new StunEnemyEffect
+            {
+                Duration = duration,
+                Vfx = vfx
+            };
         }
     }
 }

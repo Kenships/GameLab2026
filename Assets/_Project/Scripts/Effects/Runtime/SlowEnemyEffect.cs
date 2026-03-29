@@ -1,3 +1,4 @@
+using System;
 using _Project.Scripts.Core.Enemies;
 using _Project.Scripts.Effects.Interface;
 using _Project.Scripts.Util.Timer.Timers;
@@ -17,9 +18,11 @@ namespace _Project.Scripts.Effects.Runtime
         public SlowType Type;
         public float Duration;
         public float SlowPercentageFactor;
-        
-        public UnityAction<IEffect<EnemyBase>> OnComplete { get; set; }
-        
+
+        public Guid InstanceID { get; } = Guid.NewGuid();
+        public UnityAction<Guid> OnComplete { get; set; }
+        public GameObject Vfx { get; set; }
+
         [SerializeField] private CountdownTimer _timer;
         private EnemyBase _target;
         
@@ -51,7 +54,7 @@ namespace _Project.Scripts.Effects.Runtime
             }
             _target = null;
             _timer = null;
-            OnComplete?.Invoke(this);
+            OnComplete?.Invoke(InstanceID);
         }
         
         public float SlowPotential => SlowPercentageFactor * _timer?.CurrentTime ?? SlowPercentageFactor * Duration;

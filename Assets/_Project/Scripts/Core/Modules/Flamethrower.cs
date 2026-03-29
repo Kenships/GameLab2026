@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using _Project.Scripts.Core.Enemies;
 using _Project.Scripts.Core.HealthManagement;
@@ -144,7 +145,7 @@ namespace _Project.Scripts.Core.Modules
                 return;
             }
 
-            foreach(IDamageable enemy in _enemies)
+            foreach(EnemyBase enemy in _enemies)
             {
                 inflictor.Inflict(enemy);
             }
@@ -267,12 +268,12 @@ namespace _Project.Scripts.Core.Modules
             _myHealth.AddToHealth(-damage);
         }
 
-        public void ApplyEffect(IEffect<IDamageable> effect)
+        public void ApplyEffect<T>(IEffect<T> effect) where T : IDamageable
         {
             
         }
 
-        public void RemoveEffect(IEffect<IDamageable> effect)
+        public void RemoveEffect(Guid id)
         {
             
         }

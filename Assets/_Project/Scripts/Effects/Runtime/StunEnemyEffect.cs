@@ -1,3 +1,4 @@
+using System;
 using _Project.Scripts.Core.Enemies;
 using _Project.Scripts.Effects.Interface;
 using _Project.Scripts.Util.Timer.Timers;
@@ -9,11 +10,15 @@ namespace _Project.Scripts.Effects.Runtime
     public class StunEnemyEffect : IEffect<EnemyBase>
     {
         public float Duration;
-        
-        public UnityAction<IEffect<EnemyBase>> OnComplete { get; set; }
-        
-        [SerializeField] private CountdownTimer _timer;
+
+        public Guid InstanceID { get; } = Guid.NewGuid();
+
+        public UnityAction<Guid> OnComplete { get; set; }
+        public GameObject Vfx { get; set; }
+
+        private CountdownTimer _timer;
         private EnemyBase _target;
+        private UnityAction<Guid> _complete;
 
         public void Apply(EnemyBase target)
         {
@@ -42,7 +47,7 @@ namespace _Project.Scripts.Effects.Runtime
             }
             _timer = null;
             _target = null;
-            OnComplete?.Invoke(this);
+            OnComplete?.Invoke(InstanceID);
         }
     }
 }
