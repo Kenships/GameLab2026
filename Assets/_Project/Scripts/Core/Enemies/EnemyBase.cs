@@ -7,6 +7,7 @@ using _Project.Scripts.Util.CustomAttributes;
 using _Project.Scripts.Util.ExtensionMethods;
 using Sisus.Init;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace _Project.Scripts.Core.Enemies
 {
@@ -15,6 +16,7 @@ namespace _Project.Scripts.Core.Enemies
         [Header("Enemy Debug Values")]
         [field: SerializeField, ReadOnly] public bool Stunned { get; set; } = false;
         [field: SerializeField, ReadOnly] public float SpeedMultiplier { get; set; } = 1f;
+        [field: SerializeField, ReadOnly] public NavMeshAgent Agent { get; set; }
         [SerializeReference, SubclassSelector] protected List<IEffect<IDamageable>> damageEffects = new();
         [SerializeReference, SubclassSelector] protected List<IEffect<EnemyBase>> enemyEffects = new();
         
@@ -29,6 +31,7 @@ namespace _Project.Scripts.Core.Enemies
         {
             _audioPooler = playerReader;
             _health ??= gameObject.GetOrAdd<Health>();
+            Agent ??= gameObject.GetOrAdd<NavMeshAgent>();
             _health.OnDeath += OnDeath;
         }
 
