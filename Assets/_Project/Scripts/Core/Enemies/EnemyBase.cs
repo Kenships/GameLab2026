@@ -143,16 +143,12 @@ namespace _Project.Scripts.Core.Enemies
                     {
                         return;
                     }
-
-                    
-                    Debug.Log($"Replaced {dotEffect.InstanceID} with {newDotEffect.InstanceID}");
                     AddToEffects(bestEffect);
                     
                     // We can return early as there will only be one DOT per type
                     return;
                 }
             }
-            Debug.Log($"Added {newDotEffect.InstanceID}");
             AddToEffects(newDotEffect);
         }
         
