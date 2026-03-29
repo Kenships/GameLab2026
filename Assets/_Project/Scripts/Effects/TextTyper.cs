@@ -17,7 +17,6 @@ public class TextTyper : MonoBehaviour
 
     IEnumerator ShowTextRoutine()
     {
-        dialogueText.text = "";
         dialogueText.maxVisibleCharacters = 0;
         dialogueText.text = fullText;
 
@@ -32,6 +31,8 @@ public class TextTyper : MonoBehaviour
     public void StartTyping(string textToType)
     {
         fullText = textToType;
+        dialogueText.text = "";
+        StopAllCoroutines();
         StartCoroutine(ShowTextRoutine());
     }
 }

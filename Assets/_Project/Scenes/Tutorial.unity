@@ -3983,7 +3983,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d13bed6b6d2364c49a77164521b85921, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TextTyper
-  dialogueText: {fileID: 0}
   delay: 0.03
 --- !u!1001 &995858792
 PrefabInstance:
@@ -4777,48 +4776,6 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
-          m_CallState: 2
-  - PanelText: Anyways, I'm feeling pretty stiff. I feel the need... The need for
-      speed. If you keep Fast-Forwarding me, I'll give you a good Score, waddya say?
-      Try it!
-    OnPanel:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 264355261}
-          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutVHSListener, Assembly-CSharp
-          m_MethodName: Invoke
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 1630970325}
-          m_TargetAssemblyTypeName: _Project.Scripts.Core.VHSModule, Assembly-CSharp
-          m_MethodName: set_EnableModule
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
-        - m_Target: {fileID: 336182773}
-          m_TargetAssemblyTypeName: UnityEngine.CanvasGroup, UnityEngine
-          m_MethodName: set_alpha
-          m_Mode: 4
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 1
-            m_StringArgument: 
-            m_BoolArgument: 1
           m_CallState: 2
   - PanelText: Oh yeah, that's the spot! It's not the years, kids, it's the mileage.
     OnPanel:
@@ -8172,13 +8129,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45384e45e5774c27a0f1b89f375f5671, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Tutorial.TutCar
-  description: If this module is player-placeable define this
-  moduleSprite: {fileID: 0}
-  state: 3
   fastForwardSound: {fileID: 8300000, guid: c25a378f906f03f45a34bc3f3b926bb2, type: 3}
   fastForwardSoundVolume: 1
   rewindSound: {fileID: 8300000, guid: 904184cbab2ef6d4eb570d029d20a47c, type: 3}
   rewindSoundVolume: 1
+  description: If this module is player-placeable define this
+  moduleSprite: {fileID: 0}
+  state: 3
   inflictor: {fileID: 11400000, guid: 234dbd469dbc83549b71e700b71929cc, type: 2}
   destination: {fileID: 258736073}
   fastForwardSpeed: 15
