@@ -211,6 +211,16 @@ namespace _Project.Scripts.Core.Modules
             base.AttackState();
         }
 
+        protected override void UsedState()
+        {
+            if (_isRewinding)
+            {
+                state = ModuleState.Load;
+                return;
+            }
+            base.UsedState();
+        }
+
         protected override void OnStateChanged(ModuleState prevState)
         {
             switch (state)
