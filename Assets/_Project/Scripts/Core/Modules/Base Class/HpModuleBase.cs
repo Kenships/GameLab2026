@@ -45,26 +45,31 @@ namespace _Project.Scripts.Core.Modules.Base_Class
         
         protected override void LoadState()
         {
+            float multiplier = 1f;
             if (_isRewinding)
             {
-                _health.AddToHealth(defaultRecoverySpeed * Time.deltaTime);
+                if (IsDoubleRewind()) multiplier = 2f;
+                _health.AddToHealth(defaultRecoverySpeed * multiplier * Time.deltaTime);
             }
             else
             {
-                _health.AddToHealth(- defaultDecaySpeed * Time.deltaTime);
+                if (IsDoubleFastForward()) multiplier = 2f;
+                _health.AddToHealth(-defaultDecaySpeed * multiplier * Time.deltaTime);
             }
         }
         
         protected override void AttackState()
         {
-            _health.AddToHealth(-defaultDecaySpeed * attackStateDecayMultiplier * Time.deltaTime);
+            float multiplier = IsDoubleFastForward() ? 2f : 1f;
+            _health.AddToHealth(-defaultDecaySpeed * attackStateDecayMultiplier * multiplier * Time.deltaTime);
         }
         
         protected override void UsedState()
         {
             if (_isRewinding)
             {
-                _health.AddToHealth(defaultRecoverySpeed * Time.deltaTime);
+                float multiplier = IsDoubleRewind() ? 2f : 1f;
+                _health.AddToHealth(defaultRecoverySpeed * multiplier * Time.deltaTime);
             }
 
             if (_currentFastForwardSound != null)

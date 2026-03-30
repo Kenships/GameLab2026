@@ -207,7 +207,18 @@ namespace _Project.Scripts.Core.Modules
             {
                 state = _health.CurrentHealth == 0 ? ModuleState.Used : ModuleState.Load;
             }
-            
+
+            if (IsDoubleFastForward())
+            {
+                _currentDps = fastDps * 2;
+                _rangeDetector.radius = fastRadius * 1.25f;
+            }
+            else
+            {
+                _currentDps = fastDps;
+                _rangeDetector.radius = fastRadius;
+            }
+
             PerformAttack();
             base.AttackState();
         }

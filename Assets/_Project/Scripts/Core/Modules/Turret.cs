@@ -144,7 +144,10 @@ namespace _Project.Scripts.Core.Modules
                 state = _health.CurrentHealth == 0 ? ModuleState.Used : ModuleState.Load;
                 return;
             }
-            
+
+            float speedMultiplier = IsDoubleFastForward() ? 2f : 1f;
+            _shotsPerSecond = 1f / (shotsPerSecond * attackSpeedMultiplier * speedMultiplier);
+
             PerformAttack();
             base.AttackState();
         }

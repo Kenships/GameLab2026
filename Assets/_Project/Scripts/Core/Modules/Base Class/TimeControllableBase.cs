@@ -58,7 +58,43 @@ namespace _Project.Scripts.Core.Modules.Base_Class
             }
             else if (!_interactingPlayers.ContainsKey(playerID) && _interactingPlayers.Count == 1)
             {
-                _interactingPlayers.Add(playerID, action);
+                var existingAction = _interactingPlayers.First().Value;
+                if (existingAction != action)
+                {
+                    // Opposite effect => nothing happens
+                    CancelAction(existingAction);
+                    _interactingPlayers.Clear();
+                }
+                else
+                {
+                    // Same effect => stronger power
+                    _interactingPlayers.Add(playerID, action);
+                    UpdateDoubleAudio();
+                }
+            }
+        }
+
+        private void UpdateDoubleAudio()
+        {
+            if (IsDoubleFastForward())
+            {
+                _currentFastForwardSound?.Stop();
+                _currentFastForwardSound = _audioPooler.New2DAudio(fastForwardSound)
+                    .OnChannel(AudioType.Sfx)
+                    .SetVolume(fastForwardSoundVolume)
+                    .SetPitch(1.25f)
+                    .LoopAudio()
+                    .Play();
+            }
+            else if (IsDoubleRewind())
+            {
+                _currentRewindSound?.Stop();
+                _currentRewindSound = _audioPooler.New2DAudio(rewindSound)
+                    .OnChannel(AudioType.Sfx)
+                    .SetVolume(rewindSoundVolume)
+                    .SetPitch(1.25f)
+                    .LoopAudio()
+                    .Play();
             }
         }
 
@@ -145,6 +181,16 @@ namespace _Project.Scripts.Core.Modules.Base_Class
         protected void ClearInteractingPlayers()
         {
             _interactingPlayers.Clear();
+        }
+
+        protected bool IsDoubleFastForward()
+        {
+            return _interactingPlayers.Count == 2 && _interactingPlayers.Values.All(v => v == TimeAction.FastForward);
+        }
+
+        protected bool IsDoubleRewind()
+        {
+            return _interactingPlayers.Count == 2 && _interactingPlayers.Values.All(v => v == TimeAction.Rewind);
         }
     }
 }
