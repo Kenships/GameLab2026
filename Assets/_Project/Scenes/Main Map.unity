@@ -9816,7 +9816,7 @@ MonoBehaviour:
     - spawnPosition: {fileID: 851351561}
       enemies:
       - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
-        count: 10
+        count: 15
       arrowImage: {fileID: 2087950857}
       blinkSettings:
         blinkCount: 3
@@ -9827,7 +9827,7 @@ MonoBehaviour:
     - spawnPosition: {fileID: 1601954570}
       enemies:
       - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
-        count: 10
+        count: 5
       arrowImage: {fileID: 1830534538}
       blinkSettings:
         blinkCount: 3
@@ -9838,7 +9838,7 @@ MonoBehaviour:
     - spawnPosition: {fileID: 1635483276}
       enemies:
       - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
-        count: 10
+        count: 15
       arrowImage: {fileID: 208091433}
       blinkSettings:
         blinkCount: 3
@@ -9849,7 +9849,7 @@ MonoBehaviour:
     - spawnPosition: {fileID: 1370677806}
       enemies:
       - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
-        count: 10
+        count: 5
       arrowImage: {fileID: 1467989102}
       blinkSettings:
         blinkCount: 3
@@ -9892,7 +9892,7 @@ MonoBehaviour:
     - spawnPosition: {fileID: 851351561}
       enemies:
       - enemyFactory: {fileID: 11400000, guid: 258fa7e63b36d83489366a022ab7b760, type: 2}
-        count: 10
+        count: 5
       arrowImage: {fileID: 2087950857}
       blinkSettings:
         blinkCount: 3
@@ -9903,7 +9903,7 @@ MonoBehaviour:
     - spawnPosition: {fileID: 1601954570}
       enemies:
       - enemyFactory: {fileID: 11400000, guid: 258fa7e63b36d83489366a022ab7b760, type: 2}
-        count: 10
+        count: 15
       arrowImage: {fileID: 1830534538}
       blinkSettings:
         blinkCount: 3
@@ -9925,7 +9925,7 @@ MonoBehaviour:
     - spawnPosition: {fileID: 1370677806}
       enemies:
       - enemyFactory: {fileID: 11400000, guid: 258fa7e63b36d83489366a022ab7b760, type: 2}
-        count: 5
+        count: 10
       arrowImage: {fileID: 1467989102}
       blinkSettings:
         blinkCount: 3
@@ -9941,7 +9941,7 @@ MonoBehaviour:
     - spawnPosition: {fileID: 851351561}
       enemies:
       - enemyFactory: {fileID: 11400000, guid: 258fa7e63b36d83489366a022ab7b760, type: 2}
-        count: 15
+        count: 20
       arrowImage: {fileID: 2087950857}
       blinkSettings:
         blinkCount: 3
@@ -9952,7 +9952,7 @@ MonoBehaviour:
     - spawnPosition: {fileID: 1601954570}
       enemies:
       - enemyFactory: {fileID: 11400000, guid: 258fa7e63b36d83489366a022ab7b760, type: 2}
-        count: 15
+        count: 10
       arrowImage: {fileID: 1830534538}
       blinkSettings:
         blinkCount: 3
@@ -9963,7 +9963,7 @@ MonoBehaviour:
     - spawnPosition: {fileID: 1635483276}
       enemies:
       - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
-        count: 12
+        count: 15
       arrowImage: {fileID: 208091433}
       blinkSettings:
         blinkCount: 3
@@ -9974,7 +9974,7 @@ MonoBehaviour:
     - spawnPosition: {fileID: 1370677806}
       enemies:
       - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
-        count: 12
+        count: 6
       arrowImage: {fileID: 1467989102}
       blinkSettings:
         blinkCount: 3
