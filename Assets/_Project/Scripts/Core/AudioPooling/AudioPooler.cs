@@ -121,6 +121,13 @@ namespace _Project.Scripts.Core.AudioPooling
 
         public IAudioPlayer Play(IAudioConfig audioConfig)
         {
+            if (!audioConfig.Clip)
+            {
+                _logger.LogWarning("No clip provided");
+                return new EmptyAudioPlayer();
+            }
+            
+            
             // check for capacity availability
             PooledAudioSource audioSource = null;
             if (!activeSourcesByAudioType.TryGetValue(audioConfig.AudioType, out List<PooledAudioSource> list) ||
