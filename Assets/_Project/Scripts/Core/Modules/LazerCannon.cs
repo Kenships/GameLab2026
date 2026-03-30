@@ -1,13 +1,14 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using _Project.Scripts.Core.HealthManagement;
 using _Project.Scripts.Core.Modules.Base_Class;
 using _Project.Scripts.Core.Player;
 using _Project.Scripts.Effects.Interface;
 using _Project.Scripts.Util.Timer.Timers;
 using PrimeTween;
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using static Obvious.Soap.ScriptableSaveBase;
 
 namespace _Project.Scripts.Core.Modules
 {
@@ -17,6 +18,7 @@ namespace _Project.Scripts.Core.Modules
         [SerializeField] private Transform lazerBeamStartPos;
         [SerializeField] private GameObject lazerCannonNew;
         [SerializeField] private GameObject lazerCannonBroken;
+        [SerializeField] private GameObject fullTimeUI;
 
         [Header("Lazer Beam Settings")]
         [SerializeField] private float damage = 90f;
@@ -60,7 +62,8 @@ namespace _Project.Scripts.Core.Modules
                 .ChainDelay(lazerBeamDuration - 0.4f)
                 .Chain(Tween.Scale(lazerBeamStartPos.transform, endValue: 0f, duration: 0.2f, ease: Ease.InExpo))
                 .ChainCallback(() => {
-                    _health.AddToHealth(int.MinValue);
+                    lazerCannonNew.SetActive(false);
+                    lazerCannonBroken.SetActive(true);
                 });
         }
 
@@ -149,6 +152,7 @@ namespace _Project.Scripts.Core.Modules
                 case ModuleState.Load:
                     lazerCannonNew.SetActive(true);
                     lazerCannonBroken.SetActive(false);
+                    fullTimeUI.SetActive(true);
                     break;
                 case ModuleState.Attack:
                     _beamDurationTimer.Reset(lazerBeamDuration);
@@ -156,10 +160,13 @@ namespace _Project.Scripts.Core.Modules
                         StopCoroutine(_attackRoutine);
                     _attackRoutine = StartCoroutine(AttackRoutine());
                     PlayLazerBeamAnim();
+                    _health.AddToHealth(int.MinValue);
+                    fullTimeUI.SetActive(false);
                     break;
                 case ModuleState.Used:
                     lazerCannonBroken.SetActive(true);
                     lazerCannonNew.SetActive(false);
+                    fullTimeUI.SetActive(false);
                     if (_attackRoutine != null)
                     {
                         StopCoroutine(_attackRoutine);

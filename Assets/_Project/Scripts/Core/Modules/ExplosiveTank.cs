@@ -15,6 +15,7 @@ namespace _Project.Scripts.Core.Modules
         [SerializeField] private ParticleSystem explosionParticle;
         [SerializeField] private GameObject loadModel;
         [SerializeField] private GameObject usedModel;
+        [SerializeField] private GameObject fullTimeUI;
 
         [Header("Explosive Tank Settings")]
         [SerializeField] private float damage = 90f;
@@ -143,18 +144,23 @@ namespace _Project.Scripts.Core.Modules
             switch (state)
             {
                 case ModuleState.Load:
-                    usedModel.SetActive(false);
                     loadModel.SetActive(true);
+                    usedModel.SetActive(false);
+                    fullTimeUI.SetActive(true);
                     break;
                 case ModuleState.Attack:
                     PerformAttack();
                     explosionParticle.Play();
                     Invoke(nameof(PerformAttack), timeGapBeforeSecondAttack);
+                    loadModel.SetActive(false);
+                    usedModel.SetActive(true);
+                    fullTimeUI.SetActive(false);
                     _health.AddToHealth(int.MinValue);
                     break;
                 case ModuleState.Used:
                     loadModel.SetActive(false);
                     usedModel.SetActive(true);
+                    fullTimeUI.SetActive(false);
                     break;
             }
         }
