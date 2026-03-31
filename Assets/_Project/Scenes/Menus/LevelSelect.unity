@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 14454177}
   - component: {fileID: 14454176}
   - component: {fileID: 14454178}
+  - component: {fileID: 14454179}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -151,10 +152,10 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 155160138}
-  - {fileID: 550461464}
-  - {fileID: 713460529}
   - {fileID: 1836938929}
   - {fileID: 1757930036}
+  - {fileID: 550461464}
+  - {fileID: 713460529}
   m_Father: {fileID: 1772162933}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -212,10 +213,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5801848e163a4608bac06baa89a983a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.UI.UIElements.LevelSelectPanel
-  player1Select: {fileID: 45619052}
-  player2Select: {fileID: 900566503}
-  player1Confirm: {fileID: 828146506}
-  player2Confirm: {fileID: 1383622980}
+  player1Select: {fileID: 1836938928}
+  player2Select: {fileID: 1757930035}
+  player1Confirm: {fileID: 550461463}
+  player2Confirm: {fileID: 713460528}
+--- !u!114 &14454179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 14454174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87a94ed4d94741cf9171f9df3c6c3360, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.SceneLoading.SceneLoader
+  OnBeforeSceneLoad:
+    m_PersistentCalls:
+      m_Calls: []
+  loadOnAwake: 0
+  setActive: 1
+  activeSceneIndex:
+    buildIndex: 6
+  scenesToLoad:
+  - buildIndex: 6
+  unloadDisabled: 0
+  scenesToUnload:
+  - buildIndex: 12
+  withOverlay: 1
+  sceneGroup: 1
+  actionMap: 3
 --- !u!1 &45619052
 GameObject:
   m_ObjectHideFlags: 0
@@ -1869,6 +1897,7 @@ GameObject:
   - component: {fileID: 2024683659}
   - component: {fileID: 2024683658}
   - component: {fileID: 2024683660}
+  - component: {fileID: 2024683661}
   m_Layer: 5
   m_Name: Panel (1)
   m_TagString: Untagged
@@ -1889,10 +1918,10 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 969016165}
-  - {fileID: 828146507}
-  - {fileID: 1383622981}
   - {fileID: 45619053}
   - {fileID: 900566504}
+  - {fileID: 828146507}
+  - {fileID: 1383622981}
   m_Father: {fileID: 1772162933}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -1954,6 +1983,33 @@ MonoBehaviour:
   player2Select: {fileID: 900566503}
   player1Confirm: {fileID: 828146506}
   player2Confirm: {fileID: 1383622980}
+--- !u!114 &2024683661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2024683656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87a94ed4d94741cf9171f9df3c6c3360, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.SceneLoading.SceneLoader
+  OnBeforeSceneLoad:
+    m_PersistentCalls:
+      m_Calls: []
+  loadOnAwake: 0
+  setActive: 1
+  activeSceneIndex:
+    buildIndex: 10
+  scenesToLoad:
+  - buildIndex: 10
+  unloadDisabled: 0
+  scenesToUnload:
+  - buildIndex: 12
+  withOverlay: 1
+  sceneGroup: 1
+  actionMap: 3
 --- !u!1 &2087172421
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,4 +1,6 @@
+using System;
 using _Project.Scripts.Core.Player;
+using _Project.Scripts.Core.SceneLoading;
 using UnityEngine;
 
 namespace _Project.Scripts.UI.UIElements
@@ -9,6 +11,18 @@ namespace _Project.Scripts.UI.UIElements
         [SerializeField] private GameObject player2Select;
         [SerializeField] private GameObject player1Confirm;
         [SerializeField] private GameObject player2Confirm;
+
+        private SceneLoader _sceneLoader;
+        
+        private void Awake()
+        {
+            _sceneLoader = GetComponent<SceneLoader>();
+        }
+
+        public void LoadLevel()
+        {   
+            _sceneLoader.LoadScene();
+        }
 
         public void Deselect(PlayerData.PlayerID playerID)
         {

@@ -63,9 +63,9 @@ namespace _Project.Scripts.UI
                 panels[_p2SelectedModuleNumber].Confirm(playerID);
             }
             
-            if (_p1Confirm && _p2Confirm)
+            if (_p1Confirm && _p2Confirm && _p1SelectedModuleNumber == _p2SelectedModuleNumber)
             {
-                Debug.Log("Both players confirmed");
+                panels[_p1SelectedModuleNumber].LoadLevel();
             }
         }
         
