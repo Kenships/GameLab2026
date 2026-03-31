@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace _Project.Scripts.Core.Modules
 {
-    public class ExplosiveTank : HpModuleBase, IDamageable
+    public class ExplosiveTank : PickupModuleBase, IDamageable
     {
         [Header("References")]
         [SerializeField] private ParticleSystem explosionParticle;
