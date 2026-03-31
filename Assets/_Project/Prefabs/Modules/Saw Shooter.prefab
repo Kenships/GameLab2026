@@ -891,8 +891,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.RangeVisualizer
   detector: {fileID: 6220022207668456444}
-  fillColor: {r: 0.2, g: 1, b: 0.6, a: 0.2}
-  borderColor: {r: 0.4, g: 1, b: 0.8, a: 0.9}
+  fillColor: {r: 0.2, g: 1, b: 0.6, a: 0.09803922}
+  borderColor: {r: 0.4, g: 1, b: 0.8, a: 0.5882353}
   borderWidth: 0.2
   segments: 60
   yOffset: 0.5
