@@ -166,7 +166,7 @@ namespace _Project.Scripts.Core.Enemies
                 
                 _sceneLoader.LoadScene();
                 Time.timeScale = 0f;
-                PlayerInteractionController.IsTimeFlowing = false;
+                PlayerInteractionController.IsGameTimeFlowing = false;
 
                 // Rest period after wave (all enemies are dead)
                 if (waveIndex < waves.Length - 1)

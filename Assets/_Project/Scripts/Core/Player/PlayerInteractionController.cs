@@ -15,7 +15,7 @@ namespace _Project.Scripts.Core.Player
     [RequireComponent(typeof(RangeDetector))]
     public class PlayerInteractionController : MonoBehaviour<INESActionReader, IGridService, ILogger, AudioPooler>
     {
-        public static bool IsTimeFlowing = true;
+        public static bool IsGameTimeFlowing = true;
         
         [Header("Haptics Settings")]
         [SerializeField]
@@ -139,7 +139,7 @@ namespace _Project.Scripts.Core.Player
 
         protected virtual void RotateClockWise()
         {
-            if (!IsTimeFlowing)
+            if (!IsGameTimeFlowing)
                 return;
 
             if (!_currentIHoldingObject)
@@ -172,7 +172,7 @@ namespace _Project.Scripts.Core.Player
         // Double tap A
         protected virtual void PickUpOrPutDown()
         {
-            if (!IsTimeFlowing)
+            if (!IsGameTimeFlowing)
                 return;
 
             // Pick Up
@@ -215,7 +215,7 @@ namespace _Project.Scripts.Core.Player
         // Hold A
         protected virtual void FastForward()
         {
-            if (!IsTimeFlowing)
+            if (!IsGameTimeFlowing)
                 return;
 
             //Some default logic to determine if Interact is possible right now
@@ -246,7 +246,7 @@ namespace _Project.Scripts.Core.Player
         // Hold B
         protected virtual void Rewind()
         {
-            if (!IsTimeFlowing)
+            if (!IsGameTimeFlowing)
                 return;
 
             //Some default logic to determine if Interact is possible right now

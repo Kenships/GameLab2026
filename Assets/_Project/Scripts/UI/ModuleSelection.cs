@@ -179,7 +179,7 @@ namespace _Project.Scripts.UI
             musicMix.SetFloat(lowPassFreq, 22000);
             musicMix.SetFloat(dryWet, -80);
             Time.timeScale = 1f;
-            PlayerInteractionController.IsTimeFlowing = true;
+            PlayerInteractionController.IsGameTimeFlowing = true;
             _sceneUnloader.UnloadScene();
         }
     }

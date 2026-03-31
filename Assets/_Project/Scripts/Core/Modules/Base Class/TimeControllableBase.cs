@@ -11,7 +11,7 @@ using AudioType = _Project.Scripts.Core.AudioPooling.Interface.AudioType;
 
 namespace _Project.Scripts.Core.Modules.Base_Class
 {
-    public class TimeControllableBase : MonoBehaviour<AudioPooler>, ITimeControllable
+    public class TimeControllableBase : MonoBehaviour<AudioPooler>, ITimeControllable 
     {
         [Header("Audio")]
         [SerializeField] protected AudioClip fastForwardSound;

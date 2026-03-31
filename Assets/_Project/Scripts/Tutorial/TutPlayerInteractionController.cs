@@ -23,7 +23,7 @@ namespace _Project.Scripts.Tutorial
 
         protected override void RotateClockWise()
         {
-            if (!IsTimeFlowing) return;
+            if (!IsGameTimeFlowing) return;
 
             if (!_currentIHoldingObject)
             {
@@ -51,7 +51,7 @@ namespace _Project.Scripts.Tutorial
 
         protected override void PickUpOrPutDown()
         {
-            if (!IsTimeFlowing) return;
+            if (!IsGameTimeFlowing) return;
 
             // Pick Up
             if (!_currentIHoldingObject)
@@ -93,7 +93,7 @@ namespace _Project.Scripts.Tutorial
 
         protected override void FastForward()
         {
-            if (!IsTimeFlowing) return;
+            if (!IsGameTimeFlowing) return;
 
             //Some default logic to determine if Interact is possible right now
             if (!CanInteract())
@@ -112,7 +112,7 @@ namespace _Project.Scripts.Tutorial
 
         protected override void Rewind()
         {
-            if (!IsTimeFlowing) return;
+            if (!IsGameTimeFlowing) return;
 
             //Some default logic to determine if Interact is possible right now
             if (!CanInteract())

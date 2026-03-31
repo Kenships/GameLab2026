@@ -1687,7 +1687,7 @@ MonoBehaviour:
   defaultRecoverySpeed: 40
   defaultDecaySpeed: 5
   attackStateDecayMultiplier: 4
-  enableOnStart: 1
+  enableOnStart: 0
   pickupOffset: {x: 0, y: 0, z: 0}
   pickupRotationOffset: {x: 0, y: 0, z: 0}
   pickUpSound: {fileID: 8300000, guid: 602022546f4e4474a8d87cf01f887e79, type: 3}
