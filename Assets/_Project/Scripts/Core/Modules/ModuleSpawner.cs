@@ -3,26 +3,29 @@ using PrimeTween;
 using System.Collections.Generic;
 using UnityEngine;
 using _Project.Scripts.Core.Modules.Base_Class;
+using UnityEngine.UI;
+using _Project.Scripts.UI;
 
 namespace _Project.Scripts.Core.Modules
 {
     public class ModuleSpawner : MonoBehaviour
     {
         [SerializeField] private ScriptableEventGameObject spawnEvent;
-
         [System.Serializable]
         public class LandingInfo
         {
             public Transform start;
             public Transform end;
-            public List<GameObject> stackedModules = new List<GameObject>();
+            public RawImage arrow;
+            [HideInInspector] public List<GameObject> stackedModules = new List<GameObject>();
         }
-
-        [SerializeField]
-        private List<LandingInfo> landingInfos = new List<LandingInfo>();
-
+        [SerializeField] private HintUI hintUI;
+        [SerializeField] private ParticleSystem dropEffect;
+        [SerializeField] private List<LandingInfo> landingInfos = new List<LandingInfo>();
         private float lastCleanTime;
-        private float cleanInterval = 0.5f;
+        private float cleanInterval = 0.25f;
+        private bool oneTimeHint = true;
+
 
         private void Start()
         {
@@ -56,7 +59,17 @@ namespace _Project.Scripts.Core.Modules
 
             GameObject module = Instantiate(obj, info.start.position, Quaternion.identity);
             info.stackedModules.Add(module);
-            Tween.Position(module.transform, targetPos, 1.5f, Ease.InQuad);
+            Tween.Position(module.transform, targetPos, 1.5f, Ease.InCubic)
+                .OnComplete(() => {
+                    if (oneTimeHint) 
+                    {
+                        info.arrow.enabled = true;
+                        hintUI.PlayArrowBackAndForth(info.arrow); 
+                    }
+                    oneTimeHint = false;
+                    dropEffect.transform.position = targetPos;
+                    dropEffect.Play();
+                });
         }
 
         private int GetBestAvailableIndex()
@@ -89,6 +102,8 @@ namespace _Project.Scripts.Core.Modules
                 GameObject module = info.stackedModules[i];
                 if (module != null && module.GetComponent<Module>().EnableModule != false)
                 {
+                    hintUI.StopArrowBackAndForth();
+                    info.arrow.enabled = false;
                     info.stackedModules.RemoveAt(i);
                     i--;
 
@@ -96,7 +111,7 @@ namespace _Project.Scripts.Core.Modules
                     {
                         GameObject aboveModule = info.stackedModules[j];
                         Vector3 newPos = info.end.position + Vector3.up * j;
-                        Tween.Position(aboveModule.transform, newPos, 0.5f, Ease.OutQuad);
+                        Tween.Position(aboveModule.transform, newPos, 0.5f, Ease.InCubic);
                     }
                 }
             }
