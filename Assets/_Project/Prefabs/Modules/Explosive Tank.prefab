@@ -25522,9 +25522,9 @@ MonoBehaviour:
   enableOnStart: 1
   pickupOffset: {x: 0, y: 0, z: 0}
   pickupRotationOffset: {x: 0, y: 0, z: 0}
-  pickUpSound: {fileID: 0}
+  pickUpSound: {fileID: 8300000, guid: 602022546f4e4474a8d87cf01f887e79, type: 3}
   pickUpSoundVolume: 0.25
-  putDownSound: {fileID: 0}
+  putDownSound: {fileID: 8300000, guid: d9d620a96f57c824695138d11a50362f, type: 3}
   putDownSoundVolume: 1.5
   explosionParticle: {fileID: 3718382287136949578}
   loadModel: {fileID: 2402263464760494358}

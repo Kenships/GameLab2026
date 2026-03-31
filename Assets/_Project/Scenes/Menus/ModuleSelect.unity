@@ -3332,6 +3332,8 @@ MonoBehaviour:
   normalSnapsShot: {fileID: 24500006, guid: 996cf9c245ee1b14dbea11f329a233b7, type: 2}
   lowPassFreq: LowPass
   dryWet: Wet
+  hoverSound: {fileID: 8300000, guid: c29ac3ed21261464ca94eeae33f04823, type: 3}
+  selectSound: {fileID: 8300000, guid: 7c7daff744e9d5f4895c83fc6adef944, type: 3}
 --- !u!114 &1915361344
 MonoBehaviour:
   m_ObjectHideFlags: 0

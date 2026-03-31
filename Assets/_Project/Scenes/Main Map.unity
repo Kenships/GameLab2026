@@ -19361,9 +19361,13 @@ PrefabInstance:
     m_TransformParent: {fileID: 671120433}
     m_Modifications:
     - target: {fileID: 1054053615546018703, guid: c5862296d27d8e94190863963df3638b, type: 3}
-      propertyPath: enableOnStart
-      value: 1
-      objectReference: {fileID: 0}
+      propertyPath: pickUpSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 602022546f4e4474a8d87cf01f887e79, type: 3}
+    - target: {fileID: 1054053615546018703, guid: c5862296d27d8e94190863963df3638b, type: 3}
+      propertyPath: putDownSound
+      value: 
+      objectReference: {fileID: 8300000, guid: d9d620a96f57c824695138d11a50362f, type: 3}
     - target: {fileID: 2479980021003533771, guid: c5862296d27d8e94190863963df3638b, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

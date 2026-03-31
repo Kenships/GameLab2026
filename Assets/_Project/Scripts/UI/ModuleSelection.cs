@@ -1,15 +1,18 @@
-using System.Collections.Generic;
+using _Project.Scripts.Core.AudioPooling;
 using _Project.Scripts.Core.InputManagement.Interfaces;
 using _Project.Scripts.Core.Modules.Base_Class;
 using _Project.Scripts.Core.Player;
 using _Project.Scripts.Core.SceneLoading;
 using Obvious.Soap;
+using Sisus.Init;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using AudioType = _Project.Scripts.Core.AudioPooling.Interface.AudioType;
 
 namespace _Project.Scripts.UI
 {
-    public class ModuleSelection : MonoBehaviour
+    public class ModuleSelection : MonoBehaviour<AudioPooler>
     {
         [Header("References")]
         [SerializeField] private ModuleSectionUIComponent[] textmodules;
@@ -21,12 +24,19 @@ namespace _Project.Scripts.UI
         [SerializeField] private AudioMixerSnapshot normalSnapsShot;
         [SerializeField] string lowPassFreq;
         [SerializeField] string dryWet;
+        [SerializeField] private AudioClip hoverSound;
+        [SerializeField] private AudioClip selectSound;
 
         private SceneUnloader _sceneUnloader;
 
         //Zero Indexed
         private int _p1SelectedModuleNumber, _p2SelectedModuleNumber;
         private bool _p1Confirm, _p2Confirm;
+        private AudioPooler _audioPooler;
+        protected override void Init(AudioPooler audioPooler)
+        {
+            _audioPooler = audioPooler;
+        }
 
         private void Start()
         {
@@ -60,6 +70,7 @@ namespace _Project.Scripts.UI
 
         private void PlayerOnConfirm(PlayerData.PlayerID id)
         {
+            _audioPooler.New2DAudio(selectSound).OnChannel(AudioType.Sfx).Play();
             switch (id)
             {
                 case PlayerData.PlayerID.Player1:
@@ -73,6 +84,7 @@ namespace _Project.Scripts.UI
 
         private void PlayerOnMove((PlayerData.PlayerID ID, int dir) arg)
         {
+            _audioPooler.New2DAudio(hoverSound).OnChannel(AudioType.Sfx).Play();
             switch (arg.ID)
             {
                 case PlayerData.PlayerID.Player1:
