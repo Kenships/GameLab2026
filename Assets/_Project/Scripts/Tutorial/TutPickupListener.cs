@@ -1,13 +1,13 @@
 using System;
-using _Project.Scripts.Core.Modules.Base_Class;
+using _Project.Scripts.Core.Player;
 using UnityEngine;
 
 namespace _Project.Scripts.Tutorial
 {
     public class TutPickupListener : MonoBehaviour, ITutorialListener
     {
-        [SerializeField] private Module module1;
-        [SerializeField] private Module module2;
+        [SerializeField] private TutPlayerInteractionController player1;
+        [SerializeField] private TutPlayerInteractionController player2;
 
         private bool _beginCheck;
         
@@ -15,23 +15,16 @@ namespace _Project.Scripts.Tutorial
         
         public void Invoke(Action callback)
         {
-            _callback = callback;
-            
-            _beginCheck = true;
+           player1.OnDrop += OnDrop;
+           player2.OnDrop += OnDrop;
+           _callback = callback;
         }
 
-        private void Update()
+        private void OnDrop(PlayerData.PlayerID obj)
         {
-            if (!_beginCheck)
-            {
-                return;
-            }
-
-            if (module1.EnableModule && module2.EnableModule)
-            {
-                _beginCheck = false;
-                _callback?.Invoke();
-            }
+            player1.OnDrop -= OnDrop;
+            player2.OnDrop -= OnDrop;
+            _callback?.Invoke();
         }
     }
 }
