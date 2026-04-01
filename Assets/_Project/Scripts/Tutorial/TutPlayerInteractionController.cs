@@ -43,10 +43,13 @@ namespace _Project.Scripts.Tutorial
                 holdable.RotateClockWise();
                 return;
             }
-
-            OnRotateClockWise?.Invoke(_playerID);
-            _currentIHoldingObject.TryGetComponent(out IHoldable currentHoldable);
-            currentHoldable.RotateClockWise();
+            
+            if (allowRotationWhenHolding)
+            {
+                OnRotateClockWise?.Invoke(_playerID);
+                _currentIHoldingObject.TryGetComponent(out IHoldable currentHoldable);
+                currentHoldable.RotateClockWise();  
+            }
         }
 
         protected override void PickUpOrPutDown()
