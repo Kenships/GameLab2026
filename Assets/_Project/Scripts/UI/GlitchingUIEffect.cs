@@ -13,7 +13,7 @@ public class GlitchingUIEffect : MonoBehaviour
     [SerializeField][Range(0f, 1f)] private float bigGlitchChance = 0.05f;
     [SerializeField] private float bigGlitchMultiplier = 4f;
     [SerializeField] private bool enableColorGlitch = false;
-    [SerializeField][Range(0f, 0.2f)] private float colorGlitchIntensity = 0.05f;
+    [SerializeField][Range(0f, 1f)] private float colorGlitchIntensity = 0.05f;
     [SerializeField] private Image targetImage;
     [SerializeField] private Text targetText; // Use TMPro if you have TextMeshPro
     [SerializeField] private bool smoothReturn = true;
