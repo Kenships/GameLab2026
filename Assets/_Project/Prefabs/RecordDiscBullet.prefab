@@ -102,6 +102,9 @@ MonoBehaviour:
   hitCooldown: 0.2
   enemySearchRadius: 10
   wobbleAmount: 0.36
+  targetHeightOffset: 0.2
+  minHeight: 0.2
+  maxDownwardAngle: 30
 --- !u!114 &8651060627708445911
 MonoBehaviour:
   m_ObjectHideFlags: 0
