@@ -12,13 +12,17 @@ namespace _Project.Scripts.Core.Modules
     public class RecordDiscBullet : MonoBehaviour<AudioPooler>
     {
         [SerializeField] private float rotateSpeed = 200f;
-        [SerializeField] private float hitCooldown = 0.2f; //cooldown before it starts detecting another trigger on hit
+        [SerializeField] private float hitCooldown = 0.2f;
 
-        [SerializeField] private float enemySearchRadius = 10f; 
+        [SerializeField] private float enemySearchRadius = 10f;
 
         [SerializeField, Range(0f, 1f)] private float wobbleAmount = 0.36f;
 
-        
+        [Header("=== Height Constraints ===")]
+        [SerializeField] private float targetHeightOffset = 1f;
+        [SerializeField] private float minHeight = 0.5f;
+        [SerializeField] private float maxDownwardAngle = 30f;
+
         private LayerMask _enemyLayer;
         private Transform _target;
         private Transform _lastKnownTarget;
@@ -82,20 +86,24 @@ namespace _Project.Scripts.Core.Modules
             FindClosestEnemy();
             Transform homingTarget = _target;
 
-            // If no enemies, home back to latest target
             if (!homingTarget)
             {
                 homingTarget = _lastKnownTarget;
             }
 
-            // if the OG is dead too then just go straight
             if (!homingTarget)
             {
                 transform.Translate(Vector3.forward * (_speed * Time.deltaTime));
+                ClampHeight();
                 return;
             }
 
-            Vector3 direction = (homingTarget.position - transform.position).normalized;
+            // Add height offset to target position
+            Vector3 targetPosition = homingTarget.position + Vector3.up * targetHeightOffset;
+            Vector3 direction = (targetPosition - transform.position).normalized;
+
+            // Clamp downward angle
+            direction = ClampDownwardDirection(direction);
 
             Quaternion targetRotation = Quaternion.LookRotation(direction);
             transform.rotation = Quaternion.RotateTowards(
@@ -105,6 +113,44 @@ namespace _Project.Scripts.Core.Modules
             );
 
             transform.Translate(Vector3.forward * (_speed * Time.deltaTime));
+
+            // Ensure bullet doesn't go below minimum height
+            ClampHeight();
+        }
+
+        private Vector3 ClampDownwardDirection(Vector3 direction)
+        {
+            // Calculate the current pitch angle
+            float pitchAngle = Vector3.SignedAngle(
+                new Vector3(direction.x, 0f, direction.z).normalized,
+                direction,
+                Vector3.Cross(Vector3.up, direction)
+            );
+
+            // If aiming too far down, clamp it
+            if (pitchAngle < -maxDownwardAngle)
+            {
+                Vector3 horizontalDir = new Vector3(direction.x, 0f, direction.z).normalized;
+                direction = Quaternion.AngleAxis(-maxDownwardAngle, Vector3.Cross(Vector3.up, horizontalDir)) * horizontalDir;
+            }
+
+            return direction.normalized;
+        }
+
+        private void ClampHeight()
+        {
+            if (transform.position.y < minHeight)
+            {
+                Vector3 pos = transform.position;
+                pos.y = minHeight;
+                transform.position = pos;
+
+                // Also correct rotation to not point downward
+                Vector3 euler = transform.eulerAngles;
+                if (euler.x > 180f) euler.x -= 360f;
+                if (euler.x > 0f) euler.x = 0f;
+                transform.eulerAngles = euler;
+            }
         }
 
         private void FindClosestEnemy()
