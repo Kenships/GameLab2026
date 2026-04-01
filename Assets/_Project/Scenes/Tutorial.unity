@@ -1242,10 +1242,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 889b4bc73038bbf4d8cba88fc399d399, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.UI.EnemyWaveUI
-  waveData: {fileID: 11400000, guid: 70472f02f5cc06345845b0a8e5cba28f, type: 2}
-  waveTitle: {fileID: 274830101}
-  waveCompletedText: {fileID: 217662763}
-  countdownText: {fileID: 1732668771}
 --- !u!225 &254651397
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -2229,7 +2225,9 @@ MonoBehaviour:
   lowFrequencyHapticIntensity: 0.5
   highFrequencyHapticIntensity: 1
   hapticsDuration: 0.1
+  allowRotationWhenHolding: 0
   frontOfPlayer: {fileID: 298464485}
+  pickupAnchor: {fileID: 0}
   windVFXController: {fileID: 637999155}
   rebakeNavMesh: {fileID: 11400000, guid: 51a90ca12e5c7ae47bd6db17f79a2ec6, type: 2}
 --- !u!114 &422280501
@@ -3582,6 +3580,7 @@ GameObject:
   - component: {fileID: 951293143}
   - component: {fileID: 951293142}
   - component: {fileID: 951293141}
+  - component: {fileID: 951293144}
   m_Layer: 0
   m_Name: Panel1
   m_TagString: Untagged
@@ -3602,16 +3601,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.86316985, g: 0.6972516, b: 0.9169811, a: 0.43137255}
+  m_Color: {r: 0.86316985, g: 0.6972516, b: 0.9169811, a: 0.92941177}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -222317714, guid: 121f53e896d7f114e92df46faec86a69, type: 3}
-  m_Type: 1
-  m_PreserveAspect: 0
+  m_Sprite: {fileID: 21300000, guid: 0c27589387698d643bf17ead9a6fad15, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -3634,9 +3633,9 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 951293140}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 4.28, y: 1.72, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 989332447}
@@ -3647,6 +3646,32 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 250}
   m_SizeDelta: {x: 1366, y: 266}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &951293144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 951293140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d924ffed2390104aa05f23322c0306b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
+  positionIntensity: 3
+  glitchInterval: 0.05
+  enableScaleGlitch: 1
+  scaleIntensity: 0.01
+  enableRotationGlitch: 1
+  rotationIntensity: 0.5
+  bigGlitchChance: 0.05
+  bigGlitchMultiplier: 4
+  enableColorGlitch: 0
+  colorGlitchIntensity: 0.05
+  targetImage: {fileID: 0}
+  targetText: {fileID: 0}
+  smoothReturn: 1
+  smoothSpeed: 15
 --- !u!1 &977495270
 GameObject:
   m_ObjectHideFlags: 0
@@ -3858,17 +3883,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 989332446}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.23364484, y: 0.5813953, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 951293143}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -2.5999756, y: 10.450001}
+  m_SizeDelta: {x: 16.199993, y: -0.49999666}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &989332448
 MonoBehaviour:
@@ -3893,15 +3918,15 @@ MonoBehaviour:
   m_text: Anyways, I'm feeling pretty stiff. I feel the need... The need for speed.
     If you keep Fast-Forwarding me, I'll give you a good Score, waddya say? Try it!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2cdaa1c36096e4443a983b8159e46f45, type: 2}
+  m_sharedMaterial: {fileID: 2521428953573037538, guid: 2cdaa1c36096e4443a983b8159e46f45, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3918,7 +3943,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 56.05
+  m_fontSize: 55.2
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -6060,7 +6085,9 @@ MonoBehaviour:
   lowFrequencyHapticIntensity: 0.5
   highFrequencyHapticIntensity: 1
   hapticsDuration: 0.1
+  allowRotationWhenHolding: 0
   frontOfPlayer: {fileID: 1015224741}
+  pickupAnchor: {fileID: 0}
   windVFXController: {fileID: 814752109}
   rebakeNavMesh: {fileID: 11400000, guid: 51a90ca12e5c7ae47bd6db17f79a2ec6, type: 2}
 --- !u!114 &1538682422
@@ -6707,7 +6734,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.Modules.ModuleSpawner
   spawnEvent: {fileID: 11400000, guid: ea59c12e137cbf940b576ce2cfee1c24, type: 2}
-  spawnLocation: {fileID: 0}
+  hintUI: {fileID: 0}
+  dropEffect: {fileID: 0}
+  landingInfos: []
 --- !u!114 &1663294867
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6983,10 +7012,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Press A To Continue
+  m_text: Both Players Press A To Continue
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2cdaa1c36096e4443a983b8159e46f45, type: 2}
+  m_sharedMaterial: {fileID: 2521428953573037538, guid: 2cdaa1c36096e4443a983b8159e46f45, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -7079,8 +7108,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -457.6}
-  m_SizeDelta: {x: 700, y: 50}
+  m_AnchoredPosition: {x: 0, y: -485.63}
+  m_SizeDelta: {x: 1200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!4 &1698584879 stripped
 Transform:
@@ -8070,6 +8099,7 @@ MonoBehaviour:
   fastForwardSoundVolume: 1
   rewindSound: {fileID: 8300000, guid: 904184cbab2ef6d4eb570d029d20a47c, type: 3}
   rewindSoundVolume: 1
+  brokenEffect: {fileID: 0}
   description: If this module is player-placeable define this
   moduleSprite: {fileID: 0}
   state: 3
