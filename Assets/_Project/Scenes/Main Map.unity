@@ -1161,6 +1161,56 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.0000002, y: 1, z: 1.0000002}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &192265706 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1364464938961092887, guid: 43682b4e551780c42b8badfbfd8ea66b, type: 3}
+  m_PrefabInstance: {fileID: 7344243972161239593}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &192265710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 192265706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 016a69d4f692df9439b2d6db9f226aa2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShakeEffect
+  baseMagnitude: 0.5
+  baseDuration: 0.3
+  frequency: 25
+  useDamping: 1
+  dampingCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  shakeX: 1
+  shakeY: 1
+  shakeZ: 1
+  enableRotationShake: 1
+  rotationMagnitude: 2
 --- !u!1 &206308195
 GameObject:
   m_ObjectHideFlags: 0
@@ -9618,6 +9668,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2004073178}
   - component: {fileID: 2004073179}
+  - component: {fileID: 2004073180}
   m_Layer: 0
   m_Name: Virtual Camera
   m_TagString: MainCamera
@@ -9683,6 +9734,51 @@ MonoBehaviour:
       BarrelClipping: 0.25
       Anamorphism: 0
   BlendHint: 0
+--- !u!114 &2004073180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004073175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 016a69d4f692df9439b2d6db9f226aa2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScreenShakeEffect
+  baseMagnitude: 0.5
+  baseDuration: 0.3
+  frequency: 25
+  useDamping: 1
+  dampingCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  shakeX: 1
+  shakeY: 1
+  shakeZ: 0
+  enableRotationShake: 0
+  rotationMagnitude: 2
 --- !u!1 &2007708254
 GameObject:
   m_ObjectHideFlags: 0
@@ -10579,6 +10675,11 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &2130820692 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2853457693616237105, guid: 43682b4e551780c42b8badfbfd8ea66b, type: 3}
+  m_PrefabInstance: {fileID: 7344243972161239593}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2134045745
 GameObject:
   m_ObjectHideFlags: 0
@@ -13912,6 +14013,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: VHS
       objectReference: {fileID: 0}
+    - target: {fileID: 3247101322211001578, guid: 43682b4e551780c42b8badfbfd8ea66b, type: 3}
+      propertyPath: shakeEffectVHS
+      value: 
+      objectReference: {fileID: 9193764520642239218}
+    - target: {fileID: 3247101322211001578, guid: 43682b4e551780c42b8badfbfd8ea66b, type: 3}
+      propertyPath: screenShakeEffect
+      value: 
+      objectReference: {fileID: 2004073180}
+    - target: {fileID: 3247101322211001578, guid: 43682b4e551780c42b8badfbfd8ea66b, type: 3}
+      propertyPath: shakeEffectCamera
+      value: 
+      objectReference: {fileID: 2004073180}
+    - target: {fileID: 3247101322211001578, guid: 43682b4e551780c42b8badfbfd8ea66b, type: 3}
+      propertyPath: ScreenShakeEnabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3247101322211001578, guid: 43682b4e551780c42b8badfbfd8ea66b, type: 3}
+      propertyPath: shakeEffectHealthBar
+      value: 
+      objectReference: {fileID: 192265710}
+    - target: {fileID: 3247101322211001578, guid: 43682b4e551780c42b8badfbfd8ea66b, type: 3}
+      propertyPath: screenShakeEffectSelf
+      value: 
+      objectReference: {fileID: 9193764520642239218}
+    - target: {fileID: 3247101322211001578, guid: 43682b4e551780c42b8badfbfd8ea66b, type: 3}
+      propertyPath: screenShakeEffectCamera
+      value: 
+      objectReference: {fileID: 2004073180}
     - target: {fileID: 3445892735238101008, guid: 43682b4e551780c42b8badfbfd8ea66b, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.5338651
@@ -14086,7 +14215,13 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2093718613948248491, guid: 43682b4e551780c42b8badfbfd8ea66b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 613603041}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2853457693616237105, guid: 43682b4e551780c42b8badfbfd8ea66b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9193764520642239218}
+    - targetCorrespondingSourceObject: {fileID: 1364464938961092887, guid: 43682b4e551780c42b8badfbfd8ea66b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 192265710}
   m_SourcePrefab: {fileID: 100100000, guid: 43682b4e551780c42b8badfbfd8ea66b, type: 3}
 --- !u!224 &7344243972161239594 stripped
 RectTransform:
@@ -14645,12 +14780,57 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3247101322211001578, guid: 43682b4e551780c42b8badfbfd8ea66b, type: 3}
   m_PrefabInstance: {fileID: 7344243972161239593}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 2130820692}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 023b85b921ddb3a4494f81debd41c69f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.HealthManagement.Health
+--- !u!114 &9193764520642239218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2130820692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 016a69d4f692df9439b2d6db9f226aa2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScreenShakeEffect
+  baseMagnitude: 0.5
+  baseDuration: 0.3
+  frequency: 25
+  useDamping: 1
+  dampingCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  shakeX: 1
+  shakeY: 1
+  shakeZ: 0
+  enableRotationShake: 0
+  rotationMagnitude: 2
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
