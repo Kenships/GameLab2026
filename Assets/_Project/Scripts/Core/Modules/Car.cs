@@ -52,7 +52,7 @@ namespace _Project.Scripts.Core.Modules
 
         protected virtual void PerformAttack(bool fastForward)
         {
-            if (!fastForward && !_rewindTween.isAlive)
+            if (_isRewinding && !_rewindTween.isAlive)
             {
                 float distance = Vector3.Distance(transform.position, _endPosition);
                 float duration = distance / rewindSpeed;
@@ -60,7 +60,7 @@ namespace _Project.Scripts.Core.Modules
                 _rewindTween = Tween.Position(transform, _endPosition, duration, ease: Ease.OutSine)
                     .OnUpdate(this, (target, tween) =>
                     {
-                        target.frontDetector.GetObjectTypeInRangeNoAlloc(target._enemies);
+                        target.backDetector.GetObjectTypeInRangeNoAlloc(target._enemies);
 
                         if (tween.elapsedTime >= 0.05f)
                         {
@@ -79,7 +79,7 @@ namespace _Project.Scripts.Core.Modules
                 _fastForwardTween = Tween.Position(transform, _originalPosition, duration, ease: Ease.InSine)
                     .OnUpdate(this, (target, tween) =>
                     {
-                        target.backDetector.GetObjectTypeInRangeNoAlloc(target._enemies);
+                        target.frontDetector.GetObjectTypeInRangeNoAlloc(target._enemies);
 
                         if (tween.elapsedTime >= (duration - 0.05f))
                         {
