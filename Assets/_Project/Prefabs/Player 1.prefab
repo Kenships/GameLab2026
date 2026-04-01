@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &106846379159205111
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7948988319173704157}
+  m_Layer: 0
+  m_Name: Pickup Location
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7948988319173704157
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106846379159205111}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.3, z: 0.65}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1674207912157368872}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &196390166778377398
 GameObject:
   m_ObjectHideFlags: 0
@@ -39,14 +70,15 @@ Transform:
   m_GameObject: {fileID: 196390166778377398}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.48, y: 1.07, z: 0.45}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4234892213018093291}
   - {fileID: 3176062913803016862}
   - {fileID: 5409127904689107544}
   - {fileID: 3966226005356820972}
+  - {fileID: 7948988319173704157}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &216730538659266132
@@ -207,7 +239,9 @@ MonoBehaviour:
   lowFrequencyHapticIntensity: 0.5
   highFrequencyHapticIntensity: 1
   hapticsDuration: 0.1
+  allowRotationWhenHolding: 0
   frontOfPlayer: {fileID: 5409127904689107544}
+  pickupAnchor: {fileID: 7948988319173704157}
   windVFXController: {fileID: 8921368399928569412}
   rebakeNavMesh: {fileID: 11400000, guid: 51a90ca12e5c7ae47bd6db17f79a2ec6, type: 2}
 --- !u!114 &7388353835296695813

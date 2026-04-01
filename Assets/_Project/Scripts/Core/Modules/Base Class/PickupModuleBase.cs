@@ -11,7 +11,6 @@ namespace _Project.Scripts.Core.Modules.Base_Class
     {
         [SerializeField] protected bool enableOnStart;
         [Header("Pickup Settings")]
-        
         [SerializeField] protected Vector3 pickupOffset;
         [SerializeField] protected Vector3 pickupRotationOffset;
 
@@ -20,6 +19,9 @@ namespace _Project.Scripts.Core.Modules.Base_Class
         [SerializeField] protected float pickUpSoundVolume = 0.25f;
         [SerializeField] protected AudioClip putDownSound;
         [SerializeField] protected float putDownSoundVolume = 1.5f;
+        
+        [Header("Object Light")]
+        [SerializeField] protected GameObject groundLight;
 
         private Collider _colliderCache;
         protected bool _isPickedUp;
@@ -28,6 +30,7 @@ namespace _Project.Scripts.Core.Modules.Base_Class
         {
             base.Start();
             EnableModule = enableOnStart;
+            groundLight.SetActive(true);
             state = ModuleState.Used;
         }
 
@@ -46,6 +49,8 @@ namespace _Project.Scripts.Core.Modules.Base_Class
             _colliderCache.isTrigger = true;
             gameObject.layer = LayerMask.NameToLayer("HeldObject");
             
+            groundLight.SetActive(false);
+            
             _audioPooler.New2DAudio(pickUpSound).OnChannel(AudioType.Sfx).SetVolume(pickUpSoundVolume).Play();
             _isPickedUp = true;
         }
@@ -56,6 +61,8 @@ namespace _Project.Scripts.Core.Modules.Base_Class
             _colliderCache.isTrigger = false;
             gameObject.layer = GridSystem.ObjectOnGridLayer.ToLayerIndex();
             transform.SetParent(null);
+            
+            groundLight.SetActive(true);
             
             _audioPooler.New2DAudio(putDownSound).OnChannel(AudioType.Sfx).SetVolume(putDownSoundVolume).Play();
             _isPickedUp = false;

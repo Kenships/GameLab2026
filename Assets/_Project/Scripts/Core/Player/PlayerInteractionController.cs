@@ -18,15 +18,16 @@ namespace _Project.Scripts.Core.Player
         public static bool IsGameTimeFlowing = true;
         
         [Header("Haptics Settings")]
-        [SerializeField]
-        private float lowFrequencyHapticIntensity = 0.6f;
-
+        [SerializeField] private float lowFrequencyHapticIntensity = 0.6f;
         [SerializeField] private float highFrequencyHapticIntensity = .2f;
         [SerializeField] private float hapticsDuration = 0.12f;
+        
+        [Header("Holding Settings")]
+        [SerializeField] private bool allowRotationWhenHolding = false;
 
         [Header("References")]
-        [SerializeField]
-        protected Transform frontOfPlayer;
+        [SerializeField] protected Transform frontOfPlayer;
+        [SerializeField] protected Transform pickupAnchor;
 
         [SerializeField] protected WindVFXController windVFXController;
 
@@ -160,8 +161,11 @@ namespace _Project.Scripts.Core.Player
                 return;
             }
 
-            _currentIHoldingObject.TryGetComponent(out IHoldable currentHoldable);
-            currentHoldable.RotateClockWise();
+            if (allowRotationWhenHolding)
+            {
+                _currentIHoldingObject.TryGetComponent(out IHoldable currentHoldable);
+                currentHoldable.RotateClockWise();
+            }
         }
 
         private void FixedUpdate()
@@ -185,7 +189,7 @@ namespace _Project.Scripts.Core.Player
                     return;
 
                 holdable.PickUp();
-                holdable.Anchor(frontOfPlayer);
+                holdable.Anchor(pickupAnchor);
 
                 StartCoroutine(PlayHaptics());
 

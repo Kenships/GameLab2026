@@ -281,12 +281,13 @@ MonoBehaviour:
   defaultDecaySpeed: 0
   attackStateDecayMultiplier: 4
   enableOnStart: 0
-  pickupOffset: {x: 0, y: 0, z: 0}
+  pickupOffset: {x: 0, y: 0, z: 0.5}
   pickupRotationOffset: {x: 0, y: 90, z: 0}
   pickUpSound: {fileID: 8300000, guid: 602022546f4e4474a8d87cf01f887e79, type: 3}
   pickUpSoundVolume: 0.25
   putDownSound: {fileID: 8300000, guid: d9d620a96f57c824695138d11a50362f, type: 3}
   putDownSoundVolume: 1.5
+  groundLight: {fileID: 8631965466222929794}
   lazerBeamStartPos: {fileID: 6496225764396330049}
   lazerCannonNew: {fileID: 6390377893726585645}
   lazerCannonBroken: {fileID: 6400599962633785127}
@@ -6683,7 +6684,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &294657043119899997
 Transform:
   m_ObjectHideFlags: 0
