@@ -3224,6 +3224,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 803353325}
   m_CullTransparentMesh: 1
+--- !u!198 &814536081 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 323253015719597825, guid: e3079e81a8212914897bea0ac3d32f43, type: 3}
+  m_PrefabInstance: {fileID: 347609132234581246}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &824628956
 GameObject:
   m_ObjectHideFlags: 0
@@ -10496,6 +10501,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 671120433}
     m_Modifications:
+    - target: {fileID: 1723036856371498414, guid: e3079e81a8212914897bea0ac3d32f43, type: 3}
+      propertyPath: brokenEffect
+      value: 
+      objectReference: {fileID: 814536081}
     - target: {fileID: 6713747546187726529, guid: e3079e81a8212914897bea0ac3d32f43, type: 3}
       propertyPath: m_Name
       value: Car

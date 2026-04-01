@@ -5696,7 +5696,7 @@ MonoBehaviour:
   fastForwardSoundVolume: 1
   rewindSound: {fileID: 8300000, guid: 904184cbab2ef6d4eb570d029d20a47c, type: 3}
   rewindSoundVolume: 1
-  brokenEffect: {fileID: 0}
+  brokenEffect: {fileID: 323253015719597825}
   description: Can't pick up
   moduleSprite: {fileID: 0}
   state: 3
