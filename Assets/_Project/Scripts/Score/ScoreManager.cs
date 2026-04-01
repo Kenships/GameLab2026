@@ -10,9 +10,9 @@ public class ScoreManager : MonoBehaviour
 {
     [SerializeField] private List<ScoreEntry> scoreEntries = new();
     [SerializeField] private GameObject scorePrefab;
-    [SerializeField] private Color LatestScoreColor;
-    [SerializeField] private Color DefaultColor;
-    [SerializeField] private TextTyper VictoryText;
+    [SerializeField] private Color latestScoreColor;
+    [SerializeField] private Color defaultColor;
+    [SerializeField] private TextTyper victoryText;
 
     private enum Adj
     {
@@ -24,15 +24,16 @@ public class ScoreManager : MonoBehaviour
         Radical,
         Wicked,
         Tubular,
-        Bomb
+        Bomb,
+        None
     }
 
     private CountdownTimer _timer;
-    private string path;
+    private string _path;
 
     void Start()
     {
-        path = Path.Combine(Application.persistentDataPath, "scores.json");
+        _path = Path.Combine(Application.persistentDataPath, "scores.json");
         GameManager.Instance.PauseTimer();
 
         scoreEntries = LoadFromJson();
@@ -41,11 +42,13 @@ public class ScoreManager : MonoBehaviour
             if (entry.isMostRecent) entry.isMostRecent = false;
         }
 
-        ScoreEntry newScore = new ScoreEntry();
-        newScore.score = GameManager.Instance.score;
-        newScore.time = GameManager.Instance.runTime;
-        newScore.isMostRecent = true;
-        VictoryText.StartTyping(DetermineAdjective(newScore.score).ToString() + "!");
+        var newScore = new ScoreEntry
+        {
+            score = GameManager.Instance.score,
+            time = GameManager.Instance.runTime,
+            isMostRecent = true
+        };
+        victoryText.StartTyping(DetermineAdjective(newScore.score) + "!");
 
         if (newScore.time > 0f)
         {
@@ -55,7 +58,7 @@ public class ScoreManager : MonoBehaviour
         scoreEntries.Sort((y, x) => x.score.CompareTo(y.score));
         while (scoreEntries.Count > 16)
         {
-            scoreEntries.Remove(scoreEntries[scoreEntries.Count - 1]);
+            scoreEntries.Remove(scoreEntries[^1]);
         }
 
         StartCoroutine(DisplayScores());
@@ -91,11 +94,11 @@ public class ScoreManager : MonoBehaviour
                 prevScore = entry.score;
             }
 
-            scoreEntry.gameObject.GetComponent<Image>().color = DefaultColor;
+            scoreEntry.gameObject.GetComponent<Image>().color = defaultColor;
 
             if (entry.isMostRecent)
             {
-                scoreEntry.gameObject.GetComponent<Image>().color = LatestScoreColor;
+                scoreEntry.gameObject.GetComponent<Image>().color = latestScoreColor;
             }
 
             Instantiate(scoreEntry, transform);
@@ -105,36 +108,36 @@ public class ScoreManager : MonoBehaviour
 
     private Adj DetermineAdjective(float score)
     {
-        Adj adj = new Adj();
+        Adj adj = Adj.None;
 
         switch (score)
         {
-            case var n when n >= 0:
-                adj = Adj.Horrid;
+            case >= 950:
+                adj = Adj.Bomb;
                 break;
-            case var n when n >= 100:
-                adj = Adj.Garbage;
-                break;
-            case var n when n >= 150:
-                adj = Adj.Okay;
-                break;
-            case var n when n >= 225:
-                adj = Adj.Great;
-                break;
-            case var n when n >= 400:
-                adj = Adj.Excellent;
-                break;
-            case var n when n >= 700:
-                adj = Adj.Radical;
-                break;
-            case var n when n >= 775:
-                adj = Adj.Wicked;
-                break;
-            case var n when n >= 875:
+            case >= 875:
                 adj = Adj.Tubular;
                 break;
-            case var n when n >= 950:
-                adj = Adj.Bomb;
+            case >= 775:
+                adj = Adj.Wicked;
+                break;
+            case >= 700:
+                adj = Adj.Radical;
+                break;
+            case >= 400:
+                adj = Adj.Excellent;
+                break;
+            case >= 225:
+                adj = Adj.Great;
+                break;
+            case >= 150:
+                adj = Adj.Okay;
+                break;
+            case >= 100:
+                adj = Adj.Garbage;
+                break;
+            case >= 0:
+                adj = Adj.Horrid;
                 break;
         }
 
@@ -149,21 +152,21 @@ public class ScoreManager : MonoBehaviour
 
         string json = JsonUtility.ToJson(wrapper, true);
 
-        File.WriteAllText(path, json);
+        File.WriteAllText(_path, json);
     }
 
     public void ResetJson()
     {
         ScoreDataWrapper wrapper = new ScoreDataWrapper();
         string json = JsonUtility.ToJson(wrapper, true);
-        File.WriteAllText(path, json);
+        File.WriteAllText(_path, json);
     }
 
     private List<ScoreEntry> LoadFromJson()
     {
-        if (File.Exists(path))
+        if (File.Exists(_path))
         {
-            string json = File.ReadAllText(path);
+            string json = File.ReadAllText(_path);
             ScoreDataWrapper wrapper = JsonUtility.FromJson<ScoreDataWrapper>(json);
             return wrapper.scoreEntries;
         }

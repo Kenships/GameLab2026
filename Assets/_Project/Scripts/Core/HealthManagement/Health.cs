@@ -16,6 +16,12 @@ namespace _Project.Scripts.Core.HealthManagement
         
         [SerializeField] float[] _healthStages;
         
+        [SerializeField] public bool ScreenShakeEnabled = true; 
+        [SerializeField] public bool HealthBarShakeEnabled = true;
+        [SerializeField] public bool VHSShakeEnabled = true;
+        [SerializeField] private ShakeEffect shakeEffectCamera;
+        [SerializeField] private ShakeEffect shakeEffectVHS;
+        [SerializeField] private ShakeEffect shakeEffectHealthBar;
         public float[] HealthStages => _healthStages;
 
         public void Initialize(float maxHealth, float initialHealth = -1f)
@@ -39,6 +45,22 @@ namespace _Project.Scripts.Core.HealthManagement
             CurrentHealth += healthDelta;
 
             OnHealthChanged?.Invoke(healthDelta);
+            
+            if (healthDelta < 0 ) // check if damage or healing
+            {
+                if (ScreenShakeEnabled &&  shakeEffectCamera != null) 
+                {
+                    shakeEffectCamera.Shake(1f);
+                }
+                if (HealthBarShakeEnabled &&   shakeEffectHealthBar != null) 
+                {
+                    shakeEffectHealthBar.Shake(1f);
+                }
+                if (VHSShakeEnabled &&   shakeEffectVHS != null) 
+                {
+                    shakeEffectVHS.Shake(1f);
+                }
+            }
 
             if (CurrentHealth <= 0)
             {

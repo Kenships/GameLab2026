@@ -8,6 +8,7 @@ using _Project.Scripts.UI;
 using Sisus.Init;
 using System.Collections;
 using System.Collections.Generic;
+using Obvious.Soap;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -69,6 +70,7 @@ namespace _Project.Scripts.Core.Enemies
 
         [Header("References")]
         [SerializeField] private Transform vhsLocation;
+        [SerializeField] private ScriptableEventNoParam bossDefeatedEvent;
         [SerializeField] private ScriptableEventWaveData waveStartEvent;
         [SerializeField] private EnemyWaveUI waveUI;
 
@@ -164,13 +166,15 @@ namespace _Project.Scripts.Core.Enemies
                 
                 _audioPooler.StopAllSFX();
                 
-                _sceneLoader.LoadScene();
-                Time.timeScale = 0f;
-                PlayerInteractionController.IsGameTimeFlowing = false;
+               
 
                 // Rest period after wave (all enemies are dead)
                 if (waveIndex < waves.Length - 1)
                 {
+                    _sceneLoader.LoadScene();
+                    Time.timeScale = 0f;
+                    PlayerInteractionController.IsGameTimeFlowing = false;
+                    
                     if (waveUI != null)
                     {
                         waveUI.StartCountdown(currentWave.restAfterWave);
@@ -179,7 +183,8 @@ namespace _Project.Scripts.Core.Enemies
                     yield return new WaitForSeconds(currentWave.restAfterWave);
                 }
             }
-
+            
+            bossDefeatedEvent?.Raise();
             Debug.Log("All waves finished.");
         }
 
