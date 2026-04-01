@@ -6,6 +6,9 @@ namespace _Project.Scripts.Core.Modules.Base_Class
 {
     public abstract class Module : TimeControllableBase, IVisualSelectable
     {
+        [SerializeField] protected ParticleSystem brokenEffect;
+        // no broken effect for first state change
+        protected bool allowBrokenEffect = false;
         public enum ModuleState
         {
             None,
@@ -15,7 +18,7 @@ namespace _Project.Scripts.Core.Modules.Base_Class
         }
         [TextArea]public string description = "If this module is player-placeable define this";
         public Sprite moduleSprite;
-
+        
         public bool EnableModule { get; set; } = true;
         
         private ModuleState _previousState = ModuleState.None;

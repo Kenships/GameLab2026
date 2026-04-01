@@ -178,6 +178,8 @@ namespace _Project.Scripts.Core.Modules
                 case ModuleState.Used:
                     _canShoot = false;
                     brokenModel.SetActive(true);
+                    if (allowBrokenEffect) brokenEffect.Play();
+                    allowBrokenEffect = true;
                     newModel.SetActive(false);
                     break;
             }

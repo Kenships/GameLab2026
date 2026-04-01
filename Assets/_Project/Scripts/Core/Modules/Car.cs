@@ -84,6 +84,7 @@ namespace _Project.Scripts.Core.Modules
                         if (tween.elapsedTime >= (duration - 0.05f))
                         {
                             target.crashedCarModel.SetActive(true);
+                            brokenEffect.Play();
                             target.newCarModel.SetActive(false);
                         }
                     })

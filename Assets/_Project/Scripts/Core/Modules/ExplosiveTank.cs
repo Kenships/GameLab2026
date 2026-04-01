@@ -158,8 +158,10 @@ namespace _Project.Scripts.Core.Modules
                     _health.AddToHealth(int.MinValue);
                     break;
                 case ModuleState.Used:
-                    loadModel.SetActive(false);
                     usedModel.SetActive(true);
+                    if (allowBrokenEffect) brokenEffect.Play();
+                    allowBrokenEffect = true;
+                    loadModel.SetActive(false);
                     fullTimeUI.SetActive(false);
                     break;
             }

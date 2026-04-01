@@ -268,6 +268,8 @@ namespace _Project.Scripts.Core.Modules
                 default:
                     particle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
                     brokenModel.SetActive(true);
+                    if (allowBrokenEffect) brokenEffect.Play();
+                    allowBrokenEffect = true;
                     newModel.SetActive(false);
                     break;
             }

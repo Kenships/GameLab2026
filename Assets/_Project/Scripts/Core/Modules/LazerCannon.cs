@@ -165,6 +165,8 @@ namespace _Project.Scripts.Core.Modules
                     break;
                 case ModuleState.Used:
                     lazerCannonBroken.SetActive(true);
+                    if (allowBrokenEffect) brokenEffect.Play();
+                    allowBrokenEffect = true;
                     lazerCannonNew.SetActive(false);
                     fullTimeUI.SetActive(false);
                     if (_attackRoutine != null)
