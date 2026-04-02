@@ -1,5 +1,6 @@
 using System;
 using _Project.Scripts.Core;
+using _Project.Scripts.Core.HealthManagement;
 using _Project.Scripts.Core.Modules;
 using Obvious.Soap;
 using UnityEngine;
@@ -9,18 +10,19 @@ namespace _Project.Scripts.Tutorial
     public class TutVHSListener : MonoBehaviour, ITutorialListener
     {
         [SerializeField] private VHSModule vhsModule;
-        [SerializeField] private ScriptableEventNoParam vhsHPFull;
         
         private Action _callback;
         
+        private Health _health;
+        
         private void Awake()
         {
-            vhsModule.EnableModule = false;
+            _health = vhsModule.GetComponent<Health>();
         }
 
         private void OnDestroy()
         {
-            vhsHPFull.OnRaised -= VhsHPFullOnRaised;
+            _health.OnFullHp -= VhsHPFullOnRaised;
         }
 
         public void Invoke(Action callback)
@@ -28,12 +30,12 @@ namespace _Project.Scripts.Tutorial
             _callback = callback;
             
             vhsModule.EnableModule = true;
-            vhsHPFull.OnRaised += VhsHPFullOnRaised;
+            _health.OnFullHp += VhsHPFullOnRaised;
         }
 
         private void VhsHPFullOnRaised()
         {
-            vhsHPFull.OnRaised -= VhsHPFullOnRaised;
+            _health.OnFullHp -= VhsHPFullOnRaised;
             _callback?.Invoke();
         }
     }
