@@ -237,6 +237,12 @@ MonoBehaviour:
   <CurrentHealth>k__BackingField: 0
   <MaxHealth>k__BackingField: 0
   _healthStages: []
+  ScreenShakeEnabled: 1
+  HealthBarShakeEnabled: 1
+  VHSShakeEnabled: 1
+  shakeEffectCamera: {fileID: 0}
+  shakeEffectVHS: {fileID: 0}
+  shakeEffectHealthBar: {fileID: 0}
 --- !u!65 &9066906894016180110
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1254,7 +1260,7 @@ MonoBehaviour:
   borderWidth: 0.2
   segments: 60
   yOffset: 0.5
-  hideDelay: 0.05
+  hideDelay: 0.25
   isVisible: 0
 --- !u!1 &7403408596233055916
 GameObject:
