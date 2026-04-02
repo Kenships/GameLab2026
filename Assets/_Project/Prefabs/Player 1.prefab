@@ -1141,6 +1141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bb02f859b6fe6f44a2a9333d121433b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WindVFXController
+  iconManager: {fileID: 0}
   radius: 2
   ringWidth: 0.15
   segments: 80

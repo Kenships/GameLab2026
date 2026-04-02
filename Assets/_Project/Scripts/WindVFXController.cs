@@ -13,6 +13,8 @@ namespace _Project.Scripts
         }
 
         private AbilityMode currentMode = AbilityMode.FastForward;
+        
+        [SerializeField] private IconManager iconManager;
 
         [Header("Ring Settings")]
         [SerializeField] private float radius = 5f;
@@ -78,6 +80,15 @@ namespace _Project.Scripts
             currentMode = mode;
             activeColor = ringColor;
 
+            if (mode == AbilityMode.FastForward && iconManager != null)
+            {
+                iconManager.ShowFastForward();
+            }
+            else if (mode == AbilityMode.Rewind  && iconManager != null)
+            {
+                iconManager.ShowRewind();
+            }
+
             ringMaterial.color = new Color(activeColor.r, activeColor.g, activeColor.b, currentAlpha);
 
             isVisible   = true;
@@ -88,7 +99,11 @@ namespace _Project.Scripts
         {
             isVisible   = false;
             targetAlpha = 0f;
-
+            if (iconManager != null)
+            {
+                iconManager.Hide();
+            }
+            
             ClearRipples();
         }
 
