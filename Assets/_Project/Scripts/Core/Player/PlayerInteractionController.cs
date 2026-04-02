@@ -23,7 +23,7 @@ namespace _Project.Scripts.Core.Player
         [SerializeField] private float hapticsDuration = 0.12f;
         
         [Header("Holding Settings")]
-        [SerializeField] private bool allowRotationWhenHolding = false;
+        [SerializeField] protected bool allowRotationWhenHolding = false;
 
         [Header("References")]
         [SerializeField] protected Transform frontOfPlayer;
