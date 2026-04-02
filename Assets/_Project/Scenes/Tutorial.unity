@@ -1730,6 +1730,7 @@ GameObject:
   - component: {fileID: 264355258}
   - component: {fileID: 264355261}
   - component: {fileID: 264355262}
+  - component: {fileID: 264355265}
   - component: {fileID: 264355264}
   - component: {fileID: 264355263}
   m_Layer: 0
@@ -1940,6 +1941,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Tutorial.TutRoundEndListener
   victoryEvent: {fileID: 11400000, guid: dca06c0613049d741b7b023502d19817, type: 2}
+--- !u!114 &264355265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 264355251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c5c93723c4e479e877ad86bd70aca21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Tutorial.TutTankListener
+  tankHealth: {fileID: 913934991}
 --- !u!1 &274830099
 GameObject:
   m_ObjectHideFlags: 0
@@ -4220,6 +4234,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c5862296d27d8e94190863963df3638b, type: 3}
+--- !u!114 &913934991 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7942689369854379854, guid: c5862296d27d8e94190863963df3638b, type: 3}
+  m_PrefabInstance: {fileID: 913934990}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1810771576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 023b85b921ddb3a4494f81debd41c69f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.HealthManagement.Health
 --- !u!1 &951293140
 GameObject:
   m_ObjectHideFlags: 0
@@ -4568,8 +4593,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Anyways, I'm feeling pretty stiff. I feel the need... The need for speed.
-    If you keep Fast-Forwarding me, I'll give you a good Score, waddya say? Try it!
+  m_text: <b>BOOOOM BABY!!!</b>
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2cdaa1c36096e4443a983b8159e46f45, type: 2}
   m_sharedMaterial: {fileID: 2521428953573037538, guid: 2cdaa1c36096e4443a983b8159e46f45, type: 2}
@@ -4596,7 +4620,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 55.2
+  m_fontSize: 72
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -5300,24 +5324,13 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - PanelText: One last thing. There are Heavy Modules around the map. These are
-      stationary, but they can shift the tide of the battle.
+  - PanelText: 'One last thing. There is a second type of Modules that require time
+      energy to charge indicated by the battery.
+
+'
     OnPanel:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 264355255}
-          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutConfirmationListener,
-            Assembly-CSharp
-          m_MethodName: Invoke
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
         - m_Target: {fileID: 1810771576}
           m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_MethodName: SetActive
@@ -5329,6 +5342,97 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 1
+          m_CallState: 2
+        - m_Target: {fileID: 264355255}
+          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutConfirmationListener,
+            Assembly-CSharp
+          m_MethodName: Invoke
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+  - PanelText: 'Once charged they can be used once they are fully charged by FAST
+      FORWARDING by HOLDING A.
+
+      Try Exploding This Tank Module.'
+    OnPanel:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 264355265}
+          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutTankListener, Assembly-CSharp
+          m_MethodName: Invoke
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - PanelText: <b>BOOOOM BABY!!!</b>
+    OnPanel:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 264355262}
+          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutTimeListener, Assembly-CSharp
+          m_MethodName: set_TimeToNextPanel
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 2
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 264355255}
+          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutConfirmationListener,
+            Assembly-CSharp
+          m_MethodName: Invoke
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+  - PanelText: All right, One FINAL thing for real. I got a sick ride hanging down
+      there, it looks in bad shape but It'll come in handy.
+    OnPanel:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1020470267}
+          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutorialComposer, Assembly-CSharp
+          m_MethodName: AnchorTop
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+        - m_Target: {fileID: 1020470272}
+          m_TargetAssemblyTypeName: _Project.Scripts.Core.SceneLoading.SceneLoader,
+            Assembly-CSharp
+          m_MethodName: LoadScene
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
           m_CallState: 2
         - m_Target: {fileID: 2123999483}
           m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -5342,8 +5446,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-  - PanelText: "Wax on, Wax off. Look Down Below! Try Rewinding the vehicle then
-      Fast-Forwarding it. \n(HOLD B then HOLD A)"
+  - PanelText: "Wax on, Wax off. Try Rewinding the vehicle then Fast-Forwarding it.
+      \n(HOLD B then HOLD A)"
     OnPanel:
       m_PersistentCalls:
         m_Calls:
