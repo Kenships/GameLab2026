@@ -1160,7 +1160,7 @@ MonoBehaviour:
   lazerIcon: {fileID: 2800000, guid: 20964abc62f946b48893bafca2b6fc48, type: 3}
   carIcon: {fileID: 0}
   discIcon: {fileID: 2800000, guid: 41b2c6234e7c6c04a91064b97e3437e9, type: 3}
-  explosiveIcon: {fileID: 2800000, guid: c65aacb25d32f9341bafc9be5ddfe1a0, type: 3}
+  explosiveIcon: {fileID: 2800000, guid: 9cd747b0f4cf66c4e9ce149e07fee9e7, type: 3}
 --- !u!33 &3829264594141405773
 MeshFilter:
   m_ObjectHideFlags: 0
