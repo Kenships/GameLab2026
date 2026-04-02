@@ -193,6 +193,7 @@ namespace _Project.Scripts.Core.Player
 
                 StartCoroutine(PlayHaptics());
 
+                windVFXController.ShowHeldObject(obj);
                 _currentIHoldingObject = obj;
             }
             // Put Down
@@ -212,6 +213,7 @@ namespace _Project.Scripts.Core.Player
 
                 StartCoroutine(PlayHaptics());
 
+                windVFXController.HideHeldObject();
                 _currentIHoldingObject = null;
             }
         }

@@ -1825,6 +1825,7 @@ MonoBehaviour:
   putDownSound: {fileID: 8300000, guid: d9d620a96f57c824695138d11a50362f, type: 3}
   putDownSoundVolume: 1.5
   groundLight: {fileID: 300325434259730834}
+  turretType: disc
   spawnPoint: {fileID: 3986486476490431559}
   rotationBody: {fileID: 3445348889881576459}
   turretAnimator: {fileID: 7271907164383239235}

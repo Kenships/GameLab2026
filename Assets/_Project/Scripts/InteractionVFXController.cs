@@ -1,5 +1,10 @@
+using System;
 using System.Collections.Generic;
+using _Project.Scripts.Core.Modules;
+using _Project.Scripts.Core.Modules.Base_Class;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace _Project.Scripts
 {
@@ -15,6 +20,7 @@ namespace _Project.Scripts
         private AbilityMode currentMode = AbilityMode.FastForward;
         
         [SerializeField] private IconManager iconManager;
+        [SerializeField] private ModuleInfoManager moduleInfoManager; 
 
         [Header("Ring Settings")]
         [SerializeField] private float radius = 5f;
@@ -35,6 +41,14 @@ namespace _Project.Scripts
         [SerializeField] private bool enableRipple = false;
         [SerializeField] private float rippleInterval = 0.6f;
         [SerializeField] private int maxRipples = 3;
+        
+        [Header("ModuleIcons")]
+        [SerializeField] private Texture2D turretIcon;
+        [SerializeField] private Texture2D flameIcon;
+        [SerializeField] private Texture2D lazerIcon;
+        [SerializeField] private Texture2D carIcon;
+        [SerializeField] private Texture2D discIcon;
+        [SerializeField] private Texture2D explosiveIcon;
 
         private MeshFilter meshFilter;
         private MeshRenderer meshRenderer;
@@ -49,7 +63,8 @@ namespace _Project.Scripts
         private List<RippleRing> activeRipples = new List<RippleRing>();
         private float rippleTimer = 0f;
 
-   
+        private string currentModuleName; 
+        
         private void Awake()
         {
             meshFilter   = GetComponent<MeshFilter>();
@@ -76,12 +91,39 @@ namespace _Project.Scripts
 
         public void ShowHeldObject(GameObject heldObject)
         {
-            
+            Debug.Log(heldObject);
+            if (heldObject.GetComponent<Flamethrower>()!= null)
+            {
+                moduleInfoManager.ShowInfo(flameIcon,"Flame Thrower");
+            }
+            else if (heldObject.GetComponent<LazerCannon>()!= null)
+            {
+                moduleInfoManager.ShowInfo(lazerIcon,"Lazer Cannon");
+            }
+            else if (heldObject.GetComponent<ExplosiveTank>() != null)
+            {
+                moduleInfoManager.ShowInfo(explosiveIcon,"Explosive Tank");
+            }
+            // else if (heldObject.GetComponent<Car>()!= null)
+            // {
+            //     moduleInfoManager.ShowInfo(carIcon,"Car");
+            // }
+            else if (heldObject.GetComponent<Turret>() != null)
+            {
+                if (heldObject.GetComponent<Turret>().turretType == "disc")
+                {
+                    moduleInfoManager.ShowInfo(discIcon,"Saw Shooter");
+                }
+                else if (heldObject.GetComponent<Turret>().turretType == "normal")
+                {
+                    moduleInfoManager.ShowInfo(turretIcon,"Turret");
+                }
+            }
         }
 
         public void HideHeldObject()
         {
-            
+            moduleInfoManager.Hide();
         }
 
 
