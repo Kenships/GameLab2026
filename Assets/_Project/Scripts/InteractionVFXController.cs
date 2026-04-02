@@ -4,7 +4,7 @@ using UnityEngine;
 namespace _Project.Scripts
 {
     [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
-    public class WindVFXController : MonoBehaviour
+    public class InteractionVFXController : MonoBehaviour
     {
         public enum AbilityMode
         {
@@ -74,8 +74,18 @@ namespace _Project.Scripts
             UpdateRipples();
         }
 
+        public void ShowHeldObject(GameObject heldObject)
+        {
+            
+        }
 
-        public void Show(AbilityMode mode = AbilityMode.FastForward)
+        public void HideHeldObject()
+        {
+            
+        }
+
+
+        public void ShowWind(AbilityMode mode = AbilityMode.FastForward)
         {
             currentMode = mode;
             activeColor = ringColor;
@@ -95,7 +105,7 @@ namespace _Project.Scripts
             targetAlpha = activeColor.a;
         }
 
-        public void Hide()
+        public void HideWind()
         {
             isVisible   = false;
             targetAlpha = 0f;
@@ -109,8 +119,8 @@ namespace _Project.Scripts
 
         public void Toggle(AbilityMode mode = AbilityMode.FastForward)
         {
-            if (isVisible) Hide();
-            else           Show(mode);
+            if (isVisible) HideWind();
+            else           ShowWind(mode);
         }
 
  

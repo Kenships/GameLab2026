@@ -29,7 +29,7 @@ namespace _Project.Scripts.Core.Player
         [SerializeField] protected Transform frontOfPlayer;
         [SerializeField] protected Transform pickupAnchor;
 
-        [SerializeField] protected WindVFXController windVFXController;
+        [SerializeField] protected InteractionVFXController windVFXController;
 
         [Header("EventObjects")]
         [SerializeField]
@@ -229,7 +229,7 @@ namespace _Project.Scripts.Core.Player
             }
 
             _isFastForwarding = true;
-            windVFXController.Show();
+            windVFXController.ShowWind();
             foreach (ITimeControllable controllable in _inRangeTimeControllables)
             {
                 controllable?.FastForward(PlayerID);
@@ -243,7 +243,7 @@ namespace _Project.Scripts.Core.Player
                 controllable?.CancelFastForward(PlayerID);
             }
 
-            windVFXController.Hide();
+            windVFXController.HideWind();
             _isFastForwarding = false;
         }
 
@@ -260,7 +260,7 @@ namespace _Project.Scripts.Core.Player
             }
 
             _isRewinding = true;
-            windVFXController.Show(WindVFXController.AbilityMode.Rewind);
+            windVFXController.ShowWind(InteractionVFXController.AbilityMode.Rewind);
 
             foreach (ITimeControllable controllable in _inRangeTimeControllables)
             {
@@ -275,7 +275,7 @@ namespace _Project.Scripts.Core.Player
                 controllable?.CancelRewind(PlayerID);
             }
 
-            windVFXController.Hide();
+            windVFXController.HideWind();
             _isRewinding = false;
         }
 
