@@ -1142,6 +1142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WindVFXController
   iconManager: {fileID: 0}
+  moduleInfoManager: {fileID: 0}
   radius: 2
   ringWidth: 0.15
   segments: 80
@@ -1154,6 +1155,12 @@ MonoBehaviour:
   enableRipple: 1
   rippleInterval: 0.6
   maxRipples: 3
+  turretIcon: {fileID: 2800000, guid: 623b8d6c35aa4cc46a664619f1f36193, type: 3}
+  flameIcon: {fileID: 2800000, guid: bc92618e37784f145aac4943e376ca33, type: 3}
+  lazerIcon: {fileID: 2800000, guid: 20964abc62f946b48893bafca2b6fc48, type: 3}
+  carIcon: {fileID: 0}
+  discIcon: {fileID: 2800000, guid: 41b2c6234e7c6c04a91064b97e3437e9, type: 3}
+  explosiveIcon: {fileID: 2800000, guid: c65aacb25d32f9341bafc9be5ddfe1a0, type: 3}
 --- !u!33 &3829264594141405773
 MeshFilter:
   m_ObjectHideFlags: 0

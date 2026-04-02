@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using _Project.Scripts.Core.Enemies;
 using _Project.Scripts.Core.HealthManagement;
 using _Project.Scripts.Core.Modules.Base_Class;
@@ -6,7 +7,6 @@ using _Project.Scripts.Core.Modules.Factories;
 using _Project.Scripts.Core.Player;
 using _Project.Scripts.Effects.Interface;
 using _Project.Scripts.Targeting.Strategies;
-using System.Collections.Generic;
 using UnityEngine;
 using AudioType = _Project.Scripts.Core.AudioPooling.Interface.AudioType;
 
@@ -15,6 +15,7 @@ namespace _Project.Scripts.Core.Modules
     [RequireComponent(typeof(RangeDetector))]
     public class Turret : PickupModuleBase, IDamageable
     {
+        [SerializeField] public string turretType;
         [Header("References")]
         [SerializeField] private Transform spawnPoint;
         [SerializeField] private GameObject rotationBody;

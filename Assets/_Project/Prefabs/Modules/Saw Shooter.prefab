@@ -1825,6 +1825,7 @@ MonoBehaviour:
   putDownSound: {fileID: 8300000, guid: d9d620a96f57c824695138d11a50362f, type: 3}
   putDownSoundVolume: 1.5
   groundLight: {fileID: 300325434259730834}
+  turretType: disc
   spawnPoint: {fileID: 3986486476490431559}
   rotationBody: {fileID: 3445348889881576459}
   turretAnimator: {fileID: 7271907164383239235}
@@ -1881,6 +1882,12 @@ MonoBehaviour:
   <CurrentHealth>k__BackingField: 0
   <MaxHealth>k__BackingField: 0
   _healthStages: []
+  ScreenShakeEnabled: 0
+  HealthBarShakeEnabled: 0
+  VHSShakeEnabled: 0
+  shakeEffectCamera: {fileID: 0}
+  shakeEffectVHS: {fileID: 0}
+  shakeEffectHealthBar: {fileID: 0}
 --- !u!65 &4872440849225042304
 BoxCollider:
   m_ObjectHideFlags: 0
