@@ -43,10 +43,13 @@ namespace _Project.Scripts.Tutorial
                 holdable.RotateClockWise();
                 return;
             }
-
-            OnRotateClockWise?.Invoke(_playerID);
-            _currentIHoldingObject.TryGetComponent(out IHoldable currentHoldable);
-            currentHoldable.RotateClockWise();
+            
+            if (allowRotationWhenHolding)
+            {
+                OnRotateClockWise?.Invoke(_playerID);
+                _currentIHoldingObject.TryGetComponent(out IHoldable currentHoldable);
+                currentHoldable.RotateClockWise();  
+            }
         }
 
         protected override void PickUpOrPutDown()
@@ -67,6 +70,8 @@ namespace _Project.Scripts.Tutorial
                 StartCoroutine(PlayHaptics());
 
                 _currentIHoldingObject = obj;
+                
+                windVFXController.ShowHeldObject(obj);
             }
             // Put Down
             else
@@ -86,6 +91,7 @@ namespace _Project.Scripts.Tutorial
                 StartCoroutine(PlayHaptics());
                 
                 _currentIHoldingObject = null;
+                windVFXController.HideHeldObject();
             }
 
             rebakeNavMesh.Raise();
@@ -102,7 +108,7 @@ namespace _Project.Scripts.Tutorial
             }
             
             _isFastForwarding = true;
-            windVFXController.Show();
+            windVFXController.ShowWind();
             foreach (ITimeControllable controllable in _inRangeTimeControllables)
             {
                 OnFastForward?.Invoke(_playerID);
@@ -121,7 +127,7 @@ namespace _Project.Scripts.Tutorial
             }
 
             _isRewinding = true;
-            windVFXController.Show(WindVFXController.AbilityMode.Rewind);
+            windVFXController.ShowWind(InteractionVFXController.AbilityMode.Rewind);
             
 
             foreach (ITimeControllable controllable in _inRangeTimeControllables)
