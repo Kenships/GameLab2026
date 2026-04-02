@@ -13393,7 +13393,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.Enemies.EnemyWaveSpawner
   vhsLocation: {fileID: 9193764520642239212}
-  bossDefeatedEvent: {fileID: 0}
+  bossDefeatedEvent: {fileID: 11400000, guid: dca06c0613049d741b7b023502d19817, type: 2}
   waveStartEvent: {fileID: 11400000, guid: 70472f02f5cc06345845b0a8e5cba28f, type: 2}
   waveUI: {fileID: 1136097441}
   waves:
