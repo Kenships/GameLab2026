@@ -401,7 +401,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0.59779215, y: 0, z: 0, w: 0.8016512}
-  m_LocalPosition: {x: 0, y: 9.95, z: -2.66}
+  m_LocalPosition: {x: 0, y: 9.95, z: -3.83}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -879,7 +879,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10aaee5728732dd45a0f0c5c08e4c471, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Multiplayer.DevicePairingService
-  allowKeyboard: 0
+  allowKeyboard: 1
 --- !u!1 &1422328897
 GameObject:
   m_ObjectHideFlags: 0

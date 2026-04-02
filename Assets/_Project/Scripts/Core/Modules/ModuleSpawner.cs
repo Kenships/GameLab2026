@@ -100,7 +100,7 @@ namespace _Project.Scripts.Core.Modules
             for (int i = 0; i < info.stackedModules.Count; i++)
             {
                 GameObject module = info.stackedModules[i];
-                if (module != null && module.GetComponent<Module>().EnableModule != false)
+                if (module != null && module.GetComponent<PickupModuleBase>().IsPickedUp)
                 {
                     hintUI.StopArrowBackAndForth();
                     info.arrow.enabled = false;

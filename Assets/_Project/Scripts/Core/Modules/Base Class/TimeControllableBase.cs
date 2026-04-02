@@ -41,6 +41,7 @@ namespace _Project.Scripts.Core.Modules.Base_Class
         }
 
         private readonly Dictionary<PlayerData.PlayerID, TimeAction> _interactingPlayers = new();
+        private PlayerData.PlayerID _activePlayer;
 
         private void HandleInteract(PlayerData.PlayerID playerID, TimeAction action)
         {
@@ -48,30 +49,34 @@ namespace _Project.Scripts.Core.Modules.Base_Class
             {
                 _interactingPlayers.Add(playerID, action);
                 PerformAction(action);
+                _activePlayer = playerID;
             }
             else if (_interactingPlayers.ContainsKey(playerID) && _interactingPlayers.Count == 1)
             {
                 CancelAction(_interactingPlayers[playerID]);
-                
                 _interactingPlayers.Add(playerID, action);
                 PerformAction(action);
+                _activePlayer = playerID;
             }
             else if (!_interactingPlayers.ContainsKey(playerID) && _interactingPlayers.Count == 1)
             {
-                var existingAction = _interactingPlayers.First().Value;
-                if (existingAction != action)
-                {
-                    // Opposite effect => nothing happens
-                    CancelAction(existingAction);
-                    _interactingPlayers.Clear();
-                }
-                else
-                {
-                    // Same effect => stronger power
-                    _interactingPlayers.Add(playerID, action);
-                    UpdateDoubleAudio();
-                }
+                _interactingPlayers.Add(playerID, action);
+                UpdateDoubleAudio();
             }
+            else
+            {
+                if (playerID == _activePlayer)
+                {
+                    CancelAction(_interactingPlayers[playerID]);
+                    _interactingPlayers[playerID] = action;
+                    PerformAction(action);
+                    _activePlayer = playerID;
+                }
+                _interactingPlayers[playerID] = action;
+                UpdateDoubleAudio();
+            }
+            
+            
         }
 
         private void UpdateDoubleAudio()
@@ -153,7 +158,8 @@ namespace _Project.Scripts.Core.Modules.Base_Class
 
             if (_interactingPlayers.Count == 1)
             {
-                PerformAction(_interactingPlayers.First().Value);
+                _activePlayer = _interactingPlayers.First().Key;
+                PerformAction(_interactingPlayers[ _activePlayer]);
             }
         }
     
@@ -174,7 +180,8 @@ namespace _Project.Scripts.Core.Modules.Base_Class
             
             if (_interactingPlayers.Count == 1)
             {
-                PerformAction(_interactingPlayers.First().Value);
+                _activePlayer = _interactingPlayers.First().Key;
+                PerformAction(_interactingPlayers[ _activePlayer]);
             }
         }
 

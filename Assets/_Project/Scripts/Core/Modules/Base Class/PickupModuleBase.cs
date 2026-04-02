@@ -24,7 +24,7 @@ namespace _Project.Scripts.Core.Modules.Base_Class
         [SerializeField] protected GameObject groundLight;
 
         private Collider _colliderCache;
-        protected bool _isPickedUp;
+        public bool IsPickedUp {get; private set;}
 
         protected override void Start()
         {
@@ -43,8 +43,6 @@ namespace _Project.Scripts.Core.Modules.Base_Class
 
         public void PickUp()
         {
-            EnableModule = true;
-            
             _colliderCache ??= GetComponent<Collider>();
             _colliderCache.isTrigger = true;
             gameObject.layer = LayerMask.NameToLayer("HeldObject");
@@ -52,11 +50,13 @@ namespace _Project.Scripts.Core.Modules.Base_Class
             groundLight.SetActive(false);
             
             _audioPooler.New2DAudio(pickUpSound).OnChannel(AudioType.Sfx).SetVolume(pickUpSoundVolume).Play();
-            _isPickedUp = true;
+            IsPickedUp = true;
         }
 
         public void Drop()
         {
+            EnableModule = true;
+            
             _colliderCache ??= GetComponent<Collider>();
             _colliderCache.isTrigger = false;
             gameObject.layer = GridSystem.ObjectOnGridLayer.ToLayerIndex();
@@ -65,7 +65,7 @@ namespace _Project.Scripts.Core.Modules.Base_Class
             groundLight.SetActive(true);
             
             _audioPooler.New2DAudio(putDownSound).OnChannel(AudioType.Sfx).SetVolume(putDownSoundVolume).Play();
-            _isPickedUp = false;
+            IsPickedUp = false;
         }
 
         public void RotateClockWise()

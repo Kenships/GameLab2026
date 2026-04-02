@@ -1,4 +1,5 @@
 using System;
+using _Project.Scripts.Core.Modules.Base_Class;
 using _Project.Scripts.Core.Player;
 using UnityEngine;
 
@@ -10,21 +11,41 @@ namespace _Project.Scripts.Tutorial
         [SerializeField] private TutPlayerInteractionController player2;
 
         private bool _beginCheck;
-        
+
         private Action _callback;
-        
+
+        private PickupModuleBase[] _modules;
+
+        private bool _listening;
+
         public void Invoke(Action callback)
         {
-           player1.OnDrop += OnDrop;
-           player2.OnDrop += OnDrop;
-           _callback = callback;
+            _modules = FindObjectsByType<PickupModuleBase>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
+            
+            _callback = callback;
+            _beginCheck = true;
         }
 
-        private void OnDrop(PlayerData.PlayerID obj)
+        private void OnDestroy()
         {
-            player1.OnDrop -= OnDrop;
-            player2.OnDrop -= OnDrop;
+            _beginCheck = false;
+        }
+
+        private void Update()
+        {
+            if (!_beginCheck) return;
+
+            foreach (PickupModuleBase module in _modules)
+            {
+                if (!module.EnableModule)
+                {
+                    return;
+                }
+            }
+            
+            _beginCheck = false;
             _callback?.Invoke();
         }
+        
     }
 }

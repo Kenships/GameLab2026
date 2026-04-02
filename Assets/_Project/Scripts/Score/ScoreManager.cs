@@ -3,6 +3,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using _Project.Scripts.Effects;
+using _Project.Scripts.UI;
 using UnityEngine;
 using UnityEngine.UI;
 
