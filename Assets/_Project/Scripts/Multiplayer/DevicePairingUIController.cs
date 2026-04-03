@@ -61,15 +61,33 @@ namespace _Project.Scripts.Multiplayer
             switch (playerID)
             {
                 case PlayerData.PlayerID.Player1:
-                    if (_player1Index != 1 && _player1Index != _player2Index)
+                    if (_player1Index != 1 && _player1Index != _player2Index){
+                        PlayerConfirm(_player1Index);
                         _player1Ready = true;
+                    }
                     break;
                 case PlayerData.PlayerID.Player2:
                     if (_player2Index != 1 && _player2Index != _player1Index)
+                    {
+                        PlayerConfirm(_player2Index);
                         _player2Ready = true;
+                    }
                     break;
             }
             UpdateUI();
+        }
+
+        private void PlayerConfirm(int index)
+        {
+            if (index == 0)
+            {
+                player1AnimationController.Select();
+            }
+
+            if (index == treys.Length - 1)
+            {
+                player2AnimationController.Select();
+            }
         }
         
         private bool UpdateSelectIndex(ref int selectedModuleNumber, int delta)
