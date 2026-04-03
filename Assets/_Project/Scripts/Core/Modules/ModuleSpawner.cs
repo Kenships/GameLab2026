@@ -63,7 +63,6 @@ namespace _Project.Scripts.Core.Modules
                 .OnComplete(() => {
                     if (oneTimeHint) 
                     {
-                        info.arrow.enabled = true;
                         hintUI.PlayArrowBackAndForth(info.arrow); 
                     }
                     oneTimeHint = false;
@@ -102,8 +101,7 @@ namespace _Project.Scripts.Core.Modules
                 GameObject module = info.stackedModules[i];
                 if (module != null && module.GetComponent<PickupModuleBase>().IsPickedUp)
                 {
-                    hintUI.StopArrowBackAndForth();
-                    info.arrow.enabled = false;
+                    hintUI.StopArrowBackAndForth(info.arrow);
                     info.stackedModules.RemoveAt(i);
                     i--;
 

@@ -12,6 +12,7 @@ namespace _Project.Scripts.Tutorial
         [SerializeField] private float requiredTimeToMove = 2f;
         [SerializeField] private NESActionReader player1Actions;
         [SerializeField] private NESActionReader player2Actions;
+        [SerializeField] private GameObject hintText;
 
         private bool _player1Moved;
         private bool _player2Moved;
@@ -20,6 +21,7 @@ namespace _Project.Scripts.Tutorial
         
         public void Invoke(Action callback)
         {
+            hintText.SetActive(true);
             player1Actions.OnDPadInput += Player1ActionsOnOnDPadInput;
             player2Actions.OnDPadInput += Player2ActionsOnOnDPadInput;
             
@@ -39,6 +41,7 @@ namespace _Project.Scripts.Tutorial
 
             if (_player2Moved && !_countdownTimer.IsRunning)
             {
+                hintText.SetActive(false);
                 player1Actions.OnDPadInput -= Player1ActionsOnOnDPadInput;
                 player2Actions.OnDPadInput -= Player2ActionsOnOnDPadInput;
                 _countdownTimer.Start();
@@ -51,6 +54,7 @@ namespace _Project.Scripts.Tutorial
 
             if (_player1Moved && !_countdownTimer.IsRunning)
             {
+                hintText.SetActive(false);
                 player1Actions.OnDPadInput -= Player1ActionsOnOnDPadInput;
                 player2Actions.OnDPadInput -= Player2ActionsOnOnDPadInput;
                 _countdownTimer.Start();

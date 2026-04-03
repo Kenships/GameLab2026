@@ -1785,6 +1785,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Tutorial.TutPickupListener
   player1: {fileID: 1538682421}
   player2: {fileID: 422280500}
+  hintText: {fileID: 1011535007}
+  hintUI: {fileID: 8939613}
+  arrow: {fileID: 2096034493}
 --- !u!114 &264355254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1800,6 +1803,7 @@ MonoBehaviour:
   requiredTimeToMove: 2
   player1Actions: {fileID: 1538682416}
   player2Actions: {fileID: 422280495}
+  hintText: {fileID: 1011535007}
 --- !u!114 &264355255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1831,6 +1835,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Tutorial.TutRotationListener
   player1: {fileID: 1538682421}
   player2: {fileID: 422280500}
+  hintText: {fileID: 1011535007}
 --- !u!114 &264355257
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1858,6 +1863,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Tutorial.TutCarListener
   tutCar: {fileID: 2123999489}
   carLight: {fileID: 1435473707}
+  hintUI: {fileID: 8939613}
+  arrow: {fileID: 583056456}
 --- !u!114 &264355259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1873,6 +1880,7 @@ MonoBehaviour:
   listeningType: 1
   player1: {fileID: 1538682421}
   player2: {fileID: 422280500}
+  hintText: {fileID: 1011535007}
 --- !u!114 &264355260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1888,6 +1896,7 @@ MonoBehaviour:
   listeningType: 0
   player1: {fileID: 1538682421}
   player2: {fileID: 422280500}
+  hintText: {fileID: 1011535007}
 --- !u!114 &264355261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1901,7 +1910,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Tutorial.TutVHSListener
   vhsModule: {fileID: 1630970325}
-  vhsLight: {fileID: 719634262}
+  hintUI: {fileID: 8939613}
+  arrow: {fileID: 1983790211}
 --- !u!114 &264355262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3238,6 +3248,78 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5846722849630315972, guid: 873a1bc7317128045b7538dc9fd6b434, type: 3}
   m_PrefabInstance: {fileID: 1221419986}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &583056454
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 583056455}
+  - component: {fileID: 583056457}
+  - component: {fileID: 583056456}
+  m_Layer: 5
+  m_Name: Arrow car
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &583056455
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 583056454}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.39486548, y: 0.39486548, z: 0.39486548}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 603474950}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -50, y: 22}
+  m_SizeDelta: {x: 480, y: 720}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &583056456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 583056454}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.RawImage
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Texture: {fileID: 2800000, guid: 5b9b83d7ffe222549b02e194b768fad5, type: 3}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+--- !u!222 &583056457
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 583056454}
+  m_CullTransparentMesh: 1
 --- !u!1 &603474949
 GameObject:
   m_ObjectHideFlags: 0
@@ -3267,6 +3349,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2096034492}
+  - {fileID: 1983790210}
+  - {fileID: 583056455}
   m_Father: {fileID: 1669865947}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -3586,133 +3670,6 @@ Transform:
   - {fileID: 258941923}
   m_Father: {fileID: 199238308}
   m_LocalEulerAnglesHint: {x: 0, y: 30, z: 0}
---- !u!1 &719634259
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 719634260}
-  - component: {fileID: 719634262}
-  - component: {fileID: 719634261}
-  m_Layer: 3
-  m_Name: TutLight
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &719634260
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 719634259}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.01, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1630970323}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &719634261
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 719634259}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalLightData
-  m_UsePipelineSettings: 1
-  m_AdditionalLightsShadowResolutionTier: 2
-  m_CustomShadowLayers: 0
-  m_LightCookieSize: {x: 1, y: 1}
-  m_LightCookieOffset: {x: 0, y: 0}
-  m_SoftShadowQuality: 0
-  m_RenderingLayersMask:
-    serializedVersion: 0
-    m_Bits: 1
-  m_ShadowRenderingLayersMask:
-    serializedVersion: 0
-    m_Bits: 1
-  m_Version: 4
-  m_LightLayerMask: 1
-  m_ShadowLayerMask: 1
-  m_RenderingLayers: 1
-  m_ShadowRenderingLayers: 1
---- !u!108 &719634262
-Light:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 719634259}
-  m_Enabled: 1
-  serializedVersion: 12
-  m_Type: 2
-  m_Color: {r: 0.44408292, g: 0.42452818, b: 1, a: 1}
-  m_Intensity: 0
-  m_Range: 20
-  m_SpotAngle: 30
-  m_InnerSpotAngle: 21.80208
-  m_CookieSize2D: {x: 0.5, y: 0.5}
-  m_Shadows:
-    m_Type: 0
-    m_Resolution: -1
-    m_CustomResolution: -1
-    m_Strength: 1
-    m_Bias: 0.05
-    m_NormalBias: 0.4
-    m_NearPlane: 0.2
-    m_CullingMatrixOverride:
-      e00: 1
-      e01: 0
-      e02: 0
-      e03: 0
-      e10: 0
-      e11: 1
-      e12: 0
-      e13: 0
-      e20: 0
-      e21: 0
-      e22: 1
-      e23: 0
-      e30: 0
-      e31: 0
-      e32: 0
-      e33: 1
-    m_UseCullingMatrixOverride: 0
-  m_Cookie: {fileID: 0}
-  m_DrawHalo: 0
-  m_Flare: {fileID: 0}
-  m_RenderMode: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingLayerMask: 1
-  m_Lightmapping: 4
-  m_LightShadowCasterMode: 0
-  m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
-  m_ColorTemperature: 6570
-  m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
-  m_UseBoundingSphereOverride: 0
-  m_UseViewFrustumForShadowCasterCull: 1
-  m_ForceVisible: 0
-  m_ShadowRadius: 0
-  m_ShadowAngle: 0
-  m_LightUnit: 1
-  m_LuxAtDistance: 1
-  m_EnableSpotReflector: 1
 --- !u!1 &723514037
 GameObject:
   m_ObjectHideFlags: 0
@@ -4863,6 +4820,143 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1698584882}
   m_SourcePrefab: {fileID: 100100000, guid: 08469d9c1e17f67469b8d5418e834cdf, type: 3}
+--- !u!1 &1011535007
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1011535008}
+  - component: {fileID: 1011535010}
+  - component: {fileID: 1011535009}
+  m_Layer: 0
+  m_Name: HintText (both do)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1011535008
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1011535007}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1352060257}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -211.87}
+  m_SizeDelta: {x: 1200, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1011535009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1011535007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Both Players Need To Do The Task
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 2cdaa1c36096e4443a983b8159e46f45, type: 2}
+  m_sharedMaterial: {fileID: 2521428953573037538, guid: 2cdaa1c36096e4443a983b8159e46f45, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4285530096
+  m_fontColor: {r: 0.9412853, g: 1, b: 0.43529415, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 50
+  m_fontSizeBase: 50
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 1
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_characterHorizontalScale: 1
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1011535010
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1011535007}
+  m_CullTransparentMesh: 1
 --- !u!1 &1013217011
 GameObject:
   m_ObjectHideFlags: 0
@@ -4992,8 +5086,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - PanelText: "But hey\u2014I can get you outta here. If you protect me. Not a bad
-      deal, right?"
+  - PanelText: But hey, I can get you outta here. If you protect me. Not a bad deal,
+      right?
     OnPanel:
       m_PersistentCalls:
         m_Calls:
@@ -5139,8 +5233,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - PanelText: "Look, I get it\u2014you can't punch monsters to death with your bare
-      hands. So I hooked you up with something."
+  - PanelText: Look, I get it, you can't punch monsters to death with your bare hands.
+      So I hooked you up with something.
     OnPanel:
       m_PersistentCalls:
         m_Calls:
@@ -5186,10 +5280,35 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
+        - m_Target: {fileID: 8939613}
+          m_TargetAssemblyTypeName: HintUI, Assembly-CSharp
+          m_MethodName: PlayArrowBackAndForthDefault
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 2096034493}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.RawImage, UnityEngine.UI
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
   - PanelText: Try Click A to grab it. Click A again to put it down (only on grass).
     OnPanel:
       m_PersistentCalls:
         m_Calls:
+        - m_Target: {fileID: 264355253}
+          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutPickupListener,
+            Assembly-CSharp
+          m_MethodName: SetRequireBothPlayers
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
         - m_Target: {fileID: 264355253}
           m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutPickupListener,
             Assembly-CSharp
@@ -5255,7 +5374,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - PanelText: "Lucky you\u2014you actually control time in this place."
+  - PanelText: Lucky you, you actually control time in this place.
     OnPanel:
       m_PersistentCalls:
         m_Calls:
@@ -5324,8 +5443,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - PanelText: "Speeds things up\u2014shoots faster, hits harder\u2014but burns out
-      quicker. Trade-off."
+  - PanelText: Speeds things up, shoots faster, hits harder, but burns out quicker.
+      Trade-off.
     OnPanel:
       m_PersistentCalls:
         m_Calls:
@@ -5359,8 +5478,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - PanelText: "Easy right? There's another type of module too\u2014needs full time
-      to wake up. You'll see a battery icon on top."
+  - PanelText: Easy right? There's actually another type of module, go get it first.
     OnPanel:
       m_PersistentCalls:
         m_Calls:
@@ -5376,6 +5494,49 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
+        - m_Target: {fileID: 8939613}
+          m_TargetAssemblyTypeName: HintUI, Assembly-CSharp
+          m_MethodName: PlayArrowBackAndForthDefault
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 2096034493}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.RawImage, UnityEngine.UI
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 264355253}
+          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutPickupListener,
+            Assembly-CSharp
+          m_MethodName: SetRequireBothPlayers
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 264355253}
+          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutPickupListener,
+            Assembly-CSharp
+          m_MethodName: Invoke
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - PanelText: You can see it got the battery icon on top, that means it needs full
+      time to wake up.
+    OnPanel:
+      m_PersistentCalls:
+        m_Calls:
         - m_Target: {fileID: 264355255}
           m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutConfirmationListener,
             Assembly-CSharp
@@ -5398,6 +5559,18 @@ MonoBehaviour:
           m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutTankListener, Assembly-CSharp
           m_MethodName: Invoke
           m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 8939613}
+          m_TargetAssemblyTypeName: HintUI, Assembly-CSharp
+          m_MethodName: StopArrowBackAndForth
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -5452,7 +5625,19 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - PanelText: "Go on\u2014rewind it, fast forward it. HOLD B, then HOLD A."
+        - m_Target: {fileID: 8939613}
+          m_TargetAssemblyTypeName: HintUI, Assembly-CSharp
+          m_MethodName: PlayArrowBackAndForthDefault
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 583056456}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.RawImage, UnityEngine.UI
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - PanelText: Go on, rewind it, fast forward it. HOLD B, then HOLD A.
     OnPanel:
       m_PersistentCalls:
         m_Calls:
@@ -5562,8 +5747,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-  - PanelText: "Not bad. Not bad at all. But trust me\u2014the real fight is way
-      tougher."
+  - PanelText: Not bad. Not bad at all. But trust me, the real fight is way tougher.
     OnPanel:
       m_PersistentCalls:
         m_Calls:
@@ -5611,7 +5795,7 @@ MonoBehaviour:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
-            m_FloatArgument: 2.5
+            m_FloatArgument: 4
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
@@ -6689,6 +6873,7 @@ RectTransform:
   m_Children:
   - {fileID: 951293143}
   - {fileID: 1694884839}
+  - {fileID: 1011535008}
   m_Father: {fileID: 1020470271}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
@@ -6979,6 +7164,10 @@ PrefabInstance:
     - target: {fileID: 2815457285788318349, guid: e3079e81a8212914897bea0ac3d32f43, type: 3}
       propertyPath: m_Extents.z
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3087266967741973758, guid: e3079e81a8212914897bea0ac3d32f43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6319913789468553322, guid: e3079e81a8212914897bea0ac3d32f43, type: 3}
       propertyPath: m_IsActive
@@ -7990,10 +8179,7 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 7207537582970083182, guid: 43682b4e551780c42b8badfbfd8ea66b, type: 3}
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 7715253540533279948, guid: 43682b4e551780c42b8badfbfd8ea66b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 719634260}
+    m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2853457693616237105, guid: 43682b4e551780c42b8badfbfd8ea66b, type: 3}
       insertIndex: -1
@@ -8628,12 +8814,12 @@ GameObject:
   - component: {fileID: 1694884838}
   - component: {fileID: 1694884837}
   m_Layer: 0
-  m_Name: HintText
+  m_Name: HintText (both A)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1694884837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9530,6 +9716,78 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02a5aeb5e24a32d4dad56281e1a6a240, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.RangeDetector
+--- !u!1 &1983790209
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1983790210}
+  - component: {fileID: 1983790212}
+  - component: {fileID: 1983790211}
+  m_Layer: 5
+  m_Name: Arrow VHS
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1983790210
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1983790209}
+  m_LocalRotation: {x: -0.3629826, y: 0.93179595, z: -0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.39486548, y: 0.39486548, z: 0.39486548}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 603474950}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: -42.567}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 419, y: 113}
+  m_SizeDelta: {x: 480, y: 720}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1983790211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1983790209}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.RawImage
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Texture: {fileID: 2800000, guid: 5b9b83d7ffe222549b02e194b768fad5, type: 3}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+--- !u!222 &1983790212
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1983790209}
+  m_CullTransparentMesh: 1
 --- !u!1 &1991048678
 GameObject:
   m_ObjectHideFlags: 0
@@ -9686,7 +9944,7 @@ Transform:
   m_GameObject: {fileID: 2004073175}
   serializedVersion: 2
   m_LocalRotation: {x: 0.597793, y: 0, z: 0, w: 0.8016505}
-  m_LocalPosition: {x: 0, y: 9.95, z: -3.83}
+  m_LocalPosition: {x: 0, y: 9.95, z: -3.59}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9999,7 +10257,7 @@ GameObject:
   - component: {fileID: 2096034494}
   - component: {fileID: 2096034493}
   m_Layer: 5
-  m_Name: Arrow 1
+  m_Name: Arrow module landing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10012,16 +10270,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2096034491}
-  m_LocalRotation: {x: 0.3291609, y: 0.9442739, z: -0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.39486548, y: 0.39486548, z: 0.39486548}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 603474950}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 38.436}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 49, y: 381}
+  m_AnchoredPosition: {x: -21, y: 181}
   m_SizeDelta: {x: 480, y: 720}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2096034493

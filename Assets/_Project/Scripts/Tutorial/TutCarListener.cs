@@ -1,6 +1,7 @@
-using System;
 using PrimeTween;
+using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace _Project.Scripts.Tutorial
 {
@@ -8,6 +9,8 @@ namespace _Project.Scripts.Tutorial
     {
         [SerializeField] private TutCar tutCar;
         [SerializeField] private Light carLight;
+        [SerializeField] private HintUI hintUI;
+        [SerializeField] private RawImage arrow;
 
         private Action _callback;
         private float _initialLightIntensity;
@@ -40,6 +43,7 @@ namespace _Project.Scripts.Tutorial
 
         private void OnCarAttack()
         {
+            hintUI.StopArrowBackAndForth(arrow);
             tutCar.OnCarAttack -= OnCarAttack;
             Tween.StopAll(carLight);
             carLight.intensity = _initialLightIntensity;

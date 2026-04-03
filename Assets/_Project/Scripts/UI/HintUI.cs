@@ -7,6 +7,7 @@ public class HintUI : MonoBehaviour
     private Tween arrowBackAndForthTween;
     public void PlayArrowBackAndForth(RawImage arrow, float offset = 30f, float duration = 0.5f)
     {
+        arrow.enabled = true;
         RectTransform rectTransform = arrow.rectTransform;
         Vector3 startPos = rectTransform.localPosition;
         Vector3 localUpDir = rectTransform.localRotation * Vector3.up;
@@ -21,8 +22,14 @@ public class HintUI : MonoBehaviour
         );
     }
 
-    public void StopArrowBackAndForth()
+    public void StopArrowBackAndForth(RawImage arrow)
     {
+        arrow.enabled = false;
         if (arrowBackAndForthTween.isAlive) arrowBackAndForthTween.Stop();
+    }
+    // for event
+    public void PlayArrowBackAndForthDefault(RawImage arrow)
+    {
+        PlayArrowBackAndForth(arrow);
     }
 }

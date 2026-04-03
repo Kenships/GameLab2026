@@ -15,7 +15,8 @@ namespace _Project.Scripts.Tutorial
         [SerializeField] private ListeningType listeningType;
         [SerializeField] private TutPlayerInteractionController player1;
         [SerializeField] private TutPlayerInteractionController player2;
-        
+        [SerializeField] private GameObject hintText;
+
         private Action _callback;
         
         private bool _player1TimeControlled;
@@ -23,6 +24,7 @@ namespace _Project.Scripts.Tutorial
         
         public void Invoke(Action callback)
         {
+            hintText.SetActive(true);
             _callback = callback;
             
             _player1TimeControlled = false;
@@ -69,6 +71,7 @@ namespace _Project.Scripts.Tutorial
 
             if (_player1TimeControlled && _player2TimeControlled)
             {
+                hintText.SetActive(false);
                 player1.OnFastForward -= OnTimeControl;
                 player2.OnFastForward -= OnTimeControl;
                 player1.OnRewind -= OnTimeControl;
