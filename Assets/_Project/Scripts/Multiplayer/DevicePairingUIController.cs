@@ -1,5 +1,7 @@
 using System;
+using _Project.Scripts.Core.Player;
 using _Project.Scripts.Core.SceneLoading;
+using _Project.Scripts.UI;
 using Obvious.Soap;
 using Sisus.Init;
 using UnityEngine;
@@ -8,22 +10,25 @@ namespace _Project.Scripts.Multiplayer
 {
     public class DevicePairingUIController : MonoBehaviour<IDevicePairingService>
     {
-        [SerializeField] private ScriptableEventBool player1ReadyEvent;
-        [SerializeField] private ScriptableEventBool player2ReadyEvent;
-        
-        [SerializeField] private GameObject player1ReadyProgress;
-        [SerializeField] private GameObject player2ReadyProgress;
-        [SerializeField] private GameObject player1ReadyText;
-        [SerializeField] private GameObject player2ReadyText;
-        [SerializeField] private GameObject player1UnreadyText;
-        [SerializeField] private GameObject player2UnreadyText;
-        [SerializeField] private GameObject player1PairedUI;
-        [SerializeField] private GameObject player2PairedUI;
-        [SerializeField] private GameObject player1UnpairedUI;
-        [SerializeField] private GameObject player2UnpairedUI;
+        [SerializeField] private PlayerMenuAnimationController player1AnimationController;
+        [SerializeField] private PlayerMenuAnimationController player2AnimationController;
+
+        [SerializeField] private ModuleSelectPlayer player1;
+        [SerializeField] private ModuleSelectPlayer player2;
+
+        [SerializeField] private GameObject player1SelectVisual;
+        [SerializeField] private GameObject player2SelectVisual;
+
+        [SerializeField] private GameObject player1ConfirmVisual;
+        [SerializeField] private GameObject player2ConfirmVisual;
+
+        [SerializeField] private Transform[] treys;
         
         private bool _player1Ready;
         private bool _player2Ready;
+
+        private int _player1Index;
+        private int _player2Index;
         
         private IDevicePairingService _devicePairingService;
         private SceneLoader _sceneLoader;
@@ -36,8 +41,14 @@ namespace _Project.Scripts.Multiplayer
 
         private void OnEnable()
         {
-            player1ReadyEvent.OnRaised += OnPlayer1ReadyRaised;
-            player2ReadyEvent.OnRaised += OnPlayer2ReadyRaised;
+            _player1Index = 1;
+            _player2Index = 1;
+            
+            player1.OnMove += PlayerOnMove;
+            player2.OnMove += PlayerOnMove;
+            
+            player1.OnConfirm += PlayerOnConfirm;
+            player2.OnConfirm += PlayerOnConfirm;
             
             _devicePairingService.OnPlayer1Paired += DevicePairingServiceOnPlayer1Paired;
             _devicePairingService.OnPlayer2Paired += DevicePairingServiceOnPlayer2Paired;
@@ -45,14 +56,53 @@ namespace _Project.Scripts.Multiplayer
             _devicePairingService.OnPlayer2Unpaired += DevicePairingServiceOnPlayer2Unpaired;
         }
 
-        private void OnPlayer1ReadyRaised(bool ready)
+        private void PlayerOnConfirm(PlayerData.PlayerID playerID)
         {
-            _player1Ready = ready;
+            switch (playerID)
+            {
+                case PlayerData.PlayerID.Player1:
+                    if (_player1Index != 1 && _player1Index != _player2Index)
+                        _player1Ready = true;
+                    break;
+                case PlayerData.PlayerID.Player2:
+                    if (_player2Index != 1 && _player2Index != _player1Index)
+                        _player2Ready = true;
+                    break;
+            }
+            UpdateUI();
         }
         
-        private void OnPlayer2ReadyRaised(bool ready)
+        private bool UpdateSelectIndex(ref int selectedModuleNumber, int delta)
         {
-            _player2Ready = ready;
+            int newIndex = Mathf.Clamp(selectedModuleNumber + delta, 0, treys.Length - 1);
+
+            if (newIndex != selectedModuleNumber)
+            {
+                selectedModuleNumber = newIndex;
+                return true;
+            }
+            
+            return false;
+        }
+
+        private void PlayerOnMove((PlayerData.PlayerID id, int dir) arg)
+        {
+            switch (arg.id)
+            {
+                case PlayerData.PlayerID.Player1:
+                    if (UpdateSelectIndex(ref _player1Index, arg.dir))
+                    {
+                        _player1Ready = false;
+                    }
+                    break;
+                case PlayerData.PlayerID.Player2:
+                    if (UpdateSelectIndex(ref _player2Index, arg.dir))
+                    {
+                        _player2Ready = false;
+                    }
+                    break;
+            }
+            UpdateUI();
         }
 
         private void OnDisable()
@@ -75,6 +125,7 @@ namespace _Project.Scripts.Multiplayer
 
             if (_player1Ready && _player2Ready)
             {
+                _devicePairingService.SwapPlayers = _player1Index > _player2Index;
                 _sceneLoader.LoadScene();
             }
         }
@@ -102,19 +153,14 @@ namespace _Project.Scripts.Multiplayer
 
         private void UpdateUI()
         {
-            player1ReadyProgress.SetActive(_devicePairingService.IsPlayer1Paired);
-            player2ReadyProgress.SetActive(_devicePairingService.IsPlayer2Paired);
-            player1ReadyText.SetActive(_devicePairingService.IsPlayer1Paired && _player1Ready);
-            player2ReadyText.SetActive(_devicePairingService.IsPlayer2Paired && _player2Ready);
+            player1SelectVisual.SetActive(_devicePairingService.IsPlayer1Paired);
+            player2SelectVisual.SetActive(_devicePairingService.IsPlayer2Paired);
             
-            player1UnreadyText.SetActive(_devicePairingService.IsPlayer1Paired && !_player1Ready);
-            player2UnreadyText.SetActive(_devicePairingService.IsPlayer2Paired && !_player2Ready);
+            player1ConfirmVisual.SetActive(_player1Ready);
+            player2ConfirmVisual.SetActive(_player2Ready);
             
-            player1PairedUI.SetActive(_devicePairingService.IsPlayer1Paired);
-            player2PairedUI.SetActive(_devicePairingService.IsPlayer2Paired);
-            
-            player1UnpairedUI.SetActive(!_devicePairingService.IsPlayer1Paired);
-            player2UnpairedUI.SetActive(!_devicePairingService.IsPlayer2Paired);
+            player1SelectVisual.transform.SetParent(treys[_player1Index]);
+            player2SelectVisual.transform.SetParent(treys[_player2Index]);
         }
     }
 }

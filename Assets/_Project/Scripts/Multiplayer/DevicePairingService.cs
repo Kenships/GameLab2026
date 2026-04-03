@@ -11,6 +11,7 @@ namespace _Project.Scripts.Multiplayer
     public class DevicePairingService : MonoBehaviour, IDevicePairingService
     {
         public NESActions Value => new();
+        public bool SwapPlayers { get; set; }
 
         public bool TryGetFor(Component client, out NESActions value)
         {
@@ -22,6 +23,23 @@ namespace _Project.Scripts.Multiplayer
 
             if (client.TryGetComponent(out PlayerData playerData))
             {
+                if (SwapPlayers)
+                {
+                    if (playerData.ID == PlayerData.PlayerID.Player2)
+                    {
+                        _player1Actions ??= new NESActions();
+                        value = _player1Actions;
+                        return true;
+                    }
+                
+                    if (playerData.ID == PlayerData.PlayerID.Player1)
+                    {
+                        _player2Actions ??= new NESActions();
+                        value = _player2Actions;
+                        return true;
+                    }
+                }
+                
                 if (playerData.ID == PlayerData.PlayerID.Player1)
                 {
                     _player1Actions ??= new NESActions();
