@@ -4974,7 +4974,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Tutorial.TutorialComposer
   panels:
-  - PanelText: Just when I thought I was out, you pull me back in...
+  - PanelText: Well well well... looks like you bozos got sucked into this movie
+      wasteland.
     OnPanel:
       m_PersistentCalls:
         m_Calls:
@@ -4991,8 +4992,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - PanelText: Look what ya did, you little jerks! You just had to steal from a DVD
-      store, didn't ya? We're stuck in this movie wasteland now.
+  - PanelText: "But hey\u2014I can get you outta here. If you protect me. Not a bad
+      deal, right?"
     OnPanel:
       m_PersistentCalls:
         m_Calls:
@@ -5009,10 +5010,24 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - PanelText: 'Move it! Move it! Move it! - Those legs aren''t just for decoration!
-
-      Try
-      to move with the DIRECTIONAL-PAD.'
+  - PanelText: Who's talking? The VHS tape on the right. Yeah, me. See me now?
+    OnPanel:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 264355255}
+          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutConfirmationListener,
+            Assembly-CSharp
+          m_MethodName: Invoke
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - PanelText: First off, try moving around with the DIRECTIONAL-PAD. Go on.
     OnPanel:
       m_PersistentCalls:
         m_Calls:
@@ -5029,39 +5044,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - PanelText: Wow, real Dude vibes...
-    OnPanel:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 264355262}
-          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutTimeListener, Assembly-CSharp
-          m_MethodName: set_TimeToNextPanel
-          m_Mode: 4
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 2
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 264355262}
-          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutTimeListener, Assembly-CSharp
-          m_MethodName: Invoke
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - PanelText: 'Where do you think you are going! Can''t you see I look like post-fight
-      Rocky right now? Get Over Here and give me a hand!
-
-      Press B to Rewind
-      and fix me up.'
+  - PanelText: "Nice! See that bar up top? That's my health. And uh\u2026 it ain't
+      exactly full, is it?"
     OnPanel:
       m_PersistentCalls:
         m_Calls:
@@ -5090,6 +5074,23 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 264355255}
+          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutConfirmationListener,
+            Assembly-CSharp
+          m_MethodName: Invoke
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - PanelText: So come over and patch me up by HOLDING B next to me. Thanks, pal.
+    OnPanel:
+      m_PersistentCalls:
+        m_Calls:
         - m_Target: {fileID: 264355261}
           m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutVHSListener, Assembly-CSharp
           m_MethodName: Invoke
@@ -5102,36 +5103,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - PanelText: Oh yeah, that's the spot! It's not the years, kids, it's the mileage.
-    OnPanel:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 264355262}
-          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutTimeListener, Assembly-CSharp
-          m_MethodName: set_TimeToNextPanel
-          m_Mode: 4
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 3
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 264355262}
-          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutTimeListener, Assembly-CSharp
-          m_MethodName: Invoke
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - PanelText: We're not alone out here... The creatures in this wasteland will soon
-      be flocking to ME SPECIFICALLY.
+  - PanelText: But that's just a start. The real problem? Monsters are gonna come
+      wreck me real soon...
     OnPanel:
       m_PersistentCalls:
         m_Calls:
@@ -5148,7 +5121,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - PanelText: You see, they love me. They <i>looove</i> to eat VHS tapes.
+  - PanelText: So you better keep me alive, or else you can kiss your exit ticket
+      goodbye.
     OnPanel:
       m_PersistentCalls:
         m_Calls:
@@ -5165,8 +5139,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - PanelText: You're gonna wanna protect me, by the way. I'm your only ticket outta
-      here. I just need more... Time.
+  - PanelText: "Look, I get it\u2014you can't punch monsters to death with your bare
+      hands. So I hooked you up with something."
     OnPanel:
       m_PersistentCalls:
         m_Calls:
@@ -5183,13 +5157,12 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - PanelText: Use the abandoned Modules to defend me, your Tape. Press A to pick-up
-      or place your modules on a grass tile.
+  - PanelText: 'See that thing up there? My gift to you: a flamethrower. Sweet, huh?'
     OnPanel:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 264355253}
-          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutPickupListener,
+        - m_Target: {fileID: 264355255}
+          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutConfirmationListener,
             Assembly-CSharp
           m_MethodName: Invoke
           m_Mode: 0
@@ -5213,189 +5186,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-  - PanelText: 'Press B to rotate a Module. You can do this while it''s on the ground.
-
-      Both
-      of you. We''re not moving on until I see both your efforts!'
-    OnPanel:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 264355256}
-          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutRotationListener,
-            Assembly-CSharp
-          m_MethodName: Invoke
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - PanelText: "Now Lets Get some time into these hunks of junk. \nHold B to REWIND
-      a Module. Both of you."
-    OnPanel:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 264355259}
-          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutTimeControlListener,
-            Assembly-CSharp
-          m_MethodName: Invoke
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - PanelText: 'The Time Bar above each module represents how much time it has left
-      before breaking again. '
-    OnPanel:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 264355255}
-          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutConfirmationListener,
-            Assembly-CSharp
-          m_MethodName: Invoke
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - PanelText: 'to really power it up we can fast forward the module by holding A.
-      Both of you.
-
-      This will drain time faster but its worth it. Trust me,
-      I''m a professional.'
-    OnPanel:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 264355260}
-          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutTimeControlListener,
-            Assembly-CSharp
-          m_MethodName: Invoke
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - PanelText: Told you.
-    OnPanel:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 264355262}
-          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutTimeListener, Assembly-CSharp
-          m_MethodName: set_TimeToNextPanel
-          m_Mode: 4
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 2
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 264355262}
-          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutTimeListener, Assembly-CSharp
-          m_MethodName: Invoke
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - PanelText: Seeing your potential... I'll extend my powers to you, just this once.
-    OnPanel:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 264355255}
-          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutConfirmationListener,
-            Assembly-CSharp
-          m_MethodName: Invoke
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - PanelText: "At the end of each round I will Grant you ONE module, both of you
-      agree on. \nBut since you fixed me up earlier I'll give you an early freebee."
-    OnPanel:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 264355255}
-          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutConfirmationListener,
-            Assembly-CSharp
-          m_MethodName: Invoke
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - PanelText: Scene Load
-    OnPanel:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1352060256}
-          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_MethodName: SetActive
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 264355263}
-          m_TargetAssemblyTypeName: _Project.Scripts.Core.SceneLoading.SceneLoader,
-            Assembly-CSharp
-          m_MethodName: LoadScene
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 264355257}
-          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutModuleSpawnListener,
-            Assembly-CSharp
-          m_MethodName: Invoke
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - PanelText: Position the module get ready for an imminant attack.
+  - PanelText: Try Click A to grab it. Click A again to put it down (only on grass).
     OnPanel:
       m_PersistentCalls:
         m_Calls:
@@ -5412,8 +5203,164 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - PanelText: One last thing. There is a second type of Modules that require time
-      energy to charge indicated by the battery. Go Ahead and Position it well.
+  - PanelText: Nice! Now Click B to spin it around.
+    OnPanel:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 264355256}
+          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutRotationListener,
+            Assembly-CSharp
+          m_MethodName: Invoke
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - PanelText: Awesome. But you probably noticed... it ain't doing anything right
+      now.
+    OnPanel:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 264355255}
+          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutConfirmationListener,
+            Assembly-CSharp
+          m_MethodName: Invoke
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - PanelText: That's cause time is the juice for these modules. No time, no boom.
+    OnPanel:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 264355255}
+          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutConfirmationListener,
+            Assembly-CSharp
+          m_MethodName: Invoke
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - PanelText: "Lucky you\u2014you actually control time in this place."
+    OnPanel:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 264355255}
+          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutConfirmationListener,
+            Assembly-CSharp
+          m_MethodName: Invoke
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - PanelText: Try HOLDING B to rewind the module next to ya.
+    OnPanel:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 264355259}
+          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutTimeControlListener,
+            Assembly-CSharp
+          m_MethodName: Invoke
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - PanelText: 'Boom! Now fire''s coming out! Remember: modules are junk without
+      time.'
+    OnPanel:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 264355255}
+          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutConfirmationListener,
+            Assembly-CSharp
+          m_MethodName: Invoke
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - PanelText: And hey, you can also fast forward.
+    OnPanel:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 264355255}
+          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutConfirmationListener,
+            Assembly-CSharp
+          m_MethodName: Invoke
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - PanelText: "Speeds things up\u2014shoots faster, hits harder\u2014but burns out
+      quicker. Trade-off."
+    OnPanel:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 264355255}
+          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutConfirmationListener,
+            Assembly-CSharp
+          m_MethodName: Invoke
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - PanelText: Now try HOLD B to rewind. HOLD A to fast forward.
+    OnPanel:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 264355260}
+          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutTimeControlListener,
+            Assembly-CSharp
+          m_MethodName: Invoke
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - PanelText: "Easy right? There's another type of module too\u2014needs full time
+      to wake up. You'll see a battery icon on top."
     OnPanel:
       m_PersistentCalls:
         m_Calls:
@@ -5442,10 +5389,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-  - PanelText: 'Once charged they can be used once they are fully charged by FAST
-      FORWARDING by HOLDING A.
-
-      Try Exploding This Tank Module.'
+  - PanelText: 'So here''s the move: HOLD B to rewind it full, then HOLD A to fire
+      it up. Try that on the explosive tank.'
     OnPanel:
       m_PersistentCalls:
         m_Calls:
@@ -5490,78 +5435,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-  - PanelText: All right, One FINAL thing for real. I got a sick ride hanging down
-      there, it looks in bad shape but It'll come in handy.
-    OnPanel:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1020470267}
-          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutorialComposer, Assembly-CSharp
-          m_MethodName: AnchorTop
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
-        - m_Target: {fileID: 1020470272}
-          m_TargetAssemblyTypeName: _Project.Scripts.Core.SceneLoading.SceneLoader,
-            Assembly-CSharp
-          m_MethodName: LoadScene
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 2123999483}
-          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_MethodName: SetActive
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
-  - PanelText: "Wax on, Wax off. Try Rewinding the vehicle then Fast-Forwarding it.
-      \n(HOLD B then HOLD A)"
-    OnPanel:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1020470267}
-          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutorialComposer, Assembly-CSharp
-          m_MethodName: AnchorTop
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 264355258}
-          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutCarListener, Assembly-CSharp
-          m_MethodName: Invoke
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - PanelText: Your opponents will be forced to change route! Use this to your benefit.
+  - PanelText: Oh, and see that car? Yeah, you can mess with its time too.
     OnPanel:
       m_PersistentCalls:
         m_Calls:
@@ -5578,7 +5452,24 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - PanelText: Waddya know? They're here.
+  - PanelText: "Go on\u2014rewind it, fast forward it. HOLD B, then HOLD A."
+    OnPanel:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 264355258}
+          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutCarListener, Assembly-CSharp
+          m_MethodName: Invoke
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - PanelText: Uh-oh... incoming ugly! Something's coming for me! PROTECT YOUR TAPE,
+      DUDE!
     OnPanel:
       m_PersistentCalls:
         m_Calls:
@@ -5590,7 +5481,7 @@ MonoBehaviour:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
-            m_FloatArgument: 3
+            m_FloatArgument: 6
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
@@ -5671,25 +5562,14 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-  - PanelText: Hard to believe it's been only 15 minutes since you were at each other's
-      throats.
+  - PanelText: "Not bad. Not bad at all. But trust me\u2014the real fight is way
+      tougher."
     OnPanel:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 264355262}
-          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutTimeListener, Assembly-CSharp
-          m_MethodName: set_TimeToNextPanel
-          m_Mode: 4
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 5
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 264355262}
-          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutTimeListener, Assembly-CSharp
+        - m_Target: {fileID: 264355255}
+          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutConfirmationListener,
+            Assembly-CSharp
           m_MethodName: Invoke
           m_Mode: 0
           m_Arguments:
@@ -5700,24 +5580,14 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - PanelText: Okay, this movie is almost over. Buckle up, kids.
+  - PanelText: 'One more thing: I''ll toss you more modules during the battle, so
+      don''t sweat it.'
     OnPanel:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 264355262}
-          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutTimeListener, Assembly-CSharp
-          m_MethodName: set_TimeToNextPanel
-          m_Mode: 4
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 2.5
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 264355262}
-          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutTimeListener, Assembly-CSharp
+        - m_Target: {fileID: 264355255}
+          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutConfirmationListener,
+            Assembly-CSharp
           m_MethodName: Invoke
           m_Mode: 0
           m_Arguments:
@@ -5728,7 +5598,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - PanelText: This is... your Virtual HellScape
+  - PanelText: And that's it. End of the lesson. Now go kick some monster butt. I'm
+      counting on ya.
     OnPanel:
       m_PersistentCalls:
         m_Calls:
@@ -5756,7 +5627,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - PanelText: Empty
+  - PanelText: 
     OnPanel:
       m_PersistentCalls:
         m_Calls:
@@ -6034,7 +5905,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 830, y: -443.00006}
+  m_AnchoredPosition: {x: 830, y: -609.00006}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1083962720
@@ -6661,15 +6532,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 00213101d54274a4eb723cdd6b3a2f05, type: 3}
       propertyPath: m_LocalScale.x
-      value: 9000
+      value: 8681.76
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 00213101d54274a4eb723cdd6b3a2f05, type: 3}
       propertyPath: m_LocalScale.y
-      value: 9000
+      value: 8681.76
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 00213101d54274a4eb723cdd6b3a2f05, type: 3}
       propertyPath: m_LocalScale.z
-      value: 9000
+      value: 8681.76
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 00213101d54274a4eb723cdd6b3a2f05, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6681,7 +6552,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 00213101d54274a4eb723cdd6b3a2f05, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8
+      value: -7.55
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 00213101d54274a4eb723cdd6b3a2f05, type: 3}
       propertyPath: m_LocalRotation.w
@@ -6813,7 +6684,7 @@ RectTransform:
   m_GameObject: {fileID: 1352060256}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.56399, y: 0.56399, z: 0.56399}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 951293143}
@@ -6822,7 +6693,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 214}
+  m_AnchoredPosition: {x: 501, y: 286}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!1001 &1363958376
@@ -7255,7 +7126,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -838, y: -441}
+  m_AnchoredPosition: {x: -838, y: -607}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1462128541
@@ -9814,7 +9685,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2004073175}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.59779215, y: -0, z: -0, w: 0.8016512}
+  m_LocalRotation: {x: 0.597793, y: 0, z: 0, w: 0.8016505}
   m_LocalPosition: {x: 0, y: 9.95, z: -3.83}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
