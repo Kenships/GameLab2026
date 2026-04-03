@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using _Project.Scripts.Core;
 using _Project.Scripts.Core.Enemies;
+using _Project.Scripts.Core.Modules;
 using _Project.Scripts.Targeting.Interface;
 using _Project.Scripts.Util.CustomAttributes;
 using UnityEngine;
@@ -23,7 +24,7 @@ namespace _Project.Scripts.Targeting.Filters
             Farthest
         }
         
-        private bool IsTargetingGameObject => distanceOrigin == DistanceOrigin.GameObject;
+        protected bool IsTargetingGameObject => distanceOrigin == DistanceOrigin.GameObject;
         
         [SerializeField] private DistanceOrigin distanceOrigin;
         [SerializeField, ShowIf(nameof(IsTargetingGameObject))] private GameObject target;
@@ -44,19 +45,18 @@ namespace _Project.Scripts.Targeting.Filters
                     break;
             }
             
-            bool LessThan(T a, T b) => a && b && GetDistance(origin, a.transform) < GetDistance(origin, b.transform);
-            bool GreaterThan(T a, T b) => a && b && GetDistance(origin, a.transform) > GetDistance(origin, b.transform);
+            bool LessThan(T a, T b) => a && b && GetDistance(origin, a) < GetDistance(origin, b);
+            bool GreaterThan(T a, T b) => a && b && GetDistance(origin, a) > GetDistance(origin, b);
 
             Func<T, T, bool> compare = findThe == DistanceType.Closest ? LessThan : GreaterThan;
             
             return SortingUtil.GetFirstN(amount, targets, compare);
         }
 
-        private static float GetDistance(Transform startPos, Transform transform)
+        protected virtual float GetDistance(Transform referencePoint, T input)
         {
-            Vector3 fromXZ = Vector3.ProjectOnPlane(startPos.position, Vector3.up);
-            Vector3 toXZ = Vector3.ProjectOnPlane(transform.position, Vector3.up);
-            
+            Vector3 fromXZ = Vector3.ProjectOnPlane(referencePoint.position, Vector3.up);
+            Vector3 toXZ = Vector3.ProjectOnPlane(input.transform.position, Vector3.up);
             return (toXZ - fromXZ).sqrMagnitude;
         }
     }

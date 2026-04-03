@@ -29,7 +29,7 @@ namespace _Project.Scripts.Core.HealthManagement
             
             _slider.value = health.CurrentHealth / health.MaxHealth;
             
-            RebuildDeviderBars();
+            //RebuildDeviderBars();
         }
 
         private void FindHealthComponent()
@@ -97,13 +97,13 @@ namespace _Project.Scripts.Core.HealthManagement
                 
                 var stageDeviderBar = new GameObject("StageDeviderBar").AddComponent<RectTransform>();
                 stageDeviderBar.AddComponent<Image>();
-                stageDeviderBar.sizeDelta = new Vector2(_rectTransform.rect.width / 100f, _rectTransform.rect.height);
+                stageDeviderBar.sizeDelta = new Vector2(_rectTransform.rect.width / 250f, _rectTransform.rect.height * 1.5f);
                 stageDeviderBar.SetParent(transform);
                 stageDeviderBar.pivot = new Vector2(0, 0.5f);
                 stageDeviderBar.anchoredPosition = new Vector2(healthStage / health.MaxHealth * _rectTransform.rect.width - _rectTransform.rect.width / 2f, 0);
                 
                 var visual = stageDeviderBar.GetComponent<Image>();
-                visual.color = Color.black;
+                visual.color = Color.white;
                 visual.raycastTarget = false;
                 
                 stageDeviderBars.Add(stageDeviderBar);

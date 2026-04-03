@@ -107,7 +107,7 @@ public partial class @NESActions: IInputActionCollection2, IDisposable
                     ""id"": ""852140f2-7766-474d-8707-702459ba45f3"",
                     ""expectedControlType"": """",
                     ""processors"": """",
-                    ""interactions"": ""Hold,MultiTap,Tap"",
+                    ""interactions"": ""Hold,Tap"",
                     ""initialStateCheck"": false
                 },
                 {
@@ -116,7 +116,7 @@ public partial class @NESActions: IInputActionCollection2, IDisposable
                     ""id"": ""6c2ab1b8-8984-453a-af3d-a3c78ae1679a"",
                     ""expectedControlType"": """",
                     ""processors"": """",
-                    ""interactions"": ""Hold,MultiTap,Tap"",
+                    ""interactions"": ""Hold,Tap"",
                     ""initialStateCheck"": false
                 }
             ],
@@ -417,7 +417,7 @@ public partial class @NESActions: IInputActionCollection2, IDisposable
                     ""path"": ""<XInputController>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse;Gamepad;Touch;Joystick;XR"",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Submit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -428,7 +428,7 @@ public partial class @NESActions: IInputActionCollection2, IDisposable
                     ""path"": ""<XInputController>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";Gamepad"",
                     ""action"": ""Submit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -450,7 +450,7 @@ public partial class @NESActions: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/enter"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""Submit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false

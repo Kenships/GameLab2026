@@ -9,30 +9,15 @@ namespace _Project.Scripts.Effects.Inflictors
     public class EnemyEffectInflictor : ScriptableObject
     {
         [SerializeReference, SubclassSelector] private IEffectFactory<EnemyBase>[] enemyEffectFactories;
-        [SerializeReference, SubclassSelector] private IEffectFactory<IDamageable>[] damageEffectFactories;
         
-        [field: SerializeField] public GameObject LingeringVFX { get; private set;}
         [field: SerializeField] public GameObject CastVFX { get; private set;}
         [field: SerializeField] public AudioClip AudioClip { get; private set;}
         
         public void Inflict(EnemyBase enemy)
         {
-            foreach (var damageEffectFactory in damageEffectFactories)
-            {
-                enemy.ApplyEffect(damageEffectFactory.CreateEffect());
-            }
-            
             foreach (var effectFactory in enemyEffectFactories)
             {
                 enemy.ApplyEffect(effectFactory.CreateEffect());
-            }
-        }
-
-        public void Inflict(IDamageable damageable)
-        {
-            foreach (var damageEffectFactory in damageEffectFactories)
-            {
-                damageable.ApplyEffect(damageEffectFactory.CreateEffect());
             }
         }
     }

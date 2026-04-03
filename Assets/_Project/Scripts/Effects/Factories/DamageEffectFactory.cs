@@ -1,4 +1,5 @@
 using System;
+using _Project.Scripts.Core.Enemies;
 using _Project.Scripts.Core.HealthManagement;
 using _Project.Scripts.Effects.Interface;
 using _Project.Scripts.Effects.Runtime;
@@ -12,6 +13,17 @@ namespace _Project.Scripts.Effects.Factories
         [SerializeField] private float damage;
         
         public IEffect<IDamageable> CreateEffect()
+        {
+            return new DamageEffect { Damage = damage };
+        }
+    }
+    
+    [Serializable]
+    public class EnemyDamageEffectFactory : IEffectFactory<EnemyBase>
+    {
+        [SerializeField] private float damage;
+        
+        public IEffect<EnemyBase> CreateEffect()
         {
             return new DamageEffect { Damage = damage };
         }

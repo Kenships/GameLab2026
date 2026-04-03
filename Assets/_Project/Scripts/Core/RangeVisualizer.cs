@@ -10,8 +10,6 @@ namespace _Project.Scripts.Core
     {
         [Header("References")]
         [SerializeField] private RangeDetector detector;
-        [SerializeField] private Transform gridIndicator1;
-        [SerializeField] private Transform gridIndicator2;
 
         [Header("Visual Settings")]
         [SerializeField] private Color fillColor = new Color(0.2f, 1.0f, 0.6f, 0.2f);
@@ -20,7 +18,9 @@ namespace _Project.Scripts.Core
         [SerializeField] private int segments = 60;
         [SerializeField] private float yOffset = 0.5f;
         [SerializeField] private float hideDelay = 0.05f;
-
+        
+        private Transform gridIndicator1;
+        private Transform gridIndicator2;
         private IGridService _gridSystem;
         private Mesh _mesh;
         private MeshFilter _meshFilter;
@@ -32,8 +32,11 @@ namespace _Project.Scripts.Core
 
         private void Start()
         {
+            gridIndicator1 = GameObject.Find("Grid Indicator 1").transform;
+            gridIndicator2 = GameObject.Find("Grid Indicator 2").transform;
             _meshFilter = GetComponent<MeshFilter>();
             _meshRenderer = GetComponent<MeshRenderer>();
+            
             _vfxMaterial = new Material(Shader.Find("Sprites/Default"));
             _meshRenderer.material = _vfxMaterial;
             _meshRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;

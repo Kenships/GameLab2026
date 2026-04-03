@@ -1,9 +1,10 @@
-using System.Collections.Generic;
 using _Project.Scripts.Core.Enemies;
 using _Project.Scripts.Core.Modules.Base_Class;
 using _Project.Scripts.Core.Player;
 using _Project.Scripts.Effects.Inflictors;
+using System.Collections.Generic;
 using UnityEngine;
+using PrimeTween;
 
 namespace _Project.Scripts.Core.Modules
 {
@@ -13,19 +14,18 @@ namespace _Project.Scripts.Core.Modules
         [SerializeField] private Transform destination;
         [SerializeField] private float fastForwardSpeed = 15f;
         [SerializeField] private float rewindSpeed = 10f;
-        [SerializeField] private float rewindDamage = 10f;
-        [SerializeField] private float fastForwardDamage = 20f;
         [SerializeField] private RangeDetector backDetector;
         [SerializeField] private RangeDetector frontDetector;
-    
-    
+        [SerializeField] private GameObject newCarModel;
+        [SerializeField] private GameObject crashedCarModel;
+
+
         private Vector3 _originalPosition;
         private Vector3 _endPosition;
-        private bool _fastForwarding = false;
-        private bool _rewinding = false;
         private List<EnemyBase> _enemies;
-        private float _damage;
-    
+        private Tween _rewindTween;
+        private Tween _fastForwardTween;
+
         void Start()
         {
             _enemies = new List<EnemyBase>();
@@ -37,83 +37,84 @@ namespace _Project.Scripts.Core.Modules
 
         protected override void LoadState()
         {
-        
+            
         }
 
         protected override void AttackState()
         {
-            if (_fastForwarding)
-            {
-                transform.position = Vector3.MoveTowards(
-                    transform.position,
-                    _endPosition,
-                    rewindSpeed * Time.deltaTime
-                );
-                frontDetector.GetObjectTypeInRangeNoAlloc(_enemies);
-            }
 
-            if (_rewinding)
-            {
-                transform.position = Vector3.MoveTowards(
-                    transform.position,
-                    _originalPosition,
-                    fastForwardSpeed * Time.deltaTime
-                );
-                backDetector.GetObjectTypeInRangeNoAlloc(_enemies);
-            }
-        
         }
 
         protected override void UsedState()
         {
+            
+        }
 
+        protected virtual void PerformAttack(bool fastForward)
+        {
+            if (_isRewinding && !_rewindTween.isAlive)
+            {
+                float distance = Vector3.Distance(transform.position, _endPosition);
+                float duration = distance / rewindSpeed;
+
+                _rewindTween = Tween.Position(transform, _endPosition, duration, ease: Ease.OutSine)
+                    .OnUpdate(this, (target, tween) =>
+                    {
+                        target.backDetector.GetObjectTypeInRangeNoAlloc(target._enemies);
+
+                        if (tween.elapsedTime >= 0.05f)
+                        {
+                            target.crashedCarModel.SetActive(false);
+                            target.newCarModel.SetActive(true);
+                        }
+                    })
+                    .OnComplete(() => state = ModuleState.Load);
+            }
+
+            if (fastForward && !_fastForwardTween.isAlive)
+            {
+                float distance = Vector3.Distance(transform.position, _originalPosition);
+                float duration = distance / fastForwardSpeed;
+
+                _fastForwardTween = Tween.Position(transform, _originalPosition, duration, ease: Ease.InSine)
+                    .OnUpdate(this, (target, tween) =>
+                    {
+                        target.frontDetector.GetObjectTypeInRangeNoAlloc(target._enemies);
+
+                        if (tween.elapsedTime >= (duration - 0.05f))
+                        {
+                            target.crashedCarModel.SetActive(true);
+                            brokenEffect.Play();
+                            target.newCarModel.SetActive(false);
+                        }
+                    })
+                    .OnComplete(() => state = ModuleState.Used);
+            }
         }
 
         protected override void OnStateChanged(ModuleState newState)
         {
-            if (state == ModuleState.Attack)
-            {
-                frontDetector.ResetRangeDetection();
-                backDetector.ResetRangeDetection();
-            }
+            
         }
 
-        public override void FastForward()
+        public override void FastForward(PlayerData.PlayerID playerID)
         {
-            if (_rewinding)
-            {
-                return;
-            }
-
-            _fastForwarding = true;
-            state = ModuleState.Attack;
+            base.FastForward(playerID);
+            frontDetector.ResetRangeDetection();
+            backDetector.ResetRangeDetection();
+            PerformAttack(true);
+            CancelFastForward(playerID);
         }
 
-        public override void CancelFastForward()
+        public override void Rewind(PlayerData.PlayerID playerID)
         {
-            _fastForwarding = false;
-            state = ModuleState.Load;
-            _damage = 0;
+            base.Rewind(playerID);
+            frontDetector.ResetRangeDetection();
+            backDetector.ResetRangeDetection();
+            PerformAttack(false);
+            CancelRewind(playerID);
         }
 
-        public override void Rewind()
-        {
-            if (_fastForwarding)
-            {
-                return;
-            }
-        
-            _rewinding = true;
-            state = ModuleState.Attack;
-        }
-
-        public override void CancelRewind()
-        {
-            state = ModuleState.Load;
-            _rewinding = false;
-        }
-    
-    
         public override void ShowVisual(PlayerData.PlayerID playerID)
         {
         
@@ -126,7 +127,6 @@ namespace _Project.Scripts.Core.Modules
 
         private void OnEnter(Collider col)
         {
-            Debug.Log(col.name);
             inflictor.Inflict(col.GetComponent<EnemyBase>());
         }
     }

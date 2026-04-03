@@ -14,12 +14,6 @@ namespace _Project.Scripts.Core.Enemies
         [SerializeField] private float spawnDelayMin = 1f;
         [SerializeField] private float spawnDelayMax = 3f; //spawns are random from these two values
 
-        [Header("Enemy Settings")]
-        [SerializeField] private float enemyMoveSpeed = 5f;
-        [SerializeField] private int enemyHealth = 100;
-        [SerializeField] private int enemyDamage = 10;
-        [SerializeField] private float enemyAttackCooldown = 1f;
-
         private float _spawnTimer;
 
         private void Start()

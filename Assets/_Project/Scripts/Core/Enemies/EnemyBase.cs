@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using _Project.Scripts.Core.AudioPooling;
 using _Project.Scripts.Core.HealthManagement;
@@ -7,6 +8,7 @@ using _Project.Scripts.Util.CustomAttributes;
 using _Project.Scripts.Util.ExtensionMethods;
 using Sisus.Init;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace _Project.Scripts.Core.Enemies
 {
@@ -15,8 +17,8 @@ namespace _Project.Scripts.Core.Enemies
         [Header("Enemy Debug Values")]
         [field: SerializeField, ReadOnly] public bool Stunned { get; set; } = false;
         [field: SerializeField, ReadOnly] public float SpeedMultiplier { get; set; } = 1f;
-        [SerializeReference, SubclassSelector] protected List<IEffect<IDamageable>> damageEffects = new();
-        [SerializeReference, SubclassSelector] protected List<IEffect<EnemyBase>> enemyEffects = new();
+        [field: SerializeField, ReadOnly] public NavMeshAgent Agent { get; set; }
+        [SerializeReference, SubclassSelector] protected List<(IEffect<EnemyBase> effect, GameObject vfx)> enemyEffects = new();
         
         public float Health => _health.CurrentHealth;
         public float Speed => _moveSpeed * SpeedMultiplier;
@@ -29,6 +31,7 @@ namespace _Project.Scripts.Core.Enemies
         {
             _audioPooler = playerReader;
             _health ??= gameObject.GetOrAdd<Health>();
+            Agent ??= gameObject.GetOrAdd<NavMeshAgent>();
             _health.OnDeath += OnDeath;
         }
 
@@ -37,40 +40,38 @@ namespace _Project.Scripts.Core.Enemies
             _health.AddToHealth(-damage);
         }
 
-        public virtual void ApplyEffect(IEffect<IDamageable> effect)
-        {
-            if (effect is DamageOverTimeEffect dotEffect)
-            {
-                AddDotEffect(dotEffect);
-            }
-            else
-            {
-                AddToEffects(effect);
-            }
-        }
-        
-        public virtual void RemoveEffect(IEffect<IDamageable> effect)
-        {
-            effect.OnComplete -= RemoveEffect;
-            damageEffects.Remove(effect);
-        }
-
-        public virtual void ApplyEffect(IEffect<EnemyBase> effect)
+        public virtual void ApplyEffect<T>(IEffect<T> effect) where T : IDamageable
         {
             if (effect is SlowEnemyEffect slowEffect)
             {
                 AddSlowEffect(slowEffect);
             }
+            else if (effect is DamageOverTimeEffect dotEffect)
+            {
+                AddDotEffect(dotEffect);
+            }
             else
             {
-                AddToEffects(effect);
+                AddToEffects(effect as IEffect<EnemyBase>);
             }
         }
 
-        public virtual void RemoveEffect(IEffect<EnemyBase> effect)
+        public virtual void RemoveEffect(Guid guid) 
         {
-            effect.OnComplete -= RemoveEffect;
-            enemyEffects.Remove(effect);
+            foreach (var (effect, vfx) in enemyEffects)
+            {
+                if (effect.InstanceID == guid)
+                {
+                    if (vfx)
+                    {
+                        Destroy(vfx);
+                    }
+                    
+                    effect.OnComplete -= RemoveEffect;
+                    enemyEffects.Remove((effect, vfx));
+                    return;
+                }
+            }
         }
 
         protected virtual void OnDeath()
@@ -89,31 +90,43 @@ namespace _Project.Scripts.Core.Enemies
 
         protected void ClearEffects()
         {
-            foreach (var effect in damageEffects)
+            foreach (var (effect, vfx) in enemyEffects)
             {
+                if (vfx)
+                {
+                    Destroy(vfx);
+                }
                 effect.OnComplete -= RemoveEffect;
                 effect.Cancel();
             }
-            foreach (var effect in enemyEffects)
-            {
-                effect.OnComplete -= RemoveEffect;
-                effect.Cancel();
-            }
+            
+            enemyEffects.Clear();
         }
         
         #region Utility
 
-        private void AddToEffects(IEffect<IDamageable> effect)
+        private void AddToEffects(IEffect<EnemyBase> effect)
         {
+            if (effect == null)
+            {
+                Debug.LogError("Failed to Add Effect.");
+                return;
+            }
+            
             effect.OnComplete += RemoveEffect;
-            damageEffects.Add(effect);
-            effect.Apply(this);
-        }
-        
-        private void AddToEffects(IEffect<EnemyBase> effect){
-            effect.OnComplete += RemoveEffect;
-            enemyEffects.Add(effect);
-            effect.Apply(this);
+
+            GameObject vfx = null;
+            
+            if (effect.Vfx)
+            {
+                vfx = Instantiate(effect.Vfx, transform);
+            }
+
+            IEffect<EnemyBase> enemyEffect = effect;
+            
+            enemyEffects.Add((enemyEffect, vfx));
+            
+            enemyEffect.Apply(this);
         }
         
         protected virtual void AddDotEffect(DamageOverTimeEffect newDotEffect)
@@ -121,7 +134,7 @@ namespace _Project.Scripts.Core.Enemies
             // Allows only one dot of the same type to be active at a time
             // Replaces old effect with a new effect if it exists
 
-            foreach (var effect in damageEffects)
+            foreach (var (effect, vfx) in enemyEffects)
             {
                 if (effect is DamageOverTimeEffect dotEffect && dotEffect.Type == newDotEffect.Type)
                 {
@@ -131,17 +144,17 @@ namespace _Project.Scripts.Core.Enemies
                         return;
                     }
                     AddToEffects(bestEffect);
+                    
                     // We can return early as there will only be one DOT per type
                     return;
                 }
             }
-            
             AddToEffects(newDotEffect);
         }
         
         private void AddSlowEffect(SlowEnemyEffect newSlowEffect)
         {
-            foreach (var effect in enemyEffects)
+            foreach (var (effect, vfx) in enemyEffects)
             {
                 if (effect is SlowEnemyEffect slowEffect && slowEffect.Type == newSlowEffect.Type)
                 {
@@ -150,7 +163,7 @@ namespace _Project.Scripts.Core.Enemies
                         return;
                     }
                     
-                    slowEffect.Cancel();
+                    effect.Cancel();
                     AddToEffects(newSlowEffect);
                     return;
                 }

@@ -1,14 +1,33 @@
-using System.Collections;
+using System;
+using _Project.Scripts.Core.AudioPooling;
 using _Project.Scripts.Core.Enemies.Factories;
+using _Project.Scripts.Core.Player;
+using _Project.Scripts.Core.SceneLoading;
 using _Project.Scripts.Enemies;
+using _Project.Scripts.UI;
+using Sisus.Init;
+using System.Collections;
+using System.Collections.Generic;
 using Obvious.Soap;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 namespace _Project.Scripts.Core.Enemies
 {
-    public class EnemyWaveSpawner : MonoBehaviour
+    public class EnemyWaveSpawner : MonoBehaviour<AudioPooler>
     {
+        [System.Serializable]
+        public struct BlinkSettings
+        {
+            public int blinkCount;
+            public float fadeInDuration;
+            public float holdDuration;
+            public float fadeOutDuration;
+            public float initialDelay;
+        }
+
         [System.Serializable]
         public class EnemySpawnEntry
         {
@@ -21,6 +40,16 @@ namespace _Project.Scripts.Core.Enemies
         {
             public Transform spawnPosition;
             public EnemySpawnEntry[] enemies;
+
+            public RawImage arrowImage;
+            public BlinkSettings blinkSettings = new BlinkSettings
+            {
+                blinkCount = 3,
+                fadeInDuration = 0.2f,
+                holdDuration = 0.3f,
+                fadeOutDuration = 0.2f,
+                initialDelay = 0f
+            };
         }
 
         [System.Serializable]
@@ -41,14 +70,31 @@ namespace _Project.Scripts.Core.Enemies
 
         [Header("References")]
         [SerializeField] private Transform vhsLocation;
+        [SerializeField] private ScriptableEventNoParam bossDefeatedEvent;
         [SerializeField] private ScriptableEventWaveData waveStartEvent;
+        [SerializeField] private EnemyWaveUI waveUI;
 
         [Header("Wave Settings")]
         [SerializeField] private Wave[] waves;
 
+        private List<EnemyBase> currentWaveEnemies = new List<EnemyBase>();
+        private AudioPooler _audioPooler;
+        private SceneLoader _sceneLoader;
+
         private void Start()
         {
+            _sceneLoader = GetComponent<SceneLoader>();
             StartCoroutine(SpawnWaves());
+        }
+
+        private void OnDestroy()
+        {
+            StopAllCoroutines();
+        }
+
+        protected override void Init(AudioPooler audioPooler)
+        {
+            _audioPooler = audioPooler;
         }
 
         private IEnumerator SpawnWaves()
@@ -68,6 +114,9 @@ namespace _Project.Scripts.Core.Enemies
                     Debug.LogWarning($"Wave {waveIndex + 1} has no portal spawns.");
                     continue;
                 }
+
+                // Clear previous wave's enemy list
+                currentWaveEnemies.Clear();
                 
                 waveStartEvent?.Raise(currentWave);
 
@@ -95,21 +144,64 @@ namespace _Project.Scripts.Core.Enemies
                     StartCoroutine(SpawnPortalRoutine(currentWave, portalSpawn, () => activePortalRoutines--));
                 }
 
+                // Wait for all portal spawn routines to finish (all enemies spawned)
                 yield return new WaitUntil(() => activePortalRoutines <= 0);
+
+                // Wait until all enemies of this wave are dead (references become null)
+                while (true)
+                {
+                    // Remove destroyed enemies (null references)
+                    currentWaveEnemies.RemoveAll(enemy => enemy == null);
+                    if (currentWaveEnemies.Count == 0)
+                        break;
+                    yield return null;
+                }
 
                 Debug.Log($"Finished {currentWave.waveName}");
 
+                if (waveUI != null)
+                {
+                    yield return waveUI.ShowWaveCompleted();
+                }
+                
+                _audioPooler.StopAllSFX();
+                
+               
+
+                // Rest period after wave (all enemies are dead)
                 if (waveIndex < waves.Length - 1)
                 {
+                    _sceneLoader.LoadScene();
+                    Time.timeScale = 0f;
+                    PlayerInteractionController.IsGameTimeFlowing = false;
+                    
+                    if (waveUI != null)
+                    {
+                        waveUI.StartCountdown(currentWave.restAfterWave);
+                    }
+
                     yield return new WaitForSeconds(currentWave.restAfterWave);
                 }
             }
-
+            
+            bossDefeatedEvent?.Raise();
             Debug.Log("All waves finished.");
         }
 
         private IEnumerator SpawnPortalRoutine(Wave wave, PortalWaveSpawn portalSpawn, System.Action onComplete)
         {
+            if (portalSpawn.arrowImage != null && waveUI != null)
+            {
+                yield return StartCoroutine(waveUI.BlinkArrowSmooth(
+                    portalSpawn.arrowImage,
+                    portalSpawn.blinkSettings.blinkCount,
+                    portalSpawn.blinkSettings.fadeInDuration,
+                    portalSpawn.blinkSettings.holdDuration,
+                    portalSpawn.blinkSettings.fadeOutDuration,
+                    portalSpawn.blinkSettings.initialDelay
+                ));
+            }
+
             for (int e = 0; e < portalSpawn.enemies.Length; e++)
             {
                 EnemySpawnEntry entry = portalSpawn.enemies[e];
@@ -131,12 +223,13 @@ namespace _Project.Scripts.Core.Enemies
 
             onComplete?.Invoke();
         }
-        private void SpawnEnemy(EnemyFactoryBase factory, Transform spawnPoint)
+
+        private EnemyBase SpawnEnemy(EnemyFactoryBase factory, Transform spawnPoint)
         {
             if (factory == null || spawnPoint == null)
             {
                 Debug.LogWarning("Factory or spawn point is null.");
-                return;
+                return null;
             }
 
             EnemyBase enemy = factory.CreateEnemy();
@@ -149,6 +242,13 @@ namespace _Project.Scripts.Core.Enemies
             {
                 enemy.transform.position = spawnPoint.position;
             }
+
+            if (currentWaveEnemies != null)
+            {
+                currentWaveEnemies.Add(enemy);
+            }
+
+            return enemy;
         }
 
         private void OnDrawGizmosSelected()

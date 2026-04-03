@@ -4,6 +4,7 @@ using _Project.Scripts.Core.Player;
 using _Project.Scripts.Util.CustomAttributes;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace _Project.Scripts.UI
 {
@@ -12,6 +13,7 @@ namespace _Project.Scripts.UI
         [Header("References")]
         [SerializeField] private TextMeshProUGUI moduleName;
         [SerializeField] private TextMeshProUGUI description;
+        [SerializeField] private Image moduleImage;
         [SerializeField] private GameObject button;
         [SerializeField] private GameObject player1Visual;
         [SerializeField] private GameObject player2Visual;
@@ -37,6 +39,10 @@ namespace _Project.Scripts.UI
             selectedModule = module;
             moduleName.text = module.name;
             description.text = module.description;
+            moduleImage.sprite = module.moduleSprite;
+            Color c = moduleImage.color;
+            c.a = 1;
+            moduleImage.color = c;
         }
 
         public void Confirm(PlayerData.PlayerID id)

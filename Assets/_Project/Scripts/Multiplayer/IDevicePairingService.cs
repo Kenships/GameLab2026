@@ -13,6 +13,8 @@ namespace _Project.Scripts.Multiplayer
         
         bool IsPlayer1Paired { get; }
         bool IsPlayer2Paired { get; }
+        
+        bool SwapPlayers { get; set; }
 
         bool TryGetFor(Component client, out NESActions value);
     }

@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 3142177103072667741}
   - component: {fileID: 2643648587791318605}
   - component: {fileID: 4297012667884275880}
-  - component: {fileID: 7281761947621026003}
+  - component: {fileID: 5047924687715135266}
+  - component: {fileID: 5134781772020981421}
   m_Layer: 7
   m_Name: Turret Bullet
   m_TagString: Untagged
@@ -29,8 +30,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5629356299097722290}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.10901001, y: 0.8803199, z: 5.451}
+  m_LocalRotation: {x: 0.36869732, y: -0.13498497, z: 0.054208398, w: 0.91809744}
+  m_LocalPosition: {x: 5.255363, y: 1.1370001, z: 5.428708}
   m_LocalScale: {x: 0.17977871, y: 0.17977871, z: 0.17977871}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -141,7 +142,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &7281761947621026003
+--- !u!114 &5047924687715135266
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -150,11 +151,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 5629356299097722290}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 656095f05ce414a4f8ee36f520efe49c, type: 3}
+  m_Script: {fileID: 11500000, guid: f6fe1f2c50424956a39e428fc3e9cf2e, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RecordDiscBullet
-  inflictor: {fileID: 11400000, guid: 4cd2fe8f570f7a84db5186142b4b8546, type: 2}
-  hitCooldown: 0.2
-  enemySearchRadius: 30
-  bulletLifetime: 3.5
-  bulletDamage: 30
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.Modules.RegularBullet
+--- !u!114 &5134781772020981421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5629356299097722290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 888e959bdbbe1894d881656258762364, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BulletVFX
+  enableGlow: 1
+  enableTrail: 1
+  glowColor: {r: 0.9647059, g: 1, b: 0, a: 1}
+  glowIntensity: 1.5
+  glowRange: 1.5
+  trailStartColor: {r: 0.9647059, g: 0.5176471, b: 0, a: 1}
+  trailEndColor: {r: 0.9098039, g: 0.94509804, b: 0, a: 1}
+  trailTime: 0.15
+  trailStartWidth: 0.08
+  trailEndWidth: 0
+  trailMaterial: {fileID: 0}
+  bulletType: 0
