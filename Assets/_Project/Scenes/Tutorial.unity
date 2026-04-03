@@ -5073,9 +5073,20 @@ MonoBehaviour:
     OnPanel:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 264355255}
-          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutConfirmationListener,
-            Assembly-CSharp
+        - m_Target: {fileID: 264355262}
+          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutTimeListener, Assembly-CSharp
+          m_MethodName: set_TimeToNextPanel
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 6
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 264355262}
+          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutTimeListener, Assembly-CSharp
           m_MethodName: Invoke
           m_Mode: 0
           m_Arguments:
@@ -5091,9 +5102,20 @@ MonoBehaviour:
     OnPanel:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 264355255}
-          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutConfirmationListener,
-            Assembly-CSharp
+        - m_Target: {fileID: 264355262}
+          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutTimeListener, Assembly-CSharp
+          m_MethodName: set_TimeToNextPanel
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 5
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 264355262}
+          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutTimeListener, Assembly-CSharp
           m_MethodName: Invoke
           m_Mode: 0
           m_Arguments:
@@ -5108,9 +5130,20 @@ MonoBehaviour:
     OnPanel:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 264355255}
-          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutConfirmationListener,
-            Assembly-CSharp
+        - m_Target: {fileID: 264355262}
+          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutTimeListener, Assembly-CSharp
+          m_MethodName: set_TimeToNextPanel
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 5
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 264355262}
+          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutTimeListener, Assembly-CSharp
           m_MethodName: Invoke
           m_Mode: 0
           m_Arguments:
@@ -5168,9 +5201,20 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 264355255}
-          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutConfirmationListener,
-            Assembly-CSharp
+        - m_Target: {fileID: 264355262}
+          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutTimeListener, Assembly-CSharp
+          m_MethodName: set_TimeToNextPanel
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 6
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 264355262}
+          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutTimeListener, Assembly-CSharp
           m_MethodName: Invoke
           m_Mode: 0
           m_Arguments:
@@ -5202,9 +5246,20 @@ MonoBehaviour:
     OnPanel:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 264355255}
-          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutConfirmationListener,
-            Assembly-CSharp
+        - m_Target: {fileID: 264355262}
+          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutTimeListener, Assembly-CSharp
+          m_MethodName: set_TimeToNextPanel
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 5
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 264355262}
+          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutTimeListener, Assembly-CSharp
           m_MethodName: Invoke
           m_Mode: 0
           m_Arguments:
@@ -5220,9 +5275,20 @@ MonoBehaviour:
     OnPanel:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 264355255}
-          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutConfirmationListener,
-            Assembly-CSharp
+        - m_Target: {fileID: 264355262}
+          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutTimeListener, Assembly-CSharp
+          m_MethodName: set_TimeToNextPanel
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 5
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 264355262}
+          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutTimeListener, Assembly-CSharp
           m_MethodName: Invoke
           m_Mode: 0
           m_Arguments:
@@ -5238,9 +5304,20 @@ MonoBehaviour:
     OnPanel:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 264355255}
-          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutConfirmationListener,
-            Assembly-CSharp
+        - m_Target: {fileID: 264355262}
+          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutTimeListener, Assembly-CSharp
+          m_MethodName: set_TimeToNextPanel
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 6
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 264355262}
+          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutTimeListener, Assembly-CSharp
           m_MethodName: Invoke
           m_Mode: 0
           m_Arguments:
@@ -5255,9 +5332,20 @@ MonoBehaviour:
     OnPanel:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 264355255}
-          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutConfirmationListener,
-            Assembly-CSharp
+        - m_Target: {fileID: 264355262}
+          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutTimeListener, Assembly-CSharp
+          m_MethodName: set_TimeToNextPanel
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 5
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 264355262}
+          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutTimeListener, Assembly-CSharp
           m_MethodName: Invoke
           m_Mode: 0
           m_Arguments:
@@ -5266,7 +5354,7 @@ MonoBehaviour:
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
-            m_BoolArgument: 0
+            m_BoolArgument: 1
           m_CallState: 2
         - m_Target: {fileID: 1949195941}
           m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -5344,9 +5432,20 @@ MonoBehaviour:
     OnPanel:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 264355255}
-          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutConfirmationListener,
-            Assembly-CSharp
+        - m_Target: {fileID: 264355262}
+          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutTimeListener, Assembly-CSharp
+          m_MethodName: set_TimeToNextPanel
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 5
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 264355262}
+          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutTimeListener, Assembly-CSharp
           m_MethodName: Invoke
           m_Mode: 0
           m_Arguments:
@@ -5361,9 +5460,20 @@ MonoBehaviour:
     OnPanel:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 264355255}
-          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutConfirmationListener,
-            Assembly-CSharp
+        - m_Target: {fileID: 264355262}
+          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutTimeListener, Assembly-CSharp
+          m_MethodName: set_TimeToNextPanel
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 264355262}
+          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutTimeListener, Assembly-CSharp
           m_MethodName: Invoke
           m_Mode: 0
           m_Arguments:
@@ -5378,9 +5488,20 @@ MonoBehaviour:
     OnPanel:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 264355255}
-          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutConfirmationListener,
-            Assembly-CSharp
+        - m_Target: {fileID: 264355262}
+          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutTimeListener, Assembly-CSharp
+          m_MethodName: set_TimeToNextPanel
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 5
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 264355262}
+          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutTimeListener, Assembly-CSharp
           m_MethodName: Invoke
           m_Mode: 0
           m_Arguments:
@@ -5413,9 +5534,20 @@ MonoBehaviour:
     OnPanel:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 264355255}
-          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutConfirmationListener,
-            Assembly-CSharp
+        - m_Target: {fileID: 264355262}
+          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutTimeListener, Assembly-CSharp
+          m_MethodName: set_TimeToNextPanel
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 5
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 264355262}
+          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutTimeListener, Assembly-CSharp
           m_MethodName: Invoke
           m_Mode: 0
           m_Arguments:
@@ -5430,9 +5562,20 @@ MonoBehaviour:
     OnPanel:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 264355255}
-          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutConfirmationListener,
-            Assembly-CSharp
+        - m_Target: {fileID: 264355262}
+          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutTimeListener, Assembly-CSharp
+          m_MethodName: set_TimeToNextPanel
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 5
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 264355262}
+          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutTimeListener, Assembly-CSharp
           m_MethodName: Invoke
           m_Mode: 0
           m_Arguments:
@@ -5448,9 +5591,20 @@ MonoBehaviour:
     OnPanel:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 264355255}
-          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutConfirmationListener,
-            Assembly-CSharp
+        - m_Target: {fileID: 264355262}
+          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutTimeListener, Assembly-CSharp
+          m_MethodName: set_TimeToNextPanel
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 5
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 264355262}
+          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutTimeListener, Assembly-CSharp
           m_MethodName: Invoke
           m_Mode: 0
           m_Arguments:
@@ -5478,7 +5632,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - PanelText: Easy right? There's actually another type of module, go get it first.
+  - PanelText: Easy right? There's actually another type of module, go pick it up
+      and place it on the grass first.
     OnPanel:
       m_PersistentCalls:
         m_Calls:
@@ -5537,9 +5692,20 @@ MonoBehaviour:
     OnPanel:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 264355255}
-          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutConfirmationListener,
-            Assembly-CSharp
+        - m_Target: {fileID: 264355262}
+          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutTimeListener, Assembly-CSharp
+          m_MethodName: set_TimeToNextPanel
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 5
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+        - m_Target: {fileID: 264355262}
+          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutTimeListener, Assembly-CSharp
           m_MethodName: Invoke
           m_Mode: 0
           m_Arguments:
@@ -5595,9 +5761,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 264355255}
-          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutConfirmationListener,
-            Assembly-CSharp
+        - m_Target: {fileID: 264355262}
+          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutTimeListener, Assembly-CSharp
           m_MethodName: Invoke
           m_Mode: 0
           m_Arguments:
@@ -5612,9 +5777,20 @@ MonoBehaviour:
     OnPanel:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 264355255}
-          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutConfirmationListener,
-            Assembly-CSharp
+        - m_Target: {fileID: 264355262}
+          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutTimeListener, Assembly-CSharp
+          m_MethodName: set_TimeToNextPanel
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 5
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 264355262}
+          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutTimeListener, Assembly-CSharp
           m_MethodName: Invoke
           m_Mode: 0
           m_Arguments:
@@ -5751,9 +5927,20 @@ MonoBehaviour:
     OnPanel:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 264355255}
-          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutConfirmationListener,
-            Assembly-CSharp
+        - m_Target: {fileID: 264355262}
+          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutTimeListener, Assembly-CSharp
+          m_MethodName: set_TimeToNextPanel
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 5
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 264355262}
+          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutTimeListener, Assembly-CSharp
           m_MethodName: Invoke
           m_Mode: 0
           m_Arguments:
@@ -5769,9 +5956,20 @@ MonoBehaviour:
     OnPanel:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 264355255}
-          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutConfirmationListener,
-            Assembly-CSharp
+        - m_Target: {fileID: 264355262}
+          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutTimeListener, Assembly-CSharp
+          m_MethodName: set_TimeToNextPanel
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 5
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 264355262}
+          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutTimeListener, Assembly-CSharp
           m_MethodName: Invoke
           m_Mode: 0
           m_Arguments:
