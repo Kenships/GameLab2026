@@ -5934,11 +5934,11 @@ MonoBehaviour:
   activeSceneIndex:
     buildIndex: 10
   scenesToLoad:
-  - buildIndex: 10
+  - buildIndex: 12
   unloadDisabled: 0
   scenesToUnload:
   - buildIndex: 6
-  - buildIndex: 11
+  - buildIndex: 9
   withOverlay: 1
   sceneGroup: 1
   actionMap: 3

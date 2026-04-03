@@ -12388,7 +12388,7 @@ MonoBehaviour:
   activeSceneIndex:
     buildIndex: 6
   scenesToLoad:
-  - buildIndex: 6
+  - buildIndex: 12
   unloadDisabled: 0
   scenesToUnload:
   - buildIndex: 7

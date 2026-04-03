@@ -12749,8 +12749,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 1514619457}
     m_Modifications:
     - target: {fileID: 205093435796051453, guid: 87963558c75ef204c8c7ea1985751b8e, type: 3}
+      propertyPath: scenesToLoad.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 205093435796051453, guid: 87963558c75ef204c8c7ea1985751b8e, type: 3}
       propertyPath: scenesToUnload.Array.size
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 205093435796051453, guid: 87963558c75ef204c8c7ea1985751b8e, type: 3}
+      propertyPath: scenesToLoad.Array.data[0].buildIndex
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 205093435796051453, guid: 87963558c75ef204c8c7ea1985751b8e, type: 3}
+      propertyPath: scenesToLoad.Array.data[1].buildIndex
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 205093435796051453, guid: 87963558c75ef204c8c7ea1985751b8e, type: 3}
       propertyPath: scenesToUnload.Array.data[0].buildIndex
