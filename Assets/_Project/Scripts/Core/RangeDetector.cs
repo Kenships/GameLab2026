@@ -79,8 +79,7 @@ namespace _Project.Scripts.Core
 
                 if (!_previouslyInRange.Contains(_colliderBuffer[i]) && _colliderBuffer[i] != null)
                 {
-                    Debug.Log(_colliderBuffer[i]);
-                   OnObjectEnter?.Invoke(_colliderBuffer[i]);
+                    OnObjectEnter?.Invoke(_colliderBuffer[i]);
                 }
                 
                 _currentlyInRange.Add(_colliderBuffer[i]);

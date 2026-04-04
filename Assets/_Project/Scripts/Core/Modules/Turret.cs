@@ -80,7 +80,6 @@ namespace _Project.Scripts.Core.Modules
             if (!_canShoot) return;
             
             _rangeDetector.GetObjectTypeInRangeNoAlloc(_enemies);
-            Debug.Log(_enemies.Count);
             ReevaluateTarget();
 
             if (!_currentTarget)
