@@ -1,7 +1,6 @@
 using UnityEngine;
 using AudioType = _Project.Scripts.Core.AudioPooling.Interface.AudioType;
 using Sisus.Init;
-
 using _Project.Scripts.Core.AudioPooling;
 
 public class PlaySoundOnDestroy : MonoBehaviour<AudioPooler>
