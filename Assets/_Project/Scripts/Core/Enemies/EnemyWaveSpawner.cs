@@ -232,16 +232,7 @@ namespace _Project.Scripts.Core.Enemies
                 return null;
             }
 
-            EnemyBase enemy = factory.CreateEnemy();
-
-            if (enemy.TryGetComponent<NavMeshAgent>(out var agent))
-            {
-                agent.Warp(spawnPoint.position);
-            }
-            else
-            {
-                enemy.transform.position = spawnPoint.position;
-            }
+            EnemyBase enemy = factory.CreateEnemy(spawnPoint.position, Quaternion.identity);
 
             if (currentWaveEnemies != null)
             {
