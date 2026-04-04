@@ -14,12 +14,18 @@ namespace _Project.Scripts.Tutorial
 
         private Action _callback;
         private float _initialLightIntensity;
-        
+
+        private void Awake()
+        {
+            tutCar.EnableModule = false;
+        }
+
         public void Invoke(Action callback)
         {
             _callback = callback;
             _initialLightIntensity = carLight.intensity;
             PulseCarLight();
+            tutCar.EnableModule = true;
             tutCar.OnCarAttack += OnCarAttack;
         }
 

@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Generic;
+using _Project.Scripts.Core.InputManagement;
 using _Project.Scripts.Effects;
-using _Project.Scripts.UI;
 using _Project.Scripts.Util.CustomAttributes;
-using Obvious.Soap;
-using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -16,12 +14,15 @@ namespace _Project.Scripts.Tutorial
         private struct PanelEvent
         {
             [DynamicTextArea] public string PanelText;
+            public bool FreezePlayers;
             public UnityEvent<Action> OnPanel;
         }
         
         [SerializeField] private List<PanelEvent> panels;
         [SerializeField] private TextTyper textTyper;
         [SerializeField] private GameObject panel;
+        [SerializeField] private NESActionReader player1Actions;
+        [SerializeField] private NESActionReader player2Actions;
         private int _panelIndex;
 
         private float _posOffset;
@@ -48,6 +49,17 @@ namespace _Project.Scripts.Tutorial
             AnchorBottom();
             panels[_panelIndex].OnPanel?.Invoke(Next);
             textTyper.StartTyping(panels[_panelIndex].PanelText);
+            
+            if (panels[_panelIndex].FreezePlayers)
+            {
+                player1Actions.enabled = false;
+                player2Actions.enabled = false;
+            }
+            else
+            {
+                player1Actions.enabled = true;
+                player2Actions.enabled = true;
+            }
         }
 
         private enum Position
