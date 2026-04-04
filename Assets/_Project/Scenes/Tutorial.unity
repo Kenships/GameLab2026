@@ -1936,10 +1936,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87a94ed4d94741cf9171f9df3c6c3360, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.SceneLoading.SceneLoader
-  OnBeforeSceneLoad:
+  onBeforeSceneLoad:
     m_PersistentCalls:
       m_Calls: []
   loadOnAwake: 0
+  withOverlay: 0
+  fadeAudio: 1
+  fadeDuration: 1
+  sceneGroup: 1
+  actionMap: 3
   setActive: 0
   activeSceneIndex:
     buildIndex: 0
@@ -1947,9 +1952,6 @@ MonoBehaviour:
   - buildIndex: 9
   unloadDisabled: 0
   scenesToUnload: []
-  withOverlay: 0
-  sceneGroup: 1
-  actionMap: 3
 --- !u!114 &264355264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6124,10 +6126,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87a94ed4d94741cf9171f9df3c6c3360, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.SceneLoading.SceneLoader
-  OnBeforeSceneLoad:
+  onBeforeSceneLoad:
     m_PersistentCalls:
       m_Calls: []
   loadOnAwake: 0
+  withOverlay: 1
+  fadeAudio: 1
+  fadeDuration: 1
+  sceneGroup: 1
+  actionMap: 3
   setActive: 1
   activeSceneIndex:
     buildIndex: 10
@@ -6137,9 +6144,6 @@ MonoBehaviour:
   scenesToUnload:
   - buildIndex: 6
   - buildIndex: 9
-  withOverlay: 1
-  sceneGroup: 1
-  actionMap: 3
 --- !u!1 &1033360629
 GameObject:
   m_ObjectHideFlags: 0
@@ -7915,10 +7919,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87a94ed4d94741cf9171f9df3c6c3360, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.SceneLoading.SceneLoader
-  OnBeforeSceneLoad:
+  onBeforeSceneLoad:
     m_PersistentCalls:
       m_Calls: []
   loadOnAwake: 0
+  withOverlay: 0
+  fadeAudio: 1
+  fadeDuration: 1
+  sceneGroup: 1
+  actionMap: 3
   setActive: 0
   activeSceneIndex:
     buildIndex: 0
@@ -7926,9 +7935,6 @@ MonoBehaviour:
   - buildIndex: 9
   unloadDisabled: 0
   scenesToUnload: []
-  withOverlay: 0
-  sceneGroup: 1
-  actionMap: 3
 --- !u!114 &1548055210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9164,6 +9170,54 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -6413750109319685827, guid: 08469d9c1e17f67469b8d5418e834cdf, type: 3}
+--- !u!1 &1711483441
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1711483443}
+  - component: {fileID: 1711483442}
+  m_Layer: 0
+  m_Name: PauseListener
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1711483442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1711483441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dc1603deefe4d25b78ada5d3f1cb9c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.InputManagement.GamePauseListener
+  menuSelect:
+    buildIndex: 5
+  pauseScene:
+    buildIndex: 4
+--- !u!4 &1711483443
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1711483441}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 675.1994, y: 641.11755, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1723205402 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 08469d9c1e17f67469b8d5418e834cdf, type: 3}
@@ -11002,3 +11056,4 @@ SceneRoots:
   - {fileID: 1669865947}
   - {fileID: 1548055211}
   - {fileID: 784556872}
+  - {fileID: 1711483443}

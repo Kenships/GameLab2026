@@ -42,6 +42,8 @@ namespace _Project.Scripts.Tutorial
 
         private void RefreshPanel()
         {
+            if (panel == null) return;
+            
             panel.SetActive(true);
             AnchorBottom();
             panels[_panelIndex].OnPanel?.Invoke(Next);

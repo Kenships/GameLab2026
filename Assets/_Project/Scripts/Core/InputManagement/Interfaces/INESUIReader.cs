@@ -8,5 +8,6 @@ namespace _Project.Scripts.Core.InputManagement.Interfaces
         event UnityAction<Vector2> OnNavigate;
         event UnityAction OnSubmit;
         event UnityAction OnCancel;
+        event UnityAction OnEscape;
     }
 }

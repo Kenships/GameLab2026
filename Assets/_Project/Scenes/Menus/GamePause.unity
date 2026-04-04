@@ -408,6 +408,7 @@ GameObject:
   - component: {fileID: 85215463}
   - component: {fileID: 85215462}
   - component: {fileID: 85215464}
+  - component: {fileID: 85215465}
   m_Layer: 5
   m_Name: Back
   m_TagString: Untagged
@@ -564,7 +565,7 @@ MonoBehaviour:
           m_MethodName: PlaySound
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 8300000, guid: 7bb1ec4300d1d03418d83fd878eae75d, type: 3}
+            m_ObjectArgument: {fileID: 8300000, guid: c29ac3ed21261464ca94eeae33f04823, type: 3}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
@@ -580,7 +581,7 @@ MonoBehaviour:
           m_MethodName: PlaySound
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 8300000, guid: a348d2ed35a5cf0419156f6a2f58c751, type: 3}
+            m_ObjectArgument: {fileID: 8300000, guid: 7c7daff744e9d5f4895c83fc6adef944, type: 3}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
@@ -599,17 +600,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87a94ed4d94741cf9171f9df3c6c3360, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.SceneLoading.SceneLoader
+  onBeforeSceneLoad:
+    m_PersistentCalls:
+      m_Calls: []
   loadOnAwake: 0
+  withOverlay: 0
+  fadeAudio: 1
+  fadeDuration: 1
+  sceneGroup: 1
+  actionMap: 3
   setActive: 0
   activeSceneIndex:
     buildIndex: 0
   scenesToLoad: []
   unloadDisabled: 0
   scenesToUnload:
+  - buildIndex: 5
   - buildIndex: 4
-  withOverlay: 0
-  sceneGroup: 1
-  actionMap: 0
+--- !u!114 &85215465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 85215456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 511ca6caeb2cfa54b8ada396c12a0fb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.UI.InitialUISelect
 --- !u!1 &185039431
 GameObject:
   m_ObjectHideFlags: 0
@@ -776,90 +795,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 206761691}
   m_CullTransparentMesh: 1
---- !u!1 &207702285
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 207702288}
-  - component: {fileID: 207702287}
-  - component: {fileID: 207702289}
-  m_Layer: 0
-  m_Name: PauseListener
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &207702287
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 207702285}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32666d3369765084098b771df98af272, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PauseListener
-  onPauseEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 207702289}
-        m_TargetAssemblyTypeName: _Project.Scripts.Core.SceneLoading.SceneLoader,
-          Assembly-CSharp
-        m_MethodName: LoadScene
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!4 &207702288
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 207702285}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &207702289
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 207702285}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87a94ed4d94741cf9171f9df3c6c3360, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.SceneLoading.SceneLoader
-  loadOnAwake: 0
-  setActive: 0
-  activeSceneIndex:
-    buildIndex: 0
-  scenesToLoad: []
-  unloadDisabled: 0
-  scenesToUnload:
-  - buildIndex: 4
-  withOverlay: 0
-  sceneGroup: 1
-  actionMap: 0
 --- !u!1 &226116819
 GameObject:
   m_ObjectHideFlags: 0
@@ -2800,8 +2735,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87a94ed4d94741cf9171f9df3c6c3360, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.SceneLoading.SceneLoader
+  onBeforeSceneLoad:
+    m_PersistentCalls:
+      m_Calls: []
   loadOnAwake: 0
-  setActive: 1
+  withOverlay: 1
+  fadeAudio: 1
+  fadeDuration: 1
+  sceneGroup: 1
+  actionMap: 3
+  setActive: 0
   activeSceneIndex:
     buildIndex: 1
   scenesToLoad:
@@ -2809,12 +2752,8 @@ MonoBehaviour:
   unloadDisabled: 0
   scenesToUnload:
   - buildIndex: 4
-  - buildIndex: 5
+  - buildIndex: 10
   - buildIndex: 6
-  - buildIndex: 7
-  withOverlay: 1
-  sceneGroup: 1
-  actionMap: 3
 --- !u!114 &1550516157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4300,4 +4239,3 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1933117369}
-  - {fileID: 207702288}
