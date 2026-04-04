@@ -44,7 +44,7 @@ namespace _Project.Scripts.Core.InputManagement
         }
         
         
-        private void Start()
+        private void OnEnable()
         {
             _actions.Enable();
             _actions.Player.Move.performed += MoveOnPerformed;
