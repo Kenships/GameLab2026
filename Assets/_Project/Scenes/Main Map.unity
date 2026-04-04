@@ -777,7 +777,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   music: {fileID: 8300000, guid: b108eb572de71b9458d1d903c0a96f0e, type: 3}
-  musicvolume: 1
+  musicVolume: 1
 --- !u!1 &122061482
 GameObject:
   m_ObjectHideFlags: 0
@@ -14180,8 +14180,8 @@ MonoBehaviour:
     portalSpawns:
     - spawnPosition: {fileID: 851351561}
       enemies:
-      - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
-        count: 10
+      - enemyFactory: {fileID: 11400000, guid: a16df98d83c53fc43909f5e15b3d561a, type: 2}
+        count: 1
       arrowImage: {fileID: 2087950857}
       blinkSettings:
         blinkCount: 3
@@ -14554,20 +14554,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87a94ed4d94741cf9171f9df3c6c3360, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.SceneLoading.SceneLoader
-  OnBeforeSceneLoad:
+  onBeforeSceneLoad:
     m_PersistentCalls:
       m_Calls: []
   loadOnAwake: 0
   setActive: 0
   activeSceneIndex:
     buildIndex: 0
+  withOverlay: 0
+  fadeAudio: 1
+  fadeDuration: 1
+  sceneGroup: 1
+  actionMap: 3
   scenesToLoad:
   - buildIndex: 9
   unloadDisabled: 0
   scenesToUnload: []
-  withOverlay: 0
-  sceneGroup: 1
-  actionMap: 3
 --- !u!4 &5707239641259750426
 Transform:
   m_ObjectHideFlags: 0
