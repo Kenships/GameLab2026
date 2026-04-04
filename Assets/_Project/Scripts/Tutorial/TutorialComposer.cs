@@ -1,10 +1,7 @@
 using System;
 using System.Collections.Generic;
 using _Project.Scripts.Effects;
-using _Project.Scripts.UI;
 using _Project.Scripts.Util.CustomAttributes;
-using Obvious.Soap;
-using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 

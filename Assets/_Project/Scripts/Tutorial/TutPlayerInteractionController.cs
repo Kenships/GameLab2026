@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using _Project.Scripts.Core.Modules.Interface;
 using _Project.Scripts.Core.Player;
 using UnityEngine;
@@ -12,6 +13,8 @@ namespace _Project.Scripts.Tutorial
         public Action<PlayerData.PlayerID> OnRewind;
         public Action<PlayerData.PlayerID> OnPickup;
         public Action<PlayerData.PlayerID> OnDrop;
+
+        public bool IsHoldingModule => _currentIHoldingObject;
         
         private PlayerData.PlayerID _playerID;
 
