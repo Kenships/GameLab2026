@@ -1,5 +1,6 @@
 using _Project.Scripts.Core.Enemies.Interface;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace _Project.Scripts.Core.Enemies.Factories
 {
@@ -14,11 +15,15 @@ namespace _Project.Scripts.Core.Enemies.Factories
         [SerializeField] private float timeBetweenAttacks;
         [SerializeField] private float attackDamage;
         
-        public override EnemyBase CreateEnemy()
+        public override EnemyBase CreateEnemy(Vector3 position, Quaternion rotation)
         {
             GameObject enemy = Instantiate(enemyPrefab);
+            NavMeshAgent agent = enemy.GetComponent<NavMeshAgent>();
+            agent.Warp(position);
             BasicEnemy basicEnemy = enemy.AddComponent<BasicEnemy>();
             basicEnemy.Initialize(maxHealth, moveSpeed, timeBetweenAttacks, attackDamage);
+            Collider collider = enemy.GetComponent<Collider>();
+            collider.enabled = true;
             return basicEnemy;
         }
     }

@@ -61,6 +61,7 @@ namespace _Project.Scripts.Core
             _previouslyInRange.Clear();
             foreach (Collider obj in _currentlyInRange)
             {
+                
                 _previouslyInRange.Add(obj);
             }
             _currentlyInRange.Clear();
@@ -78,6 +79,7 @@ namespace _Project.Scripts.Core
 
                 if (!_previouslyInRange.Contains(_colliderBuffer[i]) && _colliderBuffer[i] != null)
                 {
+                    Debug.Log(_colliderBuffer[i]);
                    OnObjectEnter?.Invoke(_colliderBuffer[i]);
                 }
                 
