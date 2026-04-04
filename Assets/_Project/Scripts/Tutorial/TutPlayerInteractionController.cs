@@ -17,6 +17,7 @@ namespace _Project.Scripts.Tutorial
         
         public GameObject HeldModule => _currentIHoldingObject;
         public bool AllowTimeControl { get; set;}
+        public bool AllowPickUp { get; set; }
         
         private PlayerData.PlayerID _playerID;
 
@@ -59,7 +60,7 @@ namespace _Project.Scripts.Tutorial
 
         protected override void PickUpOrPutDown()
         {
-            if (!IsGameTimeFlowing) return;
+            if (!IsGameTimeFlowing || !AllowPickUp) return;
 
             // Pick Up
             if (!_currentIHoldingObject)
