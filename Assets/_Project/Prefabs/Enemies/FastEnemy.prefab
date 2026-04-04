@@ -148,6 +148,7 @@ GameObject:
   - component: {fileID: 5237767740112965378}
   - component: {fileID: 3506596420311344761}
   - component: {fileID: 8034283951662265109}
+  - component: {fileID: -9196755727890119968}
   m_Layer: 6
   m_Name: FastEnemy
   m_TagString: Untagged
@@ -229,6 +230,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AnimationPlaySpeed
   anim: {fileID: 8066915682992536461}
   animSpeed: 3
+--- !u!114 &-9196755727890119968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4309639714235830279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1354edbebbd2d2a49b5998529405cad4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlaySoundOnDestroy
+  sound: {fileID: 0}
+  volume: 1
 --- !u!1 &4570030966601019778
 GameObject:
   m_ObjectHideFlags: 0
