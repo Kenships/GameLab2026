@@ -777,7 +777,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   music: {fileID: 8300000, guid: b108eb572de71b9458d1d903c0a96f0e, type: 3}
-  musicvolume: 1
+  musicVolume: 1
 --- !u!1 &122061482
 GameObject:
   m_ObjectHideFlags: 0
@@ -2576,6 +2576,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 494191210}
   m_CullTransparentMesh: 1
+--- !u!1 &497067943
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 497067944}
+  - component: {fileID: 497067945}
+  m_Layer: 0
+  m_Name: PauseListener
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &497067944
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 497067943}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1514619457}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &497067945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 497067943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dc1603deefe4d25b78ada5d3f1cb9c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.InputManagement.GamePauseListener
+  menuSelect:
+    buildIndex: 5
+  pauseScene:
+    buildIndex: 4
 --- !u!1 &502313607
 GameObject:
   m_ObjectHideFlags: 0
@@ -8274,6 +8322,7 @@ Transform:
   - {fileID: 5631733236211711180}
   - {fileID: 143220010}
   - {fileID: 121679937}
+  - {fileID: 497067944}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1571939181
@@ -14554,10 +14603,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87a94ed4d94741cf9171f9df3c6c3360, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.SceneLoading.SceneLoader
-  OnBeforeSceneLoad:
+  onBeforeSceneLoad:
     m_PersistentCalls:
       m_Calls: []
   loadOnAwake: 0
+  withOverlay: 0
+  fadeAudio: 1
+  fadeDuration: 1
+  sceneGroup: 1
+  actionMap: 3
   setActive: 0
   activeSceneIndex:
     buildIndex: 0
@@ -14565,9 +14619,6 @@ MonoBehaviour:
   - buildIndex: 9
   unloadDisabled: 0
   scenesToUnload: []
-  withOverlay: 0
-  sceneGroup: 1
-  actionMap: 3
 --- !u!4 &5707239641259750426
 Transform:
   m_ObjectHideFlags: 0
