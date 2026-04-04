@@ -13,8 +13,9 @@ namespace _Project.Scripts.Core.InputManagement
     [RequireComponent(typeof(PlayerData))]
     public class NESActionReader : MonoBehaviour<IDevicePairingService>, INESActionReader, INESUIReader
     {
-        public event UnityAction<Vector2> OnDPadUIInput;
-        public event UnityAction OnTapUIInteract;
+        public event UnityAction<Vector2> OnNavigate;
+        public event UnityAction OnSubmit;
+        public event UnityAction OnCancel;
         
         public event UnityAction<Vector2> OnDPadInput;
         public event UnityAction OnHoldInteract;
@@ -52,16 +53,22 @@ namespace _Project.Scripts.Core.InputManagement
             
             _actions.UI.Navigate.performed += NavigateOnPerformed;
             _actions.UI.Submit.performed += SubmitOnPerformed;
+            _actions.UI.Cancel.performed += CancelOnPerformed;
+        }
+
+        private void CancelOnPerformed(InputAction.CallbackContext obj)
+        {
+            OnCancel?.Invoke();
         }
 
         private void SubmitOnPerformed(InputAction.CallbackContext ctx)
         {
-            OnTapUIInteract?.Invoke();
+            OnSubmit?.Invoke();
         }
 
         private void NavigateOnPerformed(InputAction.CallbackContext ctx)
         {
-            OnDPadUIInput?.Invoke(ctx.ReadValue<Vector2>());
+            OnNavigate?.Invoke(ctx.ReadValue<Vector2>());
         }
 
         private void OnDisable()

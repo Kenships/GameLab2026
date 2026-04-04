@@ -1,8 +1,6 @@
-using System;
 using _Project.Scripts.Core.Player;
 using _Project.Scripts.Core.SceneLoading;
 using _Project.Scripts.UI;
-using Obvious.Soap;
 using Sisus.Init;
 using UnityEngine;
 
@@ -49,11 +47,28 @@ namespace _Project.Scripts.Multiplayer
             
             player1.OnConfirm += PlayerOnConfirm;
             player2.OnConfirm += PlayerOnConfirm;
+
+            player1.OnCancel += PlayerOnCancel;
+            player2.OnCancel += PlayerOnCancel;
             
             _devicePairingService.OnPlayer1Paired += DevicePairingServiceOnPlayer1Paired;
             _devicePairingService.OnPlayer2Paired += DevicePairingServiceOnPlayer2Paired;
             _devicePairingService.OnPlayer1Unpaired += DevicePairingServiceOnPlayer1Unpaired;
             _devicePairingService.OnPlayer2Unpaired += DevicePairingServiceOnPlayer2Unpaired;
+        }
+
+        private void PlayerOnCancel(PlayerData.PlayerID playerID)
+        {
+            switch (playerID)
+            {
+                case PlayerData.PlayerID.Player1:
+                    _player1Ready = false;
+                    break;
+                case PlayerData.PlayerID.Player2:
+                    _player2Ready = false;
+                    break;
+            }
+            UpdateUI();
         }
 
         private void PlayerOnConfirm(PlayerData.PlayerID playerID)
@@ -90,17 +105,9 @@ namespace _Project.Scripts.Multiplayer
             }
         }
         
-        private bool UpdateSelectIndex(ref int selectedModuleNumber, int delta)
+        private void UpdateSelectIndex(ref int selectedModuleNumber, int delta)
         {
-            int newIndex = Mathf.Clamp(selectedModuleNumber + delta, 0, treys.Length - 1);
-
-            if (newIndex != selectedModuleNumber)
-            {
-                selectedModuleNumber = newIndex;
-                return true;
-            }
-            
-            return false;
+            selectedModuleNumber = Mathf.Clamp(selectedModuleNumber + delta, 0, treys.Length - 1);
         }
 
         private void PlayerOnMove((PlayerData.PlayerID id, int dir) arg)
@@ -108,16 +115,18 @@ namespace _Project.Scripts.Multiplayer
             switch (arg.id)
             {
                 case PlayerData.PlayerID.Player1:
-                    if (UpdateSelectIndex(ref _player1Index, arg.dir))
+                    if (_player1Ready)
                     {
-                        _player1Ready = false;
+                        return;
                     }
+                    UpdateSelectIndex(ref _player1Index, arg.dir);
                     break;
                 case PlayerData.PlayerID.Player2:
-                    if (UpdateSelectIndex(ref _player2Index, arg.dir))
+                    if (_player2Ready)
                     {
-                        _player2Ready = false;
+                        return;
                     }
+                    UpdateSelectIndex(ref _player2Index, arg.dir);
                     break;
             }
             UpdateUI();
