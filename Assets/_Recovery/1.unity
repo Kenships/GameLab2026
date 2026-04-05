@@ -15592,14 +15592,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 985211357}
     - target: {fileID: 7207537582970083182, guid: 43682b4e551780c42b8badfbfd8ea66b, type: 3}
-      propertyPath: landingSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 56092a9b25490c24aa82a998d9e0d351, type: 3}
-    - target: {fileID: 7207537582970083182, guid: 43682b4e551780c42b8badfbfd8ea66b, type: 3}
-      propertyPath: landingSoundVolume
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7207537582970083182, guid: 43682b4e551780c42b8badfbfd8ea66b, type: 3}
       propertyPath: landingInfos.Array.size
       value: 4
       objectReference: {fileID: 0}
