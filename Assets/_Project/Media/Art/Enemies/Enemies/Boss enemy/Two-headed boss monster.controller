@@ -71,7 +71,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -4572650651892053679, guid: f32a2a6c07ca617449e1b9bcbe97f1e4, type: 3}
+  m_Motion: {fileID: -4572650651892053679, guid: d4f743783a1620d4faaf09b9840e3e66, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -88,10 +88,10 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 5678172748743139616}
-    m_Position: {x: 300, y: 120, z: 0}
+    m_Position: {x: 290, y: 120, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -3723839638683866244}
-    m_Position: {x: 300, y: 230, z: 0}
+    m_Position: {x: 290, y: 220, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -108,7 +108,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Two-headed monster
+  m_Name: Two-headed boss monster
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: isAttacking
@@ -138,7 +138,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Walk
-  m_Speed: 0.7
+  m_Speed: 0.5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -6541359953825171773}
@@ -151,7 +151,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -43705429749846050, guid: 62a2de1b58dfe9845aadb765ea6cae8e, type: 3}
+  m_Motion: {fileID: -4572650651892053679, guid: 69384b43c88ae6149b402d6a826fdbb4, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
