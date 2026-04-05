@@ -122,7 +122,7 @@ public class TwoHeadedMonster : MonoBehaviour<AudioPooler>
         if (!hasDealtDamage && attackTimer <= attackDuration - attackMoment)
         {
             Vector3 targetPos = new Vector3(attackTarget.position.x, attackTarget.position.y + 2, attackTarget.position.z);
-            StopMotionManager.Instance.SpawnAnimation(targetPos, attackAnimSize);
+            StopMotionManager.Instance?.SpawnAnimation(targetPos, attackAnimSize);
 
             attackTarget.GetComponent<IDamageable>()?.Damage(attackDamage);
             if (attackTarget.CompareTag("TriggerTypeModule"))
