@@ -79,7 +79,7 @@ public class ScoreManager : MonoBehaviour
             GameObject scoreEntry = scorePrefab;
             scoreInputData scoreEntryData = scoreEntry.GetComponent<scoreInputData>();
 
-            scoreEntryData.Score = entry.score;
+            scoreEntryData.Score = (int)(entry.score + 0.5f);
             scoreEntryData.Time = (int)(entry.time + 0.5f);
             scoreEntryData.adj = DetermineAdjective(entry.score).ToString();
 

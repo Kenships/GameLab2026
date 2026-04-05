@@ -19,7 +19,6 @@ namespace _Project.Scripts.CameraScripts
             #if UNITY_EDITOR
             _canvas ??= GetComponent<Canvas>();
             _canvas.renderMode = RenderMode.ScreenSpaceCamera;
-            _canvas.worldCamera = Service.Get<OverlayCameraService>().Camera;
             #endif
         }
     }

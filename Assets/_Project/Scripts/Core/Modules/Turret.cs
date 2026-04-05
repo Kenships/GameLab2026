@@ -120,7 +120,7 @@ namespace _Project.Scripts.Core.Modules
                 turretAnimator.Play();
             }
             
-            _audioPooler.New2DAudio(shootSound).OnChannel(AudioType.Sfx).SetVolume(shootSoundVolume).RandomizePitch().Play();
+            _audioPooler.New2DAudio(shootSound).OnChannel(AudioType.Sfx).SetVolume(shootSoundVolume).RandomizePitch(0.2f,1f).Play();
 
             GameObject bullet = bulletFactory.CreateBullet(_currentTarget.transform, spawnPoint.position, rotationToEnemy);
         }
