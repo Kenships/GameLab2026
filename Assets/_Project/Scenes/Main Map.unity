@@ -3032,6 +3032,52 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
+--- !u!1 &592036980
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 592036981}
+  - component: {fileID: 592036982}
+  m_Layer: 0
+  m_Name: StopMotionManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &592036981
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 592036980}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1208.5795, y: -1228.3911, z: 8.25}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1514619457}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &592036982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 592036980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0052a01c6f91574094cbf23669a29b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StopMotionManager
+  stopMotionPrefab: {fileID: 9208126776762270375, guid: 7bd09356eaa200747b09afbf1eba78bb, type: 3}
+  targetCanvas: {fileID: 319838570}
 --- !u!1 &604812101
 GameObject:
   m_ObjectHideFlags: 0
@@ -8274,6 +8320,7 @@ Transform:
   - {fileID: 5631733236211711180}
   - {fileID: 143220010}
   - {fileID: 121679937}
+  - {fileID: 592036981}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1571939181
@@ -14180,8 +14227,8 @@ MonoBehaviour:
     portalSpawns:
     - spawnPosition: {fileID: 851351561}
       enemies:
-      - enemyFactory: {fileID: 11400000, guid: 9dc28355a1ce5d24b8f718d64244c43a, type: 2}
-        count: 1
+      - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
+        count: 10
       arrowImage: {fileID: 2087950857}
       blinkSettings:
         blinkCount: 3

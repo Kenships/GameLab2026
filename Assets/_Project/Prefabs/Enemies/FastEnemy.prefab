@@ -149,6 +149,8 @@ GameObject:
   - component: {fileID: 3506596420311344761}
   - component: {fileID: 8034283951662265109}
   - component: {fileID: -9196755727890119968}
+  - component: {fileID: -6761060775760648123}
+  - component: {fileID: 6569036602951231117}
   m_Layer: 6
   m_Name: FastEnemy
   m_TagString: Untagged
@@ -244,6 +246,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlaySoundOnDestroy
   sound: {fileID: 0}
   volume: 1
+--- !u!114 &-6761060775760648123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4309639714235830279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 314a56bf65c7ed147a1427219d2239d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyDeath
+  deathAnimSize: {x: 100, y: 100}
+--- !u!114 &6569036602951231117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4309639714235830279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc7a1f4ab008502409e891056e1f2542, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HitFlash
+  flashColor: {r: 0.8490566, g: 0.21092902, b: 0.21092902, a: 1}
+  duration: 0.1
 --- !u!1 &4570030966601019778
 GameObject:
   m_ObjectHideFlags: 0

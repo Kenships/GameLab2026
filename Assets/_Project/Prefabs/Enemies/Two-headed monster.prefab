@@ -155,6 +155,8 @@ GameObject:
   - component: {fileID: 3099131223291204395}
   - component: {fileID: 6717957011681895703}
   - component: {fileID: -3274867365229371978}
+  - component: {fileID: 3610529499435270869}
+  - component: {fileID: -6417321217038402301}
   m_Layer: 6
   m_Name: Two-headed monster
   m_TagString: Untagged
@@ -282,10 +284,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16411d7c85895e24d8edc53a5204adb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TwoHeadedMonster
+  isBoss: 0
+  VHS: {x: 0, y: 0, z: 0}
   walkTimeBeforeAttack: 5
   attackDuration: 2
   attackDamage: 25
   attackMoment: 1.5
+  distanceToTriggerFinalAttack: 1
   attackSound: {fileID: 0}
   attackVolume: 0
 --- !u!114 &-3274867365229371978
@@ -302,6 +307,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlaySoundOnDestroy
   sound: {fileID: 0}
   volume: 1
+--- !u!114 &3610529499435270869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2731246571194408785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 314a56bf65c7ed147a1427219d2239d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyDeath
+  deathAnimSize: {x: 150, y: 150}
+--- !u!114 &-6417321217038402301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2731246571194408785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc7a1f4ab008502409e891056e1f2542, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HitFlash
+  flashColor: {r: 0.8490566, g: 0.21092902, b: 0.21092902, a: 1}
+  duration: 0.1
 --- !u!1 &3398512937533562780
 GameObject:
   m_ObjectHideFlags: 0

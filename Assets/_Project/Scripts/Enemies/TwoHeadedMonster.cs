@@ -12,6 +12,7 @@ using AudioType = _Project.Scripts.Core.AudioPooling.Interface.AudioType;
 [RequireComponent(typeof(NavMeshAgent), typeof(Animator), typeof(RangeDetector))]
 public class TwoHeadedMonster : MonoBehaviour<AudioPooler>
 {
+    [Header("References")]
     [SerializeField] private bool isBoss;
     [SerializeField] private Vector3 VHS;
     [Header("Attack Settings")]
@@ -20,6 +21,7 @@ public class TwoHeadedMonster : MonoBehaviour<AudioPooler>
     [SerializeField] private float attackDamage = 30f;
     [SerializeField] private float attackMoment = 1.5f;
     [SerializeField] private float distanceToTriggerFinalAttack = 1f;
+    [SerializeField] private Vector2 attackAnimSize = new Vector2(100, 100);
     [Header("Audio")]
     [SerializeField] private AudioClip attackSound;
     [SerializeField] private float attackVolume = 1f;
@@ -119,6 +121,9 @@ public class TwoHeadedMonster : MonoBehaviour<AudioPooler>
 
         if (!hasDealtDamage && attackTimer <= attackDuration - attackMoment)
         {
+            Vector3 targetPos = new Vector3(attackTarget.position.x, attackTarget.position.y + 2, attackTarget.position.z);
+            StopMotionManager.Instance.SpawnAnimation(targetPos, attackAnimSize);
+
             attackTarget.GetComponent<IDamageable>()?.Damage(attackDamage);
             if (attackTarget.CompareTag("TriggerTypeModule"))
                 attackTarget.GetComponent<Module>().state = Module.ModuleState.Used;

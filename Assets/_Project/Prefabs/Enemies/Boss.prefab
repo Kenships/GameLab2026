@@ -1122,6 +1122,8 @@ GameObject:
   - component: {fileID: 1347903034061200366}
   - component: {fileID: 3896064902914090070}
   - component: {fileID: -65644280354340671}
+  - component: {fileID: 2217113366812231393}
+  - component: {fileID: 8556725015921421896}
   m_Layer: 6
   m_Name: Boss
   m_TagString: Untagged
@@ -1272,6 +1274,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlaySoundOnDestroy
   sound: {fileID: 0}
   volume: 1
+--- !u!114 &2217113366812231393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2439031548172436202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 314a56bf65c7ed147a1427219d2239d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyDeath
+  deathAnimSize: {x: 200, y: 200}
+--- !u!114 &8556725015921421896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2439031548172436202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc7a1f4ab008502409e891056e1f2542, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HitFlash
+  flashColor: {r: 0.8490566, g: 0.21092902, b: 0.21092902, a: 1}
+  duration: 0.1
 --- !u!1 &2489161626425854178
 GameObject:
   m_ObjectHideFlags: 0
