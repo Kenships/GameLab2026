@@ -8416,6 +8416,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.Modules.ModuleSpawner
   spawnEvent: {fileID: 11400000, guid: ea59c12e137cbf940b576ce2cfee1c24, type: 2}
+  moduleSpawnedEvent: {fileID: 11400000, guid: f2d3be959da3fc84a8f76e8f346d4acd, type: 2}
   hintUI: {fileID: 8939613}
   dropEffect: {fileID: 642719964}
   landingInfos:
