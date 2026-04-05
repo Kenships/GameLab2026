@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BasicEnemyFactory-Robocop
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.Enemies.Factories.BasicEnemyFactory
   enemyPrefab: {fileID: 2731246571194408785, guid: e85f38efb5407a94993c886da9fa5d64, type: 3}
-  maxHealth: 500
+  maxHealth: 600
   moveSpeed: 0.7
   timeBetweenAttacks: 1
   attackDamage: 45

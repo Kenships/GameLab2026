@@ -15,8 +15,6 @@ MonoBehaviour:
   enemyEffectFactories:
   - rid: 2937423688445198431
   - rid: 2937424007845642497
-  damageEffectFactories: []
-  <LingeringVFX>k__BackingField: {fileID: 0}
   <CastVFX>k__BackingField: {fileID: 0}
   <AudioClip>k__BackingField: {fileID: 0}
   references:
@@ -30,4 +28,4 @@ MonoBehaviour:
     - rid: 2937424007845642497
       type: {class: EnemyDamageEffectFactory, ns: _Project.Scripts.Effects.Factories, asm: Assembly-CSharp}
       data:
-        damage: 250
+        damage: 400

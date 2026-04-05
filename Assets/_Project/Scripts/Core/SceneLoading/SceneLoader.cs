@@ -8,7 +8,6 @@ using _Project.Scripts.Util.Scene;
 using Sisus.Init;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Serialization;
 using ILogger = _Project.Scripts.Util.Logger.Interface.ILogger;
 
 namespace _Project.Scripts.Core.SceneLoading
@@ -18,10 +17,6 @@ namespace _Project.Scripts.Core.SceneLoading
         public UnityEvent onBeforeSceneLoad;
 
         [SerializeField] private bool loadOnAwake;
-        [SerializeField] private bool setActive;
-
-        [SerializeField, ShowIf(nameof(setActive))]
-        private SceneReference activeSceneIndex;
 
         [SerializeField] private bool withOverlay;
         [SerializeField] private bool fadeAudio = true;
@@ -31,6 +26,10 @@ namespace _Project.Scripts.Core.SceneLoading
 
         [SerializeField] private SceneController.SceneGroup sceneGroup = SceneController.SceneGroup.None;
         [SerializeField] private ActionMap actionMap = ActionMap.Default;
+        
+        [SerializeField] private bool setActive;
+        [SerializeField, ShowIf(nameof(setActive))]
+        private SceneReference activeSceneIndex;
 
         [SerializeField] private List<SceneReference> scenesToLoad;
         [SerializeField] private bool unloadDisabled;
@@ -102,6 +101,11 @@ namespace _Project.Scripts.Core.SceneLoading
                 {
                     _audioController.FadeAllVolumeFromScene(scene.BuildIndex, 0f, fadeDuration);
                 }
+            }
+            
+            if (withOverlay)
+            {
+                Time.timeScale = 1f;
             }
 
             loadingStrategy

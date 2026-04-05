@@ -27,6 +27,11 @@ namespace _Project.Scripts.Core.Modules
         [SerializeField] private float rewindSpeed = 1f;
         [Tooltip("Please keep the array in sorted ascending order")]
         [SerializeField] private float[] mileStones;
+
+        [Header("Damage Reduction Settings")]
+        [SerializeField] private bool useDamageReductionThreshold = true;
+        [SerializeField] private float damageReductionHealthThreshold = 100f;
+        [SerializeField] [Range(0f, 1f)] private float damageMultiplierBelowThreshold = 0.5f;
         
         private HashSet<int> _reachedMilestones = new();
 
@@ -82,7 +87,10 @@ namespace _Project.Scripts.Core.Modules
         }
         public void Damage(float damage)
         {
-            _myHealth.AddToHealth(-damage);
+            float finalDamage = damage;
+            if (useDamageReductionThreshold && _myHealth.CurrentHealth <= damageReductionHealthThreshold)
+            {finalDamage *= damageMultiplierBelowThreshold;}
+            _myHealth.AddToHealth(-finalDamage);
             GameManager.Instance.score = _myHealth.CurrentHealth;
         }
 

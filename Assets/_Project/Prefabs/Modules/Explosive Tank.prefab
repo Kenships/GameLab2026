@@ -31023,7 +31023,7 @@ MonoBehaviour:
   moduleSprite: {fileID: 0}
   state: 1
   maxHealth: 100
-  defaultRecoverySpeed: 20
+  defaultRecoverySpeed: 40
   defaultDecaySpeed: 0
   attackStateDecayMultiplier: 4
   enableOnStart: 1
@@ -31038,8 +31038,11 @@ MonoBehaviour:
   loadModel: {fileID: 2402263464760494358}
   usedModel: {fileID: 8673828619959828336}
   fullTimeUI: {fileID: 8110168745242804397}
-  damage: 125
+  damage: 200
   timeGapBeforeSecondAttack: 0.25
+  explosionDelay: 0.5
+  shootSound: {fileID: 8300000, guid: 2a03cbb522ec4ea429ad8e3ea4d5ac8a, type: 3}
+  shootSoundVolume: 0.5
   player1Visual: {fileID: 397986941627389146}
   player2Visual: {fileID: 5808360080399794294}
 --- !u!114 &7686215641245428730

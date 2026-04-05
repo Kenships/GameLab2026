@@ -229,10 +229,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87a94ed4d94741cf9171f9df3c6c3360, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.SceneLoading.SceneLoader
-  OnBeforeSceneLoad:
+  onBeforeSceneLoad:
     m_PersistentCalls:
       m_Calls: []
   loadOnAwake: 0
+  withOverlay: 1
+  fadeAudio: 1
+  fadeDuration: 1
+  sceneGroup: 1
+  actionMap: 3
   setActive: 1
   activeSceneIndex:
     buildIndex: 6
@@ -241,9 +246,6 @@ MonoBehaviour:
   unloadDisabled: 0
   scenesToUnload:
   - buildIndex: 12
-  withOverlay: 1
-  sceneGroup: 1
-  actionMap: 3
 --- !u!1 &45619052
 GameObject:
   m_ObjectHideFlags: 0
@@ -1695,6 +1697,7 @@ GameObject:
   - component: {fileID: 1772162931}
   - component: {fileID: 1772162930}
   - component: {fileID: 1772162934}
+  - component: {fileID: 1772162935}
   m_Layer: 5
   m_Name: MainCanvas
   m_TagString: Untagged
@@ -1751,7 +1754,7 @@ Canvas:
   m_GameObject: {fileID: 1772162929}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -1810,6 +1813,18 @@ MonoBehaviour:
   panels:
   - {fileID: 14454178}
   - {fileID: 2024683660}
+--- !u!114 &1772162935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1772162929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b66d8cc4c421485ebcc4317de81972ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.CameraScripts.CameraCanvasBind
 --- !u!1 &1836938928
 GameObject:
   m_ObjectHideFlags: 0
@@ -1995,10 +2010,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87a94ed4d94741cf9171f9df3c6c3360, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.SceneLoading.SceneLoader
-  OnBeforeSceneLoad:
+  onBeforeSceneLoad:
     m_PersistentCalls:
       m_Calls: []
   loadOnAwake: 0
+  withOverlay: 1
+  fadeAudio: 1
+  fadeDuration: 1
+  sceneGroup: 1
+  actionMap: 3
   setActive: 1
   activeSceneIndex:
     buildIndex: 10
@@ -2007,9 +2027,6 @@ MonoBehaviour:
   unloadDisabled: 0
   scenesToUnload:
   - buildIndex: 12
-  withOverlay: 1
-  sceneGroup: 1
-  actionMap: 3
 --- !u!1 &2087172421
 GameObject:
   m_ObjectHideFlags: 0

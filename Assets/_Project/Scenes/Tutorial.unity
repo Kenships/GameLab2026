@@ -1228,7 +1228,6 @@ Transform:
   - {fileID: 1363958377}
   - {fileID: 860228009}
   - {fileID: 11025065}
-  - {fileID: 1328933298}
   - {fileID: 1128830630}
   - {fileID: 310791910}
   - {fileID: 2007015739}
@@ -1744,6 +1743,7 @@ GameObject:
   - component: {fileID: 264355262}
   - component: {fileID: 264355265}
   - component: {fileID: 264355264}
+  - component: {fileID: 264355266}
   - component: {fileID: 264355263}
   m_Layer: 0
   m_Name: TutorialListeners
@@ -1909,6 +1909,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9eea71087d074b05ab957376eb311b6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Tutorial.TutVHSListener
+  player1: {fileID: 1538682421}
+  player2: {fileID: 422280500}
   vhsModule: {fileID: 1630970325}
   hintUI: {fileID: 8939613}
   arrow: {fileID: 1983790211}
@@ -1936,10 +1938,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87a94ed4d94741cf9171f9df3c6c3360, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.SceneLoading.SceneLoader
-  OnBeforeSceneLoad:
+  onBeforeSceneLoad:
     m_PersistentCalls:
       m_Calls: []
   loadOnAwake: 0
+  withOverlay: 0
+  fadeAudio: 1
+  fadeDuration: 1
+  sceneGroup: 1
+  actionMap: 3
   setActive: 0
   activeSceneIndex:
     buildIndex: 0
@@ -1947,9 +1954,6 @@ MonoBehaviour:
   - buildIndex: 9
   unloadDisabled: 0
   scenesToUnload: []
-  withOverlay: 0
-  sceneGroup: 1
-  actionMap: 3
 --- !u!114 &264355264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1976,6 +1980,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Tutorial.TutTankListener
   tankHealth: {fileID: 913934991}
+--- !u!114 &264355266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 264355251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd2b8722961b442eac4ae31d311b4f77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Tutorial.TutCoopInteractListener
+  player1: {fileID: 1538682421}
+  player2: {fileID: 422280500}
 --- !u!1 &272481795 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 08469d9c1e17f67469b8d5418e834cdf, type: 3}
@@ -3916,6 +3934,7 @@ GameObject:
   - component: {fileID: 784556871}
   - component: {fileID: 784556870}
   - component: {fileID: 784556869}
+  - component: {fileID: 784556873}
   m_Layer: 5
   m_Name: PlayerIconsCanvas
   m_TagString: Untagged
@@ -3972,7 +3991,7 @@ Canvas:
   m_GameObject: {fileID: 784556868}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -4007,6 +4026,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &784556873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 784556868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b66d8cc4c421485ebcc4317de81972ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.CameraScripts.CameraCanvasBind
 --- !u!114 &814752109 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8921368399928569412, guid: 182a216b55b5c854cb04ac43f2ab745c, type: 3}
@@ -4612,7 +4643,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -2.5999746, y: 10.450012}
+  m_AnchoredPosition: {x: -2.5999756, y: 10.450012}
   m_SizeDelta: {x: 973.2, y: -0.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &989332448
@@ -5048,6 +5079,7 @@ GameObject:
   - component: {fileID: 1020470268}
   - component: {fileID: 1020470267}
   - component: {fileID: 1020470272}
+  - component: {fileID: 1020470273}
   m_Layer: 0
   m_Name: TutorialCanvas
   m_TagString: Untagged
@@ -5070,6 +5102,7 @@ MonoBehaviour:
   panels:
   - PanelText: Well well well... looks like you bozos got sucked into this movie
       wasteland.
+    FreezePlayers: 0
     OnPanel:
       m_PersistentCalls:
         m_Calls:
@@ -5099,6 +5132,7 @@ MonoBehaviour:
           m_CallState: 2
   - PanelText: But hey, I can get you outta here. If you protect me. Not a bad deal,
       right?
+    FreezePlayers: 0
     OnPanel:
       m_PersistentCalls:
         m_Calls:
@@ -5127,6 +5161,7 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
   - PanelText: Who's talking? The VHS tape on the right. Yeah, me. See me now?
+    FreezePlayers: 0
     OnPanel:
       m_PersistentCalls:
         m_Calls:
@@ -5155,6 +5190,7 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
   - PanelText: First off, try moving around with the DIRECTIONAL-PAD. Go on.
+    FreezePlayers: 0
     OnPanel:
       m_PersistentCalls:
         m_Calls:
@@ -5173,6 +5209,7 @@ MonoBehaviour:
           m_CallState: 2
   - PanelText: "Nice! See that bar up top? That's my health. And uh\u2026 it ain't
       exactly full, is it?"
+    FreezePlayers: 0
     OnPanel:
       m_PersistentCalls:
         m_Calls:
@@ -5226,6 +5263,7 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
   - PanelText: So come over and patch me up by HOLDING B next to me. Thanks, pal.
+    FreezePlayers: 0
     OnPanel:
       m_PersistentCalls:
         m_Calls:
@@ -5243,6 +5281,7 @@ MonoBehaviour:
           m_CallState: 2
   - PanelText: But that's just a start. The real problem? Monsters are gonna come
       wreck me real soon...
+    FreezePlayers: 0
     OnPanel:
       m_PersistentCalls:
         m_Calls:
@@ -5272,6 +5311,7 @@ MonoBehaviour:
           m_CallState: 2
   - PanelText: So you better keep me alive, or else you can kiss your exit ticket
       goodbye.
+    FreezePlayers: 0
     OnPanel:
       m_PersistentCalls:
         m_Calls:
@@ -5301,6 +5341,7 @@ MonoBehaviour:
           m_CallState: 2
   - PanelText: Look, I get it, you can't punch monsters to death with your bare hands.
       So I hooked you up with something.
+    FreezePlayers: 0
     OnPanel:
       m_PersistentCalls:
         m_Calls:
@@ -5329,6 +5370,7 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
   - PanelText: 'See that thing up there? My gift to you: a flamethrower. Sweet, huh?'
+    FreezePlayers: 0
     OnPanel:
       m_PersistentCalls:
         m_Calls:
@@ -5381,6 +5423,7 @@ MonoBehaviour:
             m_BoolArgument: 1
           m_CallState: 2
   - PanelText: Try Click A to grab it. Click A again to put it down (only on grass).
+    FreezePlayers: 0
     OnPanel:
       m_PersistentCalls:
         m_Calls:
@@ -5411,6 +5454,7 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
   - PanelText: Nice! Now Click B to spin it around.
+    FreezePlayers: 0
     OnPanel:
       m_PersistentCalls:
         m_Calls:
@@ -5429,6 +5473,7 @@ MonoBehaviour:
           m_CallState: 2
   - PanelText: Awesome. But you probably noticed... it ain't doing anything right
       now.
+    FreezePlayers: 0
     OnPanel:
       m_PersistentCalls:
         m_Calls:
@@ -5457,6 +5502,7 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
   - PanelText: That's cause time is the juice for these modules. No time, no boom.
+    FreezePlayers: 0
     OnPanel:
       m_PersistentCalls:
         m_Calls:
@@ -5485,6 +5531,7 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
   - PanelText: Lucky you, you actually control time in this place.
+    FreezePlayers: 0
     OnPanel:
       m_PersistentCalls:
         m_Calls:
@@ -5513,6 +5560,7 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
   - PanelText: Try HOLDING B to rewind the module next to ya.
+    FreezePlayers: 0
     OnPanel:
       m_PersistentCalls:
         m_Calls:
@@ -5531,6 +5579,7 @@ MonoBehaviour:
           m_CallState: 2
   - PanelText: 'Boom! Now fire''s coming out! Remember: modules are junk without
       time.'
+    FreezePlayers: 0
     OnPanel:
       m_PersistentCalls:
         m_Calls:
@@ -5559,6 +5608,7 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
   - PanelText: And hey, you can also fast forward.
+    FreezePlayers: 0
     OnPanel:
       m_PersistentCalls:
         m_Calls:
@@ -5588,6 +5638,7 @@ MonoBehaviour:
           m_CallState: 2
   - PanelText: Speeds things up, shoots faster, hits harder, but burns out quicker.
       Trade-off.
+    FreezePlayers: 0
     OnPanel:
       m_PersistentCalls:
         m_Calls:
@@ -5616,6 +5667,7 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
   - PanelText: Now try HOLD B to rewind. HOLD A to fast forward.
+    FreezePlayers: 0
     OnPanel:
       m_PersistentCalls:
         m_Calls:
@@ -5634,6 +5686,7 @@ MonoBehaviour:
           m_CallState: 2
   - PanelText: Easy right? There's actually another type of module, go pick it up
       and place it on the grass first.
+    FreezePlayers: 0
     OnPanel:
       m_PersistentCalls:
         m_Calls:
@@ -5689,6 +5742,7 @@ MonoBehaviour:
           m_CallState: 2
   - PanelText: You can see it got the battery icon on top, that means it needs full
       time to wake up.
+    FreezePlayers: 0
     OnPanel:
       m_PersistentCalls:
         m_Calls:
@@ -5718,6 +5772,7 @@ MonoBehaviour:
           m_CallState: 2
   - PanelText: 'So here''s the move: HOLD B to rewind it full, then HOLD A to fire
       it up. Try that on the explosive tank.'
+    FreezePlayers: 0
     OnPanel:
       m_PersistentCalls:
         m_Calls:
@@ -5746,6 +5801,7 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
   - PanelText: <b>BOOOOM BABY!!!</b>
+    FreezePlayers: 0
     OnPanel:
       m_PersistentCalls:
         m_Calls:
@@ -5773,7 +5829,27 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
+  - PanelText: Held modules can be controlled by the other player. Try Holding A
+      or B while the other holds a module.
+    FreezePlayers: 0
+    OnPanel:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 264355266}
+          m_TargetAssemblyTypeName: _Project.Scripts.Tutorial.TutCoopInteractListener,
+            Assembly-CSharp
+          m_MethodName: Invoke
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   - PanelText: Oh, and see that car? Yeah, you can mess with its time too.
+    FreezePlayers: 0
     OnPanel:
       m_PersistentCalls:
         m_Calls:
@@ -5814,6 +5890,7 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
   - PanelText: Go on, rewind it, fast forward it. HOLD B, then HOLD A.
+    FreezePlayers: 0
     OnPanel:
       m_PersistentCalls:
         m_Calls:
@@ -5831,6 +5908,7 @@ MonoBehaviour:
           m_CallState: 2
   - PanelText: Uh-oh... incoming ugly! Something's coming for me! PROTECT YOUR TAPE,
       DUDE!
+    FreezePlayers: 0
     OnPanel:
       m_PersistentCalls:
         m_Calls:
@@ -5883,6 +5961,7 @@ MonoBehaviour:
             m_BoolArgument: 1
           m_CallState: 2
   - PanelText: 
+    FreezePlayers: 0
     OnPanel:
       m_PersistentCalls:
         m_Calls:
@@ -5924,6 +6003,7 @@ MonoBehaviour:
             m_BoolArgument: 1
           m_CallState: 2
   - PanelText: Not bad. Not bad at all. But trust me, the real fight is way tougher.
+    FreezePlayers: 0
     OnPanel:
       m_PersistentCalls:
         m_Calls:
@@ -5953,6 +6033,7 @@ MonoBehaviour:
           m_CallState: 2
   - PanelText: 'One more thing: I''ll toss you more modules during the battle, so
       don''t sweat it.'
+    FreezePlayers: 0
     OnPanel:
       m_PersistentCalls:
         m_Calls:
@@ -5982,6 +6063,7 @@ MonoBehaviour:
           m_CallState: 2
   - PanelText: And that's it. End of the lesson. Now go kick some monster butt. I'm
       counting on ya.
+    FreezePlayers: 0
     OnPanel:
       m_PersistentCalls:
         m_Calls:
@@ -6010,6 +6092,7 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
   - PanelText: 
+    FreezePlayers: 0
     OnPanel:
       m_PersistentCalls:
         m_Calls:
@@ -6028,6 +6111,8 @@ MonoBehaviour:
           m_CallState: 2
   textTyper: {fileID: 989332451}
   panel: {fileID: 1352060256}
+  player1Actions: {fileID: 1538682416}
+  player2Actions: {fileID: 422280495}
 --- !u!114 &1020470268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6077,7 +6162,7 @@ Canvas:
   m_GameObject: {fileID: 1020470265}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -6124,10 +6209,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87a94ed4d94741cf9171f9df3c6c3360, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.SceneLoading.SceneLoader
-  OnBeforeSceneLoad:
+  onBeforeSceneLoad:
     m_PersistentCalls:
       m_Calls: []
   loadOnAwake: 0
+  withOverlay: 1
+  fadeAudio: 1
+  fadeDuration: 1
+  sceneGroup: 1
+  actionMap: 3
   setActive: 1
   activeSceneIndex:
     buildIndex: 10
@@ -6137,9 +6227,18 @@ MonoBehaviour:
   scenesToUnload:
   - buildIndex: 6
   - buildIndex: 9
-  withOverlay: 1
-  sceneGroup: 1
-  actionMap: 3
+--- !u!114 &1020470273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1020470265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b66d8cc4c421485ebcc4317de81972ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.CameraScripts.CameraCanvasBind
 --- !u!1 &1033360629
 GameObject:
   m_ObjectHideFlags: 0
@@ -6244,7 +6343,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1861890703}
   - {fileID: 1991048679}
   - {fileID: 2138865677}
   - {fileID: 188631837}
@@ -6904,143 +7002,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 08469d9c1e17f67469b8d5418e834cdf, type: 3}
   m_PrefabInstance: {fileID: 986846910}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &1328933297
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 199238308}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 00213101d54274a4eb723cdd6b3a2f05, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 8681.76
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 00213101d54274a4eb723cdd6b3a2f05, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 8681.76
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 00213101d54274a4eb723cdd6b3a2f05, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 8681.76
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 00213101d54274a4eb723cdd6b3a2f05, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.67
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 00213101d54274a4eb723cdd6b3a2f05, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.03
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 00213101d54274a4eb723cdd6b3a2f05, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -7.55
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 00213101d54274a4eb723cdd6b3a2f05, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.11279564
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 00213101d54274a4eb723cdd6b3a2f05, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.08374519
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 00213101d54274a4eb723cdd6b3a2f05, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.7752465
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 00213101d54274a4eb723cdd6b3a2f05, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.6158383
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 00213101d54274a4eb723cdd6b3a2f05, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -103.158
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 00213101d54274a4eb723cdd6b3a2f05, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 18.369995
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 00213101d54274a4eb723cdd6b3a2f05, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -182.286
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 00213101d54274a4eb723cdd6b3a2f05, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: 00213101d54274a4eb723cdd6b3a2f05, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 6894aceddb2584a4280a48ad4e8f200c, type: 2}
-    - target: {fileID: 919132149155446097, guid: 00213101d54274a4eb723cdd6b3a2f05, type: 3}
-      propertyPath: m_Name
-      value: rock3 (2)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 00213101d54274a4eb723cdd6b3a2f05, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1328933300}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 00213101d54274a4eb723cdd6b3a2f05, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1328933303}
-  m_SourcePrefab: {fileID: 100100000, guid: 00213101d54274a4eb723cdd6b3a2f05, type: 3}
---- !u!4 &1328933298 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 00213101d54274a4eb723cdd6b3a2f05, type: 3}
-  m_PrefabInstance: {fileID: 1328933297}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1328933299 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 00213101d54274a4eb723cdd6b3a2f05, type: 3}
-  m_PrefabInstance: {fileID: 1328933297}
-  m_PrefabAsset: {fileID: 0}
---- !u!64 &1328933300
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1328933299}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 21906025000962182, guid: 00213101d54274a4eb723cdd6b3a2f05, type: 3}
---- !u!64 &1328933303
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1328933299}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 21906025000962182, guid: 00213101d54274a4eb723cdd6b3a2f05, type: 3}
 --- !u!1 &1352060256
 GameObject:
   m_ObjectHideFlags: 0
@@ -7389,7 +7350,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7546627462099989602, guid: e3079e81a8212914897bea0ac3d32f43, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 9131822780287219449, guid: e3079e81a8212914897bea0ac3d32f43, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7915,10 +7876,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87a94ed4d94741cf9171f9df3c6c3360, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.SceneLoading.SceneLoader
-  OnBeforeSceneLoad:
+  onBeforeSceneLoad:
     m_PersistentCalls:
       m_Calls: []
   loadOnAwake: 0
+  withOverlay: 0
+  fadeAudio: 1
+  fadeDuration: 1
+  sceneGroup: 1
+  actionMap: 3
   setActive: 0
   activeSceneIndex:
     buildIndex: 0
@@ -7926,9 +7892,6 @@ MonoBehaviour:
   - buildIndex: 9
   unloadDisabled: 0
   scenesToUnload: []
-  withOverlay: 0
-  sceneGroup: 1
-  actionMap: 3
 --- !u!114 &1548055210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8326,6 +8289,14 @@ PrefabInstance:
       propertyPath: '_healthStages.Array.data[1]'
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 7534103190991559787, guid: 43682b4e551780c42b8badfbfd8ea66b, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7534103190991559787, guid: 43682b4e551780c42b8badfbfd8ea66b, type: 3}
+      propertyPath: m_RenderMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7715253540533279948, guid: 43682b4e551780c42b8badfbfd8ea66b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8.5
@@ -8373,6 +8344,10 @@ PrefabInstance:
     - target: {fileID: 8242906684795094748, guid: 43682b4e551780c42b8badfbfd8ea66b, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8242906684795094748, guid: 43682b4e551780c42b8badfbfd8ea66b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -3.3999996
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7207537582970083182, guid: 43682b4e551780c42b8badfbfd8ea66b, type: 3}
@@ -8825,6 +8800,7 @@ GameObject:
   - component: {fileID: 1669865950}
   - component: {fileID: 1669865949}
   - component: {fileID: 1669865948}
+  - component: {fileID: 1669865951}
   m_Layer: 5
   m_Name: Main Canvas
   m_TagString: Untagged
@@ -8906,7 +8882,7 @@ Canvas:
   m_GameObject: {fileID: 1669865946}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -8920,6 +8896,18 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1669865951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1669865946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b66d8cc4c421485ebcc4317de81972ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.CameraScripts.CameraCanvasBind
 --- !u!1001 &1675002009
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9164,6 +9152,54 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -6413750109319685827, guid: 08469d9c1e17f67469b8d5418e834cdf, type: 3}
+--- !u!1 &1711483441
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1711483443}
+  - component: {fileID: 1711483442}
+  m_Layer: 0
+  m_Name: PauseListener
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1711483442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1711483441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dc1603deefe4d25b78ada5d3f1cb9c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.InputManagement.GamePauseListener
+  menuSelect:
+    buildIndex: 5
+  pauseScene:
+    buildIndex: 4
+--- !u!4 &1711483443
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1711483441}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 675.1994, y: 641.11755, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1723205402 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 08469d9c1e17f67469b8d5418e834cdf, type: 3}
@@ -9374,113 +9410,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2835732269424538148, guid: c5862296d27d8e94190863963df3638b, type: 3}
   m_PrefabInstance: {fileID: 913934990}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1861890702
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1861890703}
-  - component: {fileID: 1861890706}
-  - component: {fileID: 1861890705}
-  - component: {fileID: 1861890704}
-  m_Layer: 3
-  m_Name: Cube (5)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1861890703
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1861890702}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.5, y: -0.4, z: 1.5}
-  m_LocalScale: {x: 2, y: 1, z: 2}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1076235841}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &1861890704
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1861890702}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 49ba692e7ed4b7040b8827dd124c05e0, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_MaskInteraction: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &1861890705
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1861890702}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!208 &1861890706
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1861890702}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!1 &1894536456
 GameObject:
   m_ObjectHideFlags: 0
@@ -11002,3 +10931,4 @@ SceneRoots:
   - {fileID: 1669865947}
   - {fileID: 1548055211}
   - {fileID: 784556872}
+  - {fileID: 1711483443}

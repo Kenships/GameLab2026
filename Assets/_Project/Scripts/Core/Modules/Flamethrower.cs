@@ -9,7 +9,9 @@ using _Project.Scripts.Effects.Interface;
 using _Project.Scripts.Targeting.Interface;
 using _Project.Scripts.Targeting.Strategies;
 using _Project.Scripts.Util.Timer.Timers;
+using AudioType = _Project.Scripts.Core.AudioPooling.Interface.AudioType;
 using UnityEngine;
+using _Project.Scripts.Core.AudioPooling;
 
 namespace _Project.Scripts.Core.Modules
 {
@@ -47,6 +49,9 @@ namespace _Project.Scripts.Core.Modules
         [SerializeField] private float normalDps = 4f;
         [SerializeField] private float fastDps = 8f;
         [SerializeField] private float fastRadius = 10;
+
+        [Header("Audio")][SerializeField] private AudioClip shootSound;
+        [SerializeField] private float shootSoundVolume = 0.1f;
 
         [Header("Player Selection Visuals")]
         [SerializeField] private GameObject player1Visual;
@@ -134,6 +139,8 @@ namespace _Project.Scripts.Core.Modules
 
         private void PerformAttack()
         {
+            _audioPooler.New2DAudio(shootSound).OnChannel(AudioType.Sfx).SetVolume(shootSoundVolume).AddToScene(gameObject.scene.buildIndex).LoopAudio().Play();
+
             if (_attackCooldownTimer.IsRunning)
             {
                 return;

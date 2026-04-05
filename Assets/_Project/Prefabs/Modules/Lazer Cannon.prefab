@@ -277,7 +277,7 @@ MonoBehaviour:
   moduleSprite: {fileID: 21300000, guid: 20964abc62f946b48893bafca2b6fc48, type: 3}
   state: 1
   maxHealth: 100
-  defaultRecoverySpeed: 20
+  defaultRecoverySpeed: 40
   defaultDecaySpeed: 0
   attackStateDecayMultiplier: 4
   enableOnStart: 0
@@ -292,11 +292,13 @@ MonoBehaviour:
   lazerCannonNew: {fileID: 6390377893726585645}
   lazerCannonBroken: {fileID: 6400599962633785127}
   fullTimeUI: {fileID: 3039455258306733574}
-  damage: 25
+  damage: 40
   lazerBeamDuration: 2
   dps: 10
   player1Visual: {fileID: 7622297548106014581}
   player2Visual: {fileID: 7733281396559360716}
+  shootSound: {fileID: 8300000, guid: ea41ebf0599c46b4eb42403044b3015e, type: 3}
+  shootSoundVolume: 0.35
 --- !u!114 &4207550931829158317
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -26,6 +26,7 @@ namespace _Project.Scripts.UI
         [SerializeField] string dryWet;
         [SerializeField] private AudioClip hoverSound;
         [SerializeField] private AudioClip selectSound;
+        [SerializeField] private AudioClip StartSound;
 
         private SceneUnloader _sceneUnloader;
 
@@ -54,7 +55,8 @@ namespace _Project.Scripts.UI
             
             musicMix.SetFloat(lowPassFreq, 500);
             musicMix.SetFloat(dryWet, 0);
-            
+
+            _audioPooler.New2DAudio(StartSound).OnChannel(AudioType.Sfx).Play();
 
             SetModuleSelections();
             
@@ -70,7 +72,7 @@ namespace _Project.Scripts.UI
 
         private void PlayerOnConfirm(PlayerData.PlayerID id)
         {
-            _audioPooler.New2DAudio(selectSound).OnChannel(AudioType.Sfx).Play();
+            _audioPooler.New2DAudio(selectSound).OnChannel(AudioType.Sfx).RandomizePitch().Play();
             switch (id)
             {
                 case PlayerData.PlayerID.Player1:
@@ -84,7 +86,7 @@ namespace _Project.Scripts.UI
 
         private void PlayerOnMove((PlayerData.PlayerID ID, int dir) arg)
         {
-            _audioPooler.New2DAudio(hoverSound).OnChannel(AudioType.Sfx).Play();
+            _audioPooler.New2DAudio(hoverSound).OnChannel(AudioType.Sfx).RandomizePitch().Play();
             switch (arg.ID)
             {
                 case PlayerData.PlayerID.Player1:
