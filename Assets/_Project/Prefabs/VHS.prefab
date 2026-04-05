@@ -1093,6 +1093,8 @@ MonoBehaviour:
   hintUI: {fileID: 0}
   dropEffect: {fileID: 0}
   landingInfos: []
+  landingSound: {fileID: 8300000, guid: 56092a9b25490c24aa82a998d9e0d351, type: 3}
+  landingSoundVolume: 0.5
 --- !u!65 &5478617140694700166
 BoxCollider:
   m_ObjectHideFlags: 0

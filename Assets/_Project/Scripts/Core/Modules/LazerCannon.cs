@@ -8,6 +8,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using AudioType = _Project.Scripts.Core.AudioPooling.Interface.AudioType;
 using static Obvious.Soap.ScriptableSaveBase;
 
 namespace _Project.Scripts.Core.Modules
@@ -29,6 +30,8 @@ namespace _Project.Scripts.Core.Modules
         [SerializeField] private GameObject player1Visual;
         [SerializeField] private GameObject player2Visual;
 
+        [Header("Audio")][SerializeField] private AudioClip shootSound;
+        [SerializeField] private float shootSoundVolume = 0.1f;
 
         private RangeDetector _rangeDetector; // rangeType is rectangle
         private Transform _lazerBeam;
@@ -69,6 +72,8 @@ namespace _Project.Scripts.Core.Modules
 
         private void PerformAttack()
         {
+            _audioPooler.New2DAudio(shootSound).OnChannel(AudioType.Sfx).SetVolume(shootSoundVolume).RandomizePitch().Play();
+
             if (_beamDurationTimer.IsFinished)
             {
                 return;
