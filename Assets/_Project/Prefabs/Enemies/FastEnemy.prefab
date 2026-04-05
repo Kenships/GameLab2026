@@ -244,8 +244,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1354edbebbd2d2a49b5998529405cad4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlaySoundOnDestroy
-  sound: {fileID: 0}
-  volume: 1
+  sound: {fileID: 8300000, guid: c19c3cbaa72173645b1263b430173985, type: 3}
+  volume: 0.25
 --- !u!114 &-6761060775760648123
 MonoBehaviour:
   m_ObjectHideFlags: 0

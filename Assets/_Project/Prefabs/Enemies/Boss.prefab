@@ -1258,7 +1258,8 @@ MonoBehaviour:
   attackDamage: 50
   attackMoment: 1.5
   distanceToTriggerFinalAttack: 2
-  attackSound: {fileID: 0}
+  attackAnimSize: {x: 100, y: 100}
+  attackSound: {fileID: 8300000, guid: a14a8e764f73cb44db69ecb160ed5591, type: 3}
   attackVolume: 0
 --- !u!114 &-65644280354340671
 MonoBehaviour:
@@ -1272,8 +1273,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1354edbebbd2d2a49b5998529405cad4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlaySoundOnDestroy
-  sound: {fileID: 0}
-  volume: 1
+  sound: {fileID: 8300000, guid: bb1cdd5f82e0f5445bcec3cdc271156d, type: 3}
+  volume: 0.25
 --- !u!114 &2217113366812231393
 MonoBehaviour:
   m_ObjectHideFlags: 0
