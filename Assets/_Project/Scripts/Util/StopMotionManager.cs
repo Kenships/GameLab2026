@@ -19,27 +19,26 @@ public class StopMotionManager : MonoBehaviour
         go.transform.SetParent(targetCanvas.transform, false);
 
         RectTransform rect = go.GetComponent<RectTransform>();
-
-        if (size.HasValue)
-        {
-            rect.sizeDelta = size.Value;
-        }
+        if (size.HasValue) rect.sizeDelta = size.Value;
 
         RectTransform canvasRect = targetCanvas.GetComponent<RectTransform>();
-        Camera mainCam = Camera.main;
 
+        Camera mainCam = Camera.main;
         Vector2 screenPos = mainCam.WorldToScreenPoint(worldPos);
+
+        Camera uiCamera = (targetCanvas.renderMode == RenderMode.ScreenSpaceOverlay)
+                          ? null
+                          : targetCanvas.worldCamera;
 
         Vector2 localPos;
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
             canvasRect,
             screenPos,
-            null,
+            uiCamera,
             out localPos
         );
 
         rect.anchoredPosition = localPos;
-
         go.GetComponent<StopMotionUI>().Play();
     }
 }
