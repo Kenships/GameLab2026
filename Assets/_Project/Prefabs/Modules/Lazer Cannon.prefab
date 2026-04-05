@@ -293,7 +293,7 @@ MonoBehaviour:
   lazerCannonBroken: {fileID: 6400599962633785127}
   fullTimeUI: {fileID: 3039455258306733574}
   damage: 40
-  lazerBeamDuration: 3
+  lazerBeamDuration: 2.85
   dps: 10
   player1Visual: {fileID: 7622297548106014581}
   player2Visual: {fileID: 7733281396559360716}
