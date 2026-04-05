@@ -10,27 +10,32 @@ namespace _Project.Scripts.Core.Modules
 {
     public class ModuleRegistry : MonoBehaviour
     {
+        [SerializeField] private ScriptableEventNoParam perfectWave;
         [SerializeField] private ScriptableEventGameObject moduleSpawnedEvent;
         [SerializeField] private List<Module> _modules = new();
 
         private void Start()
         {
             moduleSpawnedEvent.OnRaised += ModuleSpawnedEventOnRaised;
-            for (int i = 0; i < transform.childCount; i++)
+            perfectWave.OnRaised += RewindAll;
+            
+            Module[] modules = FindObjectsByType<Module>(FindObjectsSortMode.None);
+            
+            foreach (Module module in modules)
             {
-                Transform child = transform.GetChild(i);
-                if (!child.TryGetComponent(out Module module))
-                {
-                    continue;
-                }
-                
-                if (module is Car or VHSModule)
+                if (module is Car)
                 {
                     continue;
                 }
                 
                 _modules.Add(module);
             }
+        }
+
+        private void OnDestroy()
+        {
+            moduleSpawnedEvent.OnRaised -= ModuleSpawnedEventOnRaised;
+            perfectWave.OnRaised -= RewindAll;
         }
 
         private void ModuleSpawnedEventOnRaised(GameObject obj)
@@ -42,10 +47,9 @@ namespace _Project.Scripts.Core.Modules
             }
             
             _modules.Add(module);
-            RewindAll();
         }
         
-        [ContextMenu("RewindAll")]
+        
         public void RewindAll()
         {
             StartCoroutine(RewindRoutine());

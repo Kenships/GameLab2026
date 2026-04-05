@@ -8,6 +8,8 @@ using _Project.Scripts.UI;
 using Sisus.Init;
 using System.Collections;
 using System.Collections.Generic;
+using _Project.Scripts.Core.HealthManagement;
+using _Project.Scripts.Core.Modules;
 using Obvious.Soap;
 using UnityEngine;
 using UnityEngine.AI;
@@ -72,6 +74,7 @@ namespace _Project.Scripts.Core.Enemies
         [SerializeField] private Transform vhsLocation;
         [SerializeField] private ScriptableEventNoParam bossDefeatedEvent;
         [SerializeField] private ScriptableEventWaveData waveStartEvent;
+        [SerializeField] private ScriptableEventNoParam perfectWaveEvent;
         [SerializeField] private EnemyWaveUI waveUI;
 
         [Header("Wave Settings")]
@@ -107,6 +110,8 @@ namespace _Project.Scripts.Core.Enemies
 
             for (int waveIndex = 0; waveIndex < waves.Length; waveIndex++)
             {
+                float initialVHSHealth = VHSModule.Location.GetComponent<Health>().CurrentHealth;
+                
                 Wave currentWave = waves[waveIndex];
 
                 if (currentWave.portalSpawns == null || currentWave.portalSpawns.Length == 0)
@@ -177,6 +182,16 @@ namespace _Project.Scripts.Core.Enemies
                     if (waveUI != null)
                     {
                         waveUI.StartCountdown(currentWave.restAfterWave);
+                    }
+                    
+                    float finalHealth = VHSModule.Location.GetComponent<Health>().CurrentHealth;
+
+                    yield return new WaitForSeconds(0.1f);
+                    
+                    if (Mathf.Approximately(initialVHSHealth, finalHealth))
+                    {
+                        perfectWaveEvent?.Raise();
+                        Debug.Log("Perfect Wave");
                     }
 
                     yield return new WaitForSeconds(currentWave.restAfterWave);
