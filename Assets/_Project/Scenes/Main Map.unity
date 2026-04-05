@@ -14180,8 +14180,8 @@ MonoBehaviour:
     portalSpawns:
     - spawnPosition: {fileID: 851351561}
       enemies:
-      - enemyFactory: {fileID: 11400000, guid: a16df98d83c53fc43909f5e15b3d561a, type: 2}
-        count: 3
+      - enemyFactory: {fileID: 11400000, guid: 9dc28355a1ce5d24b8f718d64244c43a, type: 2}
+        count: 1
       arrowImage: {fileID: 2087950857}
       blinkSettings:
         blinkCount: 3

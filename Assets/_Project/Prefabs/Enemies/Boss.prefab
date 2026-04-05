@@ -1249,10 +1249,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16411d7c85895e24d8edc53a5204adb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TwoHeadedMonster
+  isBoss: 1
+  VHS: {x: -1.5, y: 0, z: 6.5}
   walkTimeBeforeAttack: 3
   attackDuration: 2
   attackDamage: 50
   attackMoment: 1.5
+  distanceToTriggerFinalAttack: 2
   attackSound: {fileID: 0}
   attackVolume: 0
 --- !u!114 &-65644280354340671

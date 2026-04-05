@@ -12,11 +12,14 @@ using AudioType = _Project.Scripts.Core.AudioPooling.Interface.AudioType;
 [RequireComponent(typeof(NavMeshAgent), typeof(Animator), typeof(RangeDetector))]
 public class TwoHeadedMonster : MonoBehaviour<AudioPooler>
 {
+    [SerializeField] private bool isBoss;
+    [SerializeField] private Vector3 VHS;
     [Header("Attack Settings")]
     [SerializeField] private float walkTimeBeforeAttack = 5f;
     [SerializeField] private float attackDuration = 2f;
     [SerializeField] private float attackDamage = 30f;
     [SerializeField] private float attackMoment = 1.5f;
+    [SerializeField] private float distanceToTriggerFinalAttack = 1f;
     [Header("Audio")]
     [SerializeField] private AudioClip attackSound;
     [SerializeField] private float attackVolume = 1f;
@@ -48,8 +51,10 @@ public class TwoHeadedMonster : MonoBehaviour<AudioPooler>
         walkTimer = walkTimeBeforeAttack;
     }
 
-    private void Update()
+    private void LateUpdate()
     {
+        if(isBoss) FinalAttack();
+
         switch (currentState)
         {
             case EnemyState.Walking:
@@ -59,6 +64,24 @@ public class TwoHeadedMonster : MonoBehaviour<AudioPooler>
                 UpdateAttacking();
                 break;
         }
+    }
+
+    private void FinalAttack()
+    {
+        if (Vector3.Distance(transform.position, VHS) <= distanceToTriggerFinalAttack)
+        {
+            Vector3 direction = (VHS - transform.position).normalized;
+            Quaternion lookRotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
+
+            animator.SetBool("isAttackingVHS", true);
+            Invoke(nameof(SelfDestroy), 3f);
+        }
+    }
+
+    private void SelfDestroy()
+    {
+        Destroy(gameObject);
     }
 
     private void UpdateWalking()
@@ -81,12 +104,7 @@ public class TwoHeadedMonster : MonoBehaviour<AudioPooler>
                 attackTimer = attackDuration;
                 hasDealtDamage = false;
 
-                if (animator != null)
-                    animator.SetBool("isAttacking", true);
-            }
-            else
-            {
-                walkTimer = walkTimeBeforeAttack;
+                animator.SetBool("isAttacking", true);
             }
         }
     }
@@ -131,7 +149,10 @@ public class TwoHeadedMonster : MonoBehaviour<AudioPooler>
         {
             MonoBehaviour mb = nearestDamageable as MonoBehaviour;
             if (mb != null)
+            {
+                if (mb.GetComponent<Health>().CurrentHealth <= 0) return null;
                 return mb.transform;
+            }
         }
         return null;
     }
