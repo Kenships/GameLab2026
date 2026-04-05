@@ -246,6 +246,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlaySoundOnDestroy
   sound: {fileID: 8300000, guid: c19c3cbaa72173645b1263b430173985, type: 3}
   volume: 0.25
+  AddrandomPitch: 1
+  shiftPitch: 0.5
 --- !u!114 &-6761060775760648123
 MonoBehaviour:
   m_ObjectHideFlags: 0
