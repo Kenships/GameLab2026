@@ -86,7 +86,7 @@ namespace _Project.Scripts.UI
 
         private void PlayerOnMove((PlayerData.PlayerID ID, int dir) arg)
         {
-            _audioPooler.New2DAudio(hoverSound).OnChannel(AudioType.Sfx).RandomizePitch().Play();
+            _audioPooler.New2DAudio(hoverSound).OnChannel(AudioType.Sfx).RandomizePitch(0.2f, 1f).Play();
             switch (arg.ID)
             {
                 case PlayerData.PlayerID.Player1:

@@ -1,3 +1,4 @@
+using _Project.Scripts.Core.AudioPooling.Interface;
 using _Project.Scripts.Core.HealthManagement;
 using _Project.Scripts.Core.Modules.Base_Class;
 using _Project.Scripts.Core.Player;
@@ -8,8 +9,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using AudioType = _Project.Scripts.Core.AudioPooling.Interface.AudioType;
 using static Obvious.Soap.ScriptableSaveBase;
+using AudioType = _Project.Scripts.Core.AudioPooling.Interface.AudioType;
 
 namespace _Project.Scripts.Core.Modules
 {
@@ -38,6 +39,8 @@ namespace _Project.Scripts.Core.Modules
         private List<IDamageable> _enemies;
         private CountdownTimer _beamDurationTimer;
         private Coroutine _attackRoutine;
+
+        protected IAudioPlayer _currentLazerSound = null;
 
         protected override void Start()
         {
@@ -70,9 +73,22 @@ namespace _Project.Scripts.Core.Modules
                 });
         }
 
+        void Update()
+        {
+            _currentLazerSound.OnAudioFinished += resetAudio;
+        }
+
+        private void resetAudio()
+        {
+            _currentLazerSound = null;
+        }
+
         private void PerformAttack()
         {
-            _audioPooler.New2DAudio(shootSound).OnChannel(AudioType.Sfx).SetVolume(shootSoundVolume).RandomizePitch().Play();
+            if (_currentLazerSound == null)
+            {
+                _currentLazerSound = _audioPooler.New2DAudio(shootSound).OnChannel(AudioType.Sfx).SetVolume(shootSoundVolume).Play();
+            }
 
             if (_beamDurationTimer.IsFinished)
             {

@@ -63,8 +63,7 @@ namespace _Project.Scripts.Core.Modules
 
         private void SpawnEventOnRaised(GameObject obj)
         {
-            _audioPooler.New2DAudio(landingSound).OnChannel(AudioType.Sfx).SetVolume(landingSoundVolume).AddToScene(gameObject.scene.buildIndex).LoopAudio().Play();
-
+            _audioPooler.New2DAudio(landingSound).OnChannel(AudioType.Sfx).SetVolume(landingSoundVolume).AddToScene(gameObject.scene.buildIndex).Play();
             int index = GetBestAvailableIndex();
             LandingInfo info = landingInfos[index];
             int height = info.stackedModules.Count;

@@ -293,12 +293,12 @@ MonoBehaviour:
   lazerCannonBroken: {fileID: 6400599962633785127}
   fullTimeUI: {fileID: 3039455258306733574}
   damage: 40
-  lazerBeamDuration: 2
+  lazerBeamDuration: 3
   dps: 10
   player1Visual: {fileID: 7622297548106014581}
   player2Visual: {fileID: 7733281396559360716}
   shootSound: {fileID: 8300000, guid: ea41ebf0599c46b4eb42403044b3015e, type: 3}
-  shootSoundVolume: 0.35
+  shootSoundVolume: 0.5
 --- !u!114 &4207550931829158317
 MonoBehaviour:
   m_ObjectHideFlags: 0
