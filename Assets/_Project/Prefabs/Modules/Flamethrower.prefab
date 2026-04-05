@@ -6060,6 +6060,8 @@ MonoBehaviour:
   normalDps: 4
   fastDps: 8
   fastRadius: 10
+  shootSound: {fileID: 8300000, guid: 01ccc4d6568ed124891cd0dfc4c549df, type: 3}
+  shootSoundVolume: 0.1
   player1Visual: {fileID: 1438646418583227776}
   player2Visual: {fileID: 5779589371157653673}
 --- !u!65 &3727378408416341186

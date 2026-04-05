@@ -24,6 +24,8 @@ namespace _Project.Scripts.Core.Modules.Base_Class
             FastForward,
             Rewind
         }
+        public bool IsTimeControlling => _isRewinding || _isFastForwarding;
+        
         protected bool _isRewinding;
         protected bool _isFastForwarding;
         protected IAudioPlayer _currentFastForwardSound;

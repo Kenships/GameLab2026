@@ -173,7 +173,6 @@ namespace _Project.Scripts.Core.Enemies
                 {
                     _sceneLoader.LoadScene();
                     Time.timeScale = 0f;
-                    PlayerInteractionController.IsGameTimeFlowing = false;
                     
                     if (waveUI != null)
                     {

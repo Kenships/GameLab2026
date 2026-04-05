@@ -433,10 +433,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87a94ed4d94741cf9171f9df3c6c3360, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.SceneLoading.SceneLoader
-  OnBeforeSceneLoad:
+  onBeforeSceneLoad:
     m_PersistentCalls:
       m_Calls: []
   loadOnAwake: 0
+  withOverlay: 1
+  fadeAudio: 1
+  fadeDuration: 1
+  sceneGroup: 0
+  actionMap: 0
   setActive: 1
   activeSceneIndex:
     buildIndex: 6
@@ -446,9 +451,6 @@ MonoBehaviour:
   scenesToUnload:
   - buildIndex: 1
   - buildIndex: 5
-  withOverlay: 1
-  sceneGroup: 0
-  actionMap: 0
 --- !u!114 &92353682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1021,10 +1023,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87a94ed4d94741cf9171f9df3c6c3360, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.SceneLoading.SceneLoader
-  OnBeforeSceneLoad:
+  onBeforeSceneLoad:
     m_PersistentCalls:
       m_Calls: []
   loadOnAwake: 0
+  withOverlay: 0
+  fadeAudio: 1
+  fadeDuration: 1
+  sceneGroup: 1
+  actionMap: 1
   setActive: 0
   activeSceneIndex:
     buildIndex: 0
@@ -1032,9 +1039,6 @@ MonoBehaviour:
   - buildIndex: 2
   unloadDisabled: 0
   scenesToUnload: []
-  withOverlay: 0
-  sceneGroup: 1
-  actionMap: 1
 --- !u!114 &775938720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1254,10 +1258,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87a94ed4d94741cf9171f9df3c6c3360, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.SceneLoading.SceneLoader
-  OnBeforeSceneLoad:
+  onBeforeSceneLoad:
     m_PersistentCalls:
       m_Calls: []
   loadOnAwake: 0
+  withOverlay: 0
+  fadeAudio: 1
+  fadeDuration: 1
+  sceneGroup: 1
+  actionMap: 1
   setActive: 0
   activeSceneIndex:
     buildIndex: 0
@@ -1265,9 +1274,6 @@ MonoBehaviour:
   - buildIndex: 3
   unloadDisabled: 0
   scenesToUnload: []
-  withOverlay: 0
-  sceneGroup: 1
-  actionMap: 1
 --- !u!114 &955155409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1706,6 +1712,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1133632953}
   m_CullTransparentMesh: 1
+--- !u!1 &1155904469
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1155904470}
+  - component: {fileID: 1155904471}
+  m_Layer: 0
+  m_Name: MusicPlayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1155904470
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1155904469}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.88178, y: 0, z: 0.68437}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1155904471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1155904469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fde31d5291728114fb48b06514fec700, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.AudioPooling.MusicPlayer
+  music: {fileID: 8300000, guid: ea58f195dbbe3054797a56e3984f48cc, type: 3}
+  musicVolume: 1
 --- !u!1 &1277735650
 GameObject:
   m_ObjectHideFlags: 0
@@ -1889,3 +1941,4 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1780330846}
+  - {fileID: 1155904470}

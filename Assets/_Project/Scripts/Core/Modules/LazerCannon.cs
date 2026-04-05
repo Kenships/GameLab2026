@@ -1,3 +1,4 @@
+using _Project.Scripts.Core.AudioPooling.Interface;
 using _Project.Scripts.Core.HealthManagement;
 using _Project.Scripts.Core.Modules.Base_Class;
 using _Project.Scripts.Core.Player;
@@ -9,6 +10,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static Obvious.Soap.ScriptableSaveBase;
+using AudioType = _Project.Scripts.Core.AudioPooling.Interface.AudioType;
 
 namespace _Project.Scripts.Core.Modules
 {
@@ -29,12 +31,16 @@ namespace _Project.Scripts.Core.Modules
         [SerializeField] private GameObject player1Visual;
         [SerializeField] private GameObject player2Visual;
 
+        [Header("Audio")][SerializeField] private AudioClip shootSound;
+        [SerializeField] private float shootSoundVolume = 0.1f;
 
         private RangeDetector _rangeDetector; // rangeType is rectangle
         private Transform _lazerBeam;
         private List<IDamageable> _enemies;
         private CountdownTimer _beamDurationTimer;
         private Coroutine _attackRoutine;
+
+        protected IAudioPlayer _currentLazerSound = null;
 
         protected override void Start()
         {
@@ -67,8 +73,23 @@ namespace _Project.Scripts.Core.Modules
                 });
         }
 
+        void Update()
+        {
+            _currentLazerSound.OnAudioFinished += resetAudio;
+        }
+
+        private void resetAudio()
+        {
+            _currentLazerSound = null;
+        }
+
         private void PerformAttack()
         {
+            if (_currentLazerSound == null)
+            {
+                _currentLazerSound = _audioPooler.New2DAudio(shootSound).OnChannel(AudioType.Sfx).SetVolume(shootSoundVolume).Play();
+            }
+
             if (_beamDurationTimer.IsFinished)
             {
                 return;

@@ -5,10 +5,13 @@ using UnityEngine;
 using _Project.Scripts.Core.Modules.Base_Class;
 using UnityEngine.UI;
 using _Project.Scripts.UI;
+using AudioType = _Project.Scripts.Core.AudioPooling.Interface.AudioType;
+using _Project.Scripts.Core.AudioPooling;
+using Sisus.Init;
 
 namespace _Project.Scripts.Core.Modules
 {
-    public class ModuleSpawner : MonoBehaviour
+    public class ModuleSpawner : MonoBehaviour<AudioPooler>
     {
         [SerializeField] private ScriptableEventGameObject spawnEvent;
         [System.Serializable]
@@ -26,6 +29,14 @@ namespace _Project.Scripts.Core.Modules
         private float cleanInterval = 0.25f;
         private bool oneTimeHint = true;
 
+        [Header("Audio")][SerializeField] private AudioClip landingSound;
+        [SerializeField] private float landingSoundVolume = 0.1f;
+
+        private AudioPooler _audioPooler;
+        protected override void Init(AudioPooler audioPooler)
+        {
+            _audioPooler = audioPooler;
+        }
 
         private void Start()
         {
@@ -52,6 +63,7 @@ namespace _Project.Scripts.Core.Modules
 
         private void SpawnEventOnRaised(GameObject obj)
         {
+            _audioPooler.New2DAudio(landingSound).OnChannel(AudioType.Sfx).SetVolume(landingSoundVolume).AddToScene(gameObject.scene.buildIndex).Play();
             int index = GetBestAvailableIndex();
             LandingInfo info = landingInfos[index];
             int height = info.stackedModules.Count;
@@ -96,6 +108,7 @@ namespace _Project.Scripts.Core.Modules
 
         private void CleanAndDropModules(LandingInfo info)
         {
+
             for (int i = 0; i < info.stackedModules.Count; i++)
             {
                 GameObject module = info.stackedModules[i];

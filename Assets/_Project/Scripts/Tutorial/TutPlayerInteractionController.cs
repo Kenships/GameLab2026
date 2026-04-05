@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using _Project.Scripts.Core.Modules.Interface;
 using _Project.Scripts.Core.Player;
 using UnityEngine;
@@ -12,6 +13,11 @@ namespace _Project.Scripts.Tutorial
         public Action<PlayerData.PlayerID> OnRewind;
         public Action<PlayerData.PlayerID> OnPickup;
         public Action<PlayerData.PlayerID> OnDrop;
+
+        
+        public GameObject HeldModule => _currentIHoldingObject;
+        public bool AllowTimeControl { get; set;}
+        public bool AllowPickUp { get; set; }
         
         private PlayerData.PlayerID _playerID;
 
@@ -54,7 +60,7 @@ namespace _Project.Scripts.Tutorial
 
         protected override void PickUpOrPutDown()
         {
-            if (!IsGameTimeFlowing) return;
+            if (!IsGameTimeFlowing || !AllowPickUp) return;
 
             // Pick Up
             if (!_currentIHoldingObject)
@@ -99,7 +105,7 @@ namespace _Project.Scripts.Tutorial
 
         protected override void FastForward()
         {
-            if (!IsGameTimeFlowing) return;
+            if (!IsGameTimeFlowing || !AllowTimeControl) return;
 
             //Some default logic to determine if Interact is possible right now
             if (!CanInteract())
@@ -118,7 +124,7 @@ namespace _Project.Scripts.Tutorial
 
         protected override void Rewind()
         {
-            if (!IsGameTimeFlowing) return;
+            if (!IsGameTimeFlowing || !AllowTimeControl) return;
 
             //Some default logic to determine if Interact is possible right now
             if (!CanInteract())
