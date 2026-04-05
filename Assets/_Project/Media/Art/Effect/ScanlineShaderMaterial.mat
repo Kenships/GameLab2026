@@ -51,7 +51,7 @@ Material:
     - _direction: {r: 1, g: 0, b: 0, a: 0}
     - _scanline: {r: 0.032529376, g: 0.4056604, b: 0.37286264, a: 1}
     - _scanline_color: {r: 0.062745094, g: 0.30659723, b: 0.35686275, a: 1}
-    - _tint: {r: 6.8831816, g: 6.1062098, b: 4.2532873, a: 1}
+    - _tint: {r: 4.548846, g: 4.3047247, b: 3.7118583, a: 1}
     - _warpSt: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

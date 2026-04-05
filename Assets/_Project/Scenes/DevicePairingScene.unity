@@ -5960,6 +5960,7 @@ GameObject:
   - component: {fileID: 1933081979}
   - component: {fileID: 1933081978}
   - component: {fileID: 1933081977}
+  - component: {fileID: 1933081983}
   m_Layer: 5
   m_Name: SelectCanvas
   m_TagString: Untagged
@@ -5979,10 +5980,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87a94ed4d94741cf9171f9df3c6c3360, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.SceneLoading.SceneLoader
-  OnBeforeSceneLoad:
+  onBeforeSceneLoad:
     m_PersistentCalls:
       m_Calls: []
   loadOnAwake: 0
+  withOverlay: 1
+  fadeAudio: 1
+  fadeDuration: 1
+  sceneGroup: 0
+  actionMap: 3
   setActive: 1
   activeSceneIndex:
     buildIndex: 6
@@ -5991,9 +5997,6 @@ MonoBehaviour:
   unloadDisabled: 0
   scenesToUnload:
   - buildIndex: 7
-  withOverlay: 1
-  sceneGroup: 0
-  actionMap: 3
 --- !u!114 &1933081978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6067,7 +6070,7 @@ Canvas:
   m_GameObject: {fileID: 1933081976}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -6103,6 +6106,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1933081983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1933081976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b66d8cc4c421485ebcc4317de81972ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.CameraScripts.CameraCanvasBind
 --- !u!1001 &1947735989
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6527,10 +6542,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87a94ed4d94741cf9171f9df3c6c3360, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.SceneLoading.SceneLoader
-  OnBeforeSceneLoad:
+  onBeforeSceneLoad:
     m_PersistentCalls:
       m_Calls: []
   loadOnAwake: 0
+  withOverlay: 1
+  fadeAudio: 1
+  fadeDuration: 1
+  sceneGroup: 0
+  actionMap: 3
   setActive: 1
   activeSceneIndex:
     buildIndex: 6
@@ -6539,9 +6559,6 @@ MonoBehaviour:
   unloadDisabled: 0
   scenesToUnload:
   - buildIndex: 7
-  withOverlay: 1
-  sceneGroup: 0
-  actionMap: 3
 --- !u!1 &2064066678
 GameObject:
   m_ObjectHideFlags: 0
