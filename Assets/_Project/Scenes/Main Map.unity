@@ -1594,127 +1594,6 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
---- !u!1001 &264762429
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 671120433}
-    m_Modifications:
-    - target: {fileID: 120395973197450407, guid: 6ce11590cd9482048add3b33b8fba3b4, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 120395973197450407, guid: 6ce11590cd9482048add3b33b8fba3b4, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2137487973685538958, guid: 6ce11590cd9482048add3b33b8fba3b4, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.49
-      objectReference: {fileID: 0}
-    - target: {fileID: 4872440849225042304, guid: 6ce11590cd9482048add3b33b8fba3b4, type: 3}
-      propertyPath: m_Size.y
-      value: 0.9770894
-      objectReference: {fileID: 0}
-    - target: {fileID: 4872440849225042304, guid: 6ce11590cd9482048add3b33b8fba3b4, type: 3}
-      propertyPath: m_Center.y
-      value: 0.6208645
-      objectReference: {fileID: 0}
-    - target: {fileID: 6849032946996135789, guid: 6ce11590cd9482048add3b33b8fba3b4, type: 3}
-      propertyPath: enableOnStart
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7020352353024084139, guid: 6ce11590cd9482048add3b33b8fba3b4, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7020352353024084139, guid: 6ce11590cd9482048add3b33b8fba3b4, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7020352353024084139, guid: 6ce11590cd9482048add3b33b8fba3b4, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7020352353024084139, guid: 6ce11590cd9482048add3b33b8fba3b4, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -8.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7020352353024084139, guid: 6ce11590cd9482048add3b33b8fba3b4, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7020352353024084139, guid: 6ce11590cd9482048add3b33b8fba3b4, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7020352353024084139, guid: 6ce11590cd9482048add3b33b8fba3b4, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7020352353024084139, guid: 6ce11590cd9482048add3b33b8fba3b4, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7020352353024084139, guid: 6ce11590cd9482048add3b33b8fba3b4, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7020352353024084139, guid: 6ce11590cd9482048add3b33b8fba3b4, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7020352353024084139, guid: 6ce11590cd9482048add3b33b8fba3b4, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7020352353024084139, guid: 6ce11590cd9482048add3b33b8fba3b4, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7020352353024084139, guid: 6ce11590cd9482048add3b33b8fba3b4, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7208037406282999462, guid: 6ce11590cd9482048add3b33b8fba3b4, type: 3}
-      propertyPath: m_Intensity
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8088442313663612257, guid: 6ce11590cd9482048add3b33b8fba3b4, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 8088442313663612257, guid: 6ce11590cd9482048add3b33b8fba3b4, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 8088442313663612257, guid: 6ce11590cd9482048add3b33b8fba3b4, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 8088442313663612257, guid: 6ce11590cd9482048add3b33b8fba3b4, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.138
-      objectReference: {fileID: 0}
-    - target: {fileID: 8088442313663612257, guid: 6ce11590cd9482048add3b33b8fba3b4, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8143855464876323403, guid: 6ce11590cd9482048add3b33b8fba3b4, type: 3}
-      propertyPath: m_Name
-      value: Saw Shooter
-      objectReference: {fileID: 0}
-    - target: {fileID: 8199591539320100204, guid: 6ce11590cd9482048add3b33b8fba3b4, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0.78999996
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 6ce11590cd9482048add3b33b8fba3b4, type: 3}
 --- !u!1 &308562414
 GameObject:
   m_ObjectHideFlags: 0
@@ -1980,6 +1859,116 @@ Transform:
   - {fileID: 1096949753}
   m_Father: {fileID: 1413203860}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &343991347
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 671120433}
+    m_Modifications:
+    - target: {fileID: 598670341615757482, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
+      propertyPath: m_Name
+      value: Normal Turret (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1944322892197276426, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1944322892197276426, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3549484401426189583, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 3549484401426189583, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 3549484401426189583, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 3549484401426189583, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.037
+      objectReference: {fileID: 0}
+    - target: {fileID: 3549484401426189583, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5385133784651527072, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
+      propertyPath: enableOnStart
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7975123500766312515, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 9061403673497064804, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9061403673497064804, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9061403673497064804, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9061403673497064804, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -8.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9061403673497064804, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.032
+      objectReference: {fileID: 0}
+    - target: {fileID: 9061403673497064804, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9061403673497064804, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9061403673497064804, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9061403673497064804, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9061403673497064804, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9061403673497064804, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9061403673497064804, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9061403673497064804, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
+--- !u!4 &343991348 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9061403673497064804, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
+  m_PrefabInstance: {fileID: 343991347}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &351551152
 GameObject:
   m_ObjectHideFlags: 0
@@ -3806,10 +3795,9 @@ Transform:
   m_Children:
   - {fileID: 9193764520642239212}
   - {fileID: 7564569264848045945}
-  - {fileID: 1616606018}
   - {fileID: 7592980103428830117}
   - {fileID: 1548551332492300998}
-  - {fileID: 4556970372264785913}
+  - {fileID: 343991348}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &671266701
@@ -8609,108 +8597,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1612940109}
   m_CullTransparentMesh: 1
---- !u!1001 &1616606017
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 671120433}
-    m_Modifications:
-    - target: {fileID: 1054053615546018703, guid: c5862296d27d8e94190863963df3638b, type: 3}
-      propertyPath: enableOnStart
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2479980021003533771, guid: c5862296d27d8e94190863963df3638b, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2479980021003533771, guid: c5862296d27d8e94190863963df3638b, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2835732269424538148, guid: c5862296d27d8e94190863963df3638b, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 7.51
-      objectReference: {fileID: 0}
-    - target: {fileID: 2835732269424538148, guid: c5862296d27d8e94190863963df3638b, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.13
-      objectReference: {fileID: 0}
-    - target: {fileID: 2835732269424538148, guid: c5862296d27d8e94190863963df3638b, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -1.74
-      objectReference: {fileID: 0}
-    - target: {fileID: 2835732269424538148, guid: c5862296d27d8e94190863963df3638b, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2835732269424538148, guid: c5862296d27d8e94190863963df3638b, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2835732269424538148, guid: c5862296d27d8e94190863963df3638b, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2835732269424538148, guid: c5862296d27d8e94190863963df3638b, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2835732269424538148, guid: c5862296d27d8e94190863963df3638b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2835732269424538148, guid: c5862296d27d8e94190863963df3638b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2835732269424538148, guid: c5862296d27d8e94190863963df3638b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3054710082719038534, guid: c5862296d27d8e94190863963df3638b, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 88862bf71162dda42a9f653526af9edd, type: 3}
-    - target: {fileID: 3054710082719038534, guid: c5862296d27d8e94190863963df3638b, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3054710082719038534, guid: c5862296d27d8e94190863963df3638b, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3054710082719038534, guid: c5862296d27d8e94190863963df3638b, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5177706085961382074, guid: c5862296d27d8e94190863963df3638b, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 2.94
-      objectReference: {fileID: 0}
-    - target: {fileID: 8110168745242804397, guid: c5862296d27d8e94190863963df3638b, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8673828619959828336, guid: c5862296d27d8e94190863963df3638b, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9116378940607441439, guid: c5862296d27d8e94190863963df3638b, type: 3}
-      propertyPath: m_Name
-      value: Explosive Tank (1)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c5862296d27d8e94190863963df3638b, type: 3}
---- !u!4 &1616606018 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2835732269424538148, guid: c5862296d27d8e94190863963df3638b, type: 3}
-  m_PrefabInstance: {fileID: 1616606017}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1635483275
 GameObject:
   m_ObjectHideFlags: 0
@@ -13969,11 +13855,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3893705749147934408}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4556970372264785913 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7020352353024084139, guid: 6ce11590cd9482048add3b33b8fba3b4, type: 3}
-  m_PrefabInstance: {fileID: 264762429}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4625851726505497178
 Transform:
   m_ObjectHideFlags: 0
@@ -14230,39 +14111,34 @@ MonoBehaviour:
     - spawnPosition: {fileID: 851351561}
       enemies:
       - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
-        count: 10
+        count: 12
       arrowImage: {fileID: 2087950857}
       blinkSettings:
         blinkCount: 3
-        fadeInDuration: 0.4
-        holdDuration: 0.6
-        fadeOutDuration: 0.4
+        fadeInDuration: 0.2
+        holdDuration: 0.3
+        fadeOutDuration: 0.2
         initialDelay: 0
-    spawnDelayMin: 2
-    spawnDelayMax: 2
-    restAfterWave: 5
-  - waveName: Wave 2
-    portalSpawns:
     - spawnPosition: {fileID: 1601954570}
       enemies:
       - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
-        count: 10
+        count: 12
       arrowImage: {fileID: 1830534538}
       blinkSettings:
         blinkCount: 3
-        fadeInDuration: 0.4
-        holdDuration: 0.6
-        fadeOutDuration: 0.4
+        fadeInDuration: 0.2
+        holdDuration: 0.3
+        fadeOutDuration: 0.2
         initialDelay: 0
-    spawnDelayMin: 2
-    spawnDelayMax: 2
-    restAfterWave: 5
-  - waveName: 'Wave 3 '
+    spawnDelayMin: 2.5
+    spawnDelayMax: 2.5
+    restAfterWave: 10
+  - waveName: Wave 2
     portalSpawns:
     - spawnPosition: {fileID: 1635483276}
       enemies:
       - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
-        count: 10
+        count: 20
       arrowImage: {fileID: 208091433}
       blinkSettings:
         blinkCount: 3
@@ -14273,7 +14149,7 @@ MonoBehaviour:
     - spawnPosition: {fileID: 1370677806}
       enemies:
       - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
-        count: 10
+        count: 20
       arrowImage: {fileID: 1467989102}
       blinkSettings:
         blinkCount: 3
@@ -14283,25 +14159,14 @@ MonoBehaviour:
         initialDelay: 0
     spawnDelayMin: 2
     spawnDelayMax: 2
-    restAfterWave: 5
-  - waveName: Wave 4
+    restAfterWave: 10
+  - waveName: Wave 3
     portalSpawns:
     - spawnPosition: {fileID: 851351561}
       enemies:
-      - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
-        count: 15
+      - enemyFactory: {fileID: 11400000, guid: 258fa7e63b36d83489366a022ab7b760, type: 2}
+        count: 10
       arrowImage: {fileID: 2087950857}
-      blinkSettings:
-        blinkCount: 3
-        fadeInDuration: 0.2
-        holdDuration: 0.3
-        fadeOutDuration: 0.2
-        initialDelay: 0
-    - spawnPosition: {fileID: 1601954570}
-      enemies:
-      - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
-        count: 5
-      arrowImage: {fileID: 1830534538}
       blinkSettings:
         blinkCount: 3
         fadeInDuration: 0.2
@@ -14310,8 +14175,24 @@ MonoBehaviour:
         initialDelay: 0
     - spawnPosition: {fileID: 1635483276}
       enemies:
-      - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
-        count: 15
+      - enemyFactory: {fileID: 11400000, guid: 258fa7e63b36d83489366a022ab7b760, type: 2}
+        count: 10
+      arrowImage: {fileID: 208091433}
+      blinkSettings:
+        blinkCount: 3
+        fadeInDuration: 0.2
+        holdDuration: 0.3
+        fadeOutDuration: 0.2
+        initialDelay: 0
+    spawnDelayMin: 2
+    spawnDelayMax: 2
+    restAfterWave: 10
+  - waveName: Wave 4
+    portalSpawns:
+    - spawnPosition: {fileID: 1601954570}
+      enemies:
+      - enemyFactory: {fileID: 11400000, guid: 258fa7e63b36d83489366a022ab7b760, type: 2}
+        count: 20
       arrowImage: {fileID: 208091433}
       blinkSettings:
         blinkCount: 3
@@ -14321,8 +14202,8 @@ MonoBehaviour:
         initialDelay: 0
     - spawnPosition: {fileID: 1370677806}
       enemies:
-      - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
-        count: 5
+      - enemyFactory: {fileID: 11400000, guid: 258fa7e63b36d83489366a022ab7b760, type: 2}
+        count: 20
       arrowImage: {fileID: 1467989102}
       blinkSettings:
         blinkCount: 3
@@ -14332,39 +14213,12 @@ MonoBehaviour:
         initialDelay: 0
     spawnDelayMin: 2
     spawnDelayMax: 2
-    restAfterWave: 5
+    restAfterWave: 15
   - waveName: Wave 5
     portalSpawns:
     - spawnPosition: {fileID: 851351561}
       enemies:
       - enemyFactory: {fileID: 11400000, guid: 258fa7e63b36d83489366a022ab7b760, type: 2}
-        count: 15
-      arrowImage: {fileID: 2087950857}
-      blinkSettings:
-        blinkCount: 3
-        fadeInDuration: 0.2
-        holdDuration: 0.3
-        fadeOutDuration: 0.2
-        initialDelay: 0
-    - spawnPosition: {fileID: 1601954570}
-      enemies:
-      - enemyFactory: {fileID: 11400000, guid: 258fa7e63b36d83489366a022ab7b760, type: 2}
-        count: 15
-      arrowImage: {fileID: 1830534538}
-      blinkSettings:
-        blinkCount: 3
-        fadeInDuration: 0.2
-        holdDuration: 0.3
-        fadeOutDuration: 0.2
-        initialDelay: 0
-    spawnDelayMin: 2
-    spawnDelayMax: 2
-    restAfterWave: 10
-  - waveName: Wave 6
-    portalSpawns:
-    - spawnPosition: {fileID: 851351561}
-      enemies:
-      - enemyFactory: {fileID: 11400000, guid: 258fa7e63b36d83489366a022ab7b760, type: 2}
         count: 5
       arrowImage: {fileID: 2087950857}
       blinkSettings:
@@ -14376,56 +14230,7 @@ MonoBehaviour:
     - spawnPosition: {fileID: 1601954570}
       enemies:
       - enemyFactory: {fileID: 11400000, guid: 258fa7e63b36d83489366a022ab7b760, type: 2}
-        count: 15
-      arrowImage: {fileID: 1830534538}
-      blinkSettings:
-        blinkCount: 3
-        fadeInDuration: 0.2
-        holdDuration: 0.3
-        fadeOutDuration: 0.2
-        initialDelay: 0
-    - spawnPosition: {fileID: 1635483276}
-      enemies:
-      - enemyFactory: {fileID: 11400000, guid: 258fa7e63b36d83489366a022ab7b760, type: 2}
         count: 5
-      arrowImage: {fileID: 208091433}
-      blinkSettings:
-        blinkCount: 3
-        fadeInDuration: 0.2
-        holdDuration: 0.3
-        fadeOutDuration: 0.2
-        initialDelay: 0
-    - spawnPosition: {fileID: 1370677806}
-      enemies:
-      - enemyFactory: {fileID: 11400000, guid: 258fa7e63b36d83489366a022ab7b760, type: 2}
-        count: 10
-      arrowImage: {fileID: 1467989102}
-      blinkSettings:
-        blinkCount: 3
-        fadeInDuration: 0.2
-        holdDuration: 0.3
-        fadeOutDuration: 0.2
-        initialDelay: 0
-    spawnDelayMin: 2
-    spawnDelayMax: 2
-    restAfterWave: 10
-  - waveName: Wave 7
-    portalSpawns:
-    - spawnPosition: {fileID: 851351561}
-      enemies:
-      - enemyFactory: {fileID: 11400000, guid: 258fa7e63b36d83489366a022ab7b760, type: 2}
-        count: 20
-      arrowImage: {fileID: 2087950857}
-      blinkSettings:
-        blinkCount: 3
-        fadeInDuration: 0.2
-        holdDuration: 0.3
-        fadeOutDuration: 0.2
-        initialDelay: 0
-    - spawnPosition: {fileID: 1601954570}
-      enemies:
-      - enemyFactory: {fileID: 11400000, guid: 258fa7e63b36d83489366a022ab7b760, type: 2}
-        count: 10
       arrowImage: {fileID: 1830534538}
       blinkSettings:
         blinkCount: 3
@@ -14436,89 +14241,7 @@ MonoBehaviour:
     - spawnPosition: {fileID: 1635483276}
       enemies:
       - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
-        count: 15
-      arrowImage: {fileID: 208091433}
-      blinkSettings:
-        blinkCount: 3
-        fadeInDuration: 0.2
-        holdDuration: 0.3
-        fadeOutDuration: 0.2
-        initialDelay: 0
-    - spawnPosition: {fileID: 1370677806}
-      enemies:
-      - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
-        count: 6
-      arrowImage: {fileID: 1467989102}
-      blinkSettings:
-        blinkCount: 3
-        fadeInDuration: 0.2
-        holdDuration: 0.3
-        fadeOutDuration: 0.2
-        initialDelay: 0
-    spawnDelayMin: 2
-    spawnDelayMax: 2
-    restAfterWave: 10
-  - waveName: Wave 8
-    portalSpawns:
-    - spawnPosition: {fileID: 1635483276}
-      enemies:
-      - enemyFactory: {fileID: 11400000, guid: 9dc28355a1ce5d24b8f718d64244c43a, type: 2}
-        count: 3
-      arrowImage: {fileID: 208091433}
-      blinkSettings:
-        blinkCount: 3
-        fadeInDuration: 0.2
-        holdDuration: 0.3
-        fadeOutDuration: 0.2
-        initialDelay: 0
-    - spawnPosition: {fileID: 1370677806}
-      enemies:
-      - enemyFactory: {fileID: 11400000, guid: 9dc28355a1ce5d24b8f718d64244c43a, type: 2}
-        count: 3
-      arrowImage: {fileID: 1467989102}
-      blinkSettings:
-        blinkCount: 3
-        fadeInDuration: 0.2
-        holdDuration: 0.3
-        fadeOutDuration: 0.2
-        initialDelay: 0
-    spawnDelayMin: 2
-    spawnDelayMax: 2
-    restAfterWave: 10
-  - waveName: Wave 9
-    portalSpawns:
-    - spawnPosition: {fileID: 851351561}
-      enemies:
-      - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
         count: 5
-      - enemyFactory: {fileID: 11400000, guid: 258fa7e63b36d83489366a022ab7b760, type: 2}
-        count: 7
-      - enemyFactory: {fileID: 11400000, guid: 9dc28355a1ce5d24b8f718d64244c43a, type: 2}
-        count: 1
-      arrowImage: {fileID: 2087950857}
-      blinkSettings:
-        blinkCount: 3
-        fadeInDuration: 0.2
-        holdDuration: 0.3
-        fadeOutDuration: 0.2
-        initialDelay: 0
-    - spawnPosition: {fileID: 1601954570}
-      enemies:
-      - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
-        count: 5
-      - enemyFactory: {fileID: 11400000, guid: 258fa7e63b36d83489366a022ab7b760, type: 2}
-        count: 7
-      - enemyFactory: {fileID: 11400000, guid: 9dc28355a1ce5d24b8f718d64244c43a, type: 2}
-        count: 1
-      arrowImage: {fileID: 1830534538}
-      blinkSettings:
-        blinkCount: 3
-        fadeInDuration: 0.2
-        holdDuration: 0.3
-        fadeOutDuration: 0.2
-        initialDelay: 0
-    - spawnPosition: {fileID: 1635483276}
-      enemies:
       - enemyFactory: {fileID: 11400000, guid: 9dc28355a1ce5d24b8f718d64244c43a, type: 2}
         count: 2
       arrowImage: {fileID: 208091433}
@@ -14530,6 +14253,8 @@ MonoBehaviour:
         initialDelay: 0
     - spawnPosition: {fileID: 1370677806}
       enemies:
+      - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
+        count: 5
       - enemyFactory: {fileID: 11400000, guid: 9dc28355a1ce5d24b8f718d64244c43a, type: 2}
         count: 2
       arrowImage: {fileID: 1467989102}
@@ -14541,33 +14266,15 @@ MonoBehaviour:
         initialDelay: 0
     spawnDelayMin: 2
     spawnDelayMax: 2
-    restAfterWave: 10
+    restAfterWave: 15
   - waveName: Final Wave
     portalSpawns:
-    - spawnPosition: {fileID: 851351561}
-      enemies:
-      - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
-        count: 5
-      arrowImage: {fileID: 2087950857}
-      blinkSettings:
-        blinkCount: 3
-        fadeInDuration: 0.2
-        holdDuration: 0.3
-        fadeOutDuration: 0.2
-        initialDelay: 0
-    - spawnPosition: {fileID: 1601954570}
-      enemies:
-      - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
-        count: 5
-      arrowImage: {fileID: 1830534538}
-      blinkSettings:
-        blinkCount: 3
-        fadeInDuration: 0.2
-        holdDuration: 0.3
-        fadeOutDuration: 0.2
-        initialDelay: 0
     - spawnPosition: {fileID: 1635483276}
       enemies:
+      - enemyFactory: {fileID: 11400000, guid: 258fa7e63b36d83489366a022ab7b760, type: 2}
+        count: 10
+      - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
+        count: 10
       - enemyFactory: {fileID: 11400000, guid: a16df98d83c53fc43909f5e15b3d561a, type: 2}
         count: 1
       arrowImage: {fileID: 208091433}
@@ -14579,8 +14286,12 @@ MonoBehaviour:
         initialDelay: 0
     - spawnPosition: {fileID: 1370677806}
       enemies:
+      - enemyFactory: {fileID: 11400000, guid: 258fa7e63b36d83489366a022ab7b760, type: 2}
+        count: 10
+      - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
+        count: 10
       - enemyFactory: {fileID: 11400000, guid: 9dc28355a1ce5d24b8f718d64244c43a, type: 2}
-        count: 2
+        count: 1
       arrowImage: {fileID: 1467989102}
       blinkSettings:
         blinkCount: 3
@@ -15528,6 +15239,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 671120433}
     m_Modifications:
     - target: {fileID: 2366788554856475630, guid: 43682b4e551780c42b8badfbfd8ea66b, type: 3}
+      propertyPath: damageMultiplierBelowThreshold
+      value: 0.136
+      objectReference: {fileID: 0}
+    - target: {fileID: 2366788554856475630, guid: 43682b4e551780c42b8badfbfd8ea66b, type: 3}
       propertyPath: damageReductionHealthThreshold
       value: 250
       objectReference: {fileID: 0}
@@ -16011,7 +15726,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2835732269424538148, guid: c5862296d27d8e94190863963df3638b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.5
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 2835732269424538148, guid: c5862296d27d8e94190863963df3638b, type: 3}
       propertyPath: m_LocalPosition.y
