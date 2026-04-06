@@ -4,9 +4,16 @@ using System.Collections;
 
 public class IconManager : MonoBehaviour
 {
-    [Header("=== Icon References ===")]
-    [SerializeField] private Image fastForwardIcon;
-    [SerializeField] private Image rewindIcon;
+    [Header("=== Animation Prefab References ===")]
+    [SerializeField] private GameObject fastForwardPrefab;
+    [SerializeField] private GameObject rewindPrefab;
+    
+    [Header("=== Canvas Reference ===")]
+    [SerializeField] private Transform iconContainer;
+
+    [Header("=== Size & Position Settings ===")]
+    [SerializeField] private Vector2 iconSize = new Vector2(100f, 100f);
+    [SerializeField] private float rotationOffset = 0f;
 
     [Header("=== Fade Settings ===")]
     [SerializeField] private float fadeInDuration = 0.15f;
@@ -23,37 +30,31 @@ public class IconManager : MonoBehaviour
     [SerializeField] private float pulseScaleMax = 1.05f;
 
     // State
-    private enum IconState { None, FastForward, Rewind }
+    private enum IconState
+    {
+        None,
+        FastForward,
+        Rewind
+    }
+
     private IconState currentState = IconState.None;
-    private Image activeIcon = null;
+    private GameObject activeIconInstance = null;
+    private CanvasGroup activeCanvasGroup = null;
+    private StopMotionUI activeStopMotion = null;
     private Coroutine transitionCoroutine;
     private Coroutine pulseCoroutine;
     private bool isTransitioning = false;
 
-    // Original scales
-    private Vector3 fastForwardOriginalScale;
-    private Vector3 rewindOriginalScale;
+    // Original scale for pulse
+    private Vector3 originalScale = Vector3.one;
 
     void Awake()
     {
-        CacheOriginalScales();
-        InitializeIcons();
-    }
-
-    void CacheOriginalScales()
-    {
-        if (fastForwardIcon != null)
-            fastForwardOriginalScale = fastForwardIcon.transform.localScale;
-        
-        if (rewindIcon != null)
-            rewindOriginalScale = rewindIcon.transform.localScale;
-    }
-
-    void InitializeIcons()
-    {
-        // Start with both icons hidden
-        SetIconAlpha(fastForwardIcon, 0f);
-        SetIconAlpha(rewindIcon, 0f);
+        // If no container assigned, use this transform
+        if (iconContainer == null)
+        {
+            iconContainer = transform;
+        }
     }
 
     public void ShowFastForward()
@@ -102,42 +103,46 @@ public class IconManager : MonoBehaviour
             pulseCoroutine = null;
         }
 
-        // Reset scales
-        if (fastForwardIcon != null)
-            fastForwardIcon.transform.localScale = fastForwardOriginalScale;
-        
-        if (rewindIcon != null)
-            rewindIcon.transform.localScale = rewindOriginalScale;
+        // Reset scale
+        if (activeIconInstance != null)
+        {
+            activeIconInstance.transform.localScale = originalScale;
+        }
     }
 
     IEnumerator TransitionToIcon(IconState targetState)
     {
         isTransitioning = true;
 
-        Image targetIcon = GetIconForState(targetState);
-        Image previousIcon = activeIcon;
+        GameObject targetPrefab = GetPrefabForState(targetState);
         bool wasSwitching = currentState != IconState.None && targetState != IconState.None;
 
-        // Fade out current icon if showing
-        if (previousIcon != null && GetIconAlpha(previousIcon) > 0f)
+        // Fade out and destroy current icon if showing
+        if (activeIconInstance != null && activeCanvasGroup != null && activeCanvasGroup.alpha > 0f)
         {
             float fadeDuration = wasSwitching ? switchFadeDuration : fadeOutDuration;
-            yield return StartCoroutine(FadeIcon(previousIcon, GetIconAlpha(previousIcon), 0f, fadeDuration));
+            yield return StartCoroutine(FadeCanvasGroup(activeCanvasGroup, activeCanvasGroup.alpha, 0f, fadeDuration));
+            
+            // Destroy the old instance
+            DestroyActiveIcon();
         }
 
         // Update state
         currentState = targetState;
-        activeIcon = targetIcon;
 
-        // Fade in new icon if not hiding
-        if (targetIcon != null)
+        // Spawn and fade in new icon if not hiding
+        if (targetPrefab != null)
         {
-            yield return StartCoroutine(FadeIcon(targetIcon, 0f, pulseMaxAlpha, fadeInDuration));
+            // Spawn new instance
+            SpawnIcon(targetPrefab, targetState);
+
+            // Fade in
+            yield return StartCoroutine(FadeCanvasGroup(activeCanvasGroup, 0f, pulseMaxAlpha, fadeInDuration));
 
             // Start pulse
             if (enablePulse)
             {
-                pulseCoroutine = StartCoroutine(PulseRoutine(targetIcon));
+                pulseCoroutine = StartCoroutine(PulseRoutine());
             }
         }
 
@@ -145,9 +150,80 @@ public class IconManager : MonoBehaviour
         transitionCoroutine = null;
     }
 
-    IEnumerator FadeIcon(Image icon, float fromAlpha, float toAlpha, float duration)
+    void SpawnIcon(GameObject prefab, IconState state)
     {
-        if (icon == null) yield break;
+        // Instantiate the prefab
+        activeIconInstance = Instantiate(prefab, iconContainer);
+        activeIconInstance.name = "ActiveIcon_" + state;
+
+        // Configure RectTransform
+        RectTransform rect = activeIconInstance.GetComponent<RectTransform>();
+        if (rect != null)
+        {
+            rect.anchorMin = new Vector2(0.5f, 0.5f);
+            rect.anchorMax = new Vector2(0.5f, 0.5f);
+            rect.pivot = new Vector2(0.5f, 0.5f);
+            rect.anchoredPosition = Vector2.zero;
+            rect.sizeDelta = iconSize;
+            
+            // Apply rotation offset and flip for rewind
+            if (state == IconState.Rewind)
+            {
+                // Flip horizontally and apply rotation
+                rect.localScale = new Vector3(-1f, 1f, 1f);
+                rect.localRotation = Quaternion.Euler(0f, 0f, -rotationOffset);
+            }
+            else
+            {
+                rect.localScale = Vector3.one;
+                rect.localRotation = Quaternion.Euler(0f, 0f, rotationOffset);
+            }
+        }
+
+        // Store original scale for pulse
+        originalScale = activeIconInstance.transform.localScale;
+
+        // Get or add CanvasGroup
+        activeCanvasGroup = activeIconInstance.GetComponent<CanvasGroup>();
+        if (activeCanvasGroup == null)
+        {
+            activeCanvasGroup = activeIconInstance.AddComponent<CanvasGroup>();
+        }
+        activeCanvasGroup.alpha = 0f;
+
+        // Get StopMotionUI and start playing
+        activeStopMotion = activeIconInstance.GetComponent<StopMotionUI>();
+        if (activeStopMotion != null)
+        {
+            activeStopMotion.loop = true;
+            activeStopMotion.destroyOnEnd = false;
+            activeStopMotion.Play();
+        }
+        else
+        {
+            Debug.LogWarning("[IconManager] Prefab doesn't have StopMotionUI component: " + prefab.name);
+        }
+    }
+
+    void DestroyActiveIcon()
+    {
+        if (activeIconInstance != null)
+        {
+            if (activeStopMotion != null)
+            {
+                activeStopMotion.StopAllCoroutines();
+            }
+
+            Destroy(activeIconInstance);
+            activeIconInstance = null;
+            activeCanvasGroup = null;
+            activeStopMotion = null;
+        }
+    }
+
+    IEnumerator FadeCanvasGroup(CanvasGroup canvasGroup, float fromAlpha, float toAlpha, float duration)
+    {
+        if (canvasGroup == null) yield break;
 
         float elapsed = 0f;
 
@@ -155,19 +231,17 @@ public class IconManager : MonoBehaviour
         {
             elapsed += Time.deltaTime;
             float t = elapsed / duration;
-            float alpha = Mathf.Lerp(fromAlpha, toAlpha, t);
-            SetIconAlpha(icon, alpha);
+            canvasGroup.alpha = Mathf.Lerp(fromAlpha, toAlpha, t);
             yield return null;
         }
 
-        SetIconAlpha(icon, toAlpha);
+        canvasGroup.alpha = toAlpha;
     }
 
-    IEnumerator PulseRoutine(Image icon)
+    IEnumerator PulseRoutine()
     {
-        if (icon == null) yield break;
+        if (activeCanvasGroup == null) yield break;
 
-        Vector3 originalScale = icon == fastForwardIcon ? fastForwardOriginalScale : rewindOriginalScale;
         float time = 0f;
 
         while (true)
@@ -177,55 +251,108 @@ public class IconManager : MonoBehaviour
 
             // Alpha pulse
             float alpha = Mathf.Lerp(pulseMinAlpha, pulseMaxAlpha, t);
-            SetIconAlpha(icon, alpha);
+            if (activeCanvasGroup != null)
+            {
+                activeCanvasGroup.alpha = alpha;
+            }
 
             // Scale pulse (optional)
-            if (pulseScale)
+            if (pulseScale && activeIconInstance != null)
             {
                 float scale = Mathf.Lerp(pulseScaleMin, pulseScaleMax, t);
-                icon.transform.localScale = originalScale * scale;
+                activeIconInstance.transform.localScale = originalScale * scale;
             }
 
             yield return null;
         }
     }
 
-    Image GetIconForState(IconState state)
+    GameObject GetPrefabForState(IconState state)
     {
         return state switch
         {
-            IconState.FastForward => fastForwardIcon,
-            IconState.Rewind => rewindIcon,
+            IconState.FastForward => fastForwardPrefab,
+            IconState.Rewind => rewindPrefab,
             _ => null
         };
     }
 
-    void SetIconAlpha(Image icon, float alpha)
+    /// <summary>
+    /// Set rotation offset at runtime
+    /// </summary>
+    public void SetRotationOffset(float newOffset)
     {
-        if (icon == null) return;
-
-        Color color = icon.color;
-        color.a = alpha;
-        icon.color = color;
+        rotationOffset = newOffset;
+        
+        // Update current icon if one is active
+        if (activeIconInstance != null)
+        {
+            RectTransform rect = activeIconInstance.GetComponent<RectTransform>();
+            if (rect != null)
+            {
+                if (currentState == IconState.Rewind)
+                {
+                    rect.localRotation = Quaternion.Euler(0f, 0f, -rotationOffset);
+                }
+                else
+                {
+                    rect.localRotation = Quaternion.Euler(0f, 0f, rotationOffset);
+                }
+            }
+        }
     }
 
-    float GetIconAlpha(Image icon)
+    /// <summary>
+    /// Set icon size at runtime
+    /// </summary>
+    public void SetIconSize(Vector2 newSize)
     {
-        if (icon == null) return 0f;
-        return icon.color.a;
+        iconSize = newSize;
+        
+        // Update current icon if one is active
+        if (activeIconInstance != null)
+        {
+            RectTransform rect = activeIconInstance.GetComponent<RectTransform>();
+            if (rect != null)
+            {
+                rect.sizeDelta = iconSize;
+            }
+        }
     }
 
     void OnDisable()
     {
         StopAllTransitions();
-        
-        // Reset icons
-        SetIconAlpha(fastForwardIcon, 0f);
-        SetIconAlpha(rewindIcon, 0f);
-        
+        DestroyActiveIcon();
         currentState = IconState.None;
-        activeIcon = null;
     }
+
+    void OnDestroy()
+    {
+        DestroyActiveIcon();
+    }
+
+#if UNITY_EDITOR
+    void OnValidate()
+    {
+        // Update rotation in editor when value changes
+        if (activeIconInstance != null)
+        {
+            RectTransform rect = activeIconInstance.GetComponent<RectTransform>();
+            if (rect != null)
+            {
+                if (currentState == IconState.Rewind)
+                {
+                    rect.localRotation = Quaternion.Euler(0f, 0f, -rotationOffset);
+                }
+                else if (currentState == IconState.FastForward)
+                {
+                    rect.localRotation = Quaternion.Euler(0f, 0f, rotationOffset);
+                }
+            }
+        }
+    }
+#endif
 
     // Public getters
     public bool IsShowingFastForward => currentState == IconState.FastForward;
