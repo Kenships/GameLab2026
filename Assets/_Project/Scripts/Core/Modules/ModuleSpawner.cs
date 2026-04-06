@@ -51,6 +51,14 @@ namespace _Project.Scripts.Core.Modules
 
         private void Start()
         {
+            
+            spawnEvent.OnRaised += SpawnEventOnRaised;
+
+            if (!player1 || !player2)
+            {
+                return;
+            }
+            
             if (player1.TryGetGamePad(out Gamepad player1Pad))
             {
                 _gamePads.Add(player1Pad);
@@ -64,7 +72,7 @@ namespace _Project.Scripts.Core.Modules
             }
             
             
-            spawnEvent.OnRaised += SpawnEventOnRaised;
+            
         }
 
         private void OnDestroy()
