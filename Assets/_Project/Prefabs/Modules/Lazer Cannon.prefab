@@ -277,7 +277,7 @@ MonoBehaviour:
   moduleSprite: {fileID: 21300000, guid: 20964abc62f946b48893bafca2b6fc48, type: 3}
   state: 1
   maxHealth: 100
-  defaultRecoverySpeed: 40
+  defaultRecoverySpeed: 18
   defaultDecaySpeed: 0
   attackStateDecayMultiplier: 4
   enableOnStart: 0
