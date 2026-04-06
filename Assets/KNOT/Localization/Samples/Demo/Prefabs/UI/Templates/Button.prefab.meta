@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 1f2c9591ef16a4744a5cb1bf25b059a4
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 187603
+  packageName: KNOT Localization
+  packageVersion: 1.4.1
+  assetPath: Assets/KNOT/Localization/Samples/Demo/Prefabs/UI/Templates/Button.prefab
+  uploadId: 713359

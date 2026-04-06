@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: bb0f594b81551184fb3cae64f3d90d3a
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 187603
+  packageName: KNOT Localization
+  packageVersion: 1.4.1
+  assetPath: Assets/KNOT/Core/Editor/Scripts/CustomEditors/ProjectSettingsEditor.cs
+  uploadId: 713359

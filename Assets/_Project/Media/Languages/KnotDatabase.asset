@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1ce4382dfc0b464d981a3118a0b95f3, type: 3}
+  m_Name: KnotDatabase
+  m_EditorClassIdentifier: Knot.Localization::Knot.Localization.Data.KnotDatabase
+  _languages: []
+  _textKeyCollections: []
+  _assetKeyCollections: []
+  _settings:
+    _languageSelector:
+      rid: 7874754110861869363
+    _textController:
+      rid: 7874754110861869364
+    _assetController:
+      rid: 7874754110861869365
+    _metadata:
+      _runtime: []
+      _editor: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 7874754110861869363
+      type: {class: KnotDefaultLanguageSelector, ns: Knot.Localization, asm: Knot.Localization}
+      data:
+        _serializationPlaceholder: 0
+    - rid: 7874754110861869364
+      type: {class: KnotTextController, ns: Knot.Localization, asm: Knot.Localization}
+      data:
+        _serializationPlaceholder: 0
+        _fallbackValue: '{key}'
+    - rid: 7874754110861869365
+      type: {class: KnotAssetController, ns: Knot.Localization, asm: Knot.Localization}
+      data:
+        _serializationPlaceholder: 0
