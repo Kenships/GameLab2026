@@ -73,16 +73,6 @@ namespace _Project.Scripts.Core.Modules
                 });
         }
 
-        void Update()
-        {
-            _currentLazerSound.OnAudioFinished += resetAudio;
-        }
-
-        private void resetAudio()
-        {
-            _currentLazerSound = null;
-        }
-
         private void PerformAttack()
         {
             if (_currentLazerSound == null)

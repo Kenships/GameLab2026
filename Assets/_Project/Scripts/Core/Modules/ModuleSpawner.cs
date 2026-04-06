@@ -14,6 +14,7 @@ namespace _Project.Scripts.Core.Modules
     public class ModuleSpawner : MonoBehaviour<AudioPooler>
     {
         [SerializeField] private ScriptableEventGameObject spawnEvent;
+        [SerializeField] private ScriptableEventGameObject moduleSpawnedEvent;
         [System.Serializable]
         public class LandingInfo
         {
@@ -81,6 +82,7 @@ namespace _Project.Scripts.Core.Modules
                     dropEffect.transform.position = targetPos;
                     dropEffect.Play();
                 });
+            moduleSpawnedEvent?.Raise(module);
         }
 
         private int GetBestAvailableIndex()

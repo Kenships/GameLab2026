@@ -4771,6 +4771,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TextTyper
   delay: 0.03
+  typeSound: {fileID: 8300000, guid: aefbd98ee7c1f3d419e7fb9756fff6af, type: 3}
+  typeSoundVolume: 0.75
+  hasSFX: 1
 --- !u!1001 &995858792
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7542,6 +7545,7 @@ MonoBehaviour:
   vhsLocation: {fileID: 1630970323}
   bossDefeatedEvent: {fileID: 11400000, guid: dca06c0613049d741b7b023502d19817, type: 2}
   waveStartEvent: {fileID: 11400000, guid: 70472f02f5cc06345845b0a8e5cba28f, type: 2}
+  perfectWaveEvent: {fileID: 0}
   waveUI: {fileID: 254651396}
   waves:
   - waveName: Monster Wave
@@ -8416,6 +8420,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.Modules.ModuleSpawner
   spawnEvent: {fileID: 11400000, guid: ea59c12e137cbf940b576ce2cfee1c24, type: 2}
+  moduleSpawnedEvent: {fileID: 11400000, guid: f2d3be959da3fc84a8f76e8f346d4acd, type: 2}
   hintUI: {fileID: 8939613}
   dropEffect: {fileID: 642719964}
   landingInfos:

@@ -55,8 +55,13 @@ namespace _Project.Scripts.Core.Modules.Base_Class
             }
             else if (_interactingPlayers.ContainsKey(playerID) && _interactingPlayers.Count == 1)
             {
+                if (_interactingPlayers[playerID] == action)
+                {
+                    return;
+                }
+                
                 CancelAction(_interactingPlayers[playerID]);
-                _interactingPlayers.Add(playerID, action);
+                _interactingPlayers[playerID] = action;
                 PerformAction(action);
                 _activePlayer = playerID;
             }

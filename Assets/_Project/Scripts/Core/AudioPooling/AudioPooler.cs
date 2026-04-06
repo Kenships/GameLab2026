@@ -125,8 +125,14 @@ namespace _Project.Scripts.Core.AudioPooling
                 _logger.LogWarning("No clip provided");
                 return new EmptyAudioPlayer();
             }
-            
-            
+
+            // Music can't be thrown
+            if (audioConfig.AudioType == AudioType.Music)
+            {
+                return GetNextAudioSource(audioConfig);
+            }
+
+
             // check for capacity availability
             PooledAudioSource audioSource = null;
             if (!activeSourcesByAudioType.TryGetValue(audioConfig.AudioType, out List<PooledAudioSource> list) ||

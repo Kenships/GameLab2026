@@ -8338,8 +8338,56 @@ Transform:
   - {fileID: 121679937}
   - {fileID: 497067944}
   - {fileID: 1797463598}
+  - {fileID: 1565168888}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1565168887
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1565168888}
+  - component: {fileID: 1565168889}
+  m_Layer: 0
+  m_Name: ModuleRegistry
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1565168888
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1565168887}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1514619457}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1565168889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1565168887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f90ae3159db2417d9c6fc40c7abed238, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.Modules.ModuleRegistry
+  perfectWave: {fileID: 11400000, guid: 64c481e45ee502340a1eff08d1861d7c, type: 2}
+  moduleSpawnedEvent: {fileID: 11400000, guid: f2d3be959da3fc84a8f76e8f346d4acd, type: 2}
+  _modules: []
 --- !u!1 &1571939181
 GameObject:
   m_ObjectHideFlags: 0
@@ -14197,6 +14245,7 @@ MonoBehaviour:
   vhsLocation: {fileID: 9193764520642239212}
   bossDefeatedEvent: {fileID: 11400000, guid: dca06c0613049d741b7b023502d19817, type: 2}
   waveStartEvent: {fileID: 11400000, guid: 70472f02f5cc06345845b0a8e5cba28f, type: 2}
+  perfectWaveEvent: {fileID: 11400000, guid: 64c481e45ee502340a1eff08d1861d7c, type: 2}
   waveUI: {fileID: 1136097441}
   waves:
   - waveName: Wave 1
@@ -15415,6 +15464,10 @@ PrefabInstance:
       propertyPath: landingSoundVolume
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 7207537582970083182, guid: 43682b4e551780c42b8badfbfd8ea66b, type: 3}
+      propertyPath: moduleSpawnedEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: f2d3be959da3fc84a8f76e8f346d4acd, type: 2}
     - target: {fileID: 7207537582970083182, guid: 43682b4e551780c42b8badfbfd8ea66b, type: 3}
       propertyPath: landingInfos.Array.size
       value: 4

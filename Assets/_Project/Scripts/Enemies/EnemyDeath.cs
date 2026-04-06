@@ -7,6 +7,6 @@ public class EnemyDeath : MonoBehaviour
     private void OnDestroy()
     {
         Vector3 targetPos = new Vector3(transform.position.x, transform.position.y + 2, transform.position.z);
-        StopMotionManager.Instance.SpawnAnimation(targetPos, deathAnimSize);
+        StopMotionManager.Instance?.SpawnAnimation(targetPos, deathAnimSize);
     }
 }
