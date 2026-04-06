@@ -1048,8 +1048,10 @@ MonoBehaviour:
   - 800
   - 900
   useDamageReductionThreshold: 1
-  damageReductionHealthThreshold: 100
+  damageReductionHealthThreshold: 500
   damageMultiplierBelowThreshold: 0.5
+  damageReductionHealthThreshold2: 250
+  damageMultiplierBelowThreshold2: 0.1
 --- !u!114 &3247101322211001578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1093,6 +1095,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.Modules.ModuleSpawner
   spawnEvent: {fileID: 11400000, guid: ea59c12e137cbf940b576ce2cfee1c24, type: 2}
+  moduleSpawnedEvent: {fileID: 0}
   hintUI: {fileID: 0}
   dropEffect: {fileID: 0}
   landingInfos: []
@@ -1568,7 +1571,7 @@ RectTransform:
   m_Father: {fileID: 8793520788020941277}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: -3.3999996}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

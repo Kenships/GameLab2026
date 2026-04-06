@@ -32,6 +32,8 @@ namespace _Project.Scripts.Core.Modules
         [SerializeField] private bool useDamageReductionThreshold = true;
         [SerializeField] private float damageReductionHealthThreshold = 100f;
         [SerializeField] [Range(0f, 1f)] private float damageMultiplierBelowThreshold = 0.5f;
+        [SerializeField] private float damageReductionHealthThreshold2 = 100f;
+        [SerializeField] [Range(0f, 1f)] private float damageMultiplierBelowThreshold2 = 0.5f;
         
         private HashSet<int> _reachedMilestones = new();
 
@@ -90,6 +92,8 @@ namespace _Project.Scripts.Core.Modules
             float finalDamage = damage;
             if (useDamageReductionThreshold && _myHealth.CurrentHealth <= damageReductionHealthThreshold)
             {finalDamage *= damageMultiplierBelowThreshold;}
+            if (useDamageReductionThreshold && _myHealth.CurrentHealth <= damageReductionHealthThreshold2)
+            {finalDamage *= damageMultiplierBelowThreshold2;}
             _myHealth.AddToHealth(-finalDamage);
             GameManager.Instance.score = _myHealth.CurrentHealth;
         }

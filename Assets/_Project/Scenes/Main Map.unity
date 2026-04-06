@@ -15651,11 +15651,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2366788554856475630, guid: 43682b4e551780c42b8badfbfd8ea66b, type: 3}
       propertyPath: damageMultiplierBelowThreshold
-      value: 0.136
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2366788554856475630, guid: 43682b4e551780c42b8badfbfd8ea66b, type: 3}
       propertyPath: damageReductionHealthThreshold
-      value: 250
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 2366788554856475630, guid: 43682b4e551780c42b8badfbfd8ea66b, type: 3}
+      propertyPath: damageMultiplierBelowThreshold2
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2366788554856475630, guid: 43682b4e551780c42b8badfbfd8ea66b, type: 3}
+      propertyPath: damageReductionHealthThreshold2
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 2853457693616237105, guid: 43682b4e551780c42b8badfbfd8ea66b, type: 3}
       propertyPath: m_Name
