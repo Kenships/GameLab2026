@@ -740,6 +740,7 @@ GameObject:
   - component: {fileID: 1629707073}
   - component: {fileID: 1629707072}
   - component: {fileID: 1629707074}
+  - component: {fileID: 1629707075}
   m_Layer: 5
   m_Name: Back
   m_TagString: Untagged
@@ -781,6 +782,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.SceneLoading.SceneUnloader
   scenesToUnload:
   - buildIndex: 2
+  - buildIndex: 5
   withOverlay: 0
   disable: 0
 --- !u!114 &1629707069
@@ -947,6 +949,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a948c034fe6d9747b7c10a92fea0731, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.UI.UISceneBinder
+--- !u!114 &1629707075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1629707066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 511ca6caeb2cfa54b8ada396c12a0fb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.UI.InitialUISelect
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

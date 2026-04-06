@@ -251,7 +251,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   loadOnAwake: 0
-  withOverlay: 1
+  withOverlay: 0
   fadeAudio: 1
   fadeDuration: 1
   sceneGroup: 1
@@ -844,6 +844,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TextTyper
   delay: 0.125
+  typeSound: {fileID: 0}
+  typeSoundVolume: 0.1
+  hasSFX: 0
 --- !u!1 &1646757287
 GameObject:
   m_ObjectHideFlags: 0
@@ -901,7 +904,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   loadOnAwake: 0
-  withOverlay: 1
+  withOverlay: 0
   fadeAudio: 1
   fadeDuration: 1
   sceneGroup: 1
