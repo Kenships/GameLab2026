@@ -3,6 +3,7 @@ using _Project.Scripts.Enemies;
 using PrimeTween;
 using System;
 using System.Collections;
+using Obvious.Soap;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,20 +12,32 @@ namespace _Project.Scripts.UI
 {
     public class EnemyWaveUI : MonoBehaviour
     {
+        [SerializeField] private ScriptableEventNoParam perfectWaveEvent;
         [SerializeField] private ScriptableEventWaveData waveData;
         [SerializeField] private TextMeshProUGUI waveTitle;
         [SerializeField] private TextMeshProUGUI waveCompletedText;
+        [SerializeField] private TextMeshProUGUI perfectWaveText;
         [SerializeField] private TextMeshProUGUI countdownText;
 
         private Coroutine currentCountdownCoroutine;
 
+        private bool _perfectWave;
+
         private void Start()
         {
+            perfectWaveEvent.OnRaised += PerfectWaveEventOnRaised;
             waveData.OnRaised += WaveDataOnRaised;
+        }
+
+        private void PerfectWaveEventOnRaised()
+        {
+            Debug.Log("Perfect Wave!");
+            _perfectWave = true;
         }
 
         private void WaveDataOnRaised(EnemyWaveSpawner.Wave wave)
         {
+            _perfectWave = false;
             waveTitle.text = wave.waveName;
         }
 
@@ -36,6 +49,12 @@ namespace _Project.Scripts.UI
             waveCompletedText.color = new Color(waveCompletedText.color.r, waveCompletedText.color.g, waveCompletedText.color.b, 0f);
             waveCompletedText.enabled = true;
 
+            if (_perfectWave)
+            {
+                waveCompletedText.text += "\n<size=50>Perfect Wave!</size>";
+                _perfectWave = false;
+            }
+
             // fade in -> hold -> fade out
             var sequence = Sequence.Create()
                 .Chain(Tween.Alpha(waveCompletedText, 1f, 0.5f))
@@ -45,6 +64,8 @@ namespace _Project.Scripts.UI
             // Wait for the entire sequence to complete
             yield return sequence.ToYieldInstruction();
             waveCompletedText.enabled = false;
+
+            waveCompletedText.text = "Wave Completed";
         }
 
         public void StartCountdown(float duration)
