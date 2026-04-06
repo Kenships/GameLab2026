@@ -1835,7 +1835,7 @@ MonoBehaviour:
   bulletFactory: {fileID: 11400000, guid: f5cb3d7f514abb3489248fa2d883da3e, type: 2}
   shotsPerSecond: 1
   attackSpeedMultiplier: 1.5
-  detectionRange: 10
+  detectionRange: 6.5
   headRotationSpeed: 10
   shootSound: {fileID: 8300000, guid: f21bdf2a9364cce4785a3debf763df22, type: 3}
   shootSoundVolume: 0.3
@@ -1854,7 +1854,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RangeDetector
   rangeType: 0
-  radius: 10
+  radius: 6.5
   angle: 35
   width: 5
   length: 10

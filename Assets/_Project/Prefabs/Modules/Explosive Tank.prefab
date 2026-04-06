@@ -31023,7 +31023,7 @@ MonoBehaviour:
   moduleSprite: {fileID: 0}
   state: 1
   maxHealth: 100
-  defaultRecoverySpeed: 40
+  defaultRecoverySpeed: 18
   defaultDecaySpeed: 0
   attackStateDecayMultiplier: 4
   enableOnStart: 1
@@ -31058,7 +31058,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.RangeDetector
   rangeType: 0
-  radius: 3
+  radius: 5
   angle: 60
   width: 5
   length: 10
