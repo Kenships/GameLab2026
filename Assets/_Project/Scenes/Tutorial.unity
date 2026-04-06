@@ -3728,9 +3728,29 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 704010061049051902, guid: f6427a971dd755242816d8e8b75f16a5, type: 3}
+      propertyPath: yOffset
+      value: -0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 704010061049051902, guid: f6427a971dd755242816d8e8b75f16a5, type: 3}
+      propertyPath: pulseScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 704010061049051902, guid: f6427a971dd755242816d8e8b75f16a5, type: 3}
       propertyPath: iconManager
       value: 
       objectReference: {fileID: 1970758137}
+    - target: {fileID: 704010061049051902, guid: f6427a971dd755242816d8e8b75f16a5, type: 3}
+      propertyPath: rewindPrefab
+      value: 
+      objectReference: {fileID: 1367493287952572051, guid: d11777cc35ec41540af3decc41479f69, type: 3}
+    - target: {fileID: 704010061049051902, guid: f6427a971dd755242816d8e8b75f16a5, type: 3}
+      propertyPath: rotationOffset
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 704010061049051902, guid: f6427a971dd755242816d8e8b75f16a5, type: 3}
+      propertyPath: fastForwardPrefab
+      value: 
+      objectReference: {fileID: 1367493287952572051, guid: b81fec7e6f915594aa2f5aad7d230d55, type: 3}
     - target: {fileID: 704010061049051902, guid: f6427a971dd755242816d8e8b75f16a5, type: 3}
       propertyPath: moduleInfoManager
       value: 
@@ -6316,8 +6336,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b01f92d9148a124fb18dd85fa52b6d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::IconManager
-  fastForwardIcon: {fileID: 104776506}
-  rewindIcon: {fileID: 1126740422}
+  fastForwardPrefab: {fileID: 0}
+  rewindPrefab: {fileID: 0}
+  iconContainer: {fileID: 0}
+  iconSize: {x: 100, y: 100}
+  rotationOffset: 0
   fadeInDuration: 0.15
   fadeOutDuration: 0.2
   switchFadeDuration: 0.1
@@ -9523,8 +9546,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b01f92d9148a124fb18dd85fa52b6d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::IconManager
-  fastForwardIcon: {fileID: 882784674}
-  rewindIcon: {fileID: 1033360631}
+  fastForwardPrefab: {fileID: 0}
+  rewindPrefab: {fileID: 0}
+  iconContainer: {fileID: 0}
+  iconSize: {x: 100, y: 100}
+  rotationOffset: 0
   fadeInDuration: 0.15
   fadeOutDuration: 0.2
   switchFadeDuration: 0.1
@@ -10596,9 +10622,29 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8921368399928569412, guid: 182a216b55b5c854cb04ac43f2ab745c, type: 3}
+      propertyPath: yOffset
+      value: -0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8921368399928569412, guid: 182a216b55b5c854cb04ac43f2ab745c, type: 3}
+      propertyPath: pulseScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8921368399928569412, guid: 182a216b55b5c854cb04ac43f2ab745c, type: 3}
       propertyPath: iconManager
       value: 
       objectReference: {fileID: 1216901843}
+    - target: {fileID: 8921368399928569412, guid: 182a216b55b5c854cb04ac43f2ab745c, type: 3}
+      propertyPath: rewindPrefab
+      value: 
+      objectReference: {fileID: 1367493287952572051, guid: d11777cc35ec41540af3decc41479f69, type: 3}
+    - target: {fileID: 8921368399928569412, guid: 182a216b55b5c854cb04ac43f2ab745c, type: 3}
+      propertyPath: rotationOffset
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 8921368399928569412, guid: 182a216b55b5c854cb04ac43f2ab745c, type: 3}
+      propertyPath: fastForwardPrefab
+      value: 
+      objectReference: {fileID: 1367493287952572051, guid: b81fec7e6f915594aa2f5aad7d230d55, type: 3}
     - target: {fileID: 8921368399928569412, guid: 182a216b55b5c854cb04ac43f2ab745c, type: 3}
       propertyPath: moduleInfoManager
       value: 
