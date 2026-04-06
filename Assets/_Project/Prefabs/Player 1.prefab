@@ -1157,18 +1157,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WindVFXController
   iconManager: {fileID: 0}
   moduleInfoManager: {fileID: 0}
-  radius: 2
-  ringWidth: 0.15
-  segments: 80
-  ringColor: {r: 0.4, g: 0.8, b: 1, a: 0.85}
-  fadeSpeed: 4
+  playerTransform: {fileID: 0}
+  fastForwardPrefab: {fileID: 0}
+  rewindPrefab: {fileID: 0}
+  diameter: 4
   yOffset: 0.05
+  rotationOffset: 0
+  fadeSpeed: 4
   enablePulse: 1
   pulseSpeed: 2
-  pulseIntensity: 0.15
-  enableRipple: 1
-  rippleInterval: 0.6
-  maxRipples: 3
+  pulseMinAlpha: 0.6
+  pulseMaxAlpha: 1
+  pulseScale: 0
+  pulseScaleMin: 0.95
+  pulseScaleMax: 1.05
+  enableDebugLogs: 1
   turretIcon: {fileID: 2800000, guid: 623b8d6c35aa4cc46a664619f1f36193, type: 3}
   flameIcon: {fileID: 2800000, guid: bc92618e37784f145aac4943e376ca33, type: 3}
   lazerIcon: {fileID: 2800000, guid: 20964abc62f946b48893bafca2b6fc48, type: 3}
