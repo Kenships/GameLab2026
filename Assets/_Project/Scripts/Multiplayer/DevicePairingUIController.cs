@@ -108,7 +108,7 @@ namespace _Project.Scripts.Multiplayer
                 case PlayerData.PlayerID.Player1:
                     if (!_player1Init)
                         return;
-                    if (_player1Index != _player2Index){
+                    if (_player1Index != _player2Index || !_player2Init){
                         PlayerConfirm(_player1Index);
                         _player1Ready = true;
                     }
@@ -116,7 +116,7 @@ namespace _Project.Scripts.Multiplayer
                 case PlayerData.PlayerID.Player2:
                     if (!_player2Init)
                         return;
-                    if (_player2Index != _player1Index)
+                    if (_player2Index != _player1Index || !_player1Init)
                     {
                         PlayerConfirm(_player2Index);
                         _player2Ready = true;
@@ -185,21 +185,25 @@ namespace _Project.Scripts.Multiplayer
         //Currently they all do the same thing
         private void DevicePairingServiceOnPlayer1Paired()
         {
+            _player1Init = true;
             UpdateUI();
         }
         
         private void DevicePairingServiceOnPlayer2Paired()
         {
+            _player2Init = true;
             UpdateUI();
         }
         
         private void DevicePairingServiceOnPlayer1Unpaired()
         {
+            _player1Init = false;
             UpdateUI();
         }
         
         private void DevicePairingServiceOnPlayer2Unpaired()
         {
+            _player2Init = false;
             UpdateUI();
         }
 
