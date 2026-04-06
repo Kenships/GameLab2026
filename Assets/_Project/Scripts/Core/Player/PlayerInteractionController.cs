@@ -65,12 +65,12 @@ namespace _Project.Scripts.Core.Player
 
         private void OnEnable()
         {
-            _inputReader.OnTapInteract += PickUpOrPutDown;
+            _inputReader.OnTapInteract += RotateClockWise;
 
             _inputReader.OnHoldInteract += FastForward;
             _inputReader.OnReleaseInteract += CancelFastForward;
 
-            _inputReader.OnTapAltInteract += RotateClockWise;
+            _inputReader.OnTapAltInteract += PickUpOrPutDown;
 
             _inputReader.OnHoldAltInteract += Rewind;
             _inputReader.OnReleaseAltInteract += CancelRewind;
@@ -84,12 +84,12 @@ namespace _Project.Scripts.Core.Player
             if (_inputReader == null)
                 return;
 
-            _inputReader.OnTapInteract -= PickUpOrPutDown;
+            _inputReader.OnTapInteract -= RotateClockWise;
 
             _inputReader.OnHoldInteract -= FastForward;
             _inputReader.OnReleaseInteract -= CancelFastForward;
 
-            _inputReader.OnTapAltInteract -= RotateClockWise;
+            _inputReader.OnTapAltInteract -= PickUpOrPutDown;
 
             _inputReader.OnHoldAltInteract -= Rewind;
             _inputReader.OnReleaseAltInteract -= CancelRewind;
