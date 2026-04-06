@@ -3261,11 +3261,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 553682180}
   m_CullTransparentMesh: 1
---- !u!4 &575053338 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5846722849630315972, guid: 873a1bc7317128045b7538dc9fd6b434, type: 3}
-  m_PrefabInstance: {fileID: 1221419986}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &583056454
 GameObject:
   m_ObjectHideFlags: 0
@@ -3565,13 +3560,13 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1221419987}
   - {fileID: 1810771577}
   - {fileID: 1949195940}
   - {fileID: 1630970323}
   - {fileID: 642719965}
   - {fileID: 1663294865}
   - {fileID: 2123999488}
+  - {fileID: 1221419987}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &683948259
@@ -5201,7 +5196,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - PanelText: Good. See my health bar on top? Not great. HOLD B next to me to rewind
+  - PanelText: Good. See my health bar on top? Not great. HOLD A next to me to rewind
       = heal me. Thanks.
     FreezePlayers: 0
     OnPanel:
@@ -5405,7 +5400,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - PanelText: Try HOLDING B to rewind the module next to ya.
+  - PanelText: Try HOLDING A to rewind the module next to ya.
     FreezePlayers: 0
     OnPanel:
       m_PersistentCalls:
@@ -5423,7 +5418,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - PanelText: Now HOLD A to fast forward, shoots faster, burns out quicker.
+  - PanelText: Now HOLD B to fast forward, shoots faster, burns out quicker.
     FreezePlayers: 0
     OnPanel:
       m_PersistentCalls:
@@ -5546,7 +5541,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-  - PanelText: 'So here''s the move: HOLD B to rewind it full, then HOLD A to fire
+  - PanelText: 'So here''s the move: HOLD A to rewind it full, then HOLD B to fire
       it up. Try that on the explosive tank.'
     FreezePlayers: 0
     OnPanel:
@@ -5593,8 +5588,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-  - PanelText: Oh, and that car? Try rewind it, then fast forward it. (HOLD B, then
-      HOLD A)
+  - PanelText: Oh, and that car? Try rewind it, then fast forward it. (HOLD A, then
+      HOLD B)
     FreezePlayers: 0
     OnPanel:
       m_PersistentCalls:
@@ -6500,7 +6495,7 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: 873a1bc7317128045b7538dc9fd6b434, type: 3}
 --- !u!4 &1221419987 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 7500989040237091123, guid: 873a1bc7317128045b7538dc9fd6b434, type: 3}
+  m_CorrespondingSourceObject: {fileID: 7838661559476750508, guid: 873a1bc7317128045b7538dc9fd6b434, type: 3}
   m_PrefabInstance: {fileID: 1221419986}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1228476167
@@ -8442,13 +8437,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afb804ee20edbc849854c855b7795ee3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.Modules.ModuleSpawner
+  player1: {fileID: 0}
+  player2: {fileID: 0}
   spawnEvent: {fileID: 11400000, guid: ea59c12e137cbf940b576ce2cfee1c24, type: 2}
   moduleSpawnedEvent: {fileID: 11400000, guid: f2d3be959da3fc84a8f76e8f346d4acd, type: 2}
   hintUI: {fileID: 8939613}
   dropEffect: {fileID: 642719964}
   landingInfos:
-  - start: {fileID: 575053338}
-    end: {fileID: 2106424313}
+  - start: {fileID: 0}
+    end: {fileID: 0}
     arrow: {fileID: 2096034493}
     stackedModules: []
   landingSound: {fileID: 0}
@@ -10173,11 +10170,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2096034491}
   m_CullTransparentMesh: 1
---- !u!4 &2106424313 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1488503037067435828, guid: 873a1bc7317128045b7538dc9fd6b434, type: 3}
-  m_PrefabInstance: {fileID: 1221419986}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2123590153
 GameObject:
   m_ObjectHideFlags: 0
