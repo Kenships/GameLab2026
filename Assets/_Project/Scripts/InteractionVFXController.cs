@@ -40,7 +40,8 @@ namespace _Project.Scripts
         [SerializeField] private float rotationOffset = 0f;
 
         [Header("Fade Settings")]
-        [SerializeField] private float fadeSpeed = 4f;
+        [SerializeField] private float fadeInDuration = 0.15f;
+        [SerializeField] private float fadeOutDuration = 0.2f;
 
         [Header("Pulse Settings")]
         [SerializeField] private bool enablePulse = true;
@@ -70,11 +71,10 @@ namespace _Project.Scripts
         private StopMotionUI stopMotionUI;
         private Image animationImage;
         
-        private float targetAlpha = 0f;
-        private float currentAlpha = 0f;
-        private bool isVisible = false;
+        private float fadeProgress = 0f;
         private bool isFadingIn = false;
-        private bool isPulsing = false;
+        private bool isFadingOut = false;
+        private bool isVisible = false;
         private float pulseTime = 0f;
         private Vector3 originalScale = Vector3.one;
 
@@ -138,9 +138,9 @@ namespace _Project.Scripts
 
         private void Update()
         {
-            HandleFade();
-            HandlePulse();
             UpdateCanvasPosition();
+            UpdatePulse();
+            UpdateFade();
         }
 
         private void UpdateCanvasPosition()
@@ -149,6 +149,77 @@ namespace _Project.Scripts
 
             canvasGameObject.transform.position = playerTransform.position + new Vector3(0f, yOffset, 0f);
             canvasGameObject.transform.rotation = Quaternion.Euler(90f, rotationOffset, 0f);
+        }
+
+        private void UpdatePulse()
+        {
+            if (!enablePulse || !isVisible || canvasGroup == null) return;
+
+            pulseTime += Time.deltaTime * pulseSpeed;
+
+            // Scale pulse (optional)
+            if (pulseScale && currentAnimationRect != null)
+            {
+                float t = (Mathf.Sin(pulseTime * Mathf.PI * 2f) + 1f) * 0.5f; // 0 to 1
+                float scale = Mathf.Lerp(pulseScaleMin, pulseScaleMax, t);
+                
+                Vector3 newScale = new Vector3(
+                    originalScale.x * scale,
+                    originalScale.y * scale,
+                    originalScale.z * scale
+                );
+                currentAnimationRect.localScale = newScale;
+            }
+        }
+
+        private void UpdateFade()
+        {
+            if (canvasGroup == null) return;
+
+            // Calculate pulse alpha
+            float pulseAlpha = pulseMaxAlpha;
+            if (enablePulse)
+            {
+                float t = (Mathf.Sin(pulseTime * Mathf.PI * 2f) + 1f) * 0.5f; // 0 to 1
+                pulseAlpha = Mathf.Lerp(pulseMinAlpha, pulseMaxAlpha, t);
+            }
+
+            if (isFadingIn)
+            {
+                fadeProgress += Time.deltaTime / fadeInDuration;
+                
+                if (fadeProgress >= 1f)
+                {
+                    fadeProgress = 1f;
+                    isFadingIn = false;
+                    DebugLog("Fade in complete");
+                }
+
+                // Multiply fade progress with pulse alpha
+                canvasGroup.alpha = fadeProgress * pulseAlpha;
+            }
+            else if (isFadingOut)
+            {
+                fadeProgress -= Time.deltaTime / fadeOutDuration;
+                
+                if (fadeProgress <= 0f)
+                {
+                    fadeProgress = 0f;
+                    isFadingOut = false;
+                    DestroyCurrentAnimation();
+                    DebugLog("Fade out complete, animation destroyed");
+                }
+                else
+                {
+                    // Multiply fade progress with pulse alpha
+                    canvasGroup.alpha = fadeProgress * pulseAlpha;
+                }
+            }
+            else if (isVisible)
+            {
+                // Just pulsing, no fade
+                canvasGroup.alpha = pulseAlpha;
+            }
         }
 
         private void SpawnAnimation(AbilityMode mode)
@@ -272,10 +343,11 @@ namespace _Project.Scripts
                 Debug.LogError("[InteractionVFXController] Animation prefab doesn't have StopMotionUI component!");
             }
 
-            // Reset pulse state
+            // Reset pulse and fade state
             pulseTime = 0f;
-            isPulsing = false;
+            fadeProgress = 0f;
             isFadingIn = true;
+            isFadingOut = false;
 
             DebugLog("SpawnAnimation completed");
         }
@@ -297,9 +369,10 @@ namespace _Project.Scripts
                 canvasGroup = null;
                 stopMotionUI = null;
                 animationImage = null;
-                isPulsing = false;
-                isFadingIn = false;
             }
+            
+            isFadingIn = false;
+            isFadingOut = false;
         }
 
         public void ShowHeldObject(GameObject heldObject)
@@ -353,9 +426,8 @@ namespace _Project.Scripts
             }
 
             isVisible = true;
-            targetAlpha = pulseMaxAlpha;
 
-            DebugLog("ShowWind completed. isVisible: " + isVisible + ", targetAlpha: " + targetAlpha);
+            DebugLog("ShowWind completed. isVisible: " + isVisible);
         }
 
         public void HideWind()
@@ -363,9 +435,8 @@ namespace _Project.Scripts
             DebugLog("HideWind called");
 
             isVisible = false;
-            targetAlpha = 0f;
-            isPulsing = false;
             isFadingIn = false;
+            isFadingOut = true;
             
             if (iconManager != null)
             {
@@ -377,74 +448,6 @@ namespace _Project.Scripts
         {
             if (isVisible) HideWind();
             else ShowWind(mode);
-        }
-
-        private void HandleFade()
-        {
-            if (isFadingIn)
-            {
-                // Fade in smoothly
-                currentAlpha = Mathf.Lerp(currentAlpha, targetAlpha, Time.deltaTime * fadeSpeed);
-                
-                if (canvasGroup != null)
-                {
-                    canvasGroup.alpha = currentAlpha;
-                }
-
-                // Check if fade in is complete
-                if (currentAlpha >= targetAlpha - 0.01f)
-                {
-                    currentAlpha = targetAlpha;
-                    isFadingIn = false;
-                    isPulsing = enablePulse;
-                    pulseTime = 0f;
-                    DebugLog("Fade in complete, starting pulse");
-                }
-            }
-            else if (!isVisible)
-            {
-                // Fade out smoothly
-                currentAlpha = Mathf.Lerp(currentAlpha, targetAlpha, Time.deltaTime * fadeSpeed);
-                
-                if (canvasGroup != null)
-                {
-                    canvasGroup.alpha = currentAlpha;
-                }
-
-                // Destroy when fully faded out
-                if (currentAlpha < 0.01f && currentAnimationInstance != null)
-                {
-                    DestroyCurrentAnimation();
-                    currentAlpha = 0f;
-                }
-            }
-        }
-
-        private void HandlePulse()
-        {
-            if (!isPulsing || !isVisible || canvasGroup == null) return;
-
-            pulseTime += Time.deltaTime * pulseSpeed;
-            float t = (Mathf.Sin(pulseTime * Mathf.PI * 2f) + 1f) * 0.5f; // 0 to 1
-
-            // Alpha pulse
-            float alpha = Mathf.Lerp(pulseMinAlpha, pulseMaxAlpha, t);
-            canvasGroup.alpha = alpha;
-            currentAlpha = alpha;
-
-            // Scale pulse (optional)
-            if (pulseScale && currentAnimationRect != null)
-            {
-                float scale = Mathf.Lerp(pulseScaleMin, pulseScaleMax, t);
-                
-                // Preserve the flip direction for rewind
-                Vector3 newScale = new Vector3(
-                    originalScale.x * scale,
-                    originalScale.y * scale,
-                    originalScale.z * scale
-                );
-                currentAnimationRect.localScale = newScale;
-            }
         }
 
         public void SetDiameter(float newDiameter)
@@ -476,26 +479,9 @@ namespace _Project.Scripts
         {
             enablePulse = enabled;
             
-            if (!enabled)
+            if (!enabled && currentAnimationRect != null)
             {
-                isPulsing = false;
-                
-                // Reset to max alpha and original scale
-                if (canvasGroup != null && isVisible)
-                {
-                    canvasGroup.alpha = pulseMaxAlpha;
-                    currentAlpha = pulseMaxAlpha;
-                }
-                
-                if (currentAnimationRect != null)
-                {
-                    currentAnimationRect.localScale = originalScale;
-                }
-            }
-            else if (isVisible && !isFadingIn)
-            {
-                isPulsing = true;
-                pulseTime = 0f;
+                currentAnimationRect.localScale = originalScale;
             }
         }
 
@@ -523,6 +509,30 @@ namespace _Project.Scripts
         {
             pulseScaleMin = min;
             pulseScaleMax = max;
+        }
+
+        /// <summary>
+        /// Reset pulse time to sync with another effect
+        /// </summary>
+        public void ResetPulseTime()
+        {
+            pulseTime = 0f;
+        }
+
+        /// <summary>
+        /// Get current pulse time for syncing
+        /// </summary>
+        public float GetPulseTime()
+        {
+            return pulseTime;
+        }
+
+        /// <summary>
+        /// Set pulse time to match another effect
+        /// </summary>
+        public void SetPulseTime(float time)
+        {
+            pulseTime = time;
         }
 
         private void OnDisable()

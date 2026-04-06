@@ -1163,7 +1163,8 @@ MonoBehaviour:
   diameter: 4
   yOffset: 0.05
   rotationOffset: 0
-  fadeSpeed: 4
+  fadeInDuration: 0.15
+  fadeOutDuration: 0.2
   enablePulse: 1
   pulseSpeed: 2
   pulseMinAlpha: 0.6
