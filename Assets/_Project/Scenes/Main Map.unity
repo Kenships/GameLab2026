@@ -3392,7 +3392,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -7.938}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 584, y: 371}
+  m_AnchoredPosition: {x: 561, y: 322}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: -0.2, y: -1.02}
 --- !u!114 &613603042
@@ -3417,8 +3417,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Wicked!!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2cdaa1c36096e4443a983b8159e46f45, type: 2}
-  m_sharedMaterial: {fileID: 2521428953573037538, guid: 2cdaa1c36096e4443a983b8159e46f45, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3442,8 +3442,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 51.2
-  m_fontSizeBase: 51.2
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3481,7 +3481,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -303.23642, y: 0, z: -88.21646, w: -92.94382}
+  m_margin: {x: -303.23642, y: 0, z: -14.798767, w: -92.94382}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -3513,7 +3513,7 @@ MonoBehaviour:
   enablePositionGlitch: 0
   positionIntensity: 3
   enableScaleGlitch: 0
-  scaleIntensity: 0.01
+  scaleIntensity: 0.05
   enableRotationGlitch: 1
   rotationIntensity: 0.5
   enableColorGlitch: 1
@@ -3534,16 +3534,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InGameAdjectiveManager
   glitchEffect: {fileID: 613603044}
   health: {fileID: 9193764520642239213}
+  fullHealthText: Full Health!!
+  fullHealthColor: {r: 0.12, g: 1, b: 0, a: 1}
   adjectives:
-  - Go Home.
-  - Embarrassing!
-  - Struggling?
-  - Meh..
-  - Not Bad..
-  - Less Great.
-  - Still Great:)
-  - Doing Amazing!!
-  - Full Health!!
+  - RIP
+  - Im dying here...
+  - Disrespectful.
+  - Heal Me!!!!
+  - Ouch!!
+  - Be Careful...
+  - Still Okay
+  - Oops!
+  - Small Ouch
   rarityColors:
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 0.62, g: 0.62, b: 0.62, a: 1}
@@ -3555,12 +3557,12 @@ MonoBehaviour:
   - {r: 0, g: 1, b: 1, a: 1}
   - {r: 0.12, g: 1, b: 0, a: 1}
   minIntensity:
-    position: 0.5
-    scale: 0.002
-    rotation: 0.1
-    color: 0.02
-    bigGlitchChance: 0.01
-    bigGlitchMultiplier: 1.5
+    position: 5
+    scale: 0.2
+    rotation: 2
+    color: 0.25
+    bigGlitchChance: 0.15
+    bigGlitchMultiplier: 3
   maxIntensity:
     position: 5
     scale: 0.2
@@ -3571,7 +3573,7 @@ MonoBehaviour:
   enableTransition: 1
   slideOutDuration: 0.15
   slideInDuration: 0.2
-  slideDistance: 300
+  slideDistance: 500
   slideOutCurve:
     serializedVersion: 2
     m_Curve:
@@ -3622,9 +3624,10 @@ MonoBehaviour:
     m_RotationOrder: 4
   addPunchScale: 1
   punchScaleAmount: 0.2
+  adjectiveDisplayDuration: 3
   updateInterval: 0.1
   debugMode: 0
-  debugDamagePerSecond: 50
+  debugDamagePerSecond: 10
 --- !u!1 &619364490
 GameObject:
   m_ObjectHideFlags: 0
