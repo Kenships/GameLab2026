@@ -1314,17 +1314,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 208091431}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
+  m_LocalScale: {x: 0.20040001, y: 0.20040001, z: 0.20040001}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2110429449}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -758, y: -94}
-  m_SizeDelta: {x: 480, y: 720}
+  m_SizeDelta: {x: 720, y: 480}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &208091433
 MonoBehaviour:
@@ -1346,7 +1346,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 5b9b83d7ffe222549b02e194b768fad5, type: 3}
+  m_Texture: {fileID: 2800000, guid: 0ffe2054855e26042b9e79364751b06c, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -7175,17 +7175,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1467989100}
-  m_LocalRotation: {x: 0.7071068, y: 0.7071068, z: -0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
+  m_LocalScale: {x: 0.20040001, y: 0.20040001, z: 0.20040001}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2110429449}
-  m_LocalEulerAnglesHint: {x: 180, y: 0, z: -90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 758, y: -93.999985}
-  m_SizeDelta: {x: 480, y: 720}
+  m_SizeDelta: {x: 720, y: 480}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1467989102
 MonoBehaviour:
@@ -7207,7 +7207,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 5b9b83d7ffe222549b02e194b768fad5, type: 3}
+  m_Texture: {fileID: 2800000, guid: 0ffe2054855e26042b9e79364751b06c, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -9010,7 +9010,7 @@ RectTransform:
   m_GameObject: {fileID: 1830534536}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
+  m_LocalScale: {x: 0.20040001, y: 0.20040001, z: 0.20040001}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2110429449}
@@ -9018,7 +9018,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 233, y: 380.99994}
-  m_SizeDelta: {x: 480, y: 720}
+  m_SizeDelta: {x: 720, y: 480}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1830534538
 MonoBehaviour:
@@ -9040,7 +9040,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 5b9b83d7ffe222549b02e194b768fad5, type: 3}
+  m_Texture: {fileID: 2800000, guid: 0ffe2054855e26042b9e79364751b06c, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -11137,7 +11137,7 @@ RectTransform:
   m_GameObject: {fileID: 2087950855}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
+  m_LocalScale: {x: 0.20040001, y: 0.20040001, z: 0.20040001}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2110429449}
@@ -11145,7 +11145,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -231, y: 381}
-  m_SizeDelta: {x: 480, y: 720}
+  m_SizeDelta: {x: 720, y: 480}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2087950857
 MonoBehaviour:
@@ -11167,7 +11167,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 5b9b83d7ffe222549b02e194b768fad5, type: 3}
+  m_Texture: {fileID: 2800000, guid: 0ffe2054855e26042b9e79364751b06c, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
