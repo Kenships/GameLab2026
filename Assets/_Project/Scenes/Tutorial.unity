@@ -2080,8 +2080,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Wave 1
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 741072c4c09709e4bb6c676cd9731e61, type: 2}
+  m_sharedMaterial: {fileID: -3850109202340772486, guid: 741072c4c09709e4bb6c676cd9731e61, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4663,7 +4663,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -2.5999756, y: 10.450012}
+  m_AnchoredPosition: {x: -2.6000366, y: 10.450012}
   m_SizeDelta: {x: 973.2, y: -0.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &989332448
@@ -4688,8 +4688,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: <b>BOOOOM BABY!!!</b>
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2cdaa1c36096e4443a983b8159e46f45, type: 2}
-  m_sharedMaterial: {fileID: 2521428953573037538, guid: 2cdaa1c36096e4443a983b8159e46f45, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 741072c4c09709e4bb6c676cd9731e61, type: 2}
+  m_sharedMaterial: {fileID: -3850109202340772486, guid: 741072c4c09709e4bb6c676cd9731e61, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4713,10 +4713,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
-  m_fontSizeBase: 36
+  m_fontSize: 80
+  m_fontSizeBase: 80
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -4752,7 +4752,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 60, y: 10, z: 60, w: 10}
+  m_margin: {x: 19.240356, y: 10, z: -15.890381, w: 10}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -4933,7 +4933,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Both Players Need To Do The Task
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2cdaa1c36096e4443a983b8159e46f45, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 741072c4c09709e4bb6c676cd9731e61, type: 2}
   m_sharedMaterial: {fileID: 2521428953573037538, guid: 2cdaa1c36096e4443a983b8159e46f45, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -5000,7 +5000,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1011535010
@@ -8693,7 +8693,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Both Players Press A To Continue
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2cdaa1c36096e4443a983b8159e46f45, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 741072c4c09709e4bb6c676cd9731e61, type: 2}
   m_sharedMaterial: {fileID: 2521428953573037538, guid: 2cdaa1c36096e4443a983b8159e46f45, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -8760,7 +8760,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1694884838

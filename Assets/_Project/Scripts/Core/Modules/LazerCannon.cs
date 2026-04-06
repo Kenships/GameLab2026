@@ -75,11 +75,6 @@ namespace _Project.Scripts.Core.Modules
 
         private void PerformAttack()
         {
-            if (_currentLazerSound == null)
-            {
-                _currentLazerSound = _audioPooler.New2DAudio(shootSound).OnChannel(AudioType.Sfx).SetVolume(shootSoundVolume).Play();
-            }
-
             if (_beamDurationTimer.IsFinished)
             {
                 return;
@@ -166,6 +161,7 @@ namespace _Project.Scripts.Core.Modules
                     fullTimeUI.SetActive(true);
                     break;
                 case ModuleState.Attack:
+                    _currentLazerSound = _audioPooler.New2DAudio(shootSound).OnChannel(AudioType.Sfx).SetVolume(shootSoundVolume).Play();
                     _beamDurationTimer.Reset(lazerBeamDuration);
                     if (_attackRoutine != null)
                         StopCoroutine(_attackRoutine);
