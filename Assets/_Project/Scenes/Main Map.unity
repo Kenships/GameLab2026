@@ -1700,8 +1700,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d924ffed2390104aa05f23322c0306b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GlitchingUIEffect
-  positionIntensity: 3
-  glitchInterval: 0.05
+  positionIntensity: 1
+  glitchInterval: 0.1
   enableScaleGlitch: 1
   scaleIntensity: 0.01
   enableRotationGlitch: 1
@@ -4026,8 +4026,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d924ffed2390104aa05f23322c0306b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GlitchingUIEffect
-  positionIntensity: 3
-  glitchInterval: 0.05
+  positionIntensity: 1
+  glitchInterval: 0.1
   enableScaleGlitch: 1
   scaleIntensity: 0.01
   enableRotationGlitch: 1
