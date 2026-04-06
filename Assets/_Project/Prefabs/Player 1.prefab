@@ -54,6 +54,7 @@ GameObject:
   - component: {fileID: 8655040183216302967}
   - component: {fileID: 3246353424603884455}
   - component: {fileID: 1863993824960942060}
+  - component: {fileID: 6848126938079461476}
   m_Layer: 8
   m_Name: Player 1
   m_TagString: Untagged
@@ -348,6 +349,19 @@ MonoBehaviour:
   rewindSoundVolume: 1
   fastForwardSpeedMultiplier: 1.5
   rewindSpeedMultiplier: 0.5
+--- !u!114 &6848126938079461476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 196390166778377398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 794f326f289c4c14b3dd9e06709e9463, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.InputManagement.HushHushSecretClassNoPeeking
+  healEvent: {fileID: 11400000, guid: 64c481e45ee502340a1eff08d1861d7c, type: 2}
 --- !u!1 &604548867450542042
 GameObject:
   m_ObjectHideFlags: 0
