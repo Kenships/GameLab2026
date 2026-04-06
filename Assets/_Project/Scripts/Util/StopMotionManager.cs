@@ -15,8 +15,10 @@ public class StopMotionManager : MonoBehaviour
 
     public void SpawnAnimation(Vector3 worldPos, Vector2? size = null)
     {
-        GameObject go = Instantiate(stopMotionPrefab);
-        go.transform.SetParent(targetCanvas.transform, false);
+        if (!targetCanvas)
+            return;
+        
+        GameObject go = Instantiate(stopMotionPrefab, targetCanvas.transform, false);
 
         RectTransform rect = go.GetComponent<RectTransform>();
         if (size.HasValue) rect.sizeDelta = size.Value;
