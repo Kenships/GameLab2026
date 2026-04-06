@@ -31058,7 +31058,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.RangeDetector
   rangeType: 0
-  radius: 5
+  radius: 4.5
   angle: 60
   width: 5
   length: 10
