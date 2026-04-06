@@ -4772,7 +4772,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TextTyper
   delay: 0.03
   typeSound: {fileID: 8300000, guid: aefbd98ee7c1f3d419e7fb9756fff6af, type: 3}
-  typeSoundVolume: 0.75
+  typeSoundVolume: 0.25
   hasSFX: 1
 --- !u!1001 &995858792
 PrefabInstance:

@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: SWIFT ENEMY - BASE 2
-  m_Shader: {fileID: -6465566751694194690, guid: b4d40e5c32c0ad04d90831e1b8a47fac, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: fd1a1c407e0206249afcba9ee0ed9226, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []

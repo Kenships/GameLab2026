@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: ENEMY-eyes
-  m_Shader: {fileID: -6465566751694194690, guid: b4d40e5c32c0ad04d90831e1b8a47fac, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: fd1a1c407e0206249afcba9ee0ed9226, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -39,6 +39,10 @@ Material:
     m_TexEnvs:
     - _Texture2D:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture2DAsset_ed1be2efcacb4fc2a911ff8043789af3_Out_0_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 8479b5007539d2640b03e76ccfd71f4c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -59,8 +63,10 @@ Material:
     - _Min: 0.87
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _Shade_Fraction: 0.45
     - _Shades: 0.5
     m_Colors:
     - _Color: {r: 0.98039216, g: 0.55923927, b: 0.10588233, a: 1}
+    - _Shadow_Color: {r: 0.24144593, g: 0.25619084, b: 0.7044024, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
