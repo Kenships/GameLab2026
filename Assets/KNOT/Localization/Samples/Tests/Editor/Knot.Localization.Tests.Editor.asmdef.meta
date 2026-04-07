@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: fcc4f5d2a1638a940bd7074488d09d41
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 187603
+  packageName: KNOT Localization
+  packageVersion: 1.4.1
+  assetPath: Assets/KNOT/Localization/Samples/Tests/Editor/Knot.Localization.Tests.Editor.asmdef
+  uploadId: 713359

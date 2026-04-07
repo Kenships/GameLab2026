@@ -45713,7 +45713,12 @@ MonoBehaviour:
   rewindSound: {fileID: 8300000, guid: 904184cbab2ef6d4eb570d029d20a47c, type: 3}
   rewindSoundVolume: 1
   brokenEffect: {fileID: 2539869429968140185}
-  description: -High damage\n-Short range circle\n-Area damage
+  nameKey:
+    _key: Module-Tank
+    _formatters: []
+  descKey:
+    _key: Module-Tank-Desc
+    _formatters: []
   moduleSprite: {fileID: 21300000, guid: 9cd747b0f4cf66c4e9ce149e07fee9e7, type: 3}
   state: 1
   maxHealth: 100
@@ -45739,6 +45744,9 @@ MonoBehaviour:
   shootSoundVolume: 0.7
   player1Visual: {fileID: 397986941627389146}
   player2Visual: {fileID: 5808360080399794294}
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &7686215641245428730
 MonoBehaviour:
   m_ObjectHideFlags: 0

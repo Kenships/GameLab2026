@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: c4fabd72c3d2eef41b05bea728c3b9c5
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 187603
+  packageName: KNOT Localization
+  packageVersion: 1.4.1
+  assetPath: Assets/KNOT/Core/Editor/Knot.Core.Editor.asmdef
+  uploadId: 713359

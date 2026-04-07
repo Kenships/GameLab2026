@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: af414662448468948b4193c4d3d002ee
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 187603
+  packageName: KNOT Localization
+  packageVersion: 1.4.1
+  assetPath: Assets/KNOT/Core/Runtime/Knot.Core.asmdef
+  uploadId: 713359

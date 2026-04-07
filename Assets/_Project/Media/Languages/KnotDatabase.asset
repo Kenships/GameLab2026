@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1ce4382dfc0b464d981a3118a0b95f3, type: 3}
+  m_Name: KnotDatabase
+  m_EditorClassIdentifier: Knot.Localization::Knot.Localization.Data.KnotDatabase
+  _languages:
+  - _cultureName: en
+    _systemLanguage: 10
+    _nativeName: English
+    _collectionProviders:
+    - rid: 522404519669137409
+    - rid: 3938338670728970648
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _cultureName: fr
+    _systemLanguage: 14
+    _nativeName: "fran\xE7ais"
+    _collectionProviders:
+    - rid: 522404519669137410
+    - rid: 3938338670728970649
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _cultureName: zh
+    _systemLanguage: 6
+    _nativeName: "\u4E2D\u6587"
+    _collectionProviders:
+    - rid: 522404521818980352
+    _metadata:
+      _runtime: []
+      _editor: []
+  _textKeyCollections:
+  - {fileID: 11400000, guid: ffdbadfc4d1574430a45f862a6d8cf18, type: 2}
+  _assetKeyCollections:
+  - {fileID: 11400000, guid: d266b7a2419c74e4d9d90615df4cc7ee, type: 2}
+  _settings:
+    _languageSelector:
+      rid: 7874754110861869363
+    _textController:
+      rid: 7874754110861869364
+    _assetController:
+      rid: 7874754110861869365
+    _metadata:
+      _runtime: []
+      _editor: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 522404519669137409
+      type: {class: KnotAssetCollectionProvider, ns: Knot.Localization.Data, asm: Knot.Localization}
+      data:
+        _collection: {fileID: 11400000, guid: 923386c57669a4fe89cb79186f16f623, type: 2}
+    - rid: 522404519669137410
+      type: {class: KnotAssetCollectionProvider, ns: Knot.Localization.Data, asm: Knot.Localization}
+      data:
+        _collection: {fileID: 11400000, guid: c466b8ea53c894b2fa4e3bd3acc6bce4, type: 2}
+    - rid: 522404521818980352
+      type: {class: KnotAssetCollectionProvider, ns: Knot.Localization.Data, asm: Knot.Localization}
+      data:
+        _collection: {fileID: 11400000, guid: 4e5f0dbb6cab742c2864824a1bd04e34, type: 2}
+    - rid: 3938338670728970648
+      type: {class: KnotAssetCollectionProvider, ns: Knot.Localization.Data, asm: Knot.Localization}
+      data:
+        _collection: {fileID: 11400000, guid: 16fac9486ae7eb940a97e0a7d094738c, type: 2}
+    - rid: 3938338670728970649
+      type: {class: KnotAssetCollectionProvider, ns: Knot.Localization.Data, asm: Knot.Localization}
+      data:
+        _collection: {fileID: 11400000, guid: dd71c41c7d213074c87dbf6e70757f89, type: 2}
+    - rid: 7874754110861869363
+      type: {class: KnotDefaultLanguageSelector, ns: Knot.Localization, asm: Knot.Localization}
+      data:
+        _serializationPlaceholder: 0
+    - rid: 7874754110861869364
+      type: {class: KnotTextController, ns: Knot.Localization, asm: Knot.Localization}
+      data:
+        _serializationPlaceholder: 0
+        _fallbackValue: '{key}'
+    - rid: 7874754110861869365
+      type: {class: KnotAssetController, ns: Knot.Localization, asm: Knot.Localization}
+      data:
+        _serializationPlaceholder: 0

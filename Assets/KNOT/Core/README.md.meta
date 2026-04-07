@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 8f1e0552cccc5ed43884a39ef5dcb273
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 187603
+  packageName: KNOT Localization
+  packageVersion: 1.4.1
+  assetPath: Assets/KNOT/Core/README.md
+  uploadId: 713359

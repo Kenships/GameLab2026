@@ -2,7 +2,10 @@ using System;
 using System.Collections.Generic;
 using _Project.Scripts.Core.InputManagement;
 using _Project.Scripts.Effects;
+using _Project.Scripts.UI;
 using _Project.Scripts.Util.CustomAttributes;
+using Knot.Localization;
+using Knot.Localization.Data;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -13,7 +16,7 @@ namespace _Project.Scripts.Tutorial
         [Serializable]
         private struct PanelEvent
         {
-            [DynamicTextArea] public string PanelText;
+            [SerializeField] public KnotTextKeyReference PanelTextKey;
             public bool FreezePlayers;
             public UnityEvent<Action> OnPanel;
         }
@@ -47,7 +50,7 @@ namespace _Project.Scripts.Tutorial
             
             panel.SetActive(true);
             panels[_panelIndex].OnPanel?.Invoke(Next);
-            textTyper.StartTyping(panels[_panelIndex].PanelText);
+            textTyper.StartTyping(panels[_panelIndex].PanelTextKey);
             
             if (panels[_panelIndex].FreezePlayers)
             {

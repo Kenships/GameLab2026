@@ -7,11 +7,13 @@ using UnityEngine.Video;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using _Project.Scripts.Core.SceneLoading;
+using Obvious.Soap;
 using PrimeTween;
 using UnityEngine.InputSystem; // �����Ҫ���ð�ť
 
 public class VideoPlayerController : MonoBehaviour
 {
+    [SerializeField] private FloatVariable hapticsIntensity;
     [SerializeField] private NESActionReader[] readers;
     [SerializeField] private CanvasGroup canvasGroup;
     [SerializeField] private Button startButton;
@@ -71,7 +73,7 @@ public class VideoPlayerController : MonoBehaviour
         {
             foreach (var gamepad in _gamepads)
             {
-                gamepad.SetMotorSpeeds(1f - (float)(videoPlayer.time / videoPlayer.clip.length), 1f - (float)(videoPlayer.time / videoPlayer.clip.length));
+                gamepad.SetMotorSpeeds((1f - (float)(videoPlayer.time / videoPlayer.clip.length)) * hapticsIntensity.Value, (1f - (float)(videoPlayer.time / videoPlayer.clip.length) * hapticsIntensity.Value));
             }
 
             return;
@@ -79,7 +81,7 @@ public class VideoPlayerController : MonoBehaviour
 
         foreach (var gamepad in _gamepads)
         {
-            gamepad.SetMotorSpeeds((float) (videoPlayer.time / videoPlayer.clip.length), 0);
+            gamepad.SetMotorSpeeds((float) (videoPlayer.time / videoPlayer.clip.length) * hapticsIntensity.Value, 0);
         }
     }
 

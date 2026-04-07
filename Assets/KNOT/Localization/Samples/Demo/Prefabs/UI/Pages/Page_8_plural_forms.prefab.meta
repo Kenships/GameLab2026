@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 7319dc17f410acc4f92b26e81c13ff9b
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 187603
+  packageName: KNOT Localization
+  packageVersion: 1.4.1
+  assetPath: Assets/KNOT/Localization/Samples/Demo/Prefabs/UI/Pages/Page_8_plural_forms.prefab
+  uploadId: 713359

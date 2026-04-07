@@ -1,0 +1,242 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d1ff9c661913424893eef705ffbbc73, type: 3}
+  m_Name: KeyCollection
+  m_EditorClassIdentifier: Knot.Localization::Knot.Localization.Data.KnotKeyCollection
+  _keyData:
+  - _key: Tut-line1
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Tut-line2
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Tut-line3
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Tut-line4
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Tut-line5
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Tut-line6
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Tut-line7
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Tut-line8
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Tut-line9
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Tut-line10
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Tut-line11
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Tut-line12
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Tut-line13
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Tut-line14
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Tut-line15
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Tut-line16
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Tut-line17
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Tut-line18
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Tut-line19
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Settings-Title
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Settings-Language
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Settings-Haptics
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Settings-Haptics-low
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Settings-Haptics-off
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Settings-Haptics-High
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Settings-SFX
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Settings-Music
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Settings-Master
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: UI-Back
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: UI-Start
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: UI-Quit
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: UI-Credits
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Credits-Disigner-artist
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Credits-Prog-SP
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Tut-Hint
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Module-Turret
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Module-Tank
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Module-Flame
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Module-Laser
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Module-Saw
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Module-Tank-Desc
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Module-Turret-Desc
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Module-Saw-Desc
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Module-Laser-Desc
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Module-Flame Desc
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Keymap-Click
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Keymap-Pickup
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Keymap-Rotate
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Keymap-Rewind
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Keymap-Fast
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Keymap-Hold
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Tut-Title
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Select-Choose
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Select-Instructions
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Module-SelectOne
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Module-Confrim
+    _metadata:
+      _runtime: []
+      _editor: []
+  references:
+    version: 2
+    RefIds: []

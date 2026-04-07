@@ -2,6 +2,8 @@ using System;
 using _Project.Scripts.Core.Modules.Base_Class;
 using _Project.Scripts.Core.Player;
 using _Project.Scripts.Util.CustomAttributes;
+using Knot.Localization;
+using Knot.Localization.Components;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,8 +13,8 @@ namespace _Project.Scripts.UI
     public class ModuleSectionUIComponent : MonoBehaviour
     {
         [Header("References")]
-        [SerializeField] private TextMeshProUGUI moduleName;
-        [SerializeField] private TextMeshProUGUI description;
+        [SerializeField] private KnotLocalizedTextMeshProUGUI moduleName;
+        [SerializeField] private KnotLocalizedTextMeshProUGUI description;
         [SerializeField] private Image moduleImage;
         [SerializeField] private GameObject button;
         [SerializeField] private GameObject player1Visual;
@@ -37,8 +39,13 @@ namespace _Project.Scripts.UI
         public void Initialize(Module module)
         {
             selectedModule = module;
-            moduleName.text = module.name;
-            description.text = module.description;
+
+            moduleName.KeyReference = module.nameKey;
+            description.KeyReference = module.descKey;
+            
+            moduleName.ForceUpdateValue();
+            description.ForceUpdateValue();
+            
             moduleImage.sprite = module.moduleSprite;
             Color c = moduleImage.color;
             c.a = 1;

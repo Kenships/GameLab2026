@@ -376,7 +376,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
-  field of view: 80
+  field of view: 85
   orthographic: 0
   orthographic size: 14
   m_Depth: -1
@@ -403,7 +403,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0.597793, y: 0, z: 0, w: 0.8016505}
-  m_LocalPosition: {x: 0, y: 9.95, z: -3.59}
+  m_LocalPosition: {x: -1.6, y: 11.84, z: -4.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -503,6 +503,51 @@ MonoBehaviour:
   definingType:
     scriptAssetGuid: 
     TypeNameAndAssembly: UnityEngine.Camera, UnityEngine.CoreModule
+--- !u!1 &524568189
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 524568190}
+  - component: {fileID: 524568191}
+  m_Layer: 0
+  m_Name: LanguageInitializer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &524568190
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 524568189}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 645641957}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &524568191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 524568189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6aff4aaadca84df3aad606bdaf9b98ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.LanguageInitializer
+  languageIndex: {fileID: 11400000, guid: 7815d72a3b9f1cb418f9781bce56254c, type: 2}
 --- !u!1 &575351707
 GameObject:
   m_ObjectHideFlags: 0
@@ -604,6 +649,7 @@ Transform:
   m_Children:
   - {fileID: 241062100}
   - {fileID: 1689479109}
+  - {fileID: 524568190}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &664197752
@@ -650,7 +696,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94f90677e83b2d74eb144c6c99c505d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  score: 0
   runTime: 0
 --- !u!1 &832575517
 GameObject:
