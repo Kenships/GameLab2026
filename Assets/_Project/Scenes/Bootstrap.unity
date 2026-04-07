@@ -300,7 +300,7 @@ MonoBehaviour:
   onBeforeSceneLoad:
     m_PersistentCalls:
       m_Calls: []
-  loadOnAwake: 0
+  loadOnAwake: 1
   withOverlay: 0
   fadeAudio: 1
   fadeDuration: 1
