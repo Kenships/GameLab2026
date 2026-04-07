@@ -158,6 +158,7 @@ namespace _Project.Scripts.Core.Player
                     return;
                 }
 
+                StartCoroutine(RotateHaptics());
                 holdable.RotateClockWise();
                 return;
             }
@@ -165,6 +166,7 @@ namespace _Project.Scripts.Core.Player
             if (allowRotationWhenHolding)
             {
                 _currentIHoldingObject.TryGetComponent(out IHoldable currentHoldable);
+                StartCoroutine(RotateHaptics());
                 currentHoldable.RotateClockWise();
             }
         }
@@ -192,7 +194,7 @@ namespace _Project.Scripts.Core.Player
                 holdable.PickUp();
                 holdable.Anchor(pickupAnchor);
 
-                StartCoroutine(PlayHaptics());
+                StartCoroutine(PickupHaptics());
 
                 windVFXController.ShowHeldObject(obj);
                 _currentIHoldingObject = obj;
@@ -212,7 +214,7 @@ namespace _Project.Scripts.Core.Player
                 _gridService.PlaceObjectOnGrid(_currentIHoldingObject, frontOfPlayer.position);
                 holdable.Drop();
 
-                StartCoroutine(PlayHaptics());
+                StartCoroutine(PickupHaptics());
 
                 windVFXController.HideHeldObject();
                 _currentIHoldingObject = null;
@@ -230,6 +232,8 @@ namespace _Project.Scripts.Core.Player
             {
                 return;
             }
+
+            StartCoroutine(FastForwardHaptics());
 
             _isFastForwarding = true;
             windVFXController.ShowWind();
@@ -261,6 +265,8 @@ namespace _Project.Scripts.Core.Player
             {
                 return;
             }
+            
+            StartCoroutine(RewindHaptics());
 
             _isRewinding = true;
             windVFXController.ShowWind(InteractionVFXController.AbilityMode.Rewind);
@@ -308,12 +314,32 @@ namespace _Project.Scripts.Core.Player
             visualSelectable.HideVisual(PlayerID);
         }
 
-        protected IEnumerator PlayHaptics()
+        protected IEnumerator FastForwardHaptics()
         {
-            if (!_inputReader.TryGetGamePad(out _gamePad))
+            yield return PlayHaptics(0, 1f);
+        }
+
+        protected IEnumerator RewindHaptics()
+        {
+            yield return PlayHaptics(1f, 0);
+        }
+
+        protected IEnumerator RotateHaptics()
+        {
+            yield return PlayHaptics(highFrequencyHapticIntensity, lowFrequencyHapticIntensity);
+        }
+        
+        protected IEnumerator PickupHaptics()
+        {
+            yield return PlayHaptics(lowFrequencyHapticIntensity, highFrequencyHapticIntensity);
+        }
+
+        private IEnumerator PlayHaptics(float lowFrequency, float highFrequency)
+        {
+            if (_gamePad == null && !_inputReader.TryGetGamePad(out _gamePad))
                 yield break;
 
-            _gamePad.SetMotorSpeeds(lowFrequencyHapticIntensity, highFrequencyHapticIntensity);
+            _gamePad.SetMotorSpeeds(lowFrequency, highFrequency);
 
             float timer = hapticsDuration;
 

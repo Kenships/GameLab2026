@@ -70,6 +70,8 @@ namespace _Project.Scripts.Core.Enemies
             public float restAfterWave = 5f;
         }
 
+        private static float QuebecTax = 0.15f;
+
         [Header("References")]
         [SerializeField] private Transform vhsLocation;
         [SerializeField] private ScriptableEventNoParam bossDefeatedEvent;
@@ -110,7 +112,7 @@ namespace _Project.Scripts.Core.Enemies
 
             for (int waveIndex = 0; waveIndex < waves.Length; waveIndex++)
             {
-                float initialVHSHealth = GameManager.Instance.score;
+                float initialVHSHealth = GameManager.Instance.Score;
                 
                 Wave currentWave = waves[waveIndex];
 
@@ -164,9 +166,26 @@ namespace _Project.Scripts.Core.Enemies
 
                 Debug.Log($"Finished {currentWave.waveName}");
 
+                float finalHealth = GameManager.Instance.Score;
+                GameManager.Instance.BonusScore += Mathf.Min(QuebecTax * finalHealth * (waveIndex + 1), 500f);
+                
+                if (Mathf.Approximately(initialVHSHealth, finalHealth))
+                {
+                    GameManager.Instance.BonusScore += 50f;
+                    perfectWaveEvent?.Raise();
+                    Debug.Log("Perfect Wave");
+                }
+                
                 if (waveUI != null)
                 {
-                    yield return waveUI.ShowWaveCompleted();
+                    if (waveIndex == waves.Length - 1)
+                    {
+                        yield return waveUI.FinalWaveCompleted();
+                    }
+                    else
+                    {
+                        yield return waveUI.ShowWaveCompleted();
+                    }
                 }
                 
                 _audioPooler.StopAllSFX();
@@ -184,16 +203,6 @@ namespace _Project.Scripts.Core.Enemies
                         waveUI.StartCountdown(currentWave.restAfterWave);
                     }
                     
-                    float finalHealth = GameManager.Instance.score;
-
-                    yield return new WaitForSeconds(0.1f);
-                    
-                    if (Mathf.Approximately(initialVHSHealth, finalHealth))
-                    {
-                        perfectWaveEvent?.Raise();
-                        Debug.Log("Perfect Wave");
-                    }
-
                     yield return new WaitForSeconds(currentWave.restAfterWave);
                 }
             }

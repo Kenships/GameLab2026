@@ -2,7 +2,11 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public float score;
+    public float BonusScore { get; set; }
+    public float Score { get; set; }
+    
+    public float FinalScore => Score + BonusScore;
+    
     public float runTime = 0f;
 
     private bool timerOn = false;

@@ -44,7 +44,7 @@ namespace _Project.Scripts.Tutorial
                     _logger.Log($"Current Item: {obj.name} cannot be rotated");
                     return;
                 }
-                
+                StartCoroutine(RotateHaptics());
                 OnRotateClockWise?.Invoke(_playerID);
                 holdable.RotateClockWise();
                 return;
@@ -54,6 +54,7 @@ namespace _Project.Scripts.Tutorial
             {
                 OnRotateClockWise?.Invoke(_playerID);
                 _currentIHoldingObject.TryGetComponent(out IHoldable currentHoldable);
+                StartCoroutine(RotateHaptics());
                 currentHoldable.RotateClockWise();  
             }
         }
@@ -73,7 +74,7 @@ namespace _Project.Scripts.Tutorial
                 holdable.PickUp();
                 holdable.Anchor(frontOfPlayer);
                 
-                StartCoroutine(PlayHaptics());
+                StartCoroutine(PickupHaptics());
 
                 _currentIHoldingObject = obj;
                 
@@ -94,7 +95,7 @@ namespace _Project.Scripts.Tutorial
                 _gridService.PlaceObjectOnGrid(_currentIHoldingObject, frontOfPlayer.position);
                 holdable.Drop();
                 
-                StartCoroutine(PlayHaptics());
+                StartCoroutine(PickupHaptics());
                 
                 _currentIHoldingObject = null;
                 windVFXController.HideHeldObject();
@@ -112,6 +113,8 @@ namespace _Project.Scripts.Tutorial
             {
                 return;
             }
+            
+            StartCoroutine(FastForwardHaptics());
             
             _isFastForwarding = true;
             windVFXController.ShowWind();
@@ -131,6 +134,8 @@ namespace _Project.Scripts.Tutorial
             {
                 return;
             }
+            
+            StartCoroutine(RewindHaptics());
 
             _isRewinding = true;
             windVFXController.ShowWind(InteractionVFXController.AbilityMode.Rewind);

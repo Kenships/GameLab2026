@@ -62,7 +62,7 @@ public class ScoreManager : MonoBehaviour<AudioPooler>
 
         var newScore = new ScoreEntry
         {
-            score = GameManager.Instance.score,
+            score = GameManager.Instance.FinalScore ,
             time = GameManager.Instance.runTime,
             isMostRecent = true
         };
