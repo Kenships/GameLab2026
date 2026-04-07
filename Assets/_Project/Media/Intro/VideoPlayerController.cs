@@ -73,7 +73,7 @@ public class VideoPlayerController : MonoBehaviour
         {
             foreach (var gamepad in _gamepads)
             {
-                gamepad.SetMotorSpeeds((1f - (float)(videoPlayer.time / videoPlayer.clip.length)) * hapticsIntensity.Value, (1f - (float)(videoPlayer.time / videoPlayer.clip.length) * hapticsIntensity.Value));
+                gamepad.SetMotorSpeeds((1f - (float)(videoPlayer.time / videoPlayer.clip.length)) * hapticsIntensity.Value, (1f - (float)(videoPlayer.time / videoPlayer.clip.length)) * hapticsIntensity.Value);
             }
 
             return;
