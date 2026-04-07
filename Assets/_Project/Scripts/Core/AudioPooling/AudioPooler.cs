@@ -258,6 +258,18 @@ namespace _Project.Scripts.Core.AudioPooling
                 }
             }
         }
+        public void StopAllMusic()
+        {
+            if (activeSourcesByAudioType.TryGetValue(AudioType.Music, out List<PooledAudioSource> musicList))
+            {
+                var sourcesToStop = musicList.ToList();
 
+                foreach (var source in sourcesToStop)
+                {
+                    source.Stop();
+                    ReturnToPool(source);
+                }
+            }
+        }
     }
 }

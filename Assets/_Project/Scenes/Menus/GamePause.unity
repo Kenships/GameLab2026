@@ -2067,6 +2067,7 @@ GameObject:
   - component: {fileID: 1550516161}
   - component: {fileID: 1550516160}
   - component: {fileID: 1550516162}
+  - component: {fileID: 1550516163}
   m_Layer: 5
   m_Name: Quit
   m_TagString: Untagged
@@ -2126,6 +2127,7 @@ MonoBehaviour:
   - buildIndex: 5
   - buildIndex: 10
   - buildIndex: 6
+  - buildIndex: 9
 --- !u!114 &1550516157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2174,6 +2176,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: _Project.Scripts.Core.SceneLoading.SceneLoader,
           Assembly-CSharp
         m_MethodName: LoadScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1550516163}
+        m_TargetAssemblyTypeName: ForceStopAllMusic, Assembly-CSharp
+        m_MethodName: StopAllMusic
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2291,6 +2305,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ButtonScaleOnSelect
   addScale: {x: 0.3, y: 0.3, z: 0.3}
+--- !u!114 &1550516163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1550516154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3ae96a91b774fc4aa07b2d174793881, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ForceStopAllMusic
 --- !u!1 &1553159604
 GameObject:
   m_ObjectHideFlags: 0
