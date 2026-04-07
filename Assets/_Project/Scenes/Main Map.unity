@@ -13632,7 +13632,7 @@ MonoBehaviour:
         count: 12
       arrowImage: {fileID: 2087950857}
       blinkSettings:
-        blinkCount: 3
+        blinkCount: 7
         fadeInDuration: 0.2
         holdDuration: 0.3
         fadeOutDuration: 0.2
@@ -13643,7 +13643,7 @@ MonoBehaviour:
         count: 12
       arrowImage: {fileID: 1830534538}
       blinkSettings:
-        blinkCount: 3
+        blinkCount: 7
         fadeInDuration: 0.2
         holdDuration: 0.3
         fadeOutDuration: 0.2
@@ -13659,7 +13659,7 @@ MonoBehaviour:
         count: 20
       arrowImage: {fileID: 208091433}
       blinkSettings:
-        blinkCount: 3
+        blinkCount: 5
         fadeInDuration: 0.2
         holdDuration: 0.3
         fadeOutDuration: 0.2
@@ -13670,7 +13670,7 @@ MonoBehaviour:
         count: 20
       arrowImage: {fileID: 1467989102}
       blinkSettings:
-        blinkCount: 3
+        blinkCount: 5
         fadeInDuration: 0.2
         holdDuration: 0.3
         fadeOutDuration: 0.2
@@ -13688,7 +13688,7 @@ MonoBehaviour:
         count: 1
       arrowImage: {fileID: 2087950857}
       blinkSettings:
-        blinkCount: 3
+        blinkCount: 5
         fadeInDuration: 0.2
         holdDuration: 0.3
         fadeOutDuration: 0.2
@@ -13701,7 +13701,7 @@ MonoBehaviour:
         count: 1
       arrowImage: {fileID: 208091433}
       blinkSettings:
-        blinkCount: 3
+        blinkCount: 5
         fadeInDuration: 0.2
         holdDuration: 0.3
         fadeOutDuration: 0.2
@@ -13719,7 +13719,7 @@ MonoBehaviour:
         count: 2
       arrowImage: {fileID: 1830534538}
       blinkSettings:
-        blinkCount: 3
+        blinkCount: 5
         fadeInDuration: 0.2
         holdDuration: 0.3
         fadeOutDuration: 0.2
@@ -13732,7 +13732,7 @@ MonoBehaviour:
         count: 2
       arrowImage: {fileID: 1467989102}
       blinkSettings:
-        blinkCount: 3
+        blinkCount: 5
         fadeInDuration: 0.2
         holdDuration: 0.3
         fadeOutDuration: 0.2
@@ -13748,7 +13748,7 @@ MonoBehaviour:
         count: 1
       arrowImage: {fileID: 2087950857}
       blinkSettings:
-        blinkCount: 3
+        blinkCount: 5
         fadeInDuration: 0.2
         holdDuration: 0.3
         fadeOutDuration: 0.2
@@ -13759,7 +13759,7 @@ MonoBehaviour:
         count: 1
       arrowImage: {fileID: 1830534538}
       blinkSettings:
-        blinkCount: 3
+        blinkCount: 5
         fadeInDuration: 0.2
         holdDuration: 0.3
         fadeOutDuration: 0.2
@@ -13772,7 +13772,7 @@ MonoBehaviour:
         count: 1
       arrowImage: {fileID: 208091433}
       blinkSettings:
-        blinkCount: 3
+        blinkCount: 5
         fadeInDuration: 0.2
         holdDuration: 0.3
         fadeOutDuration: 0.2
@@ -13785,7 +13785,7 @@ MonoBehaviour:
         count: 1
       arrowImage: {fileID: 1467989102}
       blinkSettings:
-        blinkCount: 3
+        blinkCount: 5
         fadeInDuration: 0.2
         holdDuration: 0.3
         fadeOutDuration: 0.2
@@ -13805,7 +13805,7 @@ MonoBehaviour:
         count: 1
       arrowImage: {fileID: 208091433}
       blinkSettings:
-        blinkCount: 3
+        blinkCount: 5
         fadeInDuration: 0.2
         holdDuration: 0.3
         fadeOutDuration: 0.2
@@ -13820,7 +13820,7 @@ MonoBehaviour:
         count: 2
       arrowImage: {fileID: 1467989102}
       blinkSettings:
-        blinkCount: 3
+        blinkCount: 5
         fadeInDuration: 0.2
         holdDuration: 0.3
         fadeOutDuration: 0.2
