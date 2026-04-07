@@ -151,3 +151,7 @@ MonoBehaviour:
     _rawText: Choose Your Character
   - _key: Select-Instructions
     _rawText: D-PAD to MOVE; A to CONFIRM
+  - _key: Module-SelectOne
+    _rawText: Select One
+  - _key: Module-Confrim
+    _rawText: Press A to Confirm

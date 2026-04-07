@@ -403,8 +403,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a733ad8374bb0734096076da9cca44c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ModuleSectionUIComponent
-  moduleName: {fileID: 1038539555}
-  description: {fileID: 897735888}
+  moduleName: {fileID: 1038539557}
+  description: {fileID: 897735890}
   moduleImage: {fileID: 1452544670}
   button: {fileID: 1998754223}
   player1Visual: {fileID: 2046182593}
@@ -462,6 +462,7 @@ GameObject:
   - component: {fileID: 235120089}
   - component: {fileID: 235120088}
   - component: {fileID: 235120090}
+  - component: {fileID: 235120091}
   m_Layer: 5
   m_Name: chooseOneText
   m_TagString: Untagged
@@ -613,6 +614,24 @@ MonoBehaviour:
   colorGlitchIntensity: 0.1
   bigGlitchChance: 0.05
   bigGlitchMultiplier: 4
+--- !u!114 &235120091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 235120086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dae449646f11534f81928346b3b6341, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Knot.Localization::Knot.Localization.Components.KnotLocalizedTextMeshProUGUI
+  _keyReference:
+    _key: Module-SelectOne
+    _formatters: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &298726706
 GameObject:
   m_ObjectHideFlags: 0
@@ -774,6 +793,7 @@ GameObject:
   - component: {fileID: 374812428}
   - component: {fileID: 374812430}
   - component: {fileID: 374812429}
+  - component: {fileID: 374812431}
   m_Layer: 5
   m_Name: Name
   m_TagString: Untagged
@@ -900,6 +920,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 374812427}
   m_CullTransparentMesh: 1
+--- !u!114 &374812431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 374812427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dae449646f11534f81928346b3b6341, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Knot.Localization::Knot.Localization.Components.KnotLocalizedTextMeshProUGUI
+  _keyReference:
+    _key: 
+    _formatters: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &397525095
 GameObject:
   m_ObjectHideFlags: 0
@@ -996,8 +1034,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a733ad8374bb0734096076da9cca44c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ModuleSectionUIComponent
-  moduleName: {fileID: 374812429}
-  description: {fileID: 443351722}
+  moduleName: {fileID: 374812431}
+  description: {fileID: 443351724}
   moduleImage: {fileID: 1144646817}
   button: {fileID: 24581677}
   player1Visual: {fileID: 453300933}
@@ -1016,6 +1054,7 @@ GameObject:
   - component: {fileID: 443351721}
   - component: {fileID: 443351723}
   - component: {fileID: 443351722}
+  - component: {fileID: 443351724}
   m_Layer: 5
   m_Name: Description
   m_TagString: Untagged
@@ -1142,6 +1181,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 443351720}
   m_CullTransparentMesh: 1
+--- !u!114 &443351724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 443351720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dae449646f11534f81928346b3b6341, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Knot.Localization::Knot.Localization.Components.KnotLocalizedTextMeshProUGUI
+  _keyReference:
+    _key: 
+    _formatters: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &453300933
 GameObject:
   m_ObjectHideFlags: 0
@@ -1425,8 +1482,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a733ad8374bb0734096076da9cca44c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ModuleSectionUIComponent
-  moduleName: {fileID: 988742054}
-  description: {fileID: 1897511702}
+  moduleName: {fileID: 0}
+  description: {fileID: 0}
   moduleImage: {fileID: 767738434}
   button: {fileID: 1029320084}
   player1Visual: {fileID: 485016934}
@@ -1695,6 +1752,7 @@ GameObject:
   - component: {fileID: 897735887}
   - component: {fileID: 897735889}
   - component: {fileID: 897735888}
+  - component: {fileID: 897735890}
   m_Layer: 5
   m_Name: Description
   m_TagString: Untagged
@@ -1821,6 +1879,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 897735886}
   m_CullTransparentMesh: 1
+--- !u!114 &897735890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 897735886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dae449646f11534f81928346b3b6341, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Knot.Localization::Knot.Localization.Components.KnotLocalizedTextMeshProUGUI
+  _keyReference:
+    _key: 
+    _formatters: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &963162766
 GameObject:
   m_ObjectHideFlags: 0
@@ -1832,6 +1908,7 @@ GameObject:
   - component: {fileID: 963162767}
   - component: {fileID: 963162769}
   - component: {fileID: 963162768}
+  - component: {fileID: 963162770}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -1958,6 +2035,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963162766}
   m_CullTransparentMesh: 1
+--- !u!114 &963162770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963162766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dae449646f11534f81928346b3b6341, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Knot.Localization::Knot.Localization.Components.KnotLocalizedTextMeshProUGUI
+  _keyReference:
+    _key: Module-Confrim
+    _formatters: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &988742052
 GameObject:
   m_ObjectHideFlags: 0
@@ -2182,6 +2277,7 @@ GameObject:
   - component: {fileID: 1038539554}
   - component: {fileID: 1038539556}
   - component: {fileID: 1038539555}
+  - component: {fileID: 1038539557}
   m_Layer: 5
   m_Name: Name
   m_TagString: Untagged
@@ -2308,6 +2404,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1038539553}
   m_CullTransparentMesh: 1
+--- !u!114 &1038539557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1038539553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dae449646f11534f81928346b3b6341, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Knot.Localization::Knot.Localization.Components.KnotLocalizedTextMeshProUGUI
+  _keyReference:
+    _key: 
+    _formatters: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &1077553258
 GameObject:
   m_ObjectHideFlags: 0
@@ -2848,6 +2962,7 @@ GameObject:
   - component: {fileID: 1264538316}
   - component: {fileID: 1264538318}
   - component: {fileID: 1264538317}
+  - component: {fileID: 1264538319}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -2974,6 +3089,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1264538315}
   m_CullTransparentMesh: 1
+--- !u!114 &1264538319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1264538315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dae449646f11534f81928346b3b6341, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Knot.Localization::Knot.Localization.Components.KnotLocalizedTextMeshProUGUI
+  _keyReference:
+    _key: Module-Confrim
+    _formatters: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &1344226379
 GameObject:
   m_ObjectHideFlags: 0

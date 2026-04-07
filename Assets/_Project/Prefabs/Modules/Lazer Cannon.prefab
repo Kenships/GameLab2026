@@ -272,8 +272,12 @@ MonoBehaviour:
   rewindSound: {fileID: 8300000, guid: 904184cbab2ef6d4eb570d029d20a47c, type: 3}
   rewindSoundVolume: 1
   brokenEffect: {fileID: 5636131846726068946}
-  description: -High damage\n-Long range rectangle\n-Area damage\n-Each shot costs
-    all the time
+  nameKey:
+    _key: Module-Laser
+    _formatters: []
+  descKey:
+    _key: Module-Laser-Desc
+    _formatters: []
   moduleSprite: {fileID: 21300000, guid: 20964abc62f946b48893bafca2b6fc48, type: 3}
   state: 1
   maxHealth: 100
@@ -299,6 +303,9 @@ MonoBehaviour:
   player2Visual: {fileID: 7733281396559360716}
   shootSound: {fileID: 8300000, guid: ea41ebf0599c46b4eb42403044b3015e, type: 3}
   shootSoundVolume: 0.5
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &4207550931829158317
 MonoBehaviour:
   m_ObjectHideFlags: 0

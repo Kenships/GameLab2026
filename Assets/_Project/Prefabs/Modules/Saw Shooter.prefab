@@ -1810,7 +1810,12 @@ MonoBehaviour:
   rewindSound: {fileID: 8300000, guid: 904184cbab2ef6d4eb570d029d20a47c, type: 3}
   rewindSoundVolume: 1
   brokenEffect: {fileID: 952736733395130718}
-  description: -Low damage\n-Long range circle\n-Single target\n-Chain attack
+  nameKey:
+    _key: Module-Saw
+    _formatters: []
+  descKey:
+    _key: Module-Saw-Desc
+    _formatters: []
   moduleSprite: {fileID: 21300000, guid: 41b2c6234e7c6c04a91064b97e3437e9, type: 3}
   state: 1
   maxHealth: 100
@@ -1841,6 +1846,9 @@ MonoBehaviour:
   shootSoundVolume: 0.3
   player1Visual: {fileID: 790316906995648998}
   player2Visual: {fileID: 6505483928442727171}
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &6220022207668456444
 MonoBehaviour:
   m_ObjectHideFlags: 0
