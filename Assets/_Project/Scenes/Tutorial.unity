@@ -3614,6 +3614,8 @@ GameObject:
   - component: {fileID: 727743757}
   - component: {fileID: 727743759}
   - component: {fileID: 727743758}
+  - component: {fileID: 727743761}
+  - component: {fileID: 727743760}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -3678,6 +3680,38 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 727743756}
   m_CullTransparentMesh: 1
+--- !u!114 &727743760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 727743756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f754fd55b150486ea31e92969db43e42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.UI.TextBoxUI
+--- !u!114 &727743761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 727743756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 159fb2dd493adba4b82f8586cedbda28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StopMotionUI
+  frames:
+  - {fileID: 21300000, guid: 34e8149d817b986458736004784c273a, type: 3}
+  - {fileID: 21300000, guid: e27d51bac88d9b84d854f3db05bbab53, type: 3}
+  - {fileID: 21300000, guid: d65086a020d1bea4e93b4a8275ae0418, type: 3}
+  - {fileID: 21300000, guid: 22934718e1a75fc45b594f85fa46f3ce, type: 3}
+  fps: 10
+  loop: 0
+  destroyOnEnd: 1
 --- !u!1001 &741119987
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4277,23 +4311,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 951293140}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d924ffed2390104aa05f23322c0306b, type: 3}
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
-  positionIntensity: 3
-  glitchInterval: 0.05
-  enableScaleGlitch: 1
-  scaleIntensity: 0.01
-  enableRotationGlitch: 1
-  rotationIntensity: 0.5
-  bigGlitchChance: 0.05
-  bigGlitchMultiplier: 4
-  enableColorGlitch: 0
-  colorGlitchIntensity: 0.05
-  targetImage: {fileID: 0}
-  targetText: {fileID: 0}
-  smoothReturn: 1
-  smoothSpeed: 15
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &977495270
 GameObject:
   m_ObjectHideFlags: 0
