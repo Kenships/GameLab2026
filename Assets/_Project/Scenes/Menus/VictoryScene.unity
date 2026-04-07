@@ -1704,6 +1704,8 @@ MonoBehaviour:
   latestScoreColor: {r: 0, g: 0.4627452, b: 1, a: 1}
   defaultColor: {r: 0.7482955, g: 0.7019608, b: 1, a: 1}
   victoryText: {fileID: 997339350}
+  scoreInputSound: {fileID: 8300000, guid: aefbd98ee7c1f3d419e7fb9756fff6af, type: 3}
+  scoreInputSoundVolume: 0.25
   playerScoreText: {fileID: 1334527271}
 --- !u!1 &102428568648436488
 GameObject:

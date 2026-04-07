@@ -1,22 +1,28 @@
+using _Project.Scripts.Core.AudioPooling;
+using _Project.Scripts.Effects;
+using _Project.Scripts.UI;
 using _Project.Scripts.Util.Timer.Timers;
+using Sisus.Init;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using _Project.Scripts.Effects;
-using _Project.Scripts.UI;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
+using AudioType = _Project.Scripts.Core.AudioPooling.Interface.AudioType;
 
-public class ScoreManager : MonoBehaviour
+public class ScoreManager : MonoBehaviour<AudioPooler>
 {
     [SerializeField] private List<ScoreEntry> scoreEntries = new();
     [SerializeField] private GameObject scorePrefab;
     [SerializeField] private Color latestScoreColor;
     [SerializeField] private Color defaultColor;
     [SerializeField] private TextTyper victoryText;
-    
+
+    [SerializeField] private AudioClip scoreInputSound;
+    [SerializeField] private float scoreInputSoundVolume = 0.1f;
+
     [Header("Player Score Display (Always Visible)")]
     [SerializeField] private TMP_Text playerScoreText;
 
@@ -36,6 +42,12 @@ public class ScoreManager : MonoBehaviour
 
     private CountdownTimer _timer;
     private string _path;
+
+    private AudioPooler _audioPooler;
+    protected override void Init(AudioPooler audioPooler)
+    {
+        _audioPooler = audioPooler;
+    }
 
     void Start()
     {
@@ -132,9 +144,14 @@ public class ScoreManager : MonoBehaviour
             if (entry.isMostRecent)
             {
                 scoreEntryObj.GetComponent<Image>().color = latestScoreColor;
+                _audioPooler.New2DAudio(scoreInputSound).OnChannel(AudioType.Sfx).SetVolume(scoreInputSoundVolume + 0.35f).RandomizePitch(0.1f, 0.5f).Play();
+            }
+            else
+            {
+                _audioPooler.New2DAudio(scoreInputSound).OnChannel(AudioType.Sfx).SetVolume(scoreInputSoundVolume).RandomizePitch(0.1f, 0.5f).Play();
             }
 
-            yield return new WaitForSecondsRealtime(0.25f);
+                yield return new WaitForSecondsRealtime(0.25f);
         }
     }
 
