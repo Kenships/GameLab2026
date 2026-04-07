@@ -110,7 +110,7 @@ namespace _Project.Scripts.Core.Enemies
 
             for (int waveIndex = 0; waveIndex < waves.Length; waveIndex++)
             {
-                float initialVHSHealth = VHSModule.Location.GetComponent<Health>().CurrentHealth;
+                float initialVHSHealth = GameManager.Instance.score;
                 
                 Wave currentWave = waves[waveIndex];
 
@@ -184,7 +184,7 @@ namespace _Project.Scripts.Core.Enemies
                         waveUI.StartCountdown(currentWave.restAfterWave);
                     }
                     
-                    float finalHealth = VHSModule.Location.GetComponent<Health>().CurrentHealth;
+                    float finalHealth = GameManager.Instance.score;
 
                     yield return new WaitForSeconds(0.1f);
                     
