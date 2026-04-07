@@ -24,9 +24,9 @@ Guy Louis Perry
 
 
 Naya Wardeh
-    Art Integration
     Character Model Designer
     2D Artist
+    Art Integration
     
 
 Jannah Ibrahim
