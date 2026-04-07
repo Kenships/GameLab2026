@@ -22,6 +22,11 @@ public class StopMotionUI : MonoBehaviour
         StartCoroutine(PlayRoutine());
     }
 
+    public void Reset()
+    {
+        image.sprite = frames[0];
+    }
+
     IEnumerator PlayRoutine()
     {
         float frameDuration = 1f / fps;
@@ -40,5 +45,6 @@ public class StopMotionUI : MonoBehaviour
         }
 
         if (destroyOnEnd) Destroy(gameObject);
+        else Reset();
     }
 }
