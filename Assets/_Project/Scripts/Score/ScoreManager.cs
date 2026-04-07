@@ -7,6 +7,7 @@ using _Project.Scripts.Effects;
 using _Project.Scripts.UI;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -15,6 +16,9 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] private Color latestScoreColor;
     [SerializeField] private Color defaultColor;
     [SerializeField] private TextTyper victoryText;
+    
+    [Header("Player Score Display (Always Visible)")]
+    [SerializeField] private TMP_Text playerScoreText;
 
     private enum Adj
     {
@@ -57,7 +61,20 @@ public class ScoreManager : MonoBehaviour
             scoreEntries.Add(newScore);
         }
 
-        scoreEntries.Sort((y, x) => x.score.CompareTo(y.score));
+        // UPDATED: Sort by score (descending), then by time (ascending - lower is better)
+        scoreEntries.Sort((a, b) => 
+        {
+            int scoreCompare = b.score.CompareTo(a.score); // Higher score first
+            if (scoreCompare != 0) return scoreCompare;
+            return a.time.CompareTo(b.time); // Lower time first (faster is better)
+        });
+
+        // Display player's score in the TMP text
+        if (newScore.time > 0f)
+        {
+            DisplayPlayerScoreSeparately(newScore);
+        }
+
         while (scoreEntries.Count > 16)
         {
             scoreEntries.Remove(scoreEntries[^1]);
@@ -67,43 +84,56 @@ public class ScoreManager : MonoBehaviour
         SavetoJson();
     }
 
+    private void DisplayPlayerScoreSeparately(ScoreEntry playerEntry)
+    {
+        if (playerScoreText == null)
+        {
+            Debug.LogWarning("Player Score Text (TMP) is not assigned!");
+            return;
+        }
+
+        // UPDATED: Find rank by position in sorted list
+        int rank = 1;
+        foreach (ScoreEntry entry in scoreEntries)
+        {
+            if (entry.isMostRecent)
+            {
+                break;
+            }
+            rank++;
+        }
+
+        int score = (int)(playerEntry.score + 0.5f);
+        int time = (int)(playerEntry.time + 0.5f);
+        string adj = DetermineAdjective(playerEntry.score).ToString();
+
+        playerScoreText.text = $"#{rank}    {score}    {time} seconds    {adj}!";
+    }
+
     IEnumerator DisplayScores()
     {
-        int rankC = 0;
-        int tempRankC = 1;
-
-        float prevScore = 0;
+        // UPDATED: Simple incrementing rank - no ties
+        int rank = 1;
 
         foreach (ScoreEntry entry in scoreEntries)
         {
-            GameObject scoreEntry = scorePrefab;
-            scoreInputData scoreEntryData = scoreEntry.GetComponent<scoreInputData>();
+            GameObject scoreEntryObj = Instantiate(scorePrefab, transform);
+            scoreInputData scoreEntryData = scoreEntryObj.GetComponent<scoreInputData>();
 
             scoreEntryData.Score = (int)(entry.score + 0.5f);
             scoreEntryData.Time = (int)(entry.time + 0.5f);
             scoreEntryData.adj = DetermineAdjective(entry.score).ToString();
+            scoreEntryData.Rank = rank;
 
-            rankC++;
+            rank++;
 
-            if (Mathf.Approximately(prevScore, entry.score))
-            {
-                scoreEntryData.Rank = tempRankC;
-            }
-            else
-            {
-                tempRankC = rankC;
-                scoreEntryData.Rank = rankC;
-                prevScore = entry.score;
-            }
-
-            scoreEntry.gameObject.GetComponent<Image>().color = defaultColor;
+            scoreEntryObj.GetComponent<Image>().color = defaultColor;
 
             if (entry.isMostRecent)
             {
-                scoreEntry.gameObject.GetComponent<Image>().color = latestScoreColor;
+                scoreEntryObj.GetComponent<Image>().color = latestScoreColor;
             }
 
-            Instantiate(scoreEntry, transform);
             yield return new WaitForSecondsRealtime(0.25f);
         }
     }
@@ -146,7 +176,6 @@ public class ScoreManager : MonoBehaviour
         return adj;
     }
 
-
     private void SavetoJson()
     {
         ScoreDataWrapper wrapper = new ScoreDataWrapper();
@@ -176,6 +205,7 @@ public class ScoreManager : MonoBehaviour
         return new List<ScoreEntry>();
     }
 }
+
 [Serializable]
 public class ScoreEntry
 {
