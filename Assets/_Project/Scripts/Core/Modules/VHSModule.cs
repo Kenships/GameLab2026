@@ -27,13 +27,6 @@ namespace _Project.Scripts.Core.Modules
         [SerializeField] private float rewindSpeed = 1f;
         [Tooltip("Please keep the array in sorted ascending order")]
         [SerializeField] private float[] mileStones;
-
-        [Header("Damage Reduction Settings")]
-        [SerializeField] private bool useDamageReductionThreshold = true;
-        [SerializeField] private float damageReductionHealthThreshold = 100f;
-        [SerializeField] [Range(0f, 1f)] private float damageMultiplierBelowThreshold = 0.5f;
-        [SerializeField] private float damageReductionHealthThreshold2 = 100f;
-        [SerializeField] [Range(0f, 1f)] private float damageMultiplierBelowThreshold2 = 0.5f;
         
         private HashSet<int> _reachedMilestones = new();
 
@@ -55,7 +48,7 @@ namespace _Project.Scripts.Core.Modules
 
         private void Start()
         {
-            GameManager.Instance.Score = _myHealth.CurrentHealth;
+            GameManager.Instance.score = _myHealth.CurrentHealth;
             GameManager.Instance.RestartTimer();
             GameManager.Instance.StartTimer();
             _myHealth.OnStageChanged += MilestoneReached;
@@ -89,13 +82,8 @@ namespace _Project.Scripts.Core.Modules
         }
         public void Damage(float damage)
         {
-            float finalDamage = damage;
-            if (useDamageReductionThreshold && _myHealth.CurrentHealth <= damageReductionHealthThreshold)
-            {finalDamage *= damageMultiplierBelowThreshold;}
-            if (useDamageReductionThreshold && _myHealth.CurrentHealth <= damageReductionHealthThreshold2)
-            {finalDamage *= damageMultiplierBelowThreshold2;}
-            _myHealth.AddToHealth(-finalDamage);
-            GameManager.Instance.Score = _myHealth.CurrentHealth;
+            _myHealth.AddToHealth(-damage);
+            GameManager.Instance.score = _myHealth.CurrentHealth;
         }
 
         public void ApplyEffect<T>(IEffect<T> effect) where T : IDamageable

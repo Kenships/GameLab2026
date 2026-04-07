@@ -39,7 +39,16 @@ namespace _Project.Scripts.Core.Enemies
 
             int randEnemyIndex = Random.Range(0, enemyFactories.Length);
 
-            EnemyBase enemy = enemyFactories[randEnemyIndex].CreateEnemy(spawnPoint.position, Quaternion.identity);
+            EnemyBase enemy = enemyFactories[randEnemyIndex].CreateEnemy();
+
+            if (enemy.TryGetComponent<UnityEngine.AI.NavMeshAgent>(out var agent))
+            {
+                agent.Warp(spawnPoint.position);
+            }
+            else
+            {
+                enemy.transform.position = spawnPoint.position;
+            }
         }
 
         private void SetRandomSpawnTimer()

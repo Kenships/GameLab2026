@@ -1,30 +1,20 @@
-using _Project.Scripts.Core.AudioPooling;
-using _Project.Scripts.Effects;
-using _Project.Scripts.UI;
 using _Project.Scripts.Util.Timer.Timers;
-using Sisus.Init;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using TMPro;
+using _Project.Scripts.Effects;
+using _Project.Scripts.UI;
 using UnityEngine;
 using UnityEngine.UI;
-using AudioType = _Project.Scripts.Core.AudioPooling.Interface.AudioType;
 
-public class ScoreManager : MonoBehaviour<AudioPooler>
+public class ScoreManager : MonoBehaviour
 {
     [SerializeField] private List<ScoreEntry> scoreEntries = new();
     [SerializeField] private GameObject scorePrefab;
     [SerializeField] private Color latestScoreColor;
     [SerializeField] private Color defaultColor;
     [SerializeField] private TextTyper victoryText;
-
-    [SerializeField] private AudioClip scoreInputSound;
-    [SerializeField] private float scoreInputSoundVolume = 0.1f;
-
-    [Header("Player Score Display (Always Visible)")]
-    [SerializeField] private TMP_Text playerScoreText;
 
     private enum Adj
     {
@@ -43,12 +33,6 @@ public class ScoreManager : MonoBehaviour<AudioPooler>
     private CountdownTimer _timer;
     private string _path;
 
-    private AudioPooler _audioPooler;
-    protected override void Init(AudioPooler audioPooler)
-    {
-        _audioPooler = audioPooler;
-    }
-
     void Start()
     {
         _path = Path.Combine(Application.persistentDataPath, "scores.json");
@@ -62,7 +46,7 @@ public class ScoreManager : MonoBehaviour<AudioPooler>
 
         var newScore = new ScoreEntry
         {
-            score = GameManager.Instance.FinalScore ,
+            score = GameManager.Instance.score,
             time = GameManager.Instance.runTime,
             isMostRecent = true
         };
@@ -73,20 +57,7 @@ public class ScoreManager : MonoBehaviour<AudioPooler>
             scoreEntries.Add(newScore);
         }
 
-        // UPDATED: Sort by score (descending), then by time (ascending - lower is better)
-        scoreEntries.Sort((a, b) => 
-        {
-            int scoreCompare = b.score.CompareTo(a.score); // Higher score first
-            if (scoreCompare != 0) return scoreCompare;
-            return a.time.CompareTo(b.time); // Lower time first (faster is better)
-        });
-
-        // Display player's score in the TMP text
-        if (newScore.time > 0f)
-        {
-            DisplayPlayerScoreSeparately(newScore);
-        }
-
+        scoreEntries.Sort((y, x) => x.score.CompareTo(y.score));
         while (scoreEntries.Count > 16)
         {
             scoreEntries.Remove(scoreEntries[^1]);
@@ -96,62 +67,44 @@ public class ScoreManager : MonoBehaviour<AudioPooler>
         SavetoJson();
     }
 
-    private void DisplayPlayerScoreSeparately(ScoreEntry playerEntry)
-    {
-        if (playerScoreText == null)
-        {
-            Debug.LogWarning("Player Score Text (TMP) is not assigned!");
-            return;
-        }
-
-        // UPDATED: Find rank by position in sorted list
-        int rank = 1;
-        foreach (ScoreEntry entry in scoreEntries)
-        {
-            if (entry.isMostRecent)
-            {
-                break;
-            }
-            rank++;
-        }
-
-        int score = (int)(playerEntry.score + 0.5f);
-        int time = (int)(playerEntry.time + 0.5f);
-        string adj = DetermineAdjective(playerEntry.score).ToString();
-
-        playerScoreText.text = $"#{rank}    {score}    {time} seconds    {adj}!";
-    }
-
     IEnumerator DisplayScores()
     {
-        // UPDATED: Simple incrementing rank - no ties
-        int rank = 1;
+        int rankC = 0;
+        int tempRankC = 1;
+
+        float prevScore = 0;
 
         foreach (ScoreEntry entry in scoreEntries)
         {
-            GameObject scoreEntryObj = Instantiate(scorePrefab, transform);
-            scoreInputData scoreEntryData = scoreEntryObj.GetComponent<scoreInputData>();
+            GameObject scoreEntry = scorePrefab;
+            scoreInputData scoreEntryData = scoreEntry.GetComponent<scoreInputData>();
 
-            scoreEntryData.Score = (int)(entry.score + 0.5f);
+            scoreEntryData.Score = entry.score;
             scoreEntryData.Time = (int)(entry.time + 0.5f);
             scoreEntryData.adj = DetermineAdjective(entry.score).ToString();
-            scoreEntryData.Rank = rank;
 
-            rank++;
+            rankC++;
 
-            scoreEntryObj.GetComponent<Image>().color = defaultColor;
-
-            if (entry.isMostRecent)
+            if (Mathf.Approximately(prevScore, entry.score))
             {
-                scoreEntryObj.GetComponent<Image>().color = latestScoreColor;
-                _audioPooler.New2DAudio(scoreInputSound).OnChannel(AudioType.Sfx).SetVolume(scoreInputSoundVolume + 0.35f).RandomizePitch(0.1f, 0.5f).Play();
+                scoreEntryData.Rank = tempRankC;
             }
             else
             {
-                _audioPooler.New2DAudio(scoreInputSound).OnChannel(AudioType.Sfx).SetVolume(scoreInputSoundVolume).RandomizePitch(0.1f, 0.5f).Play();
+                tempRankC = rankC;
+                scoreEntryData.Rank = rankC;
+                prevScore = entry.score;
             }
 
-                yield return new WaitForSecondsRealtime(0.25f);
+            scoreEntry.gameObject.GetComponent<Image>().color = defaultColor;
+
+            if (entry.isMostRecent)
+            {
+                scoreEntry.gameObject.GetComponent<Image>().color = latestScoreColor;
+            }
+
+            Instantiate(scoreEntry, transform);
+            yield return new WaitForSecondsRealtime(0.25f);
         }
     }
 
@@ -193,6 +146,7 @@ public class ScoreManager : MonoBehaviour<AudioPooler>
         return adj;
     }
 
+
     private void SavetoJson()
     {
         ScoreDataWrapper wrapper = new ScoreDataWrapper();
@@ -222,7 +176,6 @@ public class ScoreManager : MonoBehaviour<AudioPooler>
         return new List<ScoreEntry>();
     }
 }
-
 [Serializable]
 public class ScoreEntry
 {

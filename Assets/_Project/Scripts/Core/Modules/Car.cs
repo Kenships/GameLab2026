@@ -52,9 +52,6 @@ namespace _Project.Scripts.Core.Modules
 
         protected virtual void PerformAttack(bool fastForward)
         {
-            if (!EnableModule)
-                return;
-            
             if (_isRewinding && !_rewindTween.isAlive)
             {
                 float distance = Vector3.Distance(transform.position, _endPosition);
@@ -102,8 +99,6 @@ namespace _Project.Scripts.Core.Modules
 
         public override void FastForward(PlayerData.PlayerID playerID)
         {
-            if (!EnableModule)
-                return;
             base.FastForward(playerID);
             frontDetector.ResetRangeDetection();
             backDetector.ResetRangeDetection();
@@ -113,8 +108,6 @@ namespace _Project.Scripts.Core.Modules
 
         public override void Rewind(PlayerData.PlayerID playerID)
         {
-            if (!EnableModule)
-                return;
             base.Rewind(playerID);
             frontDetector.ResetRangeDetection();
             backDetector.ResetRangeDetection();

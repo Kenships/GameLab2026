@@ -22,19 +22,10 @@ namespace _Project.Scripts.Tutorial
         private bool _player1TimeControlled;
         private bool _player2TimeControlled;
         
-        private void Awake()
-        {
-            player1.AllowTimeControl = false;
-            player2.AllowTimeControl = false;
-        }
-        
         public void Invoke(Action callback)
         {
             hintText.SetActive(true);
             _callback = callback;
-            
-            player1.AllowTimeControl = true;
-            player2.AllowTimeControl = true;
             
             _player1TimeControlled = false;
             _player2TimeControlled = false;

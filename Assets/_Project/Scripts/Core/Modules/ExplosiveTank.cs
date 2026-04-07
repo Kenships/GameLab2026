@@ -5,9 +5,7 @@ using _Project.Scripts.Core.Modules.Base_Class;
 using _Project.Scripts.Core.Player;
 using _Project.Scripts.Effects.Interface;
 using _Project.Scripts.Effects.Runtime;
-using _Project.Scripts.Util.Timer.Timers;
 using UnityEngine;
-using AudioType = _Project.Scripts.Core.AudioPooling.Interface.AudioType;
 
 namespace _Project.Scripts.Core.Modules
 {
@@ -24,20 +22,11 @@ namespace _Project.Scripts.Core.Modules
         [Tooltip("Does damage twice, to fit the explosion VFX")]
         [SerializeField] private float timeGapBeforeSecondAttack = 0.75f;
 
-        [SerializeField] private float explosionDelay = 1f;
-
-
-        [Header("Audio")][SerializeField] private AudioClip shootSound;
-        [SerializeField] private float shootSoundVolume = 0.1f;
-
         [Header("Player Selection Visuals")]
         [SerializeField] private GameObject player1Visual;
         [SerializeField] private GameObject player2Visual;
         private RangeDetector _rangeDetector; // rangeType is circle
         private List<IDamageable> _enemies;
-
-
-        private CountdownTimer _delay;
 
         protected override void OnAwake()
         {
@@ -51,19 +40,9 @@ namespace _Project.Scripts.Core.Modules
             state = ModuleState.Used;
         }
 
-        protected override void OnDestroy()
-        {
-            base.OnDestroy();
-            _delay.OnTimerEnd -= Attack;
-            _delay = null;
-        }
-
         protected override void Start()
         {
             base.Start();
-            _delay = new CountdownTimer(explosionDelay);
-            _delay.OnTimerEnd += Attack;
-
             var main = explosionParticle.main;
             main.stopAction = ParticleSystemStopAction.Callback;
         
@@ -130,6 +109,7 @@ namespace _Project.Scripts.Core.Modules
                 player2Visual.SetActive(false);
             }
         }
+
         #region State Methods
 
         protected override void LoadState()
@@ -169,9 +149,13 @@ namespace _Project.Scripts.Core.Modules
                     fullTimeUI.SetActive(true);
                     break;
                 case ModuleState.Attack:
-                    _audioPooler.New2DAudio(shootSound).OnChannel(AudioType.Sfx).SetVolume(shootSoundVolume).Play();
-                    _delay.Reset(explosionDelay);
-
+                    PerformAttack();
+                    explosionParticle.Play();
+                    Invoke(nameof(PerformAttack), timeGapBeforeSecondAttack);
+                    loadModel.SetActive(false);
+                    usedModel.SetActive(true);
+                    fullTimeUI.SetActive(false);
+                    _health.AddToHealth(int.MinValue);
                     break;
                 case ModuleState.Used:
                     usedModel.SetActive(true);
@@ -182,18 +166,6 @@ namespace _Project.Scripts.Core.Modules
                     break;
             }
         }
-        private void Attack()
-        {
-            PerformAttack();
-            explosionParticle.Play();
-            Invoke(nameof(PerformAttack), timeGapBeforeSecondAttack);
-            loadModel.SetActive(false);
-            usedModel.SetActive(true);
-            fullTimeUI.SetActive(false);
-            _health.AddToHealth(int.MinValue);
-        }
-
-
 
         #endregion
 

@@ -18,12 +18,5 @@ namespace _Project.Scripts.UI
 
             transform.forward = -_cam.transform.forward;
         }
-
-        [ContextMenu("Face Camera")]
-        public void FaceCameraOnClick()
-        {
-            _cam = Camera.main;
-            transform.forward = -_cam.transform.forward;
-        }
     }
 }

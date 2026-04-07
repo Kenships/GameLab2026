@@ -433,7 +433,7 @@ RectTransform:
   m_GameObject: {fileID: 1364464938961092887}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5338651, y: 0.82133085, z: 0.82133085}
+  m_LocalScale: {x: 0.5848895, y: 0.89983, z: 0.89983}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2681387237496970886}
@@ -452,7 +452,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 34, y: 379.15335}
+  m_AnchoredPosition: {x: 45, y: 475}
   m_SizeDelta: {x: 2500, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8042108466487816983
@@ -995,15 +995,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87a94ed4d94741cf9171f9df3c6c3360, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.SceneLoading.SceneLoader
-  onBeforeSceneLoad:
+  OnBeforeSceneLoad:
     m_PersistentCalls:
       m_Calls: []
   loadOnAwake: 0
-  withOverlay: 0
-  fadeAudio: 1
-  fadeDuration: 1
-  sceneGroup: 1
-  actionMap: 3
   setActive: 0
   activeSceneIndex:
     buildIndex: 0
@@ -1011,6 +1006,9 @@ MonoBehaviour:
   - buildIndex: 8
   unloadDisabled: 0
   scenesToUnload: []
+  withOverlay: 0
+  sceneGroup: 1
+  actionMap: 3
 --- !u!114 &2366788554856475630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1023,14 +1021,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ede6ff738f9642545af8030ddb0bba11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VHSManager
+  description: VHS
+  moduleSprite: {fileID: 0}
+  state: 1
   fastForwardSound: {fileID: 0}
   fastForwardSoundVolume: 1
   rewindSound: {fileID: 8300000, guid: 904184cbab2ef6d4eb570d029d20a47c, type: 3}
   rewindSoundVolume: 1
-  brokenEffect: {fileID: 0}
-  description: VHS
-  moduleSprite: {fileID: 0}
-  state: 1
   player1Visual: {fileID: 6847911905089575946}
   player2Visual: {fileID: 1429555698321681106}
   vhsDeathEvent: {fileID: 11400000, guid: dca06c0613049d741b7b023502d19817, type: 2}
@@ -1047,11 +1044,6 @@ MonoBehaviour:
   - 700
   - 800
   - 900
-  useDamageReductionThreshold: 1
-  damageReductionHealthThreshold: 500
-  damageMultiplierBelowThreshold: 0.5
-  damageReductionHealthThreshold2: 250
-  damageMultiplierBelowThreshold2: 0.1
 --- !u!114 &3247101322211001578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1076,12 +1068,6 @@ MonoBehaviour:
   - 700
   - 800
   - 900
-  ScreenShakeEnabled: 1
-  HealthBarShakeEnabled: 1
-  VHSShakeEnabled: 1
-  shakeEffectCamera: {fileID: 0}
-  shakeEffectVHS: {fileID: 0}
-  shakeEffectHealthBar: {fileID: 0}
 --- !u!114 &7207537582970083182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1095,12 +1081,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.Modules.ModuleSpawner
   spawnEvent: {fileID: 11400000, guid: ea59c12e137cbf940b576ce2cfee1c24, type: 2}
-  moduleSpawnedEvent: {fileID: 0}
-  hintUI: {fileID: 0}
-  dropEffect: {fileID: 0}
-  landingInfos: []
-  landingSound: {fileID: 8300000, guid: 56092a9b25490c24aa82a998d9e0d351, type: 3}
-  landingSoundVolume: 0.5
+  spawnLocation: {fileID: 3160907338520606073}
 --- !u!65 &5478617140694700166
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1252,7 +1233,6 @@ GameObject:
   - component: {fileID: 7534103190991559787}
   - component: {fileID: 4494546320220305177}
   - component: {fileID: 4017282767074197747}
-  - component: {fileID: 1526495396738723948}
   m_Layer: 3
   m_Name: HpCanvas
   m_TagString: Untagged
@@ -1290,7 +1270,7 @@ Canvas:
   m_GameObject: {fileID: 3150543948878468544}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -1344,18 +1324,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &1526495396738723948
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3150543948878468544}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b66d8cc4c421485ebcc4317de81972ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.CameraScripts.CameraCanvasBind
 --- !u!1 &3198650354981572221
 GameObject:
   m_ObjectHideFlags: 0
@@ -1572,7 +1540,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: -3.3999996}
+  m_AnchoredPosition: {x: 0, y: -3.4}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &873249260470244289

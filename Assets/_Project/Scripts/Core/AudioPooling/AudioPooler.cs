@@ -11,6 +11,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using AudioType = _Project.Scripts.Core.AudioPooling.Interface.AudioType;
 using ILogger = _Project.Scripts.Util.Logger.Interface.ILogger;
+using Logger = _Project.Scripts.Util.Logger.Logger;
 
 namespace _Project.Scripts.Core.AudioPooling
 {
@@ -19,7 +20,7 @@ namespace _Project.Scripts.Core.AudioPooling
         DontPlayOnFull,
         OverrideFirst
     }
-    [Service(typeof(AudioPooler), typeof (IAudioPoolSceneController), LoadScene = 0)]
+    [Service(typeof(AudioPooler), LoadScene = 0)]
     public partial class AudioPooler : MonoBehaviour<ILogger>
     {
         ILogger _logger;
@@ -125,14 +126,8 @@ namespace _Project.Scripts.Core.AudioPooling
                 _logger.LogWarning("No clip provided");
                 return new EmptyAudioPlayer();
             }
-
-            // Music can't be thrown
-            if (audioConfig.AudioType == AudioType.Music)
-            {
-                return GetNextAudioSource(audioConfig);
-            }
-
-
+            
+            
             // check for capacity availability
             PooledAudioSource audioSource = null;
             if (!activeSourcesByAudioType.TryGetValue(audioConfig.AudioType, out List<PooledAudioSource> list) ||

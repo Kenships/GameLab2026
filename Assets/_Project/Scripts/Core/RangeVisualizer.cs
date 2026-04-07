@@ -43,14 +43,6 @@ namespace _Project.Scripts.Core
 
             _mesh = new Mesh { name = "RangeVFX_Mesh" };
             _meshFilter.mesh = _mesh;
-
-            Vector3 worldScale = transform.lossyScale;
-            if (!Mathf.Approximately(worldScale.x, 1f) ||
-            !Mathf.Approximately(worldScale.y, 1f) ||
-            !Mathf.Approximately(worldScale.z, 1f))
-            {
-                Debug.LogError("World scale of RangeVisualizer object must be 1!");
-            }
         }
 
         protected override void Init(IGridService gridService)
@@ -197,7 +189,7 @@ namespace _Project.Scripts.Core
             float bottom = 0f;
             float top = length - borderWidth;
 
-            // Fill
+            // -Fill
             int startIdx = verts.Count;
             verts.Add(new Vector3(left, 0, bottom));
             verts.Add(new Vector3(right, 0, bottom));

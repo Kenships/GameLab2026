@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 namespace _Project.Scripts
 {
+    [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
     public class InteractionVFXController : MonoBehaviour
     {
         public enum AbilityMode
@@ -21,39 +22,25 @@ namespace _Project.Scripts
         [SerializeField] private IconManager iconManager;
         [SerializeField] private ModuleInfoManager moduleInfoManager; 
 
-        [Header("Player Reference")]
-        [Tooltip("Drag the player GameObject here")]
-        [SerializeField] private Transform playerTransform;
+        [Header("Ring Settings")]
+        [SerializeField] private float radius = 5f;
+        [SerializeField] private float ringWidth = 0.15f;
+        [SerializeField] private int segments = 80;
 
-        [Header("Animation Prefabs")]
-        [Tooltip("Blue animation prefab for Fast Forward")]
-        [SerializeField] private GameObject fastForwardPrefab;
-        [Tooltip("Red animation prefab for Rewind")]
-        [SerializeField] private GameObject rewindPrefab;
-        
-        [Header("Animation Settings")]
-        [Tooltip("Diameter of the animation in world units")]
-        [SerializeField] private float diameter = 4f;
-        [Tooltip("Height offset above the ground (small value to prevent z-fighting)")]
+        [Header("Appearance")]
+        [SerializeField] private Color ringColor = new Color(0.4f, 0.8f, 1f, 0.85f);
+        [SerializeField] private float fadeSpeed = 4f;
         [SerializeField] private float yOffset = 0.05f;
-        [Tooltip("Rotation offset on Y axis (to orient the arrows)")]
-        [SerializeField] private float rotationOffset = 0f;
-
-        [Header("Fade Settings")]
-        [SerializeField] private float fadeInDuration = 0.15f;
-        [SerializeField] private float fadeOutDuration = 0.2f;
 
         [Header("Pulse Settings")]
         [SerializeField] private bool enablePulse = true;
         [SerializeField] private float pulseSpeed = 2f;
-        [SerializeField] private float pulseMinAlpha = 0.6f;
-        [SerializeField] private float pulseMaxAlpha = 1f;
-        [SerializeField] private bool pulseScale = false;
-        [SerializeField] private float pulseScaleMin = 0.95f;
-        [SerializeField] private float pulseScaleMax = 1.05f;
+        [SerializeField] private float pulseIntensity = 0.15f;
 
-        [Header("Debug")]
-        [SerializeField] private bool enableDebugLogs = false;
+        [Header("Ripple Settings")]
+        [SerializeField] private bool enableRipple = false;
+        [SerializeField] private float rippleInterval = 0.6f;
+        [SerializeField] private int maxRipples = 3;
         
         [Header("ModuleIcons")]
         [SerializeField] private Texture2D turretIcon;
@@ -63,342 +50,73 @@ namespace _Project.Scripts
         [SerializeField] private Texture2D discIcon;
         [SerializeField] private Texture2D explosiveIcon;
 
-        private Canvas worldCanvas;
-        private GameObject canvasGameObject;
-        private GameObject currentAnimationInstance;
-        private RectTransform currentAnimationRect;
-        private CanvasGroup canvasGroup;
-        private StopMotionUI stopMotionUI;
-        private Image animationImage;
-        
-        private float fadeProgress = 0f;
-        private bool isFadingIn = false;
-        private bool isFadingOut = false;
+        private MeshFilter meshFilter;
+        private MeshRenderer meshRenderer;
+        private Material ringMaterial;
+
+        private float targetAlpha = 0f;
+        private float currentAlpha = 0f;
         private bool isVisible = false;
-        private float pulseTime = 0f;
-        private Vector3 originalScale = Vector3.one;
+
+        private Color activeColor;
+
+        private List<RippleRing> activeRipples = new List<RippleRing>();
+        private float rippleTimer = 0f;
 
         private string currentModuleName; 
         
         private void Awake()
         {
-            if (playerTransform == null)
-            {
-                GameObject player = GameObject.FindGameObjectWithTag("Player");
-                if (player != null)
-                {
-                    playerTransform = player.transform;
-                    DebugLog("Player found by tag: " + player.name);
-                }
-                else
-                {
-                    playerTransform = transform;
-                    DebugLog("No player found, using this transform: " + gameObject.name);
-                }
-            }
-            else
-            {
-                DebugLog("Player transform assigned: " + playerTransform.name);
-            }
+            meshFilter   = GetComponent<MeshFilter>();
+            meshRenderer = GetComponent<MeshRenderer>();
 
-            CreateWorldSpaceCanvas();
-        }
+            activeColor = ringColor;
 
-        private void DebugLog(string message)
-        {
-            if (enableDebugLogs)
-            {
-                Debug.Log("[InteractionVFXController] " + message);
-            }
-        }
+            SetupMaterial();
+            GenerateRingMesh(radius);
 
-        private void CreateWorldSpaceCanvas()
-        {
-            DebugLog("Creating world space canvas...");
-
-            canvasGameObject = new GameObject("AbilityAnimationCanvas");
-            canvasGameObject.transform.position = playerTransform.position + new Vector3(0f, yOffset, 0f);
-            canvasGameObject.transform.rotation = Quaternion.Euler(90f, rotationOffset, 0f);
-
-            worldCanvas = canvasGameObject.AddComponent<Canvas>();
-            worldCanvas.renderMode = RenderMode.WorldSpace;
-            worldCanvas.sortingOrder = 0;
-
-            RectTransform canvasRect = canvasGameObject.GetComponent<RectTransform>();
-            canvasRect.sizeDelta = new Vector2(100f, 100f);
-            
-            float canvasScale = diameter / 100f;
-            canvasGameObject.transform.localScale = new Vector3(canvasScale, canvasScale, canvasScale);
-
-            CanvasScaler scaler = canvasGameObject.AddComponent<CanvasScaler>();
-            scaler.dynamicPixelsPerUnit = 1f;
-
-            DebugLog("World space canvas created. Scale: " + canvasScale + ", Position: " + canvasGameObject.transform.position);
+            transform.localPosition = new Vector3(0f, yOffset, 0f);
         }
 
         private void Update()
         {
-            UpdateCanvasPosition();
-            UpdatePulse();
-            UpdateFade();
-        }
+            HandleFade();
+            HandlePulse();
 
-        private void UpdateCanvasPosition()
-        {
-            if (worldCanvas == null || playerTransform == null) return;
+            if (enableRipple && isVisible)
+                HandleRipples();
 
-            canvasGameObject.transform.position = playerTransform.position + new Vector3(0f, yOffset, 0f);
-            canvasGameObject.transform.rotation = Quaternion.Euler(90f, rotationOffset, 0f);
-        }
-
-        private void UpdatePulse()
-        {
-            if (!enablePulse || !isVisible || canvasGroup == null) return;
-
-            pulseTime += Time.deltaTime * pulseSpeed;
-
-            // Scale pulse (optional)
-            if (pulseScale && currentAnimationRect != null)
-            {
-                float t = (Mathf.Sin(pulseTime * Mathf.PI * 2f) + 1f) * 0.5f; // 0 to 1
-                float scale = Mathf.Lerp(pulseScaleMin, pulseScaleMax, t);
-                
-                Vector3 newScale = new Vector3(
-                    originalScale.x * scale,
-                    originalScale.y * scale,
-                    originalScale.z * scale
-                );
-                currentAnimationRect.localScale = newScale;
-            }
-        }
-
-        private void UpdateFade()
-        {
-            if (canvasGroup == null) return;
-
-            // Calculate pulse alpha
-            float pulseAlpha = pulseMaxAlpha;
-            if (enablePulse)
-            {
-                float t = (Mathf.Sin(pulseTime * Mathf.PI * 2f) + 1f) * 0.5f; // 0 to 1
-                pulseAlpha = Mathf.Lerp(pulseMinAlpha, pulseMaxAlpha, t);
-            }
-
-            if (isFadingIn)
-            {
-                fadeProgress += Time.deltaTime / fadeInDuration;
-                
-                if (fadeProgress >= 1f)
-                {
-                    fadeProgress = 1f;
-                    isFadingIn = false;
-                    DebugLog("Fade in complete");
-                }
-
-                // Multiply fade progress with pulse alpha
-                canvasGroup.alpha = fadeProgress * pulseAlpha;
-            }
-            else if (isFadingOut)
-            {
-                fadeProgress -= Time.deltaTime / fadeOutDuration;
-                
-                if (fadeProgress <= 0f)
-                {
-                    fadeProgress = 0f;
-                    isFadingOut = false;
-                    DestroyCurrentAnimation();
-                    DebugLog("Fade out complete, animation destroyed");
-                }
-                else
-                {
-                    // Multiply fade progress with pulse alpha
-                    canvasGroup.alpha = fadeProgress * pulseAlpha;
-                }
-            }
-            else if (isVisible)
-            {
-                // Just pulsing, no fade
-                canvasGroup.alpha = pulseAlpha;
-            }
-        }
-
-        private void SpawnAnimation(AbilityMode mode)
-        {
-            DebugLog("SpawnAnimation called. Mode: " + mode);
-
-            DestroyCurrentAnimation();
-
-            // Select the correct prefab based on mode
-            GameObject prefabToUse = null;
-            
-            if (mode == AbilityMode.FastForward)
-            {
-                prefabToUse = fastForwardPrefab;
-                DebugLog("Using Fast Forward (blue) prefab");
-            }
-            else if (mode == AbilityMode.Rewind)
-            {
-                prefabToUse = rewindPrefab;
-                DebugLog("Using Rewind (red) prefab");
-            }
-
-            if (prefabToUse == null)
-            {
-                Debug.LogError("[InteractionVFXController] " + mode + " prefab is not assigned!");
-                return;
-            }
-
-            if (worldCanvas == null)
-            {
-                Debug.LogError("[InteractionVFXController] World Canvas was not created!");
-                return;
-            }
-
-            DebugLog("Instantiating animation prefab: " + prefabToUse.name);
-
-            currentAnimationInstance = Instantiate(prefabToUse);
-            currentAnimationInstance.transform.SetParent(worldCanvas.transform, false);
-            currentAnimationInstance.name = "ActiveAbilityAnimation_" + mode;
-
-            DebugLog("Animation instance created: " + currentAnimationInstance.name);
-
-            currentAnimationRect = currentAnimationInstance.GetComponent<RectTransform>();
-            if (currentAnimationRect != null)
-            {
-                currentAnimationRect.anchorMin = new Vector2(0.5f, 0.5f);
-                currentAnimationRect.anchorMax = new Vector2(0.5f, 0.5f);
-                currentAnimationRect.pivot = new Vector2(0.5f, 0.5f);
-                currentAnimationRect.anchoredPosition = Vector2.zero;
-                currentAnimationRect.sizeDelta = new Vector2(100f, 100f);
-                
-                // Flip horizontally for Rewind mode (arrows point opposite direction)
-                if (mode == AbilityMode.Rewind)
-                {
-                    currentAnimationRect.localScale = new Vector3(-1f, 1f, 1f);
-                    DebugLog("Rewind mode - flipped horizontally");
-                }
-                else
-                {
-                    currentAnimationRect.localScale = Vector3.one;
-                }
-
-                // Store original scale for pulse
-                originalScale = currentAnimationRect.localScale;
-
-                DebugLog("RectTransform configured. Size: " + currentAnimationRect.sizeDelta);
-            }
-            else
-            {
-                Debug.LogError("[InteractionVFXController] Animation prefab has no RectTransform!");
-            }
-
-            animationImage = currentAnimationInstance.GetComponent<Image>();
-            if (animationImage != null)
-            {
-                animationImage.preserveAspect = true;
-                DebugLog("Image component found. Sprite: " + (animationImage.sprite != null ? animationImage.sprite.name : "NULL"));
-            }
-            else
-            {
-                Debug.LogError("[InteractionVFXController] Animation prefab has no Image component!");
-            }
-
-            canvasGroup = currentAnimationInstance.GetComponent<CanvasGroup>();
-            if (canvasGroup == null)
-            {
-                canvasGroup = currentAnimationInstance.AddComponent<CanvasGroup>();
-                DebugLog("Added CanvasGroup component");
-            }
-            canvasGroup.alpha = 0f;
-
-            stopMotionUI = currentAnimationInstance.GetComponent<StopMotionUI>();
-            if (stopMotionUI != null)
-            {
-                DebugLog("StopMotionUI found. Frames count: " + (stopMotionUI.frames != null ? stopMotionUI.frames.Length.ToString() : "NULL"));
-                
-                if (stopMotionUI.frames == null || stopMotionUI.frames.Length == 0)
-                {
-                    Debug.LogError("[InteractionVFXController] StopMotionUI has no frames assigned!");
-                }
-                else
-                {
-                    if (stopMotionUI.frames[0] == null)
-                    {
-                        Debug.LogError("[InteractionVFXController] First frame in StopMotionUI is null!");
-                    }
-                    else
-                    {
-                        DebugLog("First frame: " + stopMotionUI.frames[0].name);
-                    }
-                }
-
-                stopMotionUI.loop = true;
-                stopMotionUI.destroyOnEnd = false;
-                
-                DebugLog("Starting animation playback...");
-                stopMotionUI.Play();
-            }
-            else
-            {
-                Debug.LogError("[InteractionVFXController] Animation prefab doesn't have StopMotionUI component!");
-            }
-
-            // Reset pulse and fade state
-            pulseTime = 0f;
-            fadeProgress = 0f;
-            isFadingIn = true;
-            isFadingOut = false;
-
-            DebugLog("SpawnAnimation completed");
-        }
-
-        private void DestroyCurrentAnimation()
-        {
-            if (currentAnimationInstance != null)
-            {
-                DebugLog("Destroying current animation");
-
-                if (stopMotionUI != null)
-                {
-                    stopMotionUI.StopAllCoroutines();
-                }
-                
-                Destroy(currentAnimationInstance);
-                currentAnimationInstance = null;
-                currentAnimationRect = null;
-                canvasGroup = null;
-                stopMotionUI = null;
-                animationImage = null;
-            }
-            
-            isFadingIn = false;
-            isFadingOut = false;
+            UpdateRipples();
         }
 
         public void ShowHeldObject(GameObject heldObject)
         {
             Debug.Log(heldObject);
-            if (heldObject.GetComponent<Flamethrower>() != null)
+            if (heldObject.GetComponent<Flamethrower>()!= null)
             {
-                moduleInfoManager.ShowInfo(flameIcon, "Flame Thrower");
+                moduleInfoManager.ShowInfo(flameIcon,"Flame Thrower");
             }
-            else if (heldObject.GetComponent<LazerCannon>() != null)
+            else if (heldObject.GetComponent<LazerCannon>()!= null)
             {
-                moduleInfoManager.ShowInfo(lazerIcon, "Lazer Cannon");
+                moduleInfoManager.ShowInfo(lazerIcon,"Lazer Cannon");
             }
             else if (heldObject.GetComponent<ExplosiveTank>() != null)
             {
-                moduleInfoManager.ShowInfo(explosiveIcon, "Explosive Tank");
+                moduleInfoManager.ShowInfo(explosiveIcon,"Explosive Tank");
             }
+            // else if (heldObject.GetComponent<Car>()!= null)
+            // {
+            //     moduleInfoManager.ShowInfo(carIcon,"Car");
+            // }
             else if (heldObject.GetComponent<Turret>() != null)
             {
                 if (heldObject.GetComponent<Turret>().turretType == "disc")
                 {
-                    moduleInfoManager.ShowInfo(discIcon, "Saw Shooter");
+                    moduleInfoManager.ShowInfo(discIcon,"Saw Shooter");
                 }
                 else if (heldObject.GetComponent<Turret>().turretType == "normal")
                 {
-                    moduleInfoManager.ShowInfo(turretIcon, "Turret");
+                    moduleInfoManager.ShowInfo(turretIcon,"Turret");
                 }
             }
         }
@@ -408,181 +126,237 @@ namespace _Project.Scripts
             moduleInfoManager.Hide();
         }
 
+
         public void ShowWind(AbilityMode mode = AbilityMode.FastForward)
         {
-            DebugLog("ShowWind called. Mode: " + mode);
-
             currentMode = mode;
-
-            SpawnAnimation(mode);
+            activeColor = ringColor;
 
             if (mode == AbilityMode.FastForward && iconManager != null)
             {
                 iconManager.ShowFastForward();
             }
-            else if (mode == AbilityMode.Rewind && iconManager != null)
+            else if (mode == AbilityMode.Rewind  && iconManager != null)
             {
                 iconManager.ShowRewind();
             }
 
-            isVisible = true;
+            ringMaterial.color = new Color(activeColor.r, activeColor.g, activeColor.b, currentAlpha);
 
-            DebugLog("ShowWind completed. isVisible: " + isVisible);
+            isVisible   = true;
+            targetAlpha = activeColor.a;
         }
 
         public void HideWind()
         {
-            DebugLog("HideWind called");
-
-            isVisible = false;
-            isFadingIn = false;
-            isFadingOut = true;
-            
+            isVisible   = false;
+            targetAlpha = 0f;
             if (iconManager != null)
             {
                 iconManager.Hide();
             }
+            
+            ClearRipples();
         }
 
         public void Toggle(AbilityMode mode = AbilityMode.FastForward)
         {
             if (isVisible) HideWind();
-            else ShowWind(mode);
+            else           ShowWind(mode);
         }
 
-        public void SetDiameter(float newDiameter)
+ 
+
+        private void HandleFade()
         {
-            diameter = newDiameter;
-            
-            if (canvasGameObject != null)
+            currentAlpha = Mathf.Lerp(currentAlpha, targetAlpha, Time.deltaTime * fadeSpeed);
+            Color c = ringMaterial.color;
+            ringMaterial.color = new Color(c.r, c.g, c.b, currentAlpha);
+        }
+
+        private void HandlePulse()
+        {
+            if (!enablePulse || !isVisible) return;
+
+            float pulse = 1f + Mathf.Sin(Time.time * pulseSpeed) * pulseIntensity;
+            ringMaterial.SetColor(
+                "_Color",
+                new Color(
+                    activeColor.r * pulse,
+                    activeColor.g * pulse,
+                    activeColor.b * pulse,
+                    currentAlpha
+                )
+            );
+        }
+    
+
+        private void HandleRipples()
+        {
+            rippleTimer += Time.deltaTime;
+            if (rippleTimer >= rippleInterval && activeRipples.Count < maxRipples)
             {
-                float canvasScale = diameter / 100f;
-                canvasGameObject.transform.localScale = new Vector3(canvasScale, canvasScale, canvasScale);
+                rippleTimer = 0f;
+                SpawnRipple(currentMode);
             }
         }
 
-        public void SetYOffset(float newOffset)
+        private void SpawnRipple(AbilityMode mode)
         {
-            yOffset = newOffset;
-        }
+            GameObject rippleGO = new GameObject("Ripple");
+            rippleGO.transform.SetParent(transform.parent);
+            rippleGO.transform.localPosition = transform.localPosition;
+            rippleGO.transform.rotation      = transform.rotation;
 
-        public void SetPlayerTransform(Transform newPlayerTransform)
-        {
-            playerTransform = newPlayerTransform;
-            DebugLog("Player transform updated to: " + playerTransform.name);
-        }
+            MeshFilter   mf = rippleGO.AddComponent<MeshFilter>();
+            MeshRenderer mr = rippleGO.AddComponent<MeshRenderer>();
 
-        /// <summary>
-        /// Enable or disable pulse at runtime
-        /// </summary>
-        public void SetPulseEnabled(bool enabled)
-        {
-            enablePulse = enabled;
-            
-            if (!enabled && currentAnimationRect != null)
+            Material rippleMat = new Material(ringMaterial) { color = activeColor };
+            mr.material = rippleMat;
+
+            // FastForward: starts at center, moves out to ring edge
+            // Rewind:      starts at ring edge, moves in to center
+            float startRadius = (mode == AbilityMode.Rewind)
+                ? radius
+                : 0.01f;
+
+            mf.mesh = GenerateMesh(startRadius);
+
+            activeRipples.Add(new RippleRing
             {
-                currentAnimationRect.localScale = originalScale;
+                go       = rippleGO,
+                mat      = rippleMat,
+                mf       = mf,
+                progress = 0f,
+                mode     = mode,
+                color    = activeColor
+            });
+        }
+
+        private void UpdateRipples()
+        {
+            for (int i = activeRipples.Count - 1; i >= 0; i--)
+            {
+                RippleRing r = activeRipples[i];
+                r.progress += Time.deltaTime * (1f / rippleInterval);
+
+                float currentRippleRadius;
+                float alpha;
+
+                if (r.mode == AbilityMode.Rewind)
+                {
+                    // contracts from ring edge → center
+                    currentRippleRadius = Mathf.Lerp(radius, 0.01f, r.progress);
+
+                    // fades in, peaks in the middle of travel, fades out on arrival
+                    alpha = Mathf.Lerp(0f, r.color.a * 0.7f, Mathf.Sin(r.progress * Mathf.PI));
+                }
+                else
+                {
+                    // expands from center → ring edge
+                    currentRippleRadius = Mathf.Lerp(0.01f, radius, r.progress);
+
+                    // fades in, peaks in the middle of travel, fades out on arrival
+                    alpha = Mathf.Lerp(0f, r.color.a * 0.7f, Mathf.Sin(r.progress * Mathf.PI));
+                }
+
+                r.mf.mesh   = GenerateMesh(currentRippleRadius, ringWidth * 0.6f);
+                r.mat.color = new Color(r.color.r, r.color.g, r.color.b, alpha);
+
+                if (r.progress >= 1f)
+                {
+                    Destroy(r.go);
+                    activeRipples.RemoveAt(i);
+                }
             }
         }
 
-        /// <summary>
-        /// Set pulse speed at runtime
-        /// </summary>
-        public void SetPulseSpeed(float speed)
+        private void ClearRipples()
         {
-            pulseSpeed = speed;
+            foreach (RippleRing r in activeRipples)
+                Destroy(r.go);
+
+            activeRipples.Clear();
+            rippleTimer = 0f;
         }
 
-        /// <summary>
-        /// Set pulse alpha range at runtime
-        /// </summary>
-        public void SetPulseAlphaRange(float min, float max)
+        private class RippleRing
         {
-            pulseMinAlpha = min;
-            pulseMaxAlpha = max;
+            public GameObject  go;
+            public Material    mat;
+            public MeshFilter  mf;
+            public float       progress;
+            public AbilityMode mode;
+            public Color       color;
+        }
+    
+
+        private void GenerateRingMesh(float r)
+        {
+            meshFilter.mesh = GenerateMesh(r);
         }
 
-        /// <summary>
-        /// Set pulse scale range at runtime
-        /// </summary>
-        public void SetPulseScaleRange(float min, float max)
+        private Mesh GenerateMesh(float outerRadius, float width = -1f)
         {
-            pulseScaleMin = min;
-            pulseScaleMax = max;
-        }
+            if (width < 0f) width = ringWidth;
 
-        /// <summary>
-        /// Reset pulse time to sync with another effect
-        /// </summary>
-        public void ResetPulseTime()
-        {
-            pulseTime = 0f;
-        }
+            float innerRadius = outerRadius - width;
 
-        /// <summary>
-        /// Get current pulse time for syncing
-        /// </summary>
-        public float GetPulseTime()
-        {
-            return pulseTime;
-        }
+            Mesh mesh = new Mesh();
+            mesh.name = "RingMesh";
 
-        /// <summary>
-        /// Set pulse time to match another effect
-        /// </summary>
-        public void SetPulseTime(float time)
-        {
-            pulseTime = time;
-        }
+            Vector3[] vertices  = new Vector3[segments * 2];
+            Vector2[] uvs       = new Vector2[segments * 2];
+            int[]     triangles = new int[segments * 6];
 
-        private void OnDisable()
-        {
-            DestroyCurrentAnimation();
-        }
-
-        private void OnDestroy()
-        {
-            DestroyCurrentAnimation();
-            
-            if (canvasGameObject != null)
-            {
-                Destroy(canvasGameObject);
-            }
-        }
-
-        private void OnDrawGizmosSelected()
-        {
-            Transform targetTransform = playerTransform != null ? playerTransform : transform;
-            
-            Gizmos.color = Color.cyan;
-            Vector3 center = targetTransform.position + new Vector3(0f, yOffset, 0f);
-            
-            int segments = 32;
-            float radius = diameter / 2f;
-            
-            Vector3 prevPoint = center + new Vector3(radius, 0f, 0f);
-            for (int i = 1; i <= segments; i++)
+            for (int i = 0; i < segments; i++)
             {
                 float angle = (float)i / segments * Mathf.PI * 2f;
-                Vector3 newPoint = center + new Vector3(Mathf.Cos(angle) * radius, 0f, Mathf.Sin(angle) * radius);
-                Gizmos.DrawLine(prevPoint, newPoint);
-                prevPoint = newPoint;
+                float cos   = Mathf.Cos(angle);
+                float sin   = Mathf.Sin(angle);
+
+                vertices[i]            = new Vector3(cos * outerRadius, 0f, sin * outerRadius);
+                vertices[i + segments] = new Vector3(cos * innerRadius,  0f, sin * innerRadius);
+
+                uvs[i]            = new Vector2(1f, (float)i / segments);
+                uvs[i + segments] = new Vector2(0f, (float)i / segments);
             }
 
-            Gizmos.DrawLine(center - new Vector3(0.5f, 0f, 0f), center + new Vector3(0.5f, 0f, 0f));
-            Gizmos.DrawLine(center - new Vector3(0f, 0f, 0.5f), center + new Vector3(0f, 0f, 0.5f));
-        }
-
-#if UNITY_EDITOR
-        private void OnValidate()
-        {
-            if (canvasGameObject != null)
+            for (int i = 0; i < segments; i++)
             {
-                float canvasScale = diameter / 100f;
-                canvasGameObject.transform.localScale = new Vector3(canvasScale, canvasScale, canvasScale);
-                canvasGameObject.transform.rotation = Quaternion.Euler(90f, rotationOffset, 0f);
+                int next     = (i + 1) % segments;
+                int triIndex = i * 6;
+
+                triangles[triIndex]     = i;
+                triangles[triIndex + 1] = next;
+                triangles[triIndex + 2] = i + segments;
+
+                triangles[triIndex + 3] = next;
+                triangles[triIndex + 4] = next + segments;
+                triangles[triIndex + 5] = i + segments;
             }
+
+            mesh.vertices  = vertices;
+            mesh.triangles = triangles;
+            mesh.uv        = uvs;
+            mesh.RecalculateNormals();
+
+            return mesh;
         }
-#endif
+    
+
+        private void SetupMaterial()
+        {
+            ringMaterial = new Material(Shader.Find("Sprites/Default"))
+            {
+                color = new Color(activeColor.r, activeColor.g, activeColor.b, 0f)
+            };
+
+            ringMaterial.renderQueue            = 3001;
+            meshRenderer.material               = ringMaterial;
+            meshRenderer.shadowCastingMode      = UnityEngine.Rendering.ShadowCastingMode.Off;
+            meshRenderer.receiveShadows         = false;
+        }
+    
     }
 }

@@ -10,10 +10,6 @@ public class ScoreAdjectiveManager : MonoBehaviour
     [SerializeField] private TMPGlitchingEffect glitchEffect;
     [SerializeField] private Health health;
     
-    [Header("=== Full Health Settings ===")]
-    [SerializeField] private string fullHealthText = "Full Health";
-    [SerializeField] private Color fullHealthColor = new Color(0.12f, 1.00f, 0.00f); // Green
-    
     [Header("=== Adjectives (Stage 1-9) ===")]
     [SerializeField] private List<string> adjectives = new List<string>
     {
@@ -73,9 +69,6 @@ public class ScoreAdjectiveManager : MonoBehaviour
     [SerializeField] private bool addPunchScale = true;
     [SerializeField] private float punchScaleAmount = 0.2f;
 
-    [Header("=== Display Duration Settings ===")]
-    [SerializeField] private float adjectiveDisplayDuration = 3f; // How long the adjective stays visible
-
     [Header("=== Update Settings ===")]
     [SerializeField] private float updateInterval = 0.25f;
 
@@ -91,16 +84,10 @@ public class ScoreAdjectiveManager : MonoBehaviour
     private int currentStage = 0;
     private float updateTimer;
     private float debugTimer;
-    private float displayTimer;
     private Vector2 originalPosition;
     private bool isTransitioning = false;
     private bool isFirstUpdate = true;
-    private bool hasEverTakenDamage = false;
-    private bool isCurrentlyVisible = true;
-    private bool isHiddenOffScreen = false;
-    private float initialMaxHealth;
     private Coroutine transitionCoroutine;
-    private Coroutine hideCoroutine;
 
     // Constants
     private const int MIN_STAGE = 1;
@@ -139,15 +126,7 @@ public class ScoreAdjectiveManager : MonoBehaviour
     void Start()
     {
         originalPosition = rectTransform.anchoredPosition;
-        
-        // Store initial max health for comparison
-        if (health != null)
-        {
-            initialMaxHealth = health.MaxHealth;
-        }
-        
-        // Initialize with "Full Health" display
-        ApplyFullHealthSettings();
+        UpdateStage();
     }
 
     void Update()
@@ -156,7 +135,7 @@ public class ScoreAdjectiveManager : MonoBehaviour
 
         if (updateTimer >= updateInterval)
         {
-            CheckForDamageAndUpdateStage();
+            UpdateStage();
             updateTimer = 0f;
         }
 
@@ -179,48 +158,6 @@ public class ScoreAdjectiveManager : MonoBehaviour
         }
     }
 
-    void CheckForDamageAndUpdateStage()
-    {
-        if (health == null) return;
-
-        // Check if damage has been taken for the first time
-        if (!hasEverTakenDamage)
-        {
-            if (health.CurrentHealth < initialMaxHealth)
-            {
-                hasEverTakenDamage = true;
-                // Transition from "Full Health" to the adjective system
-                TransitionToAdjectiveSystem();
-            }
-            return;
-        }
-
-        // Normal stage update logic (only runs after damage has been taken)
-        UpdateStage();
-    }
-
-    void TransitionToAdjectiveSystem()
-    {
-        int newStage = health.GetStageIndexFromHealth(health.CurrentHealth);
-        newStage = Mathf.Clamp(newStage, MIN_STAGE, MAX_STAGE);
-        currentStage = newStage;
-
-        if (enableTransition && !isTransitioning)
-        {
-            if (transitionCoroutine != null)
-                StopCoroutine(transitionCoroutine);
-            if (hideCoroutine != null)
-                StopCoroutine(hideCoroutine);
-                
-            transitionCoroutine = StartCoroutine(TransitionToAdjective());
-        }
-        else
-        {
-            ApplyStageSettings();
-            StartHideTimer();
-        }
-    }
-
     void UpdateStage()
     {
         if (health == null) return;
@@ -232,62 +169,37 @@ public class ScoreAdjectiveManager : MonoBehaviour
         {
             currentStage = newStage;
             
-            if (enableTransition && !isTransitioning)
+            if (isFirstUpdate)
+            {
+                // Skip transition on first load
+                ApplyStageSettings();
+                isFirstUpdate = false;
+            }
+            else if (enableTransition && !isTransitioning)
             {
                 if (transitionCoroutine != null)
                     StopCoroutine(transitionCoroutine);
-                if (hideCoroutine != null)
-                    StopCoroutine(hideCoroutine);
                     
                 transitionCoroutine = StartCoroutine(TransitionText());
             }
             else
             {
                 ApplyStageSettings();
-                StartHideTimer();
             }
         }
     }
 
-    void ApplyFullHealthSettings()
-    {
-        // Set "Full Health" text
-        if (tmpText != null)
-        {
-            tmpText.text = fullHealthText;
-        }
-
-        // Set full health color
-        if (glitchEffect != null)
-        {
-            glitchEffect.SetBaseColor(fullHealthColor);
-            
-            // Use minimal glitch for full health (calm state)
-            glitchEffect.SetAllIntensities(
-                minIntensity.position,
-                minIntensity.scale,
-                minIntensity.rotation,
-                minIntensity.color,
-                minIntensity.bigGlitchChance,
-                minIntensity.bigGlitchMultiplier
-            );
-        }
-
-        isCurrentlyVisible = true;
-        isHiddenOffScreen = false;
-    }
-
-    IEnumerator TransitionToAdjective()
+    IEnumerator TransitionText()
     {
         isTransitioning = true;
 
-        // Slide out "Full Health"
+        // Slide out to the right
         yield return StartCoroutine(SlideOut());
 
-        // Apply new adjective settings while off-screen
+        // Apply new text and settings while off-screen
         ApplyStageSettings();
 
-        // Slide in with new adjective
+        // Slide in from the left
         yield return StartCoroutine(SlideIn());
 
         // Punch scale effect
@@ -296,77 +208,6 @@ public class ScoreAdjectiveManager : MonoBehaviour
             yield return StartCoroutine(PunchScale());
         }
 
-        isTransitioning = false;
-        isCurrentlyVisible = true;
-        isHiddenOffScreen = false;
-
-        // Start the hide timer
-        StartHideTimer();
-    }
-
-    IEnumerator TransitionText()
-    {
-        isTransitioning = true;
-
-        // If currently hidden, slide in from hidden position
-        if (isHiddenOffScreen)
-        {
-            ApplyStageSettings();
-            yield return StartCoroutine(SlideIn());
-        }
-        else
-        {
-            // Slide out to the right
-            yield return StartCoroutine(SlideOut());
-
-            // Apply new text and settings while off-screen
-            ApplyStageSettings();
-
-            // Slide in from the left
-            yield return StartCoroutine(SlideIn());
-        }
-
-        // Punch scale effect
-        if (addPunchScale)
-        {
-            yield return StartCoroutine(PunchScale());
-        }
-
-        isTransitioning = false;
-        isCurrentlyVisible = true;
-        isHiddenOffScreen = false;
-
-        // Start the hide timer
-        StartHideTimer();
-    }
-
-    void StartHideTimer()
-    {
-        if (hideCoroutine != null)
-            StopCoroutine(hideCoroutine);
-            
-        hideCoroutine = StartCoroutine(HideAfterDelay());
-    }
-
-    IEnumerator HideAfterDelay()
-    {
-        yield return new WaitForSeconds(adjectiveDisplayDuration);
-
-        // Only hide if we've taken damage (don't hide "Full Health")
-        if (hasEverTakenDamage && !isTransitioning)
-        {
-            yield return StartCoroutine(SlideOutAndHide());
-        }
-    }
-
-    IEnumerator SlideOutAndHide()
-    {
-        isTransitioning = true;
-
-        yield return StartCoroutine(SlideOut());
-
-        isCurrentlyVisible = false;
-        isHiddenOffScreen = true;
         isTransitioning = false;
     }
 
@@ -472,22 +313,7 @@ public class ScoreAdjectiveManager : MonoBehaviour
     public void ForceUpdate()
     {
         currentStage = 0;
-        CheckForDamageAndUpdateStage();
-    }
-
-    public void ResetToFullHealth()
-    {
-        hasEverTakenDamage = false;
-        currentStage = 0;
-        
-        if (hideCoroutine != null)
-            StopCoroutine(hideCoroutine);
-        if (transitionCoroutine != null)
-            StopCoroutine(transitionCoroutine);
-
-        // Reset position and apply full health settings
-        rectTransform.anchoredPosition = originalPosition;
-        ApplyFullHealthSettings();
+        UpdateStage();
     }
 
     public void ToggleDebugMode()
@@ -504,15 +330,8 @@ public class ScoreAdjectiveManager : MonoBehaviour
 
     public int GetCurrentStage() => currentStage;
 
-    public bool HasTakenDamage() => hasEverTakenDamage;
-
-    public bool IsVisible() => isCurrentlyVisible;
-
     public string GetCurrentAdjective()
     {
-        if (!hasEverTakenDamage)
-            return fullHealthText;
-            
         int index = currentStage - 1;
         if (index >= 0 && index < adjectives.Count)
             return adjectives[index];
@@ -521,9 +340,6 @@ public class ScoreAdjectiveManager : MonoBehaviour
 
     public Color GetCurrentColor()
     {
-        if (!hasEverTakenDamage)
-            return fullHealthColor;
-            
         int index = currentStage - 1;
         if (index >= 0 && index < rarityColors.Count)
             return rarityColors[index];
@@ -532,43 +348,12 @@ public class ScoreAdjectiveManager : MonoBehaviour
 
     public void TriggerTransition()
     {
-        if (!isTransitioning && hasEverTakenDamage)
+        if (!isTransitioning)
         {
             if (transitionCoroutine != null)
                 StopCoroutine(transitionCoroutine);
-            if (hideCoroutine != null)
-                StopCoroutine(hideCoroutine);
                 
             transitionCoroutine = StartCoroutine(TransitionText());
         }
-    }
-
-    public void ForceShowAdjective()
-    {
-        if (hasEverTakenDamage && isHiddenOffScreen && !isTransitioning)
-        {
-            if (hideCoroutine != null)
-                StopCoroutine(hideCoroutine);
-                
-            StartCoroutine(SlideInAndShow());
-        }
-    }
-
-    IEnumerator SlideInAndShow()
-    {
-        isTransitioning = true;
-        
-        yield return StartCoroutine(SlideIn());
-        
-        if (addPunchScale)
-        {
-            yield return StartCoroutine(PunchScale());
-        }
-        
-        isTransitioning = false;
-        isCurrentlyVisible = true;
-        isHiddenOffScreen = false;
-        
-        StartHideTimer();
     }
 }

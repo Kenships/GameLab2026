@@ -193,9 +193,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1316761848199325709}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -5.0983176, y: -0, z: -1.7979321}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 294657043119899997}
@@ -227,8 +227,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.2205824, y: 1.3799659, z: 1.2990854}
-  m_Center: {x: 0.12529057, y: 0.79511374, z: 0.010779977}
+  m_Size: {x: 1.2205824, y: 1.9179752, z: 1.7017454}
+  m_Center: {x: 0.12529056, y: 0.96428335, z: -0.009271145}
 --- !u!114 &6739234255759612295
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -277,11 +277,11 @@ MonoBehaviour:
   moduleSprite: {fileID: 21300000, guid: 20964abc62f946b48893bafca2b6fc48, type: 3}
   state: 1
   maxHealth: 100
-  defaultRecoverySpeed: 18
+  defaultRecoverySpeed: 20
   defaultDecaySpeed: 0
   attackStateDecayMultiplier: 4
   enableOnStart: 0
-  pickupOffset: {x: 0, y: -0.2, z: 0.5}
+  pickupOffset: {x: 0, y: 0, z: 0.5}
   pickupRotationOffset: {x: 0, y: 90, z: 0}
   pickUpSound: {fileID: 8300000, guid: 602022546f4e4474a8d87cf01f887e79, type: 3}
   pickUpSoundVolume: 0.25
@@ -292,13 +292,11 @@ MonoBehaviour:
   lazerCannonNew: {fileID: 6390377893726585645}
   lazerCannonBroken: {fileID: 6400599962633785127}
   fullTimeUI: {fileID: 3039455258306733574}
-  damage: 40
-  lazerBeamDuration: 2.85
+  damage: 25
+  lazerBeamDuration: 2
   dps: 10
   player1Visual: {fileID: 7622297548106014581}
   player2Visual: {fileID: 7733281396559360716}
-  shootSound: {fileID: 8300000, guid: ea41ebf0599c46b4eb42403044b3015e, type: 3}
-  shootSoundVolume: 0.5
 --- !u!114 &4207550931829158317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5620,7 +5618,7 @@ Transform:
   m_GameObject: {fileID: 3831662620852849156}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.455, y: 0.875, z: -0.011}
+  m_LocalPosition: {x: -0.553, y: 1.149, z: -0.011}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6000,7 +5998,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
   m_LocalPosition: {x: 0.01, y: 0.01, z: 4.61}
-  m_LocalScale: {x: 0.5, y: 4.5345, z: 0.5}
+  m_LocalScale: {x: 1, y: 4.5345, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6496225764396330049}
@@ -6168,7 +6166,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.24, y: 2.5289998}
+  m_AnchoredPosition: {x: 0.24, y: 3.0789998}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &722204096619773869
@@ -6307,9 +6305,9 @@ Transform:
   m_GameObject: {fileID: 7487660048267228545}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.000013828278, y: 0.452, z: 0}
-  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
-  m_ConstrainProportionsScale: 1
+  m_LocalPosition: {x: -0.000013828278, y: 0.62004006, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6045236402640476567}
   - {fileID: 6023757386586133917}

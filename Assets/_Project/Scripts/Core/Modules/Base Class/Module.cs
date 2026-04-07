@@ -51,25 +51,7 @@ namespace _Project.Scripts.Core.Modules.Base_Class
             if (EnableModule)
                 ActByState();
         }
-
-        public override void FastForward(PlayerData.PlayerID playerID)
-        {
-            if (!EnableModule)
-            {
-                return;
-            }
-            base.FastForward(playerID);
-        }
-
-        public override void Rewind(PlayerData.PlayerID playerID)
-        {
-            if (!EnableModule)
-            {
-                return;
-            }
-            base.Rewind(playerID);
-        }
-
+        
         protected abstract void LoadState();
         protected abstract void AttackState();
         protected abstract void UsedState();
