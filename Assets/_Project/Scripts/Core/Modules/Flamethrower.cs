@@ -1,5 +1,5 @@
-using System;
-using System.Collections.Generic;
+using _Project.Scripts.Core.AudioPooling;
+using _Project.Scripts.Core.AudioPooling.Interface;
 using _Project.Scripts.Core.Enemies;
 using _Project.Scripts.Core.HealthManagement;
 using _Project.Scripts.Core.Modules.Base_Class;
@@ -9,7 +9,10 @@ using _Project.Scripts.Effects.Interface;
 using _Project.Scripts.Targeting.Interface;
 using _Project.Scripts.Targeting.Strategies;
 using _Project.Scripts.Util.Timer.Timers;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
+using AudioType = _Project.Scripts.Core.AudioPooling.Interface.AudioType;
 
 namespace _Project.Scripts.Core.Modules
 {
@@ -48,6 +51,9 @@ namespace _Project.Scripts.Core.Modules
         [SerializeField] private float fastDps = 8f;
         [SerializeField] private float fastRadius = 10;
 
+        [Header("Audio")][SerializeField] private AudioClip shootSound;
+        [SerializeField] private float shootSoundVolume = 0.1f;
+
         [Header("Player Selection Visuals")]
         [SerializeField] private GameObject player1Visual;
         [SerializeField] private GameObject player2Visual;
@@ -61,6 +67,7 @@ namespace _Project.Scripts.Core.Modules
         private bool _isDamagingEnemies;
         private CountdownTimer _attackCooldownTimer;
         private Health _myHealth;
+        protected IAudioPlayer _currentFlameThrowerSound = null;
 
         protected override void Start()
         {
@@ -134,6 +141,12 @@ namespace _Project.Scripts.Core.Modules
 
         private void PerformAttack()
         {
+  
+            if (_currentFlameThrowerSound == null) {
+                _currentFlameThrowerSound = _audioPooler.New2DAudio(shootSound).OnChannel(AudioType.Sfx).SetVolume(shootSoundVolume).AddToScene(gameObject.scene.buildIndex).LoopAudio().Play(); ;
+            }
+
+
             if (_attackCooldownTimer.IsRunning)
             {
                 return;
@@ -203,6 +216,7 @@ namespace _Project.Scripts.Core.Modules
         }
         protected override void AttackState()
         {
+
             if (!_isFastForwarding)
             {
                 state = _health.CurrentHealth == 0 ? ModuleState.Used : ModuleState.Load;
@@ -225,6 +239,9 @@ namespace _Project.Scripts.Core.Modules
 
         protected override void UsedState()
         {
+            _currentFlameThrowerSound?.Stop();
+            _currentFlameThrowerSound = null;
+
             if (_isRewinding)
             {
                 state = ModuleState.Load;
@@ -235,6 +252,7 @@ namespace _Project.Scripts.Core.Modules
 
         protected override void OnStateChanged(ModuleState prevState)
         {
+
             switch (state)
             {
                 case ModuleState.Load:

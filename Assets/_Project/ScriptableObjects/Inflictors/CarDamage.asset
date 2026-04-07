@@ -13,21 +13,13 @@ MonoBehaviour:
   m_Name: CarDamage
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Effects.Inflictors.EnemyEffectInflictor
   enemyEffectFactories:
-  - rid: 2937423688445198431
-  - rid: 2937424007845642497
-  damageEffectFactories: []
-  <LingeringVFX>k__BackingField: {fileID: 0}
+  - rid: 7874754110861869513
   <CastVFX>k__BackingField: {fileID: 0}
   <AudioClip>k__BackingField: {fileID: 0}
   references:
     version: 2
     RefIds:
-    - rid: 2937423688445198431
-      type: {class: StunEnemyEffectFactory, ns: _Project.Scripts.Effects.Factories, asm: Assembly-CSharp}
-      data:
-        duration: 3
-        vfx: {fileID: 0}
-    - rid: 2937424007845642497
+    - rid: 7874754110861869513
       type: {class: EnemyDamageEffectFactory, ns: _Project.Scripts.Effects.Factories, asm: Assembly-CSharp}
       data:
-        damage: 250
+        damage: 100

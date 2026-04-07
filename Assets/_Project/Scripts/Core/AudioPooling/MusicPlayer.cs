@@ -1,0 +1,29 @@
+using Sisus.Init;
+using UnityEngine;
+using AudioType = _Project.Scripts.Core.AudioPooling.Interface.AudioType;
+
+namespace _Project.Scripts.Core.AudioPooling
+{
+    public class MusicPlayer : MonoBehaviour<AudioPooler>
+    {
+        [SerializeField] private AudioClip music;
+        [SerializeField] private float musicVolume = 1;
+
+        private AudioPooler _audioPooler;
+
+        protected override void Init(AudioPooler audioPooler)
+        {
+            _audioPooler = audioPooler;
+        }
+
+        private void Start()
+        {
+            _audioPooler.New2DAudio(music)
+                .OnChannel(AudioType.Music)
+                .SetVolume(musicVolume)
+                .AddToScene(gameObject.scene.buildIndex)
+                .LoopAudio()
+                .Play();
+        }
+    }
+}

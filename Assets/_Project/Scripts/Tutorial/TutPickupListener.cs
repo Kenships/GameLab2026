@@ -19,6 +19,12 @@ namespace _Project.Scripts.Tutorial
 
         private bool _player1PickedUp;
         private bool _player2PickedUp;
+        
+        private void Awake()
+        {
+            player1.AllowPickUp = false;
+            player2.AllowPickUp = false;
+        }
 
         public void SetRequireBothPlayers(bool requireBothPlayers)
         {
@@ -30,6 +36,9 @@ namespace _Project.Scripts.Tutorial
             if(requireBothPlayers) hintText.SetActive(true);
 
             _callback = callback;
+            
+            player1.AllowPickUp = true;
+            player2.AllowPickUp = true;
             
             _player1PickedUp = false;
             _player2PickedUp = false;

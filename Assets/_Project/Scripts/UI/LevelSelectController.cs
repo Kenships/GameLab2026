@@ -41,7 +41,6 @@ namespace _Project.Scripts.UI
 
         private void HandleSelect(int selectedModuleNumber, PlayerData.PlayerID playerID)
         {
-            Debug.Log(selectedModuleNumber);
             foreach (var panel in panels)
             {
                 panel.Deselect(playerID);

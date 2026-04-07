@@ -24,6 +24,8 @@ namespace _Project.Scripts.Core.Modules.Base_Class
             FastForward,
             Rewind
         }
+        public bool IsTimeControlling => _isRewinding || _isFastForwarding;
+        
         protected bool _isRewinding;
         protected bool _isFastForwarding;
         protected IAudioPlayer _currentFastForwardSound;
@@ -53,8 +55,13 @@ namespace _Project.Scripts.Core.Modules.Base_Class
             }
             else if (_interactingPlayers.ContainsKey(playerID) && _interactingPlayers.Count == 1)
             {
+                if (_interactingPlayers[playerID] == action)
+                {
+                    return;
+                }
+                
                 CancelAction(_interactingPlayers[playerID]);
-                _interactingPlayers.Add(playerID, action);
+                _interactingPlayers[playerID] = action;
                 PerformAction(action);
                 _activePlayer = playerID;
             }
@@ -88,6 +95,7 @@ namespace _Project.Scripts.Core.Modules.Base_Class
                     .OnChannel(AudioType.Sfx)
                     .SetVolume(fastForwardSoundVolume)
                     .SetPitch(1.25f)
+                    .AddToScene(gameObject.scene.buildIndex)
                     .LoopAudio()
                     .Play();
             }
@@ -98,6 +106,7 @@ namespace _Project.Scripts.Core.Modules.Base_Class
                     .OnChannel(AudioType.Sfx)
                     .SetVolume(rewindSoundVolume)
                     .SetPitch(1.25f)
+                    .AddToScene(gameObject.scene.buildIndex)
                     .LoopAudio()
                     .Play();
             }
@@ -110,14 +119,23 @@ namespace _Project.Scripts.Core.Modules.Base_Class
                 case TimeAction.FastForward:
                     _isFastForwarding = true;
                     _fastForwardAction?.Invoke();
-                    _currentFastForwardSound ??= _audioPooler.New2DAudio(fastForwardSound).OnChannel(AudioType.Sfx)
-                        .SetVolume(fastForwardSoundVolume).LoopAudio().Play();
+                    _currentFastForwardSound ??= 
+                        _audioPooler.New2DAudio(fastForwardSound)
+                            .OnChannel(AudioType.Sfx)
+                            .SetVolume(fastForwardSoundVolume)
+                            .AddToScene(gameObject.scene.buildIndex)
+                            .LoopAudio()
+                            .Play();
                     break;
                 case TimeAction.Rewind:
                     _isRewinding = true;
                     _rewindAction?.Invoke();
-                    _currentRewindSound ??= _audioPooler.New2DAudio(rewindSound).OnChannel(AudioType.Sfx)
-                        .SetVolume(rewindSoundVolume).LoopAudio().Play();
+                    _currentRewindSound ??= _audioPooler.New2DAudio(rewindSound)
+                        .OnChannel(AudioType.Sfx)
+                        .SetVolume(rewindSoundVolume)
+                        .AddToScene(gameObject.scene.buildIndex)
+                        .LoopAudio()
+                        .Play();
                     break;
             }
         }
