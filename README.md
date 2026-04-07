@@ -18,7 +18,6 @@ Hold B : Use Fast forward skill
 ## Info
 version of .NET Framework : 9.0.312
 
-## How to start
 
 ## Roles
 __Jonghwan Kim__ || 
