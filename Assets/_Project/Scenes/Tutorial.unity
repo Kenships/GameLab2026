@@ -2685,7 +2685,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 415c7677e4f34da4bfaba0c030e9df6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Tutorial.TutPlayerInteractionController
-  hapticsIntensity: {fileID: 0}
+  hapticsIntensity: {fileID: 11400000, guid: 6aa2da57d62bb414e9bb178c9f39d63f, type: 2}
   lowFrequencyHapticIntensity: 0.5
   highFrequencyHapticIntensity: 1
   hapticsDuration: 0.1
@@ -8088,7 +8088,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 415c7677e4f34da4bfaba0c030e9df6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Tutorial.TutPlayerInteractionController
-  hapticsIntensity: {fileID: 0}
+  hapticsIntensity: {fileID: 11400000, guid: 6aa2da57d62bb414e9bb178c9f39d63f, type: 2}
   lowFrequencyHapticIntensity: 0.5
   highFrequencyHapticIntensity: 1
   hapticsDuration: 0.1
