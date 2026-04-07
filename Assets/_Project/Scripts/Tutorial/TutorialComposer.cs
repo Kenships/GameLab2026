@@ -46,7 +46,6 @@ namespace _Project.Scripts.Tutorial
             if (panel == null) return;
             
             panel.SetActive(true);
-            AnchorBottom();
             panels[_panelIndex].OnPanel?.Invoke(Next);
             textTyper.StartTyping(panels[_panelIndex].PanelText);
             
@@ -66,36 +65,6 @@ namespace _Project.Scripts.Tutorial
         {
             Top,
             Bottom
-        }
-
-        public void AnchorTop()
-        {
-            Anchor(Position.Top);
-        }
-
-        public void AnchorBottom()
-        {
-            Anchor(Position.Bottom);
-        }
-
-        private void Anchor(Position position)
-        {
-            var rt = (RectTransform)panel.transform;
-            switch (position)
-            {
-                case Position.Top:
-                    rt.anchorMin = new Vector2(0.5f, 1f);
-                    rt.anchorMax = new Vector2(0.5f, 1f);
-                    rt.pivot     = new Vector2(0.5f, 1f);
-                    rt.anchoredPosition = new Vector2(rt.anchoredPosition.x, -_posOffset);
-                    break;
-                case Position.Bottom:
-                    rt.anchorMin = new Vector2(0.5f, 0f);
-                    rt.anchorMax = new Vector2(0.5f, 0f);
-                    rt.pivot     = new Vector2(0.5f, 0f);
-                    rt.anchoredPosition = new Vector2(rt.anchoredPosition.x, _posOffset);
-                    break;
-            }
         }
     }
 }
