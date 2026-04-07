@@ -11625,8 +11625,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 814536081}
     - target: {fileID: 4584474057879492836, guid: e3079e81a8212914897bea0ac3d32f43, type: 3}
+      propertyPath: angle
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 4584474057879492836, guid: e3079e81a8212914897bea0ac3d32f43, type: 3}
       propertyPath: width
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4584474057879492836, guid: e3079e81a8212914897bea0ac3d32f43, type: 3}
       propertyPath: length
@@ -11634,11 +11638,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4584474057879492836, guid: e3079e81a8212914897bea0ac3d32f43, type: 3}
       propertyPath: rangeType
-      value: 2
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5190643010683172076, guid: e3079e81a8212914897bea0ac3d32f43, type: 3}
+      propertyPath: angle
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 5190643010683172076, guid: e3079e81a8212914897bea0ac3d32f43, type: 3}
       propertyPath: width
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5190643010683172076, guid: e3079e81a8212914897bea0ac3d32f43, type: 3}
       propertyPath: length
@@ -11646,7 +11654,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5190643010683172076, guid: e3079e81a8212914897bea0ac3d32f43, type: 3}
       propertyPath: rangeType
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6713747546187726529, guid: e3079e81a8212914897bea0ac3d32f43, type: 3}
       propertyPath: m_Name
@@ -13616,41 +13624,6 @@ MonoBehaviour:
   perfectWaveEvent: {fileID: 11400000, guid: 64c481e45ee502340a1eff08d1861d7c, type: 2}
   waveUI: {fileID: 1136097441}
   waves:
-  - waveName: Final Wave
-    portalSpawns:
-    - spawnPosition: {fileID: 1635483276}
-      enemies:
-      - enemyFactory: {fileID: 11400000, guid: 258fa7e63b36d83489366a022ab7b760, type: 2}
-        count: 10
-      - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
-        count: 10
-      - enemyFactory: {fileID: 11400000, guid: a16df98d83c53fc43909f5e15b3d561a, type: 2}
-        count: 1
-      arrowImage: {fileID: 208091433}
-      blinkSettings:
-        blinkCount: 3
-        fadeInDuration: 0.2
-        holdDuration: 0.3
-        fadeOutDuration: 0.2
-        initialDelay: 0
-    - spawnPosition: {fileID: 1370677806}
-      enemies:
-      - enemyFactory: {fileID: 11400000, guid: 258fa7e63b36d83489366a022ab7b760, type: 2}
-        count: 10
-      - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
-        count: 10
-      - enemyFactory: {fileID: 11400000, guid: 9dc28355a1ce5d24b8f718d64244c43a, type: 2}
-        count: 2
-      arrowImage: {fileID: 1467989102}
-      blinkSettings:
-        blinkCount: 3
-        fadeInDuration: 0.2
-        holdDuration: 0.3
-        fadeOutDuration: 0.2
-        initialDelay: 0
-    spawnDelayMin: 1
-    spawnDelayMax: 2.5
-    restAfterWave: 5
   - waveName: Wave 1
     portalSpawns:
     - spawnPosition: {fileID: 851351561}
@@ -13820,6 +13793,41 @@ MonoBehaviour:
     spawnDelayMin: 1
     spawnDelayMax: 2.5
     restAfterWave: 15
+  - waveName: Final Wave
+    portalSpawns:
+    - spawnPosition: {fileID: 1635483276}
+      enemies:
+      - enemyFactory: {fileID: 11400000, guid: 258fa7e63b36d83489366a022ab7b760, type: 2}
+        count: 10
+      - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
+        count: 10
+      - enemyFactory: {fileID: 11400000, guid: a16df98d83c53fc43909f5e15b3d561a, type: 2}
+        count: 1
+      arrowImage: {fileID: 208091433}
+      blinkSettings:
+        blinkCount: 3
+        fadeInDuration: 0.2
+        holdDuration: 0.3
+        fadeOutDuration: 0.2
+        initialDelay: 0
+    - spawnPosition: {fileID: 1370677806}
+      enemies:
+      - enemyFactory: {fileID: 11400000, guid: 258fa7e63b36d83489366a022ab7b760, type: 2}
+        count: 10
+      - enemyFactory: {fileID: 11400000, guid: 628a576b3f0edaf48854e86f5badf8da, type: 2}
+        count: 10
+      - enemyFactory: {fileID: 11400000, guid: 9dc28355a1ce5d24b8f718d64244c43a, type: 2}
+        count: 2
+      arrowImage: {fileID: 1467989102}
+      blinkSettings:
+        blinkCount: 3
+        fadeInDuration: 0.2
+        holdDuration: 0.3
+        fadeOutDuration: 0.2
+        initialDelay: 0
+    spawnDelayMin: 1
+    spawnDelayMax: 2.5
+    restAfterWave: 5
 --- !u!114 &5631733236211711182
 MonoBehaviour:
   m_ObjectHideFlags: 0
