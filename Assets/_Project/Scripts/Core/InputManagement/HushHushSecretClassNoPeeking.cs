@@ -30,8 +30,8 @@ namespace _Project.Scripts.Core.InputManagement
         {
            _actionReader = GetComponent<NESActionReader>();
            _actionReader.OnDPadInput += KonamiCode;
-           _actionReader.OnTapInteract += A;
-           _actionReader.OnTapAltInteract += B;
+           _actionReader.OnTapInteract += B;
+           _actionReader.OnTapAltInteract += A;
 
            konamiSequence = new()
            {
@@ -43,8 +43,8 @@ namespace _Project.Scripts.Core.InputManagement
         private void OnDestroy()
         {
             _actionReader.OnDPadInput -= KonamiCode;
-            _actionReader.OnTapInteract -= A;
-            _actionReader.OnTapAltInteract -= B;
+            _actionReader.OnTapInteract -= B;
+            _actionReader.OnTapAltInteract -= A;
         }
 
         private void B()
