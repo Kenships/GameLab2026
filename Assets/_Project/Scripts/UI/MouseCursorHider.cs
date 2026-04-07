@@ -6,6 +6,7 @@ public class MouseCursorHider : MonoBehaviour
     void Start()
     {
         Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
 }

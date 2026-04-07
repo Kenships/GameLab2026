@@ -231,7 +231,7 @@ namespace _Project.Scripts.UI
             while (remaining > 0f)
             {
                 int secondsToShow = Mathf.CeilToInt(remaining);
-                countdownText.text = "Incoming: " + secondsToShow.ToString();
+                countdownText.text = secondsToShow.ToString();
                 yield return null;
                 remaining -= Time.deltaTime;
             }
