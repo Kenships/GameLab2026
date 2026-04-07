@@ -1970,6 +1970,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d6b1c1996cb49edb846bee5a5092926, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.UI.SettingsUIController
+  languageButtons:
+  - {fileID: 1627324002}
+  - {fileID: 886618130}
+  hapticsButtons:
+  - {fileID: 1942018439}
+  - {fileID: 1383036734}
+  - {fileID: 691266087}
   language: {fileID: 11400000, guid: 7815d72a3b9f1cb418f9781bce56254c, type: 2}
   hapticStrength: {fileID: 11400000, guid: 6aa2da57d62bb414e9bb178c9f39d63f, type: 2}
 --- !u!4 &524568191

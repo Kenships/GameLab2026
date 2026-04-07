@@ -133,3 +133,21 @@ MonoBehaviour:
     _rawText: -Low damage\n-Long range circle\n-Single target\n-Chain attack
   - _key: Module-Turret-Desc
     _rawText: -High damage\n-Short range circle\n-Single target
+  - _key: Keymap-Click
+    _rawText: Click
+  - _key: Keymap-Fast
+    _rawText: To Fast Forward
+  - _key: Keymap-Hold
+    _rawText: Hold
+  - _key: Keymap-Pickup
+    _rawText: to pick up / put down
+  - _key: Keymap-Rewind
+    _rawText: to rewind
+  - _key: Keymap-Rotate
+    _rawText: to rotate
+  - _key: Tut-Title
+    _rawText: Tutorial
+  - _key: Select-Choose
+    _rawText: Choose Your Character
+  - _key: Select-Instructions
+    _rawText: D-PAD to MOVE; A to CONFIRM

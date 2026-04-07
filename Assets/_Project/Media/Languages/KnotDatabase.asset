@@ -18,6 +18,7 @@ MonoBehaviour:
     _nativeName: English
     _collectionProviders:
     - rid: 522404519669137409
+    - rid: 3938338670728970648
     _metadata:
       _runtime: []
       _editor: []
@@ -26,6 +27,7 @@ MonoBehaviour:
     _nativeName: "fran\xE7ais"
     _collectionProviders:
     - rid: 522404519669137410
+    - rid: 3938338670728970649
     _metadata:
       _runtime: []
       _editor: []
@@ -39,7 +41,8 @@ MonoBehaviour:
       _editor: []
   _textKeyCollections:
   - {fileID: 11400000, guid: ffdbadfc4d1574430a45f862a6d8cf18, type: 2}
-  _assetKeyCollections: []
+  _assetKeyCollections:
+  - {fileID: 11400000, guid: d266b7a2419c74e4d9d90615df4cc7ee, type: 2}
   _settings:
     _languageSelector:
       rid: 7874754110861869363
@@ -65,6 +68,14 @@ MonoBehaviour:
       type: {class: KnotAssetCollectionProvider, ns: Knot.Localization.Data, asm: Knot.Localization}
       data:
         _collection: {fileID: 11400000, guid: 4e5f0dbb6cab742c2864824a1bd04e34, type: 2}
+    - rid: 3938338670728970648
+      type: {class: KnotAssetCollectionProvider, ns: Knot.Localization.Data, asm: Knot.Localization}
+      data:
+        _collection: {fileID: 11400000, guid: 16fac9486ae7eb940a97e0a7d094738c, type: 2}
+    - rid: 3938338670728970649
+      type: {class: KnotAssetCollectionProvider, ns: Knot.Localization.Data, asm: Knot.Localization}
+      data:
+        _collection: {fileID: 11400000, guid: dd71c41c7d213074c87dbf6e70757f89, type: 2}
     - rid: 7874754110861869363
       type: {class: KnotDefaultLanguageSelector, ns: Knot.Localization, asm: Knot.Localization}
       data:

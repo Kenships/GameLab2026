@@ -217,6 +217,18 @@ MonoBehaviour:
     _metadata:
       _runtime: []
       _editor: []
+  - _key: Tut-Title
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Select-Choose
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Select-Instructions
+    _metadata:
+      _runtime: []
+      _editor: []
   references:
     version: 2
     RefIds: []

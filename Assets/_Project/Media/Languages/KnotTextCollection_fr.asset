@@ -144,3 +144,21 @@ MonoBehaviour:
   - _key: Module-Turret-Desc
     _rawText: "-D\xE9g\xE2ts \xE9lev\xE9s\\n-Port\xE9e courte (zone circulaire)\\n-Cible
       unique"
+  - _key: Keymap-Click
+    _rawText: Appuyez
+  - _key: Keymap-Fast
+    _rawText: pour avancer rapidement
+  - _key: Keymap-Hold
+    _rawText: Maintenez
+  - _key: Keymap-Pickup
+    _rawText: pour ramasser / poser
+  - _key: Keymap-Rewind
+    _rawText: pour rembobiner
+  - _key: Keymap-Rotate
+    _rawText: pour pivoter
+  - _key: Tut-Title
+    _rawText: Tutoriel
+  - _key: Select-Choose
+    _rawText: Choisissez votre personnage
+  - _key: Select-Instructions
+    _rawText: "Croix directionnelle pour s\xE9lectionner ; A pour confirmer"
