@@ -171,12 +171,13 @@ namespace _Project.Scripts.Multiplayer
             UpdateUI();
         }
 
-        
+        private bool _loading;
 
         private void Update()
         {
-            if (_player1Ready && _player2Ready)
+            if (_player1Ready && _player2Ready && !_loading)
             {
+                _loading = true;
                 _devicePairingService.SwapPlayers = _player1Index > _player2Index;
                 _sceneLoader.LoadScene();
             }

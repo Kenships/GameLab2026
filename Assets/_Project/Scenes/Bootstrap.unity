@@ -882,7 +882,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10aaee5728732dd45a0f0c5c08e4c471, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Multiplayer.DevicePairingService
-  allowKeyboard: 1
+  allowKeyboard: 0
 --- !u!1 &1422328897
 GameObject:
   m_ObjectHideFlags: 0

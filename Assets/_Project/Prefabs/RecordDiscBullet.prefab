@@ -119,11 +119,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BulletVFX
   enableGlow: 1
   enableTrail: 1
-  glowColor: {r: 0.96420634, g: 1, b: 0, a: 1}
+  glowColor: {r: 0.6128049, g: 0, b: 1, a: 1}
   glowIntensity: 2
   glowRange: 2.5
-  trailStartColor: {r: 0.9647059, g: 0.51717955, b: 0, a: 1}
-  trailEndColor: {r: 0.909804, g: 0.9450981, b: 0, a: 1}
+  trailStartColor: {r: 0.59566516, g: 0.22331783, b: 0.9622642, a: 1}
+  trailEndColor: {r: 1, g: 0.088679194, b: 0.51132065, a: 1}
   trailTime: 0.4
   trailStartWidth: 0.3
   trailEndWidth: 0.05

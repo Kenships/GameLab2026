@@ -55,7 +55,7 @@ namespace _Project.Scripts.Core.Modules
 
         private void Start()
         {
-            GameManager.Instance.score = _myHealth.CurrentHealth;
+            GameManager.Instance.Score = _myHealth.CurrentHealth;
             GameManager.Instance.RestartTimer();
             GameManager.Instance.StartTimer();
             _myHealth.OnStageChanged += MilestoneReached;
@@ -95,7 +95,7 @@ namespace _Project.Scripts.Core.Modules
             if (useDamageReductionThreshold && _myHealth.CurrentHealth <= damageReductionHealthThreshold2)
             {finalDamage *= damageMultiplierBelowThreshold2;}
             _myHealth.AddToHealth(-finalDamage);
-            GameManager.Instance.score = _myHealth.CurrentHealth;
+            GameManager.Instance.Score = _myHealth.CurrentHealth;
         }
 
         public void ApplyEffect<T>(IEffect<T> effect) where T : IDamageable
