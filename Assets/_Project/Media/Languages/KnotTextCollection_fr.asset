@@ -162,3 +162,7 @@ MonoBehaviour:
     _rawText: Choisissez votre personnage
   - _key: Select-Instructions
     _rawText: "Croix directionnelle pour s\xE9lectionner ; A pour confirmer"
+  - _key: Module-SelectOne
+    _rawText: Choisissez-en Un
+  - _key: Module-Confrim
+    _rawText: Appuyez sur A pour confirmer

@@ -15090,7 +15090,12 @@ MonoBehaviour:
   rewindSound: {fileID: 8300000, guid: 904184cbab2ef6d4eb570d029d20a47c, type: 3}
   rewindSoundVolume: 1
   brokenEffect: {fileID: 0}
-  description: VHS
+  nameKey:
+    _key: 
+    _formatters: []
+  descKey:
+    _key: 
+    _formatters: []
   moduleSprite: {fileID: 0}
   state: 1
   player1Visual: {fileID: 4243329160764794403}
@@ -15114,6 +15119,9 @@ MonoBehaviour:
   damageMultiplierBelowThreshold: 0.5
   damageReductionHealthThreshold2: 100
   damageMultiplierBelowThreshold2: 0.2
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &5025753353263229707
 GameObject:
   m_ObjectHideFlags: 0
