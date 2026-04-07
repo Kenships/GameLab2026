@@ -61,3 +61,75 @@ MonoBehaviour:
   - _key: Tut-line19
     _rawText: Not bad. I'll toss you more modules during the real fight. Now go kick
       butt. I'm counting on ya.
+  - _key: Settings-Master
+    _rawText: Master
+  - _key: Settings-Music
+    _rawText: Music
+  - _key: Settings-SFX
+    _rawText: SFX
+  - _key: Settings-Title
+    _rawText: Settings
+  - _key: Settings-Haptics
+    _rawText: Haptics
+  - _key: Settings-Language
+    _rawText: Language
+  - _key: Settings-Haptics-High
+    _rawText: High
+  - _key: Settings-Haptics-low
+    _rawText: Low
+  - _key: Settings-Haptics-off
+    _rawText: Off
+  - _key: UI-Back
+    _rawText: Back
+  - _key: UI-Credits
+    _rawText: Credits
+  - _key: UI-Quit
+    _rawText: Quit
+  - _key: UI-Start
+    _rawText: Start
+  - _key: Credits-Disigner-artist
+    _rawText: '<b>Designer:</b>
+
+      Jonghwan Kim
+
+
+      <b>Artist:</b>
+
+      Jannah
+      Ibrahim
+
+      Naya Wardeh
+
+      Hazel Grover
+
+
+      <b>Music & Sound:</b>
+
+      Guy
+      Louis Perry'
+  - _key: Credits-Prog-SP
+    _rawText: "<b>Programmers:</b>\nKenneth Xu\nMubai Zeng\nMikito Takata\nGuy Louis
+      Perry\n\n<b>Remerciements sp\xE9ciaux:</b>\nCosta Tsimiklis\nMartin Briand"
+  - _key: Tut-Hint
+    _rawText: Both Players Need To Do The Task
+  - _key: Module-Laser
+    _rawText: Laser Cannon
+  - _key: Module-Flame
+    _rawText: Flame Thrower
+  - _key: Module-Saw
+    _rawText: Saw Shooter
+  - _key: Module-Tank
+    _rawText: Explosive Tank
+  - _key: Module-Turret
+    _rawText: Turret
+  - _key: Module-Saw-Desc
+    _rawText: Saw Shooter
+  - _key: Module-Laser-Desc
+    _rawText: -High damage\n-Long range rectangle\n-Area damage\n-Each shot costs
+      all the time
+  - _key: Module-Flame Desc
+    _rawText: -Low damage\n-Long range arc\n-Area damage\n-Burn
+  - _key: Module-Tank-Desc
+    _rawText: -Low damage\n-Long range circle\n-Single target\n-Chain attack
+  - _key: Module-Turret-Desc
+    _rawText: -High damage\n-Short range circle\n-Single target

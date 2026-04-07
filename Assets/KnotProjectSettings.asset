@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aee690d347527342904c37b9b1c4bb6, type: 3}
   m_Name: KnotProjectSettings
   m_EditorClassIdentifier: Knot.Localization::Knot.Localization.KnotProjectSettings
-  _defaultDatabase: {fileID: 0}
+  _defaultDatabase: {fileID: 11400000, guid: 1669ff237df14484d935bd251a22c253, type: 2}
   _manager:
     rid: 7874754110861869362
   _loadOnStartup: 1

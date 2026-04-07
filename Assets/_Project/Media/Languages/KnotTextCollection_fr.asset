@@ -68,3 +68,79 @@ MonoBehaviour:
   - _key: Tut-line19
     _rawText: "Pas mal! Je vous passe d\u2019autres armes pendant la vraie lutte.
       Allez-y casser des gueules! Je compte sur vous!"
+  - _key: Settings-Master
+    _rawText: "G\xE9n\xE9ral"
+  - _key: Settings-Music
+    _rawText: Musique
+  - _key: Settings-SFX
+    _rawText: Effets
+  - _key: Settings-Title
+    _rawText: "Param\xE8tres"
+  - _key: Settings-Haptics
+    _rawText: Haptique
+  - _key: Settings-Language
+    _rawText: Langue
+  - _key: Settings-Haptics-High
+    _rawText: Haut
+  - _key: Settings-Haptics-low
+    _rawText: Bas
+  - _key: Settings-Haptics-off
+    _rawText: Off
+  - _key: UI-Back
+    _rawText: Retour
+  - _key: UI-Credits
+    _rawText: "Cr\xE9dits"
+  - _key: UI-Quit
+    _rawText: Quitter
+  - _key: UI-Start
+    _rawText: Jouer
+  - _key: Credits-Disigner-artist
+    _rawText: '<b>Concepteur:</b>
+
+      Jonghwan Kim
+
+
+      <b>Artiste:</b>
+
+      Jannah
+      Ibrahim
+
+      Naya Wardeh
+
+      Hazel Grover
+
+
+      <b>Musique et son:</b>
+
+      Guy
+      Louis Perry'
+  - _key: Credits-Prog-SP
+    _rawText: "<b>Programmeurs:</b>\nKenneth Xu\nMubai Zeng\nMikito Takata\nGuy Louis
+      Perry\n\n<b>Remerciements sp\xE9ciaux:</b>\nCosta Tsimiklis\nMartin Briand"
+  - _key: Tut-Hint
+    _rawText: "Les Deux Joueurs Doivent Accomplir La T\xE2che"
+  - _key: Module-Laser
+    _rawText: Canon Laser
+  - _key: Module-Flame
+    _rawText: Lance-flammes
+  - _key: Module-Saw
+    _rawText: Lance-Scies
+  - _key: Module-Tank
+    _rawText: Char Explosif
+  - _key: Module-Turret
+    _rawText: Tourelle
+  - _key: Module-Saw-Desc
+    _rawText: "-D\xE9g\xE2ts faibles\\n-Port\xE9e longue (zone circulaire)\\n-Cible
+      unique\\n-Attaque en cha\xEEne"
+  - _key: Module-Laser-Desc
+    _rawText: "-D\xE9g\xE2ts \xE9lev\xE9s\\n-Port\xE9e longue (zone rectangulaire)\\n-D\xE9g\xE2ts
+      de zone\\n-Consomme tout le temps restant"
+  - _key: Module-Flame Desc
+    _rawText: "-D\xE9g\xE2ts faibles\\n-Port\xE9e longue (arc)\\n-D\xE9g\xE2ts de
+      zone\\n-Br\xFBlure"
+  - _key: Module-Tank-Desc
+    _rawText: "-D\xE9g\xE2ts \xE9lev\xE9s\\n-Port\xE9e courte (zone circulaire)\\n-D\xE9g\xE2ts
+      de zone"
+  - _key: Module-Turret-Desc
+    _rawText: "-D\xE9g\xE2ts \xE9lev\xE9s\\n-Port\xE9e courte (zone circulaire)\\n-Cible
+      unique"

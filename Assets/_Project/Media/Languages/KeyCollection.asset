@@ -89,6 +89,134 @@ MonoBehaviour:
     _metadata:
       _runtime: []
       _editor: []
+  - _key: Settings-Title
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Settings-Language
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Settings-Haptics
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Settings-Haptics-low
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Settings-Haptics-off
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Settings-Haptics-High
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Settings-SFX
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Settings-Music
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Settings-Master
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: UI-Back
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: UI-Start
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: UI-Quit
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: UI-Credits
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Credits-Disigner-artist
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Credits-Prog-SP
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Tut-Hint
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Module-Turret
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Module-Tank
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Module-Flame
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Module-Laser
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Module-Saw
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Module-Tank-Desc
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Module-Turret-Desc
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Module-Saw-Desc
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Module-Laser-Desc
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Module-Flame Desc
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Keymap-Click
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Keymap-Pickup
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Keymap-Rotate
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Keymap-Rewind
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Keymap-Fast
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Keymap-Hold
+    _metadata:
+      _runtime: []
+      _editor: []
   references:
     version: 2
     RefIds: []

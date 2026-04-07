@@ -4578,6 +4578,7 @@ GameObject:
   - component: {fileID: 989332448}
   - component: {fileID: 989332450}
   - component: {fileID: 989332451}
+  - component: {fileID: 989332452}
   m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -4733,6 +4734,24 @@ MonoBehaviour:
   typeSound: {fileID: 8300000, guid: aefbd98ee7c1f3d419e7fb9756fff6af, type: 3}
   typeSoundVolume: 0.1
   hasSFX: 1
+--- !u!114 &989332452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 989332446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dae449646f11534f81928346b3b6341, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Knot.Localization::Knot.Localization.Components.KnotLocalizedTextMeshProUGUI
+  _keyReference:
+    _key: Tut-line1
+    _formatters: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1001 &995858792
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4824,6 +4843,7 @@ GameObject:
   - component: {fileID: 1011535008}
   - component: {fileID: 1011535010}
   - component: {fileID: 1011535009}
+  - component: {fileID: 1011535011}
   m_Layer: 0
   m_Name: HintText (both do)
   m_TagString: Untagged
@@ -4845,9 +4865,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1352060257}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -265, y: -165}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: -265, y: -136}
   m_SizeDelta: {x: 1200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1011535009
@@ -4950,6 +4970,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1011535007}
   m_CullTransparentMesh: 1
+--- !u!114 &1011535011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1011535007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dae449646f11534f81928346b3b6341, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Knot.Localization::Knot.Localization.Components.KnotLocalizedTextMeshProUGUI
+  _keyReference:
+    _key: Tut-Hint
+    _formatters: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &1013217011
 GameObject:
   m_ObjectHideFlags: 0
@@ -5062,8 +5100,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Tutorial.TutorialComposer
   panels:
-  - PanelText: Well well well... looks like you bozos got sucked into this movie
-      wasteland.
+  - PanelTextKey:
+      _key: Tut-line1
+      _formatters: []
     FreezePlayers: 0
     OnPanel:
       m_PersistentCalls:
@@ -5092,8 +5131,9 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - PanelText: But I can get you out. Just protect me. Yeah, the VHS tape on the
-      right. See me?
+  - PanelTextKey:
+      _key: Tut-line2
+      _formatters: []
     FreezePlayers: 0
     OnPanel:
       m_PersistentCalls:
@@ -5122,7 +5162,9 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - PanelText: First off, let's try move with D-pad.
+  - PanelTextKey:
+      _key: Tut-line3
+      _formatters: []
     FreezePlayers: 0
     OnPanel:
       m_PersistentCalls:
@@ -5140,8 +5182,9 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - PanelText: Good. See my health bar on top? Not great. HOLD A next to me to rewind
-      = heal me. Thanks.
+  - PanelTextKey:
+      _key: Tut-line4
+      _formatters: []
     FreezePlayers: 0
     OnPanel:
       m_PersistentCalls:
@@ -5183,8 +5226,9 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - PanelText: Monsters are coming for me soon. You can't punch 'em, so I got you
-      a flamethrower.
+  - PanelTextKey:
+      _key: Tut-line5
+      _formatters: []
     FreezePlayers: 0
     OnPanel:
       m_PersistentCalls:
@@ -5237,7 +5281,9 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-  - PanelText: Click A to grab it. Click A again to put it down (only on grass).
+  - PanelTextKey:
+      _key: Tut-line6
+      _formatters: []
     FreezePlayers: 0
     OnPanel:
       m_PersistentCalls:
@@ -5268,7 +5314,9 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - PanelText: Nice! Now try Click B to spin it around.
+  - PanelTextKey:
+      _key: Tut-line7
+      _formatters: []
     FreezePlayers: 0
     OnPanel:
       m_PersistentCalls:
@@ -5286,7 +5334,9 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - PanelText: Great. But you probably noticed... it ain't doing anything right now.
+  - PanelTextKey:
+      _key: Tut-line8
+      _formatters: []
     FreezePlayers: 0
     OnPanel:
       m_PersistentCalls:
@@ -5315,7 +5365,9 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - PanelText: That's cause time is the juice for these modules.
+  - PanelTextKey:
+      _key: Tut-line9
+      _formatters: []
     FreezePlayers: 0
     OnPanel:
       m_PersistentCalls:
@@ -5344,7 +5396,9 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - PanelText: Try HOLDING A to rewind the module next to ya.
+  - PanelTextKey:
+      _key: Tut-line10
+      _formatters: []
     FreezePlayers: 0
     OnPanel:
       m_PersistentCalls:
@@ -5362,7 +5416,9 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - PanelText: Now HOLD B to fast forward, shoots faster, burns out quicker.
+  - PanelTextKey:
+      _key: Tut-line11
+      _formatters: []
     FreezePlayers: 0
     OnPanel:
       m_PersistentCalls:
@@ -5380,8 +5436,9 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - PanelText: If you're holding a module, you can't time-manipulate it yourself.
-      But the other player can, just have them HOLD A or B while you hold it.
+  - PanelTextKey:
+      _key: Tut-line12
+      _formatters: []
     FreezePlayers: 0
     OnPanel:
       m_PersistentCalls:
@@ -5399,8 +5456,9 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - PanelText: Awesome. There's actually another type of module, go grab it and place
-      it on the grass first.
+  - PanelTextKey:
+      _key: Tut-line13
+      _formatters: []
     FreezePlayers: 0
     OnPanel:
       m_PersistentCalls:
@@ -5455,8 +5513,9 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - PanelText: You can see it got the battery icon on top, that means it needs full
-      time to wake up.
+  - PanelTextKey:
+      _key: Tut-line14
+      _formatters: []
     FreezePlayers: 0
     OnPanel:
       m_PersistentCalls:
@@ -5485,8 +5544,9 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-  - PanelText: 'So here''s the move: HOLD A to rewind it full, then HOLD B to fire
-      it up. Try that on the explosive tank.'
+  - PanelTextKey:
+      _key: Tut-line15
+      _formatters: []
     FreezePlayers: 0
     OnPanel:
       m_PersistentCalls:
@@ -5503,7 +5563,9 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - PanelText: <b>BOOOOM BABY!!!</b>
+  - PanelTextKey:
+      _key: Tut-line16
+      _formatters: []
     FreezePlayers: 0
     OnPanel:
       m_PersistentCalls:
@@ -5532,8 +5594,9 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-  - PanelText: Oh, and that car? Try rewind it, then fast forward it. (HOLD A, then
-      HOLD B)
+  - PanelTextKey:
+      _key: Tut-line17
+      _formatters: []
     FreezePlayers: 0
     OnPanel:
       m_PersistentCalls:
@@ -5562,8 +5625,9 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - PanelText: Uh-oh... incoming ugly! Something's coming for me! PROTECT YOUR TAPE,
-      DUDE!
+  - PanelTextKey:
+      _key: Tut-line18
+      _formatters: []
     FreezePlayers: 0
     OnPanel:
       m_PersistentCalls:
@@ -5616,7 +5680,9 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-  - PanelText: 
+  - PanelTextKey:
+      _key: 
+      _formatters: []
     FreezePlayers: 0
     OnPanel:
       m_PersistentCalls:
@@ -5658,8 +5724,9 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-  - PanelText: Not bad. I'll toss you more modules during the real fight. Now go
-      kick butt. I'm counting on ya.
+  - PanelTextKey:
+      _key: Tut-line19
+      _formatters: []
     FreezePlayers: 0
     OnPanel:
       m_PersistentCalls:
@@ -5688,7 +5755,9 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-  - PanelText: 
+  - PanelTextKey:
+      _key: 
+      _formatters: []
     FreezePlayers: 0
     OnPanel:
       m_PersistentCalls:
@@ -5710,6 +5779,9 @@ MonoBehaviour:
   panel: {fileID: 1352060256}
   player1Actions: {fileID: 1538682416}
   player2Actions: {fileID: 422280495}
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &1020470268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8691,6 +8763,7 @@ GameObject:
   - component: {fileID: 1694884839}
   - component: {fileID: 1694884838}
   - component: {fileID: 1694884837}
+  - component: {fileID: 1694884840}
   m_Layer: 0
   m_Name: HintText (both A)
   m_TagString: Untagged
@@ -8817,6 +8890,24 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -165}
   m_SizeDelta: {x: 1200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1694884840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1694884836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dae449646f11534f81928346b3b6341, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Knot.Localization::Knot.Localization.Components.KnotLocalizedTextMeshProUGUI
+  _keyReference:
+    _key: Tut-Hint
+    _formatters: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!4 &1698584879 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 08469d9c1e17f67469b8d5418e834cdf, type: 3}
