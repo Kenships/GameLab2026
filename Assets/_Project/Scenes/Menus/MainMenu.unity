@@ -262,7 +262,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1133632955}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 92353679}
+        m_TargetAssemblyTypeName: _Project.Scripts.Core.AudioPooling.UISoundPlayer,
+          Assembly-CSharp
+        m_MethodName: PlaySoundWithDelay
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: cfc88dac6e66e7d4ab77cff4189b80f1, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!222 &92353677
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -283,6 +296,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9e3893c0e019e34a934bc4a102fe6ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UISoundPlayer
+  delay: 2.5
 --- !u!114 &92353680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -483,6 +497,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9e3893c0e019e34a934bc4a102fe6ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UISoundPlayer
+  delay: 0
 --- !u!114 &182962109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1171,6 +1186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9e3893c0e019e34a934bc4a102fe6ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UISoundPlayer
+  delay: 0
 --- !u!114 &775938724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1375,6 +1391,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9e3893c0e019e34a934bc4a102fe6ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UISoundPlayer
+  delay: 0
 --- !u!114 &955155413
 MonoBehaviour:
   m_ObjectHideFlags: 0
