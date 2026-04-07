@@ -6114,6 +6114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb6d95369255de54cb7d33669c2ee027, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.UI.EnemyWaveUI
+  hapticsIntensity: {fileID: 11400000, guid: 6aa2da57d62bb414e9bb178c9f39d63f, type: 2}
   players:
   - {fileID: 365337710}
   - {fileID: 845866575}
@@ -11574,6 +11575,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afb804ee20edbc849854c855b7795ee3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.Modules.ModuleSpawner
+  hapticsIntensity: {fileID: 11400000, guid: 6aa2da57d62bb414e9bb178c9f39d63f, type: 2}
   player1: {fileID: 365337710}
   player2: {fileID: 845866575}
   spawnEvent: {fileID: 11400000, guid: ea59c12e137cbf940b576ce2cfee1c24, type: 2}

@@ -849,6 +849,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22fa47f70d6bcaf4f81f097ee51f3d6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VideoPlayerController
+  hapticsIntensity: {fileID: 11400000, guid: 6aa2da57d62bb414e9bb178c9f39d63f, type: 2}
   readers:
   - {fileID: 1795221923}
   - {fileID: 47407885}
