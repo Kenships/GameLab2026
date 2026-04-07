@@ -51,8 +51,6 @@ public class VideoPlayerController : MonoBehaviour
         c.a = 1;
         rawImage.color = c;
 
-        Tween.Alpha(canvasGroup, 1, 0, 1f);
-
         videoPlayer.time = 0;
         videoPlayer.Play();
     }
@@ -63,6 +61,8 @@ public class VideoPlayerController : MonoBehaviour
         {
             return;
         }
+        
+        canvasGroup.alpha = Mathf.Lerp(canvasGroup.alpha, 0, Time.deltaTime * 2);
 
         if (videoPlayer.time / videoPlayer.clip.length < 0.4f)
             return;
@@ -95,5 +95,10 @@ public class VideoPlayerController : MonoBehaviour
     void OnDestroy()
     {
         if (videoPlayer != null) videoPlayer.loopPointReached -= OnVideoFinished;
+        if (startButton != null) startButton.onClick.RemoveListener(PlayVideo);
+        foreach (var gamepad in _gamepads)
+        {
+            gamepad.SetMotorSpeeds(0, 0);
+        }
     }
 }

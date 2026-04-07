@@ -1295,7 +1295,7 @@ MonoBehaviour:
   activeSceneIndex:
     buildIndex: 0
   scenesToLoad:
-  - buildIndex: 2
+  - buildIndex: 3
   unloadDisabled: 0
   scenesToUnload: []
 --- !u!114 &955155409
