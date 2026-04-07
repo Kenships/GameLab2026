@@ -2052,9 +2052,6 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 598670341615757482, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 611202208}
     - targetCorrespondingSourceObject: {fileID: 7536934879836842110, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
       insertIndex: -1
       addedObject: {fileID: 17234026}
@@ -3420,29 +3417,6 @@ MonoBehaviour:
   pulseScale: 1
   pulseScaleMin: 0.95
   pulseScaleMax: 1.05
---- !u!1 &611202206 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 598670341615757482, guid: 59c4431a2da1dc747af4d19e0f2e0613, type: 3}
-  m_PrefabInstance: {fileID: 343991347}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &611202208
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 611202206}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Outline
-  outlineMode: 0
-  outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 2
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
 --- !u!1 &613603040
 GameObject:
   m_ObjectHideFlags: 0

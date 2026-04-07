@@ -19,6 +19,8 @@ public class StopMotionUI : MonoBehaviour
 
     public void Play()
     {
+        if (this == null || gameObject == null) return;
+
         StartCoroutine(PlayRoutine());
     }
 
