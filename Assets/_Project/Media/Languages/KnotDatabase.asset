@@ -29,6 +29,14 @@ MonoBehaviour:
     _metadata:
       _runtime: []
       _editor: []
+  - _cultureName: zh
+    _systemLanguage: 6
+    _nativeName: "\u4E2D\u6587"
+    _collectionProviders:
+    - rid: 522404521818980352
+    _metadata:
+      _runtime: []
+      _editor: []
   _textKeyCollections:
   - {fileID: 11400000, guid: ffdbadfc4d1574430a45f862a6d8cf18, type: 2}
   _assetKeyCollections: []
@@ -53,6 +61,10 @@ MonoBehaviour:
       type: {class: KnotAssetCollectionProvider, ns: Knot.Localization.Data, asm: Knot.Localization}
       data:
         _collection: {fileID: 11400000, guid: c466b8ea53c894b2fa4e3bd3acc6bce4, type: 2}
+    - rid: 522404521818980352
+      type: {class: KnotAssetCollectionProvider, ns: Knot.Localization.Data, asm: Knot.Localization}
+      data:
+        _collection: {fileID: 11400000, guid: 4e5f0dbb6cab742c2864824a1bd04e34, type: 2}
     - rid: 7874754110861869363
       type: {class: KnotDefaultLanguageSelector, ns: Knot.Localization, asm: Knot.Localization}
       data:
