@@ -16,8 +16,9 @@ namespace _Project.Scripts.Core.Player
     public class PlayerInteractionController : MonoBehaviour<INESActionReader, IGridService, ILogger, AudioPooler>
     {
         public static bool IsGameTimeFlowing = true;
-        
-        [Header("Haptics Settings")]
+
+        [Header("Haptics Settings")] [SerializeField]
+        private FloatVariable hapticsIntensity;
         [SerializeField] private float lowFrequencyHapticIntensity = 0.6f;
         [SerializeField] private float highFrequencyHapticIntensity = .2f;
         [SerializeField] private float hapticsDuration = 0.12f;
@@ -234,7 +235,7 @@ namespace _Project.Scripts.Core.Player
             }
 
             StartCoroutine(FastForwardHaptics());
-
+            
             _isFastForwarding = true;
             windVFXController.ShowWind();
             foreach (ITimeControllable controllable in _inRangeTimeControllables)
@@ -339,7 +340,7 @@ namespace _Project.Scripts.Core.Player
             if (_gamePad == null && !_inputReader.TryGetGamePad(out _gamePad))
                 yield break;
 
-            _gamePad.SetMotorSpeeds(lowFrequency, highFrequency);
+            _gamePad.SetMotorSpeeds(lowFrequency * hapticsIntensity.Value, highFrequency * hapticsIntensity.Value);
 
             float timer = hapticsDuration;
 
