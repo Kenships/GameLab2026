@@ -49,6 +49,7 @@ namespace _Project.Scripts.Core.Player
         
 
         public bool IsTimeControlling => _isFastForwarding || _isRewinding;
+        public bool IsHoldingObject => _currentIHoldingObject != null;
 
         public PlayerData.PlayerID PlayerID { get; set; }
 

@@ -259,11 +259,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02a5aeb5e24a32d4dad56281e1a6a240, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.RangeDetector
-  rangeType: 1
+  rangeType: 2
   radius: 3
   angle: 60
-  width: 5
-  length: 10
+  width: 3
+  length: 3
   targetLayers:
     serializedVersion: 2
     m_Bits: 64
@@ -5816,11 +5816,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02a5aeb5e24a32d4dad56281e1a6a240, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.RangeDetector
-  rangeType: 1
+  rangeType: 2
   radius: 3
   angle: 60
-  width: 5
-  length: 10
+  width: 3
+  length: 3
   targetLayers:
     serializedVersion: 2
     m_Bits: 64
