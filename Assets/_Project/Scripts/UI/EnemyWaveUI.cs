@@ -15,6 +15,7 @@ namespace _Project.Scripts.UI
 {
     public class EnemyWaveUI : MonoBehaviour
     {
+        [SerializeField] private FloatVariable hapticsIntensity;
         [SerializeField] private NESActionReader[] players;
         [SerializeField] private ScriptableEventNoParam perfectWaveEvent;
         [SerializeField] private ScriptableEventWaveData waveData;
@@ -149,7 +150,7 @@ namespace _Project.Scripts.UI
                 
                 foreach (var gamepad in _gamepads)
                 {
-                    gamepad.SetMotorSpeeds(0.5f * progress, 1f * progress);
+                    gamepad.SetMotorSpeeds(0.5f * progress * hapticsIntensity.Value, 1f * progress * hapticsIntensity.Value);
                 }
                 
                 scoreTextLarge.text = "Score: " + (int) (_internalScore + (finalScore - _internalScore) * progress);
@@ -190,7 +191,7 @@ namespace _Project.Scripts.UI
                 
                 foreach (var gamepad in _gamepads)
                 {
-                    gamepad.SetMotorSpeeds(0.5f * progress, 0.5f * progress);
+                    gamepad.SetMotorSpeeds(0.5f * progress * hapticsIntensity.Value, 0.5f * progress * hapticsIntensity.Value);
                 }
                 
                 scoreTextLarge.text = "Score: " + (int) (_internalScore + (finalScore - _internalScore) * progress);
