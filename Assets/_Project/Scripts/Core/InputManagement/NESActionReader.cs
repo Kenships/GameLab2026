@@ -42,8 +42,7 @@ namespace _Project.Scripts.Core.InputManagement
             _actions = action;
             _sceneFocusRetrieval = sceneFocusRetrieval;
         }
-        
-        
+
         private void OnEnable()
         {
             _actions.Enable();

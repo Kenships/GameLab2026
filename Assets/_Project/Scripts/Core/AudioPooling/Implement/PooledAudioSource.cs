@@ -68,7 +68,7 @@ namespace _Project.Scripts.Core.AudioPooling.Implement
              
             Tween.AudioVolume(
                 target: _audioSource,
-                endValue: 0,
+                endValue: volumePercentage,
                 duration: duration,
                 useUnscaledTime: true
             ).OnComplete(() =>
@@ -122,7 +122,9 @@ namespace _Project.Scripts.Core.AudioPooling.Implement
 
         public void Resume()
         {
-            Play();
+            _audioSource.UnPause();
+            if (_playingCoroutine == null)
+                _playingCoroutine = StartCoroutine(WaitForAudioCompletion());
         }
     }
 }
