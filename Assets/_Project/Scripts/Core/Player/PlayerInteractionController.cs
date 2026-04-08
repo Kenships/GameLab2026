@@ -86,6 +86,8 @@ namespace _Project.Scripts.Core.Player
             if (_inputReader == null)
                 return;
 
+            _gamePad?.SetMotorSpeeds(0,0);
+            
             _inputReader.OnTapInteract -= RotateClockWise;
 
             _inputReader.OnHoldInteract -= FastForward;

@@ -12,7 +12,7 @@ namespace _Project.Scripts.UI
     {
         public event UnityAction<PlayerData.PlayerID> OnConfirm;
         public event UnityAction<PlayerData.PlayerID> OnCancel;
-        public event UnityAction<(PlayerData.PlayerID, int)> OnMove;
+        public event UnityAction<(PlayerData.PlayerID, Vector2Int)> OnMove;
         
         private INESUIReader _actionReader;
         private PlayerData _playerData;
@@ -56,7 +56,7 @@ namespace _Project.Scripts.UI
 
         private void HandlePad(Vector2 dir)
         {
-            OnMove?.Invoke((_playerData.ID, Mathf.CeilToInt(dir.x)));
+            OnMove?.Invoke((_playerData.ID, new Vector2Int((int)dir.x, (int)dir.y)));
         }
     }
 }

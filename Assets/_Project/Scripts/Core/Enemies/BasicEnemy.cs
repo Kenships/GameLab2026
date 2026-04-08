@@ -11,7 +11,7 @@ namespace _Project.Scripts.Core.Enemies
         private static Transform _cachedVhsTransform;
 
         private Transform _target;
-        private float _attackDamage;
+        
         private NavMeshAgent _navMeshAgent;
 
         public void Initialize(float maxHealth, float moveSpeed, float attackCooldown, float attackDamage)

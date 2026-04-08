@@ -78,7 +78,8 @@ namespace _Project.Scripts.Core.Enemies
         [SerializeField] private ScriptableEventWaveData waveStartEvent;
         [SerializeField] private ScriptableEventNoParam perfectWaveEvent;
         [SerializeField] private EnemyWaveUI waveUI;
-
+        [SerializeField] private FloatVariable difficulty;
+        
         [Header("Wave Settings")]
         [SerializeField] private Wave[] waves;
 
@@ -167,7 +168,14 @@ namespace _Project.Scripts.Core.Enemies
                 Debug.Log($"Finished {currentWave.waveName}");
 
                 float finalHealth = GameManager.Instance.Score;
-                GameManager.Instance.BonusScore += Mathf.Min(QuebecTax * finalHealth * (waveIndex + 1), 500f);
+                if (difficulty)
+                {
+                    GameManager.Instance.BonusScore += difficulty.Value * Mathf.Min(QuebecTax * finalHealth * (waveIndex + 1), 500f);
+                }
+                else
+                {
+                    GameManager.Instance.BonusScore += Mathf.Min(QuebecTax * finalHealth * (waveIndex + 1), 500f);
+                }
                 
                 if (Mathf.Approximately(initialVHSHealth, finalHealth))
                 {
@@ -257,6 +265,13 @@ namespace _Project.Scripts.Core.Enemies
 
             EnemyBase enemy = factory.CreateEnemy(spawnPoint.position, Quaternion.identity);
 
+            if (difficulty != null)
+            {
+                Health health = enemy.GetComponent<Health>();
+                health.Initialize(health.MaxHealth * difficulty.Value);
+                enemy.Attack *= difficulty.Value;
+            }
+            
             if (currentWaveEnemies != null)
             {
                 currentWaveEnemies.Add(enemy);

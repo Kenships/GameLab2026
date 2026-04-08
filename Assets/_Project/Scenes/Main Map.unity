@@ -2518,6 +2518,7 @@ GameObject:
   - component: {fileID: 494191211}
   - component: {fileID: 494191213}
   - component: {fileID: 494191212}
+  - component: {fileID: 494191214}
   m_Layer: 5
   m_Name: moduleName
   m_TagString: Untagged
@@ -2644,6 +2645,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 494191210}
   m_CullTransparentMesh: 1
+--- !u!114 &494191214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 494191210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dae449646f11534f81928346b3b6341, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Knot.Localization::Knot.Localization.Components.KnotLocalizedTextMeshProUGUI
+  _keyReference:
+    _key: 
+    _formatters: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &494725530
 GameObject:
   m_ObjectHideFlags: 0
@@ -4975,6 +4994,7 @@ GameObject:
   - component: {fileID: 918048412}
   - component: {fileID: 918048414}
   - component: {fileID: 918048413}
+  - component: {fileID: 918048415}
   m_Layer: 5
   m_Name: moduleName
   m_TagString: Untagged
@@ -5101,6 +5121,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 918048411}
   m_CullTransparentMesh: 1
+--- !u!114 &918048415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 918048411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dae449646f11534f81928346b3b6341, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Knot.Localization::Knot.Localization.Components.KnotLocalizedTextMeshProUGUI
+  _keyReference:
+    _key: 
+    _formatters: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &921503305
 GameObject:
   m_ObjectHideFlags: 0
@@ -7495,7 +7533,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ModuleInfoManager
   moduleIcon: {fileID: 1074399310}
-  moduleNameText: {fileID: 494191212}
+  moduleName: {fileID: 494191214}
   fadeInDuration: 0.2
   fadeOutDuration: 0.15
   switchFadeDuration: 0.1
@@ -10519,7 +10557,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ModuleInfoManager
   moduleIcon: {fileID: 553736695}
-  moduleNameText: {fileID: 918048413}
+  moduleName: {fileID: 918048415}
   fadeInDuration: 0.2
   fadeOutDuration: 0.15
   switchFadeDuration: 0.1
@@ -15416,6 +15454,7 @@ MonoBehaviour:
   waveStartEvent: {fileID: 11400000, guid: 70472f02f5cc06345845b0a8e5cba28f, type: 2}
   perfectWaveEvent: {fileID: 11400000, guid: 64c481e45ee502340a1eff08d1861d7c, type: 2}
   waveUI: {fileID: 1136097441}
+  difficulty: {fileID: 11400000, guid: 0c7cc35167b2c30479e5fc95b8c14535, type: 2}
   waves:
   - waveName: Wave 1
     portalSpawns:
@@ -15638,6 +15677,7 @@ MonoBehaviour:
       m_Calls: []
   loadOnAwake: 0
   withOverlay: 0
+  resetTime: 0
   fadeAudio: 1
   fadeDuration: 1
   sceneGroup: 1
@@ -16703,6 +16743,7 @@ MonoBehaviour:
       m_Calls: []
   loadOnAwake: 0
   withOverlay: 0
+  resetTime: 0
   fadeAudio: 1
   fadeDuration: 1
   sceneGroup: 1

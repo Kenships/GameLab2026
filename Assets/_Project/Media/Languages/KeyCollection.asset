@@ -237,6 +237,22 @@ MonoBehaviour:
     _metadata:
       _runtime: []
       _editor: []
+  - _key: Diffiuclty-Easy
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Diffiuclty-Med
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Diffiuclty-Hard
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Diffiuclty-Hell
+    _metadata:
+      _runtime: []
+      _editor: []
   references:
     version: 2
     RefIds: []

@@ -1041,6 +1041,7 @@ Transform:
   - {fileID: 4764285457731991302}
   - {fileID: 2970050324184031371}
   - {fileID: 5973539708032638266}
+  - {fileID: 7005468960588696237}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &6769951668664025768
@@ -1057,7 +1058,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RangeDetector
   rangeType: 1
   radius: 8
-  angle: 35
+  angle: 50
   width: 5
   length: 10
   targetLayers:
@@ -1066,7 +1067,7 @@ MonoBehaviour:
   obsticalLayers:
     serializedVersion: 2
     m_Bits: 0
-  startingTransform: {fileID: 7057473248556846981}
+  startingTransform: {fileID: 7005468960588696237}
   ignoreYAxis: 1
   colliderBufferSize: 50
 --- !u!114 &7900933947820870150
@@ -7179,6 +7180,37 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &9054804868779161060
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7005468960588696237}
+  m_Layer: 0
+  m_Name: FlameOrigin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7005468960588696237
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9054804868779161060}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.13, y: 0, z: -0.54}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7057473248556846981}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &4961746124140830318
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7228,6 +7260,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3881959108761177971, guid: cd907d9d2febb8c419e800f440714e2a, type: 3}
+      propertyPath: ShapeModule.angle
+      value: 26.77
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881959108761177971, guid: cd907d9d2febb8c419e800f440714e2a, type: 3}
       propertyPath: moveWithTransform
       value: 0
       objectReference: {fileID: 0}
@@ -7240,12 +7276,16 @@ PrefabInstance:
       value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 3881959108761177971, guid: cd907d9d2febb8c419e800f440714e2a, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881959108761177971, guid: cd907d9d2febb8c419e800f440714e2a, type: 3}
       propertyPath: InitialModule.startSpeed.scalar
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3881959108761177971, guid: cd907d9d2febb8c419e800f440714e2a, type: 3}
       propertyPath: InitialModule.startSize.minScalar
-      value: 0.15
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 3881959108761177971, guid: cd907d9d2febb8c419e800f440714e2a, type: 3}
       propertyPath: InitialModule.startSpeed.minScalar

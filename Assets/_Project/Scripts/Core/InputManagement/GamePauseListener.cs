@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using _Project.Scripts.Core.AudioPooling;
 using _Project.Scripts.Core.SceneLoading.Interfaces;
 using _Project.Scripts.Util.Scene;
 using Sisus.Init;
@@ -8,13 +9,14 @@ using UnityEngine.SceneManagement;
 
 namespace _Project.Scripts.Core.InputManagement
 {
-    public class GamePauseListener : MonoBehaviour<ISceneBuilder, ISceneFocusRetrieval>
+    public class GamePauseListener : MonoBehaviour<ISceneBuilder, ISceneFocusRetrieval, AudioPooler>
     {
         [SerializeField] private SceneReference menuSelect;
         [SerializeField] private SceneReference pauseScene;
         private NESActionReader[] _readers;
         private ISceneBuilder _sceneBuilder;
         private ISceneFocusRetrieval _sceneFocusRetrieval;
+        private AudioPooler _audioPooler;
 
         private bool _isPaused;
         private float _previousTimeScale;
@@ -38,6 +40,9 @@ namespace _Project.Scripts.Core.InputManagement
 
         private void PlayerOnEscape()
         {
+            if (_isPaused)
+                return;
+            _audioPooler.StopAllSFX();
             _previousTimeScale = Time.timeScale;
             Time.timeScale = 0;
             StartCoroutine(LoadScene());
@@ -50,6 +55,7 @@ namespace _Project.Scripts.Core.InputManagement
                 .Load(menuSelect.BuildIndex)
                 .Load(pauseScene.BuildIndex)
                 .Execute();
+            
             _isPaused = true;
         }
 
@@ -64,10 +70,11 @@ namespace _Project.Scripts.Core.InputManagement
             }
         }
 
-        protected override void Init(ISceneBuilder argument, ISceneFocusRetrieval retrieval)
+        protected override void Init(ISceneBuilder argument, ISceneFocusRetrieval retrieval, AudioPooler audioPooler)
         {
             _sceneBuilder = argument;
             _sceneFocusRetrieval = retrieval;
+            _audioPooler = audioPooler;
         }
     }
 }

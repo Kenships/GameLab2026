@@ -144,9 +144,9 @@ namespace _Project.Scripts.Multiplayer
             selectedModuleNumber = Mathf.Clamp(selectedModuleNumber + delta, 0, treys.Length - 1);
         }
 
-        private void PlayerOnMove((PlayerData.PlayerID id, int dir) arg)
+        private void PlayerOnMove((PlayerData.PlayerID id, Vector2Int dir) arg)
         {
-            if (arg.dir == 0)
+            if (arg.dir.x == 0)
                 return;
             
             switch (arg.id)
@@ -157,7 +157,7 @@ namespace _Project.Scripts.Multiplayer
                         return;
                     }
                     _player1Init = true;
-                    UpdateSelectIndex(ref _player1Index, arg.dir);
+                    UpdateSelectIndex(ref _player1Index, arg.dir.x);
                     break;
                 case PlayerData.PlayerID.Player2:
                     if (_player2Ready)
@@ -165,7 +165,7 @@ namespace _Project.Scripts.Multiplayer
                         return;
                     }
                     _player2Init = true;
-                    UpdateSelectIndex(ref _player2Index, arg.dir);
+                    UpdateSelectIndex(ref _player2Index, arg.dir.x);
                     break;
             }
             UpdateUI();

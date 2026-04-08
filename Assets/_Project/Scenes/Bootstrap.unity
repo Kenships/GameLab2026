@@ -301,7 +301,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   loadOnAwake: 1
-  withOverlay: 1
+  withOverlay: 0
   resetTime: 1
   fadeAudio: 1
   fadeDuration: 1

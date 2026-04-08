@@ -166,3 +166,11 @@ MonoBehaviour:
     _rawText: Choisissez-en Un
   - _key: Module-Confrim
     _rawText: Appuyez sur A pour confirmer
+  - _key: Diffiuclty-Hell
+    _rawText: Hellscape
+  - _key: Diffiuclty-Med
+    _rawText: Moyen
+  - _key: Diffiuclty-Easy
+    _rawText: Facile
+  - _key: Diffiuclty-Hard
+    _rawText: Difficile

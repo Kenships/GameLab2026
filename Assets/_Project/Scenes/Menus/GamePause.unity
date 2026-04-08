@@ -2032,13 +2032,13 @@ MonoBehaviour:
   activeSceneIndex:
     buildIndex: 1
   scenesToLoad:
-  - buildIndex: 5
-  - buildIndex: 1
+  - buildIndex: 12
   unloadDisabled: 0
   scenesToUnload:
   - buildIndex: 6
-  - buildIndex: 4
   - buildIndex: 10
+  - buildIndex: 4
+  - buildIndex: 5
 --- !u!114 &1550516157
 MonoBehaviour:
   m_ObjectHideFlags: 0

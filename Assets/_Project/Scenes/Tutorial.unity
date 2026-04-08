@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 8346900}
   - component: {fileID: 8346902}
   - component: {fileID: 8346901}
+  - component: {fileID: 8346903}
   m_Layer: 5
   m_Name: moduleName
   m_TagString: Untagged
@@ -256,6 +257,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8346899}
   m_CullTransparentMesh: 1
+--- !u!114 &8346903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8346899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dae449646f11534f81928346b3b6341, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Knot.Localization::Knot.Localization.Components.KnotLocalizedTextMeshProUGUI
+  _keyReference:
+    _key: 
+    _formatters: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &8939611
 GameObject:
   m_ObjectHideFlags: 0
@@ -1399,7 +1418,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ModuleInfoManager
   moduleIcon: {fileID: 2124074123}
-  moduleNameText: {fileID: 1517767350}
+  moduleName: {fileID: 1517767352}
   fadeInDuration: 0.2
   fadeOutDuration: 0.15
   switchFadeDuration: 0.1
@@ -1832,6 +1851,7 @@ MonoBehaviour:
       m_Calls: []
   loadOnAwake: 0
   withOverlay: 0
+  resetTime: 0
   fadeAudio: 1
   fadeDuration: 1
   sceneGroup: 1
@@ -6025,6 +6045,7 @@ MonoBehaviour:
       m_Calls: []
   loadOnAwake: 0
   withOverlay: 1
+  resetTime: 0
   fadeAudio: 1
   fadeDuration: 1
   sceneGroup: 1
@@ -7923,6 +7944,7 @@ GameObject:
   - component: {fileID: 1517767349}
   - component: {fileID: 1517767351}
   - component: {fileID: 1517767350}
+  - component: {fileID: 1517767352}
   m_Layer: 5
   m_Name: moduleName
   m_TagString: Untagged
@@ -8049,6 +8071,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1517767348}
   m_CullTransparentMesh: 1
+--- !u!114 &1517767352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1517767348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dae449646f11534f81928346b3b6341, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Knot.Localization::Knot.Localization.Components.KnotLocalizedTextMeshProUGUI
+  _keyReference:
+    _key: 
+    _formatters: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &1538205704 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4584474057879492836, guid: e3079e81a8212914897bea0ac3d32f43, type: 3}
@@ -8150,6 +8190,7 @@ MonoBehaviour:
       m_Calls: []
   loadOnAwake: 0
   withOverlay: 0
+  resetTime: 0
   fadeAudio: 1
   fadeDuration: 1
   sceneGroup: 1
@@ -8567,7 +8608,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ModuleInfoManager
   moduleIcon: {fileID: 1651145250}
-  moduleNameText: {fileID: 8346901}
+  moduleName: {fileID: 8346903}
   fadeInDuration: 0.2
   fadeOutDuration: 0.15
   switchFadeDuration: 0.1
@@ -12174,6 +12215,7 @@ MonoBehaviour:
       m_Calls: []
   loadOnAwake: 0
   withOverlay: 0
+  resetTime: 0
   fadeAudio: 1
   fadeDuration: 1
   sceneGroup: 1
