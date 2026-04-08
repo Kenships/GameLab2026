@@ -1,0 +1,176 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecacf7bdd7e77b2419e140cb5ded6aa5, type: 3}
+  m_Name: KnotTextCollection_fr
+  m_EditorClassIdentifier: Knot.Localization::Knot.Localization.Data.KnotTextCollection
+  _items:
+  - _key: Tut-line1
+    _rawText: "Alors, alors, alors\u2026On dirait que deux bouffons se sont coinc\xE9s
+      dans mon film!"
+  - _key: Tut-line2
+    _rawText: "Ne vous inqui\xE9tez pas, je peux vous aider. Je demande seulement
+      que vous me prot\xE9gez. Ouais, la cassette VHS \xE0 droite, c\u2019est moi.
+      Coucou!"
+  - _key: Tut-line3
+    _rawText: "Tout d\u2019abord, essayez de vous d\xE9placer avec le D-PAD."
+  - _key: Tut-line4
+    _rawText: "Tr\xE8s bien. Et ma barre de vie en haut? Pas super. \_Appuyez sur
+      la touche\_A et maintenez-la enfonc\xE9e pour me reg\xE9n\xE9rer = rembobiner.
+      Merci!"
+  - _key: Tut-line5
+    _rawText: "Des monstres s\u2019ent prennent \xE0 moi bient\xF4t. Vous ne pouvez
+      pas les battre, alors je vous offre un lance-flammes."
+  - _key: Tut-line6
+    _rawText: "Appuyez sur la touche A pour le prendre. Appuyez encore une fois pour
+      le d\xE9poser (seulement sur l\u2019herbe)."
+  - _key: Tut-line7
+    _rawText: Super! Appuyez sur la touche B pour le tourner.
+  - _key: Tut-line8
+    _rawText: "Trop fort! Mais comme vous vous rendez compte\u2026  \xE7a marche
+      pas. "
+  - _key: Tut-line9
+    _rawText: "Ici, le temps c\u2019est votre \xE9nergie."
+  - _key: Tut-line10
+    _rawText: 'Maintenez la touche A pour le rembobiner. '
+  - _key: Tut-line11
+    _rawText: "Maintenez la touche B pour avancer le temps: tire plus vite, s\u2019\xE9puise
+      plus vite."
+  - _key: Tut-line12
+    _rawText: "Si vous tenez une arme, vous ne pouvez pas manipuler le temps vous-m\xEAme.
+      Par contre, votre ami peut vous aider avec la touche A ou B pour rembobiner
+      ou avancer."
+  - _key: Tut-line13
+    _rawText: "G\xE9nial! Il y a un deuxi\xE8me type d\u2019arme. Allez-y! Mettez-la
+      sur l\u2019herbe."
+  - _key: Tut-line14
+    _rawText: "Il y a une ic\xF4ne d\u2019une batterie au-dessus. Quand la batterie
+      est pleine, l\u2019arme se r\xE9veille!"
+  - _key: Tut-line15
+    _rawText: "Voici la m\xE9thode: maintenez la touche A pour la rembobiner, puis
+      maintenez la touche B pour la d\xE9clencher. Essayez sur ce r\xE9servoir explosif."
+  - _key: Tut-line16
+    _rawText: <b> BOUMMM BABY!!! </b>
+  - _key: Tut-line17
+    _rawText: "Ah, et la voiture? Essayez la m\xEAme chose! (Maintenez la touche
+      A puis la touche B)"
+  - _key: Tut-line18
+    _rawText: "Houl\xE0\u2026 la laideur arrive! Ils viennent pour moi! HEH LES GARS,
+      PROTEGEZ-MOI! "
+  - _key: Tut-line19
+    _rawText: "Pas mal! Je vous passe d\u2019autres armes pendant la vraie lutte.
+      Allez-y casser des gueules! Je compte sur vous!"
+  - _key: Settings-Master
+    _rawText: "G\xE9n\xE9ral"
+  - _key: Settings-Music
+    _rawText: Musique
+  - _key: Settings-SFX
+    _rawText: Effets
+  - _key: Settings-Title
+    _rawText: "Param\xE8tres"
+  - _key: Settings-Haptics
+    _rawText: Haptique
+  - _key: Settings-Language
+    _rawText: Langue
+  - _key: Settings-Haptics-High
+    _rawText: Haut
+  - _key: Settings-Haptics-low
+    _rawText: Bas
+  - _key: Settings-Haptics-off
+    _rawText: Off
+  - _key: UI-Back
+    _rawText: Retour
+  - _key: UI-Credits
+    _rawText: "Cr\xE9dits"
+  - _key: UI-Quit
+    _rawText: Quitter
+  - _key: UI-Start
+    _rawText: Jouer
+  - _key: Credits-Disigner-artist
+    _rawText: '<b>Concepteur:</b>
+
+      Jonghwan Kim
+
+
+      <b>Artiste:</b>
+
+      Jannah
+      Ibrahim
+
+      Naya Wardeh
+
+      Hazel Grover
+
+
+      <b>Musique et son:</b>
+
+      Guy
+      Louis Perry'
+  - _key: Credits-Prog-SP
+    _rawText: "<b>Programmeurs:</b>\nKenneth Xu\nMubai Zeng\nMikito Takata\nGuy Louis
+      Perry\n\n<b>Remerciements sp\xE9ciaux:</b>\nCosta Tsimiklis\nMartin Briand"
+  - _key: Tut-Hint
+    _rawText: "Les Deux Joueurs Doivent Accomplir La T\xE2che"
+  - _key: Module-Laser
+    _rawText: Canon Laser
+  - _key: Module-Flame
+    _rawText: Lance-flammes
+  - _key: Module-Saw
+    _rawText: Lance-Scies
+  - _key: Module-Tank
+    _rawText: Char Explosif
+  - _key: Module-Turret
+    _rawText: Tourelle
+  - _key: Module-Saw-Desc
+    _rawText: "-D\xE9g\xE2ts faibles\\n-Port\xE9e longue (zone circulaire)\\n-Cible
+      unique\\n-Attaque en cha\xEEne"
+  - _key: Module-Laser-Desc
+    _rawText: "-D\xE9g\xE2ts \xE9lev\xE9s\\n-Port\xE9e longue (zone rectangulaire)\\n-D\xE9g\xE2ts
+      de zone\\n-Consomme tout le temps restant"
+  - _key: Module-Flame Desc
+    _rawText: "-D\xE9g\xE2ts faibles\\n-Port\xE9e longue (arc)\\n-D\xE9g\xE2ts de
+      zone\\n-Br\xFBlure"
+  - _key: Module-Tank-Desc
+    _rawText: "-D\xE9g\xE2ts \xE9lev\xE9s\\n-Port\xE9e courte (zone circulaire)\\n-D\xE9g\xE2ts
+      de zone"
+  - _key: Module-Turret-Desc
+    _rawText: "-D\xE9g\xE2ts \xE9lev\xE9s\\n-Port\xE9e courte (zone circulaire)\\n-Cible
+      unique"
+  - _key: Keymap-Click
+    _rawText: Appuyez
+  - _key: Keymap-Fast
+    _rawText: pour avancer rapidement
+  - _key: Keymap-Hold
+    _rawText: Maintenez
+  - _key: Keymap-Pickup
+    _rawText: pour ramasser / poser
+  - _key: Keymap-Rewind
+    _rawText: pour rembobiner
+  - _key: Keymap-Rotate
+    _rawText: pour pivoter
+  - _key: Tut-Title
+    _rawText: Tutoriel
+  - _key: Select-Choose
+    _rawText: Choisissez votre personnage
+  - _key: Select-Instructions
+    _rawText: "Croix directionnelle pour s\xE9lectionner ; A pour confirmer"
+  - _key: Module-SelectOne
+    _rawText: Choisissez-en Un
+  - _key: Module-Confrim
+    _rawText: Appuyez sur A pour confirmer
+  - _key: Diffiuclty-Hell
+    _rawText: Hellscape
+  - _key: Diffiuclty-Med
+    _rawText: Moyen
+  - _key: Diffiuclty-Easy
+    _rawText: Facile
+  - _key: Diffiuclty-Hard
+    _rawText: Difficile

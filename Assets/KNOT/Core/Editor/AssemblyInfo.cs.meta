@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 8ff57ca748b699c41844c8c0201fa5e2
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 187603
+  packageName: KNOT Localization
+  packageVersion: 1.4.1
+  assetPath: Assets/KNOT/Core/Editor/AssemblyInfo.cs
+  uploadId: 713359

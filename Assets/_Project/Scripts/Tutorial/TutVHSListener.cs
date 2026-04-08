@@ -11,6 +11,9 @@ namespace _Project.Scripts.Tutorial
 {
     public class TutVHSListener : MonoBehaviour, ITutorialListener
     {
+        [SerializeField] private TutPlayerInteractionController player1;
+        [SerializeField] private TutPlayerInteractionController player2;
+        
         [SerializeField] private VHSModule vhsModule;
         //[SerializeField] private Light vhsLight;
         [SerializeField] private HintUI hintUI;
@@ -39,6 +42,8 @@ namespace _Project.Scripts.Tutorial
             //_initialLightIntensity = vhsLight.intensity;
             arrow.enabled = true;
             hintUI.PlayArrowBackAndForth(arrow);
+            player1.AllowTimeControl = true;
+            player2.AllowTimeControl = true;
 
             //PulseLight();
 
@@ -64,6 +69,10 @@ namespace _Project.Scripts.Tutorial
             arrow.enabled = false;
             hintUI.StopArrowBackAndForth(arrow);
             _health.OnFullHp -= VhsHPFullOnRaised;
+            
+            player1.AllowTimeControl = false;
+            player2.AllowTimeControl = false;
+            
             _callback?.Invoke();
         }
     }

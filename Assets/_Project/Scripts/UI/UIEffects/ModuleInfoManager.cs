@@ -2,12 +2,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections;
+using Knot.Localization;
+using Knot.Localization.Components;
 
 public class ModuleInfoManager : MonoBehaviour
 {
     [Header("=== References ===")]
     [SerializeField] private Image moduleIcon;
-    [SerializeField] private TMP_Text moduleNameText;
+    [SerializeField] private KnotLocalizedTextMeshProUGUI moduleName;
 
     [Header("=== Fade Settings ===")]
     [SerializeField] private float fadeInDuration = 0.2f;
@@ -38,6 +40,7 @@ public class ModuleInfoManager : MonoBehaviour
     private bool isTransitioning = false;
     private Coroutine transitionCoroutine;
     private Coroutine pulseCoroutine;
+    private TextMeshProUGUI moduleNameText;
 
     // Cached values
     private RectTransform iconRect;
@@ -48,8 +51,8 @@ public class ModuleInfoManager : MonoBehaviour
     private Vector3 textOriginalScale;
 
     // Current info
-    private Texture2D currentTexture;
-    private string currentName;
+    private Sprite currentSprite;
+    private KnotTextKeyReference currentNameKey;
 
     void Awake()
     {
@@ -66,9 +69,10 @@ public class ModuleInfoManager : MonoBehaviour
             iconOriginalScale = iconRect.localScale;
         }
 
-        if (moduleNameText != null)
+        if (moduleName != null)
         {
-            textRect = moduleNameText.GetComponent<RectTransform>();
+            moduleNameText = moduleName.GetComponent<TextMeshProUGUI>();
+            textRect = moduleName.GetComponent<RectTransform>();
             textOriginalPosition = textRect.anchoredPosition;
             textOriginalScale = textRect.localScale;
         }
@@ -80,9 +84,9 @@ public class ModuleInfoManager : MonoBehaviour
         isShowing = false;
     }
 
-    public void ShowInfo(Texture2D texture, string moduleName)
+    public void ShowInfo(Sprite texture, KnotTextKeyReference moduleName)
     {
-        if (isShowing && currentTexture == texture && currentName == moduleName)
+        if (isShowing && currentSprite == texture && currentNameKey == moduleName)
             return;
 
         StopAllTransitions();
@@ -129,7 +133,7 @@ public class ModuleInfoManager : MonoBehaviour
             textRect.localScale = textOriginalScale;
     }
 
-    IEnumerator TransitionToNewInfo(Texture2D texture, string moduleName)
+    IEnumerator TransitionToNewInfo(Sprite texture, KnotTextKeyReference moduleName)
     {
         isTransitioning = true;
 
@@ -165,29 +169,25 @@ public class ModuleInfoManager : MonoBehaviour
 
         isShowing = false;
         isTransitioning = false;
-        currentTexture = null;
-        currentName = null;
+        currentSprite = null;
+        currentNameKey = null;
         transitionCoroutine = null;
     }
 
-    void ApplyInfo(Texture2D texture, string moduleName)
+    void ApplyInfo(Sprite sprite, KnotTextKeyReference key)
     {
-        currentTexture = texture;
-        currentName = moduleName;
+        currentSprite = sprite;
+        currentNameKey = key;
 
-        if (moduleIcon != null && texture != null)
+        if (moduleIcon != null && currentSprite != null)
         {
-            Sprite sprite = Sprite.Create(
-                texture,
-                new Rect(0, 0, texture.width, texture.height),
-                new Vector2(0.5f, 0.5f)
-            );
             moduleIcon.sprite = sprite;
         }
 
-        if (moduleNameText != null)
+        if (moduleName != null)
         {
-            moduleNameText.text = moduleName;
+            moduleName.KeyReference = key;
+            moduleName.ForceUpdateValue();
         }
     }
 
@@ -362,13 +362,13 @@ public class ModuleInfoManager : MonoBehaviour
 
         isShowing = false;
         isTransitioning = false;
-        currentTexture = null;
-        currentName = null;
+        currentSprite = null;
+        currentNameKey = null;
     }
 
     // Public getters
     public bool IsShowing => isShowing;
     public bool IsTransitioning => isTransitioning;
-    public string CurrentModuleName => currentName;
-    public Texture2D CurrentTexture => currentTexture;
+    public KnotTextKeyReference CurrentModuleNameKey => currentNameKey;
+    public Sprite CurrentTexture => currentSprite;
 }

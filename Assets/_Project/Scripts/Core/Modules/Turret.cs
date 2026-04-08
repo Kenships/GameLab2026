@@ -15,7 +15,6 @@ namespace _Project.Scripts.Core.Modules
     [RequireComponent(typeof(RangeDetector))]
     public class Turret : PickupModuleBase, IDamageable
     {
-        [SerializeField] public string turretType;
         [Header("References")]
         [SerializeField] private Transform spawnPoint;
         [SerializeField] private GameObject rotationBody;
@@ -37,7 +36,6 @@ namespace _Project.Scripts.Core.Modules
 
         [Header("Player Selection Visuals")]
         [SerializeField] private GameObject player1Visual;
-
         [SerializeField] private GameObject player2Visual;
 
         private float _shootTimer;
@@ -78,8 +76,8 @@ namespace _Project.Scripts.Core.Modules
         private void PerformAttack()
         {
             if (!_canShoot) return;
-
-                _rangeDetector.GetObjectTypeInRangeNoAlloc(_enemies);
+            
+            _rangeDetector.GetObjectTypeInRangeNoAlloc(_enemies);
             ReevaluateTarget();
 
             if (!_currentTarget)
@@ -121,7 +119,7 @@ namespace _Project.Scripts.Core.Modules
                 turretAnimator.Play();
             }
             
-            _audioPooler.New2DAudio(shootSound).OnChannel(AudioType.Sfx).SetVolume(shootSoundVolume).Play();
+            _audioPooler.New2DAudio(shootSound).OnChannel(AudioType.Sfx).SetVolume(shootSoundVolume).RandomizePitch(0.2f,1f).Play();
 
             GameObject bullet = bulletFactory.CreateBullet(_currentTarget.transform, spawnPoint.position, rotationToEnemy);
         }

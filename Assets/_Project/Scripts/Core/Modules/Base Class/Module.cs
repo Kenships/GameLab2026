@@ -1,5 +1,6 @@
 using _Project.Scripts.Core.Modules.Interface;
 using _Project.Scripts.Core.Player;
+using Knot.Localization;
 using UnityEngine;
 
 namespace _Project.Scripts.Core.Modules.Base_Class
@@ -16,7 +17,9 @@ namespace _Project.Scripts.Core.Modules.Base_Class
             Attack,
             Used
         }
-        [TextArea]public string description = "If this module is player-placeable define this";
+
+        [SerializeField] public KnotTextKeyReference nameKey;
+        [SerializeField] public KnotTextKeyReference descKey;
         public Sprite moduleSprite;
         
         public bool EnableModule { get; set; } = true;
@@ -51,7 +54,25 @@ namespace _Project.Scripts.Core.Modules.Base_Class
             if (EnableModule)
                 ActByState();
         }
-        
+
+        public override void FastForward(PlayerData.PlayerID playerID)
+        {
+            if (!EnableModule)
+            {
+                return;
+            }
+            base.FastForward(playerID);
+        }
+
+        public override void Rewind(PlayerData.PlayerID playerID)
+        {
+            if (!EnableModule)
+            {
+                return;
+            }
+            base.Rewind(playerID);
+        }
+
         protected abstract void LoadState();
         protected abstract void AttackState();
         protected abstract void UsedState();

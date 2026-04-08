@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using _Project.Scripts.Core.Modules.Interface;
 using _Project.Scripts.Core.Player;
 using UnityEngine;
@@ -12,6 +13,11 @@ namespace _Project.Scripts.Tutorial
         public Action<PlayerData.PlayerID> OnRewind;
         public Action<PlayerData.PlayerID> OnPickup;
         public Action<PlayerData.PlayerID> OnDrop;
+
+        
+        public GameObject HeldModule => _currentIHoldingObject;
+        public bool AllowTimeControl { get; set;}
+        public bool AllowPickUp { get; set; }
         
         private PlayerData.PlayerID _playerID;
 
@@ -38,7 +44,7 @@ namespace _Project.Scripts.Tutorial
                     _logger.Log($"Current Item: {obj.name} cannot be rotated");
                     return;
                 }
-                
+                StartCoroutine(RotateHaptics());
                 OnRotateClockWise?.Invoke(_playerID);
                 holdable.RotateClockWise();
                 return;
@@ -48,13 +54,14 @@ namespace _Project.Scripts.Tutorial
             {
                 OnRotateClockWise?.Invoke(_playerID);
                 _currentIHoldingObject.TryGetComponent(out IHoldable currentHoldable);
+                StartCoroutine(RotateHaptics());
                 currentHoldable.RotateClockWise();  
             }
         }
 
         protected override void PickUpOrPutDown()
         {
-            if (!IsGameTimeFlowing) return;
+            if (!IsGameTimeFlowing || !AllowPickUp) return;
 
             // Pick Up
             if (!_currentIHoldingObject)
@@ -67,7 +74,7 @@ namespace _Project.Scripts.Tutorial
                 holdable.PickUp();
                 holdable.Anchor(frontOfPlayer);
                 
-                StartCoroutine(PlayHaptics());
+                StartCoroutine(PickupHaptics());
 
                 _currentIHoldingObject = obj;
                 
@@ -88,7 +95,7 @@ namespace _Project.Scripts.Tutorial
                 _gridService.PlaceObjectOnGrid(_currentIHoldingObject, frontOfPlayer.position);
                 holdable.Drop();
                 
-                StartCoroutine(PlayHaptics());
+                StartCoroutine(PickupHaptics());
                 
                 _currentIHoldingObject = null;
                 windVFXController.HideHeldObject();
@@ -99,13 +106,15 @@ namespace _Project.Scripts.Tutorial
 
         protected override void FastForward()
         {
-            if (!IsGameTimeFlowing) return;
+            if (!IsGameTimeFlowing || !AllowTimeControl) return;
 
             //Some default logic to determine if Interact is possible right now
             if (!CanInteract())
             {
                 return;
             }
+            
+            StartCoroutine(FastForwardHaptics());
             
             _isFastForwarding = true;
             windVFXController.ShowWind();
@@ -118,13 +127,15 @@ namespace _Project.Scripts.Tutorial
 
         protected override void Rewind()
         {
-            if (!IsGameTimeFlowing) return;
+            if (!IsGameTimeFlowing || !AllowTimeControl) return;
 
             //Some default logic to determine if Interact is possible right now
             if (!CanInteract())
             {
                 return;
             }
+            
+            StartCoroutine(RewindHaptics());
 
             _isRewinding = true;
             windVFXController.ShowWind(InteractionVFXController.AbilityMode.Rewind);

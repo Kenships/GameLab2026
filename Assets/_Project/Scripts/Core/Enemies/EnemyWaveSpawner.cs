@@ -8,6 +8,8 @@ using _Project.Scripts.UI;
 using Sisus.Init;
 using System.Collections;
 using System.Collections.Generic;
+using _Project.Scripts.Core.HealthManagement;
+using _Project.Scripts.Core.Modules;
 using Obvious.Soap;
 using UnityEngine;
 using UnityEngine.AI;
@@ -68,12 +70,16 @@ namespace _Project.Scripts.Core.Enemies
             public float restAfterWave = 5f;
         }
 
+        private static float QuebecTax = 0.15f;
+
         [Header("References")]
         [SerializeField] private Transform vhsLocation;
         [SerializeField] private ScriptableEventNoParam bossDefeatedEvent;
         [SerializeField] private ScriptableEventWaveData waveStartEvent;
+        [SerializeField] private ScriptableEventNoParam perfectWaveEvent;
         [SerializeField] private EnemyWaveUI waveUI;
-
+        [SerializeField] private FloatVariable difficulty;
+        
         [Header("Wave Settings")]
         [SerializeField] private Wave[] waves;
 
@@ -107,6 +113,8 @@ namespace _Project.Scripts.Core.Enemies
 
             for (int waveIndex = 0; waveIndex < waves.Length; waveIndex++)
             {
+                float initialVHSHealth = GameManager.Instance.Score;
+                
                 Wave currentWave = waves[waveIndex];
 
                 if (currentWave.portalSpawns == null || currentWave.portalSpawns.Length == 0)
@@ -159,9 +167,33 @@ namespace _Project.Scripts.Core.Enemies
 
                 Debug.Log($"Finished {currentWave.waveName}");
 
+                float finalHealth = GameManager.Instance.Score;
+                if (difficulty)
+                {
+                    GameManager.Instance.BonusScore += difficulty.Value * Mathf.Min(QuebecTax * finalHealth * (waveIndex + 1), 500f);
+                }
+                else
+                {
+                    GameManager.Instance.BonusScore += Mathf.Min(QuebecTax * finalHealth * (waveIndex + 1), 500f);
+                }
+                
+                if (Mathf.Approximately(initialVHSHealth, finalHealth))
+                {
+                    GameManager.Instance.BonusScore += 50f;
+                    perfectWaveEvent?.Raise();
+                    Debug.Log("Perfect Wave");
+                }
+                
                 if (waveUI != null)
                 {
-                    yield return waveUI.ShowWaveCompleted();
+                    if (waveIndex == waves.Length - 1)
+                    {
+                        yield return waveUI.FinalWaveCompleted();
+                    }
+                    else
+                    {
+                        yield return waveUI.ShowWaveCompleted();
+                    }
                 }
                 
                 _audioPooler.StopAllSFX();
@@ -173,13 +205,12 @@ namespace _Project.Scripts.Core.Enemies
                 {
                     _sceneLoader.LoadScene();
                     Time.timeScale = 0f;
-                    PlayerInteractionController.IsGameTimeFlowing = false;
                     
                     if (waveUI != null)
                     {
                         waveUI.StartCountdown(currentWave.restAfterWave);
                     }
-
+                    
                     yield return new WaitForSeconds(currentWave.restAfterWave);
                 }
             }
@@ -232,17 +263,15 @@ namespace _Project.Scripts.Core.Enemies
                 return null;
             }
 
-            EnemyBase enemy = factory.CreateEnemy();
+            EnemyBase enemy = factory.CreateEnemy(spawnPoint.position, Quaternion.identity);
 
-            if (enemy.TryGetComponent<NavMeshAgent>(out var agent))
+            if (difficulty != null)
             {
-                agent.Warp(spawnPoint.position);
+                Health health = enemy.GetComponent<Health>();
+                health.Initialize(health.MaxHealth * difficulty.Value);
+                enemy.Attack *= difficulty.Value;
             }
-            else
-            {
-                enemy.transform.position = spawnPoint.position;
-            }
-
+            
             if (currentWaveEnemies != null)
             {
                 currentWaveEnemies.Add(enemy);

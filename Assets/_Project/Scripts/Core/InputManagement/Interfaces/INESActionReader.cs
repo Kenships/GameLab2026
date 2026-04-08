@@ -14,6 +14,8 @@ namespace _Project.Scripts.Core.InputManagement.Interfaces
         event UnityAction OnReleaseAltInteract;
         event UnityAction OnTapAltInteract;
 
+        event UnityAction OnEscape;
+
         public bool TryGetGamePad(out Gamepad gamePad);
     }
 }
