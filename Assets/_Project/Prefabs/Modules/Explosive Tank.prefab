@@ -45737,6 +45737,7 @@ MonoBehaviour:
   loadModel: {fileID: 2402263464760494358}
   usedModel: {fileID: 8673828619959828336}
   fullTimeUI: {fileID: 8110168745242804397}
+  hapticsStrength: {fileID: 11400000, guid: 6aa2da57d62bb414e9bb178c9f39d63f, type: 2}
   damage: 200
   timeGapBeforeSecondAttack: 0.25
   explosionDelay: 0.6
@@ -45766,7 +45767,7 @@ MonoBehaviour:
   length: 10
   targetLayers:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 320
   obsticalLayers:
     serializedVersion: 2
     m_Bits: 0

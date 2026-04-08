@@ -16,6 +16,8 @@ namespace _Project.Scripts.Core.Modules
 {
     public class LazerCannon : PickupModuleBase, IDamageable
     {
+        public bool IsAttacking {get; private set;}
+        
         [Header("References")]
         [SerializeField] private Transform lazerBeamStartPos;
         [SerializeField] private GameObject lazerCannonNew;
@@ -95,6 +97,8 @@ namespace _Project.Scripts.Core.Modules
 
         private IEnumerator AttackRoutine()
         {
+            IsAttacking = true;
+            
             float attackInterval = 1f / dps;
 
             while (!_beamDurationTimer.IsFinished)
@@ -102,6 +106,8 @@ namespace _Project.Scripts.Core.Modules
                 PerformAttack();
                 yield return new WaitForSeconds(attackInterval);
             }
+            
+            IsAttacking = false;
         }
 
         public override void ShowVisual(PlayerData.PlayerID playerID)
@@ -204,7 +210,11 @@ namespace _Project.Scripts.Core.Modules
         private void OnDisable()
         {
             if (_attackRoutine != null)
+            {
+                IsAttacking = false;
                 StopCoroutine(_attackRoutine);
+            }
+                
         }
     }
 }

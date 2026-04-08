@@ -1,12 +1,16 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using _Project.Scripts.Core.HealthManagement;
+using _Project.Scripts.Core.InputManagement;
 using _Project.Scripts.Core.Modules.Base_Class;
 using _Project.Scripts.Core.Player;
 using _Project.Scripts.Effects.Interface;
 using _Project.Scripts.Effects.Runtime;
 using _Project.Scripts.Util.Timer.Timers;
+using Obvious.Soap;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using AudioType = _Project.Scripts.Core.AudioPooling.Interface.AudioType;
 
 namespace _Project.Scripts.Core.Modules
@@ -18,6 +22,7 @@ namespace _Project.Scripts.Core.Modules
         [SerializeField] private GameObject loadModel;
         [SerializeField] private GameObject usedModel;
         [SerializeField] private GameObject fullTimeUI;
+        [SerializeField] private FloatVariable hapticsStrength;
 
         [Header("Explosive Tank Settings")]
         [SerializeField] private float damage = 90f;
@@ -35,6 +40,7 @@ namespace _Project.Scripts.Core.Modules
         [SerializeField] private GameObject player2Visual;
         private RangeDetector _rangeDetector; // rangeType is circle
         private List<IDamageable> _enemies;
+        private List<NESActionReader> _players;
 
 
         private CountdownTimer _delay;
@@ -43,6 +49,7 @@ namespace _Project.Scripts.Core.Modules
         {
             base.OnAwake();
             _rangeDetector = GetComponent<RangeDetector>();
+            _players = new List<NESActionReader>();
             _enemies = new List<IDamageable>();
             
             loadModel.SetActive(false);
@@ -82,8 +89,18 @@ namespace _Project.Scripts.Core.Modules
 
         private void PerformAttack()
         {
+            _rangeDetector.GetObjectTypeInRangeNoAlloc(_players);
             _rangeDetector.GetObjectTypeInRangeNoAlloc(_enemies);
 
+            foreach (var player in _players)
+            {
+                Debug.Log(player);
+                if (player.TryGetGamePad(out Gamepad gamepad))
+                {
+                    StartCoroutine(ExplosionRumble(gamepad));
+                }
+            }
+            
             if (_enemies.Count <= 0)
             {
                 return;
@@ -210,6 +227,15 @@ namespace _Project.Scripts.Core.Modules
         public void RemoveEffect(Guid id)
         {
             
+        }
+
+        private IEnumerator ExplosionRumble(Gamepad gamepad)
+        {
+            gamepad.SetMotorSpeeds(hapticsStrength.Value, hapticsStrength.Value);
+
+            yield return new WaitForSecondsRealtime(0.3f);
+            
+            gamepad.SetMotorSpeeds(0f, 0f);
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using _Project.Scripts.Core.AudioPooling;
 using _Project.Scripts.Core.Grid;
 using _Project.Scripts.Core.InputManagement.Interfaces;
+using _Project.Scripts.Core.Modules;
 using _Project.Scripts.Core.Modules.Interface;
 using Obvious.Soap;
 using Sisus.Init;
@@ -193,7 +194,7 @@ namespace _Project.Scripts.Core.Player
                     return;
                 if (!obj.TryGetComponent(out IHoldable holdable))
                     return;
-
+                
                 holdable.PickUp();
                 holdable.Anchor(pickupAnchor);
 
@@ -201,6 +202,11 @@ namespace _Project.Scripts.Core.Player
 
                 windVFXController.ShowHeldObject(obj);
                 _currentIHoldingObject = obj;
+                if (obj.TryGetComponent(out LazerCannon cannon) && cannon.IsAttacking)
+                {
+                    StartCoroutine(LazerCannonRumble(cannon));
+                }
+                
             }
             // Put Down
             else
@@ -353,6 +359,21 @@ namespace _Project.Scripts.Core.Player
             }
 
             _gamePad.SetMotorSpeeds(0, 0);
+        }
+
+        private IEnumerator LazerCannonRumble(LazerCannon cannon)
+        {
+            if (_gamePad == null && !_inputReader.TryGetGamePad(out _gamePad))
+                yield break;
+
+            while (_currentIHoldingObject == cannon.gameObject && cannon.IsAttacking)
+            {
+                _gamePad.SetMotorSpeeds(.2f * hapticsIntensity.Value, 1f * hapticsIntensity.Value);
+                yield return null;
+            }
+
+            _gamePad.SetMotorSpeeds(0, 0);
+
         }
     }
 }
