@@ -234,6 +234,7 @@ MonoBehaviour:
       m_Calls: []
   loadOnAwake: 0
   withOverlay: 1
+  resetTime: 0
   fadeAudio: 1
   fadeDuration: 1
   sceneGroup: 1
@@ -2034,6 +2035,7 @@ MonoBehaviour:
       m_Calls: []
   loadOnAwake: 0
   withOverlay: 1
+  resetTime: 0
   fadeAudio: 1
   fadeDuration: 1
   sceneGroup: 1

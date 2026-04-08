@@ -300,8 +300,9 @@ MonoBehaviour:
   onBeforeSceneLoad:
     m_PersistentCalls:
       m_Calls: []
-  loadOnAwake: 0
+  loadOnAwake: 1
   withOverlay: 1
+  resetTime: 1
   fadeAudio: 1
   fadeDuration: 1
   sceneGroup: 1
@@ -402,7 +403,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.597793, y: 0, z: 0, w: 0.8016505}
+  m_LocalRotation: {x: 0.59779215, y: 0, z: 0, w: 0.8016512}
   m_LocalPosition: {x: -1.6, y: 11.84, z: -4.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1015,7 +1016,6 @@ GameObject:
   - component: {fileID: 1423020231}
   - component: {fileID: 1423020230}
   - component: {fileID: 1423020229}
-  - component: {fileID: 1423020228}
   - component: {fileID: 1423020232}
   m_Layer: 0
   m_Name: Overlay Camera
@@ -1024,23 +1024,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1423020228
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1423020227}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a0a779e9bbcba646a5e1b890dbb3f5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: InitArgs::Sisus.Init.Internal.ServiceTag
-  service: {fileID: 1423020230}
-  toClients: 6
-  definingType:
-    scriptAssetGuid: 
-    TypeNameAndAssembly: UnityEngine.Camera, UnityEngine.CoreModule
 --- !u!114 &1423020229
 MonoBehaviour:
   m_ObjectHideFlags: 0

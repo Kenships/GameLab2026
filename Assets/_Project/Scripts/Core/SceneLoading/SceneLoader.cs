@@ -19,6 +19,7 @@ namespace _Project.Scripts.Core.SceneLoading
         [SerializeField] private bool loadOnAwake;
 
         [SerializeField] private bool withOverlay;
+        [SerializeField] private bool resetTime;
         [SerializeField] private bool fadeAudio = true;
 
         [SerializeField, ShowIf(nameof(fadeAudio))]
@@ -59,6 +60,11 @@ namespace _Project.Scripts.Core.SceneLoading
 
         public void LoadScene()
         {
+            if (resetTime)
+            {
+                Time.timeScale = 1f;
+            }
+            
             onBeforeSceneLoad?.Invoke();
             SceneController.SceneLoadingStrategy loadingStrategy =
                 _sceneController
@@ -101,11 +107,6 @@ namespace _Project.Scripts.Core.SceneLoading
                 {
                     _audioController.FadeAllVolumeFromScene(scene.BuildIndex, 0f, fadeDuration);
                 }
-            }
-            
-            if (withOverlay)
-            {
-                Time.timeScale = 1f;
             }
 
             loadingStrategy

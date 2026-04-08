@@ -39,10 +39,10 @@ namespace _Project.Scripts.Core.AudioPooling
         #region DebugProperties
         [Space]
         [SerializeField] private bool showDebug;
-        [SerializeField, ReadOnly, ShowIf(nameof(showDebug))] private int numberOfActiveSources;
-        [SerializeField, ReadOnly, ShowIf(nameof(showDebug))] private int numberOfInactiveSources;
-        [SerializeField, ReadOnly, ShowIf(nameof(showDebug))] private SerializedDictionary<AudioType, List<PooledAudioSource>> activeSourcesByAudioType;
-        [SerializeField, ReadOnly, ShowIf(nameof(showDebug))] private SerializedDictionary<int, List<PooledAudioSource>> activeSourcesBySceneIndex;
+        [SerializeField, ShowIf(nameof(showDebug))] private int numberOfActiveSources;
+        [SerializeField, ShowIf(nameof(showDebug))] private int numberOfInactiveSources;
+        [SerializeField, ShowIf(nameof(showDebug))] private SerializedDictionary<AudioType, List<PooledAudioSource>> activeSourcesByAudioType;
+        [SerializeField, ShowIf(nameof(showDebug))] private SerializedDictionary<int, List<PooledAudioSource>> activeSourcesBySceneIndex;
 
         #endregion
         
@@ -126,13 +126,6 @@ namespace _Project.Scripts.Core.AudioPooling
                 return new EmptyAudioPlayer();
             }
 
-            // Music can't be thrown
-            if (audioConfig.AudioType == AudioType.Music)
-            {
-                return GetNextAudioSource(audioConfig);
-            }
-
-
             // check for capacity availability
             PooledAudioSource audioSource = null;
             if (!activeSourcesByAudioType.TryGetValue(audioConfig.AudioType, out List<PooledAudioSource> list) ||
@@ -170,7 +163,7 @@ namespace _Project.Scripts.Core.AudioPooling
 
                 case AudioOverridePolicy.OverrideFirst:
                     PooledAudioSource first = activeSourcesByAudioType[audioConfig.AudioType]
-                        .First(val => val.Priority == audioConfig.Priority);
+                        .First(val => val.Priority <= audioConfig.Priority);
 
                     _logger.LogWarning($"AudioPooler of AudioType: {audioConfig.AudioType} is Full. " +
                                        $"Replaced playing {first.Clip.name} with " +
@@ -233,7 +226,7 @@ namespace _Project.Scripts.Core.AudioPooling
             activeSourcesBySceneIndex[pooledAudioSource.SceneBuildIndex].Remove(pooledAudioSource);
             pooledAudioSource.gameObject.SetActive(false);
             _inactiveSources.Push(pooledAudioSource);
-            numberOfActiveSources--;
+            numberOfActiveSources = activeSourcesByAudioType.Sum(val => val.Value.Count);
             numberOfInactiveSources = _inactiveSources.Count;
         }
 

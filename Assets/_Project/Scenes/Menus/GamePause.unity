@@ -333,6 +333,7 @@ MonoBehaviour:
       m_Calls: []
   loadOnAwake: 0
   withOverlay: 0
+  resetTime: 0
   fadeAudio: 1
   fadeDuration: 1
   sceneGroup: 1
@@ -812,6 +813,7 @@ MonoBehaviour:
       m_Calls: []
   loadOnAwake: 0
   withOverlay: 0
+  resetTime: 0
   fadeAudio: 1
   fadeDuration: 1
   sceneGroup: 1
@@ -2020,7 +2022,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   loadOnAwake: 0
-  withOverlay: 0
+  withOverlay: 1
+  resetTime: 1
   fadeAudio: 1
   fadeDuration: 1
   sceneGroup: 1
@@ -2033,10 +2036,9 @@ MonoBehaviour:
   - buildIndex: 1
   unloadDisabled: 0
   scenesToUnload:
-  - buildIndex: 5
-  - buildIndex: 5
-  - buildIndex: 10
   - buildIndex: 6
+  - buildIndex: 4
+  - buildIndex: 10
 --- !u!114 &1550516157
 MonoBehaviour:
   m_ObjectHideFlags: 0

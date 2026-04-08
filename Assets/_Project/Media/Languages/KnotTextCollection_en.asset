@@ -123,7 +123,7 @@ MonoBehaviour:
   - _key: Module-Turret
     _rawText: Turret
   - _key: Module-Saw-Desc
-    _rawText: Saw Shooter
+    _rawText: -Low damage\n-Long range circle\n-Single target\n-Chain attack
   - _key: Module-Laser-Desc
     _rawText: -High damage\n-Long range rectangle\n-Area damage\n-Each shot costs
       all the time
