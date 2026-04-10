@@ -33,15 +33,15 @@ namespace _Project.Scripts.UI
             //Module[] modulesArray = Resources.LoadAll<Module>("Modules");
             
             _actionReader.OnDPadInput += HandlePad;
-            _actionReader.OnTapInteract += Select;
-            _actionReader.OnTapAltInteract += Cancel;
+            _actionReader.OnTapAltInteract += Select;
+            _actionReader.OnTapInteract += Cancel;
         }
 
         private void OnDestroy()
         {
             _actionReader.OnDPadInput -= HandlePad;
-            _actionReader.OnTapInteract -= Select;
-            _actionReader.OnTapAltInteract -= Cancel;
+            _actionReader.OnTapAltInteract -= Select;
+            _actionReader.OnTapInteract -= Cancel;
         }
         
         private void Cancel()
