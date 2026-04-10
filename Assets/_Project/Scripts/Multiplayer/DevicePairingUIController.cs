@@ -146,6 +146,8 @@ namespace _Project.Scripts.Multiplayer
 
         private void PlayerOnMove((PlayerData.PlayerID id, Vector2Int dir) arg)
         {
+            Debug.Log("PlayerOnMove " + arg.id);
+            
             if (arg.dir.x == 0)
                 return;
             
@@ -156,6 +158,7 @@ namespace _Project.Scripts.Multiplayer
                     {
                         return;
                     }
+                    Debug.Log("Init Player 1");
                     _player1Init = true;
                     UpdateSelectIndex(ref _player1Index, arg.dir.x);
                     break;
@@ -164,6 +167,7 @@ namespace _Project.Scripts.Multiplayer
                     {
                         return;
                     }
+                    Debug.Log("Init Player 2");
                     _player2Init = true;
                     UpdateSelectIndex(ref _player2Index, arg.dir.x);
                     break;

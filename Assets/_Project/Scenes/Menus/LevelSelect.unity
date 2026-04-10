@@ -636,8 +636,7 @@ GameObject:
   - component: {fileID: 263919770}
   - component: {fileID: 263919769}
   - component: {fileID: 263919768}
-  - component: {fileID: 263919767}
-  - component: {fileID: 263919766}
+  - component: {fileID: 263919772}
   m_Layer: 0
   m_Name: ProxyPlayer2
   m_TagString: Untagged
@@ -645,42 +644,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &263919766
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 263919765}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a0a779e9bbcba646a5e1b890dbb3f5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: InitArgs::Sisus.Init.Internal.ServiceTag
-  service: {fileID: 263919769}
-  toClients: 6
-  definingType:
-    scriptAssetGuid: aeb15ffcf0b84c229cc620f51891d636
-    TypeNameAndAssembly: _Project.Scripts.Core.InputManagement.Interfaces.INESUIReader,
-      Assembly-CSharp
---- !u!114 &263919767
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 263919765}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a0a779e9bbcba646a5e1b890dbb3f5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: InitArgs::Sisus.Init.Internal.ServiceTag
-  service: {fileID: 263919769}
-  toClients: 0
-  definingType:
-    scriptAssetGuid: 8047b856d9ca42ffa3513502bad7d0d1
-    TypeNameAndAssembly: _Project.Scripts.Core.InputManagement.Interfaces.INESActionReader,
-      Assembly-CSharp
 --- !u!114 &263919768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -733,6 +696,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &263919772
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 263919765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a0a779e9bbcba646a5e1b890dbb3f5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: InitArgs::Sisus.Init.Internal.ServiceTag
+  service: {fileID: 263919769}
+  toClients: 0
+  definingType:
+    scriptAssetGuid: 8047b856d9ca42ffa3513502bad7d0d1
+    TypeNameAndAssembly: _Project.Scripts.Core.InputManagement.Interfaces.INESActionReader,
+      Assembly-CSharp
 --- !u!1 &380837531
 GameObject:
   m_ObjectHideFlags: 0
@@ -1207,7 +1188,7 @@ GameObject:
   - component: {fileID: 564632882}
   - component: {fileID: 564632881}
   - component: {fileID: 564632880}
-  - component: {fileID: 564632879}
+  - component: {fileID: 564632884}
   m_Layer: 0
   m_Name: ProxyPlayer1
   m_TagString: Untagged
@@ -1215,24 +1196,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &564632879
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 564632878}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a0a779e9bbcba646a5e1b890dbb3f5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: InitArgs::Sisus.Init.Internal.ServiceTag
-  service: {fileID: 564632881}
-  toClients: 0
-  definingType:
-    scriptAssetGuid: aeb15ffcf0b84c229cc620f51891d636
-    TypeNameAndAssembly: _Project.Scripts.Core.InputManagement.Interfaces.INESUIReader,
-      Assembly-CSharp
 --- !u!114 &564632880
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1285,6 +1248,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &564632884
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 564632878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a0a779e9bbcba646a5e1b890dbb3f5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: InitArgs::Sisus.Init.Internal.ServiceTag
+  service: {fileID: 564632881}
+  toClients: 0
+  definingType:
+    scriptAssetGuid: 8047b856d9ca42ffa3513502bad7d0d1
+    TypeNameAndAssembly: _Project.Scripts.Core.InputManagement.Interfaces.INESActionReader,
+      Assembly-CSharp
 --- !u!1 &713460528
 GameObject:
   m_ObjectHideFlags: 0

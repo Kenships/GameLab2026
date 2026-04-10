@@ -253,6 +253,14 @@ MonoBehaviour:
     _metadata:
       _runtime: []
       _editor: []
+  - _key: Score-Victory
+    _metadata:
+      _runtime: []
+      _editor: []
+  - _key: Score-Restart
+    _metadata:
+      _runtime: []
+      _editor: []
   references:
     version: 2
     RefIds: []

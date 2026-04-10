@@ -8,16 +8,16 @@ using UnityEngine.Events;
 
 namespace _Project.Scripts.UI
 {
-    public class ModuleSelectPlayer : MonoBehaviour<INESUIReader>
+    public class ModuleSelectPlayer : MonoBehaviour<INESActionReader>
     {
         public event UnityAction<PlayerData.PlayerID> OnConfirm;
         public event UnityAction<PlayerData.PlayerID> OnCancel;
         public event UnityAction<(PlayerData.PlayerID, Vector2Int)> OnMove;
         
-        private INESUIReader _actionReader;
+        private INESActionReader _actionReader;
         private PlayerData _playerData;
 
-        protected override void Init(INESUIReader actionReader)
+        protected override void Init(INESActionReader actionReader)
         {
             _actionReader = actionReader;
         }
@@ -32,16 +32,16 @@ namespace _Project.Scripts.UI
             //TODO migrate to loading modules manually
             //Module[] modulesArray = Resources.LoadAll<Module>("Modules");
             
-            _actionReader.OnNavigate += HandlePad;
-            _actionReader.OnSubmit += Select;
-            _actionReader.OnCancel += Cancel;
+            _actionReader.OnDPadInput += HandlePad;
+            _actionReader.OnTapInteract += Select;
+            _actionReader.OnTapAltInteract += Cancel;
         }
 
         private void OnDestroy()
         {
-            _actionReader.OnNavigate -= HandlePad;
-            _actionReader.OnSubmit -= Select;
-            _actionReader.OnCancel -= Cancel;
+            _actionReader.OnDPadInput -= HandlePad;
+            _actionReader.OnTapInteract -= Select;
+            _actionReader.OnTapAltInteract -= Cancel;
         }
         
         private void Cancel()

@@ -2509,7 +2509,7 @@ GameObject:
   - component: {fileID: 1103270400}
   - component: {fileID: 1103270397}
   - component: {fileID: 1103270403}
-  - component: {fileID: 1103270402}
+  - component: {fileID: 1103270404}
   m_Layer: 5
   m_Name: ProxyPlayer1
   m_TagString: Untagged
@@ -2561,7 +2561,19 @@ RectTransform:
   m_AnchoredPosition: {x: 960, y: 540}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1103270402
+--- !u!114 &1103270403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1103270396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72f71fa2422c45f0ae1148360f819b64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.InputManagement.NESActionReader
+--- !u!114 &1103270404
 MonoBehaviour:
   m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2576,21 +2588,9 @@ MonoBehaviour:
   service: {fileID: 1103270403}
   toClients: 0
   definingType:
-    scriptAssetGuid: aeb15ffcf0b84c229cc620f51891d636
-    TypeNameAndAssembly: _Project.Scripts.Core.InputManagement.Interfaces.INESUIReader,
+    scriptAssetGuid: 8047b856d9ca42ffa3513502bad7d0d1
+    TypeNameAndAssembly: _Project.Scripts.Core.InputManagement.Interfaces.INESActionReader,
       Assembly-CSharp
---- !u!114 &1103270403
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1103270396}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72f71fa2422c45f0ae1148360f819b64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.InputManagement.NESActionReader
 --- !u!1 &1144151027
 GameObject:
   m_ObjectHideFlags: 0
@@ -2869,7 +2869,7 @@ GameObject:
   - component: {fileID: 1219834393}
   - component: {fileID: 1219834390}
   - component: {fileID: 1219834396}
-  - component: {fileID: 1219834395}
+  - component: {fileID: 1219834397}
   m_Layer: 5
   m_Name: ProxyPlayer2
   m_TagString: Untagged
@@ -2921,7 +2921,19 @@ RectTransform:
   m_AnchoredPosition: {x: 960, y: 540}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1219834395
+--- !u!114 &1219834396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1219834389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72f71fa2422c45f0ae1148360f819b64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.InputManagement.NESActionReader
+--- !u!114 &1219834397
 MonoBehaviour:
   m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2936,21 +2948,9 @@ MonoBehaviour:
   service: {fileID: 1219834396}
   toClients: 0
   definingType:
-    scriptAssetGuid: aeb15ffcf0b84c229cc620f51891d636
-    TypeNameAndAssembly: _Project.Scripts.Core.InputManagement.Interfaces.INESUIReader,
+    scriptAssetGuid: 8047b856d9ca42ffa3513502bad7d0d1
+    TypeNameAndAssembly: _Project.Scripts.Core.InputManagement.Interfaces.INESActionReader,
       Assembly-CSharp
---- !u!114 &1219834396
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1219834389}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72f71fa2422c45f0ae1148360f819b64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.InputManagement.NESActionReader
 --- !u!1 &1264538315
 GameObject:
   m_ObjectHideFlags: 0

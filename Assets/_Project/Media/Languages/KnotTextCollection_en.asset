@@ -163,3 +163,7 @@ MonoBehaviour:
     _rawText: Easy
   - _key: Diffiuclty-Hard
     _rawText: Hard
+  - _key: Score-Victory
+    _rawText: Victory
+  - _key: Score-Restart
+    _rawText: Restart

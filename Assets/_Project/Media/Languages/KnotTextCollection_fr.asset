@@ -174,3 +174,7 @@ MonoBehaviour:
     _rawText: Facile
   - _key: Diffiuclty-Hard
     _rawText: Difficile
+  - _key: Score-Victory
+    _rawText: Victoire
+  - _key: Score-Restart
+    _rawText: Rejouer

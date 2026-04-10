@@ -16,6 +16,6 @@ namespace _Project.Scripts.Multiplayer
         
         bool SwapPlayers { get; set; }
 
-        bool TryGetFor(Component client, out NESActions value);
+        bool TryGetFor(Component client, out INESAction value);
     }
 }
