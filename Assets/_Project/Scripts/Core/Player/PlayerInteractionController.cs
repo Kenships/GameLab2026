@@ -202,7 +202,7 @@ namespace _Project.Scripts.Core.Player
 
                 windVFXController.ShowHeldObject(obj);
                 _currentIHoldingObject = obj;
-                if (obj.TryGetComponent(out LazerCannon cannon) && cannon.IsAttacking)
+                if (obj.TryGetComponent(out LazerCannon cannon))
                 {
                     StartCoroutine(LazerCannonRumble(cannon));
                 }
@@ -366,14 +366,20 @@ namespace _Project.Scripts.Core.Player
             if (_gamePad == null && !_inputReader.TryGetGamePad(out _gamePad))
                 yield break;
 
-            while (_currentIHoldingObject == cannon.gameObject && cannon.IsAttacking)
+            while (_currentIHoldingObject == cannon.gameObject)
             {
-                _gamePad.SetMotorSpeeds(.2f * hapticsIntensity.Value, 1f * hapticsIntensity.Value);
+                if(cannon.IsAttacking)
+                {
+                    _gamePad.SetMotorSpeeds(.2f * hapticsIntensity.Value, 1f * hapticsIntensity.Value);
+                }
+                else
+                {
+                    _gamePad.SetMotorSpeeds(0, 0);
+                }
                 yield return null;
             }
 
             _gamePad.SetMotorSpeeds(0, 0);
-
         }
     }
 }

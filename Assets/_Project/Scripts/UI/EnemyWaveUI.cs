@@ -139,6 +139,7 @@ namespace _Project.Scripts.UI
             scoreTextLarge.enabled = true;
             
             int finalScore = Mathf.CeilToInt(GameManager.Instance.FinalScore);
+            int currentHealth = Mathf.CeilToInt(GameManager.Instance.Score);
             
             float timer = 0;
 
@@ -153,9 +154,19 @@ namespace _Project.Scripts.UI
                     gamepad.SetMotorSpeeds(0.5f * progress * hapticsIntensity.Value, 1f * progress * hapticsIntensity.Value);
                 }
                 
+                healthSlider.value = (1f - progress) * currentHealth / 1000f;
+
+                if (healthSlider.value <= 0.001f)
+                {
+                    healthSlider.value = 0f;
+                    healthSlider.gameObject.SetActive(false);
+                }
+                
                 scoreTextLarge.text = "Score: " + (int) (_internalScore + (finalScore - _internalScore) * progress);
                 yield return null;
             }
+            
+            
             
             _internalScore = finalScore;
             scoreTextLarge.text = "score: " + _internalScore;
