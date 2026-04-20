@@ -1,16 +1,17 @@
-using _Project.Scripts.Core.AudioPooling;
-using System;
 using System.Collections;
+using _Project.Scripts.Core.AudioPooling;
+using Knot.Localization;
+using Knot.Localization.Components;
+using Sisus.Init;
 using TMPro;
 using UnityEngine;
 using AudioType = _Project.Scripts.Core.AudioPooling.Interface.AudioType;
-using Sisus.Init;
 
-
-namespace _Project.Scripts.Effects
+namespace _Project.Scripts.UI
 {
     public class TextTyper : MonoBehaviour<AudioPooler>
     {
+        private KnotLocalizedTextMeshProUGUI localizedText;
         private TextMeshProUGUI dialogueText;
         private string fullText;
 
@@ -31,17 +32,17 @@ namespace _Project.Scripts.Effects
         void Start()
         {
             dialogueText = GetComponent<TextMeshProUGUI>();
+            localizedText = GetComponent<KnotLocalizedTextMeshProUGUI>();
         }
 
         IEnumerator ShowTextRoutine()
         {
             dialogueText.maxVisibleCharacters = 0;
-            dialogueText.text = fullText;
 
 
-            for (int i = 0; i < fullText.Length; i++)
+            for (int i = 0; i < dialogueText.text.Length; i++)
             {
-                if (hasSFX == true)
+                if (hasSFX)
                 {
                     _audioPooler.New2DAudio(typeSound).OnChannel(AudioType.Sfx).SetVolume(typeSoundVolume).RandomizePitch(0.1f, 0.5f).Play();
                 }
@@ -50,16 +51,32 @@ namespace _Project.Scripts.Effects
             }
         }
 
-        public void StartTyping(string textToType)
+        public void StartTyping(KnotTextKeyReference key)
         {
-            fullText = textToType;
-            dialogueText.text = "";
-
             if (!gameObject.activeInHierarchy)
             {
                 return;
             }
+            
+            dialogueText.maxVisibleCharacters = 0;
+            
+            localizedText.KeyReference = key;
+            localizedText.ForceUpdateValue();
         
+            StopAllCoroutines();
+            StartCoroutine(ShowTextRoutine());
+        }
+
+        public void StartTyping(string text)
+        {
+            if (!gameObject.activeInHierarchy)
+            {
+                return;
+            }
+            
+            dialogueText.maxVisibleCharacters = 0;
+            dialogueText.text = text;
+            
             StopAllCoroutines();
             StartCoroutine(ShowTextRoutine());
         }

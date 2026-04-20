@@ -55,6 +55,7 @@ namespace _Project.Scripts.Core.Modules
 
         private void Start()
         {
+            GameManager.Instance.BonusScore = 0;
             GameManager.Instance.Score = _myHealth.CurrentHealth;
             GameManager.Instance.RestartTimer();
             GameManager.Instance.StartTimer();

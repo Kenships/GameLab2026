@@ -378,29 +378,13 @@ namespace _Project.Scripts
         public void ShowHeldObject(GameObject heldObject)
         {
             Debug.Log(heldObject);
-            if (heldObject.GetComponent<Flamethrower>() != null)
+            if (!heldObject.TryGetComponent(out Module module))
             {
-                moduleInfoManager.ShowInfo(flameIcon, "Flame Thrower");
+                Debug.LogError("[InteractionVFXController] Module not found!");
+                return;
             }
-            else if (heldObject.GetComponent<LazerCannon>() != null)
-            {
-                moduleInfoManager.ShowInfo(lazerIcon, "Lazer Cannon");
-            }
-            else if (heldObject.GetComponent<ExplosiveTank>() != null)
-            {
-                moduleInfoManager.ShowInfo(explosiveIcon, "Explosive Tank");
-            }
-            else if (heldObject.GetComponent<Turret>() != null)
-            {
-                if (heldObject.GetComponent<Turret>().turretType == "disc")
-                {
-                    moduleInfoManager.ShowInfo(discIcon, "Saw Shooter");
-                }
-                else if (heldObject.GetComponent<Turret>().turretType == "normal")
-                {
-                    moduleInfoManager.ShowInfo(turretIcon, "Turret");
-                }
-            }
+            
+            moduleInfoManager.ShowInfo(module.moduleSprite, module.nameKey);
         }
 
         public void HideHeldObject()

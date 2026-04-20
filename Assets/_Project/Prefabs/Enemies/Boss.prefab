@@ -1275,6 +1275,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlaySoundOnDestroy
   sound: {fileID: 8300000, guid: bb1cdd5f82e0f5445bcec3cdc271156d, type: 3}
   volume: 0.25
+  AddrandomPitch: 0
+  shiftPitch: 0
 --- !u!114 &2217113366812231393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2511,7 +2513,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.5764706, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

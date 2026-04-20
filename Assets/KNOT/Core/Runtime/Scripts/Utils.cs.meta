@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 3a6959a80d7bff340bbcaae92374326d
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 187603
+  packageName: KNOT Localization
+  packageVersion: 1.4.1
+  assetPath: Assets/KNOT/Core/Runtime/Scripts/Utils.cs
+  uploadId: 713359

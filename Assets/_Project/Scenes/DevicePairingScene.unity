@@ -481,7 +481,6 @@ GameObject:
   - component: {fileID: 180777900}
   - component: {fileID: 180777898}
   - component: {fileID: 180777904}
-  - component: {fileID: 180777903}
   m_Layer: 0
   m_Name: ProxyPlayer1
   m_TagString: Untagged
@@ -547,24 +546,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &180777903
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 180777897}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a0a779e9bbcba646a5e1b890dbb3f5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: InitArgs::Sisus.Init.Internal.ServiceTag
-  service: {fileID: 180777900}
-  toClients: 6
-  definingType:
-    scriptAssetGuid: aeb15ffcf0b84c229cc620f51891d636
-    TypeNameAndAssembly: _Project.Scripts.Core.InputManagement.Interfaces.INESUIReader,
-      Assembly-CSharp
 --- !u!114 &180777904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -589,6 +570,7 @@ GameObject:
   - component: {fileID: 218768845}
   - component: {fileID: 218768844}
   - component: {fileID: 218768843}
+  - component: {fileID: 218768846}
   m_Layer: 0
   m_Name: choosePlayerText (1)
   m_TagString: Untagged
@@ -740,6 +722,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 218768841}
   m_CullTransparentMesh: 1
+--- !u!114 &218768846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 218768841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dae449646f11534f81928346b3b6341, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Knot.Localization::Knot.Localization.Components.KnotLocalizedTextMeshProUGUI
+  _keyReference:
+    _key: Select-Instructions
+    _formatters: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &238817818
 GameObject:
   m_ObjectHideFlags: 0
@@ -1571,6 +1571,7 @@ MonoBehaviour:
       m_Calls: []
   loadOnAwake: 0
   withOverlay: 1
+  resetTime: 0
   fadeAudio: 1
   fadeDuration: 1
   sceneGroup: 0
@@ -2615,6 +2616,7 @@ GameObject:
   - component: {fileID: 881800233}
   - component: {fileID: 881800232}
   - component: {fileID: 881800231}
+  - component: {fileID: 881800234}
   m_Layer: 0
   m_Name: choosePlayerText
   m_TagString: Untagged
@@ -2766,6 +2768,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 881800229}
   m_CullTransparentMesh: 1
+--- !u!114 &881800234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 881800229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dae449646f11534f81928346b3b6341, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Knot.Localization::Knot.Localization.Components.KnotLocalizedTextMeshProUGUI
+  _keyReference:
+    _key: Select-Choose
+    _formatters: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &895398674
 GameObject:
   m_ObjectHideFlags: 0
@@ -3306,7 +3326,6 @@ GameObject:
   - component: {fileID: 1089749727}
   - component: {fileID: 1089749725}
   - component: {fileID: 1089749731}
-  - component: {fileID: 1089749730}
   m_Layer: 0
   m_Name: ProxyPlayer2
   m_TagString: Untagged
@@ -3372,24 +3391,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1089749730
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1089749724}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a0a779e9bbcba646a5e1b890dbb3f5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: InitArgs::Sisus.Init.Internal.ServiceTag
-  service: {fileID: 1089749727}
-  toClients: 6
-  definingType:
-    scriptAssetGuid: aeb15ffcf0b84c229cc620f51891d636
-    TypeNameAndAssembly: _Project.Scripts.Core.InputManagement.Interfaces.INESUIReader,
-      Assembly-CSharp
 --- !u!114 &1089749731
 MonoBehaviour:
   m_ObjectHideFlags: 0

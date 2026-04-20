@@ -161,6 +161,7 @@ GameObject:
   - component: {fileID: 45331214}
   - component: {fileID: 45331216}
   - component: {fileID: 45331215}
+  - component: {fileID: 45331217}
   m_Layer: 5
   m_Name: Hold A
   m_TagString: Untagged
@@ -177,16 +178,14 @@ RectTransform:
   m_GameObject: {fileID: 45331213}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.88526905, y: 0.88526905, z: 0.88526905}
+  m_LocalScale: {x: 14.0404625, y: 14.0404625, z: 14.0404625}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1589792649}
-  - {fileID: 1467133993}
-  m_Father: {fileID: 221087344}
+  m_Children: []
+  m_Father: {fileID: 1589792649}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 41.4, y: -23.095398}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: -547.5759, y: -338.28366}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &45331215
@@ -243,7 +242,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 4
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -289,6 +288,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 45331213}
   m_CullTransparentMesh: 1
+--- !u!114 &45331217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 45331213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dae449646f11534f81928346b3b6341, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Knot.Localization::Knot.Localization.Components.KnotLocalizedTextMeshProUGUI
+  _keyReference:
+    _key: Keymap-Hold
+    _formatters: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &46548988
 GameObject:
   m_ObjectHideFlags: 0
@@ -401,6 +418,7 @@ GameObject:
   - component: {fileID: 85801132}
   - component: {fileID: 85801134}
   - component: {fileID: 85801133}
+  - component: {fileID: 85801135}
   m_Layer: 5
   m_Name: Click A
   m_TagString: Untagged
@@ -417,16 +435,14 @@ RectTransform:
   m_GameObject: {fileID: 85801131}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.88526905, y: 0.88526905, z: 0.88526905}
+  m_LocalScale: {x: 14.0404625, y: 14.0404625, z: 14.0404625}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 494725531}
-  - {fileID: 1336331259}
-  m_Father: {fileID: 221087344}
+  m_Children: []
+  m_Father: {fileID: 494725531}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -59.32959, y: 55.604614}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: -565.8301, y: -338.28287}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &85801133
@@ -483,7 +499,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 4
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -529,6 +545,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 85801131}
   m_CullTransparentMesh: 1
+--- !u!114 &85801135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 85801131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dae449646f11534f81928346b3b6341, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Knot.Localization::Knot.Localization.Components.KnotLocalizedTextMeshProUGUI
+  _keyReference:
+    _key: Keymap-Click
+    _formatters: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &110837879
 GameObject:
   m_ObjectHideFlags: 0
@@ -1662,15 +1696,16 @@ RectTransform:
   m_LocalScale: {x: 1.2994406, y: 1.2994406, z: 1.2994406}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 85801132}
-  - {fileID: 1351754047}
-  - {fileID: 45331214}
-  - {fileID: 906839659}
+  - {fileID: 484479782}
+  - {fileID: 1589792649}
+  - {fileID: 398029464}
+  - {fileID: 494725531}
+  - {fileID: 1249880631}
   m_Father: {fileID: 319838571}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 730, y: 802.3}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -278, y: -277.7}
   m_SizeDelta: {x: 720, y: 480}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &262706690
@@ -2191,14 +2226,16 @@ RectTransform:
   m_GameObject: {fileID: 398029463}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.071222715, y: 0.071222715, z: 0.071222715}
+  m_LocalScale: {x: 0.06305127, y: 0.06305127, z: 0.06305127}
   m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 906839659}
+  m_Children:
+  - {fileID: 906839659}
+  - {fileID: 1742593155}
+  m_Father: {fileID: 221087344}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 9.1, y: 7}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: -25.147469, y: -295.99844}
   m_SizeDelta: {x: 720, y: 480}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &398029465
@@ -2420,14 +2457,16 @@ RectTransform:
   m_GameObject: {fileID: 484479781}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.071222715, y: 0.071222715, z: 0.071222715}
+  m_LocalScale: {x: 0.06305127, y: 0.06305127, z: 0.06305127}
   m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1351754047}
+  m_Children:
+  - {fileID: 1351754047}
+  - {fileID: 1590790952}
+  m_Father: {fileID: 221087344}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 10.399974, y: 7}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: -24.526108, y: -217.29852}
   m_SizeDelta: {x: 720, y: 480}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &484479783
@@ -2479,6 +2518,7 @@ GameObject:
   - component: {fileID: 494191211}
   - component: {fileID: 494191213}
   - component: {fileID: 494191212}
+  - component: {fileID: 494191214}
   m_Layer: 5
   m_Name: moduleName
   m_TagString: Untagged
@@ -2605,6 +2645,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 494191210}
   m_CullTransparentMesh: 1
+--- !u!114 &494191214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 494191210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dae449646f11534f81928346b3b6341, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Knot.Localization::Knot.Localization.Components.KnotLocalizedTextMeshProUGUI
+  _keyReference:
+    _key: 
+    _formatters: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &494725530
 GameObject:
   m_ObjectHideFlags: 0
@@ -2632,14 +2690,16 @@ RectTransform:
   m_GameObject: {fileID: 494725530}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.071222715, y: 0.071222715, z: 0.071222715}
+  m_LocalScale: {x: 0.06305127, y: 0.06305127, z: 0.06305127}
   m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 85801132}
+  m_Children:
+  - {fileID: 85801132}
+  - {fileID: 1336331259}
+  m_Father: {fileID: 221087344}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 10.399989, y: 6.9999866}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: -23.653198, y: -178.19852}
   m_SizeDelta: {x: 720, y: 480}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &494725532
@@ -4778,6 +4838,7 @@ GameObject:
   - component: {fileID: 906839659}
   - component: {fileID: 906839661}
   - component: {fileID: 906839660}
+  - component: {fileID: 906839662}
   m_Layer: 5
   m_Name: Hold B
   m_TagString: Untagged
@@ -4794,16 +4855,14 @@ RectTransform:
   m_GameObject: {fileID: 906839658}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.88526905, y: 0.88526905, z: 0.88526905}
+  m_LocalScale: {x: 14.0404625, y: 14.0404625, z: 14.0404625}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 398029464}
-  - {fileID: 1742593155}
-  m_Father: {fileID: 221087344}
+  m_Children: []
+  m_Father: {fileID: 398029464}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -17, y: -62.195366}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: -505.45773, y: -338.2847}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &906839660
@@ -4860,7 +4919,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 4
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -4906,6 +4965,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 906839658}
   m_CullTransparentMesh: 1
+--- !u!114 &906839662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 906839658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dae449646f11534f81928346b3b6341, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Knot.Localization::Knot.Localization.Components.KnotLocalizedTextMeshProUGUI
+  _keyReference:
+    _key: Keymap-Hold
+    _formatters: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &918048411
 GameObject:
   m_ObjectHideFlags: 0
@@ -4917,6 +4994,7 @@ GameObject:
   - component: {fileID: 918048412}
   - component: {fileID: 918048414}
   - component: {fileID: 918048413}
+  - component: {fileID: 918048415}
   m_Layer: 5
   m_Name: moduleName
   m_TagString: Untagged
@@ -5043,6 +5121,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 918048411}
   m_CullTransparentMesh: 1
+--- !u!114 &918048415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 918048411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dae449646f11534f81928346b3b6341, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Knot.Localization::Knot.Localization.Components.KnotLocalizedTextMeshProUGUI
+  _keyReference:
+    _key: 
+    _formatters: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &921503305
 GameObject:
   m_ObjectHideFlags: 0
@@ -6062,6 +6158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb6d95369255de54cb7d33669c2ee027, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.UI.EnemyWaveUI
+  hapticsIntensity: {fileID: 11400000, guid: 6aa2da57d62bb414e9bb178c9f39d63f, type: 2}
   players:
   - {fileID: 365337710}
   - {fileID: 845866575}
@@ -6227,6 +6324,41 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
+--- !u!1 &1249880630
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1249880631}
+  m_Layer: 5
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1249880631
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1249880630}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 221087344}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1259113796
 GameObject:
   m_ObjectHideFlags: 0
@@ -6650,6 +6782,7 @@ GameObject:
   - component: {fileID: 1336331259}
   - component: {fileID: 1336331261}
   - component: {fileID: 1336331260}
+  - component: {fileID: 1336331262}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -6666,14 +6799,14 @@ RectTransform:
   m_GameObject: {fileID: 1336331258}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 14.0404625, y: 14.0404625, z: 14.0404625}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 85801132}
+  m_Father: {fileID: 494725531}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 140.2, y: 4.4054413}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 1822.4514, y: -276.42917}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1336331260
@@ -6723,8 +6856,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25
-  m_fontSizeBase: 25
+  m_fontSize: 23
+  m_fontSizeBase: 23
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -6762,7 +6895,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -34.374817, w: 0}
+  m_margin: {x: 0, y: 0, z: -36.387924, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -6776,6 +6909,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1336331258}
   m_CullTransparentMesh: 1
+--- !u!114 &1336331262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1336331258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dae449646f11534f81928346b3b6341, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Knot.Localization::Knot.Localization.Components.KnotLocalizedTextMeshProUGUI
+  _keyReference:
+    _key: Keymap-Pickup
+    _formatters: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &1351754046
 GameObject:
   m_ObjectHideFlags: 0
@@ -6787,6 +6938,7 @@ GameObject:
   - component: {fileID: 1351754047}
   - component: {fileID: 1351754049}
   - component: {fileID: 1351754048}
+  - component: {fileID: 1351754050}
   m_Layer: 5
   m_Name: Click B
   m_TagString: Untagged
@@ -6803,16 +6955,14 @@ RectTransform:
   m_GameObject: {fileID: 1351754046}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.88526905, y: 0.88526905, z: 0.88526905}
+  m_LocalScale: {x: 14.0404625, y: 14.0404625, z: 14.0404625}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 484479782}
-  - {fileID: 1590790952}
-  m_Father: {fileID: 221087344}
+  m_Children: []
+  m_Father: {fileID: 484479782}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 51.2, y: 16.504562}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: -532.1336, y: -338.284}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1351754048
@@ -6869,7 +7019,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 4
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -6915,6 +7065,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1351754046}
   m_CullTransparentMesh: 1
+--- !u!114 &1351754050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1351754046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dae449646f11534f81928346b3b6341, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Knot.Localization::Knot.Localization.Components.KnotLocalizedTextMeshProUGUI
+  _keyReference:
+    _key: Keymap-Click
+    _formatters: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &1354424668
 GameObject:
   m_ObjectHideFlags: 0
@@ -7365,7 +7533,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ModuleInfoManager
   moduleIcon: {fileID: 1074399310}
-  moduleNameText: {fileID: 494191212}
+  moduleName: {fileID: 494191214}
   fadeInDuration: 0.2
   fadeOutDuration: 0.15
   switchFadeDuration: 0.1
@@ -7625,6 +7793,7 @@ GameObject:
   - component: {fileID: 1467133993}
   - component: {fileID: 1467133995}
   - component: {fileID: 1467133994}
+  - component: {fileID: 1467133996}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -7641,14 +7810,14 @@ RectTransform:
   m_GameObject: {fileID: 1467133992}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 14.0404625, y: 14.0404625, z: 14.0404625}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 45331214}
+  m_Father: {fileID: 1589792649}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 139.05382, y: 4.4054413}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 1824.6116, y: -276.42917}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1467133994
@@ -7700,8 +7869,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25
-  m_fontSizeBase: 25
+  m_fontSize: 23
+  m_fontSizeBase: 23
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -7753,6 +7922,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1467133992}
   m_CullTransparentMesh: 1
+--- !u!114 &1467133996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1467133992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dae449646f11534f81928346b3b6341, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Knot.Localization::Knot.Localization.Components.KnotLocalizedTextMeshProUGUI
+  _keyReference:
+    _key: Keymap-Rewind
+    _formatters: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &1467989100
 GameObject:
   m_ObjectHideFlags: 0
@@ -8379,14 +8566,16 @@ RectTransform:
   m_GameObject: {fileID: 1589792648}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.071222715, y: 0.071222715, z: 0.071222715}
+  m_LocalScale: {x: 0.06305127, y: 0.06305127, z: 0.06305127}
   m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 45331214}
+  m_Children:
+  - {fileID: 45331214}
+  - {fileID: 1467133993}
+  m_Father: {fileID: 221087344}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 9.10002, y: 6.9999866}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: -24.887157, y: -256.8985}
   m_SizeDelta: {x: 720, y: 480}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1589792650
@@ -8438,6 +8627,7 @@ GameObject:
   - component: {fileID: 1590790952}
   - component: {fileID: 1590790954}
   - component: {fileID: 1590790953}
+  - component: {fileID: 1590790955}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -8454,14 +8644,14 @@ RectTransform:
   m_GameObject: {fileID: 1590790951}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 14.0404625, y: 14.0404625, z: 14.0404625}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1351754047}
+  m_Father: {fileID: 484479782}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 140.19998, y: 4.4054413}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 1822.452, y: -276.42874}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1590790953
@@ -8511,8 +8701,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25
-  m_fontSizeBase: 25
+  m_fontSize: 23
+  m_fontSizeBase: 23
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -8564,6 +8754,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1590790951}
   m_CullTransparentMesh: 1
+--- !u!114 &1590790955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1590790951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dae449646f11534f81928346b3b6341, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Knot.Localization::Knot.Localization.Components.KnotLocalizedTextMeshProUGUI
+  _keyReference:
+    _key: Keymap-Rotate
+    _formatters: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &1601954569
 GameObject:
   m_ObjectHideFlags: 0
@@ -9299,6 +9507,7 @@ GameObject:
   - component: {fileID: 1742593155}
   - component: {fileID: 1742593157}
   - component: {fileID: 1742593156}
+  - component: {fileID: 1742593158}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -9315,14 +9524,14 @@ RectTransform:
   m_GameObject: {fileID: 1742593154}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 14.0404625, y: 14.0404625, z: 14.0404625}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 906839659}
+  m_Father: {fileID: 398029464}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 139.05382, y: 4.4054413}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 1824.6123, y: -276.4295}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1742593156
@@ -9374,8 +9583,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25
-  m_fontSizeBase: 25
+  m_fontSize: 23
+  m_fontSizeBase: 23
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -9427,6 +9636,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1742593154}
   m_CullTransparentMesh: 1
+--- !u!114 &1742593158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1742593154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dae449646f11534f81928346b3b6341, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Knot.Localization::Knot.Localization.Components.KnotLocalizedTextMeshProUGUI
+  _keyReference:
+    _key: Keymap-Fast
+    _formatters: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &1748977628
 GameObject:
   m_ObjectHideFlags: 0
@@ -10330,7 +10557,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ModuleInfoManager
   moduleIcon: {fileID: 553736695}
-  moduleNameText: {fileID: 918048413}
+  moduleName: {fileID: 918048415}
   fadeInDuration: 0.2
   fadeOutDuration: 0.15
   switchFadeDuration: 0.1
@@ -11522,6 +11749,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afb804ee20edbc849854c855b7795ee3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Project.Scripts.Core.Modules.ModuleSpawner
+  hapticsIntensity: {fileID: 11400000, guid: 6aa2da57d62bb414e9bb178c9f39d63f, type: 2}
   player1: {fileID: 365337710}
   player2: {fileID: 845866575}
   spawnEvent: {fileID: 11400000, guid: ea59c12e137cbf940b576ce2cfee1c24, type: 2}
@@ -14848,7 +15076,12 @@ MonoBehaviour:
   rewindSound: {fileID: 8300000, guid: 904184cbab2ef6d4eb570d029d20a47c, type: 3}
   rewindSoundVolume: 1
   brokenEffect: {fileID: 0}
-  description: VHS
+  nameKey:
+    _key: 
+    _formatters: []
+  descKey:
+    _key: 
+    _formatters: []
   moduleSprite: {fileID: 0}
   state: 1
   player1Visual: {fileID: 4243329160764794403}
@@ -14872,6 +15105,9 @@ MonoBehaviour:
   damageMultiplierBelowThreshold: 0.5
   damageReductionHealthThreshold2: 100
   damageMultiplierBelowThreshold2: 0.2
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &5025753353263229707
 GameObject:
   m_ObjectHideFlags: 0
@@ -15218,6 +15454,7 @@ MonoBehaviour:
   waveStartEvent: {fileID: 11400000, guid: 70472f02f5cc06345845b0a8e5cba28f, type: 2}
   perfectWaveEvent: {fileID: 11400000, guid: 64c481e45ee502340a1eff08d1861d7c, type: 2}
   waveUI: {fileID: 1136097441}
+  difficulty: {fileID: 11400000, guid: 0c7cc35167b2c30479e5fc95b8c14535, type: 2}
   waves:
   - waveName: Wave 1
     portalSpawns:
@@ -15440,6 +15677,7 @@ MonoBehaviour:
       m_Calls: []
   loadOnAwake: 0
   withOverlay: 0
+  resetTime: 0
   fadeAudio: 1
   fadeDuration: 1
   sceneGroup: 1
@@ -16505,6 +16743,7 @@ MonoBehaviour:
       m_Calls: []
   loadOnAwake: 0
   withOverlay: 0
+  resetTime: 0
   fadeAudio: 1
   fadeDuration: 1
   sceneGroup: 1

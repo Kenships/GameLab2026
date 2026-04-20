@@ -98,10 +98,10 @@ namespace _Project.Scripts.Core.Modules
             normalDistance = new ParticleSystem.MinMaxCurve(main.startLifetime.constantMin, main.startLifetime.constantMax);
 
             particle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
-            /*
-            UpdateParticleAngle(_rangeDetector.angle * angleMultiplier, emissionRateToAngleRatio);
-            UpdateDistance(_rangeDetector.radius * radiusMultiplier);
-            */
+            
+            //UpdateParticleAngle(_rangeDetector.angle);
+            //UpdateDistance(_rangeDetector.radius * radiusMultiplier);
+            
         }
 
         private void UpdateParticleBehaviour(ParticleSystem.MinMaxCurve S, ParticleSystem.MinMaxCurve L)
@@ -112,13 +112,10 @@ namespace _Project.Scripts.Core.Modules
             main.startSpeed = S;
         }
 
-        private void UpdateParticleAngle(float angle, float emissionRateToAngleRatio)
+        private void UpdateParticleAngle(float angle)
         {
             var shape = particle.shape;
             shape.angle = angle;
-
-            var emission = particle.emission;
-            emission.rateOverTime = angle * emissionRateToAngleRatio;
         }
 
         private void UpdateDistance(float distance)

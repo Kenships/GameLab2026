@@ -15,6 +15,7 @@ namespace _Project.Scripts.UI
 {
     public class EnemyWaveUI : MonoBehaviour
     {
+        [SerializeField] private FloatVariable hapticsIntensity;
         [SerializeField] private NESActionReader[] players;
         [SerializeField] private ScriptableEventNoParam perfectWaveEvent;
         [SerializeField] private ScriptableEventWaveData waveData;
@@ -138,6 +139,7 @@ namespace _Project.Scripts.UI
             scoreTextLarge.enabled = true;
             
             int finalScore = Mathf.CeilToInt(GameManager.Instance.FinalScore);
+            int currentHealth = Mathf.CeilToInt(GameManager.Instance.Score);
             
             float timer = 0;
 
@@ -149,12 +151,22 @@ namespace _Project.Scripts.UI
                 
                 foreach (var gamepad in _gamepads)
                 {
-                    gamepad.SetMotorSpeeds(0.5f * progress, 1f * progress);
+                    gamepad.SetMotorSpeeds(0.5f * progress * hapticsIntensity.Value, 1f * progress * hapticsIntensity.Value);
+                }
+                
+                healthSlider.value = (1f - progress) * currentHealth / 1000f;
+
+                if (healthSlider.value <= 0.001f)
+                {
+                    healthSlider.value = 0f;
+                    healthSlider.gameObject.SetActive(false);
                 }
                 
                 scoreTextLarge.text = "Score: " + (int) (_internalScore + (finalScore - _internalScore) * progress);
                 yield return null;
             }
+            
+            
             
             _internalScore = finalScore;
             scoreTextLarge.text = "score: " + _internalScore;
@@ -190,7 +202,7 @@ namespace _Project.Scripts.UI
                 
                 foreach (var gamepad in _gamepads)
                 {
-                    gamepad.SetMotorSpeeds(0.5f * progress, 0.5f * progress);
+                    gamepad.SetMotorSpeeds(0.5f * progress * hapticsIntensity.Value, 0.5f * progress * hapticsIntensity.Value);
                 }
                 
                 scoreTextLarge.text = "Score: " + (int) (_internalScore + (finalScore - _internalScore) * progress);
@@ -230,7 +242,7 @@ namespace _Project.Scripts.UI
             while (remaining > 0f)
             {
                 int secondsToShow = Mathf.CeilToInt(remaining);
-                countdownText.text = "Incoming: " + secondsToShow.ToString();
+                countdownText.text = secondsToShow.ToString();
                 yield return null;
                 remaining -= Time.deltaTime;
             }

@@ -23,9 +23,16 @@ namespace _Project.Scripts.Core.Enemies
         public float Health => _health.CurrentHealth;
         public float Speed => _moveSpeed * SpeedMultiplier;
         
+        public float Attack
+        {
+            get => _attackDamage;
+            set => _attackDamage = value;
+        }
+        
         protected AudioPooler _audioPooler;
         protected Health _health;
         protected float _moveSpeed;
+        protected float _attackDamage;
         
         protected override void Init(AudioPooler playerReader)
         {

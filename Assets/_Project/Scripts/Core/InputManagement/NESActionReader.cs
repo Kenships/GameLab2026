@@ -12,7 +12,7 @@ using UnityEngine.InputSystem.Interactions;
 namespace _Project.Scripts.Core.InputManagement
 {
     [RequireComponent(typeof(PlayerData))]
-    public class NESActionReader : MonoBehaviour<IDevicePairingService, ISceneFocusRetrieval>, INESActionReader, INESUIReader
+    public class NESActionReader : MonoBehaviour<IDevicePairingService, ISceneFocusRetrieval>, INESActionReader
     {
         public event UnityAction<Vector2> OnNavigate;
         public event UnityAction OnSubmit;
@@ -28,13 +28,13 @@ namespace _Project.Scripts.Core.InputManagement
         public event UnityAction OnTapAltInteract;
         
         
-        private NESActions _actions;
+        private INESAction _actions;
         private ISceneFocusRetrieval _sceneFocusRetrieval;
         private bool _frameOffset;
         
         protected override void Init(IDevicePairingService devicePairingService, ISceneFocusRetrieval sceneFocusRetrieval)
         {
-            if (!devicePairingService.TryGetFor(this, out NESActions action))
+            if (!devicePairingService.TryGetFor(this, out INESAction action))
             {
                 Debug.LogError($"Input Actions Not Found for Player{gameObject.name}, ID: {gameObject.GetComponent<PlayerData>().ID}");
                 return;
@@ -42,25 +42,23 @@ namespace _Project.Scripts.Core.InputManagement
             _actions = action;
             _sceneFocusRetrieval = sceneFocusRetrieval;
         }
-        
-        
+
         private void OnEnable()
         {
-            _actions.Enable();
-            _actions.Player.Move.performed += MoveOnPerformed;
-            _actions.Player.Move.canceled += MoveOnCanceled;
+            _actions.MovePerformed += MoveOnPerformed;
+            _actions.MoveCancelled += MoveOnCanceled;
             
-            _actions.Player.Interact.performed += InteractOnPerformed;
-            _actions.Player.Interact.canceled += InteractOnCanceled;
+            _actions.InteractPerformed += InteractOnPerformed;
+            _actions.InteractCancelled += InteractOnCanceled;
             
-            _actions.Player.AltInteract.performed += AltInteractOnPerformed;
-            _actions.Player.AltInteract.canceled += AltInteractOnCanceled;
+            _actions.AltInteractPerformed += AltInteractOnPerformed;
+            _actions.AltInteractCancelled += AltInteractOnCanceled;
             
-            _actions.UI.Navigate.performed += NavigateOnPerformed;
-            _actions.UI.Submit.performed += SubmitOnPerformed;
-            _actions.UI.Cancel.performed += CancelOnPerformed;
+            _actions.UINavigatePerformed += NavigateOnPerformed;
+            _actions.UISubmitPerformed += SubmitOnPerformed;
+            _actions.UICancelPerformed += CancelOnPerformed;
             
-            _actions.Override.Escape.performed += EscapeOnPerformed;
+            _actions.OverridePerformed += EscapeOnPerformed;
         }
 
         
@@ -68,20 +66,20 @@ namespace _Project.Scripts.Core.InputManagement
         {
             if (_actions == null) return;
             
-            _actions.Player.Move.performed -= MoveOnPerformed;
-            _actions.Player.Move.canceled -= MoveOnCanceled;
+            _actions.MovePerformed -= MoveOnPerformed;
+            _actions.MoveCancelled -= MoveOnCanceled;
             
-            _actions.Player.Interact.performed -= InteractOnPerformed;
-            _actions.Player.Interact.canceled -= InteractOnCanceled;
+            _actions.InteractPerformed -= InteractOnPerformed;
+            _actions.InteractCancelled -= InteractOnCanceled;
             
-            _actions.Player.AltInteract.performed -= AltInteractOnPerformed;
-            _actions.Player.AltInteract.canceled -= AltInteractOnCanceled;
+            _actions.AltInteractPerformed -= AltInteractOnPerformed;
+            _actions.AltInteractCancelled -= AltInteractOnCanceled;
             
-            _actions.UI.Navigate.performed -= NavigateOnPerformed;
-            _actions.UI.Submit.performed -= SubmitOnPerformed;
-            _actions.UI.Cancel.performed -= CancelOnPerformed;
+            _actions.UINavigatePerformed -= NavigateOnPerformed;
+            _actions.UISubmitPerformed-= SubmitOnPerformed;
+            _actions.UICancelPerformed -= CancelOnPerformed;
             
-            _actions.Override.Escape.performed -= EscapeOnPerformed;
+            _actions.OverridePerformed -= EscapeOnPerformed;
         }
 
         private void EscapeOnPerformed(InputAction.CallbackContext obj)

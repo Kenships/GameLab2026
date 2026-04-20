@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using _Project.Scripts.Core.AudioPooling;
 using _Project.Scripts.Core.Grid;
 using _Project.Scripts.Core.InputManagement.Interfaces;
+using _Project.Scripts.Core.Modules;
 using _Project.Scripts.Core.Modules.Interface;
 using Obvious.Soap;
 using Sisus.Init;
@@ -16,8 +17,9 @@ namespace _Project.Scripts.Core.Player
     public class PlayerInteractionController : MonoBehaviour<INESActionReader, IGridService, ILogger, AudioPooler>
     {
         public static bool IsGameTimeFlowing = true;
-        
-        [Header("Haptics Settings")]
+
+        [Header("Haptics Settings")] [SerializeField]
+        private FloatVariable hapticsIntensity;
         [SerializeField] private float lowFrequencyHapticIntensity = 0.6f;
         [SerializeField] private float highFrequencyHapticIntensity = .2f;
         [SerializeField] private float hapticsDuration = 0.12f;
@@ -85,6 +87,8 @@ namespace _Project.Scripts.Core.Player
             if (_inputReader == null)
                 return;
 
+            _gamePad?.SetMotorSpeeds(0,0);
+            
             _inputReader.OnTapInteract -= RotateClockWise;
 
             _inputReader.OnHoldInteract -= FastForward;
@@ -190,7 +194,7 @@ namespace _Project.Scripts.Core.Player
                     return;
                 if (!obj.TryGetComponent(out IHoldable holdable))
                     return;
-
+                
                 holdable.PickUp();
                 holdable.Anchor(pickupAnchor);
 
@@ -198,6 +202,11 @@ namespace _Project.Scripts.Core.Player
 
                 windVFXController.ShowHeldObject(obj);
                 _currentIHoldingObject = obj;
+                if (obj.TryGetComponent(out LazerCannon cannon))
+                {
+                    StartCoroutine(LazerCannonRumble(cannon));
+                }
+                
             }
             // Put Down
             else
@@ -234,7 +243,7 @@ namespace _Project.Scripts.Core.Player
             }
 
             StartCoroutine(FastForwardHaptics());
-
+            
             _isFastForwarding = true;
             windVFXController.ShowWind();
             foreach (ITimeControllable controllable in _inRangeTimeControllables)
@@ -339,13 +348,34 @@ namespace _Project.Scripts.Core.Player
             if (_gamePad == null && !_inputReader.TryGetGamePad(out _gamePad))
                 yield break;
 
-            _gamePad.SetMotorSpeeds(lowFrequency, highFrequency);
+            _gamePad.SetMotorSpeeds(lowFrequency * hapticsIntensity.Value, highFrequency * hapticsIntensity.Value);
 
             float timer = hapticsDuration;
 
             while (timer >= 0)
             {
                 timer -= Time.unscaledDeltaTime;
+                yield return null;
+            }
+
+            _gamePad.SetMotorSpeeds(0, 0);
+        }
+
+        private IEnumerator LazerCannonRumble(LazerCannon cannon)
+        {
+            if (_gamePad == null && !_inputReader.TryGetGamePad(out _gamePad))
+                yield break;
+
+            while (_currentIHoldingObject == cannon.gameObject)
+            {
+                if(cannon.IsAttacking)
+                {
+                    _gamePad.SetMotorSpeeds(.2f * hapticsIntensity.Value, 1f * hapticsIntensity.Value);
+                }
+                else
+                {
+                    _gamePad.SetMotorSpeeds(0, 0);
+                }
                 yield return null;
             }
 

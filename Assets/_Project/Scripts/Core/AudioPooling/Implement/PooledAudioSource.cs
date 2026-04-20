@@ -53,9 +53,10 @@ namespace _Project.Scripts.Core.AudioPooling.Implement
 
         public void FadeVolume(float volume, float duration = 0f, bool stopOnSilent = true)
         {
+            
             float volumePercentage = volume / 100f;
             volumePercentage = Mathf.Clamp(volumePercentage, 0f, 1f);
-
+            
             if (duration == 0f)
             {
                 _audioSource.volume = volumePercentage;
@@ -64,15 +65,16 @@ namespace _Project.Scripts.Core.AudioPooling.Implement
                     Stop();
                 }
             }
-            
-            Tween.StopAll(_audioSource);
+             
             Tween.AudioVolume(
                 target: _audioSource,
                 endValue: volumePercentage,
-                duration: duration
+                duration: duration,
+                useUnscaledTime: true
             ).OnComplete(() =>
                          {
-                             if (volume == 0f)
+                             Debug.Log("Fade volume complete");
+                             if (Mathf.Approximately(_audioSource.volume, 0f))
                                  Stop();
                          });
         }
@@ -120,7 +122,9 @@ namespace _Project.Scripts.Core.AudioPooling.Implement
 
         public void Resume()
         {
-            Play();
+            _audioSource.UnPause();
+            if (_playingCoroutine == null)
+                _playingCoroutine = StartCoroutine(WaitForAudioCompletion());
         }
     }
 }

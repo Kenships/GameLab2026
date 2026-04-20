@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 60fe3b938499caa44baed8022c8e8657
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 187603
+  packageName: KNOT Localization
+  packageVersion: 1.4.1
+  assetPath: Assets/KNOT/Core/LICENSE.md
+  uploadId: 713359

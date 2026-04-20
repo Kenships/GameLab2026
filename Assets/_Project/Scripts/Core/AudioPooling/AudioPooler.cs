@@ -39,10 +39,10 @@ namespace _Project.Scripts.Core.AudioPooling
         #region DebugProperties
         [Space]
         [SerializeField] private bool showDebug;
-        [SerializeField, ReadOnly, ShowIf(nameof(showDebug))] private int numberOfActiveSources;
-        [SerializeField, ReadOnly, ShowIf(nameof(showDebug))] private int numberOfInactiveSources;
-        [SerializeField, ReadOnly, ShowIf(nameof(showDebug))] private SerializedDictionary<AudioType, List<PooledAudioSource>> activeSourcesByAudioType;
-        [SerializeField, ReadOnly, ShowIf(nameof(showDebug))] private SerializedDictionary<int, List<PooledAudioSource>> activeSourcesBySceneIndex;
+        [SerializeField, ShowIf(nameof(showDebug))] private int numberOfActiveSources;
+        [SerializeField, ShowIf(nameof(showDebug))] private int numberOfInactiveSources;
+        [SerializeField, ShowIf(nameof(showDebug))] private SerializedDictionary<AudioType, List<PooledAudioSource>> activeSourcesByAudioType;
+        [SerializeField, ShowIf(nameof(showDebug))] private SerializedDictionary<int, List<PooledAudioSource>> activeSourcesBySceneIndex;
 
         #endregion
         
@@ -126,13 +126,6 @@ namespace _Project.Scripts.Core.AudioPooling
                 return new EmptyAudioPlayer();
             }
 
-            // Music can't be thrown
-            if (audioConfig.AudioType == AudioType.Music)
-            {
-                return GetNextAudioSource(audioConfig);
-            }
-
-
             // check for capacity availability
             PooledAudioSource audioSource = null;
             if (!activeSourcesByAudioType.TryGetValue(audioConfig.AudioType, out List<PooledAudioSource> list) ||
@@ -170,7 +163,7 @@ namespace _Project.Scripts.Core.AudioPooling
 
                 case AudioOverridePolicy.OverrideFirst:
                     PooledAudioSource first = activeSourcesByAudioType[audioConfig.AudioType]
-                        .First(val => val.Priority == audioConfig.Priority);
+                        .First(val => val.Priority <= audioConfig.Priority);
 
                     _logger.LogWarning($"AudioPooler of AudioType: {audioConfig.AudioType} is Full. " +
                                        $"Replaced playing {first.Clip.name} with " +
@@ -198,11 +191,10 @@ namespace _Project.Scripts.Core.AudioPooling
             {
                 audioSource = _inactiveSources.Pop();
             }
-
+            
             audioSource.Initialize(audioConfig);
             audioSource.gameObject.SetActive(true);
-            audioSource.Play();
-
+            
             if (activeSourcesByAudioType.ContainsKey(audioConfig.AudioType))
             {
                 activeSourcesByAudioType[audioConfig.AudioType].Add(audioSource);
@@ -223,17 +215,35 @@ namespace _Project.Scripts.Core.AudioPooling
             }
 
             numberOfInactiveSources = _inactiveSources.Count;
-            numberOfActiveSources++;
+            numberOfActiveSources = activeSourcesByAudioType.Sum(val => val.Value.Count);
+            
+            audioSource.Play();
             return new AudioPlayer(audioSource);
         }
 
         public void ReturnToPool(PooledAudioSource pooledAudioSource)
         {
-            activeSourcesByAudioType[pooledAudioSource.AudioType].Remove(pooledAudioSource);
-            activeSourcesBySceneIndex[pooledAudioSource.SceneBuildIndex].Remove(pooledAudioSource);
+            if (!pooledAudioSource.gameObject.activeSelf)
+                return;
+
+            if (activeSourcesByAudioType.TryGetValue(pooledAudioSource.AudioType, out var typeList))
+            {
+                typeList.Remove(pooledAudioSource);
+                if (typeList.Count == 0)
+                    activeSourcesByAudioType.Remove(pooledAudioSource.AudioType);
+            }
+
+            if (activeSourcesBySceneIndex.TryGetValue(pooledAudioSource.SceneBuildIndex, out var sceneList))
+            {
+                sceneList.Remove(pooledAudioSource);
+                if (sceneList.Count == 0)
+                    activeSourcesBySceneIndex.Remove(pooledAudioSource.SceneBuildIndex);
+            }
+
             pooledAudioSource.gameObject.SetActive(false);
             _inactiveSources.Push(pooledAudioSource);
-            numberOfActiveSources--;
+
+            numberOfActiveSources = activeSourcesByAudioType.Sum(val => val.Value.Count);
             numberOfInactiveSources = _inactiveSources.Count;
         }
 
@@ -249,15 +259,22 @@ namespace _Project.Scripts.Core.AudioPooling
         {
             if (activeSourcesByAudioType.TryGetValue(AudioType.Sfx, out List<PooledAudioSource> sfxList))
             {
-                var sourcesToStop = sfxList.ToList();
-
-                foreach (var source in sourcesToStop)
+                for (int i = sfxList.Count - 1; i >= 0; i--)
                 {
-                    source.Stop();
-                    ReturnToPool(source);
+                    sfxList[i].Stop();
                 }
             }
         }
-
+        
+        public void StopAllMusic()
+        {
+            if (activeSourcesByAudioType.TryGetValue(AudioType.Music, out List<PooledAudioSource> musicList))
+            {
+                for (int i = musicList.Count - 1; i >= 0; i--)
+                {
+                    musicList[i].Stop();
+                }
+            }
+        }
     }
 }

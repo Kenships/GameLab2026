@@ -17,6 +17,7 @@ namespace _Project.Scripts.Core.Modules
 {
     public class ModuleSpawner : MonoBehaviour<AudioPooler>
     {
+        [SerializeField] private FloatVariable hapticsIntensity;
         [SerializeField] private NESActionReader player1;
         [SerializeField] private NESActionReader player2;
         
@@ -123,7 +124,7 @@ namespace _Project.Scripts.Core.Modules
         {
             foreach (Gamepad pad in _gamePads)
             {
-                pad.SetMotorSpeeds(1f, .2f);
+                pad.SetMotorSpeeds(1f * hapticsIntensity.Value, .2f * hapticsIntensity.Value);
             }
             
             float timer = .5f;

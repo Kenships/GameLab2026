@@ -327,6 +327,7 @@ MonoBehaviour:
       m_Calls: []
   loadOnAwake: 0
   withOverlay: 0
+  resetTime: 0
   fadeAudio: 1
   fadeDuration: 1
   sceneGroup: 1
@@ -865,6 +866,7 @@ GameObject:
   - component: {fileID: 997339349}
   - component: {fileID: 997339348}
   - component: {fileID: 997339350}
+  - component: {fileID: 997339351}
   m_Layer: 5
   m_Name: VictoryText
   m_TagString: Untagged
@@ -1007,6 +1009,24 @@ MonoBehaviour:
   typeSound: {fileID: 0}
   typeSoundVolume: 0.1
   hasSFX: 0
+--- !u!114 &997339351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 997339346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dae449646f11534f81928346b3b6341, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Knot.Localization::Knot.Localization.Components.KnotLocalizedTextMeshProUGUI
+  _keyReference:
+    _key: Score-Victory
+    _formatters: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &1334527269
 GameObject:
   m_ObjectHideFlags: 0
@@ -1202,6 +1222,7 @@ MonoBehaviour:
       m_Calls: []
   loadOnAwake: 0
   withOverlay: 0
+  resetTime: 0
   fadeAudio: 1
   fadeDuration: 1
   sceneGroup: 1
@@ -1332,6 +1353,7 @@ GameObject:
   - component: {fileID: 1818226603}
   - component: {fileID: 1818226605}
   - component: {fileID: 1818226604}
+  - component: {fileID: 1818226606}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -1458,6 +1480,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1818226602}
   m_CullTransparentMesh: 1
+--- !u!114 &1818226606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1818226602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dae449646f11534f81928346b3b6341, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Knot.Localization::Knot.Localization.Components.KnotLocalizedTextMeshProUGUI
+  _keyReference:
+    _key: Score-Restart
+    _formatters: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &1846931070
 GameObject:
   m_ObjectHideFlags: 0
@@ -1544,6 +1584,7 @@ GameObject:
   - component: {fileID: 1851747395}
   - component: {fileID: 1851747397}
   - component: {fileID: 1851747396}
+  - component: {fileID: 1851747398}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -1670,6 +1711,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1851747394}
   m_CullTransparentMesh: 1
+--- !u!114 &1851747398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1851747394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dae449646f11534f81928346b3b6341, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Knot.Localization::Knot.Localization.Components.KnotLocalizedTextMeshProUGUI
+  _keyReference:
+    _key: Score-Restart
+    _formatters: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &1854038161
 GameObject:
   m_ObjectHideFlags: 0

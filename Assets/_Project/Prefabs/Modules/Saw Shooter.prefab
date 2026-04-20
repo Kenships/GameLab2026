@@ -1810,12 +1810,17 @@ MonoBehaviour:
   rewindSound: {fileID: 8300000, guid: 904184cbab2ef6d4eb570d029d20a47c, type: 3}
   rewindSoundVolume: 1
   brokenEffect: {fileID: 952736733395130718}
-  description: -Low damage\n-Long range circle\n-Single target\n-Chain attack
+  nameKey:
+    _key: Module-Saw
+    _formatters: []
+  descKey:
+    _key: Module-Saw-Desc
+    _formatters: []
   moduleSprite: {fileID: 21300000, guid: 41b2c6234e7c6c04a91064b97e3437e9, type: 3}
   state: 1
   maxHealth: 100
   defaultRecoverySpeed: 40
-  defaultDecaySpeed: 5
+  defaultDecaySpeed: 2.5
   attackStateDecayMultiplier: 4
   enableOnStart: 0
   pickupOffset: {x: 0, y: 0, z: 0}
@@ -1825,7 +1830,6 @@ MonoBehaviour:
   putDownSound: {fileID: 8300000, guid: d9d620a96f57c824695138d11a50362f, type: 3}
   putDownSoundVolume: 1.5
   groundLight: {fileID: 300325434259730834}
-  turretType: disc
   spawnPoint: {fileID: 3986486476490431559}
   rotationBody: {fileID: 3445348889881576459}
   turretAnimator: {fileID: 7271907164383239235}
@@ -1835,12 +1839,15 @@ MonoBehaviour:
   bulletFactory: {fileID: 11400000, guid: f5cb3d7f514abb3489248fa2d883da3e, type: 2}
   shotsPerSecond: 1
   attackSpeedMultiplier: 1.5
-  detectionRange: 6.5
+  detectionRange: 7.5
   headRotationSpeed: 10
   shootSound: {fileID: 8300000, guid: f21bdf2a9364cce4785a3debf763df22, type: 3}
   shootSoundVolume: 0.3
   player1Visual: {fileID: 790316906995648998}
   player2Visual: {fileID: 6505483928442727171}
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &6220022207668456444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1854,7 +1861,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RangeDetector
   rangeType: 0
-  radius: 6.5
+  radius: 7.5
   angle: 35
   width: 5
   length: 10

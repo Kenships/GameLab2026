@@ -262,7 +262,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1133632955}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 92353679}
+        m_TargetAssemblyTypeName: _Project.Scripts.Core.AudioPooling.UISoundPlayer,
+          Assembly-CSharp
+        m_MethodName: PlaySoundWithDelay
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: cfc88dac6e66e7d4ab77cff4189b80f1, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!222 &92353677
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -283,6 +296,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9e3893c0e019e34a934bc4a102fe6ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UISoundPlayer
+  delay: 2.5
 --- !u!114 &92353680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -483,6 +497,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9e3893c0e019e34a934bc4a102fe6ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UISoundPlayer
+  delay: 0
 --- !u!114 &182962109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -551,6 +566,7 @@ GameObject:
   - component: {fileID: 201336725}
   - component: {fileID: 201336727}
   - component: {fileID: 201336726}
+  - component: {fileID: 201336728}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -677,6 +693,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 201336724}
   m_CullTransparentMesh: 1
+--- !u!114 &201336728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 201336724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dae449646f11534f81928346b3b6341, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Knot.Localization::Knot.Localization.Components.KnotLocalizedTextMeshProUGUI
+  _keyReference:
+    _key: Settings-Title
+    _formatters: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &278551106
 GameObject:
   m_ObjectHideFlags: 0
@@ -830,6 +864,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22fa47f70d6bcaf4f81f097ee51f3d6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VideoPlayerController
+  hapticsIntensity: {fileID: 11400000, guid: 6aa2da57d62bb414e9bb178c9f39d63f, type: 2}
   readers:
   - {fileID: 1795221923}
   - {fileID: 47407885}
@@ -898,6 +933,7 @@ GameObject:
   - component: {fileID: 749847956}
   - component: {fileID: 749847958}
   - component: {fileID: 749847957}
+  - component: {fileID: 749847959}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -1024,6 +1060,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 749847955}
   m_CullTransparentMesh: 1
+--- !u!114 &749847959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 749847955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dae449646f11534f81928346b3b6341, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Knot.Localization::Knot.Localization.Components.KnotLocalizedTextMeshProUGUI
+  _keyReference:
+    _key: UI-Quit
+    _formatters: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &775938717
 GameObject:
   m_ObjectHideFlags: 0
@@ -1171,6 +1225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9e3893c0e019e34a934bc4a102fe6ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UISoundPlayer
+  delay: 0
 --- !u!114 &775938724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1375,6 +1430,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9e3893c0e019e34a934bc4a102fe6ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UISoundPlayer
+  delay: 0
 --- !u!114 &955155413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1443,6 +1499,7 @@ GameObject:
   - component: {fileID: 1093606838}
   - component: {fileID: 1093606840}
   - component: {fileID: 1093606839}
+  - component: {fileID: 1093606841}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -1569,6 +1626,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1093606837}
   m_CullTransparentMesh: 1
+--- !u!114 &1093606841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1093606837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dae449646f11534f81928346b3b6341, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Knot.Localization::Knot.Localization.Components.KnotLocalizedTextMeshProUGUI
+  _keyReference:
+    _key: UI-Credits
+    _formatters: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &1133632953
 GameObject:
   m_ObjectHideFlags: 0
@@ -1580,6 +1655,7 @@ GameObject:
   - component: {fileID: 1133632954}
   - component: {fileID: 1133632956}
   - component: {fileID: 1133632955}
+  - component: {fileID: 1133632957}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -1706,6 +1782,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1133632953}
   m_CullTransparentMesh: 1
+--- !u!114 &1133632957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1133632953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dae449646f11534f81928346b3b6341, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Knot.Localization::Knot.Localization.Components.KnotLocalizedTextMeshProUGUI
+  _keyReference:
+    _key: UI-Start
+    _formatters: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &1155904469
 GameObject:
   m_ObjectHideFlags: 0

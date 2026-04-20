@@ -166,7 +166,12 @@ MonoBehaviour:
   rewindSound: {fileID: 8300000, guid: 904184cbab2ef6d4eb570d029d20a47c, type: 3}
   rewindSoundVolume: 1
   brokenEffect: {fileID: 7040996510961811714}
-  description: -High damage\n-Short range circle\n-Single target
+  nameKey:
+    _key: Module-Turret
+    _formatters: []
+  descKey:
+    _key: Module-Turret-Desc
+    _formatters: []
   moduleSprite: {fileID: 21300000, guid: 623b8d6c35aa4cc46a664619f1f36193, type: 3}
   state: 1
   maxHealth: 100
@@ -197,6 +202,9 @@ MonoBehaviour:
   shootSoundVolume: 0.1
   player1Visual: {fileID: 5575679973610440716}
   player2Visual: {fileID: 4466496474892881219}
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &6068358473074101300
 MonoBehaviour:
   m_ObjectHideFlags: 0

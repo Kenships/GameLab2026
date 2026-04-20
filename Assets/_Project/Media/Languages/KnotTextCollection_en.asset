@@ -1,0 +1,169 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecacf7bdd7e77b2419e140cb5ded6aa5, type: 3}
+  m_Name: KnotTextCollection_en
+  m_EditorClassIdentifier: Knot.Localization::Knot.Localization.Data.KnotTextCollection
+  _items:
+  - _key: Tut-line1
+    _rawText: Well well well... looks like you bozos got sucked into this movie wasteland.
+  - _key: Tut-line2
+    _rawText: But I can get you out. Just protect me. Yeah, the VHS tape on the right.
+      See me?
+  - _key: Tut-line3
+    _rawText: First off, let's try move with D-pad.
+  - _key: Tut-line4
+    _rawText: Good. See my health bar on top? Not great. HOLD A next to me to rewind
+      = heal me. Thanks!
+  - _key: Tut-line5
+    _rawText: Monsters are coming for me soon. You can't punch 'em, so I got you
+      a flamethrower.
+  - _key: Tut-line6
+    _rawText: Click A to grab it. Click A again to put it down (only on grass).
+  - _key: Tut-line7
+    _rawText: Nice! Now try Click B to spin it around.
+  - _key: Tut-line8
+    _rawText: Great. But you probably noticed... it ain't doing anything right now.
+  - _key: Tut-line9
+    _rawText: 'That''s cause time is the juice for these modules.  '
+  - _key: Tut-line10
+    _rawText: Try HOLDING A to rewind the module next to ya.
+  - _key: Tut-line11
+    _rawText: Now HOLD B to fast forward, shoots faster, burns out quicker.
+  - _key: Tut-line12
+    _rawText: If you're holding a module, you can't time-manipulate it yourself.
+      But the other player can, just have them HOLD A or B while you hold it.
+  - _key: Tut-line13
+    _rawText: Awesome. There's actually another type of module, go grab it and place
+      it on the grass first.
+  - _key: Tut-line14
+    _rawText: You can see it got the battery icon on top, that means it needs full
+      time to wake up.
+  - _key: Tut-line15
+    _rawText: 'So here''s the move: HOLD A to rewind it full, then HOLD B to fire
+      it up. Try that on the explosive tank.'
+  - _key: Tut-line16
+    _rawText: <b>BOOOOM BABY!!!</b>
+  - _key: Tut-line17
+    _rawText: Oh, and that car? Try rewind it, then fast forward it. (HOLD A, then
+      HOLD B)
+  - _key: Tut-line18
+    _rawText: Uh-oh... incoming ugly! Something's coming for me! PROTECT YOUR TAPE,
+      DUDE!
+  - _key: Tut-line19
+    _rawText: Not bad. I'll toss you more modules during the real fight. Now go kick
+      butt. I'm counting on ya.
+  - _key: Settings-Master
+    _rawText: Master
+  - _key: Settings-Music
+    _rawText: Music
+  - _key: Settings-SFX
+    _rawText: SFX
+  - _key: Settings-Title
+    _rawText: Settings
+  - _key: Settings-Haptics
+    _rawText: Haptics
+  - _key: Settings-Language
+    _rawText: Language
+  - _key: Settings-Haptics-High
+    _rawText: High
+  - _key: Settings-Haptics-low
+    _rawText: Low
+  - _key: Settings-Haptics-off
+    _rawText: Off
+  - _key: UI-Back
+    _rawText: Back
+  - _key: UI-Credits
+    _rawText: Credits
+  - _key: UI-Quit
+    _rawText: Quit
+  - _key: UI-Start
+    _rawText: Start
+  - _key: Credits-Disigner-artist
+    _rawText: '<b>Designer:</b>
+
+      Jonghwan Kim
+
+
+      <b>Artist:</b>
+
+      Jannah
+      Ibrahim
+
+      Naya Wardeh
+
+      Hazel Grover
+
+
+      <b>Music & Sound:</b>
+
+      Guy
+      Louis Perry'
+  - _key: Credits-Prog-SP
+    _rawText: "<b>Programmers:</b>\nKenneth Xu\nMubai Zeng\nMikito Takata\nGuy Louis
+      Perry\n\n<b>Remerciements sp\xE9ciaux:</b>\nCosta Tsimiklis\nMartin Briand"
+  - _key: Tut-Hint
+    _rawText: Both Players Need To Do The Task
+  - _key: Module-Laser
+    _rawText: Laser Cannon
+  - _key: Module-Flame
+    _rawText: Flame Thrower
+  - _key: Module-Saw
+    _rawText: Saw Shooter
+  - _key: Module-Tank
+    _rawText: Explosive Tank
+  - _key: Module-Turret
+    _rawText: Turret
+  - _key: Module-Saw-Desc
+    _rawText: -Low damage\n-Long range circle\n-Single target\n-Chain attack
+  - _key: Module-Laser-Desc
+    _rawText: -High damage\n-Long range rectangle\n-Area damage\n-Each shot costs
+      all the time
+  - _key: Module-Flame Desc
+    _rawText: -Low damage\n-Long range arc\n-Area damage\n-Burn
+  - _key: Module-Tank-Desc
+    _rawText: -Low damage\n-Long range circle\n-Single target\n-Chain attack
+  - _key: Module-Turret-Desc
+    _rawText: -High damage\n-Short range circle\n-Single target
+  - _key: Keymap-Click
+    _rawText: Click
+  - _key: Keymap-Fast
+    _rawText: To Fast Forward
+  - _key: Keymap-Hold
+    _rawText: Hold
+  - _key: Keymap-Pickup
+    _rawText: to pick up / put down
+  - _key: Keymap-Rewind
+    _rawText: to rewind
+  - _key: Keymap-Rotate
+    _rawText: to rotate
+  - _key: Tut-Title
+    _rawText: Tutorial
+  - _key: Select-Choose
+    _rawText: Choose Your Character
+  - _key: Select-Instructions
+    _rawText: D-PAD to MOVE; A to CONFIRM
+  - _key: Module-SelectOne
+    _rawText: Select One
+  - _key: Module-Confrim
+    _rawText: Press A to Confirm
+  - _key: Diffiuclty-Hell
+    _rawText: Hellscape
+  - _key: Diffiuclty-Med
+    _rawText: Medium
+  - _key: Diffiuclty-Easy
+    _rawText: Easy
+  - _key: Diffiuclty-Hard
+    _rawText: Hard
+  - _key: Score-Victory
+    _rawText: Victory
+  - _key: Score-Restart
+    _rawText: Restart

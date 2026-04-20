@@ -15,7 +15,6 @@ namespace _Project.Scripts.Core.Modules
     [RequireComponent(typeof(RangeDetector))]
     public class Turret : PickupModuleBase, IDamageable
     {
-        [SerializeField] public string turretType;
         [Header("References")]
         [SerializeField] private Transform spawnPoint;
         [SerializeField] private GameObject rotationBody;
