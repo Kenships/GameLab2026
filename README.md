@@ -91,8 +91,6 @@ KyryloKuzyk - [PrimeTween](https://github.com/KyryloKuzyk/PrimeTween)
 
 mob-sakai - [UI Soft Mask](https://github.com/mob-sakai/SoftMaskForUGUI)
 
-Sisus - [Init(args)](https://docs.sisus.co/init-args/)
-
 Sisus - [Sisus Shared](https://docs.sisus.co/)
 
 V0odo0 - [KNOT Localization](https://assetstore.unity.com/packages/tools/localization/knot-localization-187603?srsltid=AfmBOorK8uFeqWjFO1bWcnwLZER8XLZVUGBVE2G3EInMfG3citIZ9VYM)
